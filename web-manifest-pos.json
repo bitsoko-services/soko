@@ -1,0 +1,18 @@
+{
+  "short_name": "Soko POS",
+  "name": "Soko Point Of Sale",
+  "icons": [
+    {
+      "src": "../merch/images/sicon.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/merch/index.html#l=hs",
+  "display": "fullscreen",
+  "orientation": "landscape",
+    "background_color": "#0f5f76",
+    "theme_color": "#0f5f76",
+  "gcm_sender_id": "1056993243377",  
+  "gcm_user_visible_only": true  
+}
