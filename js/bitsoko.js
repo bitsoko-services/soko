@@ -1104,7 +1104,7 @@ function updateProd(t){
 
     if (file) {
           
-	    var canvas=document.getElementById("#add-product input");
+	    var canvas=document.querySelectorAll('#tmp-canvas > canvas')[0];
 var ctx=canvas.getContext("2d");
 var cw=canvas.width;
 var ch=canvas.height;
@@ -1455,7 +1455,7 @@ console.log($(t.target));
 
     if (files && file) {
           
-	    var canvas=document.getElementById("canvas");
+	    var canvas=document.querySelectorAll('#tmp-canvas > canvas')[0];
 var ctx=canvas.getContext("2d");
 var cw=canvas.width;
 var ch=canvas.height;
@@ -1654,7 +1654,7 @@ if(val=='image'){
 
     if (file) {
           
-	    var canvas=document.querySelectorAll('#add-product > canvas')[0];
+	    var canvas=document.querySelectorAll('#tmp-canvas > canvas')[0];
 var ctx=canvas.getContext("2d");
 var cw=canvas.width;
 var ch=canvas.height;
