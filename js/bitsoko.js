@@ -1173,9 +1173,12 @@ for (var i = 0; i < shroot.length; ++i) {
             id: $(this).attr('prid')
         }).then(function (e) {
             if (e.status == 'ok') {
-
-                //document.querySelector('#prodImg-holda-'+prid).src = val;
-                //  Materialize.toast('modified '+name+'..', 3000);
+                $('.removeProduct').click(function (event) {
+                        event.preventDefault();
+                        $(this).parent().parent().parent().parent().remove();
+                    })
+                    //document.querySelector('#prodImg-holda-'+prid).src = val;
+                    //  Materialize.toast('modified '+name+'..', 3000);
 
             } else {
                 console.log(e);
