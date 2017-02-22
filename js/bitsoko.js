@@ -1160,6 +1160,7 @@ document.querySelector('#prodImg-holda-'+prid).src = val;
 		
 	}	  
 }
+
 //Remove product
 var shroot = document.querySelectorAll(".removeProduct");
 for (var i = 0; i < shroot.length; ++i) {
@@ -1173,12 +1174,12 @@ for (var i = 0; i < shroot.length; ++i) {
             id: $(this).attr('prid')
         }).then(function (e) {
             if (e.status == 'ok') {
-                $('.removeProduct').click(function (event) {
-                        event.preventDefault();
-                        $(this).parent().parent().parent().parent().remove();
-                    })
-                    //document.querySelector('#prodImg-holda-'+prid).src = val;
-                    //  Materialize.toast('modified '+name+'..', 3000);
+                $(document).on('touchstart click', '.removeProduct', function (event) {
+                    $(this).parent().parent().parent().parent().remove();
+
+                });
+                //document.querySelector('#prodImg-holda-'+prid).src = val;
+                //  Materialize.toast('modified '+name+'..', 3000);
 
             } else {
                 console.log(e);
