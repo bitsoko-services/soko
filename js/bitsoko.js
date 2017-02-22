@@ -917,7 +917,7 @@ function productsUpdater(){
 	     // var saleTime=moment(reqs[i].posted).fromNow();
 //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
 	     var html = '<li prid="'+reqs[i].id+'" style="margin-bottom:10px; background: rgb(255, 255, 255);">'+
-                    '<div id="prodImg-holda-'+reqs[i].id+'" style="background-size: contain;background-image:url('+reqs[i].imagePath+');width: 90px;height: 86px;float: left;"></div><div class="collapsible-header" style="width: calc(100% - 90px);display:inline-block;">'+reqs[i].name+'<div class="divider"></div><span >'+
+                    '<div id="prodImg-holda-'+reqs[i].id+'" style="background-size: cover;background-repeat: no-repeat;background-position: center;background-image:url('+reqs[i].imagePath+');width: 90px;height: 86px;float: left;"></div><div class="collapsible-header" style="width: calc(100% - 90px);display:inline-block;">'+reqs[i].name+'<div class="divider"></div><span >'+
                     '<i class="{{product.icon}}"></i>'+reqs[i].quantity+' available</span></div><div class="collapsible-body"><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">sale information</div>'+
                     '<form class="col s12" style="padding: 20px 30px;"><div class="row"><div class="input-field col s12">'+
                      '<input id="prodName-'+reqs[i].id+'" prnm="name" type="text" class="validate" prid="'+reqs[i].id+'" value="'+reqs[i].name+'"><label for="prodName-'+reqs[i].id+'" class="">Name</label></div></div>'+
