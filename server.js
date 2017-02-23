@@ -135,7 +135,7 @@ try {
                 case 'admin':
                     data = dat;
                     console.log(data);
-                    sokoNotification(dat.title, dat.msg, "soko-admin", '/soko/images/logo-soko.png', '', [{
+                    sokoNotification(dat.title, dat.msg, "soko-admin", '/soko/images/icon.png', '', [{
                         action: 'soko-update',
                         title: "Update"
                     }], true, true);
