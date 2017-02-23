@@ -132,16 +132,6 @@ try {
                 // that serve as keys for the current cache.
                 // This command adds a new request/response pair to the cache.
 
-                case 'admin':
-                    data = dat;
-                    console.log(data);
-                    sokoNotification(dat.title, dat.msg, "soko-admin", '/soko/images/icon.png', '', [{
-                        action: 'soko-update',
-                        title: "Update"
-                    }], true, true);
-
-                    break;
-
                 case 'sent':
                     data = dat;
                     console.log(data);
@@ -168,7 +158,7 @@ try {
                         }, {
                             action: 'soko-unsubscribe-' + dat.pid,
                             title: "Unsubscribe"
-                        }], true, true);
+                        }], true, false);
 
                     }
 
