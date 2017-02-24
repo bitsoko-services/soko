@@ -102,7 +102,7 @@ profileLoaded(JSON.parse(event.target.result));
        
      }catch(err){
      	console.log('no user profile found : ',err);
-     	 $('#login').openModal();
+     	 $('#login').modal('open');
      	reqProfile();
      }
            
