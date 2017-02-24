@@ -1298,10 +1298,10 @@ function newStore(){
 
   $('.sidebar-collapse').sideNav('hide');
 setTimeout(function() {
-      $('#newStoreModal').openModal({dismissible: false, ready: function(){
+      $('#newStoreModal').modal({dismissible: false, ready: function(){
     
      getLoc();
-      }});
+      }}).modal('open');
 	   
     }, 200);
 	
@@ -1321,7 +1321,7 @@ function editStore(){
 
   $('.sidebar-collapse').sideNav('hide');
 setTimeout(function() {
-      $('#editStoreModal').openModal({dismissible: false, ready: function(){
+      $('#editStoreModal').modal({dismissible: false, ready: function(){
     editStoreCallback();
      getLoc();
 	      var xx=activeStore();
@@ -1331,7 +1331,7 @@ setTimeout(function() {
 	      
 	      
 	 Materialize.updateTextFields();
-      }});
+      }}).modal('open');
 	   
     }, 200);
 	
@@ -1560,7 +1560,7 @@ forEach(myNodeList, function (index, value) {
          
    refreshProducts();
     Materialize.toast('added ..', 3000);
-	      $('#add-product').closeModal();
+	      $('#add-product').modal('close');
 	      
       }else{
       console.log(e);
