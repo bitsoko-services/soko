@@ -116,7 +116,7 @@ $('.sidebar-collapse').sideNav({
     }
   );    
     
-    
+  $('.modal').modal();  
     
 	$(document).on('click', '.side-nav > li > a', function(){
 
