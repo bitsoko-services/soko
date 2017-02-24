@@ -42,8 +42,9 @@ function profileLoaded(p){
         }else if (e.msg=="no services"){
 	getObjectStore('data', 'readwrite').put(JSON.stringify([]), 'soko-stores');
         
-         $('#firstStoreModal').openModal({ dismissible: false ,
-      complete: function() { $('#newStoreModal').openModal({ dismissible: false }); }} );
+         $('#firstStoreModal').modal({ dismissible: false ,
+      complete: function() { $('#newStoreModal').modal({ dismissible: false }).modal('open'); }} );
+		$('#firstStoreModal').modal('open');
 	}else{
         createService(p);
         }
@@ -151,12 +152,15 @@ function loadPOS(){
 	
         var services = JSON.parse(svcs);
 	 }catch(err){
-	 $('#newStoreModal').openModal({ dismissible: false });
+	 $('#newStoreModal').modal({ dismissible: false });
+	 $('#newStoreModal').modal('open');
 		 return;
 	 }
 	 if(services.length==0){
-         $('#firstStoreModal').openModal({ dismissible: false ,
-      complete: function() { $('#newStoreModal').openModal({ dismissible: false }); }} );
+         $('#firstStoreModal').modal({ dismissible: false ,
+      complete: function() { $('#newStoreModal').modal({ dismissible: false }).modal('open'); }} );
+		 
+         $('#firstStoreModal').modal('open');
 		 return;
 	 }
 
@@ -187,7 +191,8 @@ function loadPOS(){
 } 
   stCb.onerror = function (event) {
 	  
-	 $('#newStoreModal').openModal({ dismissible: false });
+	 $('#newStoreModal').modal({ dismissible: false });
+	 $('#newStoreModal').modal('open');
   }
   //  appMaster.animateScript();
 
@@ -904,8 +909,8 @@ function productsUpdater(){
 	     $( ".products-collapsible" ).append( $.parseHTML( html ) );
 		$("#promotions>.fixed-action-btn>a").attr('href','#firstProdModal'); 
 		 
-         $('#firstProdModal').openModal({ dismissible: false ,
-      complete: function() { $('#add-product').openModal({ dismissible: false }); }} );
+         $('#firstProdModal').modal({ dismissible: false ,
+      complete: function() { $('#add-product').modal({ dismissible: false }); }} ).modal('open');
 		 return;
 	 } else{
 	 $("#promotions>.fixed-action-btn>a").attr('href','#newPromoModal')
