@@ -1342,7 +1342,7 @@ function switchStore(){
 
   $('.sidebar-collapse').sideNav('hide');
 setTimeout(function() {
-      $('#switchStoreModal').openModal({dismissible: false, ready: function(){
+      $('#switchStoreModal').modal({dismissible: false, ready: function(){
  
 	      
 	      
@@ -1363,11 +1363,11 @@ function doSwitchStore(){
                          '</li>';
     $('.chStoreUpdate').append( html );
 
-$('#switchStoreModal').closeModal({complete: function(){
+$('#switchStoreModal').modal({complete: function(){
     
     Materialize.toast('changing store..', 2000);
 	
-      }});  
+      }}).modal('close');  
 
 }
 function doNewStore(){
@@ -1392,11 +1392,11 @@ function doNewStore(){
 profileLoaded(JSON.parse(event.target.result));
 
 
-      $('#newStoreModal').closeModal({complete: function(){
+      $('#newStoreModal').modal({complete: function(){
     
     Materialize.toast('added new store..', 3000);
 	      
-      }});  
+      }}).modal('close');  
 
 
                               
@@ -1459,12 +1459,12 @@ function doNewPromo(){
       if(e.status=='ok'){
       
    
-      $('#newPromoModal').closeModal({complete: function(){
+      $('#newPromoModal').modal({complete: function(){
     
     Materialize.toast('added new promotion..', 3000);
 	      
    refreshPromotions();
-      }});  
+      }}).modal('close');  
 	      
       }else{
       console.log(e);
