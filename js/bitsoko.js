@@ -1449,11 +1449,32 @@ getObjectStore('data', 'readwrite').get('soko-store-customers-'+localStorage.get
 
 function doNewPromo(){
 
+	var items=[];
+	var x = document.querySelector('.promo-add-ProdList select');
+var selcItms =	document.querySelector('.promo-add-ProdList input').value.split(', ');
+var selcIds = new Array();
+var allItms = new Array();
+for (i = 0,allItms=allItms,selcIds=selcIds; i < x.length; i++) { 
+	
+    allItms.push({name:x.options[i].text,id:x.options[i].getAttribute('value')});
+}
+for (ii = 0,allItms=allItms,selcIds=selcIds; ii < selcItms.length; ii++) { 
+	
+	
+function findChosen(it) { 
+    return it.name === selcItms[ii];
+}
+	
+    selcIds.push(allItms.find(findChosen).id);
+}
+	
+	
+	
 	  doFetch({action: 'doNewPromo', ownerid : activeStore().id
 		   , name: document.querySelector('#newPromo-name').value
 		  , desc: document.querySelector('#newPromo-desc').value
 		  , image: document.querySelector('#newPromo-image').value
-		  , items: document.querySelector('.promo-add-ProdList input').value
+		  , items: selcIds
 		  , discount: document.querySelector('#newPromo-discount').value
 		  , offers: document.querySelector('#newPromo-offers').value}).then(function (e){
       if(e.status=='ok'){
