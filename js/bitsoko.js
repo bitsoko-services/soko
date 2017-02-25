@@ -1347,7 +1347,7 @@ setTimeout(function() {
 	      
 	      
 	      
-      }});
+      }}).modal('open');
 	   
     }, 200);
 	
