@@ -1,73 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="sokoApp">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="msapplication-tap-highlight" content="no">
-  <meta name="description" content="#{desc}">
-  <meta name="keywords" content="free,merchant,payment,processing,digital,currencies,bitcoin,blockchain">
-	
-        
-		<meta name="og:title" content="#{name}" />
-        <meta name="og:url" content="https://bitsoko.io/merch/" />
-        <meta name="og:image" content="#{img}" />
-        <meta http-equiv="origin-trial" data-feature="Web Share" data-expires="2017-01-03" content="AohGU5J8SvW2+BfB8UxiHc0TIJ0Ba97J/EQPm6GEPk2rLoxSMWxoBY51Rei9wTTi1WB/hyMbh5dpFbaJqFoYOgQAAABfeyJvcmlnaW4iOiJodHRwczovL2JpdHNva28uaW86NDQzIiwiZmVhdHVyZSI6IldlYlNoYXJlIiwiZXhwaXJ5IjoxNDg1MjAxNzQzLCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
-		<meta name="og:description" content="#{desc}" />
-        
-		<meta name="description" content="#{desc}" />
-        <meta name="keywords" content="" />
-        <link rel="shortcut icon" type="image/png" href="#{img}">
-  <title>#{name}</title>
 
-  <!-- Favicons-->
-  <link rel="icon" href="#{img}" sizes="32x32">
-  <!-- Favicons-->
-  <link rel="apple-touch-icon-precomposed" href="#{img}">
-  <!-- For iPhone -->
-  <meta name="msapplication-TileColor" content="#00bcd4">
-  <meta name="msapplication-TileImage" content="#{img}">
-  
-<meta name="google-signin-client_id" content="476194103258-98t0j7p1lrela49ispgj3jfokl2r3ils.apps.googleusercontent.com">
-  <link rel="manifest" href="web-manifest-pos.json">
-	
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="#{desc}">
+    <meta name="keywords" content="free,merchant,payment,processing,digital,currencies,bitcoin,blockchain">
+
+
+    <meta name="og:title" content="#{name}" />
+    <meta name="og:url" content="https://bitsoko.io/merch/" />
+    <meta name="og:image" content="#{img}" />
+    <meta http-equiv="origin-trial" data-feature="Web Share" data-expires="2017-01-03" content="AohGU5J8SvW2+BfB8UxiHc0TIJ0Ba97J/EQPm6GEPk2rLoxSMWxoBY51Rei9wTTi1WB/hyMbh5dpFbaJqFoYOgQAAABfeyJvcmlnaW4iOiJodHRwczovL2JpdHNva28uaW86NDQzIiwiZmVhdHVyZSI6IldlYlNoYXJlIiwiZXhwaXJ5IjoxNDg1MjAxNzQzLCJpc1N1YmRvbWFpbiI6dHJ1ZX0=">
+    <meta name="og:description" content="#{desc}" />
+
+    <meta name="description" content="#{desc}" />
+    <meta name="keywords" content="" />
+    <link rel="shortcut icon" type="image/png" href="#{img}">
+    <title>#{name}</title>
+
+    <!-- Favicons-->
+    <link rel="icon" href="#{img}" sizes="32x32">
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="#{img}">
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <meta name="msapplication-TileImage" content="#{img}">
+
+    <meta name="google-signin-client_id" content="476194103258-98t0j7p1lrela49ispgj3jfokl2r3ils.apps.googleusercontent.com">
+    <link rel="manifest" href="web-manifest-pos.json">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <script src="../bitsAssets/js/webcomponents.js"></script>
 
-  <!-- CORE CSS-->
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <!-- Custome CSS-->    
-  <link href="css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <!-- CORE CSS-->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <!-- Custome CSS-->
+    <link href="css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection">
 
-  <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-  <link href="js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">  
-  
- <script src="https://apis.google.com/js/client:platform.js" async defer></script> 
-	<link rel="import" href="https://bitsoko.io/bitsAssets/html/connector.html" async>	
+    <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+    <link href="js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+    <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+    <link rel="import" href="https://bitsoko.io/bitsAssets/html/connector.html" async>
 </head>
 
 <body style="overflow-x: hidden;">
-<bits-connect></bits-connect>
-       
-  <!-- Start Page Loading -->
-  
-  <!-- End Page Loading -->
-<!-- Modal Structure -->
-  <div id="login" class="modal modal-fixed-footer">
-    <div class="modal-content" style="
+    <bits-connect></bits-connect>
+
+    <!-- Start Page Loading -->
+
+    <!-- End Page Loading -->
+    <!-- Modal Structure -->
+    <div id="login" class="modal modal-fixed-footer">
+        <div class="modal-content" style="
     background-image: url('images/bitsoko-inv.png');
     background-size: 120px;
     background-repeat: no-repeat;
     background-position: center 10%;
     padding-top: 90px;">
-      <div style="height:30px;width:100%;display: inline-block;margin-bottom:5px;text-align: center;">a simple and secure POS terminal</div>
-     
-      <div id="qrcode" style="height:200px;width:200px;display: inline-block;"></div>
+            <div style="height:30px;width:100%;display: inline-block;margin-bottom:5px;text-align: center;">a simple and secure POS terminal</div>
 
-      <div style="height: 40px;
+            <div id="qrcode" style="height:200px;width:200px;display: inline-block;"></div>
+
+            <div style="height: 40px;
     width: 100%;
     display: inline-block;
     background-image: url('images/QR-Scan.png');
@@ -77,129 +78,132 @@
     padding-left: 100px;
     float: left;
     font-size: 85%;" class="hidden-xs">
-      to sign in, use your wallet</br>and scan this code</div>
+                to sign in, use your wallet</br>and scan this code</div>
+
+        </div>
+        <div class="modal-footer">
+            <div id="customBtn" class="customGPlusSignIn">
+                <span class="icon"></span>
+                <span class="buttonText">Google signin</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- addProduct Modal start //////////////////////////////////////////////////////////////////////////// -->
+
+
+    <div id="add-product" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <form class="col s12">
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="name" type="text" class="validate" prid="name">
+                        <label for="name" class="">Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+
+                        <input id="description" type="text" class="validate" prid="description">
+                        <label for="description" class="">Description</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn"><span>image</span>
+                            <input id="image" type="file" prid="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="input-field col s6">
+                        <input placeholder="" id="amount" type="number" class="validate" min="0" prid="price">
+                        <label for="amount" class="active">Amount</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <div class="select-wrapper initialized" prid="metric">
+                            <span class="caret">▼</span>
+
+                            <select class="initialized">
+                                <option value="" disabled="">measurement</option>
+                                <option value="1">per Kilogram</option>
+                                <option value="2" selected="">per Piece</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="input-field col s6">
+                        <input placeholder="" id="prod-cy" type="number" class="validate" min="0" max="1000" prid="rstQuantity">
+                        <label for="prod-cy" class="active">
+                            Quantity</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <div class="select-wrapper initialized" prid="rstDuration">
+                            <span class="caret">▼</span>
+
+                            <select class="initialized">
+                                <option value="" disabled="">duration</option>
+                                <option value="1" selected="">per Day</option>
+                                <option value="2">per Week</option>
+                                <option value="3">per Month</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="addProduct waves-effect waves-green btn-flat">Add</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a>
+        </div>
 
     </div>
-    <div class="modal-footer">
-      <div id="customBtn" class="customGPlusSignIn">
-      <span class="icon"></span>
-      <span class="buttonText">Google signin</span>
+    <!-- addProduct Modal end //////////////////////////////////////////////////////////////////////////// -->
+    <!-- switchStore Modal Start -->
+    <div id="switchStoreModal" class="modal bottom-sheet">
+        <div class="modal-content">
+            <ul id="switchStoreContent" class="collection">
+
+
+
+            </ul>
+        </div>
     </div>
-    </div>
-  </div>
-	
-<!-- addProduct Modal start //////////////////////////////////////////////////////////////////////////// -->	          
-  
 
-  <div id="add-product" class="modal modal-fixed-footer">
-    <div class="modal-content" >
-      <form class="col s12">
-                      
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="name" type="text" class="validate" prid="name">
-                          <label for="name" class="">Name</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                         
-                          <input id="description" type="text" class="validate" prid="description">
-                          <label for="description" class="">Description</label>
-                        </div>
-                      </div>
+    <!-- switchStore Modal End -->
 
-                      <div class="row">
-		<div class="file-field input-field">
-	      <div class="btn"><span>image</span>
-	      <input id="image" type="file" prid="image">
-                   </div></div>
-		 </div>
-                      
-                      <div class="row">
+    <!-- switchStore Modal End -->
 
-                        <div class="input-field col s6">
-                         <input placeholder="" id="amount" type="number" class="validate" min="0" prid="price">
-                          <label for="amount" class="active">Amount</label>
-                        </div>
+    <!-- editStore Modal Start -->
+    <div id="editStoreModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <form class="col s12">
 
-                                                <div class="input-field col s6">
-                          <div class="select-wrapper initialized"  prid="metric">
-                          <span class="caret">▼</span>
-
-                          <select class="initialized">
-                      <option value="" disabled="">measurement</option>
-                      <option value="1">per Kilogram</option>
-                      <option value="2" selected="">per Piece</option>
-                    </select></div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-
-                        <div class="input-field col s6">
-                         <input placeholder="" id="prod-cy" type="number" class="validate" min="0" max="1000" prid="rstQuantity">
-                          <label for="prod-cy" class="active">
-                          Quantity</label>
-                        </div>
-
-                                                <div class="input-field col s6">
-                          <div class="select-wrapper initialized" prid="rstDuration">
-                          <span class="caret">▼</span>
-
-                          <select class="initialized">
-                      <option value="" disabled="">duration</option>
-                      <option value="1" selected="">per Day</option>
-                      <option value="2">per Week</option>
-                      <option value="3">per Month</option>
-                    </select></div>
-                        </div>
-                      </div>
-                      
-                    </form>
-
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="addProduct waves-effect waves-green btn-flat">Add</a>
-      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a>
-    </div>
-	  
-  </div>
-  <!-- addProduct Modal end //////////////////////////////////////////////////////////////////////////// -->	          
-  <!-- switchStore Modal Start -->
-  <div id="switchStoreModal" class="modal bottom-sheet">
-    <div class="modal-content">
-      <ul id="switchStoreContent" class="collection">
-                                    
-                                    
-                                    
-</ul>
-</div>
-  </div>
-	          
-  <!-- switchStore Modal End -->
-		          
-  <!-- switchStore Modal End -->
-	          
-  <!-- editStore Modal Start -->
-  <div id="editStoreModal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-       <form class="col s12">
-                      
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="editStore-name" type="text" class="validate" stitm="name">
-                          <label for="editStore-name" class="">Name</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="editStore-description" type="text" class="validate" stitm="description">
-                          <label for="editStore-description" class="">
-                          Description</label>
-                        </div>
-                      </div>
-                      <!--<div class="row" style="display:none;">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="editStore-name" type="text" class="validate" stitm="name">
+                        <label for="editStore-name" class="">Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="editStore-description" type="text" class="validate" stitm="description">
+                        <label for="editStore-description" class="">
+                            Description</label>
+                    </div>
+                </div>
+                <!--<div class="row" style="display:none;">
                         <div class="input-field col s12"><video autoplay></video>
 <img src="" class="materialboxed" width="350">
 <canvas style="display:none;"></canvas>
@@ -209,100 +213,102 @@
                         </div>
                       </div>-->
 
-                      
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="editStore-Phone" type="text" class="validate" value="" stitm="phone">
-                          <label for="editStore-Phone" class="">Phone</label>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="editStore-Phone" type="text" class="validate" value="" stitm="phone">
+                        <label for="editStore-Phone" class="">Phone</label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn"><span>image</span>
+                            <input id="editStore-image" type="file" stitm="banner">
                         </div>
-                      </div>
+                    </div>
+                </div>
 
 
-                      <div class="row">
-		<div class="file-field input-field">
-	      <div class="btn"><span>image</span>
-	      <input id="editStore-image" type="file" stitm="banner">
-                   </div></div>
-		 </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="editStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" stitm="lonlat" disabled>
+                        <label for="editStore-Location" class="">Location</label>
+                    </div>
+                </div>
 
-                          
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="editStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" stitm="lonlat" disabled>
-                          <label for="editStore-Location" class="">Location</label>
-                        </div>
-                      </div>
 
-                      
 
-         </form>
+            </form>
 
+        </div>
+
+        <div class="modal-footer">
+            <a href="#!" class="waves-effect waves-green btn-flat modal-action modal-close">close</a>
+        </div>
     </div>
-	  
-    <div class="modal-footer">
-      <a href="#!" class="waves-effect waves-green btn-flat modal-action modal-close">close</a>
+
+    <!-- editStore Modal End -->
+
+    <!-- newStore Modal Start -->
+    <div id="newStoreModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <form class="col s12">
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="newStore-name" type="text" class="validate" pattern="^[a-zA-Z][a-zA-Z0-9-_ \.]{1,20}$" required>
+                        <label for="newStore-name" class="" data-error="error">Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="newStore-description" class="materialize-textarea" length="120"></textarea>
+
+                        <label for="newStore-description" class="">
+                            Description</label>
+                    </div>
+                </div>
+                <div class="row" style="display:none;">
+                    <div class="input-field col s12">
+                        <video autoplay></video>
+                        <img src="" class="materialboxed" width="350">
+                        <canvas style="display:none;"></canvas>
+
+                        <label for="imageBut" class="">
+                            Image</label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="newStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" disabled>
+                        <label for="newStore-Location" class="">Location</label>
+                    </div>
+                </div>
+
+
+
+            </form>
+
+        </div>
+
+        <div class="modal-footer">
+            <!--<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>-->
+            <a href="#!" class="doAddNewStore waves-effect waves-green btn-flat">add</a>
+        </div>
     </div>
-  </div>
-	          
-  <!-- editStore Modal End -->
-          
-  <!-- newStore Modal Start -->
-  <div id="newStoreModal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-       <form class="col s12">
-                      
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="newStore-name" type="text" class="validate" pattern="^[a-zA-Z][a-zA-Z0-9-_ \.]{1,20}$" required>
-                          <label for="newStore-name" class="" data-error="error">Name</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                         <textarea id="newStore-description" class="materialize-textarea" length="120"></textarea>
-                         
-                          <label for="newStore-description" class="">
-                          Description</label>
-                        </div>
-                      </div>
-                      <div class="row" style="display:none;">
-                        <div class="input-field col s12"><video autoplay></video>
-<img src="" class="materialboxed" width="350">
-<canvas style="display:none;"></canvas>
 
-                          <label for="imageBut" class="">
-                          Image</label>
-                        </div>
-                      </div>
+    <!-- newStore Modal End -->
 
-                      
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="newStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" disabled>
-                          <label for="newStore-Location" class="">Location</label>
-                        </div>
-                      </div>
+    <!-- addFirstStore Modal Start -->
+    <div id="firstStoreModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
 
-                      
 
-         </form>
-
-    </div>
-	  
-    <div class="modal-footer">
-      <!--<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>-->
-      <a href="#!" class="doAddNewStore waves-effect waves-green btn-flat">add</a>
-    </div>
-  </div>
-	          
-  <!-- newStore Modal End -->
-       
-  <!-- addFirstStore Modal Start -->
-  <div id="firstStoreModal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      
-	    
-      <div style="height: 40px;
+            <div style="height: 40px;
     width: 100%;
     display: inline-block;
     background-image: url(images/icon.png);
@@ -310,24 +316,24 @@
     background-repeat: no-repeat;
     background-position: 50% 0%;
     padding-top: 100px;" class="hidden-xs">
-     Add your details so that your </br> clients can easily find you</div>
+                Add your details so that your </br> clients can easily find you</div>
 
+        </div>
+
+        <div class="modal-footer">
+            <!--<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>-->
+            <a href="#!" class="modal-action modal-close addFirstStoreModal waves-effect waves-green btn-flat">ok</a>
+        </div>
     </div>
-	  
-    <div class="modal-footer">
-      <!--<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>-->
-      <a href="#!" class="modal-action modal-close addFirstStoreModal waves-effect waves-green btn-flat">ok</a>
-    </div>
-  </div>
-	          
-  <!-- addFirstProd Modal End -->
-        
-  <!-- addFirstProd Modal Start -->
-  <div id="firstProdModal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-     
-	    
-      <div style="height: 40px;
+
+    <!-- addFirstProd Modal End -->
+
+    <!-- addFirstProd Modal Start -->
+    <div id="firstProdModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+
+
+            <div style="height: 40px;
     width: 100%;
     display: inline-block;
     background-image: url(images/icon.png);
@@ -335,205 +341,223 @@
     background-repeat: no-repeat;
     background-position: 50% 0%;
     padding-top: 100px;" class="hidden-xs">
-     to get started </br> add items for sale</div>
+                to get started </br> add items for sale</div>
 
+        </div>
+
+
+        <div class="modal-footer">
+            <!--<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>-->
+            <a href="#!" class="modal-action modal-close addFirstProdModal waves-effect waves-green btn-flat">add</a>
+        </div>
     </div>
-	  
-	  
-    <div class="modal-footer">
-      <!--<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>-->
-      <a href="#!" class="modal-action modal-close addFirstProdModal waves-effect waves-green btn-flat">add</a>
-    </div>
-  </div>
-	          
-  <!-- addFirstProd Modal End -->
-          
-  <!-- newPromo Modal Start -->
-  <div id="newPromoModal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-       <form class="col s12">
-                      
-                      
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name">
-                          <label for="newPromo-name" class="">Name</label>
+
+    <!-- addFirstProd Modal End -->
+
+    <!-- newPromo Modal Start -->
+    <div id="newPromoModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <form class="col s12">
+
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name">
+                        <label for="newPromo-name" class="">Name</label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="newPromo-desc" type="text" class="validate js-loc-button-notification-input" value="" stitm="msg">
+                        <label for="newPromo-desc" class="">Desc</label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn"><span>image</span>
+                            <input id="newPromo-image" type="file" stitm="customImage">
                         </div>
-                      </div>
+                    </div>
+                </div>
 
-                      
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="newPromo-desc" type="text" class="validate js-loc-button-notification-input" value="" stitm="msg">
-                          <label for="newPromo-desc" class="">Desc</label>
-                        </div>
-                      </div>
-
-
-                      <div class="row">
-		<div class="file-field input-field">
-	      <div class="btn"><span>image</span>
-	      <input id="newPromo-image" type="file" stitm="customImage">
-                   </div></div>
-		 </div>
-	       
-	       <div class="row"><div class="input-field col s6"><input placeholder="" id="newPromo-discount" type="number" class="validate" min="0" max="90">
-                     <label for="newPromo-discount" class="">% discount</label></div>
-		 <div class="input-field col s6"><input placeholder="" id="newPromo-offers" type="number" class="validate" min="0">
-                     <label for="newPromo-offers" class="">minimum buyers</label></div></div>
-		 
-            
-	       
-                      <div class="row">
- <label>add an item to this promotion</label>
-	<select class="icons promo-add-ProdList" multiple>
-    </select>
-   
-		 </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="" id="newPromo-discount" type="number" class="validate" min="0" max="90">
+                        <label for="newPromo-discount" class="">% discount</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="" id="newPromo-offers" type="number" class="validate" min="0">
+                        <label for="newPromo-offers" class="">minimum buyers</label>
+                    </div>
+                </div>
 
 
-         </form>
 
+                <div class="row">
+                    <label>add an item to this promotion</label>
+                    <select class="icons promo-add-ProdList" multiple>
+                    </select>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
+            <a href="#!" class="doAddNewPromo waves-effect waves-green btn-flat">add new</a>
+        </div>
     </div>
-	  
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
-      <a href="#!" class="doAddNewPromo waves-effect waves-green btn-flat">add new</a>
-    </div>
-  </div>
-	          
-  <!-- newPromo Modal End -->
-	
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
 
-  <!-- START HEADER -->
-  <header id="header" class="page-topbar">
+    <!-- newPromo Modal End -->
+
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- START HEADER -->
+    <header id="header" class="page-topbar">
         <!-- start header nav-->
         <div class="navbar-fixed">
             <nav class="navbar-color">
                 <div class="nav-wrapper">
-                    <ul class="left">                      
-                     <!-- <li><h1 class="logo-wrapper"><a href="index.html" class="brand-logo darken-1"><img src="images/sicon.png" style="width:50px" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>-->
+                    <ul class="left">
+                        <!-- <li><h1 class="logo-wrapper"><a href="index.html" class="brand-logo darken-1"><img src="images/sicon.png" style="width:50px" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>-->
                     </ul>
                     <div class="header-search-wrapper hide-on-med-and-down " style="display:none;background-color:#7eb7c8!important;">
                         <i class="mdi-action-search"></i>
-                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="search"/>
+                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="search" />
                     </div>
                 </div>
             </nav>
         </div>
         <!-- end header nav-->
-  </header>
-  <!-- END HEADER -->
+    </header>
+    <!-- END HEADER -->
 
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
 
-  <!-- START MAIN -->
-  <div id="main">
-    <!-- START WRAPPER -->
-    <div class="wrapper">
+    <!-- START MAIN -->
+    <div id="main">
+        <!-- START WRAPPER -->
+        <div class="wrapper">
 
-      <!-- START LEFT SIDEBAR NAV-->
-      <aside id="left-sidebar-nav">
-	          <ul id="slide-out" class="side-nav fixed leftside-navigation">
-            <li class="user-details cyan darken-2 btn-flat dropdown-button"  style="background-color:#7eb7c8!important;"  href="#" data-activates="store-dropdown">
-  	      
-		      <div class="row" style="text-align:center;">
-                   
-      <ul id="store-dropdown" class="dropdown-content">
-                        <li><a href="#" class="editStore"><i class="mdi-content-create"></i>Edit Store Information</a>
-                        </li>
-                        <li><a href="#"  class="switchStore"><i class="mdi-action-swap-horiz switchStore"></i>Switch Store</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="#" class="newStore"><i class="mdi-content-add-circle-outline"></i>Add New Store</a>
-                        </li>
-                    </ul>
-		    <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;line-height: 0px;">
-               
-                    <a class="waves-effect waves-light white-text profile-btn store-name" style="text-align:left;">my store</a>
-                    <p class="user-roal store-desc" style="text-align:left;"></p>
-               
-            </div>
-            </li>
-            <li class="bold"><a href="#" page="storefront" class="waves-effect waves-cyan nav"><i class="mdi-action-store"></i> Promotions</a>
-            </li>
-            <li class="bold"><a href="#" page="products" class="waves-effect waves-cyan nav"><i class="mdi-maps-local-mall"></i><span class="allProdCount"></span> Products</a>
-            </li>
-            <!--<li class="bold"><a href="#" page="customers" class="waves-effect waves-cyan nav"><i class="mdi-social-people"></i> Customers <span class="new badge">2</span></a>
+            <!-- START LEFT SIDEBAR NAV-->
+            <aside id="left-sidebar-nav">
+                <ul id="slide-out" class="side-nav fixed leftside-navigation">
+                    <li class="user-details cyan darken-2 btn-flat dropdown-button" style="background-color:#7eb7c8!important;" href="#" data-activates="store-dropdown">
+
+                        <div class="row" style="text-align:center;">
+
+                            <ul id="store-dropdown" class="dropdown-content">
+                                <li><a href="#" class="editStore"><i class="mdi-content-create"></i>Edit Store Information</a>
+                                </li>
+                                <li><a href="#" class="switchStore"><i class="mdi-action-swap-horiz switchStore"></i>Switch Store</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="#" class="newStore"><i class="mdi-content-add-circle-outline"></i>Add New Store</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="signOut();"><i class=""></i>Sign out</a>
+                                </li>
+                            </ul>
+                            <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;line-height: 0px;">
+
+                            <a class="waves-effect waves-light white-text profile-btn store-name" style="text-align:left;">my store</a>
+                            <p class="user-roal store-desc" style="text-align:left;"></p>
+
+                        </div>
+                    </li>
+                    <li class="bold"><a href="#" page="storefront" class="waves-effect waves-cyan nav"><i class="mdi-action-store"></i> Promotions</a>
+                    </li>
+                    <li class="bold"><a href="#" page="products" class="waves-effect waves-cyan nav"><i class="mdi-maps-local-mall"></i><span class="allProdCount"></span> Products</a>
+                    </li>
+                    <!--<li class="bold"><a href="#" page="customers" class="waves-effect waves-cyan nav"><i class="mdi-social-people"></i> Customers <span class="new badge">2</span></a>
             </li>-->
-            <li class="bold soko-admin-manager-btn" style="display:none;"><a href="#" page="Managers" class="waves-effect waves-cyan nav"><i class="mdi-social-people"></i> Managers </a>
-            </li>
-            <li class="li-hover"><div class="divider"></div></li>
-            <li class="li-hover"><p class="ultra-small margin more-text">SETTINGS</p></li>
-            <li><a href="#">
-             <!-- Switch -->
-                  <div class="switch">
-                  <i class="mdi-action-announcement"></i>
-                   <span class="js-push-button-notification-title"> Notification</span> 
-                    <label>
-                      <input type="checkbox" class="js-push-button-notification">
-                      <span class="lever right" style="margin-top:13px;"></span>
-                    </label>
-                  </div>
+                    <li class="bold soko-admin-manager-btn" style="display:none;"><a href="#" page="Managers" class="waves-effect waves-cyan nav"><i class="mdi-social-people"></i> Managers </a>
+                    </li>
+                    <li class="li-hover">
+                        <div class="divider"></div>
+                    </li>
+                    <li class="li-hover">
+                        <p class="ultra-small margin more-text">SETTINGS</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <!-- Switch -->
+                            <div class="switch">
+                                <i class="mdi-action-announcement"></i>
+                                <span class="js-push-button-notification-title"> Notification</span>
+                                <label>
+                                    <input type="checkbox" class="js-push-button-notification">
+                                    <span class="lever right" style="margin-top:13px;"></span>
+                                </label>
+                            </div>
 
-                  </a>
-            </li>
-            <li><a href="#">
-             <!-- Switch -->
-                  <div class="switch">
-                  <i class="mdi-communication-location-on"></i>
-                   
-                   <span class="js-loc-button-notification-title"> Location</span>  
-                    <label>
-                      <input type="checkbox" class="js-loc-button-notification">
-                      <span class="lever right" style="margin-top:13px;"></span>
-                    </label>
-                  </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <!-- Switch -->
+                            <div class="switch">
+                                <i class="mdi-communication-location-on"></i>
 
-                  </a>
-            </li>
-            <li class="bold"><a href="#" page="beacons" class="waves-effect waves-cyan nav"><i class="mdi-notification-tap-and-play"></i> Beacons</a>
-            </li>
-        </ul>
-        <a href="#" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i class="mdi-navigation-menu"></i></a>
-        </aside>
-      <!-- END LEFT SIDEBAR NAV-->
+                                <span class="js-loc-button-notification-title"> Location</span>
+                                <label>
+                                    <input type="checkbox" class="js-loc-button-notification">
+                                    <span class="lever right" style="margin-top:13px;"></span>
+                                </label>
+                            </div>
 
-      <!-- //////////////////////////////////////////////////////////////////////////// -->
+                        </a>
+                    </li>
+                    <li class="bold"><a href="#" page="beacons" class="waves-effect waves-cyan nav"><i class="mdi-notification-tap-and-play"></i> Beacons</a>
+                    </li>
+                </ul>
+                <a href="#" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i class="mdi-navigation-menu"></i></a>
+            </aside>
+            <!-- END LEFT SIDEBAR NAV-->
 
-      <!-- START CONTENT -->
-      <section id="content">
-        
-        <!--breadcrumbs start-->
-        <div id="breadcrumbs-wrapper">
-            <!-- Search for small screen
+            <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+            <!-- START CONTENT -->
+            <section id="content">
+
+                <!--breadcrumbs start-->
+                <div id="breadcrumbs-wrapper">
+                    <!-- Search for small screen
             <div class="header-search-wrapper grey hide-on-large-only">
                 <i class="mdi-action-search active"></i>
                 <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="search">
             </div>
 	     -->
-        </div>
-        <!--breadcrumbs end-->
-        
+                </div>
+                <!--breadcrumbs end-->
 
-        <!--start container-->
-        <div class="container">
-          
-                <div class="col s12 m4 l4 storefront">
 
-<div class="col s12 m8 l9">
-                <div class="row">
-                  <div class="col s12">
-                    <ul class="tabs tab-storefront-active z-depth-1" style="width: 100%; background-color:#6598a7">
-                      <!--<li class="tab col s3"><a class="white-text waves-effect waves-light active" href="#sales">Sales<span class="new badge soko-tran-count" style="display:none;"><span></a>
+                <!--start container-->
+                <div class="container">
+
+                    <div class="col s12 m4 l4 storefront">
+
+                        <div class="col s12 m8 l9">
+                            <div class="row">
+                                <div class="col s12">
+                                    <ul class="tabs tab-storefront-active z-depth-1" style="width: 100%; background-color:#6598a7">
+                                        <!--<li class="tab col s3"><a class="white-text waves-effect waves-light active" href="#sales">Sales<span class="new badge soko-tran-count" style="display:none;"><span></a>
                       </li>-->
-                      <li class="tab col s3"><a class="white-text waves-effect waves-light active" href="#promotions">Promotions</a>
-                      </li>
-                    <div class="indicator" style="right: 121px; left: 121px;"></div><div class="indicator" style="right: 121px; left: 121px;"></div></ul>
-                  </div>
-                  <div class="col s12">
-                     <!--    <div id="sales" class="col s12" style="background-color: rgba(0,0,0,0);">
+                                        <li class="tab col s3"><a class="white-text waves-effect waves-light active" href="#promotions">Promotions</a>
+                                        </li>
+                                        <div class="indicator" style="right: 121px; left: 121px;"></div>
+                                        <div class="indicator" style="right: 121px; left: 121px;"></div>
+                                    </ul>
+                                </div>
+                                <div class="col s12">
+                                    <!--    <div id="sales" class="col s12" style="background-color: rgba(0,0,0,0);">
                     
 
                   <div class="card">
@@ -576,98 +600,99 @@
                      
                     </div>
 			-->
-			  <div id="promotions" style="background-color: rgba(0,0,0,0);">
-                    <ul class="collection promotions-holda chStoreUpdate" style="border: none;">
-                      <!--start tab content -->
-                  
-                  <!-- end tab content -->
-                    </ul>
-	
-        
-<div class="fixed-action-btn">
-  <a class="modal-trigger waves-effect waves-light btn" href="#newPromoModal"><i class="mdi-action-redeem left"></i>New Promotion</a>
+                                    <div id="promotions" style="background-color: rgba(0,0,0,0);">
+                                        <ul class="collection promotions-holda chStoreUpdate" style="border: none;">
+                                            <!--start tab content -->
 
-</div>
-			  </div>
-                  </div>
+                                            <!-- end tab content -->
+                                        </ul>
+
+
+                                        <div class="fixed-action-btn">
+                                            <a class="modal-trigger waves-effect waves-light btn" href="#newPromoModal"><i class="mdi-action-redeem left"></i>New Promotion</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                    </div>
+
+
+                    <div class="col s12 m4 l4 customers" style="display:none;">
+                        <ul id="" class="collection customers-holda chStoreUpdate">
+
+                        </ul>
+
+
+
+
+
+
+                    </div>
+
+                    <div class="col s12 m4 l4 beacons" style="display:none;">
+                        <ul id="" class="collection beacons-holda chStoreUpdate">
+
+                        </ul>
+
+
+                    </div>
+                    <div class="col s12 m4 l4 products" style="display:none;">
+                        <!-- Modal Structure -->
+                        <ul class="products-collapsible collapsible popout collapsible-accordion chStoreUpdate" data-collapsible="accordion">
+
+                        </ul>
+
+                        <div class="fixed-action-btn">
+                            <a class="waves-effect waves-light modal-trigger btn" href="#add-product"><i class="mdi-content-add left"></i>Add Product</a>
+
+                        </div>
+
+                    </div>
+                    <!-- Floating Action Button -->
                 </div>
-              </div>
+                <!--end container-->
+            </section>
+            <!-- END CONTENT -->
 
-
-
-
-
-
-
-
-                </div>
-		
-		  
-                <div class="col s12 m4 l4 customers" style="display:none;">
-	<ul id="" class="collection customers-holda chStoreUpdate">
-                                   
-                                </ul>
- 		
-	
-
-
-
-
-                </div>
-
-<div class="col s12 m4 l4 beacons" style="display:none;">
-<ul id="" class="collection beacons-holda chStoreUpdate">
-                                   
-                                </ul>
- 
-
-                </div>
-<div class="col s12 m4 l4 products" style="display:none;"  >
-         <!-- Modal Structure -->         <ul class="products-collapsible collapsible popout collapsible-accordion chStoreUpdate" data-collapsible="accordion">
-                 
-                </ul>
-                
-<div class="fixed-action-btn">
-  <a class="waves-effect waves-light modal-trigger btn" href="#add-product"><i class="mdi-content-add left"></i>Add Product</a>
-
-</div>
-
-  </div>
-            <!-- Floating Action Button -->
         </div>
-        <!--end container-->
-      </section>
-      <!-- END CONTENT -->
+        <!-- END WRAPPER -->
 
     </div>
-    <!-- END WRAPPER -->
-
-  </div>
-  <!-- END MAIN -->
-
-	
-
-  <div  id="tmp-canvas" style="display:none;">	
-<canvas width=480 height=320></canvas>
+    <!-- END MAIN -->
 
 
-  </div>
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+    <div id="tmp-canvas" style="display:none;">
+        <canvas width=480 height=320></canvas>
+
+
+    </div>
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
 
 
     <!-- ================================================
     Scripts
     ================================================ -->
-    
+
     <!-- jQuery Library -->
-	  
+
     <script type="text/javascript" src="../bitsAssets/js/jquery-2.1.1.min.js"></script>
-<!--
+    <!--
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 -->
     <!--materialize js-->
     <script type="text/javascript" src="js/materialize.js"></script>
-	
+
     <!--prism
     <script type="text/javascript" src="js/prism/prism.js"></script>-->
     <!--scrollbar-->
@@ -683,29 +708,38 @@
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
 
 
-  
-<script src="../bitsAssets/js/storeManager.js"></script>
-<script src="../bitsAssets/js/globalServices.js"></script>   
-<script src="../bitsAssets/js/pushManager.js"></script>  
-<script src="../bitsAssets/js/locationManager.js"></script>
-<script src="../bitsAssets/js/broadcastChannel.js"></script>
-<script src="../bitsAssets/js/moment.js"></script>
-<script src="../bitsAssets/js/raphQR.js"></script>
-<script src="../bitsAssets/js/qrcodesvg.js"></script>
 
-<script src="../bitsAssets/js/google.js" async defer></script>
-	
-  <script src="https://apis.google.com/js/client:platform.js?onload=startGoogle" async defer></script>
+    <script src="../bitsAssets/js/storeManager.js"></script>
+    <script src="../bitsAssets/js/globalServices.js"></script>
+    <script src="../bitsAssets/js/pushManager.js"></script>
+    <script src="../bitsAssets/js/locationManager.js"></script>
+    <script src="../bitsAssets/js/broadcastChannel.js"></script>
+    <script src="../bitsAssets/js/moment.js"></script>
+    <script src="../bitsAssets/js/raphQR.js"></script>
+    <script src="../bitsAssets/js/qrcodesvg.js"></script>
+
+    <script src="../bitsAssets/js/google.js" async defer></script>
+
+    <script src="https://apis.google.com/js/client:platform.js?onload=startGoogle" async defer></script>
 
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="js/custom-script.js"></script>
-	<script src="js/bitsoko.js" type="text/javascript"></script>
-    
+    <script src="js/bitsoko.js" type="text/javascript"></script>
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function() {
+                console.log('User signed out.');
+            });
+        }
+
+    </script>
 
 
- 
 
- 
-</body>  
+
+
+
+</body>
 
 </html>
