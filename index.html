@@ -45,6 +45,9 @@
     <link href="js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 
     <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
     <link rel="import" href="https://bitsoko.io/bitsAssets/html/connector.html" async>
 </head>
 
@@ -737,6 +740,12 @@
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function() {
                 console.log('User signed out.');
+            });
+        }
+
+        function onLoad() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init();
             });
         }
 
