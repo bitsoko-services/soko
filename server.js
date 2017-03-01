@@ -1,6 +1,6 @@
 // SOKO Server-JavaScript Document
 try {
-    sokoVersion = 2;
+    sokoVersion = 3;
     sokoInstall = function (event) {
 
 
