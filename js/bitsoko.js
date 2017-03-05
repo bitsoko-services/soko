@@ -310,30 +310,35 @@ function process(e,event) {
 
 */
 //Remove product
-var shroot = document.querySelectorAll(".removeProduct");
-for (var i = 0; i < shroot.length; ++i) {
-    //     id=$(this).attr('prid');
-    //console.log(id);
-    shroot[i].addEventListener("touchstart", function () {
-        console.log(this)
-        doFetch({
-            action: 'doProdRemove'
-            , id: $(this).attr('prid')
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                $(document).on('touchstart click', '.removeProduct', function (event) {
-                    console.log("Product Removed Successfully");
-                    $(this).parent().parent().parent().parent().remove();
-                });
-                //document.querySelector('#prodImg-holda-'+prid).src = val;
-                //  Materialize.toast('modified '+name+'..', 3000);
-            }
-            else {
-                console.log(e);
-            }
-        });
-    }, false);
-};
+//var shroot = document.querySelectorAll(".removeProduct");
+//for (var i = 0; i < shroot.length; ++i) {
+//    //     id=$(this).attr('prid');
+//    //console.log(id);
+//    shroot[i].addEventListener("touchstart", function () {
+//        console.log(this)
+//        doFetch({
+//            action: 'doProdRemove'
+//            , id: $(this).attr('prid')
+//        }).then(function (e) {
+//            if (e.status == 'ok') {
+//                $(document).on('touchstart click', '.removeProduct', function (event) {
+//                    console.log("Product Removed Successfully");
+//                    $(this).parent().parent().parent().parent().remove();
+//                });
+//                //document.querySelector('#prodImg-holda-'+prid).src = val;
+//                //  Materialize.toast('modified '+name+'..', 3000);
+//            }
+//            else {
+//                console.log(e);
+//            }
+//        });
+//    }, false);
+//};
+//Remove Product
+$(document).on('touchstart click', '.removeProduct', function (event) {
+    console.log("Product Removed Successfully");
+    $(this).parent().parent().parent().parent().remove();
+});
 
 function refreshCustomers() {
     doFetch({
