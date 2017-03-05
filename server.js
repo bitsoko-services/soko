@@ -1,14 +1,14 @@
 // SOKO Server-JavaScript Document
 try {
-    sokoVersion = 7;
+    sokoVersion = 8;
     sokoInstall = function (event) {}
     sokoNotificationClick = function (dat) {
         // 	      event.notification.close();
         //      event.waitUntil(
         console.log(dat);
         clients.matchAll({
-            includeUncontrolled: true,
-            type: "all"
+            includeUncontrolled: true
+            , type: "all"
         }).then(function (clientList) {
             for (var i = 0; i < clientList.length; i++) {
                 var client = clientList[i];
@@ -30,32 +30,32 @@ try {
             // This command returns a list of the URLs corresponding to the Request objects
             // that serve as keys for the current cache.
             // This command adds a new request/response pair to the cache.
-            case 'createBackup':
-                //do backup
-                /*importScripts('soko/js/jspdf.js');
-                var doc = new jsPDF();
-                var specialElementHandlers = {
-                '#editor': function (element, renderer) {
-                return true;
-                }
-                };
+        case 'createBackup':
+            //do backup
+            /*importScripts('soko/js/jspdf.js');
+            var doc = new jsPDF();
+            var specialElementHandlers = {
+            '#editor': function (element, renderer) {
+            return true;
+            }
+            };
 
-                doc.fromHTML($('#content').html(), 15, 15, {
-                'width': 170,
-                'elementHandlers': specialElementHandlers
-                });
-                doc.save('BitsWallet_Backup.pdf');*/
-                sokoNotification('Wallet Backed Up', 'Thank you for backing up your wallet you are one step closer to saving the world', '', 'soko/images/no.png', [{
-                    action: '',
-                    title: "Backed up"
+            doc.fromHTML($('#content').html(), 15, 15, {
+            'width': 170,
+            'elementHandlers': specialElementHandlers
+            });
+            doc.save('BitsWallet_Backup.pdf');*/
+            sokoNotification('Wallet Backed Up', 'Thank you for backing up your wallet you are one step closer to saving the world', '', 'soko/images/no.png', [{
+                action: ''
+                , title: "Backed up"
                 }], true, true);
-                break;
-            case 'gotMoney':
-                sokoNotification('You have recevied ' + dat.amt, 'sam has sent you  ' + dat.amt + ' Click to view your balance', 'AnonMsg', 'soko/images/no.png', [{
-                    action: '',
-                    title: "Backed up"
+            break;
+        case 'gotMoney':
+            sokoNotification('You have recevied ' + dat.amt, 'sam has sent you  ' + dat.amt + ' Click to view your balance', 'AnonMsg', 'soko/images/no.png', [{
+                action: ''
+                , title: "Backed up"
                 }], true, true);
-                break;
+            break;
         }
     }
     sokoMessage = function (dat) {
@@ -67,14 +67,14 @@ try {
                     // This command returns a list of the URLs corresponding to the Request objects
                     // that serve as keys for the current cache.
                     // This command adds a new request/response pair to the cache.
-                    case 'anonyMode':
-                        data = dat;
-                        console.log(data);
-                        sokoNotification('Backed up Wallet', 'You can Download an offline copy of your wallet incase you loose your device, Click to download your private infomation', 'createBackup', 'soko/images/no.png', [{
-                            action: 'createBackup',
-                            title: "Back up"
+                case 'anonyMode':
+                    data = dat;
+                    console.log(data);
+                    sokoNotification('Backed up Wallet', 'You can Download an offline copy of your wallet incase you loose your device, Click to download your private infomation', 'createBackup', 'soko/images/no.png', [{
+                        action: 'createBackup'
+                        , title: "Back up"
                         }], true, true);
-                        break;
+                    break;
                 }
             });
         }
@@ -86,31 +86,31 @@ try {
                 // This command returns a list of the URLs corresponding to the Request objects
                 // that serve as keys for the current cache.
                 // This command adds a new request/response pair to the cache.
-                case 'sent':
-                    data = dat;
-                    console.log(data);
-                    sokoNotification('Sent Message', 'You can Download an offline copy of your wallet incase you loose your device, Click to download your private infomation', 'createBackup', 'soko/images/no.png', [{
-                        action: 'createBackup',
-                        title: "Back up"
+            case 'sent':
+                data = dat;
+                console.log(data);
+                sokoNotification('Sent Message', 'You can Download an offline copy of your wallet incase you loose your device, Click to download your private infomation', 'createBackup', 'soko/images/no.png', [{
+                    action: 'createBackup'
+                    , title: "Back up"
                     }], true, true);
-                    break;
-                case 'merchantMessage':
-                    data = dat;
-                    console.log(data);
-                    var store = getObjectStore('data', 'readwrite').get("soko-promo-" + dat.pid);
-                    store.onsuccess = function (event) {
-                        var data = event.target.result;
-                        data = JSON.parse(data);
-                        //console.log(data.discount+"% off" +data.name,dat.msg,"soko-promo-"+dat.pid,'soko/images/no.png',data.imagePath,[{action: 'createBackup', title: "Back up"}],true,true);
-                        sokoNotification(data.discount + "% off " + data.name + " @ " + dat.sNm, dat.msg, "soko-promo-" + dat.pid, dat.sImg, dat.pImg, [{
-                            action: 'soko-redeem-' + dat.pid,
-                            title: "Buy Offer"
+                break;
+            case 'merchantMessage':
+                data = dat;
+                console.log(data);
+                var store = getObjectStore('data', 'readwrite').get("soko-promo-" + dat.pid);
+                store.onsuccess = function (event) {
+                    var data = event.target.result;
+                    data = JSON.parse(data);
+                    //console.log(data.discount+"% off" +data.name,dat.msg,"soko-promo-"+dat.pid,'soko/images/no.png',data.imagePath,[{action: 'createBackup', title: "Back up"}],true,true);
+                    sokoNotification(data.discount + "% off " + data.name + " @ " + dat.sNm, dat.msg, "soko-promo-" + dat.pid, dat.sImg, dat.pImg, [{
+                        action: 'soko-redeem-' + dat.pid
+                        , title: "Buy Offer"
                         }, {
-                            action: 'soko-unsubscribe-' + dat.pid,
-                            title: "Unsubscribe"
+                        action: 'soko-unsubscribe-' + dat.pid
+                        , title: "Unsubscribe"
                         }], true, false);
-                    }
-                    break;
+                }
+                break;
             }
         });
         // var config = {
@@ -157,13 +157,13 @@ try {
     }
     sokoNotification = function (title, body, tag, icon, image, actions, sticky, silent) {
         var note = self.registration.showNotification(title, {
-            body: body,
-            icon: icon,
-            image: image,
-            tag: tag,
-            actions: actions,
-            sticky: sticky,
-            silent: silent
+            body: body
+            , icon: icon
+            , image: image
+            , tag: tag
+            , actions: actions
+            , sticky: sticky
+            , silent: silent
         });
     }
     sokoFetch = function (event, cache) {
@@ -198,7 +198,8 @@ try {
                                 url = location.origin + '/merch/';
                                 var trResp = Response.redirect(url);
                                 return trResp;
-                            } else {
+                            }
+                            else {
                                 url = location.origin + '/soko/?s=' + respJ.s + '&a=' + respJ.a + '&p=' + respJ.p;
                                 var trResp = Response.redirect(url);
                                 cache.put(event.request.clone(), trResp.clone());
@@ -213,7 +214,8 @@ try {
                 //cache.put(orReq, response.clone());
                 //  console.log(resp.clone());
             });
-        } else if (url.pathname.substring(0, 2) == '/w' && url.hostname == location.hostname) {
+        }
+        else if (url.pathname.substring(0, 2) == '/w' && url.hostname == location.hostname) {
             console.log('wallet web url!!');
             var bid = url.pathname.substring(2, 5);
             //resolve(Response.redirect('http://bitsoko.io/soko/#m='+bid));
@@ -237,6 +239,7 @@ try {
             });
         }
     }
-} catch (err) {
+}
+catch (err) {
     console.log(err)
 }
