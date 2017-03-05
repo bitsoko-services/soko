@@ -10,7 +10,7 @@
   ],
   "start_url": "/soko/#l=hs",
   "display": "fullscreen",
-  "orientation": "landscape",
+  "orientation": "portrait",
     "background_color": "#0f5f76",
     "theme_color": "#0f5f76",
   "gcm_sender_id": "1056993243377",  
