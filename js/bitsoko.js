@@ -63,6 +63,11 @@ function profileLoaded(p) {
         }
     });
 }
+//Remove Product
+$(document).on('touchstart click', '.removeProduct', function (event) {
+    console.log("Product Removed Successfully");
+    $(this).parent().parent().parent().parent().remove();
+});
 
 function reqMsg(data) {
     getObjectStore('data', 'readwrite').get("bitsoko-merchant-customers").onsuccess = function (event) {
@@ -334,12 +339,6 @@ function process(e,event) {
 //        });
 //    }, false);
 //};
-//Remove Product
-$(document).on('touchstart click', '.removeProduct', function (event) {
-    console.log("Product Removed Successfully");
-    $(this).parent().parent().parent().parent().remove();
-});
-
 function refreshCustomers() {
     doFetch({
         action: 'getServiceCustomers'
