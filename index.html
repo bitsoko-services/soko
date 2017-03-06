@@ -29,14 +29,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <script src="https://bitsoko.io/bitsAssets/js/webcomponents.js"></script>
     <!-- CORE CSS-->
-    <link href="https://bitsoko.io/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <link href="https://bitsoko.io/css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
     <!-- Custome CSS-->
-    <link href="https://bitsoko.io/css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection">
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-    <link href="https://bitsoko.io/js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <link href="https://bitsoko.io/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <link href="https://bitsoko.io/js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
     <script src="https://apis.google.com/js/client:platform.js" async defer></script>
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <link rel="import" href="https://bitsoko.io/bitsAssets/html/connector.html" async> </head>
@@ -530,22 +530,21 @@
     <script src="https://bitsoko.io/bitsAssets/js/google.js" async defer></script>
     <script src="https://apis.google.com/js/client:platform.js?onload=startGoogle" async defer></script>
     <!--custom-script.js - Add your own theme custom JS-->
-    <script type="text/javascript" src="https://bitsoko.io/js/custom-script.js"></script>
-    <script src="https://bitsoko.io/js/bitsoko.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/custom-script.js"></script>
+    <script src="js/bitsoko.js" type="text/javascript"></script>
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function() {
+            auth2.signOut().then(function () {
                 console.log('User signed out.');
             });
         }
 
         function onLoad() {
-            gapi.load('auth2', function() {
+            gapi.load('auth2', function () {
                 gapi.auth2.init();
             });
         }
-
     </script>
 </body>
 
