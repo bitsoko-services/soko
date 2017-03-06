@@ -1298,7 +1298,7 @@ function doNewPromo() {
         function findChosen(it) {
             return it.name === selcItms[ii];
         }
-        selcIds.push(allItms.find(findChosen).id);
+        selcIds.push(parseInt(allItms.find(findChosen).id));
     }
     doFetch({
         action: 'doNewPromo'
