@@ -380,7 +380,13 @@
                             </div>
                         </li>
                     </ul>
-                </ul> <a href="#" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i class="mdi-navigation-menu"></i></a> </aside>
+                </ul>
+                <a href="#" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan">
+                    <div style="width: 29px;height: 4px;background-color: white;margin: 4px 0;display:block;margin-left:auto;margin-right:auto;margin-top: 9px;border-radius:5px;"></div>
+                    <div style="width: 29px;height: 4px;background-color: white;margin: 4px 0;display:block;margin-left:auto;margin-right:auto;border-radius:5px;"></div>
+                    <div style="width: 29px;height: 4px;background-color: white;margin: 4px 0;display:block;margin-left:auto;margin-right:auto;border-radius:5px;"></div>
+                </a>
+            </aside>
             <!-- END LEFT SIDEBAR NAV-->
             <!-- //////////////////////////////////////////////////////////////////////////// -->
             <!-- START CONTENT -->
@@ -529,16 +535,17 @@
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
+            auth2.signOut().then(function() {
                 console.log('User signed out.');
             });
         }
 
         function onLoad() {
-            gapi.load('auth2', function () {
+            gapi.load('auth2', function() {
                 gapi.auth2.init();
             });
         }
+
     </script>
 </body>
 
