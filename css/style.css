@@ -1430,13 +1430,13 @@ tr.group:hover {
 
 .collapsible-header:after {
     font-family: "Material-Design-Icons";
-    content: "\e7c3";
+    /*    content: "\e7c3";*/
     float: right;
     color: #9e9e9e;
     font-size: 18px;
 }
 .collapsible-header.active:after {
-    content: "\e7c1";
+    /*    content: "\e7c1";*/
 }
 #input-select .input-field label {
     position: absolute;
@@ -2198,6 +2198,77 @@ tr.group:hover {
 }
 #profile-page-wall-posts .card-action-share {
     padding: 16px;
+}
+
+/*----------------------------------------
+    Billing Page Table
+------------------------------------------*/
+
+.rwd-table tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+    display: none;
+}
+.rwd-table td {
+    display: block;
+}
+.rwd-table td:first-child {
+    padding-top: .5em;
+}
+.rwd-table td:last-child {
+    padding-bottom: .5em;
+}
+.rwd-table td:before {
+    font-weight: bold;
+    width: 6.5em;
+    display: inline-block;
+}
+@media (min-width: 480px) {
+    .rwd-table td:before {
+        display: none;
+    }
+}
+.rwd-table th,
+.rwd-table td {
+    text-align: left;
+}
+.rwd-table th,
+.rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+}
+.rwd-table th:first-child,
+.rwd-table td:first-child {
+    padding-left: 0;
+}
+.rwd-table th:last-child,
+.rwd-table td:last-child {
+    padding-right: 0;
+}
+.rwd-table {
+    background: #0F5F76;
+    color: #fff;
+    border-radius: .4em;
+    overflow: hidden;
+}
+.rwd-table tr {
+    border-color: #46637f;
+}
+.rwd-table th,
+.rwd-table td {
+    margin: .5em 1em;
+}
+@media (min-width: 480px) {
+    .rwd-table th,
+    .rwd-table td {
+        padding: 1em !important;
+    }
+}
+.rwd-table th,
+.rwd-table td:before {
+    color: #dd5;
 }
 
 /*----------------------------------------
