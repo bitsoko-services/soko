@@ -74,6 +74,10 @@ $(document).on('touchstart click', '.removePromo', function (event) {
 $(document).on('touchstart click', '.backBtnPromo', function (event) {
     $(this).parent().parent().hide();
 });
+//Prevent dropdown content on Promotion page closing on touchstart
+$(document).on('touchstart click', '.multiple-select-dropdown', function (event) {
+    event.stopPropagation();
+});
 
 function reqMsg(data) {
     getObjectStore('data', 'readwrite').get("bitsoko-merchant-customers").onsuccess = function (event) {
