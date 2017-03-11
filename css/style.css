@@ -1006,6 +1006,9 @@ h5.breadcrumbs-header {
 .card-move-up .move-up {
     padding: 20px;
 }
+.card .card-image img {
+    height: 25vh;
+}
 
 /*----------------------------------------
     Charts
