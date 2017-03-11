@@ -26,7 +26,7 @@ function profileLoaded(p) {
     Materialize.toast('Signing in...', 3000)
     doFetch({
         action: 'merchantServiceLoader',
-        id: p.bitsokoUserID
+        localStorage.get('bts-user-name';)
     }).then(function (e) {
         if (e.status == "ok") {
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.services), 'soko-stores');
