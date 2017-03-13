@@ -46,15 +46,15 @@
     <!-- Start Page Loading -->
     <!-- End Page Loading -->
     <!-- Modal Structure -->
-    <div id="login" class="modal modal-fixed-footer">
+    <div id="login" class="modal modal-fixed-footer" style="margin-top:25%;height:50%;">
         <div class="modal-content" style="
     background-image: url('images/bitsoko-inv.png');
     background-size: 120px;
     background-repeat: no-repeat;
     background-position: center 10%;
     padding-top: 90px;">
-            <div style="height:30px;width:100%;display: inline-block;margin-bottom:5px;text-align: center;">a simple and secure POS terminal</div>
-            <div id="qrcode" style="height:200px;width:200px;display: inline-block;"></div>
+            <div style="height:30px;width:100%;display: inline-block;margin-bottom:5px;text-align: center;"> A simple and secure POS terminal</div>
+            <div id="qrcode" style="height:200px;width:200px;display:none;"></div>
             <div style="height: 40px;
     width: 100%;
     display: inline-block;
@@ -67,7 +67,7 @@
     font-size: 85%;" class="hidden-xs"> to sign in, use your wallet</br>and scan this code</div>
         </div>
         <div class="modal-footer">
-            <div id="customBtn" class="customGPlusSignIn"> <span class="icon"></span> <span class="buttonText">Google signin</span> </div>
+            <div id="customBtn" class="customGPlusSignIn" style="text-align:center;"> <span class="icon"></span> <span class="buttonText"><button class="loginBtn loginBtn--google"> Google Sign in </button></span> </div>
         </div>
     </div>
     <!-- addProduct Modal start //////////////////////////////////////////////////////////////////////////// -->
@@ -553,16 +553,17 @@
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
+            auth2.signOut().then(function() {
                 console.log('User signed out.');
             });
         }
 
         function onLoad() {
-            gapi.load('auth2', function () {
+            gapi.load('auth2', function() {
                 gapi.auth2.init();
             });
         }
+
     </script>
 </body>
 

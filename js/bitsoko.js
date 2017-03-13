@@ -358,7 +358,7 @@ function refreshCustomers() {
         , id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         $('.cust-count').html(e.customers.length);
-        $('#serviceBillCharges').html(e.customers.length * 0.5);
+        $('#serviceBillCharges').html(e.customers.length * 0.167);
         console.log("The customer count is " + (e.customers.length + 1));
         for (var i = 0; i < e.customers.length; i++) {
             //timeline.push({time:'',type:'cust',title:'Name',body:'',amount:''});
