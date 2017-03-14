@@ -33,6 +33,12 @@
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
     <!-- Custome CSS-->
     <link href="css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <!-- Theme CSS-->
+    <link rel="alternate stylesheet" type="text/css" title="green" href="css/themes/green.css">
+    <link rel="alternate stylesheet" type="text/css" title="brown" href="css/themes/brown.css">
+    <link rel="alternate stylesheet" type="text/css" title="till" href="css/themes/till.css">
+    <link rel="alternate stylesheet" type="text/css" title="pink" href="css/themes/pink.css">
+    <link rel="alternate stylesheet" type="text/css" title="purple" href="css/themes/purple.css">
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
     <link href="js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
@@ -167,6 +173,12 @@
                         <label for="editStore-Phone" class="">Phone</label>
                     </div>
                 </div>
+                <form>
+                    <input type="submit" onclick="switch_style('green');return false;" name="theme" value="" id="green" style=" background-color: green;border: none;border-radius: 50%;width: 30px;height: 30px;">
+                    <input type="submit" onclick="switch_style('brown');return false;" name="theme" value="" id="brown" style=" background-color: #3E2723;border: none;border-radius: 50%;width: 30px;height: 30px;">
+                    <input type="submit" onclick="switch_style('till');return false;" name="theme" value="" id="till" style=" background-color:#00695C;border: none;border-radius: 50%;width: 30px;height: 30px;">
+                    <input type="submit" onclick="switch_style('pink');return false;" name="theme" value="" id="pink" style=" background-color: #AD1457;border: none;border-radius: 50%;width: 30px;height: 30px;">
+                    <input type="submit" onclick="switch_style('purple');return false;" name="theme" value="" id="purple" style=" background-color: purple;border: none;border-radius: 50%;width: 30px;height: 30px;"> </form>
                 <div class="row">
                     <div class="file-field input-field">
                         <div class="btn"><span>image</span>
@@ -553,17 +565,62 @@
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function() {
+            auth2.signOut().then(function () {
                 console.log('User signed out.');
             });
         }
 
         function onLoad() {
-            gapi.load('auth2', function() {
+            gapi.load('auth2', function () {
                 gapi.auth2.init();
             });
         }
+    </script>
+    <script>
+        // *** TO BE CUSTOMISED ***
+        var style_cookie_name = "style";
+        var style_cookie_duration = 30;
+        var style_domain = "http://localhost:8000";
+        // *** END OF CUSTOMISABLE SECTION ***
+        // You do not need to customise anything below this line
+        function switch_style(css_title) {
+            // You may use this script on your site free of charge provided
+            // you do not remove this notice or the URL below. Script from
+            // https://www.thesitewizard.com/javascripts/change-style-sheets.shtml
+            var i, link_tag;
+            for (i = 0, link_tag = document.getElementsByTagName("link"); i < link_tag.length; i++) {
+                if ((link_tag[i].rel.indexOf("stylesheet") != -1) && link_tag[i].title) {
+                    link_tag[i].disabled = true;
+                    if (link_tag[i].title == css_title) {
+                        link_tag[i].disabled = false;
+                    }
+                }
+                set_cookie(style_cookie_name, css_title, style_cookie_duration, style_domain);
+            }
+        }
 
+        function set_style_from_cookie() {
+            var css_title = get_cookie(style_cookie_name);
+            if (css_title.length) {
+                switch_style(css_title);
+            }
+        }
+
+        function set_cookie(cookie_name, cookie_value, lifespan_in_days, valid_domain) {
+            // https://www.thesitewizard.com/javascripts/cookies.shtml
+            var domain_string = valid_domain ? ("; domain=" + valid_domain) : '';
+            document.cookie = cookie_name + "=" + encodeURIComponent(cookie_value) + "; max-age=" + 60 * 60 * 24 * lifespan_in_days + "; path=/" + domain_string;
+        }
+
+        function get_cookie(cookie_name) {
+            // https://www.thesitewizard.com/javascripts/cookies.shtml
+            var cookie_string = document.cookie;
+            if (cookie_string.length != 0) {
+                var cookie_value = cookie_string.match('(^|;)[\s]*' + cookie_name + '=([^;]*)');
+                return decodeURIComponent(cookie_value[2]);
+            }
+            return '';
+        }
     </script>
 </body>
 
