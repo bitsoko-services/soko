@@ -730,7 +730,7 @@ function getActvStoreCust(promoid, promoSubs) {
 function addPromoSubscribers(promoid, promoSubs) {
     console.log(promoid, promoSubs);
     promoSubs = promoSubs;
-    getActvStoreCust(promoid, $.parseJSON(promoSubs)).then(function (p) {
+    getActvStoreCust(promoid, promoSubs).then(function (p) {
         console.log(p.promoid, p.promoSubs, p.allCust);
         promoid = p.promoid
         var allCust = p.allCust;
