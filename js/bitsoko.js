@@ -25,40 +25,37 @@ function profileLoaded(p) {
     localStorage.setItem('bitsoko-owner-id', p.bitsokoUserID);
     Materialize.toast('Signing in...', 3000)
     doFetch({
-        action: 'merchantServiceLoader'
-        , id: localStorage.getItem('bits-user-name')
+        action: 'merchantServiceLoader',
+        id: localStorage.getItem('bits-user-name')
     }).then(function (e) {
         if (e.status == "ok") {
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.services), 'soko-stores');
             localStorage.setItem('bitsoko-stores', 'true');
             loadPOS();
-        }
-        else if (e.msg == "no services") {
+        } else if (e.msg == "no services") {
             getObjectStore('data', 'readwrite').put(JSON.stringify([]), 'soko-stores');
             $('#firstStoreModal').modal({
-                dismissible: false
-                , complete: function () {
+                dismissible: false,
+                complete: function () {
                     $('#newStoreModal').modal({
                         dismissible: false
                     }).modal('open');
                 }
             });
             $('#firstStoreModal').modal('open');
-        }
-        else {
+        } else {
             createService(p);
         }
     }).catch(function (err) {
         loadPOS();
     });
     doFetch({
-        action: 'getMadr'
-        , id: p.bitsokoUserID
+        action: 'getMadr',
+        id: p.bitsokoUserID
     }).then(function (e) {
         if (e.status == "ok") {
             localStorage.setItem('bitsoko-wallets-addr', e.adr)
-        }
-        else {
+        } else {
             console.log('Error: unable to load merchant info');
         }
     });
@@ -90,16 +87,16 @@ function reqMsg(data) {
             var test = new RegExp(cid).test(allCust[i].uid);
             if (test) {
                 swal({
-                    title: "Message " + allCust[i].name
-                    , text: 'send a short message to '
-                    , type: "input"
-                    , customClass: "salertHm"
-                    , showCancelButton: true
-                    , closeOnConfirm: false
-                    , confirmButtonText: "Send"
-                    , animation: "slide-from-top"
-                    , inputPlaceholder: "message"
-                    , imageUrl: allCust[i].img.replace('50', '150')
+                    title: "Message " + allCust[i].name,
+                    text: 'send a short message to ',
+                    type: "input",
+                    customClass: "salertHm",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    confirmButtonText: "Send",
+                    animation: "slide-from-top",
+                    inputPlaceholder: "message",
+                    imageUrl: allCust[i].img.replace('50', '150')
                 }, function (inputValue) {
                     if (inputValue === false) return false;
                     if (inputValue === "") {
@@ -107,22 +104,21 @@ function reqMsg(data) {
                         return false
                     }
                     doFetch({
-                        action: 'sendMessage'
-                        , to: 'user-' + allCust[i].uid
-                        , from: 'service-' + localStorage.getItem('bitsoko-merchant-id')
-                        , msg: inputValue
+                        action: 'sendMessage',
+                        to: 'user-' + allCust[i].uid,
+                        from: 'service-' + localStorage.getItem('bitsoko-merchant-id'),
+                        msg: inputValue
                     }).then(function (e) {
                         swal({
-                            title: "Message Sent"
-                            , text: inputValue
-                            , timer: 5000
-                            , showConfirmButton: false
+                            title: "Message Sent",
+                            text: inputValue,
+                            timer: 5000,
+                            showConfirmButton: false
                         });
                     });
                 });
                 break;
-            }
-            else {
+            } else {
                 continue;
             }
         };
@@ -137,16 +133,16 @@ function reqSend(data) {
             var test = new RegExp(cid).test(allCust[i].uid);
             if (test) {
                 swal({
-                    title: "Send to " + allCust[i].name
-                    , text: 'request a transfer from admin '
-                    , type: "input"
-                    , customClass: "salertHm"
-                    , showCancelButton: true
-                    , closeOnConfirm: false
-                    , confirmButtonText: "Request"
-                    , animation: "slide-from-top"
-                    , inputPlaceholder: "amount"
-                    , imageUrl: allCust[i].img.replace('50', '150')
+                    title: "Send to " + allCust[i].name,
+                    text: 'request a transfer from admin ',
+                    type: "input",
+                    customClass: "salertHm",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    confirmButtonText: "Request",
+                    animation: "slide-from-top",
+                    inputPlaceholder: "amount",
+                    imageUrl: allCust[i].img.replace('50', '150')
                 }, function (inputValue) {
                     if (inputValue === false) return false;
                     if (inputValue === "" || isNaN(inputValue)) {
@@ -154,22 +150,21 @@ function reqSend(data) {
                         return false
                     }
                     doFetch({
-                        action: 'sendTranReq'
-                        , to: 'user-' + allCust[i].uid
-                        , from: 'service-' + localStorage.getItem('bitsoko-merchant-id')
-                        , amount: inputValue
+                        action: 'sendTranReq',
+                        to: 'user-' + allCust[i].uid,
+                        from: 'service-' + localStorage.getItem('bitsoko-merchant-id'),
+                        amount: inputValue
                     }).then(function (e) {
                         swal({
-                            title: "Request Sent"
-                            , text: inputValue
-                            , timer: 5000
-                            , showConfirmButton: false
+                            title: "Request Sent",
+                            text: inputValue,
+                            timer: 5000,
+                            showConfirmButton: false
                         });
                     });
                 });
                 break;
-            }
-            else {
+            } else {
                 continue;
             }
         };
@@ -197,8 +192,7 @@ function loadPOS() {
         try {
             var svcs = event.target.result;
             var services = JSON.parse(svcs);
-        }
-        catch (err) {
+        } catch (err) {
             $('#newStoreModal').modal({
                 dismissible: false
             });
@@ -207,8 +201,8 @@ function loadPOS() {
         }
         if (services.length == 0) {
             $('#firstStoreModal').modal({
-                dismissible: false
-                , complete: function () {
+                dismissible: false,
+                complete: function () {
                     $('#newStoreModal').modal({
                         dismissible: false
                     }).modal('open');
@@ -254,8 +248,8 @@ function Tobserver(changes) {
     });
 }
 bc.postMessage({
-    cast: 'connect'
-    , user: 'serviceHandler'
+    cast: 'connect',
+    user: 'serviceHandler'
 });
 /*
 function process(e,event) {
@@ -354,8 +348,8 @@ function process(e,event) {
 //};
 function refreshCustomers() {
     doFetch({
-        action: 'getServiceCustomers'
-        , id: localStorage.getItem('soko-active-store')
+        action: 'getServiceCustomers',
+        id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         $('.cust-count').html(e.customers.length);
         $('#serviceBillCharges').html(e.customers.length * 0.167);
@@ -372,8 +366,8 @@ function refreshCustomers() {
 
 function refreshProducts() {
     doFetch({
-        action: 'getProducts'
-        , id: localStorage.getItem('soko-active-store')
+        action: 'getProducts',
+        id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         console.log(e);
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.products), 'soko-store-' + id + '-products');
@@ -387,8 +381,8 @@ function refreshProducts() {
 
 function refreshPromotions() {
     doFetch({
-        action: 'getPromotions'
-        , id: id
+        action: 'getPromotions',
+        id: id
     }).then(function (e) {
         console.log(e);
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.promotions), 'soko-store-' + id + '-promotions');
@@ -406,8 +400,8 @@ function addStore() {
     id = e.id;
     refreshCustomers();
     doFetch({
-        action: 'getServiceTrans'
-        , id: id
+        action: 'getServiceTrans',
+        id: id
     }).then(function (e) {
         if (e.status == "ok") {
             //document.querySelector('.soko-tran-count').style.display = 'block';
@@ -424,8 +418,7 @@ function addStore() {
             });
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.transactions), 'bitsoko-merchant-transactions-' + id);
             salesUpdater();
-        }
-        else {
+        } else {
             noSalesUpdater();
         }
         //       addTransaction(e.transactions);           
@@ -433,14 +426,14 @@ function addStore() {
         salesUpdater();
     }); //addCustomer(e.customers);  
     doFetch({
-        action: 'getServiceReqs'
-        , id: id
+        action: 'getServiceReqs',
+        id: id
     }).then(function (e) {
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'bitsoko-merchant-requests-' + id);
     });
     doFetch({
-        action: 'getBeacons'
-        , id: id
+        action: 'getBeacons',
+        id: id
     }).then(function (e) {
         console.log(e);
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.beacons), 'soko-store-' + id + '-beacons');
@@ -468,8 +461,7 @@ function addTransaction(t) {
             document.querySelector('.trn-holder').appendChild(clone);
             transaction.accno = '1234567890';
         }
-    }
-    catch (err) {
+    } catch (err) {
         console.log('unable to import plugin templates', err);
     }
 }
@@ -495,13 +487,12 @@ function addCustomer(c) {
     setTimeout(function (e) {
         if (timeline.length == 0) {
             addTTL({
-                time: 0
-                , type: 'empty'
-                , title: 'Nothing Found'
-                , body: 'nothing to see here..'
+                time: 0,
+                type: 'empty',
+                title: 'Nothing Found',
+                body: 'nothing to see here..'
             });
-        }
-        else {
+        } else {
             timeline.sort(function (a, b) {
                 if (a.time > b.time) {
                     return -1;
@@ -527,13 +518,13 @@ function addCustomer(c) {
                         console.log($(this).attr('trnid'));
                         trnid = $(this).attr('trnid');
                         swal({
-                            title: "Complete Transaction"
-                            , customClass: "salertHm"
-                            , text: ' enter transaction message to complete'
-                            , type: "input"
-                            , showCancelButton: true
-                            , closeOnConfirm: false
-                            , inputPlaceholder: "transaction message"
+                            title: "Complete Transaction",
+                            customClass: "salertHm",
+                            text: ' enter transaction message to complete',
+                            type: "input",
+                            showCancelButton: true,
+                            closeOnConfirm: false,
+                            inputPlaceholder: "transaction message"
                         }, function (inputValue) {
                             if (inputValue === false) return false;
                             if (inputValue === "") {
@@ -541,21 +532,21 @@ function addCustomer(c) {
                                 return false
                             }
                             doFetch({
-                                action: 'compTrn'
-                                , trnid: trnid
-                                , msg: inputValue
-                                , to: 'user-' + currCust
-                                , from: 'service-' + localStorage.getItem('bitsoko-merchant-id')
+                                action: 'compTrn',
+                                trnid: trnid,
+                                msg: inputValue,
+                                to: 'user-' + currCust,
+                                from: 'service-' + localStorage.getItem('bitsoko-merchant-id')
                             }).then(function (e) {
                                 doFetch({
-                                    action: 'getServiceTrans'
-                                    , id: id
+                                    action: 'getServiceTrans',
+                                    id: id
                                 }).then(function (e) {
                                     swal({
-                                        title: "transaction completed"
-                                        , text: inputValue
-                                        , timer: 5000
-                                        , showConfirmButton: false
+                                        title: "transaction completed",
+                                        text: inputValue,
+                                        timer: 5000,
+                                        showConfirmButton: false
                                     });
                                 });
                                 getObjectStore('data', 'readwrite').put(JSON.stringify(e.transactions), 'bitsoko-merchant-transactions');
@@ -582,31 +573,31 @@ function addTTL(e) {
         var infiat = parseInt(e.amount) / 100000000 * loCon.xrate * loCon.rate;
         var tl = $(".timeline");
         switch (e.type) {
-        case 'cust':
-            html = '<li class="clearfix"><time class="tl-time" style="text-align: right;"><h3 class="text-bitcl" style="text-align: right;width: 100%;margin: 10px 0px 10px 0px!important;"></h3><p></p></time><img src="' + e.amount + '" class="store-img tl-img" alt="..." uid="' + e.uid + '"><div class="tl-content"><div class="panel panel-primary"><div class="bg-bitcl panel-heading">' + e.title + '</div><div class="panel-body"><time class="tl-time" style="display: flex!important;text-align: left;width: 100%;"><h3 class="text-bitcl" style="">' + e.body + '</h3><p> </p></time></br></br>info</div></div></div></li>';
-            break;
-        case 'message':
-            var tim = moment.unix(e.time);
-            html = '<li class="clearfix"><time class="tl-time" style="text-align: right;"><h3 class="text-bitcl" style="text-align: right;width: 100%;margin: 10px 0px 10px 0px!important;">#</h3><p>transaction id</p></time><i class="fa fa-tags bg-bitcl tl-icon text-white"></i><div class="tl-content"><div class="panel panel-primary"><div class="bg-bitcl panel-heading">New Request</div><div class="panel-body"><time class="tl-time" style="display: flex!important;text-align: left;width: 100%;"><h3 class="text-bitcl" style="">' + Math.ceil(infiat) + '<span style="font-size:55%;">/= ' + loCon.symbol + '</span></h3><p> </p></time></br></br>' + tim.format("dddd, MMMM Do YYYY, h:mm:ss a") + '</div></div></div></li>';
-            break;
-        case 'rec':
-            statCla = '';
-            if (e.status == 'pending') {
-                statCla = ' pending-trn pressable-pressing';
-            }
-            var tim = moment.unix(e.time);
-            html = '<li class="clearfix"><time class="tl-time" style="text-align: right;"><h3 class="text-green" style="text-align: right;width: 100%;margin: 10px 0px 10px 0px!important;">#</h3><p>transaction id</p></time><i trnid="' + e.transid + '" class="fa fa-arrow-down bg-green tl-icon text-white' + statCla + '"></i><div class="tl-content"><div class="panel panel-primary"><div class="bg-green panel-heading">Received</div><div class="panel-body"><time class="tl-time" style="display: flex!important;text-align: left;width: 100%;"><h3 class="text-green" style="margin-top: 0px;">' + Math.ceil(infiat) + '<span style="font-size:55%;">/= ' + loCon.symbol + '</span></h3><p> </p></time></br></br>' + tim.format("dddd, MMMM Do YYYY, h:mm:ss a") + '</div></div></div></li>';
-            break;
-        case 'sent':
-            statCla = '';
-            if (e.status == 'pending') statCla = ' pending-trn pressable-pressing';
-            var tim = moment.unix(e.time);
-            html = '<li class="clearfix"><time class="tl-time" style="text-align: right;"><h3 class="text-red" style="text-align: right;width: 100%;margin: 10px 0px 10px 0px!important;">#</h3><p>transaction id</p></time><i class="fa fa-arrow-up bg-red tl-icon text-white' + statCla + '"></i><div class="tl-content"><div class="panel panel-primary"><div class="bg-red panel-heading">Sent</div><div class="panel-body"><time class="tl-time" style="display: flex!important;text-align: left;width: 100%;"><h3 class="text-red" style="margin-top: 0px;">' + Math.ceil(infiat) + '<span style="font-size:55%;">/= ' + loCon.symbol + '</span></h3><p> </p></time></br></br>' + tim.format("dddd, MMMM Do YYYY, h:mm:ss a") + '</div></div></div></li>';
-            break;
-        case 'empty':
-            html = '<li class="clearfix"><time class="tl-time"><h3 class="text-gray">00:00</h3><p>time</p></time><i class="fa fa-question bg-gray tl-icon text-white"></i><div class="tl-content"><div class="panel panel-primary"><div class="bg-gray panel-heading">Nothing found..</div><div class="panel-body">nothing to see here..</div></div></div></li>';
-            break;
-        default:
+            case 'cust':
+                html = '<li class="clearfix"><time class="tl-time" style="text-align: right;"><h3 class="text-bitcl" style="text-align: right;width: 100%;margin: 10px 0px 10px 0px!important;"></h3><p></p></time><img src="' + e.amount + '" class="store-img tl-img" alt="..." uid="' + e.uid + '"><div class="tl-content"><div class="panel panel-primary"><div class="bg-bitcl panel-heading">' + e.title + '</div><div class="panel-body"><time class="tl-time" style="display: flex!important;text-align: left;width: 100%;"><h3 class="text-bitcl" style="">' + e.body + '</h3><p> </p></time></br></br>info</div></div></div></li>';
+                break;
+            case 'message':
+                var tim = moment.unix(e.time);
+                html = '<li class="clearfix"><time class="tl-time" style="text-align: right;"><h3 class="text-bitcl" style="text-align: right;width: 100%;margin: 10px 0px 10px 0px!important;">#</h3><p>transaction id</p></time><i class="fa fa-tags bg-bitcl tl-icon text-white"></i><div class="tl-content"><div class="panel panel-primary"><div class="bg-bitcl panel-heading">New Request</div><div class="panel-body"><time class="tl-time" style="display: flex!important;text-align: left;width: 100%;"><h3 class="text-bitcl" style="">' + Math.ceil(infiat) + '<span style="font-size:55%;">/= ' + loCon.symbol + '</span></h3><p> </p></time></br></br>' + tim.format("dddd, MMMM Do YYYY, h:mm:ss a") + '</div></div></div></li>';
+                break;
+            case 'rec':
+                statCla = '';
+                if (e.status == 'pending') {
+                    statCla = ' pending-trn pressable-pressing';
+                }
+                var tim = moment.unix(e.time);
+                html = '<li class="clearfix"><time class="tl-time" style="text-align: right;"><h3 class="text-green" style="text-align: right;width: 100%;margin: 10px 0px 10px 0px!important;">#</h3><p>transaction id</p></time><i trnid="' + e.transid + '" class="fa fa-arrow-down bg-green tl-icon text-white' + statCla + '"></i><div class="tl-content"><div class="panel panel-primary"><div class="bg-green panel-heading">Received</div><div class="panel-body"><time class="tl-time" style="display: flex!important;text-align: left;width: 100%;"><h3 class="text-green" style="margin-top: 0px;">' + Math.ceil(infiat) + '<span style="font-size:55%;">/= ' + loCon.symbol + '</span></h3><p> </p></time></br></br>' + tim.format("dddd, MMMM Do YYYY, h:mm:ss a") + '</div></div></div></li>';
+                break;
+            case 'sent':
+                statCla = '';
+                if (e.status == 'pending') statCla = ' pending-trn pressable-pressing';
+                var tim = moment.unix(e.time);
+                html = '<li class="clearfix"><time class="tl-time" style="text-align: right;"><h3 class="text-red" style="text-align: right;width: 100%;margin: 10px 0px 10px 0px!important;">#</h3><p>transaction id</p></time><i class="fa fa-arrow-up bg-red tl-icon text-white' + statCla + '"></i><div class="tl-content"><div class="panel panel-primary"><div class="bg-red panel-heading">Sent</div><div class="panel-body"><time class="tl-time" style="display: flex!important;text-align: left;width: 100%;"><h3 class="text-red" style="margin-top: 0px;">' + Math.ceil(infiat) + '<span style="font-size:55%;">/= ' + loCon.symbol + '</span></h3><p> </p></time></br></br>' + tim.format("dddd, MMMM Do YYYY, h:mm:ss a") + '</div></div></div></li>';
+                break;
+            case 'empty':
+                html = '<li class="clearfix"><time class="tl-time"><h3 class="text-gray">00:00</h3><p>time</p></time><i class="fa fa-question bg-gray tl-icon text-white"></i><div class="tl-content"><div class="panel panel-primary"><div class="bg-gray panel-heading">Nothing found..</div><div class="panel-body">nothing to see here..</div></div></div></li>';
+                break;
+            default:
         }
         tl.append($.parseHTML(html));
     });
@@ -624,11 +615,11 @@ function addCustomerReq(cid) {
         for (var i = 0, cid = cid, timeline = timeline; i < reqs.length; ++i) {
             if (cid == reqs[i].reqto) {
                 timeline.push({
-                    time: moment(reqs[i].time).unix()
-                    , type: 'message'
-                    , title: 'New Message'
-                    , body: ''
-                    , amount: reqs[i].amount
+                    time: moment(reqs[i].time).unix(),
+                    type: 'message',
+                    title: 'New Message',
+                    body: '',
+                    amount: reqs[i].amount
                 });
             };
         }
@@ -654,24 +645,23 @@ function addCustomerTran(cid) {
                 if (reqs[i].sender == localStorage.getItem('bitsoko-wallets-addr')) {
                     console.log(moment(reqs[i].posted).unix());
                     timeline.push({
-                        time: moment(reqs[i].posted).unix()
-                        , type: 'sent'
-                        , title: 'Sent'
-                        , body: ''
-                        , amount: reqs[i].amount
-                        , status: reqs[i].status
-                        , transid: reqs[i].transid
+                        time: moment(reqs[i].posted).unix(),
+                        type: 'sent',
+                        title: 'Sent',
+                        body: '',
+                        amount: reqs[i].amount,
+                        status: reqs[i].status,
+                        transid: reqs[i].transid
                     });
-                }
-                else {
+                } else {
                     timeline.push({
-                        time: moment(reqs[i].posted).unix()
-                        , type: 'rec'
-                        , title: 'Received'
-                        , body: ''
-                        , amount: reqs[i].amount
-                        , status: reqs[i].status
-                        , transid: reqs[i].transid
+                        time: moment(reqs[i].posted).unix(),
+                        type: 'rec',
+                        title: 'Received',
+                        body: '',
+                        amount: reqs[i].amount,
+                        status: reqs[i].status,
+                        transid: reqs[i].transid
                     });
                     $('.bits-cur-c-addr').html(reqs[i].sender);
                 }
@@ -704,8 +694,7 @@ function searchCust(inp) {
             if (test) {
                 addCustomer(allCust[i]);
                 break;
-            }
-            else {
+            } else {
                 continue;
             }
         };
@@ -743,8 +732,7 @@ function addPromoSubscribers(promoid, promoSubs) {
                     var html = '<div class="chip" style="margin:5px;"><img src="' + allCust[i].img + '" alt="">' + allCust[i].name.split(" ")[0] + '</div>';
                     $(".promo-" + promoid + "-subscribers").append($.parseHTML(html));
                     break;
-                }
-                else {
+                } else {
                     continue;
                 }
             };
@@ -758,67 +746,65 @@ function createService(p) {
         image: "assets/images/icon.png"
     };
     swal({
-        title: "Add Business Name"
-        , text: 'add your business details below to start accepting payments.'
-        , type: "input"
-        , showCancelButton: false
-        , closeOnConfirm: false
-        , confirmButtonText: "next"
-        , customClass: "salertHmInv"
-        , inputPlaceholder: "name"
-        , imageUrl: busDet.image
+        title: "Add Business Name",
+        text: 'add your business details below to start accepting payments.',
+        type: "input",
+        showCancelButton: false,
+        closeOnConfirm: false,
+        confirmButtonText: "next",
+        customClass: "salertHmInv",
+        inputPlaceholder: "name",
+        imageUrl: busDet.image
     }, function (inputValue) {
         if (inputValue === false) return false;
         if (inputValue === "") {
             swal.showInputError("You need to write something!");
             return false
-        }
-        else if (inputValue.length > 20) {
+        } else if (inputValue.length > 20) {
             swal.showInputError("thats too long!");
             return false
         }
         busDet.name = inputValue;
         swal({
-            title: "Add Business Description"
-            , text: 'add your business description below'
-            , type: "input"
-            , showCancelButton: false
-            , closeOnConfirm: false
-            , confirmButtonText: "next"
-            , customClass: "salertHmInv"
-            , inputPlaceholder: "description"
-            , imageUrl: busDet.image
+            title: "Add Business Description",
+            text: 'add your business description below',
+            type: "input",
+            showCancelButton: false,
+            closeOnConfirm: false,
+            confirmButtonText: "next",
+            customClass: "salertHmInv",
+            inputPlaceholder: "description",
+            imageUrl: busDet.image
         }, function (inputValue) {
             if (inputValue === false) return false;
             if (inputValue === "") {
                 swal.showInputError("You need to write something!");
                 return false
-            }
-            else if (inputValue.length > 140) {
+            } else if (inputValue.length > 140) {
                 swal.showInputError("thats too long!");
                 return false
             }
             busDet.desc = inputValue;
             swal({
-                title: "Add Business Logo"
-                , text: 'add your business logo below'
-                , cancelButtonText: "add"
-                , confirmButtonText: "next"
-                , showCancelButton: true
-                , closeOnCancel: false
-                , closeOnConfirm: false
-                , customClass: "salertHmInv"
-                , imageUrl: p.image.url.replace('50', '150')
+                title: "Add Business Logo",
+                text: 'add your business logo below',
+                cancelButtonText: "add",
+                confirmButtonText: "next",
+                showCancelButton: true,
+                closeOnCancel: false,
+                closeOnConfirm: false,
+                customClass: "salertHmInv",
+                imageUrl: p.image.url.replace('50', '150')
             }, function () {
                 //busDet.logo=inputValue
                 swal({
-                    title: busDet.name
-                    , text: busDet.desc
-                    , showCancelButton: false
-                    , confirmButtonText: "create"
-                    , closeOnConfirm: false
-                    , customClass: "salertHmInv"
-                    , imageUrl: p.image.url.replace('50', '150')
+                    title: busDet.name,
+                    text: busDet.desc,
+                    showCancelButton: false,
+                    confirmButtonText: "create",
+                    closeOnConfirm: false,
+                    customClass: "salertHmInv",
+                    imageUrl: p.image.url.replace('50', '150')
                 }, function () {
                     busDet.desc = inputValue;
                     console.log(busDet);
@@ -835,8 +821,7 @@ function salesUpdater() {
             var reqs = event.target.result;
             try {
                 reqs = JSON.parse(reqs);
-            }
-            catch (err) {
+            } catch (err) {
                 noSalesUpdater();
                 return;
             }
@@ -858,8 +843,7 @@ function salesUpdater() {
                     navigator.vibrate(1000);
                 }
                 $('ul.tabs').tabs();
-            }
-            else {
+            } else {
                 noSalesUpdater();
             }
             $(".noteC-count").css('display', 'block').html(nC);
@@ -881,16 +865,14 @@ function beaconsUpdater() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-beacons').onsuccess = function (event) {
         try {
             reqs = JSON.parse(reqs);
-        }
-        catch (err) {
+        } catch (err) {
             reqs = []
         };
         $(".beacons-holda").html('');
         if (reqs.length > 0) {
             var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">All Beacons</span><p>' + reqs.length + ' Found</p></li>';
             $(".beacons-holda").append($.parseHTML(html));
-        }
-        else {
+        } else {
             var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">No Beacons Found</span><p>click here to add a beacon</p></li>';
             $(".beacons-holda").append($.parseHTML(html));
         }
@@ -909,8 +891,7 @@ function productsUpdater() {
         var reqs = event.target.result;
         try {
             reqs = JSON.parse(reqs);
-        }
-        catch (err) {
+        } catch (err) {
             reqs = []
         };
         $(".products-collapsible").html('');
@@ -919,16 +900,15 @@ function productsUpdater() {
             $(".products-collapsible").append($.parseHTML(html));
             $("#promotions>.fixed-action-btn>a").attr('href', '#firstProdModal');
             $('#firstProdModal').modal({
-                dismissible: false
-                , complete: function () {
+                dismissible: false,
+                complete: function () {
                     $('#add-product').modal({
                         dismissible: false
                     });
                 }
             }).modal('open');
             return;
-        }
-        else {
+        } else {
             $("#promotions>.fixed-action-btn>a").attr('href', '#newPromoModal')
         }
         $(".allProdCount").html(reqs.length);
@@ -936,7 +916,7 @@ function productsUpdater() {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
             //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
-            var html = '<li prid="' + reqs[i].id + '" style="margin-bottom:10px; background: rgb(255, 255, 255);">' + '<div id="prodImg-holda-' + reqs[i].id + '" style="background-size: cover;background-repeat: no-repeat;background-position: center;background-image:url(' + reqs[i].imagePath + ');width: 90px;height: 86px;float: left;"></div><div class="collapsible-header" style="width: calc(100% - 90px);display:inline-block;">' + reqs[i].name + '<div class="divider"></div><span >' + '<i class="{{product.icon}}"></i>' + reqs[i].quantity + ' available</span></div><div class="collapsible-body"><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">sale information</div>' + '<form class="col s12" style="padding: 20px 30px;"><div class="row"><div class="input-field col s12">' + '<input id="prodName-' + reqs[i].id + '" prnm="name" type="text" class="validate" prid="' + reqs[i].id + '" value="' + reqs[i].name + '"><label for="prodName-' + reqs[i].id + '" class="">Name</label></div></div>' + '<div class="row"><div class="input-field col s12"><input prnm="description" placeholder="" value="' + reqs[i].description + '" id="prodDesc-' + reqs[i].id + '" type="text" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="description" class="">Description</label></div></div><div class="row">' + '<div class="file-field input-field"><div class="btn"><span>image</span><input id="prodImg-' + reqs[i].id + '" prid="' + reqs[i].id + '" prnm="image" type="file">' + '</div><div class="file-path-wrapper"><input class="file-path validate" type="text"></div></div>' + '<div class="input-field col s6"><input prnm="price" placeholder="" value="' + reqs[i].price + '" id="prodPrice-' + reqs[i].id + '" type="number" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="prodPrice-' + reqs[i].id + '" class="active">Price</label></div><div class="input-field col s6">' + '<div class="select-wrapper initialized"><span class="caret">▼</span><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">measurement</option>' + '<option value="1">per Kilogram</option>' + '<option value="2">per Piece</option>' + '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized"><span class="caret">▼</span>' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option>' + '</select></div></div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"> <a prid="' + reqs[i].id + '" class="removeProduct waves-effect waves-light btn">remove product</a> </div>' + '</form></div></li>';
+            var html = '<li prid="' + reqs[i].id + '" style="margin-bottom:10px; background: rgb(255, 255, 255);">' + '<div id="prodImg-holda-' + reqs[i].id + '" style="background-size: cover;background-repeat: no-repeat;background-position: center;background-image:url(' + reqs[i].imagePath + ');width: 90px;height: 86px;float: left;"></div><div class="collapsible-header" style="width: calc(100% - 90px);display:inline-block;">' + reqs[i].name + '<div class="divider"></div><span >' + '<i class="{{product.icon}}"></i>' + reqs[i].quantity + ' available</span></div><div class="collapsible-body"><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">sale information</div>' + '<form class="col s12" style="padding: 20px 30px;"><div class="row"><div class="input-field col s12">' + '<input id="prodName-' + reqs[i].id + '" prnm="name" type="text" class="validate" prid="' + reqs[i].id + '" value="' + reqs[i].name + '"><label for="prodName-' + reqs[i].id + '" class="">Name</label></div></div>' + '<div class="row"><div class="input-field col s12"><input prnm="description" placeholder="" value="' + reqs[i].description + '" id="prodDesc-' + reqs[i].id + '" type="text" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="description" class="">Description</label></div></div><div class="row"><div class="input-field col s12">' + '<div class="select-wrapper initialized"><span class="caret">▼</span><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">Categories</option>' + '<option value="1">category 1</option>' + '<option value="2">category 2</option>' + '' + '<option value="3">category 3</option>' + '<option value="4">category 4</option>' + '<option value="5">category 5</option>' + '<option value="6">category 6</option>' + '</select></div></div></div><div class="row">' + '<div class="file-field input-field"><div class="btn"><span>image</span><input id="prodImg-' + reqs[i].id + '" prid="' + reqs[i].id + '" prnm="image" type="file">' + '</div><div class="file-path-wrapper"><input class="file-path validate" type="text"></div></div>' + '<div class="input-field col s6"><input prnm="price" placeholder="" value="' + reqs[i].price + '" id="prodPrice-' + reqs[i].id + '" type="number" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="prodPrice-' + reqs[i].id + '" class="active">Price</label></div><div class="input-field col s6">' + '<div class="select-wrapper initialized"><span class="caret">▼</span><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">measurement</option>' + '<option value="1">per Kilogram</option>' + '<option value="2">per Piece</option>' + '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized"><span class="caret">▼</span>' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option>' + '</select></div></div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"> <a prid="' + reqs[i].id + '" class="removeProduct waves-effect waves-light btn">remove product</a> </div>' + '</form></div></li>';
             $(".products-collapsible").append($.parseHTML(html));
         }
         $('.products-collapsible').collapsible();
@@ -950,8 +930,7 @@ function promoCreator() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
         try {
             e = JSON.parse(event.target.result);
-        }
-        catch (err) {
+        } catch (err) {
             console.log('unable to access products list. ' + err);
             return;
         }
@@ -959,8 +938,7 @@ function promoCreator() {
         if (e.length == 0) {
             var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Product Found</span></li>';
             $(".promotions-holda").append($.parseHTML(html));
-        }
-        else {
+        } else {
             //setupPromos(e);
             $("select.promo-add-ProdList").html('');
             /*	 
@@ -988,8 +966,7 @@ function promoUpdater() {
         var reqs = event.target.result;
         try {
             reqs = JSON.parse(reqs);
-        }
-        catch (err) {
+        } catch (err) {
             console.log('unable to access promotions list. ' + err);
             return;
         }
@@ -998,8 +975,7 @@ function promoUpdater() {
         if (reqs.length == 0) {
             var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Promotions Found</span></li>';
             $(".promotions-holda").append($.parseHTML(html));
-        }
-        else {
+        } else {
             $(".promotions-holda").html('');
             var html = ' <li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem grey circle"></i><div class="row">' + '<p class="collections-title"><strong>Add Promotion</strong></p><p class="collections-content">you can add ' + (3 - reqs.length) + ' more promotions</p></div>' + '</li>';
             $(".promotions-holda").append(html);
@@ -1051,34 +1027,31 @@ function updateProd(t) {
                 ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
                 val = canvas.toDataURL();
                 doFetch({
-                    action: 'doProdUpdate'
-                    , id: prid
-                    , prop: name
-                    , val: val
+                    action: 'doProdUpdate',
+                    id: prid,
+                    prop: name,
+                    val: val
                 }).then(function (e) {
                     if (e.status == 'ok') {
                         document.querySelector('#prodImg-holda-' + prid).src = val;
                         Materialize.toast('modified ' + name + '..', 3000);
-                    }
-                    else {
+                    } else {
                         console.log(e);
                     }
                 });
             };
             img.src = URL.createObjectURL(file);
         }
-    }
-    else {
+    } else {
         doFetch({
-            action: 'doProdUpdate'
-            , id: prid
-            , prop: name
-            , val: val
+            action: 'doProdUpdate',
+            id: prid,
+            prop: name,
+            val: val
         }).then(function (e) {
             if (e.status == 'ok') {
                 Materialize.toast('modified ' + name + '..', 3000);
-            }
-            else {
+            } else {
                 console.log(e);
             }
         });
@@ -1187,8 +1160,8 @@ function newStore() {
     $('.sidebar-collapse').sideNav('hide');
     setTimeout(function () {
         $('#newStoreModal').modal({
-            dismissible: false
-            , ready: function () {
+            dismissible: false,
+            ready: function () {
                 getLoc();
             }
         }).modal('open');
@@ -1203,8 +1176,8 @@ function editStore() {
     $('.sidebar-collapse').sideNav('hide');
     setTimeout(function () {
         $('#editStoreModal').modal({
-            dismissible: false
-            , ready: function () {
+            dismissible: false,
+            ready: function () {
                 editStoreCallback();
                 getLoc();
                 var xx = activeStore();
@@ -1221,8 +1194,8 @@ function switchStore() {
     $('.sidebar-collapse').sideNav('hide');
     setTimeout(function () {
         $('#switchStoreModal').modal({
-            dismissible: false
-            , ready: function () {}
+            dismissible: false,
+            ready: function () {}
         }).modal('open');
     }, 200);
 }
@@ -1246,11 +1219,11 @@ function doNewStore() {
         return;
     }
     doFetch({
-        action: 'doNewStore'
-        , ownerid: localStorage.getItem('bitsoko-owner-id')
-        , name: document.querySelector('#newStore-name').value
-        , desc: document.querySelector('#newStore-description').value
-        , loc: document.querySelector('#newStore-Location').value
+        action: 'doNewStore',
+        ownerid: localStorage.getItem('bitsoko-owner-id'),
+        name: document.querySelector('#newStore-name').value,
+        desc: document.querySelector('#newStore-description').value,
+        loc: document.querySelector('#newStore-Location').value
     }).then(function (e) {
         if (e.status == 'ok') {
             getObjectStore('data', 'readwrite').get('user-profile-' + localStorage.getItem("bits-user-name")).onsuccess = function (event) {
@@ -1261,13 +1234,11 @@ function doNewStore() {
                             Materialize.toast('added new store..', 3000);
                         }
                     }).modal('close');
-                }
-                catch (err) {
+                } catch (err) {
                     console.log('no user profile found : ', err);
                 }
             }
-        }
-        else {
+        } else {
             console.log(e);
         }
     });
@@ -1283,14 +1254,13 @@ function castPromo(t) {
             precp.push(reqs[i].uid);
         }
         doFetch({
-            action: 'doCastPromo'
-            , id: $(t.target).attr('pid')
-            , to: precp
+            action: 'doCastPromo',
+            id: $(t.target).attr('pid'),
+            to: precp
         }).then(function (e) {
             if (e.status == 'ok') {
                 Materialize.toast('sent promotion', 3000);
-            }
-            else {
+            } else {
                 console.log(e);
             }
         });
@@ -1305,8 +1275,8 @@ function doNewPromo() {
     var allItms = new Array();
     for (i = 0, allItms = allItms, selcIds = selcIds; i < x.length; i++) {
         allItms.push({
-            name: x.options[i].text
-            , id: x.options[i].getAttribute('value')
+            name: x.options[i].text,
+            id: x.options[i].getAttribute('value')
         });
     }
     for (ii = 0, allItms = allItms, selcIds = selcIds; ii < selcItms.length; ii++) {
@@ -1316,14 +1286,14 @@ function doNewPromo() {
         selcIds.push(parseInt(allItms.find(findChosen).id));
     }
     doFetch({
-        action: 'doNewPromo'
-        , ownerid: activeStore().id
-        , name: document.querySelector('#newPromo-name').value
-        , desc: document.querySelector('#newPromo-desc').value
-        , image: document.querySelector('#newPromo-image').value
-        , items: selcIds
-        , discount: document.querySelector('#newPromo-discount').value
-        , offers: document.querySelector('#newPromo-offers').value
+        action: 'doNewPromo',
+        ownerid: activeStore().id,
+        name: document.querySelector('#newPromo-name').value,
+        desc: document.querySelector('#newPromo-desc').value,
+        image: document.querySelector('#newPromo-image').value,
+        items: selcIds,
+        discount: document.querySelector('#newPromo-discount').value,
+        offers: document.querySelector('#newPromo-offers').value
     }).then(function (e) {
         if (e.status == 'ok') {
             $('#newPromoModal').modal({
@@ -1332,8 +1302,7 @@ function doNewPromo() {
                     refreshPromotions();
                 }
             }).modal('close');
-        }
-        else {
+        } else {
             console.log(e);
         }
     });
@@ -1366,34 +1335,31 @@ function updateStore(t) {
                 ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
                 val = canvas.toDataURL();
                 doFetch({
-                    action: 'doEditStore'
-                    , id: localStorage.getItem('soko-active-store')
-                    , prop: name
-                    , val: val
+                    action: 'doEditStore',
+                    id: localStorage.getItem('soko-active-store'),
+                    prop: name,
+                    val: val
                 }).then(function (e) {
                     if (e.status == 'ok') {
                         //document.querySelector('#prodImg-holda-'+prid).src = val;
                         Materialize.toast('modified ' + name + '..', 3000);
-                    }
-                    else {
+                    } else {
                         console.log(e);
                     }
                 });
             };
             img.src = URL.createObjectURL(file);
         }
-    }
-    else {
+    } else {
         doFetch({
-            action: 'doEditStore'
-            , id: localStorage.getItem('soko-active-store')
-            , prop: name
-            , val: val
+            action: 'doEditStore',
+            id: localStorage.getItem('soko-active-store'),
+            prop: name,
+            val: val
         }).then(function (e) {
             if (e.status == 'ok') {
                 Materialize.toast('modified ' + name + '..', 3000);
-            }
-            else {
+            } else {
                 console.log(e);
             }
         });
@@ -1411,16 +1377,15 @@ function addProduct() {
         // value.addEventListener("change", updateStore);
     });
     doFetch({
-        action: 'doNewProduct'
-        , id: localStorage.getItem('soko-active-store')
-        , prod: newProdDat
+        action: 'doNewProduct',
+        id: localStorage.getItem('soko-active-store'),
+        prod: newProdDat
     }).then(function (e) {
         if (e.status == 'ok') {
             refreshProducts();
             Materialize.toast('added ..', 3000);
             $('#add-product').modal('close');
-        }
-        else {
+        } else {
             console.log(e);
         }
     });
@@ -1483,14 +1448,13 @@ for (var i = 0; i < shroot.length; ++i) {
     var id = $(this).attr('prid');
     shroot[i].addEventListener("touchstart", function () {
         doFetch({
-            action: 'doProdRemove'
-            , id: id
+            action: 'doProdRemove',
+            id: id
         }).then(function (e) {
             if (e.status == 'ok') {
                 //document.querySelector('#prodImg-holda-'+prid).src = val;
                 //  Materialize.toast('modified '+name+'..', 3000);
-            }
-            else {
+            } else {
                 console.log(e);
             }
         });
@@ -1532,8 +1496,7 @@ for (var i = 0; i < shroot.length; ++i) {
                 };
                 img.src = URL.createObjectURL(file);
             }
-        }
-        else {
+        } else {
             newProdDat[val] = $(value).val();
         }
     }, false);
@@ -1548,8 +1511,7 @@ document.addEventListener('visibilitychange', function (event) {
     if (!document.hidden) {
         // The page is visible.
         checkNotes();
-    }
-    else {
+    } else {
         // The page is hidden. 
     }
 });

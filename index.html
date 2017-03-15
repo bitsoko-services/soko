@@ -47,7 +47,7 @@
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <link rel="import" href="https://bitsoko.io/bitsAssets/html/connector.html" async> </head>
 
-<body style="overflow-x: hidden;">
+<body style="overflow-x: hidden;" onload="set_style_from_cookie()">
     <bits-connect></bits-connect>
     <!-- Start Page Loading -->
     <!-- End Page Loading -->
@@ -173,17 +173,20 @@
                         <label for="editStore-Phone" class="">Phone</label>
                     </div>
                 </div>
-                <form>
-                    <input type="submit" onclick="switch_style('green');return false;" name="theme" value="" id="green" style=" background-color: green;border: none;border-radius: 50%;width: 30px;height: 30px;">
-                    <input type="submit" onclick="switch_style('brown');return false;" name="theme" value="" id="brown" style=" background-color: #3E2723;border: none;border-radius: 50%;width: 30px;height: 30px;">
-                    <input type="submit" onclick="switch_style('till');return false;" name="theme" value="" id="till" style=" background-color:#00695C;border: none;border-radius: 50%;width: 30px;height: 30px;">
-                    <input type="submit" onclick="switch_style('pink');return false;" name="theme" value="" id="pink" style=" background-color: #AD1457;border: none;border-radius: 50%;width: 30px;height: 30px;">
-                    <input type="submit" onclick="switch_style('purple');return false;" name="theme" value="" id="purple" style=" background-color: purple;border: none;border-radius: 50%;width: 30px;height: 30px;"> </form>
                 <div class="row">
                     <div class="file-field input-field">
                         <div class="btn"><span>image</span>
                             <input id="editStore-image" type="file" stitm="banner"> </div>
                     </div>
+                </div>
+                <div>
+                    <p>Store Theme</p>
+                    <form>
+                        <input type="submit" onclick="switch_style('green');return false;" name="theme" value="" id="green" style=" background-color: green;border: none;border-radius: 50%;width: 30px;height: 30px;">
+                        <input type="submit" onclick="switch_style('brown');return false;" name="theme" value="" id="brown" style=" background-color: #3E2723;border: none;border-radius: 50%;width: 30px;height: 30px;">
+                        <input type="submit" onclick="switch_style('till');return false;" name="theme" value="" id="till" style=" background-color:#00695C;border: none;border-radius: 50%;width: 30px;height: 30px;">
+                        <input type="submit" onclick="switch_style('pink');return false;" name="theme" value="" id="pink" style=" background-color: #AD1457;border: none;border-radius: 50%;width: 30px;height: 30px;">
+                        <input type="submit" onclick="switch_style('purple');return false;" name="theme" value="" id="purple" style=" background-color: purple;border: none;border-radius: 50%;width: 30px;height: 30px;"> </form>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
