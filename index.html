@@ -504,7 +504,7 @@
                         <div style="text-align:center;padding-bottom:30px;">
                             <h3 style="margin-bottom:0px">TOTAL</h3>
                             <br>
-                            <p id="serviceBill" style="font-size:4em;margin-top:0px;margin-bottom:0px;">Ksh.<span id="serviceBillCharges"></span></p>
+                            <p id="serviceBill" style="font-size:4em;margin-top:0px;margin-bottom:0px;">Ksh<span id="serviceBillCharges"></span></p>
                             <br><a style="background-color:#0F5F76;padding: 7px;padding-left:20px;padding-right:20px;font-weight: bold;color:white;border-radius:5px;">PAY</a> </div>
                         <!-- Modal Structure -->
                         <table class="rwd-table">
@@ -512,9 +512,10 @@
                                 <th style="padding-left:10px;text-align:center;" colspan="2">MONTH</th>
                             </tr>
                             <tr>
-                                <td style="padding-left:10px;" data-th="Header">Promotional Services</td>
-                                <td style="padding-left:10px;" data-th="Header"> Ksh. 0</td>
+                                <td style="padding-left:10px;" data-th="Header">15th</td>
+                                <td style="padding-left:10px;" data-th="Header"> Ksh <span id="serviceBillCharges"></span></td>
                             </tr>
+                            <tr class="billingTableRow"></tr>
                         </table>
                     </div>
                     <!-- Floating Action Button -->
@@ -568,16 +569,17 @@
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
+            auth2.signOut().then(function() {
                 console.log('User signed out.');
             });
         }
 
         function onLoad() {
-            gapi.load('auth2', function () {
+            gapi.load('auth2', function() {
                 gapi.auth2.init();
             });
         }
+
     </script>
     <script>
         // *** TO BE CUSTOMISED ***
@@ -624,6 +626,7 @@
             }
             return '';
         }
+
     </script>
 </body>
 

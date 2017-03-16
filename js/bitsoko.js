@@ -925,7 +925,23 @@ function productsUpdater() {
         initProdCallback();
     }
 }
-
+//function serviceBillUpdater() {
+//    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
+//        var reqs = event.target.result;
+//        try {
+//            reqs = JSON.parse(reqs);
+//        } catch (err) {
+//            reqs = []
+//        };
+//        $(".billingTableRow").html('');
+//        if (reqs.length == 0) {
+//            var html = ' <td style="padding-left:10px;" data-th="Header">15th</td> <td style="padding-left:10px;" data-th="Header"> Ksh <span id="serviceBillCharges"></span></td>';
+//            $(".billingTableRow").append($.parseHTML(html));
+//        } else {
+//            $("").attr('href', '#')
+//        }
+//    }
+//}
 function promoCreator() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
         try {
