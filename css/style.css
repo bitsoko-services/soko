@@ -2326,3 +2326,22 @@ tr.group:hover {
 #polar-chart-holder {
     padding-top: 20px;
 }
+
+/***************************************
+           THEME CHOOSER
+****************************************/
+
+#spectrum-color {
+    float: left;
+}
+#spectrum-all {
+    margin-left: 15px;
+}
+.selected-color {
+    width: 100px;
+    height: 100px;
+    /*    float: left;*/
+    margin-left: auto;
+    margin-right: auto;
+    background: #f00;
+}
