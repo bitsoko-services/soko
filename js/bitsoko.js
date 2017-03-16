@@ -726,7 +726,7 @@ function addPromoSubscribers(promoid, promoSubs) {
         var subs = p.promoSubs;
         for (var i = 0, subs = subs, promoid = promoid; i < allCust.length; ++i) {
             for (var ii = 0, allCust = allCust, promoid = promoid; ii < subs.length; ++ii) {
-                var test = new RegExp(subs[ii]).test(allCust[i].uid);
+                var test = new RegExp(subs[ii].id).test(allCust[i].uid);
                 if (test) {
                     console.log('Matched!! ' + allCust[i]);
                     var html = '<div class="chip" style="margin:5px;"><img src="' + allCust[i].img + '" alt="">' + allCust[i].name.split(" ")[0] + '</div>';
