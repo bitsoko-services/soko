@@ -341,7 +341,7 @@
                         <!-- Dropdown Structure -->
                         <ul id='dropdown1' class='dropdown-content'>
                             <li><a href="tel:+254721882694">Call Us</a></li>
-                            <li><a href="#!">Email Us</a></li>
+                            <li><a href="mailto:gaseema@bitsoko.io?Subject=Hello%20again" target="_top">Email Us</a></li>
                         </ul>
                     </div>
                     <div class="header-search-wrapper hide-on-med-and-down " style="display:none;background-color:#7eb7c8!important;"> <i class="mdi-action-search"></i>
@@ -596,16 +596,17 @@
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
+            auth2.signOut().then(function() {
                 console.log('User signed out.');
             });
         }
 
         function onLoad() {
-            gapi.load('auth2', function () {
+            gapi.load('auth2', function() {
                 gapi.auth2.init();
             });
         }
+
     </script>
     <script>
         function ColorPicker() {
@@ -616,7 +617,7 @@
             this.createMultiColorSpectrum();
             this.createSingleColorSpectrum();
         }
-        ColorPicker.prototype.createSingleColorSpectrum = function (color) {
+        ColorPicker.prototype.createSingleColorSpectrum = function(color) {
             var canvas = this.singleColorCanvas;
             var ctx = this.singleColorContext;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -635,7 +636,7 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             $(canvas).on('click', this.spectrumClick.bind(this));
         }
-        ColorPicker.prototype.createMultiColorSpectrum = function () {
+        ColorPicker.prototype.createMultiColorSpectrum = function() {
             var canvas = this.allColorCanvas;
             var ctx = this.allColorContext;
             var hueGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
@@ -650,12 +651,12 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             $(canvas).on('click', this.hueClick.bind(this));
         }
-        ColorPicker.prototype.hueClick = function (e) {
+        ColorPicker.prototype.hueClick = function(e) {
             var y = e.pageY - $(e.currentTarget).offset().top;
             var imgData = this.allColorContext.getImageData(0, y, 1, 1).data;
             this.createSingleColorSpectrum('rgb(' + imgData[0] + ', ' + imgData[1] + ', ' + imgData[2] + ')');
         }
-        ColorPicker.prototype.spectrumClick = function (e) {
+        ColorPicker.prototype.spectrumClick = function(e) {
             var x = e.pageX - $(e.currentTarget).offset().left;
             var y = e.pageY - $(e.currentTarget).offset().top;
             var imgData = this.singleColorContext.getImageData(x, y, 1, 1).data;
@@ -677,6 +678,7 @@
             $("#colorChosen").text(rgbToHex(redAsInt, greenAsInt, blueAsInt));
         }
         new ColorPicker();
+
     </script>
 </body>
 
