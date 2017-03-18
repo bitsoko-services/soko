@@ -347,6 +347,19 @@ function process(e,event) {
 //    }, false);
 //};
 function refreshCustomers() {
+    //    var STOREID;
+    //    doFetch({
+    //        action: 'getServiceBills',
+    //        id: STOREID
+    //    }).then(function (e) {
+    //        if (e.status == "ok") {
+    //            var html = ' <tr><td style="padding-left:10px;" data-th="Header">.</td><td style="padding-left:10px;" data-th="Header"> . <span id="serviceBillCharges"></span></td></tr>';
+    //            $(".billRow").append($.parseHTML(html));
+    //            console.log(e)
+    //        } else {
+    //            console.log("error");
+    //        };
+    //    });
     doFetch({
         action: 'getServiceCustomers',
         id: localStorage.getItem('soko-active-store')
@@ -832,7 +845,7 @@ function salesUpdater() {
                     nC++;
                     var saleAmount = Math.ceil(parseFloat(reqs[i].amount) / 100000000 * loCon.xrate * loCon.rate) + '/= ' + loCon.symbol;
                     var saleTime = moment(reqs[i].posted).fromNow();
-                    //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
+                    //f = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
                     var html = ' <li class="collection-item avatar"><i class="mdi-action-receipt green circle"></i><div class="row"><div class="col s5">' + '<p class="collections-title"><strong>#3</strong> Tomatoes, sold</p><p class="collections-content">.......</p></div>' + '<div class="col s2"><span class="task-cat green accent-2">P1</span></div><div class="col s5"><div class="progress"><div class="determinate green" style="width: 70%"></div>' + '</div><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized"><option value="" disabled="" selected="">pending</option>' + '<option value="1">complete</option></select></div></div></div></li>' + $(".soko-sales-list").append($.parseHTML(html));
                 };
             }
