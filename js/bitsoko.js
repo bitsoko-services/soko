@@ -358,8 +358,11 @@ function refreshBills() {
         action: 'getServiceBills'
         , id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
+        $('.cust-count').html(e.reqs.length);
+        $('#dailyBill').html(e.reqs.length * 0.167);
+        console.log("The Customer count is " + (e.customers.length + 1));
         if (e.status == "ok") {
-            var html = ' <tr><td style="padding-left:10px;" data-th="Header"></td><td style="padding-left:10px;" data-th="Header"><span id="serviceBillCharges"></span></td></tr>';
+            var html = ' <tr><td id="dailyBill" style="padding-left:10px;" data-th="Header"></td><td style="padding-left:10px;" data-th="Header"><span id="serviceBillCharges"></span></td></tr>';
             $(".billRow").append($.parseHTML(html));
             console.log(e)
         }
@@ -371,20 +374,6 @@ function refreshBills() {
 refreshBills();
 
 function refreshCustomers() {
-    var STOREID;
-    doFetch({
-        action: 'getServiceBills'
-        , id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {
-        if (e.status == "ok") {
-            var html = ' <tr><td style="padding-left:10px;" data-th="Header">store</td><td style="padding-left:10px;" data-th="Header">store<span id="serviceBillCharges"></span></td></tr>';
-            $(".billRow").append($.parseHTML(html));
-            console.log(e)
-        }
-        else {
-            console.log("error");
-        };
-    });
     doFetch({
         action: 'getServiceCustomers'
         , id: localStorage.getItem('soko-active-store')
