@@ -181,6 +181,9 @@
                 </div>
                 <div>
                     <p>Store Theme</p>
+                    <div><span><canvas height='200' id='spectrum-color' style="width:80%;height:200px;"></canvas>
+<canvas height='200' id='spectrum-all' width='20'></canvas><br>
+<div class='selected-color'></div><br></span></div>
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header inputBackgroundColor" id="colors"><i class="material-icons"></i>
@@ -190,9 +193,11 @@
                                 </p>
 -->
                                 <input id="colorChosen" placeholder="Select Theme Color" value="#" style="height:1rem;"> </div>
+                            <!--
                             <div class="collapsible-body" style="padding:10px;"><span><canvas height='200' id='spectrum-color' style="width:80%;height:200px;"></canvas>
 <canvas height='200' id='spectrum-all' width='20'></canvas><br>
-<br></span></div>
+<div class='selected-color'></div><br></span></div>
+-->
                         </li>
                     </ul>
                 </div>
@@ -651,7 +656,7 @@
             var x = e.pageX - $(e.currentTarget).offset().left;
             var y = e.pageY - $(e.currentTarget).offset().top;
             var imgData = this.singleColorContext.getImageData(x, y, 1, 1).data;
-            $('.inputBackgroundColor').css({
+            $('.selected-color').css({
                 background: 'rgb(' + imgData[0] + ', ' + imgData[1] + ', ' + imgData[2] + ')'
             });
             var redAsInt = parseInt(imgData[0]);
