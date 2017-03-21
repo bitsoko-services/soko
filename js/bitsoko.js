@@ -360,11 +360,12 @@ function refreshBills() {
             splitted = obj['date'].split(' ')
             parsed_date = splitted[0] + ' ' + splitted[2]
             billing_string += '<span style="display:block">' + parsed_date + '</span>'
-            billing_amount += '<span style="display:block">' + (e.reqs.length * 0.167) + '</span>'
+            billing_amount += '<span style="display:block">' + (0.167) + '</span>'
         })
         $('.cust-count').html(e.reqs.length);
         $('#billingDate').html(billing_string);
         $('#dailyBill').html(billing_amount);
+        $('#serviceBillCharges').html(0.167 * (e.reqs.length));
         console.log("The test Customer count is " + (e.reqs.length));
         if (e.status == "ok") {
             //            var html = ' <tr><td id="dailyBill" style="padding-left:10px;" data-th="Header"></td><td style="padding-left:10px;" data-th="Header"><span id="serviceBillCharges"></span></td></tr>';
@@ -383,7 +384,7 @@ function refreshCustomers() {
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         $('.cust-count').html(e.customers.length);
-        $('#serviceBillCharges').html(e.customers.length * 0.167);
+        //        $('#serviceBillCharges').html(e.customers.length * 0.167);
         console.log("The customer count is " + (e.customers.length + 1));
         for (var i = 0; i < e.customers.length; i++) {
             //timeline.push({time:'',type:'cust',title:'Name',body:'',amount:''});
