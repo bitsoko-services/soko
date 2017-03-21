@@ -358,12 +358,22 @@ function refreshBills() {
         action: 'getServiceBills'
         , id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
+        bills = e.reqs
+        i = 0
+        billing_string = ''
+        $.each(bills, function (index, obj) {
+            console.log('bill: ', obj['date'])
+            splitted = obj['date'].split(' ')
+            parsed_date = splitted[0] + ' ' + splitted[2]
+            billing_string += '<span style="display:block">' + parsed_date + '</span>'
+        })
         $('.cust-count').html(e.reqs.length);
+        $('#billingDate').html(billing_string);
         $('#dailyBill').html(e.reqs.length * 0.167);
-        console.log("The Customer count is " + (e.customers.length + 1));
+        console.log("The Customer count is " + (e.reqs.length + 1));
         if (e.status == "ok") {
-            var html = ' <tr><td id="dailyBill" style="padding-left:10px;" data-th="Header"></td><td style="padding-left:10px;" data-th="Header"><span id="serviceBillCharges"></span></td></tr>';
-            $(".billRow").append($.parseHTML(html));
+            //            var html = ' <tr><td id="dailyBill" style="padding-left:10px;" data-th="Header"></td><td style="padding-left:10px;" data-th="Header"><span id="serviceBillCharges"></span></td></tr>';
+            //            $(".billRow").append($.parseHTML(html));
             console.log(e)
         }
         else {
