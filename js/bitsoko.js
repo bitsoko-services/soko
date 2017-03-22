@@ -347,17 +347,17 @@ function process(e,event) {
 //    }, false);
 //};
 function createCanvas() {
+    var clcanvas = document.createElement("canvas");
     var allcanvas = document.createElement("canvas");
     allcanvas.id = "spectrum-all";
-    var clcanvas = document.createElement("canvas");
     clcanvas.id = "spectrum-color";
     clcanvas.height = "200";
-    clcanvas.width = "150";
+    clcanvas.width = "210";
     allcanvas.height = "200";
     allcanvas.width = "20";
     /* var html = '<canvas height="200" id="spectrum-color" style="width:80%;height:200px;"> </canvas>' + '<canvas height="200" id="spectrum-all" width="20"> </canvas>' + '<br>' + '<div class="selected-color"></div>';*/
-    document.getElementById('themeCanvas').appendChild(allcanvas);
     document.getElementById('themeCanvas').appendChild(clcanvas);
+    document.getElementById('themeCanvas').appendChild(allcanvas);
 }
 
 function refreshBills() {

@@ -2356,6 +2356,6 @@ tr.group:hover {
 #tabs-swipe-demo a {
     color: white;
 }
-canvas {
-    display: block !important;
+#spectrum-color {
+    padding-right: 10px
 }
