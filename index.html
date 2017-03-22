@@ -176,9 +176,9 @@
                 <div>
                     <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px;">
                         <li>
-                            <div class="collapsible-header inputBackgroundColor" id="colors" style="background-color:transparent;">
+                            <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px;">
                                 <label for="editStore-Phone" class="active">Store Theme</label>
-                                <input id="colorChosen" placeholder="Select Theme Color" value="" stitm="theme" style="height:1rem;"> </div>
+                                <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px;"> </div>
                             <div class="collapsible-body" style="padding:10px;"><span><div id="themeCanvas">
                                     </div></span></div>
                         </li>
@@ -709,20 +709,19 @@
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function() {
+            auth2.signOut().then(function () {
                 console.log('User signed out.');
             });
         }
 
         function onLoad() {
-            gapi.load('auth2', function() {
+            gapi.load('auth2', function () {
                 gapi.auth2.init();
             });
         }
-
     </script>
     <script>
-        $("#editStoreModal").ready(function() {
+        $("#editStoreModal").ready(function () {
             createCanvas();
 
             function ColorPicker() {
@@ -733,7 +732,7 @@
                 this.createMultiColorSpectrum();
                 this.createSingleColorSpectrum();
             }
-            ColorPicker.prototype.createSingleColorSpectrum = function(color) {
+            ColorPicker.prototype.createSingleColorSpectrum = function (color) {
                 var canvas = this.singleColorCanvas;
                 var ctx = this.singleColorContext;
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -752,7 +751,7 @@
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 $(canvas).on('click', this.spectrumClick.bind(this));
             }
-            ColorPicker.prototype.createMultiColorSpectrum = function() {
+            ColorPicker.prototype.createMultiColorSpectrum = function () {
                 var canvas = this.allColorCanvas;
                 var ctx = this.allColorContext;
                 var hueGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
@@ -767,16 +766,16 @@
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 $(canvas).on('click', this.hueClick.bind(this));
             }
-            ColorPicker.prototype.hueClick = function(e) {
+            ColorPicker.prototype.hueClick = function (e) {
                 var y = e.pageY - $(e.currentTarget).offset().top;
                 var imgData = this.allColorContext.getImageData(0, y, 1, 1).data;
                 this.createSingleColorSpectrum('rgb(' + imgData[0] + ', ' + imgData[1] + ', ' + imgData[2] + ')');
             }
-            ColorPicker.prototype.spectrumClick = function(e) {
+            ColorPicker.prototype.spectrumClick = function (e) {
                 var x = e.pageX - $(e.currentTarget).offset().left;
                 var y = e.pageY - $(e.currentTarget).offset().top;
                 var imgData = this.singleColorContext.getImageData(x, y, 1, 1).data;
-                $('.selected-color').css({
+                $('.colors').css({
                     background: 'rgb(' + imgData[0] + ', ' + imgData[1] + ', ' + imgData[2] + ')'
                 });
                 var redAsInt = parseInt(imgData[0]);
@@ -795,7 +794,6 @@
             }
             new ColorPicker();
         });
-
     </script>
 </body>
 

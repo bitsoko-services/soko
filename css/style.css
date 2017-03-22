@@ -2360,4 +2360,8 @@ tr.group:hover {
     padding-right: 10px;
     width: 80%;
     height: 200px;
+    border-radius: 3px;
+}
+#spectrum-all {
+    border-radius: 3px;
 }
