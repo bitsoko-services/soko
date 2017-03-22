@@ -352,7 +352,6 @@ function createCanvas() {
     allcanvas.id = "spectrum-all";
     clcanvas.id = "spectrum-color";
     clcanvas.height = "200";
-    clcanvas.width = "190";
     allcanvas.height = "200";
     allcanvas.width = "20";
     /* var html = '<canvas height="200" id="spectrum-color" style="width:80%;height:200px;"> </canvas>' + '<canvas height="200" id="spectrum-all" width="20"> </canvas>' + '<br>' + '<div class="selected-color"></div>';*/

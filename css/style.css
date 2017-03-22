@@ -2357,5 +2357,7 @@ tr.group:hover {
     color: white;
 }
 #spectrum-color {
-    padding-right: 10px
+    padding-right: 10px;
+    width: 80%;
+    height: 200px;
 }
