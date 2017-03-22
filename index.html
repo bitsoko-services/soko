@@ -181,12 +181,14 @@
                 </div>
                 <div>
                     <p>Store Theme</p>
-                    <div>
+                    <div id="themeCanvas">
+                        <!--
                         <canvas height="200" id="spectrum-color" style="width:80%;height:200px;"> </canvas>
                         <canvas height="200" id="spectrum-all" width="20"> </canvas>
                         <br>
                         <div class="selected-color"></div>
-                        <br> </div>
+                        <br>-->
+                    </div>
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header inputBackgroundColor" id="colors"><i class="material-icons"></i>
@@ -727,6 +729,8 @@
     </script>
     <script>
         $("#editStoreModal").ready(function() {
+            createCanvas();
+
             function ColorPicker() {
                 this.singleColorCanvas = $('#spectrum-color').get(0);
                 this.singleColorContext = this.singleColorCanvas.getContext('2d');
