@@ -181,9 +181,12 @@
                 </div>
                 <div>
                     <p>Store Theme</p>
-                    <div><span><canvas height='200' id='spectrum-color' style="width:80%;height:200px;"></canvas>
-<canvas height='200' id='spectrum-all' width='20'></canvas><br>
-<div class='selected-color'></div><br></span></div>
+                    <div> <span>
+                            <canvas height='200' id='spectrum-color' style="width:80%;height:200px;">
+                            </canvas>
+                            <canvas height='200' id='spectrum-all' width='20'>
+                            </canvas><br>
+<div class='selected-color'></div><br></span> </div>
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header inputBackgroundColor" id="colors"><i class="material-icons"></i>
@@ -720,87 +723,91 @@
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
+            auth2.signOut().then(function() {
                 console.log('User signed out.');
             });
         }
 
         function onLoad() {
-            gapi.load('auth2', function () {
+            gapi.load('auth2', function() {
                 gapi.auth2.init();
             });
         }
+
     </script>
     <script>
-        function ColorPicker() {
-            this.singleColorCanvas = $('#spectrum-color').get(0);
-            this.singleColorContext = this.singleColorCanvas.getContext('2d');
-            this.allColorCanvas = $('#spectrum-all').get(0);
-            this.allColorContext = this.allColorCanvas.getContext('2d');
-            this.createMultiColorSpectrum();
-            this.createSingleColorSpectrum();
-        }
-        ColorPicker.prototype.createSingleColorSpectrum = function (color) {
-            var canvas = this.singleColorCanvas;
-            var ctx = this.singleColorContext;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            if (!color) color = '#f00'
-            ctx.fillStyle = color;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            var whiteGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-            whiteGradient.addColorStop(0, "#fff");
-            whiteGradient.addColorStop(1, "transparent");
-            ctx.fillStyle = whiteGradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            var blackGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            blackGradient.addColorStop(0, "transparent");
-            blackGradient.addColorStop(1, "#000");
-            ctx.fillStyle = blackGradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            $(canvas).on('click', this.spectrumClick.bind(this));
-        }
-        ColorPicker.prototype.createMultiColorSpectrum = function () {
-            var canvas = this.allColorCanvas;
-            var ctx = this.allColorContext;
-            var hueGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            hueGradient.addColorStop(0.00, "#ff0000");
-            hueGradient.addColorStop(0.17, "#ff00ff");
-            hueGradient.addColorStop(0.33, "#0000ff");
-            hueGradient.addColorStop(0.50, "#00ffff");
-            hueGradient.addColorStop(0.67, "#00ff00");
-            hueGradient.addColorStop(0.83, "#ffff00");
-            hueGradient.addColorStop(1.00, "#ff0000");
-            ctx.fillStyle = hueGradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            $(canvas).on('click', this.hueClick.bind(this));
-        }
-        ColorPicker.prototype.hueClick = function (e) {
-            var y = e.pageY - $(e.currentTarget).offset().top;
-            var imgData = this.allColorContext.getImageData(0, y, 1, 1).data;
-            this.createSingleColorSpectrum('rgb(' + imgData[0] + ', ' + imgData[1] + ', ' + imgData[2] + ')');
-        }
-        ColorPicker.prototype.spectrumClick = function (e) {
-            var x = e.pageX - $(e.currentTarget).offset().left;
-            var y = e.pageY - $(e.currentTarget).offset().top;
-            var imgData = this.singleColorContext.getImageData(x, y, 1, 1).data;
-            $('.selected-color').css({
-                background: 'rgb(' + imgData[0] + ', ' + imgData[1] + ', ' + imgData[2] + ')'
-            });
-            var redAsInt = parseInt(imgData[0]);
-            var greenAsInt = parseInt(imgData[0]);
-            var blueAsInt = parseInt(imgData[0]);
-
-            function componentToHex(c) {
-                var hex = c.toString(16);
-                return hex.length == 1 ? "0" + hex : hex;
+        $("#modal1").ready(function() {
+            function ColorPicker() {
+                this.singleColorCanvas = $('#spectrum-color').get(0);
+                this.singleColorContext = this.singleColorCanvas.getContext('2d');
+                this.allColorCanvas = $('#spectrum-all').get(0);
+                this.allColorContext = this.allColorCanvas.getContext('2d');
+                this.createMultiColorSpectrum();
+                this.createSingleColorSpectrum();
             }
-
-            function rgbToHex(r, g, b) {
-                return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+            ColorPicker.prototype.createSingleColorSpectrum = function(color) {
+                var canvas = this.singleColorCanvas;
+                var ctx = this.singleColorContext;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (!color) color = '#f00'
+                ctx.fillStyle = color;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                var whiteGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                whiteGradient.addColorStop(0, "#fff");
+                whiteGradient.addColorStop(1, "transparent");
+                ctx.fillStyle = whiteGradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                var blackGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                blackGradient.addColorStop(0, "transparent");
+                blackGradient.addColorStop(1, "#000");
+                ctx.fillStyle = blackGradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                $(canvas).on('click', this.spectrumClick.bind(this));
             }
-            $("#colorChosen").val(rgbToHex(redAsInt, greenAsInt, blueAsInt));
-        }
-        new ColorPicker();
+            ColorPicker.prototype.createMultiColorSpectrum = function() {
+                var canvas = this.allColorCanvas;
+                var ctx = this.allColorContext;
+                var hueGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                hueGradient.addColorStop(0.00, "#ff0000");
+                hueGradient.addColorStop(0.17, "#ff00ff");
+                hueGradient.addColorStop(0.33, "#0000ff");
+                hueGradient.addColorStop(0.50, "#00ffff");
+                hueGradient.addColorStop(0.67, "#00ff00");
+                hueGradient.addColorStop(0.83, "#ffff00");
+                hueGradient.addColorStop(1.00, "#ff0000");
+                ctx.fillStyle = hueGradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                $(canvas).on('click', this.hueClick.bind(this));
+            }
+            ColorPicker.prototype.hueClick = function(e) {
+                var y = e.pageY - $(e.currentTarget).offset().top;
+                var imgData = this.allColorContext.getImageData(0, y, 1, 1).data;
+                this.createSingleColorSpectrum('rgb(' + imgData[0] + ', ' + imgData[1] + ', ' + imgData[2] + ')');
+            }
+            ColorPicker.prototype.spectrumClick = function(e) {
+                var x = e.pageX - $(e.currentTarget).offset().left;
+                var y = e.pageY - $(e.currentTarget).offset().top;
+                var imgData = this.singleColorContext.getImageData(x, y, 1, 1).data;
+                $('.selected-color').css({
+                    background: 'rgb(' + imgData[0] + ', ' + imgData[1] + ', ' + imgData[2] + ')'
+                });
+                var redAsInt = parseInt(imgData[0]);
+                var greenAsInt = parseInt(imgData[0]);
+                var blueAsInt = parseInt(imgData[0]);
+
+                function componentToHex(c) {
+                    var hex = c.toString(16);
+                    return hex.length == 1 ? "0" + hex : hex;
+                }
+
+                function rgbToHex(r, g, b) {
+                    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+                }
+                $("#colorChosen").val(rgbToHex(redAsInt, greenAsInt, blueAsInt));
+            }
+            new ColorPicker();
+        });
+
     </script>
 </body>
 
