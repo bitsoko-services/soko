@@ -1241,7 +1241,7 @@ function editStore() {
             dismissible: false,
             ready: function () {
                 editStoreCallback();
-                getLoc();
+                reqLoc();
                 var xx = activeStore();
                 document.querySelector('#editStoreModal #editStore-name').value = xx.name;
                 document.querySelector('#editStoreModal #editStore-description').value = xx.description;
