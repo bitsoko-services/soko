@@ -522,16 +522,41 @@
                             <div id="dailyBilling"></div>
                         </div>
                         <!-- Modal Structure -->
+                        <!--
                         <table class="rwd-table">
-                            <tr>
-                                <th style="padding-left:10px;text-align:center;" colspan="2">March</th>
-                            </tr>
-                            <tr>
-                                <td id="billingDate" style="padding-left:10px;" data-th="Header"></td>
-                                <td style="padding-left:10px;" data-th="Header"><span id="dailyBill">Ksh</span></td>
-                            </tr>
-                            <tr class="billRow"></tr>
-                        </table>
+    <ul class="collapsible" data-collapsible="accordion" style="border:none;">
+        <li>
+            <div class="collapsible-header" style="color:white;background:#0f5f76;border-radius:3px;">
+                <div class="row">
+                    <div class="col s6">
+                        <tr>
+                            <th style="padding-left:10px;text-align:center;" colspan="2">March</th>
+                        </tr>
+                    </div>
+                    <div class="col s6" <tr>
+                        <td id="billingDate" style="padding-left:10px;" data-th="Header"></td>
+                        <td style="padding-left:10px;" data-th="Header"><span id="dailyBill">Ksh</span></td>
+                        </tr>
+                    </div>
+                    <tr class="billRow"></tr>
+                </div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </div>
+        </li>
+    </ul>
+</table>
+-->
+                        <ul class="collapsible" data-collapsible="accordion">
+                            <li id="rowBill">
+                                <div class="collapsible-header">
+                                    <div class="row" id="rowBIll">
+                                        <div class="anything col s6"><span id="billingDate">kjdjkfj</span></div>
+                                        <div class="anything col s6"><span id="dailyBill">s;kf;</span></div>
+                                    </div>
+                                </div>
+                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                            </li>
+                        </ul>
                         <!--
                         <div>
                             <ul id="tabs-swipe-demo" class="tabs">
@@ -551,8 +576,11 @@
                             <div id="test-swipe-1" class="col s12">
                                 <table class="rwd-table">
                                     <tr>
-                                        <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                                        <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
+                                        <th style="padding-left:10px;text-align:center;" colspan="2">March</th>
+                                    </tr>
+                                    <tr>
+                                        <td id="billingDate" style="padding-left:10px;" data-th="Header"></td>
+                                        <td style="padding-left:10px;" data-th="Header"><span id="dailyBill">Ksh</span></td>
                                     </tr>
                                     <tr class="billRow"></tr>
                                 </table>
@@ -560,8 +588,11 @@
                             <div id="test-swipe-2" class="col s12">
                                 <table class="rwd-table">
                                     <tr>
-                                        <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                                        <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
+                                        <th style="padding-left:10px;text-align:center;" colspan="2">March</th>
+                                    </tr>
+                                    <tr>
+                                        <td id="billingDate" style="padding-left:10px;" data-th="Header"></td>
+                                        <td style="padding-left:10px;" data-th="Header"><span id="dailyBill">Ksh</span></td>
                                     </tr>
                                     <tr class="billRow"></tr>
                                 </table>
@@ -572,10 +603,23 @@
                                         <div class="collapsible-header" style="color:white;background:#0f5f76;border-radius:3px;">
                                             <div class="row">
                                                 <div class="col s6">
-                                                    <td id="billDate" style="padding-left:10px;" data-th="Header">kf</td>
+                                                    <td id="billingDate" style="padding-left:10px;" data-th="Header"></td>
                                                 </div>
                                                 <div class="col s6">
-                                                    <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
+                                                    <td style="padding-left:10px;" data-th="Header"><span id="dailyBill">Ksh</span></td>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header" style="color:white;background:#0f5f76;border-radius:3px;">
+                                            <div class="row">
+                                                <div class="col s6">
+                                                    <td id="billingDate" style="padding-left:10px;" data-th="Header"></td>
+                                                </div>
+                                                <div class="col s6">
+                                                    <td style="padding-left:10px;" data-th="Header"><span id="dailyBill">Ksh</span></td>
                                                 </div>
                                             </div>
                                         </div>
@@ -596,7 +640,7 @@
                                 <table class="rwd-table">
                                     <tr>
                                         <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                                        <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
+                                        <td style="padding-left:10px;" data-th="Header"><span id="dailyBill">Ksh</span></td>
                                     </tr>
                                     <tr class="billRow"></tr>
                                 </table>
