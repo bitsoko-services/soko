@@ -2365,3 +2365,6 @@ tr.group:hover {
 #spectrum-all {
     border-radius: 3px;
 }
+#rowBill .collapsible {
+    margin: 0px;
+}
