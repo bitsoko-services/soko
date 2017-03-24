@@ -29,6 +29,7 @@ function profileLoaded(p) {
         id: localStorage.getItem('bits-user-name')
     }).then(function (e) {
         if (e.status == "ok") {
+            $('#login').modal('close');
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.services), 'soko-stores');
             localStorage.setItem('bitsoko-stores', 'true');
             loadPOS();
