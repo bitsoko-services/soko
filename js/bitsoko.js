@@ -375,7 +375,7 @@ function refreshBills() {
             parsed_date = splitted[0] + ' ' + splitted[2]
                 //            billing_string += '<span style="display:block" class="row">' + parsed_date + '</span>'
                 //            billing_amount += '<span style="display:block" class="row">' + (0.167) + '</span>'
-            dailyBill += '<li id="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span id="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div></li>'
+            dailyBill += '<li id="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span id="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body"><span></span></div></li>'
         })
         $('.cust-count').html(e.reqs.length);
         //        $('#billingDate').html(billing_string);
