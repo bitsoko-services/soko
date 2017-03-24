@@ -1,0 +1,69 @@
+/*================================================================================
+	Item Name: Materialize - Material Design Admin Template
+	Version: 3.1
+	Author: GeeksLabs
+	Author URL: http://www.themeforest.net/user/geekslabs
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN CSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+.header-search-wrapper{
+
+	  background-color: #7eb7c8!important;
+}
+
+body[page='storefront'] * .header-search-wrapper{
+
+	display:none!important;
+}
+
+
+
+.tabs {
+    background-color: #7eb7c8!important;
+}
+
+.move-up {
+    background-color: #7eb7c8!important;
+}
+.tabs .indicator {
+    background-color: #0f5f76!important;
+}
+.navbar-fixed nav {
+   background-color: #0f5f76!important;
+}
+.btn-floating {
+   background-color: #0f5f76!important;
+}
+header .brand-logo {
+    padding: 5px 20px;
+}
+
+.sidebar-collapse {
+   
+   background-color: #0f5f76!important;
+}
+.card {
+    /* height: 230px; */
+}
+
+.card-content > .responsive-img{
+	position: relative;
+    top: -28px;
+    width: 20px;
+}
+
+#promo-card > .card-content > .card-title{
+	font-size:20px; 
+	line-height: 48px;
+}
+
+.soko-tran-count {
+    float: right;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
