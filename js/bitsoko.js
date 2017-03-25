@@ -373,7 +373,7 @@ function refreshBills() {
         dailyBill = ''
         $.each(bills, function (index, obj) {
             console.log('object is: ', obj);
-            var promotionId = obj.promoid
+            var promotionId = obj.promoid;
             splitted = obj['date'].split(' ')
             parsed_date = splitted[0] + ' ' + splitted[2]
                 //            billing_string += '<span style="display:block" class="row">' + parsed_date + '</span>'
@@ -384,7 +384,9 @@ function refreshBills() {
         //        $('#billingDate').html(billing_string);
         //        $('#dailyBill').html(billing_amount);
         $('#rowBIll').html(dailyBill);
-        $('#serviceBillCharges').html(0.167 * (e.reqs.length));
+        var billcharges = parseFloat(e.reqs.length * 0.167).toFixed(3);
+        console.log("Biliing charges----------->>" + billcharges)
+        $('#serviceBillCharges').html(billcharges);
         console.log("The test Customer count is " + (e.reqs.length));
         if (e.status == "ok") {
             console.log(e)
