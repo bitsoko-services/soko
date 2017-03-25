@@ -910,7 +910,8 @@ function noSalesUpdater() {
 
 function beaconsUpdater() {
     getObjectStore('data', 'readwrite').get('soko-owner-' + localStorage.getItem('soko-owner-id') + '-beacons').onsuccess = function (event) {
-        try {
+          var reqs = event.target.result;
+	  try {
             reqs = JSON.parse(reqs);
         } catch (err) {
             reqs = []
