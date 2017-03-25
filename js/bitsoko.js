@@ -22,7 +22,7 @@ flag = false;
 function profileLoaded(p) {
     $('.profile-image').attr('src', p.image);
     //p.ownerid=1;
-    localStorage.setItem('bitsoko-owner-id', p.bitsokoUserID);
+    localStorage.setItem('soko-owner-id', p.bitsokoUserID);
     Materialize.toast('Signing in...', 3000)
     doFetch({
         action: 'merchantServiceLoader',
@@ -480,7 +480,7 @@ function addStore() {
     });
     doFetch({
         action: 'getBeacons',
-        id: id
+        id: localStorage.getItem('soko-owner-id')
     }).then(function (e) {
         console.log(e);
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.beacons), 'soko-store-' + id + '-beacons');
@@ -1283,7 +1283,7 @@ function doNewStore() {
     }
     doFetch({
         action: 'doNewStore',
-        ownerid: localStorage.getItem('bitsoko-owner-id'),
+        ownerid: localStorage.getItem('soko-owner-id'),
         name: document.querySelector('#newStore-name').value,
         desc: document.querySelector('#newStore-description').value,
         loc: document.querySelector('#newStore-Location').value
