@@ -933,14 +933,14 @@ function beaconsUpdater() {
             $(".beacons-holda-available").append($.parseHTML(html));
 		return;
         }
-	    
-        for (var i = 0; i < reqs.length; ++i) {
+	    var st=JSON.parse(localStorage.getItem('soko-store-id-'+localStorage.getItem('soko-active-store')));
+        for (var i = 0,st=st; i < reqs.length; ++i) {
          if(parseInt(reqs[i].service)==parseInt(localStorage.getItem('soko-active-store'))){
-	 var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option value="" disabled="" selected="">inactive</option>' + '<option value="1">promotion 1</option>' + '<option value="2">promotion 2</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
+	 var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option selected="" value="'+st.id+'">'+st.name+'</option>' + '<option value="0">disabled</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
             $(".beacons-holda-connected").append($.parseHTML(html));
 		
 	 } else if(parseInt(reqs[i].account)==parseInt('0')){
-	 var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option value="" disabled="" selected="">inactive</option>' + '<option value="1">promotion 1</option>' + '<option value="2">promotion 2</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
+	 var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Not Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option value="0" selected="">disabled</option>' + '<option value="'+st.id+'">'+st.name+'</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
             $(".beacons-holda-available").append($.parseHTML(html));
 		
 	 }
