@@ -369,14 +369,16 @@ function refreshBills() {
         i = 0
         billing_string = ''
         billing_amount = ''
+        promotion_id = ''
         dailyBill = ''
         $.each(bills, function (index, obj) {
-            console.log('object is: ', obj)
+            console.log('object is: ', obj);
+            var promotionId = obj.promoid
             splitted = obj['date'].split(' ')
             parsed_date = splitted[0] + ' ' + splitted[2]
                 //            billing_string += '<span style="display:block" class="row">' + parsed_date + '</span>'
                 //            billing_amount += '<span style="display:block" class="row">' + (0.167) + '</span>'
-            dailyBill += '<li id="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span id="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body"><span></span></div></li>'
+            dailyBill += '<li id="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span id="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>' + 'Billing for Promo ' + promotionId + '</span></div></li>'
         })
         $('.cust-count').html(e.reqs.length);
         //        $('#billingDate').html(billing_string);
@@ -910,20 +912,15 @@ function noSalesUpdater() {
 
 function beaconsUpdater() {
     getObjectStore('data', 'readwrite').get('soko-owner-' + localStorage.getItem('soko-owner-id') + '-beacons').onsuccess = function (event) {
-        
-	var reqs = event.target.result;
-	    
-	try {
+        var reqs = event.target.result;
+        try {
             reqs = JSON.parse(reqs);
         } catch (err) {
             reqs = []
         };
-	    
         $(".beacons-holda-connected").html('');
         $(".beacons-holda-available").html('');
-	    
         if (reqs.length > 0) {
-		
             var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">Connected Beacons</span><p>' + reqs.length + ' Found</p></li>';
             $(".beacons-holda-connected").append($.parseHTML(html));
             var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">Available Beacons</span><p>' + reqs.length + ' Found</p></li>';
@@ -931,24 +928,19 @@ function beaconsUpdater() {
         } else {
             var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">No Beacons Found</span><p>click here to add a beacon</p></li>';
             $(".beacons-holda-available").append($.parseHTML(html));
-		return;
+            return;
         }
-	    var st=JSON.parse(localStorage.getItem('soko-store-id-'+localStorage.getItem('soko-active-store')));
-        for (var i = 0,st=st; i < reqs.length; ++i) {
-         if(parseInt(reqs[i].service)==parseInt(localStorage.getItem('soko-active-store'))){
-	 var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option selected="" value="'+st.id+'">'+st.name+'</option>' + '<option value="0">disabled</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
-            $(".beacons-holda-connected").append($.parseHTML(html));
-		
-	 } else if(parseInt(reqs[i].service)==parseInt('0')){
-	 var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Not Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option value="0" selected="">disabled</option>' + '<option value="'+st.id+'">'+st.name+'</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
-            $(".beacons-holda-available").append($.parseHTML(html));
-		
-	 }
-	
+        var st = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
+        for (var i = 0, st = st; i < reqs.length; ++i) {
+            if (parseInt(reqs[i].service) == parseInt(localStorage.getItem('soko-active-store'))) {
+                var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option selected="" value="' + st.id + '">' + st.name + '</option>' + '<option value="0">disabled</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
+                $(".beacons-holda-connected").append($.parseHTML(html));
+            } else if (parseInt(reqs[i].service) == parseInt('0')) {
+                var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Not Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option value="0" selected="">disabled</option>' + '<option value="' + st.id + '">' + st.name + '</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
+                $(".beacons-holda-available").append($.parseHTML(html));
+            }
         }
-	    
     }
-    
 }
 
 function productsUpdater() {
