@@ -910,28 +910,45 @@ function noSalesUpdater() {
 
 function beaconsUpdater() {
     getObjectStore('data', 'readwrite').get('soko-owner-' + localStorage.getItem('soko-owner-id') + '-beacons').onsuccess = function (event) {
-          var reqs = event.target.result;
-	  try {
+        
+	var reqs = event.target.result;
+	    
+	try {
             reqs = JSON.parse(reqs);
         } catch (err) {
             reqs = []
         };
-        $(".beacons-holda").html('');
+	    
+        $(".beacons-holda-connected").html('');
+        $(".beacons-holda-available").html('');
+	    
         if (reqs.length > 0) {
+		
             var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">All Beacons</span><p>' + reqs.length + ' Found</p></li>';
-            $(".beacons-holda").append($.parseHTML(html));
+            $(".beacons-holda-connected").append($.parseHTML(html));
+            var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">All Beacons</span><p>' + reqs.length + ' Found</p></li>';
+            $(".beacons-holda-available").append($.parseHTML(html));
         } else {
             var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">No Beacons Found</span><p>click here to add a beacon</p></li>';
-            $(".beacons-holda").append($.parseHTML(html));
+            $(".beacons-holda-available").append($.parseHTML(html));
+		return;
         }
+	    
         for (var i = 0; i < reqs.length; ++i) {
-            //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
-            // var saleTime=moment(reqs[i].posted).fromNow();
-            //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
-            var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option value="" disabled="" selected="">inactive</option>' + '<option value="1">promotion 1</option>' + '<option value="2">promotion 2</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
-            $(".beacons-holda").append($.parseHTML(html));
+         if(parseInt(reqs[i].service)==parseInt(localStorage.getItem('soko-active-store'))){
+	 var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option value="" disabled="" selected="">inactive</option>' + '<option value="1">promotion 1</option>' + '<option value="2">promotion 2</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
+            $(".beacons-holda-connected").append($.parseHTML(html));
+		
+	 } else if(parseInt(reqs[i].account)==parseInt('0')){
+	 var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option value="" disabled="" selected="">inactive</option>' + '<option value="1">promotion 1</option>' + '<option value="2">promotion 2</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
+            $(".beacons-holda-available").append($.parseHTML(html));
+		
+	 }
+	
         }
+	    
     }
+    
 }
 
 function productsUpdater() {
