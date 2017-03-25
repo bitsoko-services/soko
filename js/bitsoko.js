@@ -483,7 +483,7 @@ function addStore() {
         id: localStorage.getItem('soko-owner-id')
     }).then(function (e) {
         console.log(e);
-        getObjectStore('data', 'readwrite').put(JSON.stringify(e.beacons), 'soko-store-' + id + '-beacons');
+        getObjectStore('data', 'readwrite').put(JSON.stringify(e.beacons), 'soko-owner-' + localStorage.getItem('soko-owner-id') + '-beacons');
         beaconsUpdater();
     }).catch(function (err) {
         beaconsUpdater();
@@ -909,7 +909,7 @@ function noSalesUpdater() {
 }
 
 function beaconsUpdater() {
-    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-beacons').onsuccess = function (event) {
+    getObjectStore('data', 'readwrite').get('soko-owner-' + localStorage.getItem('soko-owner-id') + '-beacons').onsuccess = function (event) {
         try {
             reqs = JSON.parse(reqs);
         } catch (err) {
