@@ -947,6 +947,7 @@ function beaconsUpdater() {
                 $(".beacons-holda-available").append($.parseHTML(html));
             }
         }
+	 updateBeaconMonitor();   
     }
 }
 
@@ -1471,13 +1472,13 @@ function addProduct() {
     });
 }
 
-function updateBeacon() {
+function updateBeaconMonitor() {
     var forEach = function (array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
             callback.call(scope, i, array[i]); // passes back stuff we need
         }
     };
-    var myNodeList = document.querySelectorAll('.beacons input');
+    var myNodeList = document.querySelectorAll('.beacons select');
     forEach(myNodeList, function (index, value) {
 	    $(value).on('change', function(e){
 		  var value = this;
