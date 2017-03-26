@@ -22,7 +22,7 @@ flag = false;
 function profileLoaded(p) {
     $('.profile-image').attr('src', p.image);
     //p.ownerid=1;
-    localStorage.setItem('bitsoko-owner-id', p.bitsokoUserID);
+    localStorage.setItem('soko-owner-id', p.bitsokoUserID);
     Materialize.toast('Signing in...', 3000)
     doFetch({
         action: 'merchantServiceLoader',
@@ -369,20 +369,24 @@ function refreshBills() {
         i = 0
         billing_string = ''
         billing_amount = ''
+        promotion_id = ''
         dailyBill = ''
         $.each(bills, function (index, obj) {
-            console.log('object is: ', obj)
+            console.log('object is: ', obj);
+            var promotionId = obj.promoid;
             splitted = obj['date'].split(' ')
             parsed_date = splitted[0] + ' ' + splitted[2]
                 //            billing_string += '<span style="display:block" class="row">' + parsed_date + '</span>'
                 //            billing_amount += '<span style="display:block" class="row">' + (0.167) + '</span>'
-            dailyBill += '<li id="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span id="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body"><span></span></div></li>'
+            dailyBill += '<li id="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span id="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>' + 'Billing for Promo ' + promotionId + '</span></div></li>'
         })
         $('.cust-count').html(e.reqs.length);
         //        $('#billingDate').html(billing_string);
         //        $('#dailyBill').html(billing_amount);
         $('#rowBIll').html(dailyBill);
-        $('#serviceBillCharges').html(0.167 * (e.reqs.length));
+        var billcharges = parseFloat(e.reqs.length * 0.167).toFixed(3);
+        console.log("Biliing charges----------->>" + billcharges)
+        $('#serviceBillCharges').html(billcharges);
         console.log("The test Customer count is " + (e.reqs.length));
         if (e.status == "ok") {
             console.log(e)
@@ -478,18 +482,23 @@ function addStore() {
     }).then(function (e) {
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'bitsoko-merchant-requests-' + id);
     });
-    doFetch({
+  
+	refreshBeacons();
+    refreshProducts();
+    refreshPromotions();
+}
+
+function refreshBeacons(){
+  doFetch({
         action: 'getBeacons',
-        id: id
+        id: localStorage.getItem('soko-owner-id')
     }).then(function (e) {
         console.log(e);
-        getObjectStore('data', 'readwrite').put(JSON.stringify(e.beacons), 'soko-store-' + id + '-beacons');
+        getObjectStore('data', 'readwrite').put(JSON.stringify(e.beacons), 'soko-owner-' + localStorage.getItem('soko-owner-id') + '-beacons');
         beaconsUpdater();
     }).catch(function (err) {
         beaconsUpdater();
     }); //addCustomer(e.customers); 
-    refreshProducts();
-    refreshPromotions();
 }
 
 function addTransaction(t) {
@@ -909,27 +918,36 @@ function noSalesUpdater() {
 }
 
 function beaconsUpdater() {
-    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-beacons').onsuccess = function (event) {
+    getObjectStore('data', 'readwrite').get('soko-owner-' + localStorage.getItem('soko-owner-id') + '-beacons').onsuccess = function (event) {
+        var reqs = event.target.result;
         try {
             reqs = JSON.parse(reqs);
         } catch (err) {
             reqs = []
         };
-        $(".beacons-holda").html('');
+        $(".beacons-holda-connected").html('');
+        $(".beacons-holda-available").html('');
         if (reqs.length > 0) {
-            var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">All Beacons</span><p>' + reqs.length + ' Found</p></li>';
-            $(".beacons-holda").append($.parseHTML(html));
+            var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth green circle"></i>' + '<span class="collection-header">Connected Beacons</span><p>' + reqs.length + ' Found</p></li>';
+            $(".beacons-holda-connected").append($.parseHTML(html));
+            var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth pink circle"></i>' + '<span class="collection-header">Available Beacons</span><p>' + reqs.length + ' Found</p></li>';
+            $(".beacons-holda-available").append($.parseHTML(html));
         } else {
             var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">No Beacons Found</span><p>click here to add a beacon</p></li>';
-            $(".beacons-holda").append($.parseHTML(html));
+            $(".beacons-holda-available").append($.parseHTML(html));
+            return;
         }
-        for (var i = 0; i < reqs.length; ++i) {
-            //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
-            // var saleTime=moment(reqs[i].posted).fromNow();
-            //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
-            var html = '<li class="collection-item">' + '<div class="row"><div class="col s5"><span class="task-cat pink accent-2">P1</span>' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="select-wrapper initialized">' + '<span class="caret">▼</span><select class="initialized">' + '<option value="" disabled="" selected="">inactive</option>' + '<option value="1">promotion 1</option>' + '<option value="2">promotion 2</option>' + '</select></div></div><div class="col s5"><div class="progress"><div class="determinate" style="width: 70%"></div>' + '</div></div></div></li>';
-            $(".beacons-holda").append($.parseHTML(html));
+        var st = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
+        for (var i = 0, st = st; i < reqs.length; ++i) {
+            if (parseInt(reqs[i].service) == parseInt(localStorage.getItem('soko-active-store'))) {
+                var html = '<li class="collection-item">' + '<div class="row"><div class="col s5">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized"><option selected="" value="' + st.id + '" bid="' + reqs[i].id + '">' + st.name + '</option><option value="0" bid="' + reqs[i].id + '">disabled</option></select></div></div></div></li>';
+                $(".beacons-holda-connected").append($.parseHTML(html));
+            } else if (parseInt(reqs[i].service) == parseInt('0')) {
+                var html = '<li class="collection-item">' + '<div class="row"><div class="col s5">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Not Connected</p></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized"><option value="0" selected="" bid="' + reqs[i].id + '">disabled</option><option value="' + st.id + '" bid="' + reqs[i].id + '">' + st.name + '</option></select></div></div></div></li>';
+                $(".beacons-holda-available").append($.parseHTML(html));
+            }
         }
+	 updateBeaconMonitor();   
     }
 }
 
@@ -1283,7 +1301,7 @@ function doNewStore() {
     }
     doFetch({
         action: 'doNewStore',
-        ownerid: localStorage.getItem('bitsoko-owner-id'),
+        ownerid: localStorage.getItem('soko-owner-id'),
         name: document.querySelector('#newStore-name').value,
         desc: document.querySelector('#newStore-description').value,
         loc: document.querySelector('#newStore-Location').value
@@ -1451,6 +1469,36 @@ function addProduct() {
         } else {
             console.log(e);
         }
+    });
+}
+
+function updateBeaconMonitor() {
+    var forEach = function (array, callback, scope) {
+        for (var i = 0; i < array.length; i++) {
+            callback.call(scope, i, array[i]); // passes back stuff we need
+        }
+    };
+    var myNodeList = document.querySelectorAll('.beacons select');
+    forEach(myNodeList, function (index, value) {
+	    $(value).on('change', function(e){
+		  var value = this;
+        var val = $(value).attr('bid');
+	 
+    doFetch({
+        action: 'doSetBeacon',
+        id: val,
+        to: $(value).val()
+    }).then(function (e) {
+        if (e.status == 'ok') {
+		
+            Materialize.toast('beacon updated ..', 3000);
+            refreshBeacons();
+		
+        } else {
+            console.log(e);
+        }
+    });
+	 });
     });
 }
 /*
