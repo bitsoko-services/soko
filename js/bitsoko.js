@@ -1479,7 +1479,7 @@ function updateBeacon() {
     };
     var myNodeList = document.querySelectorAll('.beacons input');
     forEach(myNodeList, function (index, value) {
-         value.addEventListener("change", function(e){
+	    $(value).on('change', function(e){
 		  var value = this;
         var val = $(value).attr('bid');
 	 
