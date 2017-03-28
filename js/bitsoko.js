@@ -940,10 +940,10 @@ function beaconsUpdater() {
         var st = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
         for (var i = 0, st = st; i < reqs.length; ++i) {
             if (parseInt(reqs[i].service) == parseInt(localStorage.getItem('soko-active-store'))) {
-                var html = '<li class="collection-item">' + '<div class="row"><div class="col s5">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option selected="" value="' + st.id + '">' + st.name + '</option><option value="0">disabled</option></select></div></div></div></li>';
+                var html = '<li class="collection-item">' + '<div class="row"><div class="col s4">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option selected="" value="' + st.id + '">' + st.name + '</option><option value="0">disabled</option></select></div></div></div></li>';
                 $(".beacons-holda-connected").append($.parseHTML(html));
             } else if (parseInt(reqs[i].service) == parseInt('0')) {
-                var html = '<li class="collection-item">' + '<div class="row"><div class="col s5">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Not Connected</p></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option value="0" selected="">disabled</option><option value="' + st.id + '">' + st.name + '</option></select></div></div></div></li>';
+                var html = '<li class="collection-item">' + '<div class="row"><div class="col s4">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Not Connected</p></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option value="0" selected="">disabled</option><option value="' + st.id + '">' + st.name + '</option></select></div></div></div></li>';
                 $(".beacons-holda-available").append($.parseHTML(html));
             }
         }
