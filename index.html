@@ -556,16 +556,17 @@
                             <div id="dailyBilling"></div>
                         </div>
                         <!-- Modal Structure -->
+                        <!--
                         <div class="calender">
                             <div class="header">
-                                <div class="hand left" id="left"><i class="fa fa-arrow-left" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve" width="20px"><g xmlns="http://www.w3.org/2000/svg">
+                                <div class="hand left" id="left"><i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve" width="20px"><g xmlns="http://www.w3.org/2000/svg">
 	<path d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225   c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z" fill="#FFFFFF"/>
 </g></svg></i> </div>
                                 <div class="monthYear">
                                     <p style="color:white;font-size:1.5em;margin-bottom:0px;" class="month" id="month"></p>
                                     <p style="color:white;margin-top:0px;" class="year" id="year"></p>
                                 </div>
-                                <div class="hand right" id="right"><i class="fa fa-arrow-right" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve" width="20px"><g xmlns="http://www.w3.org/2000/svg">
+                                <div class="hand right" id="right"><i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve" width="20px"><g xmlns="http://www.w3.org/2000/svg">
 	<path d="M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5   c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z   " fill="#FFFFFF"/>
 </g></svg></i> </div>
                             </div>
@@ -573,6 +574,7 @@
                                 <ul class="days"> </ul>
                             </div>
                         </div>
+-->
                         <ul class="collapsible" data-collapsible="accordion" style="border:none;box-shadow:none;margin:0px;">
                             <li id="rowBill">
                                 <div class="collapsible-header">
@@ -584,142 +586,7 @@
                                 <div class="collapsible-body"><span></span></div>
                             </li>
                         </ul>
-                        <!--
-                        <div>
-    <ul id="tabs-swipe-demo" class="tabs">
-        <li class="tab col s3"><a href="#test-swipe-1">January</a></li>
-        <li class="tab col s3"><a href="#test-swipe-2">February</a></li>
-        <li class="tab col s3"><a class="active" href="#test-swipe-3">March</a></li>
-        <li class="tab col s3"><a href="#test-swipe-4">April</a></li>
-        <li class="tab col s3"><a href="#test-swipe-5">May</a></li>
-        <li class="tab col s3"><a href="#test-swipe-6">June</a></li>
-        <li class="tab col s3"><a href="#test-swipe-7">July</a></li>
-        <li class="tab col s3"><a href="#test-swipe-8">August</a></li>
-        <li class="tab col s3"><a href="#test-swipe-9">September</a></li>
-        <li class="tab col s3"><a href="#test-swipe-10">October</a></li>
-        <li class="tab col s3"><a href="#test-swipe-11">November</a></li>
-        <li class="tab col s3"><a href="#test-swipe-12">December</a></li>
-    </ul>
-    <div id="test-swipe-1" class="col s12">
-        <table class="rwd-table">
-            <tr>
-                <th style="padding-left:10px;text-align:center;" colspan="2">March</th>
-            </tr>
-            <tr>
-                <td id="billingDate" style="padding-left:10px;" data-th="Header"></td>
-                <td style="padding-left:10px;" data-th="Header"><span id="dailyBill">Ksh</span></td>
-            </tr>
-            <tr class="billRow"></tr>
-        </table>
-    </div>
-    <div id="test-swipe-2" class="col s12">
-        <table class="rwd-table">
-            <tr>
-                <th style="padding-left:10px;text-align:center;" colspan="2">March</th>
-            </tr>
-            <tr>
-                <td id="billingDate" style="padding-left:10px;" data-th="Header"></td>
-                <td style="padding-left:10px;" data-th="Header"><span id="dailyBill">Ksh</span></td>
-            </tr>
-            <tr class="billRow"></tr>
-        </table>
-    </div>
-    <div id="test-swipe-3" class="col s12">
-        <ul class="collapsible" data-collapsible="accordion" style="border:none;box-shadow:none;margin:0px;">
-            <li id="rowBill">
-                <div class="collapsible-header">
-                    <div class="row" id="rowBIll">
-                        <div class="anything col s6"><span id="billingDate">Date</span></div>
-                        <div class="anything col s6"><span id="dailyBill">Bill</span></div>
                     </div>
-                </div>
-                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-        </ul>
-    </div>
-    <div id="test-swipe-4" class="col s12">
-        <table class="rwd-table">
-            <tr>
-                <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
-            </tr>
-            <tr class="billRow"></tr>
-        </table>
-    </div>
-    <div id="test-swipe-5" class="col s12">
-        <table class="rwd-table">
-            <tr>
-                <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                <td style="padding-left:10px;" data-th="Header"><span id="dailyBill">Ksh</span></td>
-            </tr>
-            <tr class="billRow"></tr>
-        </table>
-    </div>
-    <div id="test-swipe-6" class="col s12">
-        <table class="rwd-table">
-            <tr>
-                <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
-            </tr>
-            <tr class="billRow"></tr>
-        </table>
-    </div>
-    <div id="test-swipe-7" class="col s12">
-        <table class="rwd-table">
-            <tr>
-                <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
-            </tr>
-            <tr class="billRow"></tr>
-        </table>
-    </div>
-    <div id="test-swipe-8" class="col s12">
-        <table class="rwd-table">
-            <tr>
-                <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
-            </tr>
-            <tr class="billRow"></tr>
-        </table>
-    </div>
-    <div id="test-swipe-9" class="col s12">
-        <table class="rwd-table">
-            <tr>
-                <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
-            </tr>
-            <tr class="billRow"></tr>
-        </table>
-    </div>
-    <div id="test-swipe-10" class="col s12">
-        <table class="rwd-table">
-            <tr>
-                <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
-            </tr>
-            <tr class="billRow"></tr>
-        </table>
-    </div>
-    <div id="test-swipe-11" class="col s12">
-        <table class="rwd-table">
-            <tr>
-                <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
-            </tr>
-            <tr class="billRow"></tr>
-        </table>
-    </div>
-    <div id="test-swipe-12" class="col s12">
-        <table class="rwd-table">
-            <tr>
-                <td id="billDate" style="padding-left:10px;" data-th="Header"></td>
-                <td id="dailyBill" style="padding-left:10px;" data-th="Header"> Ksh </td>
-            </tr>
-            <tr class="billRow"></tr>
-        </table>
-    </div>
-</div>
---></div>
                     <!-- Floating Action Button -->
                 </div>
                 <!--end container-->
