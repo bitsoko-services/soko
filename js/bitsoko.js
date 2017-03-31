@@ -380,8 +380,9 @@ function refreshBills() {
         $.each(bills, function (index, obj) {
             console.log('object is: ', obj);
             var promotionId = obj.promoid;
-            splitted = obj['date'].split(' ')
+            splitted = obj['date'].split(' ');
             parsed_date = splitted[0] + ' ' + splitted[2]
+            month_name = splitted[1]
                 //            billing_string += '<span style="display:block" class="row">' + parsed_date + '</span>'
                 //            billing_amount += '<span style="display:block" class="row">' + (0.167) + '</span>'
             dailyBill += '<li id="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span id="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>' + 'Billing for Promo ' + promotionId + '</span></div></li>'
@@ -390,6 +391,7 @@ function refreshBills() {
         //        $('#billingDate').html(billing_string);
         //        $('#dailyBill').html(billing_amount);
         $('#rowBIll').html(dailyBill);
+        $('.month').html(month_name);
         var billcharges = parseFloat(e.reqs.length * 0.167).toFixed(3);
         console.log("Biliing charges----------->>" + billcharges)
         $('#serviceBillCharges').html(billcharges);
@@ -1668,18 +1670,18 @@ document.addEventListener('visibilitychange', function (event) {
 $(document).ready(function () {});
 $(document).ready(function () {
     var month = new Array();
-    month[0] = "January";
-    month[1] = "February";
-    month[2] = "March";
-    month[3] = "April";
-    month[4] = "May";
-    month[5] = "June";
-    month[6] = "July";
-    month[7] = "August";
-    month[8] = "September";
-    month[9] = "October";
-    month[10] = "November";
-    month[11] = "December";
+    //    month[0] = "January";
+    //    month[1] = "February";
+    //    month[2] = "March";
+    //    month[3] = "April";
+    //    month[4] = "May";
+    //    month[5] = "June";
+    //    month[6] = "July";
+    //    month[7] = "August";
+    //    month[8] = "September";
+    //    month[9] = "October";
+    //    month[10] = "November";
+    //    month[11] = "December";
     var d = new Date();
     var n = month[d.getMonth()];
     document.getElementById("month").innerHTML = n;

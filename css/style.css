@@ -2864,3 +2864,7 @@ tr.group:hover {
 .days li:hover {
     background-color: teal;
 }
+
+.calender .header {
+    border-radius: 2px;
+}
