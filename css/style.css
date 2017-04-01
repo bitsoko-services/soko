@@ -2868,3 +2868,7 @@ tr.group:hover {
 .calender .header {
     border-radius: 2px;
 }
+
+#rowBill .collapsible-header:last-child {
+    background: red
+}
