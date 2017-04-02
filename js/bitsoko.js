@@ -16,7 +16,7 @@ stimeline = function () {
     });
     return stl;
 }();
-//  Object.observe(stimeline, timelineObserver);  
+//  Object.observe(stimeline, timelineObserver);
 flag = false;
 
 function profileLoaded(p) {
@@ -178,7 +178,7 @@ function reqSend(data) {
 }
 
 function updateMerch(s) {
-    //localStorage.setItem('soko-active-store',services[0].id); 
+    //localStorage.setItem('soko-active-store',services[0].id);
     $('.store-name').html(s.name);
     $('.store-desc').html(s.description);
     //$('.store-img').attr('src', s.icon);
@@ -261,23 +261,23 @@ bc.postMessage({
 /*
 function process(e,event) {
         var currStep=$(e).attr('id').split("-")[1];
-    
+
     $('#prod-'+currStep+'-butt > span').removeClass( 'fa-question fa-check fa-spinner fa-spin' );
     $('#prod-'+currStep+'-butt > span').addClass( 'fa-spinner fa-spin' );
-    
+
         //var input = $(e).attr('for');
         var action = $(e).attr('action');
         if (currStep=='type'){
-        
+
         localStorage.setItem('BITS.merchant.actvID','');
         localStorage.setItem('BITS.merchant.actvIDwal','');
         var itemid = localStorage.getItem('BITS.merchant.actvID');
-        
+
         }else {
         var itemid = localStorage.getItem('BITS.merchant.actvID');
-        
+
         }
-        
+
              return new Promise(function(resolve, reject) {
         if(currStep=='img'){
       //var event=e;
@@ -285,46 +285,46 @@ function process(e,event) {
            // files = [];
       var reader = new FileReader();
     // Do the usual XHR stuff
-    
+
          $.each(event.target.files, function(index, file) {
-      reader.onload = function(event) {  
+      reader.onload = function(event) {
         object = {};
         object.filename = file.name;
         object.data = event.target.result;
         imgtest=event.target.result;
         data.push(object);
-          
+
         console.log(action,data);
-         //resolve(doGet(action,JSON.stringify(data),itemid)); 
-         resolve(doFetch({action:action, data:JSON.stringify(data), datab:itemid})); 
-          
+         //resolve(doGet(action,JSON.stringify(data),itemid));
+         resolve(doFetch({action:action, data:JSON.stringify(data), datab:itemid}));
+
  //return ;
          // console.log(object);
       };
-                 
+
         reader.onerror=function(event){
-        
-      
+
+
       reject(Error("image Error"));
         };
-                 
+
       reader.readAsDataURL(file);
 
-       
-  });  
+
+  });
         }else{
         var data = $(e).val();
-        
+
  //return doGet(action,data,itemid);
        doFetch({action:action, data:data, datab:itemid}).then(function(e){
-           resolve(e);                                                   
-                                                              });     
- 
-            
+           resolve(e);
+                                                              });
+
+
         }
   // Return a new promise.
-                 
-    }); 
+
+    });
 }
 
 */
@@ -366,7 +366,21 @@ function createCanvas() {
     document.getElementById('themeCanvas').appendChild(allcanvas);
 }
 
-function refreshBills() {
+function refreshBills(month, year) {
+    var months = {
+        '0': 'Jan'
+        , '1': 'Feb'
+        , '2': 'Mar'
+        , '3': 'Apr'
+        , '4': 'May'
+        , '5': 'Jun'
+        , '6': 'Jul'
+        , '7': 'Aug'
+        , '8': 'Sep'
+        , '9': 'Oct'
+        , '10': 'Nov'
+        , '11': 'Dec'
+    }
     doFetch({
         action: 'getServiceBills'
         , id: localStorage.getItem('soko-active-store')
@@ -378,20 +392,26 @@ function refreshBills() {
         promotion_id = ''
         dailyBill = ''
         $.each(bills, function (index, obj) {
-            console.log('object is: ', obj);
             var promotionId = obj.promoid;
             splitted = obj['date'].split(' ');
-            parsed_date = splitted[0] + ' ' + splitted[2]
-            month_name = splitted[1]
-                //            billing_string += '<span style="display:block" class="row">' + parsed_date + '</span>'
-                //            billing_amount += '<span style="display:block" class="row">' + (0.167) + '</span>'
-            dailyBill += '<li id="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span id="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>' + 'Billing for Promo ' + promotionId + '</span></div></li>'
-        })
+            parsed_date = splitted[0] + ' ' + splitted[2];
+            month_name = splitted[1];
+            if (splitted[1] == months[month] && splitted[3] == year) {
+                console.log('This was added');
+                dailyBill += '<li class="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span class="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>' + 'Billing for Promo ' + promotionId + '</span></div></li>';
+            }
+        });
+        console.log('Daily bill is: ' + dailyBill);
         $('.cust-count').html(e.reqs.length);
         //        $('#billingDate').html(billing_string);
         //        $('#dailyBill').html(billing_amount);
-        $('#rowBIll').html(dailyBill);
-        $('.month').html(month_name);
+        if (dailyBill == '') {
+            $('#rowBIll').html('<li class="rowBill"><div class="collapsible-header"> No results found </div></li>');
+        }
+        else {
+            $('#rowBIll').html(dailyBill);
+        }
+        //$('.month').html(month_name);
         var billcharges = parseFloat(e.reqs.length * 0.167).toFixed(3);
         console.log("Biliing charges----------->>" + billcharges)
         $('#serviceBillCharges').html(billcharges);
@@ -458,7 +478,7 @@ function addStore() {
     updateMerch(e);
     id = e.id;
     refreshCustomers();
-    refreshBills();
+    //refreshBills();
     doFetch({
         action: 'getServiceTrans'
         , id: id
@@ -482,10 +502,10 @@ function addStore() {
         else {
             noSalesUpdater();
         }
-        //       addTransaction(e.transactions);           
+        //       addTransaction(e.transactions);
     }).catch(function (err) {
         salesUpdater();
-    }); //addCustomer(e.customers);  
+    }); //addCustomer(e.customers);
     doFetch({
         action: 'getServiceReqs'
         , id: id
@@ -507,7 +527,7 @@ function refreshBeacons() {
         beaconsUpdater();
     }).catch(function (err) {
         beaconsUpdater();
-    }); //addCustomer(e.customers); 
+    }); //addCustomer(e.customers);
 }
 
 function addTransaction(t) {
@@ -546,7 +566,7 @@ function addCustomer(c) {
     currCust = c.uid;
     Object.observe(timeline, timelineObserver);
     //START TODO
-    //Insert promise for these events 
+    //Insert promise for these events
     addCustomerReq(c);
     addCustomerTran(c);
     //instead of waiting three seconds
@@ -581,7 +601,7 @@ function addCustomer(c) {
                         setTimeout(function () {
                             flag = false;
                         }, 300);
-                        // 
+                        //
                         console.log($(this).attr('trnid'));
                         trnid = $(this).attr('trnid');
                         swal({
@@ -617,7 +637,7 @@ function addCustomer(c) {
                                     });
                                 });
                                 getObjectStore('data', 'readwrite').put(JSON.stringify(e.transactions), 'bitsoko-merchant-transactions');
-                                //       addTransaction(e.transactions);           
+                                //       addTransaction(e.transactions);
                             });
                         });
                         //}
@@ -1047,14 +1067,14 @@ function promoCreator() {
         else {
             //setupPromos(e);
             $("select.promo-add-ProdList").html('');
-            /*	 
+            /*
 	 var html = '<option value="" disabled selected>'+e.length+' items</option>';
 		      $( "select.promo-add-ProdList" ).append( $.parseHTML( html ) );
 $("select.promo-add-ProdList").select2({
   data: e
 })
-		  
-	
+
+
 	 var html = '<option value="" disabled selected>'+e.length+' items</option>';
 	     $( "select.promo-add-ProdList" ).append( $.parseHTML( html ) );
        */
@@ -1262,7 +1282,7 @@ function openVideo() {
     localMediaStream = stream;
   }, errorCallback);
       }});
-	   
+
     }, 200);
  */
 }
@@ -1550,21 +1570,21 @@ function doEditStore(){
     $('.store-desc').html(document.querySelector('#editStore-description').value);
 
 
-   
+
       $('#editStoreModal').closeModal({complete: function(){
-   
+
     Materialize.toast('modified store..', 3000);
-      }});  
-	      
+      }});
+
       }else{
       console.log(e);
-      }        
-        
-  });    
-	
-	
- 
-	
+      }
+
+  });
+
+
+
+
 }
 */
 var shroot = document.querySelectorAll(".newStore");
@@ -1663,25 +1683,25 @@ document.addEventListener('visibilitychange', function (event) {
         checkNotes();
     }
     else {
-        // The page is hidden. 
+        // The page is hidden.
     }
 });
 //calenderfunction myFunction() {
 $(document).ready(function () {});
 $(document).ready(function () {
     var month = new Array();
-    //    month[0] = "January";
-    //    month[1] = "February";
-    //    month[2] = "March";
-    //    month[3] = "April";
-    //    month[4] = "May";
-    //    month[5] = "June";
-    //    month[6] = "July";
-    //    month[7] = "August";
-    //    month[8] = "September";
-    //    month[9] = "October";
-    //    month[10] = "November";
-    //    month[11] = "December";
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
     var d = new Date();
     var n = month[d.getMonth()];
     document.getElementById("month").innerHTML = n;
@@ -1695,10 +1715,12 @@ $(document).ready(function () {
             $('#month').text(month[currMonth]);
             year++;
             $('#year').text(year);
+            refreshBills(currMonth, year);
         }
         else {
             currMonth++;
             $('#month').text(month[currMonth]);
+            refreshBills(currMonth, year);
         }
     })
     $('#left').click(function () {
@@ -1707,10 +1729,12 @@ $(document).ready(function () {
             $('#month').text(month[currMonth]);
             year--;
             $('#year').text(year);
+            refreshBills(currMonth, year);
         }
         else {
             currMonth--;
             $('#month').text(month[currMonth]);
+            refreshBills(currMonth, year);
         }
     })
 })
