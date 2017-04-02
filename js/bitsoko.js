@@ -414,8 +414,7 @@ function refreshBills(month, year) {
         //$('.month').html(month_name);
         var billcharges = parseFloat(e.reqs.length * 0.167).toFixed(3);
         console.log("Biliing charges----------->>" + billcharges)
-        $('#serviceBillCharges').html(billcharges);
-        console.log("The test Customer count is " + (e.reqs.length));
+        $('#serviceBillCharges').html(billcharges); =
         if (e.status == "ok") {
             console.log(e)
         }
