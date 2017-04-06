@@ -79,23 +79,23 @@
     <!-- addProduct Modal start //////////////////////////////////////////////////////////////////////////// -->
     <div id="add-product" class="modal modal-fixed-footer">
         <div class="modal-content">
-            <form class="col s12">
+            <form id="formValidate" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="name" type="text" class="validate" prid="name">
-                        <label for="name" class="" autocomplete="off">Name</label>
+                        <input id="name" type="text" class="validate" prid="name" autocomplete="off" required>
+                        <label for="name" class="">Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="description" type="text" class="validate" prid="description">
-                        <label for="description" class="" autocomplete="off">Description</label>
+                        <input id="description" type="text" class="validate" prid="description" autocomplete="off" required>
+                        <label for="description" class="">Description</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="file-field input-field">
-                        <div class="btn"><span>image</span>
-                            <input id="image" type="file" prid="image"> </div>
+                    <div class="selectedImage"> <span class="btn btn-success fileinput-button">
+        <span>Select file</span>
+                        <input id="image" type="file" prid="image" value="Image" required> </span>
                     </div>
                 </div>
                 <div class="row">
@@ -129,9 +129,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer" style="position:fixed;bottom:0px;left:0px;">
+                    <a href="#" class="addProduct waves-effect waves-green btn-flat">
+                        <input type="submit" value="Add Product" /> </a><a href="#" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a> </div>
             </form>
         </div>
-        <div class="modal-footer"> <a href="#" class="addProduct waves-effect waves-green btn-flat">Add</a> <a href="#" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a> </div>
     </div>
     <!-- addProduct Modal end //////////////////////////////////////////////////////////////////////////// -->
     <!-- switchStore Modal Start -->
