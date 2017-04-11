@@ -2481,3 +2481,28 @@ tr.group:hover {
 #rowBill .collapsible-header:last-child {
     background: red
 }
+
+/**********************************************
+                 PLUS MINUS ICONS
+************************************************/
+
+.counter-left {
+    width: 30px;
+    height: 30px;
+    background: #299288;
+    border-radius: 50%;
+    content: '-';
+    border: none;
+    color: white;
+    margin-right: 10px;
+}
+.counter-right {
+    width: 30px;
+    height: 30px;
+    background: #299288;
+    border-radius: 50%;
+    content: '+';
+    border: none;
+    color: white;
+    margin-left: 10px;
+}
