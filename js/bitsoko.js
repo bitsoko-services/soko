@@ -766,6 +766,7 @@ function addAllCust() {
     getObjectStore('data', 'readwrite').get('soko-store-customers-' + localStorage.getItem('soko-active-store')).onsuccess = function (event) {
         //    cid=data.cid;
         document.querySelector('.customers-holda').innerHTML = "";
+    try	{
         var reqs = event.target.result;
         reqs = JSON.parse(reqs);
         console.log(reqs);
@@ -774,6 +775,9 @@ function addAllCust() {
             var html = ' <li class="collection-item avatar">' + '<img src="' + reqs[i].img + '" alt="" class="circle">' + '<span class="title">' + reqs[i].name + '</span>' + '<p>customer since<br> ' + reqs[i].uid + '</p>' + '</li>';
             $(".customers-holda").append($.parseHTML(html));
         };
+    }catch(err){
+    console.log(err);
+    }
         //console.log(timeline);
     }
 }
