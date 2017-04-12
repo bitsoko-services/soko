@@ -1434,7 +1434,7 @@ function doNewPromo() {
         var times = $('li.circle input.' + productID).val();
         for (j = 0; j < times; j++) {
             console.log('Product is: ' + productID);
-            selcIds.push(productID);
+            selcIds.push(parseInt(productID));
         }
     }
 
