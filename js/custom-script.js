@@ -82,7 +82,9 @@ angular.module('sokoApp', [])
         } catch (err) {
             console.log('no user profile found : ', err);
             $('#login').modal('open');
-            //            reqProfile();
+            $('#login').on('load', function () {
+                startGoogle();
+            })
         }
     }
     $('.sidebar-collapse').sideNav({
