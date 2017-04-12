@@ -1771,3 +1771,21 @@ $(".clickPromo").click(function () {
 $(".clickBilling").click(function () {
     refreshBills();
 });
+
+//Enable Deliveries
+$('#deliveriesToggle').click(function () {
+    var value = document.getElementById("deliveriesToggle").checked
+    doFetch({
+        action: 'toggleDeliveries',
+        value: value
+    }).then(function (e) {});
+});
+
+//Enable Payments
+$('#paymentsToggle').click(function () {
+    var value = document.getElementById("paymentsToggle").checked
+    doFetch({
+        action: 'togglePayments',
+        value: value
+    }).then(function (e) {});
+});
