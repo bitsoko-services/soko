@@ -1784,14 +1784,6 @@ $('.collection-item.avatar').on('touchend', function (e) {
 }).on('touchstart', function () {
     touchmoved = false;
 });
-//promotion on click
-$(".clickPromo").click(function () {
-    refreshPromotions();
-});
-//Billing on click
-$(".clickBilling").click(function () {
-    refreshBills();
-});
 
 //Enable Deliveries
 $('#deliveriesToggle').click(function () {
