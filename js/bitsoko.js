@@ -407,7 +407,7 @@ function refreshBills(month, year) {
             $('#rowBIll').html(dailyBill);
         }
         //$('.month').html(month_name);
-        var billcharges = parseFloat(e.reqs.length * 0.167).toFixed(3);
+        var billcharges = parseFloat(bills.length * 0.167).toFixed(3);
         console.log("Biliing charges----------->>" + billcharges)
         $('#serviceBillCharges').html(billcharges);
         if (e.status == "ok") {
@@ -507,6 +507,7 @@ function addStore() {
     refreshBeacons();
     refreshProducts();
     refreshPromotions();
+	promoUpdater();
 }
 
 function refreshBeacons() {
