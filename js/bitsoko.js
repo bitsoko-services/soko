@@ -398,7 +398,7 @@ function refreshBills(month, year) {
             }
         });
         console.log('Daily bill is: ' + dailyBill);
-        $('.cust-count').html(e.reqs.length);
+        $('.cust-count').html(bills.length);
         //        $('#billingDate').html(billing_string);
         //        $('#dailyBill').html(billing_amount);
         if (dailyBill == '') {
@@ -407,7 +407,7 @@ function refreshBills(month, year) {
             $('#rowBIll').html(dailyBill);
         }
         //$('.month').html(month_name);
-        var billcharges = parseFloat(e.reqs.length * 0.167).toFixed(3);
+        var billcharges = parseFloat(bills.length * 0.167).toFixed(3);
         console.log("Biliing charges----------->>" + billcharges)
         $('#serviceBillCharges').html(billcharges);
         if (e.status == "ok") {
@@ -507,6 +507,7 @@ function addStore() {
     refreshBeacons();
     refreshProducts();
     refreshPromotions();
+	promoUpdater();
 }
 
 function refreshBeacons() {
@@ -528,7 +529,7 @@ doFetch({
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         console.log(e);
-        getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'soko-owner-' + localStorage.getItem('soko-owner-id') + '-billing');
+        getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'soko-store-' + id + '-billing');
         billingUpdater();
     }).catch(function (err) {
         billingUpdater();
@@ -1007,7 +1008,7 @@ function productsUpdater() {
                 complete: function () {
                     $('#add-product').modal({
                         dismissible: false
-                    });
+                    }).modal('open');
                 }
             }).modal('open');
             return;
@@ -1369,6 +1370,10 @@ function doSwitchStore() {
     $('#switchStoreModal').modal({
         complete: function () {
             Materialize.toast('changing store..', 2000);
+		beaconsUpdater();
+		promoUpdater();
+		billingUpdater();
+		productsUpdater();
         }
     }).modal('close');
 }
@@ -1782,14 +1787,6 @@ $('.collection-item.avatar').on('touchend', function (e) {
     e.preventDefault();
 }).on('touchstart', function () {
     touchmoved = false;
-});
-//promotion on click
-$(".clickPromo").click(function () {
-    refreshPromotions();
-});
-//Billing on click
-$(".clickBilling").click(function () {
-    refreshBills();
 });
 
 //Enable Deliveries
