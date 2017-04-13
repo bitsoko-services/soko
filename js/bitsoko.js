@@ -16,7 +16,7 @@ stimeline = function () {
     });
     return stl;
 }();
-//  Object.observe(stimeline, timelineObserver);  
+//  Object.observe(stimeline, timelineObserver);
 flag = false;
 
 function profileLoaded(p) {
@@ -77,6 +77,10 @@ $(document).on('touchstart click', '.backBtnPromo', function (event) {
 });
 //Prevent dropdown content on Promotion page closing on touchstart
 $(document).on('touchstart click', '.multiple-select-dropdown', function (event) {
+    event.stopPropagation();
+});
+//Prevent selecting a store on scroll
+$(document).on('touchstart click', '.closeSwitchStore', function (event) {
     event.stopPropagation();
 });
 
@@ -173,7 +177,7 @@ function reqSend(data) {
 }
 
 function updateMerch(s) {
-    //localStorage.setItem('soko-active-store',services[0].id); 
+    //localStorage.setItem('soko-active-store',services[0].id);
     $('.store-name').html(s.name);
     $('.store-desc').html(s.description);
     //$('.store-img').attr('src', s.icon);
@@ -255,23 +259,23 @@ bc.postMessage({
 /*
 function process(e,event) {
         var currStep=$(e).attr('id').split("-")[1];
-    
+
     $('#prod-'+currStep+'-butt > span').removeClass( 'fa-question fa-check fa-spinner fa-spin' );
     $('#prod-'+currStep+'-butt > span').addClass( 'fa-spinner fa-spin' );
-    
+
         //var input = $(e).attr('for');
         var action = $(e).attr('action');
         if (currStep=='type'){
-        
+
         localStorage.setItem('BITS.merchant.actvID','');
         localStorage.setItem('BITS.merchant.actvIDwal','');
         var itemid = localStorage.getItem('BITS.merchant.actvID');
-        
+
         }else {
         var itemid = localStorage.getItem('BITS.merchant.actvID');
-        
+
         }
-        
+
              return new Promise(function(resolve, reject) {
         if(currStep=='img'){
       //var event=e;
@@ -279,46 +283,46 @@ function process(e,event) {
            // files = [];
       var reader = new FileReader();
     // Do the usual XHR stuff
-    
+
          $.each(event.target.files, function(index, file) {
-      reader.onload = function(event) {  
+      reader.onload = function(event) {
         object = {};
         object.filename = file.name;
         object.data = event.target.result;
         imgtest=event.target.result;
         data.push(object);
-          
+
         console.log(action,data);
-         //resolve(doGet(action,JSON.stringify(data),itemid)); 
-         resolve(doFetch({action:action, data:JSON.stringify(data), datab:itemid})); 
-          
+         //resolve(doGet(action,JSON.stringify(data),itemid));
+         resolve(doFetch({action:action, data:JSON.stringify(data), datab:itemid}));
+
  //return ;
          // console.log(object);
       };
-                 
+
         reader.onerror=function(event){
-        
-      
+
+
       reject(Error("image Error"));
         };
-                 
+
       reader.readAsDataURL(file);
 
-       
-  });  
+
+  });
         }else{
         var data = $(e).val();
-        
+
  //return doGet(action,data,itemid);
        doFetch({action:action, data:data, datab:itemid}).then(function(e){
-           resolve(e);                                                   
-                                                              });     
- 
-            
+           resolve(e);
+                                                              });
+
+
         }
   // Return a new promise.
-                 
-    }); 
+
+    });
 }
 
 */
@@ -360,34 +364,52 @@ function createCanvas() {
     document.getElementById('themeCanvas').appendChild(allcanvas);
 }
 
-function refreshBills() {
-    doFetch({
-        action: 'getServiceBills',
-        id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {
-        bills = e.reqs
+function refreshBills(month, year) {
+    var months = {
+        '0': 'Jan',
+        '1': 'Feb',
+        '2': 'Mar',
+        '3': 'Apr',
+        '4': 'May',
+        '5': 'Jun',
+        '6': 'Jul',
+        '7': 'Aug',
+        '8': 'Sep',
+        '9': 'Oct',
+        '10': 'Nov',
+        '11': 'Dec'
+    }
+    billingUpdater().then(function (e) {
+        bills = e
         i = 0
         billing_string = ''
         billing_amount = ''
         promotion_id = ''
         dailyBill = ''
         $.each(bills, function (index, obj) {
-            console.log('object is: ', obj);
             var promotionId = obj.promoid;
-            splitted = obj['date'].split(' ')
-            parsed_date = splitted[0] + ' ' + splitted[2]
-                //            billing_string += '<span style="display:block" class="row">' + parsed_date + '</span>'
-                //            billing_amount += '<span style="display:block" class="row">' + (0.167) + '</span>'
-            dailyBill += '<li id="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span id="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>' + 'Billing for Promo ' + promotionId + '</span></div></li>'
-        })
+            var promoRate = obj.rate;
+            splitted = obj['date'].split(' ');
+            parsed_date = splitted[0] + ' ' + splitted[2];
+            month_name = splitted[1];
+            if (splitted[1] == months[month] && splitted[3] == year) {
+                console.log('This was added');
+                dailyBill += '<li class="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span class="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>' + 'Billing for Promo ' + promotionId + ' is ' + promoRate + '</span></div></li>';
+            }
+        });
+        console.log('Daily bill is: ' + dailyBill);
         $('.cust-count').html(e.reqs.length);
         //        $('#billingDate').html(billing_string);
         //        $('#dailyBill').html(billing_amount);
-        $('#rowBIll').html(dailyBill);
+        if (dailyBill == '') {
+            $('#rowBIll').html('<li class="rowBill"><div class="collapsible-header"> No results found </div></li>');
+        } else {
+            $('#rowBIll').html(dailyBill);
+        }
+        //$('.month').html(month_name);
         var billcharges = parseFloat(e.reqs.length * 0.167).toFixed(3);
         console.log("Biliing charges----------->>" + billcharges)
         $('#serviceBillCharges').html(billcharges);
-        console.log("The test Customer count is " + (e.reqs.length));
         if (e.status == "ok") {
             console.log(e)
         } else {
@@ -449,7 +471,7 @@ function addStore() {
     updateMerch(e);
     id = e.id;
     refreshCustomers();
-    refreshBills();
+    //refreshBills();
     doFetch({
         action: 'getServiceTrans',
         id: id
@@ -472,24 +494,23 @@ function addStore() {
         } else {
             noSalesUpdater();
         }
-        //       addTransaction(e.transactions);           
+        //       addTransaction(e.transactions);
     }).catch(function (err) {
         salesUpdater();
-    }); //addCustomer(e.customers);  
+    }); //addCustomer(e.customers);
     doFetch({
         action: 'getServiceReqs',
         id: id
     }).then(function (e) {
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'bitsoko-merchant-requests-' + id);
     });
-  
-	refreshBeacons();
+    refreshBeacons();
     refreshProducts();
     refreshPromotions();
 }
 
-function refreshBeacons(){
-  doFetch({
+function refreshBeacons() {
+    doFetch({
         action: 'getBeacons',
         id: localStorage.getItem('soko-owner-id')
     }).then(function (e) {
@@ -498,7 +519,20 @@ function refreshBeacons(){
         beaconsUpdater();
     }).catch(function (err) {
         beaconsUpdater();
-    }); //addCustomer(e.customers); 
+    }); //addCustomer(e.customers);
+}
+
+function refreshBilling() {
+doFetch({
+        action: 'getServiceBills',
+        id: localStorage.getItem('soko-active-store')
+    }).then(function (e) {
+        console.log(e);
+        getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'soko-owner-' + localStorage.getItem('soko-owner-id') + '-billing');
+        billingUpdater();
+    }).catch(function (err) {
+        billingUpdater();
+    }); //addCustomer(e.customers);
 }
 
 function addTransaction(t) {
@@ -536,7 +570,7 @@ function addCustomer(c) {
     currCust = c.uid;
     Object.observe(timeline, timelineObserver);
     //START TODO
-    //Insert promise for these events 
+    //Insert promise for these events
     addCustomerReq(c);
     addCustomerTran(c);
     //instead of waiting three seconds
@@ -570,7 +604,7 @@ function addCustomer(c) {
                         setTimeout(function () {
                             flag = false;
                         }, 300);
-                        // 
+                        //
                         console.log($(this).attr('trnid'));
                         trnid = $(this).attr('trnid');
                         swal({
@@ -606,7 +640,7 @@ function addCustomer(c) {
                                     });
                                 });
                                 getObjectStore('data', 'readwrite').put(JSON.stringify(e.transactions), 'bitsoko-merchant-transactions');
-                                //       addTransaction(e.transactions);           
+                                //       addTransaction(e.transactions);
                             });
                         });
                         //}
@@ -730,14 +764,18 @@ function addAllCust() {
     getObjectStore('data', 'readwrite').get('soko-store-customers-' + localStorage.getItem('soko-active-store')).onsuccess = function (event) {
         //    cid=data.cid;
         document.querySelector('.customers-holda').innerHTML = "";
-        var reqs = event.target.result;
-        reqs = JSON.parse(reqs);
-        console.log(reqs);
-        for (var i = 0; i < reqs.length; ++i) {
-            // timeline.push({time:reqs[i].joined,uid:reqs[i].uid,type:'cust',title:reqs[i].name,body:reqs[i].servaccno,amount:reqs[i].img});
-            var html = ' <li class="collection-item avatar">' + '<img src="' + reqs[i].img + '" alt="" class="circle">' + '<span class="title">' + reqs[i].name + '</span>' + '<p>customer since<br> ' + reqs[i].uid + '</p>' + '</li>';
-            $(".customers-holda").append($.parseHTML(html));
-        };
+        try {
+            var reqs = event.target.result;
+            reqs = JSON.parse(reqs);
+            console.log(reqs);
+            for (var i = 0; i < reqs.length; ++i) {
+                // timeline.push({time:reqs[i].joined,uid:reqs[i].uid,type:'cust',title:reqs[i].name,body:reqs[i].servaccno,amount:reqs[i].img});
+                var html = ' <li class="collection-item avatar">' + '<img src="' + reqs[i].img + '" alt="" class="circle">' + '<span class="title">' + reqs[i].name + '</span>' + '<p>customer since<br> ' + reqs[i].uid + '</p>' + '</li>';
+                $(".customers-holda").append($.parseHTML(html));
+            };
+        } catch (err) {
+            console.log(err);
+        }
         //console.log(timeline);
     }
 }
@@ -940,14 +978,14 @@ function beaconsUpdater() {
         var st = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
         for (var i = 0, st = st; i < reqs.length; ++i) {
             if (parseInt(reqs[i].service) == parseInt(localStorage.getItem('soko-active-store'))) {
-                var html = '<li class="collection-item">' + '<div class="row"><div class="col s5">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized"><option selected="" value="' + st.id + '" bid="' + reqs[i].id + '">' + st.name + '</option><option value="0" bid="' + reqs[i].id + '">disabled</option></select></div></div></div></li>';
+                var html = '<li class="collection-item">' + '<div class="row"><div class="col s4">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option selected="" value="' + st.id + '">' + st.name + '</option><option value="0">disabled</option></select></div></div></div></li>';
                 $(".beacons-holda-connected").append($.parseHTML(html));
             } else if (parseInt(reqs[i].service) == parseInt('0')) {
-                var html = '<li class="collection-item">' + '<div class="row"><div class="col s5">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Not Connected</p></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized"><option value="0" selected="" bid="' + reqs[i].id + '">disabled</option><option value="' + st.id + '" bid="' + reqs[i].id + '">' + st.name + '</option></select></div></div></div></li>';
+                var html = '<li class="collection-item">' + '<div class="row"><div class="col s4">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Not Connected</p></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option value="0" selected="">disabled</option><option value="' + st.id + '">' + st.name + '</option></select></div></div></div></li>';
                 $(".beacons-holda-available").append($.parseHTML(html));
             }
         }
-	 updateBeaconMonitor();   
+        updateBeaconMonitor();
     }
 }
 
@@ -981,7 +1019,7 @@ function productsUpdater() {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
             //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
-            var html = '<li prid="' + reqs[i].id + '" style="margin-bottom:10px; background: rgb(255, 255, 255);">' + '<div id="prodImg-holda-' + reqs[i].id + '" style="background-size: cover;background-repeat: no-repeat;background-position: center;background-image:url(' + reqs[i].imagePath + ');width: 90px;height: 86px;float: left;"></div><div class="collapsible-header" style="width: calc(100% - 90px);display:inline-block;">' + reqs[i].name + '<div class="divider"></div><span >' + '<i class="{{product.icon}}"></i>' + reqs[i].quantity + ' available</span></div><div class="collapsible-body"><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">sale information</div>' + '<form class="col s12" style="padding: 20px 30px;"><div class="row"><div class="input-field col s12">' + '<input id="prodName-' + reqs[i].id + '" prnm="name" type="text" class="validate" prid="' + reqs[i].id + '" value="' + reqs[i].name + '"><label for="prodName-' + reqs[i].id + '" class="">Name</label></div></div>' + '<div class="row"><div class="input-field col s12"><input prnm="description" placeholder="" value="' + reqs[i].description + '" id="prodDesc-' + reqs[i].id + '" type="text" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="description" class="">Description</label></div></div><div class="row"><div class="input-field col s12">' + '<div class="select-wrapper initialized"><span class="caret">▼</span><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">Categories</option>' + '<option value="1">category 1</option>' + '<option value="2">category 2</option>' + '' + '<option value="3">category 3</option>' + '<option value="4">category 4</option>' + '<option value="5">category 5</option>' + '<option value="6">category 6</option>' + '</select></div></div></div><div class="row">' + '<div class="file-field input-field"><div class="btn"><span>image</span><input id="prodImg-' + reqs[i].id + '" prid="' + reqs[i].id + '" prnm="image" type="file">' + '</div><div class="file-path-wrapper"><input class="file-path validate" type="text"></div></div>' + '<div class="input-field col s6"><input prnm="price" placeholder="" value="' + reqs[i].price + '" id="prodPrice-' + reqs[i].id + '" type="number" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="prodPrice-' + reqs[i].id + '" class="active">Price</label></div><div class="input-field col s6">' + '<div class="select-wrapper initialized"><span class="caret">▼</span><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">measurement</option>' + '<option value="1">per Kilogram</option>' + '<option value="2">per Piece</option>' + '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized"><span class="caret">▼</span>' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option>' + '</select></div></div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"> <a prid="' + reqs[i].id + '" class="removeProduct waves-effect waves-light btn">remove product</a> </div>' + '</form></div></li>';
+            var html = '<li prid="' + reqs[i].id + '" style="margin-bottom:10px; background: rgb(255, 255, 255);">' + '<div id="prodImg-holda-' + reqs[i].id + '" style="background-size: cover;background-repeat: no-repeat;background-position: center;background-image:url(' + reqs[i].imagePath + ');width: 90px;height: 86px;float: left;"></div><div class="collapsible-header" style="width: calc(100% - 90px);display:inline-block;">' + reqs[i].name + '<div class="divider"></div><span >' + '<i class="{{product.icon}}"></i>' + reqs[i].quantity + ' available</span></div><div class="collapsible-body"><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">sale information</div>' + '<form class="col s12" style="padding: 20px 30px;"><div class="row"><div class="input-field col s12">' + '<input id="prodName-' + reqs[i].id + '" prnm="name" type="text" class="validate" prid="' + reqs[i].id + '" value="' + reqs[i].name + '"><label for="prodName-' + reqs[i].id + '" class="">Name</label></div></div>' + '<div class="row"><div class="input-field col s12"><input prnm="description" placeholder="" value="' + reqs[i].description + '" id="prodDesc-' + reqs[i].id + '" type="text" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="description" class="">Description</label></div></div><div class="row">' + '<div class="file-field input-field"><div class="btn"><span>image</span><input id="prodImg-' + reqs[i].id + '" prid="' + reqs[i].id + '" prnm="image" type="file">' + '</div><div class="file-path-wrapper"><input class="file-path validate" type="text"></div></div>' + '<div class="input-field col s6"><input prnm="price" placeholder="" value="' + reqs[i].price + '" id="prodPrice-' + reqs[i].id + '" type="number" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="prodPrice-' + reqs[i].id + '" class="active">Price</label></div><div class="input-field col s6">' + '<div class="select-wrapper initialized"><span class="caret">▼</span><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">measurement</option>' + '<option value="1">per Kilogram</option>' + '<option value="2">per Piece</option>' + '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized"><span class="caret">▼</span>' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option>' + '</select></div></div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"> <a prid="' + reqs[i].id + '" class="removeProduct waves-effect waves-light btn">remove product</a> </div>' + '</form></div></li>';
             $(".products-collapsible").append($.parseHTML(html));
         }
         $('.products-collapsible').collapsible();
@@ -989,6 +1027,16 @@ function productsUpdater() {
         Materialize.updateTextFields();
         initProdCallback();
     }
+}
+
+function billingUpdater() {
+	return new Promise(function (resolve, reject) {
+       
+         getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-billing').onsuccess = function (event) {
+            resolve($.parseJSON(event.target.result));
+        }
+    });
+
 }
 //function serviceBillUpdater() {
 //    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
@@ -1021,23 +1069,54 @@ function promoCreator() {
             $(".promotions-holda").append($.parseHTML(html));
         } else {
             //setupPromos(e);
-            $("select.promo-add-ProdList").html('');
-            /*	 
+            $(".promo-add-new-promotion2").html('');
+            /*
 	 var html = '<option value="" disabled selected>'+e.length+' items</option>';
 		      $( "select.promo-add-ProdList" ).append( $.parseHTML( html ) );
 $("select.promo-add-ProdList").select2({
   data: e
 })
-		  
-	
+
+
 	 var html = '<option value="" disabled selected>'+e.length+' items</option>';
 	     $( "select.promo-add-ProdList" ).append( $.parseHTML( html ) );
        */
             for (var i = 0; i < e.length; ++i) {
                 var html = '<option value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + e[i].name + '</option>';
                 $("select.promo-add-ProdList").append($.parseHTML(html));
+                //                var html = '<option value="' + e[i].id + '" label="' + e[i].id + '"  selected>' + e[i].name + '</option>';
+                $("select.promo-add-new-promotion").append($.parseHTML(html));
+                var html = '<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>';
+                $(".promo-add-new-promotion2").append($.parseHTML(html));
             }
             $('select').material_select();
+
+            $('.counter-left').click(function (event) {
+                event.preventDefault()
+
+                minus = $(this).next('input')
+
+                minus_ = minus.val()
+                if (minus_ !== '1') {
+                    minus_ = parseInt(minus_) - 1
+                }
+
+                minus.val(minus_)
+
+            })
+
+            $('.counter-right').click(function (event) {
+                event.preventDefault()
+
+                add = $(this).prev('input')
+
+                add_ = add.val()
+
+                add_ = parseInt(add_) + 1
+
+                add.val(add_)
+
+            })
         }
     }
 }
@@ -1065,7 +1144,7 @@ function promoUpdater() {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
             //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
-            var html = '<div id="promo-card" class="card"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + reqs[i].promoBanner + '" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="' + reqs[i].promoLogo + '" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<i class="mdi-editor-mode-edit" ></i></a><p>' + reqs[i].promoName + '</p><p>' + reqs[i].promoDesc + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + reqs[i].id + '-subscribers"></div>' + '</div><div class="card-reveal">' + '<span class="grey-text text-darken-4"><i class="card-title mdi-navigation-close right"></i></span>' + '<div style="width: 100%;text-align: center;margin: 0px 0px 30px 0px;color: rgba(0,0,0,0.4);">promotion settings</div>' + '<div class="row"><div class="input-field col s6"><input placeholder="" id="discount" type="number" class="validate" min="0">' + '<label for="discount" class="active">% discount</label></div>' + '<div class="input-field col s6"><input placeholder="" id="offers" type="number" class="validate" min="0">' + '<label for="offers" class="active">minimum buyers</label></div></div>' + '<div class="input-field col s12 m6"><select class="icons promo-add-ProdList" multiple></select><label>add an item to this promotion</label></div>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">remove promotion</a><br><a class="backBtnPromo waves-effect waves-light btn">back</a> </div>' + '</div></div>';
+            var html = '<div id="promo-card" class="card"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + reqs[i].promoBanner + '" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="' + reqs[i].promoLogo + '" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<svg class="activator" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 26px;margin-left: 8px;margin-top: 7px;" xml:space="preserve"><g xmlns="http://www.w3.org/2000/svg"><path d="M438.931,30.403c-40.4-40.5-106.1-40.5-146.5,0l-268.6,268.5c-2.1,2.1-3.4,4.8-3.8,7.7l-19.9,147.4 c-0.6,4.2,0.9,8.4,3.8,11.3c2.5,2.5,6,4,9.5,4c0.6,0,1.2,0,1.8-0.1l88.8-12c7.4-1,12.6-7.8,11.6-15.2c-1-7.4-7.8-12.6-15.2-11.6 l-71.2,9.6l13.9-102.8l108.2,108.2c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l268.6-268.5c19.6-19.6,30.4-45.6,30.4-73.3 S458.531,49.903,438.931,30.403z M297.631,63.403l45.1,45.1l-245.1,245.1l-45.1-45.1L297.631,63.403z M160.931,416.803l-44.1-44.1 l245.1-245.1l44.1,44.1L160.931,416.803z M424.831,152.403l-107.9-107.9c13.7-11.3,30.8-17.5,48.8-17.5c20.5,0,39.7,8,54.2,22.4 s22.4,33.7,22.4,54.2C442.331,121.703,436.131,138.703,424.831,152.403z" fill="#FFFFFF"></path></g></svg></a><p>' + reqs[i].promoName + '</p><p>' + reqs[i].promoDesc + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + reqs[i].id + '-subscribers"></div>' + '</div><div class="card-reveal">' + '<span class="grey-text text-darken-4"><i class="card-title mdi-navigation-close right"></i></span>' + '<div style="width: 100%;text-align: center;margin: 0px 0px 30px 0px;color: rgba(0,0,0,0.4);">promotion settings</div>' + '<div class="row"><div class="input-field col s6"><input placeholder="" id="discount" type="number" class="validate" min="0" required>' + '<label for="discount" class="active">% discount</label></div>' + '<div class="input-field col s6"><input placeholder="" id="offers" type="number" class="validate" min="0" required>' + '<label for="offers" class="active">minimum buyers</label></div></div>' + '<div class="input-field col s12 m6"><select class="icons promo-add-ProdList" multiple></select><label>add an item to this promotion</label></div>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">remove promotion</a><br><a class="backBtnPromo waves-effect waves-light btn">back</a> </div>' + '</div></div>';
             $(".promotions-holda").prepend($.parseHTML(html));
             addPromoSubscribers(reqs[i].id, reqs[i].promoSubs);
         }
@@ -1232,7 +1311,7 @@ function openVideo() {
     localMediaStream = stream;
   }, errorCallback);
       }});
-	   
+
     }, 200);
  */
 }
@@ -1354,18 +1433,33 @@ function doNewPromo() {
     var selcItms = document.querySelector('.promo-add-ProdList input').value.split(', ');
     var selcIds = new Array();
     var allItms = new Array();
-    for (i = 0, allItms = allItms, selcIds = selcIds; i < x.length; i++) {
-        allItms.push({
-            name: x.options[i].text,
-            id: x.options[i].getAttribute('value')
-        });
-    }
-    for (ii = 0, allItms = allItms, selcIds = selcIds; ii < selcItms.length; ii++) {
-        function findChosen(it) {
-            return it.name === selcItms[ii];
+    //    for (i = 0, allItms = allItms, selcIds = selcIds; i < x.length; i++) {
+    //        allItms.push({
+    //            name: x.options[i].text,
+    //            id: x.options[i].getAttribute('value')
+    //        });
+    //    }
+    //    for (ii = 0, allItms = allItms, selcIds = selcIds; ii < selcItms.length; ii++) {
+    //        function findChosen(it) {
+    //            return it.name === selcItms[ii];
+    //        }
+    //        selcIds.push(parseInt(allItms.find(findChosen).id));
+    //    }
+    var boxes = $('input[name=promoItems]:checked');
+    for (i = 0; i < boxes.length; i++) {
+        console.log('ID is: ' + boxes[i].id);
+        var productID = boxes[i].id;
+        console.log('The item is added ' + $('li.circle input.' +
+            productID).val() + ' times');
+        var times = $('li.circle input.' + productID).val();
+        for (j = 0; j < times; j++) {
+            console.log('Product is: ' + productID);
+            selcIds.push(parseInt(productID));
         }
-        selcIds.push(parseInt(allItms.find(findChosen).id));
     }
+
+    console.log(boxes);
+    $('.promo-add-new-promotion2')
     doFetch({
         action: 'doNewPromo',
         ownerid: activeStore().id,
@@ -1473,6 +1567,7 @@ function addProduct() {
 }
 
 function updateBeaconMonitor() {
+    $('select').material_select();
     var forEach = function (array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
             callback.call(scope, i, array[i]); // passes back stuff we need
@@ -1480,25 +1575,22 @@ function updateBeaconMonitor() {
     };
     var myNodeList = document.querySelectorAll('.beacons select');
     forEach(myNodeList, function (index, value) {
-	    $(value).on('change', function(e){
-		  var value = this;
-        var val = $(value).attr('bid');
-	 
-    doFetch({
-        action: 'doSetBeacon',
-        id: val,
-        to: $(value).val()
-    }).then(function (e) {
-        if (e.status == 'ok') {
-		
-            Materialize.toast('beacon updated ..', 3000);
-            refreshBeacons();
-		
-        } else {
-            console.log(e);
-        }
-    });
-	 });
+        $(value).on('change', function (e) {
+            var value = this;
+            var val = $(value).attr('bid');
+            doFetch({
+                action: 'doSetBeacon',
+                id: val,
+                to: $(value).val()
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    Materialize.toast('beacon updated ..', 3000);
+                    refreshBeacons();
+                } else {
+                    console.log(e);
+                }
+            });
+        });
     });
 }
 /*
@@ -1513,21 +1605,21 @@ function doEditStore(){
     $('.store-desc').html(document.querySelector('#editStore-description').value);
 
 
-   
+
       $('#editStoreModal').closeModal({complete: function(){
-   
+
     Materialize.toast('modified store..', 3000);
-      }});  
-	      
+      }});
+
       }else{
       console.log(e);
-      }        
-        
-  });    
-	
-	
- 
-	
+      }
+
+  });
+
+
+
+
 }
 */
 var shroot = document.querySelectorAll(".newStore");
@@ -1550,10 +1642,13 @@ var shroot = document.querySelectorAll(".switchStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", switchStore, false);
 };
-var shroot = document.querySelectorAll(".addProduct");
-for (var i = 0; i < shroot.length; ++i) {
-    shroot[i].addEventListener("touchstart", addProduct, false);
-};
+$("#formValidate").submit(function (e) {
+    e.preventDefault();
+    var shroot = document.querySelectorAll(".addProduct");
+    for (var i = 0; i < shroot.length; ++i) {
+        shroot[i].addEventListener("touchstart", addProduct, false);
+    };
+});
 var shroot = document.querySelectorAll(".removeProduct");
 for (var i = 0; i < shroot.length; ++i) {
     var id = $(this).attr('prid');
@@ -1623,6 +1718,94 @@ document.addEventListener('visibilitychange', function (event) {
         // The page is visible.
         checkNotes();
     } else {
-        // The page is hidden. 
+        // The page is hidden.
     }
+});
+//calenderfunction myFunction() {
+$(document).ready(function () {});
+$(document).ready(function () {
+    var month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
+    var d = new Date();
+    var n = month[d.getMonth()];
+    document.getElementById("month").innerHTML = n;
+    var year = 2017;
+    var currMonth = 0;
+    $('#month').text(month[0]);
+    $('#year').text(year);
+    $('#right').click(function () {
+        if (currMonth === 11) {
+            currMonth = 0;
+            $('#month').text(month[currMonth]);
+            year++;
+            $('#year').text(year);
+            refreshBills(currMonth, year);
+        } else {
+            currMonth++;
+            $('#month').text(month[currMonth]);
+            refreshBills(currMonth, year);
+        }
+    })
+    $('#left').click(function () {
+        if (currMonth === 0) {
+            currMonth = 11;
+            $('#month').text(month[currMonth]);
+            year--;
+            $('#year').text(year);
+            refreshBills(currMonth, year);
+        } else {
+            currMonth--;
+            $('#month').text(month[currMonth]);
+            refreshBills(currMonth, year);
+        }
+    })
+});
+//touchStart
+var touchmoved;
+$('.collection-item.avatar').on('touchend', function (e) {
+    if (touchmoved != true) {
+        $(this).prev('input').val("");
+    }
+}).on('touchmove', function (e) {
+    touchmoved = true;
+    e.preventDefault();
+}).on('touchstart', function () {
+    touchmoved = false;
+});
+//promotion on click
+$(".clickPromo").click(function () {
+    refreshPromotions();
+});
+//Billing on click
+$(".clickBilling").click(function () {
+    refreshBills();
+});
+
+//Enable Deliveries
+$('#deliveriesToggle').click(function () {
+    var value = document.getElementById("deliveriesToggle").checked
+    doFetch({
+        action: 'toggleDeliveries',
+        value: value
+    }).then(function (e) {});
+});
+
+//Enable Payments
+$('#paymentsToggle').click(function () {
+    var value = document.getElementById("paymentsToggle").checked
+    doFetch({
+        action: 'togglePayments',
+        value: value
+    }).then(function (e) {});
 });

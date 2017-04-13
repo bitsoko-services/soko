@@ -82,7 +82,9 @@ angular.module('sokoApp', [])
         } catch (err) {
             console.log('no user profile found : ', err);
             $('#login').modal('open');
-            //            reqProfile();
+            $('#login').on('load', function () {
+                startGoogle();
+            })
         }
     }
     $('.sidebar-collapse').sideNav({
@@ -98,10 +100,31 @@ angular.module('sokoApp', [])
             $('.sidebar-collapse').sideNav('hide');
             $('body').attr('page', $(this).attr('page'));
             $('#content > .container > .' + $(this).attr('page')).css('display', 'block');
+		updateThisPage($(this).attr('page'));
         }
         $(this).toggleClass('active');
     });
 });
+
+function updateThisPage(pg) {
+	
+	switch (pg) {
+            case 'products':
+                productsUpdater();
+		break;
+            case 'storefront':
+                promoUpdater();
+		break;
+            case 'beacons':
+               beaconsUpdater();
+		break;
+            case 'billing':
+                billingUpdater();
+		break;
+            default:
+        }
+	
+}
 
 function reqProfile() {
     var reqProf = "b:m:p-" + randomString(20)
