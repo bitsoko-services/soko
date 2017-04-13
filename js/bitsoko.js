@@ -1008,7 +1008,7 @@ function productsUpdater() {
                 complete: function () {
                     $('#add-product').modal({
                         dismissible: false
-                    });
+                    }).modal('open');
                 }
             }).modal('open');
             return;
