@@ -1009,11 +1009,13 @@ function productsUpdater() {
                     $('#add-product').modal({
                         dismissible: false
                     }).modal('open');
+			refreshProducts();
                 }
             }).modal('open');
             return;
         } else {
-            $("#promotions>.fixed-action-btn>a").attr('href', '#newPromoModal')
+            $("#promotions>.fixed-action-btn>a").attr('href', '#newPromoModal');
+		$('#firstProdModal').modal('close');
         }
         $(".allProdCount").html(reqs.length);
         for (var i = 0; i < reqs.length; ++i) {
