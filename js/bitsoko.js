@@ -528,7 +528,7 @@ doFetch({
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         console.log(e);
-        getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'soko-owner-' + localStorage.getItem('soko-owner-id') + '-billing');
+        getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'soko-store-' + id + '-billing');
         billingUpdater();
     }).catch(function (err) {
         billingUpdater();
