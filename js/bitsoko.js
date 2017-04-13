@@ -1034,7 +1034,12 @@ function billingUpdater() {
 	return new Promise(function (resolve, reject) {
        
          getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-billing').onsuccess = function (event) {
-            resolve($.parseJSON(event.target.result));
+           
+		 try{
+		  resolve($.parseJSON(event.target.result));
+		 }catch(err){
+		 refreshBilling();
+		 }
         }
     });
 
@@ -1129,6 +1134,7 @@ function promoUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access promotions list. ' + err);
+		refreshPromotions();
             return;
         }
         $(".promotions-holda").html('');
