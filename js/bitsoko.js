@@ -379,11 +379,8 @@ function refreshBills(month, year) {
         '10': 'Nov',
         '11': 'Dec'
     }
-    doFetch({
-        action: 'getServiceBills',
-        id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {
-        bills = e.reqs
+    billingUpdater().then(function (e) {
+        bills = e
         i = 0
         billing_string = ''
         billing_amount = ''
@@ -522,6 +519,19 @@ function refreshBeacons() {
         beaconsUpdater();
     }).catch(function (err) {
         beaconsUpdater();
+    }); //addCustomer(e.customers);
+}
+
+function refreshBilling() {
+doFetch({
+        action: 'getServiceBills',
+        id: localStorage.getItem('soko-active-store')
+    }).then(function (e) {
+        console.log(e);
+        getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'soko-owner-' + localStorage.getItem('soko-owner-id') + '-billing');
+        billingUpdater();
+    }).catch(function (err) {
+        billingUpdater();
     }); //addCustomer(e.customers);
 }
 
@@ -1017,6 +1027,16 @@ function productsUpdater() {
         Materialize.updateTextFields();
         initProdCallback();
     }
+}
+
+function billingUpdater() {
+	return new Promise(function (resolve, reject) {
+       
+         getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-billing').onsuccess = function (event) {
+            resolve($.parseJSON(event.target.result));
+        }
+    });
+
 }
 //function serviceBillUpdater() {
 //    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
