@@ -398,7 +398,7 @@ function refreshBills(month, year) {
             }
         });
         console.log('Daily bill is: ' + dailyBill);
-        $('.cust-count').html(e.reqs.length);
+        $('.cust-count').html(bills.length);
         //        $('#billingDate').html(billing_string);
         //        $('#dailyBill').html(billing_amount);
         if (dailyBill == '') {
