@@ -1370,6 +1370,10 @@ function doSwitchStore() {
     $('#switchStoreModal').modal({
         complete: function () {
             Materialize.toast('changing store..', 2000);
+		beaconsUpdater();
+		promoUpdater();
+		billingUpdater();
+		productsUpdater();
         }
     }).modal('close');
 }
