@@ -1008,8 +1008,7 @@ function productsUpdater() {
                 complete: function () {
                     $('#add-product').modal({
                         dismissible: false
-                    }).modal('open');
-                    refreshProducts();
+                    });
                 }
             }).modal('open');
             return;
@@ -1090,30 +1089,34 @@ $("select.promo-add-ProdList").select2({
 	     $( "select.promo-add-ProdList" ).append( $.parseHTML( html ) );
        */
             for (var i = 0; i < e.length; ++i) {
-                var html = '<option value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + e[i].name + '</option>';
-                $("select.promo-add-ProdList").append($.parseHTML(html));
-                //                var html = '<option value="' + e[i].id + '" label="' + e[i].id + '"  selected>' + e[i].name + '</option>';
-                $("select.promo-add-new-promotion").append($.parseHTML(html));
-                var html = '<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>';
+                var html = '<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '" checked="checked"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>';
                 $(".promo-add-new-promotion2").append($.parseHTML(html));
             }
             $('select').material_select();
 
             $('.counter-left').click(function (event) {
                 event.preventDefault()
+
                 minus = $(this).next('input')
+
                 minus_ = minus.val()
                 if (minus_ !== '1') {
                     minus_ = parseInt(minus_) - 1
                 }
+
                 minus.val(minus_)
+
             })
 
             $('.counter-right').click(function (event) {
                 event.preventDefault()
+
                 add = $(this).prev('input')
+
                 add_ = add.val()
+
                 add_ = parseInt(add_) + 1
+
                 add.val(add_)
 
             })
@@ -1434,8 +1437,8 @@ function castPromo(t) {
 
 function doNewPromo() {
     var items = [];
-    var x = document.querySelector('.promo-add-ProdList select');
-    var selcItms = document.querySelector('.promo-add-ProdList input').value.split(', ');
+    var x = document.querySelector('.promo-add-new-promotion2 ul');
+    var selcItms = document.querySelector('.promo-add-new-promotion2 input').value.split(', ');
     var selcIds = new Array();
     var allItms = new Array();
     //    for (i = 0, allItms = allItms, selcIds = selcIds; i < x.length; i++) {
