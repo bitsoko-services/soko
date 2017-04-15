@@ -507,7 +507,7 @@ function addStore() {
     refreshBeacons();
     refreshProducts();
     refreshPromotions();
-	promoUpdater();
+    promoUpdater();
 }
 
 function refreshBeacons() {
@@ -524,7 +524,7 @@ function refreshBeacons() {
 }
 
 function refreshBilling() {
-doFetch({
+    doFetch({
         action: 'getServiceBills',
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
@@ -1009,13 +1009,13 @@ function productsUpdater() {
                     $('#add-product').modal({
                         dismissible: false
                     }).modal('open');
-			refreshProducts();
+                    refreshProducts();
                 }
             }).modal('open');
             return;
         } else {
             $("#promotions>.fixed-action-btn>a").attr('href', '#newPromoModal');
-		$('#firstProdModal').modal('close');
+            $('#firstProdModal').modal('close');
         }
         $(".allProdCount").html(reqs.length);
         for (var i = 0; i < reqs.length; ++i) {
@@ -1033,15 +1033,15 @@ function productsUpdater() {
 }
 
 function billingUpdater() {
-	return new Promise(function (resolve, reject) {
-       
-         getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-billing').onsuccess = function (event) {
-           
-		 try{
-		  resolve($.parseJSON(event.target.result));
-		 }catch(err){
-		 refreshBilling();
-		 }
+    return new Promise(function (resolve, reject) {
+
+        getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-billing').onsuccess = function (event) {
+
+            try {
+                resolve($.parseJSON(event.target.result));
+            } catch (err) {
+                refreshBilling();
+            }
         }
     });
 
@@ -1101,27 +1101,19 @@ $("select.promo-add-ProdList").select2({
 
             $('.counter-left').click(function (event) {
                 event.preventDefault()
-
                 minus = $(this).next('input')
-
                 minus_ = minus.val()
                 if (minus_ !== '1') {
                     minus_ = parseInt(minus_) - 1
                 }
-
                 minus.val(minus_)
-
             })
 
             $('.counter-right').click(function (event) {
                 event.preventDefault()
-
                 add = $(this).prev('input')
-
                 add_ = add.val()
-
                 add_ = parseInt(add_) + 1
-
                 add.val(add_)
 
             })
@@ -1136,7 +1128,7 @@ function promoUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access promotions list. ' + err);
-		refreshPromotions();
+            refreshPromotions();
             return;
         }
         $(".promotions-holda").html('');
@@ -1378,10 +1370,10 @@ function doSwitchStore() {
     $('#switchStoreModal').modal({
         complete: function () {
             Materialize.toast('changing store..', 2000);
-		beaconsUpdater();
-		promoUpdater();
-		billingUpdater();
-		productsUpdater();
+            beaconsUpdater();
+            promoUpdater();
+            billingUpdater();
+            productsUpdater();
         }
     }).modal('close');
 }

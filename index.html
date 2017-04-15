@@ -296,7 +296,7 @@
     <!-- newPromo Modal Start -->
     <div id="newPromoModal" class="modal modal-fixed-footer">
         <div class="modal-content">
-            <form class="col s12">
+            <form class="col s12 promoInputReq">
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name" required>
@@ -312,7 +312,7 @@
                 <div class="row">
                     <div class="file-field input-field">
                         <div class="btn"><span>image</span>
-                            <input id="newPromo-image" type="file" stitm="customImage" required> </div>
+                            <input id="newPromo-image" type="file" stitm="customImage"> </div>
                     </div>
                 </div>
                 <div class="row">
@@ -337,9 +337,14 @@
                     <h6 style="text-align:center;">Add an item to this promotion</h6>
                     <ul class="promo-add-new-promotion2"></ul>
                 </div>
+                <div class="modal-footer" style="position:fixed;left:0px;">
+                    <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
+                    <a href="#!">
+                        <input href="#!" type="submit" value="Add New" class="doAddNewPromo waves-effect waves-green btn-flat" style="padding: 3px 15px 3px 15px;">
+                    </a>
+                </div>
             </form>
         </div>
-        <div class="modal-footer"> <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a> <a href="#!" class="doAddNewPromo waves-effect waves-green btn-flat">add new</a> </div>
     </div>
     <!-- newPromo Modal End -->
     <!-- //////////////////////////////////////////////////////////////////////////// -->
