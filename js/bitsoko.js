@@ -69,7 +69,7 @@ $(document).on('touchstart click', '.removeProduct', function (event) {
 //Remove Promotion
 $(document).on('touchstart click', '.removePromo', function (event) {
     console.log("Promotion Removed Successfully");
-    $(this).parent().parent().parent().parent().parent().remove();
+    $(this).parent().parent().parent().remove();
 });
 //Hide Card Reveal on Promotion Page
 $(document).on('touchstart click', '.backBtnPromo', function (event) {
