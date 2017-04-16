@@ -69,7 +69,7 @@ $(document).on('touchstart click', '.removeProduct', function (event) {
 //Remove Promotion
 $(document).on('touchstart click', '.removePromo', function (event) {
     console.log("Promotion Removed Successfully");
-    $(this).parent().parent().parent().parent().parent().remove();
+    $(this).parent().parent().parent().remove();
 });
 //Hide Card Reveal on Promotion Page
 $(document).on('touchstart click', '.backBtnPromo', function (event) {
@@ -507,7 +507,7 @@ function addStore() {
     refreshBeacons();
     refreshProducts();
     refreshPromotions();
-	promoUpdater();
+    promoUpdater();
 }
 
 function refreshBeacons() {
@@ -524,7 +524,7 @@ function refreshBeacons() {
 }
 
 function refreshBilling() {
-doFetch({
+    doFetch({
         action: 'getServiceBills',
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
@@ -1008,12 +1008,13 @@ function productsUpdater() {
                 complete: function () {
                     $('#add-product').modal({
                         dismissible: false
-                    }).modal('open');
+                    });
                 }
             }).modal('open');
             return;
         } else {
-            $("#promotions>.fixed-action-btn>a").attr('href', '#newPromoModal')
+            $("#promotions>.fixed-action-btn>a").attr('href', '#newPromoModal');
+            $('#firstProdModal').modal('close');
         }
         $(".allProdCount").html(reqs.length);
         for (var i = 0; i < reqs.length; ++i) {
@@ -1031,10 +1032,15 @@ function productsUpdater() {
 }
 
 function billingUpdater() {
-	return new Promise(function (resolve, reject) {
-       
-         getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-billing').onsuccess = function (event) {
-            resolve($.parseJSON(event.target.result));
+    return new Promise(function (resolve, reject) {
+
+        getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-billing').onsuccess = function (event) {
+
+            try {
+                resolve($.parseJSON(event.target.result));
+            } catch (err) {
+                refreshBilling();
+            }
         }
     });
 
@@ -1083,40 +1089,27 @@ $("select.promo-add-ProdList").select2({
 	     $( "select.promo-add-ProdList" ).append( $.parseHTML( html ) );
        */
             for (var i = 0; i < e.length; ++i) {
-                var html = '<option value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + e[i].name + '</option>';
-                $("select.promo-add-ProdList").append($.parseHTML(html));
-                //                var html = '<option value="' + e[i].id + '" label="' + e[i].id + '"  selected>' + e[i].name + '</option>';
-                $("select.promo-add-new-promotion").append($.parseHTML(html));
-                var html = '<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>';
+                var html = '<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '" checked="checked"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>';
                 $(".promo-add-new-promotion2").append($.parseHTML(html));
             }
             $('select').material_select();
 
             $('.counter-left').click(function (event) {
                 event.preventDefault()
-
                 minus = $(this).next('input')
-
                 minus_ = minus.val()
                 if (minus_ !== '1') {
                     minus_ = parseInt(minus_) - 1
                 }
-
                 minus.val(minus_)
-
             })
 
             $('.counter-right').click(function (event) {
                 event.preventDefault()
-
                 add = $(this).prev('input')
-
                 add_ = add.val()
-
                 add_ = parseInt(add_) + 1
-
                 add.val(add_)
-
             })
         }
     }
@@ -1129,6 +1122,7 @@ function promoUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access promotions list. ' + err);
+            refreshPromotions();
             return;
         }
         $(".promotions-holda").html('');
@@ -1145,7 +1139,7 @@ function promoUpdater() {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
             //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
-            var html = '<div id="promo-card" class="card"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + reqs[i].promoBanner + '" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="' + reqs[i].promoLogo + '" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<svg class="activator" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 26px;margin-left: 8px;margin-top: 7px;" xml:space="preserve"><g xmlns="http://www.w3.org/2000/svg"><path d="M438.931,30.403c-40.4-40.5-106.1-40.5-146.5,0l-268.6,268.5c-2.1,2.1-3.4,4.8-3.8,7.7l-19.9,147.4 c-0.6,4.2,0.9,8.4,3.8,11.3c2.5,2.5,6,4,9.5,4c0.6,0,1.2,0,1.8-0.1l88.8-12c7.4-1,12.6-7.8,11.6-15.2c-1-7.4-7.8-12.6-15.2-11.6 l-71.2,9.6l13.9-102.8l108.2,108.2c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l268.6-268.5c19.6-19.6,30.4-45.6,30.4-73.3 S458.531,49.903,438.931,30.403z M297.631,63.403l45.1,45.1l-245.1,245.1l-45.1-45.1L297.631,63.403z M160.931,416.803l-44.1-44.1 l245.1-245.1l44.1,44.1L160.931,416.803z M424.831,152.403l-107.9-107.9c13.7-11.3,30.8-17.5,48.8-17.5c20.5,0,39.7,8,54.2,22.4 s22.4,33.7,22.4,54.2C442.331,121.703,436.131,138.703,424.831,152.403z" fill="#FFFFFF"></path></g></svg></a><p>' + reqs[i].promoName + '</p><p>' + reqs[i].promoDesc + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + reqs[i].id + '-subscribers"></div>' + '</div><div class="card-reveal">' + '<span class="grey-text text-darken-4"><i class="card-title mdi-navigation-close right"></i></span>' + '<div style="width: 100%;text-align: center;margin: 0px 0px 30px 0px;color: rgba(0,0,0,0.4);">promotion settings</div>' + '<div class="row"><div class="input-field col s6"><input placeholder="" id="discount" type="number" class="validate" min="0" required>' + '<label for="discount" class="active">% discount</label></div>' + '<div class="input-field col s6"><input placeholder="" id="offers" type="number" class="validate" min="0" required>' + '<label for="offers" class="active">minimum buyers</label></div></div>' + '<div class="input-field col s12 m6"><select class="icons promo-add-ProdList" multiple></select><label>add an item to this promotion</label></div>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">remove promotion</a><br><a class="backBtnPromo waves-effect waves-light btn">back</a> </div>' + '</div></div>';
+            var html = '<div id="promo-card" class="card"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + reqs[i].promoBanner + '" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="' + reqs[i].promoLogo + '" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<svg class="activator" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 26px;margin-left: 8px;margin-top: 7px;" xml:space="preserve"><g xmlns="http://www.w3.org/2000/svg"><path d="M438.931,30.403c-40.4-40.5-106.1-40.5-146.5,0l-268.6,268.5c-2.1,2.1-3.4,4.8-3.8,7.7l-19.9,147.4 c-0.6,4.2,0.9,8.4,3.8,11.3c2.5,2.5,6,4,9.5,4c0.6,0,1.2,0,1.8-0.1l88.8-12c7.4-1,12.6-7.8,11.6-15.2c-1-7.4-7.8-12.6-15.2-11.6 l-71.2,9.6l13.9-102.8l108.2,108.2c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l268.6-268.5c19.6-19.6,30.4-45.6,30.4-73.3 S458.531,49.903,438.931,30.403z M297.631,63.403l45.1,45.1l-245.1,245.1l-45.1-45.1L297.631,63.403z M160.931,416.803l-44.1-44.1 l245.1-245.1l44.1,44.1L160.931,416.803z M424.831,152.403l-107.9-107.9c13.7-11.3,30.8-17.5,48.8-17.5c20.5,0,39.7,8,54.2,22.4 s22.4,33.7,22.4,54.2C442.331,121.703,436.131,138.703,424.831,152.403z" fill="#FFFFFF"></path></g></svg></a><p>' + reqs[i].promoName + '</p><p>' + reqs[i].promoDesc + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + reqs[i].id + '-subscribers"></div>' + '</div><div class="card-reveal">' + '<form class="col s12"> <div class="row"> <div class="input-field col s12"> <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name" required> <label for="newPromo-name" class="">Name</label> </div></div><div class="row"> <div class="input-field col s12"> <input id="newPromo-desc" type="text" class="validate js-loc-button-notification-input" value="" stitm="msg" required> <label for="newPromo-desc" class="">Desc</label> </div></div><div class="row"> <div class="file-field input-field"> <div class="btn"><span>image</span> <input id="newPromo-image" type="file" stitm="customImage" required> </div></div></div><div class="row"> <div class="input-field col s6"> <input placeholder="" id="newPromo-discount" type="number" class="validate" min="0" max="90"> <label for="newPromo-discount" class="">% discount</label> </div><div class="input-field col s6"> <input placeholder="" id="newPromo-offers" type="number" class="validate" min="0"> <label for="newPromo-offers" class="">minimum buyers</label> </div></div><div class="row" style="height:200px;overflow:auto;"> <h6 style="text-align:center;">Add an item to this promotion</h6> <ul class="promo-add-new-promotion2"></ul> </div></form>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">remove promotion</a><br><a class="backBtnPromo waves-effect waves-light btn">back</a> </div>' + '</div></div>';
             $(".promotions-holda").prepend($.parseHTML(html));
             addPromoSubscribers(reqs[i].id, reqs[i].promoSubs);
         }
@@ -1370,10 +1364,10 @@ function doSwitchStore() {
     $('#switchStoreModal').modal({
         complete: function () {
             Materialize.toast('changing store..', 2000);
-		beaconsUpdater();
-		promoUpdater();
-		billingUpdater();
-		productsUpdater();
+            beaconsUpdater();
+            promoUpdater();
+            billingUpdater();
+            productsUpdater();
         }
     }).modal('close');
 }
@@ -1434,8 +1428,8 @@ function castPromo(t) {
 
 function doNewPromo() {
     var items = [];
-    var x = document.querySelector('.promo-add-ProdList select');
-    var selcItms = document.querySelector('.promo-add-ProdList input').value.split(', ');
+    var x = document.querySelector('.promo-add-new-promotion2 ul');
+    var selcItms = document.querySelector('.promo-add-new-promotion2 input').value.split(', ');
     var selcIds = new Array();
     var allItms = new Array();
     //    for (i = 0, allItms = allItms, selcIds = selcIds; i < x.length; i++) {
@@ -1476,12 +1470,8 @@ function doNewPromo() {
         offers: document.querySelector('#newPromo-offers').value
     }).then(function (e) {
         if (e.status == 'ok') {
-            $('#newPromoModal').modal({
-                complete: function () {
-                    Materialize.toast('added new promotion..', 3000);
-                    refreshPromotions();
-                }
-            }).modal('close');
+            Materialize.toast('added new promotion..', 3000);
+            refreshPromotions();
         } else {
             console.log(e);
         }
@@ -1805,4 +1795,18 @@ $('#paymentsToggle').click(function () {
         action: 'togglePayments',
         value: value
     }).then(function (e) {});
+});
+
+//Empty Promo Card
+$('#makeCard').click(function () {
+    var structure = $('<div id="promo-card" class="card"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<svg class="activator" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 26px;margin-left: 8px;margin-top: 7px;" xml:space="preserve"><g xmlns="http://www.w3.org/2000/svg"><path d="M438.931,30.403c-40.4-40.5-106.1-40.5-146.5,0l-268.6,268.5c-2.1,2.1-3.4,4.8-3.8,7.7l-19.9,147.4 c-0.6,4.2,0.9,8.4,3.8,11.3c2.5,2.5,6,4,9.5,4c0.6,0,1.2,0,1.8-0.1l88.8-12c7.4-1,12.6-7.8,11.6-15.2c-1-7.4-7.8-12.6-15.2-11.6 l-71.2,9.6l13.9-102.8l108.2,108.2c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l268.6-268.5c19.6-19.6,30.4-45.6,30.4-73.3 S458.531,49.903,438.931,30.403z M297.631,63.403l45.1,45.1l-245.1,245.1l-45.1-45.1L297.631,63.403z M160.931,416.803l-44.1-44.1 l245.1-245.1l44.1,44.1L160.931,416.803z M424.831,152.403l-107.9-107.9c13.7-11.3,30.8-17.5,48.8-17.5c20.5,0,39.7,8,54.2,22.4 s22.4,33.7,22.4,54.2C442.331,121.703,436.131,138.703,424.831,152.403z" fill="#FFFFFF"></path></g></svg></a><p>' + '</p><p>' + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + '-subscribers"></div>' + '</div><div class="card-reveal" style="display:block !important;">' + '<form class="col s12"> <div class="row"> <div class="input-field col s12"> <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name" required> <label for="newPromo-name" class="">Name</label> </div></div><div class="row"> <div class="input-field col s12"> <input id="newPromo-desc" type="text" class="validate js-loc-button-notification-input" value="" stitm="msg" required> <label for="newPromo-desc" class="">Desc</label> </div></div><div class="row"> <div class="file-field input-field"> <div class="btn"><span>image</span> <input id="newPromo-image" type="file" stitm="customImage" required> </div></div></div><div class="row"> <div class="input-field col s6"> <input placeholder="" id="newPromo-discount" type="number" class="validate" min="0" max="90"> <label for="newPromo-discount" class="">% discount</label> </div><div class="input-field col s6"> <input placeholder="" id="newPromo-offers" type="number" class="validate" min="0"> <label for="newPromo-offers" class="">minimum buyers</label> </div></div><div class="row" style="height:200px;overflow:auto;"> <h6 style="text-align:center;">Add an item to this promotion</h6> <ul class="promo-add-new-promotion2"></ul> </div></form>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a href="#!" class="doAddNewPromo waves-effect waves-green btn-flat" style="background:#26A69A;color:white;margin-bottom:10px;">add promotion</a><br><a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">CANCLE</a><br></div>' + '</div></div>');
+    $('.promotions-holda').prepend(structure);
+    for (var i = 0; i < e.length; ++i) {
+        var html = '<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '" checked="checked"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>';
+        $(".promo-add-new-promotion2").append($.parseHTML(html));
+    }
+    var shroot = document.querySelectorAll(".doAddNewPromo");
+    for (var i = 0; i < shroot.length; ++i) {
+        shroot[i].addEventListener("touchstart", doNewPromo, false);
+    };
 });
