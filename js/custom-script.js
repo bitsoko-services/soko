@@ -100,30 +100,30 @@ angular.module('sokoApp', [])
             $('.sidebar-collapse').sideNav('hide');
             $('body').attr('page', $(this).attr('page'));
             $('#content > .container > .' + $(this).attr('page')).css('display', 'block');
-		updateThisPage($(this).attr('page'));
+            updateThisPage($(this).attr('page'));
         }
         $(this).toggleClass('active');
     });
 });
 
 function updateThisPage(pg) {
-	
-	switch (pg) {
-            case 'products':
-                productsUpdater();
-		break;
-            case 'storefront':
-                promoUpdater();
-		break;
-            case 'beacons':
-               beaconsUpdater();
-		break;
-            case 'billing':
-                billingUpdater();
-		break;
-            default:
-        }
-	
+
+    switch (pg) {
+        case 'products':
+            productsUpdater();
+            break;
+        case 'storefront':
+            promoUpdater();
+            break;
+        case 'beacons':
+            beaconsUpdater();
+            break;
+        case 'billing':
+            refreshBills();
+            break;
+        default:
+    }
+
 }
 
 function reqProfile() {
