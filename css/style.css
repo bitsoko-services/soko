@@ -2506,3 +2506,94 @@ tr.group:hover {
     color: white;
     margin-left: 10px;
 }
+
+/**********************************************
+***********************************************
+                  DESKTOP VERSION
+***********************************************
+**********************************************/
+
+.revealOnLoad {
+    display: block !important;
+    transform: translateY(-100%) !important;
+    -webkit-transform: translateY(-100%) !important;
+}
+@media screen and (max-width: 900px) {
+    .storeInfo a {
+        display: none !important;
+    }
+}
+@media screen and (min-width: 900px) {
+    .navbar-fixed {
+        display: none;
+    }
+    ul.side-nav.leftside-navigation {
+        top: 0px;
+    }
+    .side-nav {
+        left: 0;
+        -webkit-transform: none !important;
+        transform: none !important;
+        position: fixed;
+    }
+    .container {
+        width: 90%;
+        margin-left: 7.5%;
+    }
+    .promotions-holda {
+        padding: 20px;
+    }
+    .card {
+        overflow: hidden;
+        width: 46%;
+        float: left;
+        margin: 2%;
+    }
+    .collection-item {
+        display: none;
+    }
+    .products-collapsible li {
+        width: 45%;
+        height: 65vh;
+        overflow-y: auto;
+        float: left;
+    }
+    .products-collapsible .collapsible-body {
+        display: block !important;
+    }
+    .loadCard {
+        height: 323px;
+    }
+    .payButton {
+        top: 20% !important;
+    }
+    .settingsIcon {
+        padding-top: 6px !important;
+        padding-left: 30px !important;
+    }
+    .paymentIcon {
+        margin-left: 30px !important;
+    }
+    .contactIcon {
+        padding-left: 30px !important;
+    }
+    .editStore {
+        display: none !important;
+    }
+    .deliveriesIcon {
+        margin-left: 30px !important;
+    }
+    .editStoreInfo form {
+        width: 50%;
+        padding-left: 8%;
+    }
+    .products nav {
+        display: block !important;
+    }
+    .billing nav {
+        display: block !important;
+    }
+    .storeInfo {
+        display: block !important;
+    }
+}
