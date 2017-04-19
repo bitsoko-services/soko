@@ -222,7 +222,7 @@ function loadPOS() {
             $("#switchStoreContent").append(html);
             localStorage.setItem('soko-store-id-' + services[i].id, JSON.stringify(services[i]));
             localStorage.setItem('soko-active-store', services[0].id);
-            initialisePush('soko-store-id-' + services[i].id);
+           // initialisePush('soko-store-id-' + services[i].id);
         }
         var shroot = document.querySelectorAll(".closeSwitchStore");
         for (var i = 0; i < shroot.length; ++i) {
