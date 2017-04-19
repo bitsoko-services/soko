@@ -2523,7 +2523,7 @@ tr.group:hover {
         display: none !important;
     }
 }
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 993px) {
     .navbar-fixed {
         display: none;
     }
@@ -2553,7 +2553,7 @@ tr.group:hover {
         display: none;
     }
     .products-collapsible li {
-        width: 45%;
+        width: 44%;
         height: 65vh;
         overflow-y: auto;
         float: left;
@@ -2595,5 +2595,8 @@ tr.group:hover {
     }
     .storeInfo {
         display: block !important;
+    }
+    #add-product {
+        left: 25% !important;
     }
 }
