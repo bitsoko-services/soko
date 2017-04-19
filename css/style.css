@@ -2599,4 +2599,10 @@ tr.group:hover {
     #add-product {
         left: 25% !important;
     }
+    #beaconsPage {
+        display: none;
+    }
+    #billingPage {
+        margin-top: 6px;
+    }
 }
