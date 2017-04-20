@@ -197,6 +197,7 @@ function loadPOS() {
         try {
             var svcs = event.target.result;
             var services = JSON.parse(svcs);
+            localStorage.services_test = JSON.stringify(services)
         } catch (err) {
             $('#newStoreModal').modal({
                 dismissible: false
@@ -231,13 +232,13 @@ function loadPOS() {
         addStore();
     }
     stCb.onerror = function (event) {
-            $('#newStoreModal').modal({
-                dismissible: false
-            });
-            $('#newStoreModal').modal('open');
-        }
-        //  appMaster.animateScript();
-        //setInterval(noteChecker,30000);
+        $('#newStoreModal').modal({
+            dismissible: false
+        });
+        $('#newStoreModal').modal('open');
+    }
+    //  appMaster.animateScript();
+    //setInterval(noteChecker,30000);
 }
 
 function Tobserver(changes) {
@@ -1822,3 +1823,49 @@ $('#makeCard').click(function () {
         shroot[i].addEventListener("touchstart", doNewPromo, false);
     };
 });
+
+
+//switch store desktop version
+
+//$("#collection_dskt").html('');
+//var html = ''
+//services_test = JSON.parse(localStorage.services_test)
+//for (var i = 0; i < services_test.length; ++i) {
+//    html += '<li>'+ services_test[i].name +'</li>';
+////        localStorage.setItem('soko-store-id-' + services_test[i].id, JSON.stringify(services[i]));
+////    localStorage.setItem('soko-active-store', services[0].id);
+//}
+//$("#collection_dskt").append(html);
+
+//$("#collection_dskt").html('');
+//var html = ''
+//services_test = JSON.parse(localStorage.services_test)
+//for (var i = 0; i < services_test.length; ++i) {
+//    html += '<li class="collection-item avatar closeSwitchStore" style="" svid="' + services_test[i].id + '"><img src="' + services_test[i].bannerPath + '" alt="" class="circle"><div class="row">' + '<p class="collections-title">' + services_test[i].name + '</strong></p><p class="collections-content">...</p></div>' + '</li>';
+//    localStorage.setItem('soko-store-id-' + services_test[i].id, JSON.stringify(services[i]));
+//    localStorage.setItem('soko-active-store', services[0].id);
+////     initialisePush('soko-store-id-' + services[i].id);
+//}
+$("#collection_dskt").html('');
+
+screen.keepAwake = true;
+var stCb = getObjectStore('data', 'readwrite').get('soko-stores');
+stCb.onsuccess = function (event) {
+    try {
+        var svcs = event.target.result;
+        var services = JSON.parse(svcs);
+        localStorage.services_test = JSON.stringify(services)
+    } catch (err) {}
+    $("#collection_dskt").html('');
+    for (var i = 0; i < services.length; ++i) {
+        var html = ' <li style="cursor:pointer" class="collection-item avatar closeSwitchStore" style="" svid="' + services[i].id + '"><img src="' + services[i].bannerPath + '" alt="" class="circle"><div class="row">' + '<p class="collections-title">' + services[i].name + '</strong></p><p class="collections-content">...</p></div>' + '</li>';
+        $("#collection_dskt").append(html);
+        localStorage.setItem('soko-store-id-' + services[i].id, JSON.stringify(services[i]));
+        localStorage.setItem('soko-active-store', services[0].id);
+    }
+    var shroot = document.querySelectorAll(".closeSwitchStore");
+    for (var i = 0; i < shroot.length; ++i) {
+        shroot[i].addEventListener("click", doSwitchStore, false);
+    };
+    addStore();
+}
