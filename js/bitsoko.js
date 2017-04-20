@@ -1646,6 +1646,7 @@ $("#formValidate").submit(function (e) {
     var shroot = document.querySelectorAll(".addProduct");
     for (var i = 0; i < shroot.length; ++i) {
         shroot[i].addEventListener("touchstart", addProduct, false);
+        shroot[i].addEventListener("click", addProduct, false);
     };
 });
 var shroot = document.querySelectorAll(".removeProduct");
@@ -1821,6 +1822,7 @@ $('#makeCard').click(function () {
     var shroot = document.querySelectorAll(".doAddNewPromo");
     for (var i = 0; i < shroot.length; ++i) {
         shroot[i].addEventListener("touchstart", doNewPromo, false);
+        shroot[i].addEventListener("click", doNewPromo, false);
     };
 });
 
