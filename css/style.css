@@ -3066,4 +3066,10 @@ tr.group:hover {
     #firstProdModal {
         margin-left: 33% !important;
     }
+    .addNewStoreDsktInfo {
+        display: block !important;
+    }
+    .newStore {
+        display: none !important;
+    }
 }

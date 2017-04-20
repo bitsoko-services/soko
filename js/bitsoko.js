@@ -1632,6 +1632,7 @@ for (var i = 0; i < shroot.length; ++i) {
 var shroot = document.querySelectorAll(".doAddNewStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", doNewStore, false);
+    shroot[i].addEventListener("click", doNewStore, false);
 };
 var shroot = document.querySelectorAll(".doAddNewPromo");
 for (var i = 0; i < shroot.length; ++i) {
