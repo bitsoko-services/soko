@@ -1,6 +1,6 @@
 // SOKO Server-JavaScript Document
 try {
-    sokoVersion = 71;
+    sokoVersion = 72;
     sokoInstall = function (event) {}
     sokoNotificationClick = function (dat) {
         // 	      event.notification.close();
@@ -59,26 +59,26 @@ try {
         }
     }
     sokoMessage = function (dat) {
-            id = dat.mid ? dat.mid : randomString(20);
-            msDat = dat;
-            console.log(dat);
-            return new Promise(function (resolve, reject) {
-                switch (dat.req) {
-                    // This command returns a list of the URLs corresponding to the Request objects
-                    // that serve as keys for the current cache.
-                    // This command adds a new request/response pair to the cache.
-                    case 'anonyMode':
-                        data = dat;
-                        console.log(data);
-                        sokoNotification('Backed up Wallet', 'You can Download an offline copy of your wallet incase you loose your device, Click to download your private infomation', 'createBackup', 'soko/images/no.png', [{
-                            action: 'createBackup',
-                            title: "Back up"
+        id = dat.mid ? dat.mid : randomString(20);
+        msDat = dat;
+        console.log(dat);
+        return new Promise(function (resolve, reject) {
+            switch (dat.req) {
+                // This command returns a list of the URLs corresponding to the Request objects
+                // that serve as keys for the current cache.
+                // This command adds a new request/response pair to the cache.
+                case 'anonyMode':
+                    data = dat;
+                    console.log(data);
+                    sokoNotification('Backed up Wallet', 'You can Download an offline copy of your wallet incase you loose your device, Click to download your private infomation', 'createBackup', 'soko/images/no.png', [{
+                        action: 'createBackup',
+                        title: "Back up"
                         }], true, true);
-                        break;
-                }
-            });
-        }
-        //.............................................................................................
+                    break;
+            }
+        });
+    }
+    //.............................................................................................
     sokoPush = function (dat) {
         return new Promise(function (resolve, reject) {
             // sokoNotification('Incoming Transaction',dat.name+' has sent'+dat.amt,'tag','icon',[],true,true);
