@@ -1632,24 +1632,23 @@ for (var i = 0; i < shroot.length; ++i) {
 var shroot = document.querySelectorAll(".doAddNewStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", doNewStore, false);
-    shroot[i].addEventListener("click", doNewStore, false);
 };
-var shroot = document.querySelectorAll(".doAddNewPromo");
-for (var i = 0; i < shroot.length; ++i) {
-    shroot[i].addEventListener("touchstart", doNewPromo, false);
-};
+//var shroot = document.querySelectorAll(".doAddNewPromo");
+//for (var i = 0; i < shroot.length; ++i) {
+//    shroot[i].addEventListener("touchstart", doNewPromo, false);
+//};
 var shroot = document.querySelectorAll(".switchStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", switchStore, false);
 };
-$("#formValidate").submit(function (e) {
-    e.preventDefault();
-    var shroot = document.querySelectorAll(".addProduct");
-    for (var i = 0; i < shroot.length; ++i) {
-        shroot[i].addEventListener("touchstart", addProduct, false);
-        shroot[i].addEventListener("click", addProduct, false);
-    };
-});
+//$("#formValidate").submit(function (e) {
+//    e.preventDefault();
+//    var shroot = document.querySelectorAll(".addProduct");
+//    for (var i = 0; i < shroot.length; ++i) {
+//        shroot[i].addEventListener("touchstart", addProduct, false);
+//        shroot[i].addEventListener("click", addProduct, false);
+//    };
+//});
 var shroot = document.querySelectorAll(".removeProduct");
 for (var i = 0; i < shroot.length; ++i) {
     var id = $(this).attr('prid');
@@ -1820,35 +1819,106 @@ $('#makeCard').click(function () {
         var html = '<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '" checked="checked"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>';
         $(".promo-add-new-promotion2").append($.parseHTML(html));
     }
-    var shroot = document.querySelectorAll(".doAddNewPromo");
-    for (var i = 0; i < shroot.length; ++i) {
-        shroot[i].addEventListener("touchstart", doNewPromo, false);
-        shroot[i].addEventListener("click", doNewPromo, false);
-    };
+    $('.doAddNewPromo').click(function (e) {
+        //    var isValid = true;
+        promoName_ = $('#newPromo-name').val();
+        promoDescription_ = $('#newPromo-desc').val();
+        promoImage_ = $('#newPromo-image').val();
+        promoAmount_ = $('#newPromo-discount').val();
+        promoOffers_ = $('#newPromo-offers').val();
+        isValid = true;
+        if (promoName_ == '' || promoName_ == null) {
+            Materialize.toast('Ooops! Please enter promotion name', 3000);
+            $('#newPromo-name').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else if (promoDescription_ == '' || promoDescription_ == null) {
+            Materialize.toast('Ooops! Please enter promotion description', 3000);
+            $('#newPromo-desc').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else if (promoImage_ == '' || promoImage_ == null) {
+            Materialize.toast('Ooops! Please select an image', 3000);
+            $('#newPromo-image').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else if (promoAmount_ == '' || promoAmount_ == null) {
+            Materialize.toast('Ooops! Please enter promotion discount', 3000);
+            $('#newPromo-discount').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else {
+            var shroot = document.querySelectorAll(".doAddNewPromo");
+            for (var i = 0; i < shroot.length; ++i) {
+                shroot[i].addEventListener("touchstart", doNewPromo, false);
+            };
+            $(this).css({
+                "border": "",
+                "background": ""
+            });
+        }
+    });
+
+});
+
+
+//Products Form Validation
+$('#submitProdForm').click(function (e) {
+    //    var isValid = true;
+    name_ = $('#name').val();
+    description_ = $('#description').val();
+    image_ = $('#image').val();
+    amount_ = $('#amount').val();
+    prodCy_ = $('#prod-cy').val();
+    isValid = true;
+    if (name_ == '' || name_ == null) {
+        Materialize.toast('Ooops! Please enter product name', 3000);
+        $('#name').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else if (description_ == '' || description_ == null) {
+        Materialize.toast('Ooops! Please enter product description', 3000);
+        $('#description').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else if (image_ == '' || image_ == null) {
+        Materialize.toast('Ooops! Please select an image', 3000);
+        $('#image').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else if (amount_ == '' || amount_ == null) {
+        Materialize.toast('Ooops! Please enter amount', 3000);
+        $('#amount').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else if (prodCy_ == '' || prodCy_ == null) {
+        Materialize.toast('Ooops! Please enter quantity', 3000);
+        $('#prodCy').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else {
+        var shroot = document.querySelectorAll(".addProduct");
+        for (var i = 0; i < shroot.length; ++i) {
+            shroot[i].addEventListener("touchstart", addProduct, false);
+        };
+        $(this).css({
+            "border": "",
+            "background": ""
+        });
+    }
 });
 
 
 //switch store desktop version
-
-//$("#collection_dskt").html('');
-//var html = ''
-//services_test = JSON.parse(localStorage.services_test)
-//for (var i = 0; i < services_test.length; ++i) {
-//    html += '<li>'+ services_test[i].name +'</li>';
-////        localStorage.setItem('soko-store-id-' + services_test[i].id, JSON.stringify(services[i]));
-////    localStorage.setItem('soko-active-store', services[0].id);
-//}
-//$("#collection_dskt").append(html);
-
-//$("#collection_dskt").html('');
-//var html = ''
-//services_test = JSON.parse(localStorage.services_test)
-//for (var i = 0; i < services_test.length; ++i) {
-//    html += '<li class="collection-item avatar closeSwitchStore" style="" svid="' + services_test[i].id + '"><img src="' + services_test[i].bannerPath + '" alt="" class="circle"><div class="row">' + '<p class="collections-title">' + services_test[i].name + '</strong></p><p class="collections-content">...</p></div>' + '</li>';
-//    localStorage.setItem('soko-store-id-' + services_test[i].id, JSON.stringify(services[i]));
-//    localStorage.setItem('soko-active-store', services[0].id);
-////     initialisePush('soko-store-id-' + services[i].id);
-//}
 $("#collection_dskt").html('');
 
 screen.keepAwake = true;

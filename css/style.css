@@ -2962,6 +2962,14 @@ tr.group:hover {
     }
 }
 
+.btn-flat:active {
+    background-color: #25A397 !important;
+}
+
+.loadCard {
+    height: 60vh !important;
+}
+
 @media screen and (min-width: 993px) {
     .navbar-fixed {
         display: none;
