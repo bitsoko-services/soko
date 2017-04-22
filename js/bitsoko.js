@@ -478,7 +478,7 @@ function refreshSalesOrders() {
     }).catch(function (err) {
         orderUpdater();
     });
-	/*
+    /*
     doFetch({
         action: 'getSales',
         id: id
@@ -498,7 +498,7 @@ function addStore() {
     e = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
     updateMerch(e);
     id = e.id;
-	orderUpdater();
+    orderUpdater();
     productsUpdater();
     promoUpdater();
     beaconsUpdater();
@@ -536,8 +536,8 @@ function addStore() {
     }).then(function (e) {
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'bitsoko-merchant-requests-' + id);
     });
-	
-	refreshSalesOrders();
+
+    refreshSalesOrders();
     refreshBeacons();
     refreshProducts();
     refreshPromotions();
@@ -831,14 +831,14 @@ function searchCust(inp) {
 }
 
 function getActvStoreProds(orderid, orderItems) {
-    
+
     return new Promise(function (resolve, reject) {
-        
-        getObjectStore('data', 'readwrite').get("soko-store-" + localStorage.getItem('soko-active-store')+"-products").onsuccess = function (event) {
-            
+
+        getObjectStore('data', 'readwrite').get("soko-store-" + localStorage.getItem('soko-active-store') + "-products").onsuccess = function (event) {
+
             var p = {};
-		p.orderid=orderid;
-		p.orderItems=orderItems;
+            p.orderid = orderid;
+            p.orderItems = orderItems;
             p.allProds = $.parseJSON(event.target.result);
             resolve(p);
         }
@@ -862,9 +862,9 @@ function getActvStoreCust(promoid, promoSubs) {
 
 
 function addOrderItems(orderid, orderItems) {
-    
+
     getActvStoreProds(orderid, orderItems).then(function (p) {
-       // console.log(p.promoid, p.promoSubs, p.allCust);
+        // console.log(p.promoid, p.promoSubs, p.allCust);
         //promoid = p.promoid
         //var allCust = p.allCust;
         var p = p.allProds;
@@ -1074,7 +1074,7 @@ function productsUpdater() {
             reqs = []
         };
         $(".products-collapsible").html('');
-	     $(".allProdCount").html(reqs.length);
+        $(".allProdCount").html(reqs.length);
         if (reqs.length == 0) {
             var html = ' <li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-shopping-basket grey circle"></i><div class="row">' + '<p class="collections-title"><strong>No products found</strong></p><p class="collections-content">add a product to this store below</p></div>' + '</li>';
             $(".products-collapsible").append($.parseHTML(html));
@@ -1092,12 +1092,12 @@ function productsUpdater() {
             $("#promotions>.fixed-action-btn>a").attr('href', '#newPromoModal');
             $('#firstProdModal').modal('close');
         }
-       
+
         for (var i = 0; i < reqs.length; ++i) {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
             //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
-            var html = '<li prid="' + reqs[i].id + '" style="margin-bottom:10px; background: rgb(255, 255, 255);">' + '<div id="prodImg-holda-' + reqs[i].id + '" style="background-size: cover;background-repeat: no-repeat;background-position: center;background-image:url(' + reqs[i].imagePath + ');width: 90px;height: 86px;float: left;"></div><div class="collapsible-header" style="width: calc(100% - 90px);display:inline-block;">' + reqs[i].name + '<div class="divider"></div><span >' + '<i class="{{product.icon}}"></i>' + reqs[i].quantity + ' available</span></div><div class="collapsible-body"><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">sale information</div>' + '<form class="col s12" style="padding: 20px 30px;"><div class="row"><div class="input-field col s12">' + '<input id="prodName-' + reqs[i].id + '" prnm="name" type="text" class="validate" prid="' + reqs[i].id + '" value="' + reqs[i].name + '"><label for="prodName-' + reqs[i].id + '" class="">Name</label></div></div>' + '<div class="row"><div class="input-field col s12"><input prnm="description" placeholder="" value="' + reqs[i].description + '" id="prodDesc-' + reqs[i].id + '" type="text" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="description" class="">Description</label></div></div><div class="row">' + '<div class="file-field input-field"><div class="btn"><span>image</span><input id="prodImg-' + reqs[i].id + '" prid="' + reqs[i].id + '" prnm="image" type="file">' + '</div><div class="file-path-wrapper"><input class="file-path validate" type="text"></div></div>' + '<div class="input-field col s6"><input prnm="price" placeholder="" value="' + reqs[i].price + '" id="prodPrice-' + reqs[i].id + '" type="number" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="prodPrice-' + reqs[i].id + '" class="active">Price</label></div><div class="input-field col s6">' + '<div class="select-wrapper initialized"><span class="caret">▼</span><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">measurement</option>' + '<option value="1">per Kilogram</option>' + '<option value="2">per Piece</option>' + '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized"><span class="caret">▼</span>' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option>' + '</select></div></div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"> <a prid="' + reqs[i].id + '" class="removeProduct waves-effect waves-light btn">remove product</a> </div>' + '</form></div></li>';
+            var html = '<li prid="' + reqs[i].id + '" style="margin-bottom:10px; background: rgb(255, 255, 255);">' + '<div class="prodImgDskt" id="prodImg-holda-' + reqs[i].id + '" style="background-size: cover;background-repeat: no-repeat;background-position: center;background-image:url(' + reqs[i].imagePath + ');width: 90px;height: 86px;float: left;"></div><div class="collapsible-header" style="width: calc(100% - 90px);display:inline-block;border-bottom:none;">' + reqs[i].name + '<div class="divider"></div><span >' + '<i class="{{product.icon}}"></i>' + reqs[i].quantity + ' available<div class="divider"></div></span></div><div class="collapsible-body"><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">sale information</div>' + '<form class="col s12" style="padding: 20px 30px;"><div class="row"><div class="input-field col s12">' + '<input id="prodName-' + reqs[i].id + '" prnm="name" type="text" class="validate" prid="' + reqs[i].id + '" value="' + reqs[i].name + '"><label for="prodName-' + reqs[i].id + '" class="">Name</label></div></div>' + '<div class="row"><div class="input-field col s12"><input prnm="description" placeholder="" value="' + reqs[i].description + '" id="prodDesc-' + reqs[i].id + '" type="text" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="description" class="">Description</label></div></div><div class="row">' + '<div class="file-field input-field"><div class="btn"><span>image</span><input id="prodImg-' + reqs[i].id + '" prid="' + reqs[i].id + '" prnm="image" type="file">' + '</div><div class="file-path-wrapper"><input class="file-path validate" type="text"></div></div>' + '<div class="input-field col s6"><input prnm="price" placeholder="" value="' + reqs[i].price + '" id="prodPrice-' + reqs[i].id + '" type="number" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="prodPrice-' + reqs[i].id + '" class="active">Price</label></div><div class="input-field col s6">' + '<div class="select-wrapper initialized"><span class="caret">▼</span><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">measurement</option>' + '<option value="1">per Kilogram</option>' + '<option value="2">per Piece</option>' + '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized"><span class="caret">▼</span>' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option>' + '</select></div></div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"> <a prid="' + reqs[i].id + '" class="removeProduct waves-effect waves-light btn">remove product</a> </div>' + '</form></div></li>';
             $(".products-collapsible").append($.parseHTML(html));
         }
         $('.products-collapsible').collapsible();
@@ -1197,10 +1197,10 @@ function orderUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access orders list. ' + err);
-		
-             reqs = [];
+
+            reqs = [];
         }
-	    
+
         $(".allOrdersCount").html(reqs.length);
         $(".orders-holda").html('');
         //TO_DO MAKE SURE THERE EXISTS orders!!
@@ -1215,18 +1215,18 @@ function orderUpdater() {
         for (var i = 0; i < reqs.length; ++i) {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
-            var html = '<div id="order-card" class="card horizontal"><div class="card-image"><img src="' + reqs[i].icon + '"></div> <div class="card-stacked">'+
-        		'<div class="card-content"><div class="orders-' + reqs[i].id + '-items"></div> </div> <div class="card-action">'+
-         		'<a href="tel:' + reqs[i].phone + '">call</a><a href="#">bill</a><a href="#">cancel</a></div></div></div>';
-           // var html = '<div class="card"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + reqs[i].promoBanner + '" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="' + reqs[i].promoLogo + '" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<svg class="activator" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 26px;margin-left: 8px;margin-top: 7px;" xml:space="preserve"><g xmlns="http://www.w3.org/2000/svg"><path d="M438.931,30.403c-40.4-40.5-106.1-40.5-146.5,0l-268.6,268.5c-2.1,2.1-3.4,4.8-3.8,7.7l-19.9,147.4 c-0.6,4.2,0.9,8.4,3.8,11.3c2.5,2.5,6,4,9.5,4c0.6,0,1.2,0,1.8-0.1l88.8-12c7.4-1,12.6-7.8,11.6-15.2c-1-7.4-7.8-12.6-15.2-11.6 l-71.2,9.6l13.9-102.8l108.2,108.2c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l268.6-268.5c19.6-19.6,30.4-45.6,30.4-73.3 S458.531,49.903,438.931,30.403z M297.631,63.403l45.1,45.1l-245.1,245.1l-45.1-45.1L297.631,63.403z M160.931,416.803l-44.1-44.1 l245.1-245.1l44.1,44.1L160.931,416.803z M424.831,152.403l-107.9-107.9c13.7-11.3,30.8-17.5,48.8-17.5c20.5,0,39.7,8,54.2,22.4 s22.4,33.7,22.4,54.2C442.331,121.703,436.131,138.703,424.831,152.403z" fill="#FFFFFF"></path></g></svg></a><p>' + reqs[i].promoName + '</p><p>' + reqs[i].promoDesc + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + reqs[i].id + '-subscribers"></div>' + '</div><div class="card-reveal">' + '<form class="col s12"> <div class="row"> <div class="input-field col s12"> <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name" required> <label for="newPromo-name" class="">Name</label> </div></div><div class="row"> <div class="input-field col s12"> <input id="newPromo-desc" type="text" class="validate js-loc-button-notification-input" value="" stitm="msg" required> <label for="newPromo-desc" class="">Desc</label> </div></div><div class="row"> <div class="file-field input-field"> <div class="btn"><span>image</span> <input id="newPromo-image" type="file" stitm="customImage" required> </div></div></div><div class="row"> <div class="input-field col s6"> <input placeholder="" id="newPromo-discount" type="number" class="validate" min="0" max="90"> <label for="newPromo-discount" class="">% discount</label> </div><div class="input-field col s6"> <input placeholder="" id="newPromo-offers" type="number" class="validate" min="0"> <label for="newPromo-offers" class="">minimum buyers</label> </div></div><div class="row" style="height:200px;overflow:auto;"> <h6 style="text-align:center;">Add an item to this promotion</h6> <ul class="promo-add-new-promotion2"></ul> </div></form>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">remove promotion</a><br><a class="backBtnPromo waves-effect waves-light btn">back</a> </div>' + '</div></div>';
+            var html = '<div id="order-card" class="card horizontal"><div class="card-image"><img src="' + reqs[i].icon + '"></div> <div class="card-stacked">' +
+                '<div class="card-content"><div class="orders-' + reqs[i].id + '-items"></div> </div> <div class="card-action">' +
+                '<a href="tel:' + reqs[i].phone + '">call</a><a href="#">bill</a><a href="#">cancel</a></div></div></div>';
+            // var html = '<div class="card"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + reqs[i].promoBanner + '" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="' + reqs[i].promoLogo + '" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<svg class="activator" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 26px;margin-left: 8px;margin-top: 7px;" xml:space="preserve"><g xmlns="http://www.w3.org/2000/svg"><path d="M438.931,30.403c-40.4-40.5-106.1-40.5-146.5,0l-268.6,268.5c-2.1,2.1-3.4,4.8-3.8,7.7l-19.9,147.4 c-0.6,4.2,0.9,8.4,3.8,11.3c2.5,2.5,6,4,9.5,4c0.6,0,1.2,0,1.8-0.1l88.8-12c7.4-1,12.6-7.8,11.6-15.2c-1-7.4-7.8-12.6-15.2-11.6 l-71.2,9.6l13.9-102.8l108.2,108.2c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l268.6-268.5c19.6-19.6,30.4-45.6,30.4-73.3 S458.531,49.903,438.931,30.403z M297.631,63.403l45.1,45.1l-245.1,245.1l-45.1-45.1L297.631,63.403z M160.931,416.803l-44.1-44.1 l245.1-245.1l44.1,44.1L160.931,416.803z M424.831,152.403l-107.9-107.9c13.7-11.3,30.8-17.5,48.8-17.5c20.5,0,39.7,8,54.2,22.4 s22.4,33.7,22.4,54.2C442.331,121.703,436.131,138.703,424.831,152.403z" fill="#FFFFFF"></path></g></svg></a><p>' + reqs[i].promoName + '</p><p>' + reqs[i].promoDesc + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + reqs[i].id + '-subscribers"></div>' + '</div><div class="card-reveal">' + '<form class="col s12"> <div class="row"> <div class="input-field col s12"> <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name" required> <label for="newPromo-name" class="">Name</label> </div></div><div class="row"> <div class="input-field col s12"> <input id="newPromo-desc" type="text" class="validate js-loc-button-notification-input" value="" stitm="msg" required> <label for="newPromo-desc" class="">Desc</label> </div></div><div class="row"> <div class="file-field input-field"> <div class="btn"><span>image</span> <input id="newPromo-image" type="file" stitm="customImage" required> </div></div></div><div class="row"> <div class="input-field col s6"> <input placeholder="" id="newPromo-discount" type="number" class="validate" min="0" max="90"> <label for="newPromo-discount" class="">% discount</label> </div><div class="input-field col s6"> <input placeholder="" id="newPromo-offers" type="number" class="validate" min="0"> <label for="newPromo-offers" class="">minimum buyers</label> </div></div><div class="row" style="height:200px;overflow:auto;"> <h6 style="text-align:center;">Add an item to this promotion</h6> <ul class="promo-add-new-promotion2"></ul> </div></form>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">remove promotion</a><br><a class="backBtnPromo waves-effect waves-light btn">back</a> </div>' + '</div></div>';
             $(".orders-holda").prepend($.parseHTML(html));
-           // addOrderItems(reqs[i].id, reqs[i].items);
+            // addOrderItems(reqs[i].id, reqs[i].items);
         }
         //$('.products-collapsible').collapsible();
-       // $('select').material_select();
+        // $('select').material_select();
         //Materialize.updateTextFields();
         //initProdCallback();
-        
+
     }
 }
 
@@ -1238,10 +1238,10 @@ function promoUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access promotions list. ' + err);
-           	
-             reqs = [];
+
+            reqs = [];
         }
-	    
+
         $(".allPromosCount").html(reqs.length);
         $(".promotions-holda").html('');
         //TO_DO MAKE SURE THERE EXISTS PRODUCTS TO PROMOTE FIRST!!
@@ -1249,7 +1249,7 @@ function promoUpdater() {
             var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Promotions Found</span></li>';
             $(".promotions-holda").append($.parseHTML(html));
         }
-	    
+
         for (var i = 0; i < reqs.length; ++i) {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
@@ -2073,4 +2073,27 @@ stCb.onsuccess = function (event) {
         shroot[i].addEventListener("click", doSwitchStore, false);
     };
     addStore();
+}
+
+
+//products background gradient
+$(document).ready(function () {
+    // run test on initial page load
+    checkSize();
+
+    // run test on resize of the window
+    $(window).resize(checkSize);
+});
+
+//Function to the css rule
+function checkSize() {
+    if ($(".prodImgDskt").css("float") == "none") {
+        // your code here
+        $('.prodImgDskt').css({
+            "background-color": "red !important",
+            "width": "100% !important",
+            "height": "50% !important",
+            "background-size": "contain !important"
+        });
+    }
 }
