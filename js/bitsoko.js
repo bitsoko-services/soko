@@ -473,7 +473,7 @@ function refreshSalesOrders() {
         id: id
     }).then(function (e) {
         console.log(e);
-        getObjectStore('data', 'readwrite').put(JSON.stringify(e.promotions), 'soko-store-' + id + '-orders');
+        getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + id + '-orders');
         orderUpdater();
         orderCreator();
     }).catch(function (err) {
