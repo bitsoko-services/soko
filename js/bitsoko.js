@@ -475,10 +475,8 @@ function refreshSalesOrders() {
         console.log(e);
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + id + '-orders');
         orderUpdater();
-        orderCreator();
     }).catch(function (err) {
         orderUpdater();
-        orderCreator();
     });
 	/*
     doFetch({
