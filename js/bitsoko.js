@@ -498,7 +498,7 @@ function addStore() {
     e = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
     updateMerch(e);
     id = e.id;
-	ordersUpdater();
+	orderUpdater();
     productsUpdater();
     promoUpdater();
     beaconsUpdater();
