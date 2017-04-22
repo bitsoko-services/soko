@@ -197,6 +197,7 @@ function loadPOS() {
         try {
             var svcs = event.target.result;
             var services = JSON.parse(svcs);
+            localStorage.services_test = JSON.stringify(services)
         } catch (err) {
             $('#newStoreModal').modal({
                 dismissible: false
@@ -222,7 +223,7 @@ function loadPOS() {
             $("#switchStoreContent").append(html);
             localStorage.setItem('soko-store-id-' + services[i].id, JSON.stringify(services[i]));
             localStorage.setItem('soko-active-store', services[0].id);
-            initialisePush('soko-store-id-' + services[i].id);
+            // initialisePush('soko-store-id-' + services[i].id);
         }
         var shroot = document.querySelectorAll(".closeSwitchStore");
         for (var i = 0; i < shroot.length; ++i) {
@@ -231,13 +232,13 @@ function loadPOS() {
         addStore();
     }
     stCb.onerror = function (event) {
-            $('#newStoreModal').modal({
-                dismissible: false
-            });
-            $('#newStoreModal').modal('open');
-        }
-        //  appMaster.animateScript();
-        //setInterval(noteChecker,30000);
+        $('#newStoreModal').modal({
+            dismissible: false
+        });
+        $('#newStoreModal').modal('open');
+    }
+    //  appMaster.animateScript();
+    //setInterval(noteChecker,30000);
 }
 
 function Tobserver(changes) {
@@ -466,10 +467,41 @@ function refreshPromotions() {
     });
 }
 
+function refreshSalesOrders() {
+    doFetch({
+        action: 'getOrders',
+        id: id
+    }).then(function (e) {
+        console.log(e);
+        getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + id + '-orders');
+        orderUpdater();
+    }).catch(function (err) {
+        orderUpdater();
+    });
+	/*
+    doFetch({
+        action: 'getSales',
+        id: id
+    }).then(function (e) {
+        console.log(e);
+        getObjectStore('data', 'readwrite').put(JSON.stringify(e.promotions), 'soko-store-' + id + '-sales');
+        salesUpdater();
+        salesCreator();
+    }).catch(function (err) {
+        salesUpdater();
+        salesCreator();
+    });
+    */
+}
+
 function addStore() {
     e = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
     updateMerch(e);
     id = e.id;
+	orderUpdater();
+    productsUpdater();
+    promoUpdater();
+    beaconsUpdater();
     refreshCustomers();
     //refreshBills();
     doFetch({
@@ -504,6 +536,8 @@ function addStore() {
     }).then(function (e) {
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'bitsoko-merchant-requests-' + id);
     });
+	
+	refreshSalesOrders();
     refreshBeacons();
     refreshProducts();
     refreshPromotions();
@@ -796,6 +830,21 @@ function searchCust(inp) {
     };
 }
 
+function getActvStoreProds(orderid, orderItems) {
+    
+    return new Promise(function (resolve, reject) {
+        
+        getObjectStore('data', 'readwrite').get("soko-store-" + localStorage.getItem('soko-active-store')+"-products").onsuccess = function (event) {
+            
+            var p = {};
+		p.orderid=orderid;
+		p.orderItems=orderItems;
+            p.allProds = $.parseJSON(event.target.result);
+            resolve(p);
+        }
+    });
+}
+
 function getActvStoreCust(promoid, promoSubs) {
     console.log(promoid, promoSubs);
     return new Promise(function (resolve, reject) {
@@ -808,6 +857,32 @@ function getActvStoreCust(promoid, promoSubs) {
             p.allCust = $.parseJSON(event.target.result);
             resolve(p);
         }
+    });
+}
+
+
+function addOrderItems(orderid, orderItems) {
+    
+    getActvStoreProds(orderid, orderItems).then(function (p) {
+       // console.log(p.promoid, p.promoSubs, p.allCust);
+        //promoid = p.promoid
+        //var allCust = p.allCust;
+        var p = p.allProds;
+        var orderItems = p.orderItems;
+        var orderid = p.orderid;
+        for (var i = 0, orderItems = orderItems, orderid = orderid; i < p.length; ++i) {
+            for (var ii = 0, p = p, orderid = orderid; ii < orderItems.length; ++ii) {
+                var test = new RegExp(orderItems[ii].id).test(p[i].uid);
+                if (test) {
+                    console.log('Matched!! ' + p[i]);
+                    var html = '<div class="chip" style="margin:5px;"><img src="' + p[i].img + '" alt="">' + p[i].name.split(" ")[0] + '</div>';
+                    $(".order-" + orderid + "-items").append($.parseHTML(html));
+                    break;
+                } else {
+                    continue;
+                }
+            };
+        };
     });
 }
 
@@ -999,6 +1074,7 @@ function productsUpdater() {
             reqs = []
         };
         $(".products-collapsible").html('');
+	     $(".allProdCount").html(reqs.length);
         if (reqs.length == 0) {
             var html = ' <li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-shopping-basket grey circle"></i><div class="row">' + '<p class="collections-title"><strong>No products found</strong></p><p class="collections-content">add a product to this store below</p></div>' + '</li>';
             $(".products-collapsible").append($.parseHTML(html));
@@ -1016,7 +1092,7 @@ function productsUpdater() {
             $("#promotions>.fixed-action-btn>a").attr('href', '#newPromoModal');
             $('#firstProdModal').modal('close');
         }
-        $(".allProdCount").html(reqs.length);
+       
         for (var i = 0; i < reqs.length; ++i) {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
@@ -1065,12 +1141,11 @@ function billingUpdater() {
 function promoCreator() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
         try {
-            e = JSON.parse(event.target.result);
+            var e = JSON.parse(event.target.result);
         } catch (err) {
             console.log('unable to access products list. ' + err);
-            return;
+            var e = [];
         }
-        console.log(e);
         if (e.length == 0) {
             var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Product Found</span></li>';
             $(".promotions-holda").append($.parseHTML(html));
@@ -1115,6 +1190,47 @@ $("select.promo-add-ProdList").select2({
     }
 }
 
+function orderUpdater() {
+    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-orders').onsuccess = function (event) {
+        var reqs = event.target.result;
+        try {
+            reqs = JSON.parse(reqs);
+        } catch (err) {
+            console.log('unable to access orders list. ' + err);
+		
+             reqs = [];
+        }
+	    
+        $(".allOrdersCount").html(reqs.length);
+        $(".orders-holda").html('');
+        //TO_DO MAKE SURE THERE EXISTS orders!!
+        if (reqs.length == 0) {
+            var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Orders Found</span></li>';
+            $(".orders-holda").append($.parseHTML(html));
+        } else {
+            $(".orders-holda").html('');
+            var html = ' <li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem grey circle"></i><div class="row">' + '<p class="collections-title"><strong>Add Promotion</strong></p><p class="collections-content">you can add ' + (3 - reqs.length) + ' more promotions</p></div>' + '</li>';
+            $(".orders-holda").append(html);
+        }
+        for (var i = 0; i < reqs.length; ++i) {
+            //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
+            // var saleTime=moment(reqs[i].posted).fromNow();
+            var html = '<div id="order-card" class="card horizontal"><div class="card-image"><img src="' + reqs[i].promoBanner + '"></div> <div class="card-stacked">'+
+        		'<div class="card-content"><div class="orders-' + reqs[i].id + '-items"></div> </div> <div class="card-action">'+
+         		'<a href="#">call</a></div></div></div>';
+           // var html = '<div class="card"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + reqs[i].promoBanner + '" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="' + reqs[i].promoLogo + '" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<svg class="activator" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 26px;margin-left: 8px;margin-top: 7px;" xml:space="preserve"><g xmlns="http://www.w3.org/2000/svg"><path d="M438.931,30.403c-40.4-40.5-106.1-40.5-146.5,0l-268.6,268.5c-2.1,2.1-3.4,4.8-3.8,7.7l-19.9,147.4 c-0.6,4.2,0.9,8.4,3.8,11.3c2.5,2.5,6,4,9.5,4c0.6,0,1.2,0,1.8-0.1l88.8-12c7.4-1,12.6-7.8,11.6-15.2c-1-7.4-7.8-12.6-15.2-11.6 l-71.2,9.6l13.9-102.8l108.2,108.2c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l268.6-268.5c19.6-19.6,30.4-45.6,30.4-73.3 S458.531,49.903,438.931,30.403z M297.631,63.403l45.1,45.1l-245.1,245.1l-45.1-45.1L297.631,63.403z M160.931,416.803l-44.1-44.1 l245.1-245.1l44.1,44.1L160.931,416.803z M424.831,152.403l-107.9-107.9c13.7-11.3,30.8-17.5,48.8-17.5c20.5,0,39.7,8,54.2,22.4 s22.4,33.7,22.4,54.2C442.331,121.703,436.131,138.703,424.831,152.403z" fill="#FFFFFF"></path></g></svg></a><p>' + reqs[i].promoName + '</p><p>' + reqs[i].promoDesc + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + reqs[i].id + '-subscribers"></div>' + '</div><div class="card-reveal">' + '<form class="col s12"> <div class="row"> <div class="input-field col s12"> <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name" required> <label for="newPromo-name" class="">Name</label> </div></div><div class="row"> <div class="input-field col s12"> <input id="newPromo-desc" type="text" class="validate js-loc-button-notification-input" value="" stitm="msg" required> <label for="newPromo-desc" class="">Desc</label> </div></div><div class="row"> <div class="file-field input-field"> <div class="btn"><span>image</span> <input id="newPromo-image" type="file" stitm="customImage" required> </div></div></div><div class="row"> <div class="input-field col s6"> <input placeholder="" id="newPromo-discount" type="number" class="validate" min="0" max="90"> <label for="newPromo-discount" class="">% discount</label> </div><div class="input-field col s6"> <input placeholder="" id="newPromo-offers" type="number" class="validate" min="0"> <label for="newPromo-offers" class="">minimum buyers</label> </div></div><div class="row" style="height:200px;overflow:auto;"> <h6 style="text-align:center;">Add an item to this promotion</h6> <ul class="promo-add-new-promotion2"></ul> </div></form>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">remove promotion</a><br><a class="backBtnPromo waves-effect waves-light btn">back</a> </div>' + '</div></div>';
+            $(".orders-holda").prepend($.parseHTML(html));
+           // addOrderItems(reqs[i].id, reqs[i].items);
+        }
+        //$('.products-collapsible').collapsible();
+       // $('select').material_select();
+        //Materialize.updateTextFields();
+        //initProdCallback();
+        
+    }
+}
+
+
 function promoUpdater() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-promotions').onsuccess = function (event) {
         var reqs = event.target.result;
@@ -1122,19 +1238,18 @@ function promoUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access promotions list. ' + err);
-            refreshPromotions();
-            return;
+           	
+             reqs = [];
         }
+	    
+        $(".allPromosCount").html(reqs.length);
         $(".promotions-holda").html('');
         //TO_DO MAKE SURE THERE EXISTS PRODUCTS TO PROMOTE FIRST!!
         if (reqs.length == 0) {
             var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Promotions Found</span></li>';
             $(".promotions-holda").append($.parseHTML(html));
-        } else {
-            $(".promotions-holda").html('');
-            var html = ' <li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem grey circle"></i><div class="row">' + '<p class="collections-title"><strong>Add Promotion</strong></p><p class="collections-content">you can add ' + (3 - reqs.length) + ' more promotions</p></div>' + '</li>';
-            $(".promotions-holda").append(html);
         }
+	    
         for (var i = 0; i < reqs.length; ++i) {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
@@ -1629,21 +1744,22 @@ var shroot = document.querySelectorAll(".doAddNewStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", doNewStore, false);
 };
-var shroot = document.querySelectorAll(".doAddNewPromo");
-for (var i = 0; i < shroot.length; ++i) {
-    shroot[i].addEventListener("touchstart", doNewPromo, false);
-};
+//var shroot = document.querySelectorAll(".doAddNewPromo");
+//for (var i = 0; i < shroot.length; ++i) {
+//    shroot[i].addEventListener("touchstart", doNewPromo, false);
+//};
 var shroot = document.querySelectorAll(".switchStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", switchStore, false);
 };
-$("#formValidate").submit(function (e) {
-    e.preventDefault();
-    var shroot = document.querySelectorAll(".addProduct");
-    for (var i = 0; i < shroot.length; ++i) {
-        shroot[i].addEventListener("touchstart", addProduct, false);
-    };
-});
+//$("#formValidate").submit(function (e) {
+//    e.preventDefault();
+//    var shroot = document.querySelectorAll(".addProduct");
+//    for (var i = 0; i < shroot.length; ++i) {
+//        shroot[i].addEventListener("touchstart", addProduct, false);
+//        shroot[i].addEventListener("click", addProduct, false);
+//    };
+//});
 var shroot = document.querySelectorAll(".removeProduct");
 for (var i = 0; i < shroot.length; ++i) {
     var id = $(this).attr('prid');
@@ -1797,16 +1913,143 @@ $('#paymentsToggle').click(function () {
     }).then(function (e) {});
 });
 
+//Enable Loyalty
+$('#loyaltyToggle').click(function () {
+    var value = document.getElementById("loyaltyToggle").checked
+    doFetch({
+        action: 'toggleLayalty',
+        value: value
+    }).then(function (e) {});
+});
+
 //Empty Promo Card
 $('#makeCard').click(function () {
-    var structure = $('<div id="promo-card" class="card"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<svg class="activator" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 26px;margin-left: 8px;margin-top: 7px;" xml:space="preserve"><g xmlns="http://www.w3.org/2000/svg"><path d="M438.931,30.403c-40.4-40.5-106.1-40.5-146.5,0l-268.6,268.5c-2.1,2.1-3.4,4.8-3.8,7.7l-19.9,147.4 c-0.6,4.2,0.9,8.4,3.8,11.3c2.5,2.5,6,4,9.5,4c0.6,0,1.2,0,1.8-0.1l88.8-12c7.4-1,12.6-7.8,11.6-15.2c-1-7.4-7.8-12.6-15.2-11.6 l-71.2,9.6l13.9-102.8l108.2,108.2c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l268.6-268.5c19.6-19.6,30.4-45.6,30.4-73.3 S458.531,49.903,438.931,30.403z M297.631,63.403l45.1,45.1l-245.1,245.1l-45.1-45.1L297.631,63.403z M160.931,416.803l-44.1-44.1 l245.1-245.1l44.1,44.1L160.931,416.803z M424.831,152.403l-107.9-107.9c13.7-11.3,30.8-17.5,48.8-17.5c20.5,0,39.7,8,54.2,22.4 s22.4,33.7,22.4,54.2C442.331,121.703,436.131,138.703,424.831,152.403z" fill="#FFFFFF"></path></g></svg></a><p>' + '</p><p>' + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + '-subscribers"></div>' + '</div><div class="card-reveal" style="display:block !important;">' + '<form class="col s12"> <div class="row"> <div class="input-field col s12"> <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name" required> <label for="newPromo-name" class="">Name</label> </div></div><div class="row"> <div class="input-field col s12"> <input id="newPromo-desc" type="text" class="validate js-loc-button-notification-input" value="" stitm="msg" required> <label for="newPromo-desc" class="">Desc</label> </div></div><div class="row"> <div class="file-field input-field"> <div class="btn"><span>image</span> <input id="newPromo-image" type="file" stitm="customImage" required> </div></div></div><div class="row"> <div class="input-field col s6"> <input placeholder="" id="newPromo-discount" type="number" class="validate" min="0" max="90"> <label for="newPromo-discount" class="">% discount</label> </div><div class="input-field col s6"> <input placeholder="" id="newPromo-offers" type="number" class="validate" min="0"> <label for="newPromo-offers" class="">minimum buyers</label> </div></div><div class="row" style="height:200px;overflow:auto;"> <h6 style="text-align:center;">Add an item to this promotion</h6> <ul class="promo-add-new-promotion2"></ul> </div></form>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a href="#!" class="doAddNewPromo waves-effect waves-green btn-flat" style="background:#26A69A;color:white;margin-bottom:10px;">add promotion</a><br><a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">CANCLE</a><br></div>' + '</div></div>');
+    var structure = $('<div id="promo-card" class="card loadCard"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<svg class="activator" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 26px;margin-left: 8px;margin-top: 7px;" xml:space="preserve"><g xmlns="http://www.w3.org/2000/svg"><path d="M438.931,30.403c-40.4-40.5-106.1-40.5-146.5,0l-268.6,268.5c-2.1,2.1-3.4,4.8-3.8,7.7l-19.9,147.4 c-0.6,4.2,0.9,8.4,3.8,11.3c2.5,2.5,6,4,9.5,4c0.6,0,1.2,0,1.8-0.1l88.8-12c7.4-1,12.6-7.8,11.6-15.2c-1-7.4-7.8-12.6-15.2-11.6 l-71.2,9.6l13.9-102.8l108.2,108.2c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l268.6-268.5c19.6-19.6,30.4-45.6,30.4-73.3 S458.531,49.903,438.931,30.403z M297.631,63.403l45.1,45.1l-245.1,245.1l-45.1-45.1L297.631,63.403z M160.931,416.803l-44.1-44.1 l245.1-245.1l44.1,44.1L160.931,416.803z M424.831,152.403l-107.9-107.9c13.7-11.3,30.8-17.5,48.8-17.5c20.5,0,39.7,8,54.2,22.4 s22.4,33.7,22.4,54.2C442.331,121.703,436.131,138.703,424.831,152.403z" fill="#FFFFFF"></path></g></svg></a><p>' + '</p><p>' + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + '-subscribers"></div>' + '</div><div class="card-reveal revealOnLoad" style="">' + '<form class="col s12"> <div class="row"> <div class="input-field col s12"> <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name" required> <label for="newPromo-name" class="">Name</label> </div></div><div class="row"> <div class="input-field col s12"> <input id="newPromo-desc" type="text" class="validate js-loc-button-notification-input" value="" stitm="msg" required> <label for="newPromo-desc" class="">Desc</label> </div></div><div class="row"> <div class="file-field input-field"> <div class="btn"><span>image</span> <input id="newPromo-image" type="file" stitm="customImage" required> </div></div></div><div class="row"> <div class="input-field col s6"> <input placeholder="" id="newPromo-discount" type="number" class="validate" min="0" max="90"> <label for="newPromo-discount" class="">% discount</label> </div><div class="input-field col s6"> <input placeholder="" id="newPromo-offers" type="number" class="validate" min="0"> <label for="newPromo-offers" class="">minimum buyers</label> </div></div><div class="row" style="overflow:auto;"> <h6 style="text-align:center;">Add an item to this promotion</h6> <ul class="promo-add-new-promotion2"></ul> </div></form>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a href="#!" class="doAddNewPromo waves-effect waves-green btn-flat" style="background:#26A69A;color:white;margin-bottom:10px;">add promotion</a><br><a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">CANCEL</a><br></div>' + '</div></div>');
     $('.promotions-holda').prepend(structure);
     for (var i = 0; i < e.length; ++i) {
         var html = '<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '" checked="checked"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>';
         $(".promo-add-new-promotion2").append($.parseHTML(html));
     }
-    var shroot = document.querySelectorAll(".doAddNewPromo");
-    for (var i = 0; i < shroot.length; ++i) {
-        shroot[i].addEventListener("touchstart", doNewPromo, false);
-    };
+    $('.doAddNewPromo').click(function (e) {
+        //    var isValid = true;
+        promoName_ = $('#newPromo-name').val();
+        promoDescription_ = $('#newPromo-desc').val();
+        promoImage_ = $('#newPromo-image').val();
+        promoAmount_ = $('#newPromo-discount').val();
+        promoOffers_ = $('#newPromo-offers').val();
+        isValid = true;
+        if (promoName_ == '' || promoName_ == null) {
+            Materialize.toast('Ooops! Please enter promotion name', 3000);
+            $('#newPromo-name').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else if (promoDescription_ == '' || promoDescription_ == null) {
+            Materialize.toast('Ooops! Please enter promotion description', 3000);
+            $('#newPromo-desc').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else if (promoImage_ == '' || promoImage_ == null) {
+            Materialize.toast('Ooops! Please select an image', 3000);
+            $('#newPromo-image').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else if (promoAmount_ == '' || promoAmount_ == null) {
+            Materialize.toast('Ooops! Please enter promotion discount', 3000);
+            $('#newPromo-discount').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else {
+            var shroot = document.querySelectorAll(".doAddNewPromo");
+            for (var i = 0; i < shroot.length; ++i) {
+                shroot[i].addEventListener("touchstart", doNewPromo, false);
+            };
+            $(this).css({
+                "border": "",
+                "background": ""
+            });
+        }
+    });
+
 });
+
+
+//Products Form Validation
+$('#submitProdForm').click(function (e) {
+    //    var isValid = true;
+    name_ = $('#name').val();
+    description_ = $('#description').val();
+    image_ = $('#image').val();
+    amount_ = $('#amount').val();
+    prodCy_ = $('#prod-cy').val();
+    isValid = true;
+    if (name_ == '' || name_ == null) {
+        Materialize.toast('Ooops! Please enter product name', 3000);
+        $('#name').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else if (description_ == '' || description_ == null) {
+        Materialize.toast('Ooops! Please enter product description', 3000);
+        $('#description').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else if (image_ == '' || image_ == null) {
+        Materialize.toast('Ooops! Please select an image', 3000);
+        $('#image').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else if (amount_ == '' || amount_ == null) {
+        Materialize.toast('Ooops! Please enter amount', 3000);
+        $('#amount').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else if (prodCy_ == '' || prodCy_ == null) {
+        Materialize.toast('Ooops! Please enter quantity', 3000);
+        $('#prodCy').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else {
+        var shroot = document.querySelectorAll(".addProduct");
+        for (var i = 0; i < shroot.length; ++i) {
+            shroot[i].addEventListener("touchstart", addProduct, false);
+        };
+        $(this).css({
+            "border": "",
+            "background": ""
+        });
+    }
+});
+
+
+//switch store desktop version
+$("#collection_dskt").html('');
+
+screen.keepAwake = true;
+var stCb = getObjectStore('data', 'readwrite').get('soko-stores');
+stCb.onsuccess = function (event) {
+    try {
+        var svcs = event.target.result;
+        var services = JSON.parse(svcs);
+        localStorage.services_test = JSON.stringify(services)
+    } catch (err) {}
+    $("#collection_dskt").html('');
+    for (var i = 0; i < services.length; ++i) {
+        var html = ' <li style="cursor:pointer" class="collection-item avatar closeSwitchStore" style="" svid="' + services[i].id + '"><img src="' + services[i].bannerPath + '" alt="" class="circle"><div class="row">' + '<p class="collections-title">' + services[i].name + '</strong></p><p class="collections-content">...</p></div>' + '</li>';
+        $("#collection_dskt").append(html);
+        localStorage.setItem('soko-store-id-' + services[i].id, JSON.stringify(services[i]));
+        localStorage.setItem('soko-active-store', services[0].id);
+    }
+    var shroot = document.querySelectorAll(".closeSwitchStore");
+    for (var i = 0; i < shroot.length; ++i) {
+        shroot[i].addEventListener("click", doSwitchStore, false);
+    };
+    addStore();
+}
