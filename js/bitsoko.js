@@ -831,7 +831,7 @@ function getActvStoreProds() {
     
     return new Promise(function (resolve, reject) {
         
-        getObjectStore('data', 'readwrite').get("soko-store-products-" + localStorage.getItem('soko-active-store')).onsuccess = function (event) {
+        getObjectStore('data', 'readwrite').get("soko-store-" + localStorage.getItem('soko-active-store')+"-products").onsuccess = function (event) {
             
             //var p = {};
             //p.allProds = ;
