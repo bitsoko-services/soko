@@ -1074,6 +1074,7 @@ function productsUpdater() {
             reqs = []
         };
         $(".products-collapsible").html('');
+	     $(".allProdCount").html(reqs.length);
         if (reqs.length == 0) {
             var html = ' <li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-shopping-basket grey circle"></i><div class="row">' + '<p class="collections-title"><strong>No products found</strong></p><p class="collections-content">add a product to this store below</p></div>' + '</li>';
             $(".products-collapsible").append($.parseHTML(html));
@@ -1091,7 +1092,7 @@ function productsUpdater() {
             $("#promotions>.fixed-action-btn>a").attr('href', '#newPromoModal');
             $('#firstProdModal').modal('close');
         }
-        $(".allProdCount").html(reqs.length);
+       
         for (var i = 0; i < reqs.length; ++i) {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
@@ -1143,9 +1144,9 @@ function promoCreator() {
             e = JSON.parse(event.target.result);
         } catch (err) {
             console.log('unable to access products list. ' + err);
-            return;
+            e = [];
         }
-        console.log(e);
+        $(".allPromosCount").html(reqs.length);
         if (e.length == 0) {
             var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Product Found</span></li>';
             $(".promotions-holda").append($.parseHTML(html));
@@ -1196,10 +1197,11 @@ function orderUpdater() {
         try {
             reqs = JSON.parse(reqs);
         } catch (err) {
-            console.log('unable to access promotions list. ' + err);
-            refreshSalesOrders();
-            return;
+            console.log('unable to access orders list. ' + err);
+             e = [];
         }
+	    
+        $(".allOrdersCount").html(reqs.length);
         $(".orders-holda").html('');
         //TO_DO MAKE SURE THERE EXISTS orders!!
         if (reqs.length == 0) {
