@@ -1141,12 +1141,11 @@ function billingUpdater() {
 function promoCreator() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
         try {
-            e = JSON.parse(event.target.result);
+            var e = JSON.parse(event.target.result);
         } catch (err) {
             console.log('unable to access products list. ' + err);
-            e = [];
+            var e = [];
         }
-        $(".allPromosCount").html(reqs.length);
         if (e.length == 0) {
             var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Product Found</span></li>';
             $(".promotions-holda").append($.parseHTML(html));
@@ -1198,7 +1197,8 @@ function orderUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access orders list. ' + err);
-             e = [];
+		
+             reqs = [];
         }
 	    
         $(".allOrdersCount").html(reqs.length);
@@ -1238,22 +1238,18 @@ function promoUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access promotions list. ' + err);
-           
-            var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Promotions Found</span></li>';
-            $(".promotions-holda").append($.parseHTML(html));
-		
-            return;
+           	
+             reqs = [];
         }
+	    
+        $(".allPromosCount").html(reqs.length);
         $(".promotions-holda").html('');
         //TO_DO MAKE SURE THERE EXISTS PRODUCTS TO PROMOTE FIRST!!
         if (reqs.length == 0) {
             var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Promotions Found</span></li>';
             $(".promotions-holda").append($.parseHTML(html));
-        } else {
-            $(".promotions-holda").html('');
-            var html = ' <li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem grey circle"></i><div class="row">' + '<p class="collections-title"><strong>Add Promotion</strong></p><p class="collections-content">you can add ' + (3 - reqs.length) + ' more promotions</p></div>' + '</li>';
-            $(".promotions-holda").append(html);
         }
+	    
         for (var i = 0; i < reqs.length; ++i) {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
