@@ -1231,7 +1231,10 @@ function promoUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access promotions list. ' + err);
-            refreshPromotions();
+           
+            var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Promotions Found</span></li>';
+            $(".promotions-holda").append($.parseHTML(html));
+		
             return;
         }
         $(".promotions-holda").html('');
