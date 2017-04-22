@@ -1786,15 +1786,36 @@ $('.collection-item.avatar').on('touchend', function (e) {
 
 //Enable Deliveries
 $('#deliveriesToggle').click(function () {
-    var value = document.getElementById("deliveriesToggle").checked
-    doFetch({
-        action: 'toggleDeliveries',
-        value: value
-    }).then(function (e) {});
+    $('#deliveriesToggle').sideNav('hide');
+    $('#confirmContact').modal('open');
+    $('#confirmContact').modal({
+        dismissible: false,
+    });
+    var isValid = true;
+    $('#submitPhoneNo').click(function () {
+        phoneNo_ = $('#phoneNumber').val();
+        if (phoneNo_ == '' || phoneNo_ == null) {
+            Materialize.toast('Ooops! Please enter phone number', 3000);
+            $('#phoneNumber').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else {
+            var value = document.getElementById("deliveriesToggle").checked
+            doFetch({
+                action: 'toggleDeliveries',
+                value: value
+            }).then(function (e) {});
+        }
+    });
+    if (isValid == false)
+        e.preventDefault();
 });
 
 //Enable Payments
 $('#paymentsToggle').click(function () {
+    $('#deliveriesToggle').sideNav('hide');
+    $('#confirmContact').modal('open');
     var value = document.getElementById("paymentsToggle").checked
     doFetch({
         action: 'togglePayments',

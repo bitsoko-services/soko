@@ -3125,4 +3125,7 @@ tr.group:hover {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
         background-color: rgba(204, 204, 204, 0.67);
     }
+    .card {
+        height: 50vh !important;
+    }
 }
