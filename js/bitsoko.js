@@ -1145,10 +1145,10 @@ function billingUpdater() {
 function promoCreator() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
         try {
-            var e = JSON.parse(event.target.result);
+            e = JSON.parse(event.target.result);
         } catch (err) {
             console.log('unable to access products list. ' + err);
-            var e = [];
+            return;
         }
         if (e.length == 0) {
             var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Product Found</span></li>';
@@ -1902,7 +1902,8 @@ $('.collection-item.avatar').on('touchend', function (e) {
 });
 
 //Enable Deliveries
-$('#deliveriesToggle').click(function () {
+$('#deliveriesToggle').click(function (e) {
+    e.preventDefault();
     $('#deliveriesToggle').sideNav('hide');
     $('#confirmContact').modal('open');
     $('#confirmContact').modal({
@@ -1918,11 +1919,13 @@ $('#deliveriesToggle').click(function () {
                 "background": ""
             });
         } else {
+
             var value = document.getElementById("deliveriesToggle").checked
             doFetch({
                 action: 'toggleDeliveries',
                 value: value
             }).then(function (e) {});
+            $('#deliveriesToggle').prop('checked', true);
         }
     });
     if (isValid == false)
