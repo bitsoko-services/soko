@@ -872,7 +872,8 @@ function addOrderItems(orderid, orderItems) {
         //promoid = p.promoid
         //var allCust = p.allCust;
         var p = p.allProds;
-        var orderItems = JSON.parse(JSON.stringify(p.orderItems));
+        var orderItems = p.orderItems;
+        orderItems = $.parseJSON(orderItems);
         var orderid = p.orderid;
         for (var i = 0, orderItems = orderItems, orderid = orderid; i < p.length; ++i) {
             for (var ii = 0, p = p, orderid = orderid; ii < orderItems.length; ++ii) {
