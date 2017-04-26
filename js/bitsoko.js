@@ -878,7 +878,7 @@ function addOrderItems(orderid, orderItems) {
                 if (test) {
                     //console.log('Matched!! ' + p[i]);
 			if(parseInt(orderItems[ii].count)>1){var sss='s';}else{var sss='';}
-                    var html = '<div class="chip" style="margin:5px;"><img src="' + p[i].imagePath + '" alt="">' + orderItems[ii].count + '' + p[i].name.split(" ")[0] + sss'</div>';
+                    var html = '<div class="chip" style="margin:5px;"><img src="' + p[i].imagePath + '" alt="">' + orderItems[ii].count + '' + p[i].name.split(" ")[0] + '' + sss+'</div>';
                     $(".orders-" + orderid + "-items").append($.parseHTML(html));
                     break;
                 } else {
