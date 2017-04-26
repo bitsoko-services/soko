@@ -1918,6 +1918,7 @@ $('#deliveriesToggle').click(function (e) {
             });
         } else {
             $('#deliveriesToggle').prop('checked', true);
+            Materialize.toast('Phone Number Verified', 3000);
             var value = document.getElementById("deliveriesToggle").checked
             var phone_number = $('#inp-phone').val()
             doFetch({
@@ -1946,6 +1947,7 @@ $('#paymentsToggle').click(function (e) {
             });
         } else {
             $('#paymentsToggle').prop('checked', true);
+            Materialize.toast('Phone Number Verified', 3000);
             var value = document.getElementById("paymentsToggle").checked
             var phone_number = $('#inp-phone').val()
             doFetch({
