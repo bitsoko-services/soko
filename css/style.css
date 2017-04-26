@@ -2759,6 +2759,10 @@ tr.group:hover {
     color: #dd5;
 }
 
+#mobileVerification {
+    z-index: 999 !important;
+}
+
 
 /*----------------------------------------
     footer charts
