@@ -868,7 +868,7 @@ function getActvStoreCust(promoid, promoSubs) {
 function addOrderItems(orderid, orderItems) {
 
     getActvStoreProds(orderid, orderItems).then(function (p) {
-        // console.log(p.promoid, p.promoSubs, p.allCust);
+         console.log(p.allProds, p.orderid, p.orderItems);
         //promoid = p.promoid
         //var allCust = p.allCust;
         var p = p.allProds;
