@@ -878,7 +878,7 @@ function addOrderItems(orderid, orderItems) {
                 if (test) {
                     console.log('Matched!! ' + p[i]);
                     var html = '<div class="chip" style="margin:5px;"><img src="' + p[i].img + '" alt="">' + p[i].name.split(" ")[0] + '</div>';
-                    $(".order-" + orderid + "-items").append($.parseHTML(html));
+                    $(".orders-" + orderid + "-items").append($.parseHTML(html));
                     break;
                 } else {
                     continue;
