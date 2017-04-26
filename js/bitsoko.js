@@ -868,13 +868,10 @@ function getActvStoreCust(promoid, promoSubs) {
 function addOrderItems(orderid, orderItems) {
 
     getActvStoreProds(orderid, orderItems).then(function (p) {
-         console.log(p.allProds, p.orderid, p.orderItems);
-        //promoid = p.promoid
-        //var allCust = p.allCust;
-        var p = p.allProds;
-        var orderItems = p.orderItems;
-        orderItems = $.parseJSON(orderItems);
+         
+        var orderItems = $.parseJSON(p.orderItems);
         var orderid = p.orderid;
+	    var p = p.allProds;
         for (var i = 0, orderItems = orderItems, orderid = orderid; i < p.length; ++i) {
             for (var ii = 0, p = p, orderid = orderid; ii < orderItems.length; ++ii) {
                 var test = new RegExp(orderItems[ii].id).test(p[i].uid);
