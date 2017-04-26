@@ -874,7 +874,7 @@ function addOrderItems(orderid, orderItems) {
 	    var p = p.allProds;
         for (var i = 0, orderItems = orderItems, orderid = orderid; i < p.length; ++i) {
             for (var ii = 0, p = p, orderid = orderid; ii < orderItems.length; ++ii) {
-                var test = new RegExp(orderItems[ii].id).test(p[i].uid);
+                var test = new RegExp(orderItems[ii].pid).test(p[i].id);
                 if (test) {
                     //console.log('Matched!! ' + p[i]);
                     var html = '<div class="chip" style="margin:5px;"><img src="' + p[i].imagePath + '" alt="">' + p[i].name.split(" ")[0] + '</div>';
