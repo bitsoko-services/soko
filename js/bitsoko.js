@@ -876,8 +876,8 @@ function addOrderItems(orderid, orderItems) {
             for (var ii = 0, p = p, orderid = orderid; ii < orderItems.length; ++ii) {
                 var test = new RegExp(orderItems[ii].id).test(p[i].uid);
                 if (test) {
-                    console.log('Matched!! ' + p[i]);
-                    var html = '<div class="chip" style="margin:5px;"><img src="' + p[i].img + '" alt="">' + p[i].name.split(" ")[0] + '</div>';
+                    //console.log('Matched!! ' + p[i]);
+                    var html = '<div class="chip" style="margin:5px;"><img src="' + p[i].imagePath + '" alt="">' + p[i].name.split(" ")[0] + '</div>';
                     $(".orders-" + orderid + "-items").append($.parseHTML(html));
                     break;
                 } else {
@@ -889,10 +889,10 @@ function addOrderItems(orderid, orderItems) {
 }
 
 function addPromoSubscribers(promoid, promoSubs) {
-    console.log(promoid, promoSubs);
+    //console.log(promoid, promoSubs);
     promoSubs = promoSubs;
     getActvStoreCust(promoid, promoSubs).then(function (p) {
-        console.log(p.promoid, p.promoSubs, p.allCust);
+      //  console.log(p.promoid, p.promoSubs, p.allCust);
         promoid = p.promoid
         var allCust = p.allCust;
         var subs = p.promoSubs;
