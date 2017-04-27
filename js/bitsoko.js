@@ -872,8 +872,9 @@ function addOrderItems(orderid, orderItems) {
         var orderItems = $.parseJSON(p.orderItems);
         var orderid = p.orderid;
         var p = p.allProds;
-        for (var i = 0, orderItems = orderItems, orderid = orderid; i < p.length; ++i) {
-            for (var ii = 0, p = p, orderid = orderid; ii < orderItems.length; ++ii) {
+	    tCost=0;
+        for (var i = 0, orderItems = orderItems,tCost=tCost, orderid = orderid; i < p.length; ++i) {
+            for (var ii = 0, p = p, orderid = orderid,tCost=tCost; ii < orderItems.length; ++ii) {
                 var test = new RegExp(orderItems[ii].pid).test(p[i].id);
                 if (test) {
                     //console.log('Matched!! ' + p[i]);
@@ -884,12 +885,16 @@ function addOrderItems(orderid, orderItems) {
                     }
                     var html = '<div class="chip" style="margin:5px;"><img src="' + p[i].imagePath + '" alt="">' + orderItems[ii].count + ' ' + p[i].name.split(" ")[0] + '' + sss + '</div>';
                     $(".orders-" + orderid + "-items").append($.parseHTML(html));
+			tCost=tCost+(p[i].price*parseInt(orderItems[ii].count));
                     break;
                 } else {
                     continue;
                 }
             };
         };
+	    $(".orders-" + orderid + "-cost").append(tCost);
+	  
+	    
     });
 }
 
@@ -1223,7 +1228,8 @@ function orderUpdater() {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
             var html = '<div id="order-card" class="card horizontal"><div class="card-image"><img src="' + reqs[i].icon + '">'+
-		'<div class="">New Order</div>' +
+		'<div >New Order</div>' +
+	    	 '<div ><span class="orders-' + reqs[i].id + '-cost"></span>/= </div>' +
 	    	 ' <div class="card-action"><a href="tel:' + reqs[i].phone + '">call</a><a href="#">bill</a></div>' +
                 ' <div class="card-action"><a href="#">cancel</a><a href="#">complete</a></div>' +
                 '</div> <div class="card-stacked">' +
