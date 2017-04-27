@@ -877,8 +877,12 @@ function addOrderItems(orderid, orderItems) {
                 var test = new RegExp(orderItems[ii].pid).test(p[i].id);
                 if (test) {
                     //console.log('Matched!! ' + p[i]);
-			if(parseInt(orderItems[ii].count)>1){var sss='s';}else{var sss='';}
-                    var html = '<div class="chip" style="margin:5px;"><img src="' + p[i].imagePath + '" alt="">' + orderItems[ii].count + ' ' + p[i].name.split(" ")[0] + '' + sss+'</div>';
+                    if (parseInt(orderItems[ii].count) > 1) {
+                        var sss = 's';
+                    } else {
+                        var sss = '';
+                    }
+                    var html = '<div class="chip" style="margin:5px;"><img src="' + p[i].imagePath + '" alt="">' + orderItems[ii].count + ' ' + p[i].name.split(" ")[0] + '' + sss + '</div>';
                     $(".orders-" + orderid + "-items").append($.parseHTML(html));
                     break;
                 } else {
@@ -1901,62 +1905,80 @@ $('.collection-item.avatar').on('touchend', function (e) {
 });
 
 //Enable Deliveries
-$('#deliveriesToggle').click(function (e) {
-    e.preventDefault();
+
+//$('#deliveriesToggle').click(function (e) {
+//    e.preventDefault();
+//    $('#deliveriesToggle').sideNav('hide');
+//    $('#MobileModal').modal('open');
+//    //    $('#mobileVerification').modal({
+//    //        dismissible: false,
+//    //    });
+//    var isValid = true;
+//    $('#submitPhoneNo').click(function () {
+//        phoneNo_ = $('#inp-phone').val();
+//        if (phoneNo_ == '' || phoneNo_ == null) {
+//            Materialize.toast('Ooops! Please enter phone number', 3000);
+//            $('#phoneNumber').css({
+//                "border-bottom": "1px solid red",
+//                "background": ""
+//            });
+//        } else {
+//            $('#deliveriesToggle').prop('checked', true);
+//            Materialize.toast('Phone Number Verified', 3000);
+//            var value = document.getElementById("deliveriesToggle").checked
+//            var phone_number = $('#inp-phone').val()
+//            doFetch({
+//                toggleDeliveries: value,
+//            }).then(function (e) {});
+//        }
+//    });
+//});
+$('#deliveriesToggle').click(function () {
+    $('#MobileModal').modal('open');
     $('#deliveriesToggle').sideNav('hide');
-    $('#mobileVerification').modal('open');
-    //    $('#mobileVerification').modal({
-    //        dismissible: false,
-    //    });
-    var isValid = true;
-    $('#submitPhoneNo').click(function () {
-        phoneNo_ = $('#inp-phone').val();
-        if (phoneNo_ == '' || phoneNo_ == null) {
-            Materialize.toast('Ooops! Please enter phone number', 3000);
-            $('#phoneNumber').css({
-                "border-bottom": "1px solid red",
-                "background": ""
-            });
-        } else {
-            $('#deliveriesToggle').prop('checked', true);
-            Materialize.toast('Phone Number Verified', 3000);
-            var value = document.getElementById("deliveriesToggle").checked
-            var phone_number = $('#inp-phone').val()
-            doFetch({
-                toggleDeliveries: value,
-                phoneNumber: phone_number
-            }).then(function (e) {});
-        }
-    });
+    var value = document.getElementById("deliveriesToggle").checked
+    doFetch({
+        action: 'toggleDeliveries',
+        value: value
+    }).then(function (e) {});
 });
 //Enable Payments
-$('#paymentsToggle').click(function (e) {
-    e.preventDefault();
+
+//$('#paymentsToggle').click(function (e) {
+//    e.preventDefault();
+//    $('#paymentsToggle').sideNav('hide');
+//    $('#MobileModal').modal('open');
+//    //    $('#mobileVerification').modal({
+//    //        dismissible: false,
+//    //    });
+//    var isValid = true;
+//    $('#submitPhoneNo').click(function () {
+//        phoneNo_ = $('#inp-phone').val();
+//        if (phoneNo_ == '' || phoneNo_ == null) {
+//            Materialize.toast('Ooops! Please enter phone number', 3000);
+//            $('#phoneNumber').css({
+//                "border-bottom": "1px solid red",
+//                "background": ""
+//            });
+//        } else {
+//            $('#paymentsToggle').prop('checked', true);
+//            Materialize.toast('Phone Number Verified', 3000);
+//            var value = document.getElementById("paymentsToggle").checked
+//            var phone_number = $('#inp-phone').val()
+//            doFetch({
+//                togglePayments: value,
+//            }).then(function (e) {});
+//        }
+//    });
+//});
+$('#paymentsToggle').click(function () {
+    $('#MobileModal').modal('open');
     $('#paymentsToggle').sideNav('hide');
-    $('#mobileVerification').modal('open');
-    //    $('#mobileVerification').modal({
-    //        dismissible: false,
-    //    });
-    var isValid = true;
-    $('#submitPhoneNo').click(function () {
-        phoneNo_ = $('#inp-phone').val();
-        if (phoneNo_ == '' || phoneNo_ == null) {
-            Materialize.toast('Ooops! Please enter phone number', 3000);
-            $('#phoneNumber').css({
-                "border-bottom": "1px solid red",
-                "background": ""
-            });
-        } else {
-            $('#paymentsToggle').prop('checked', true);
-            Materialize.toast('Phone Number Verified', 3000);
-            var value = document.getElementById("paymentsToggle").checked
-            var phone_number = $('#inp-phone').val()
-            doFetch({
-                togglePayments: value,
-                phoneNumber: phone_number
-            }).then(function (e) {});
-        }
-    });
+    var value = document.getElementById("paymentsToggle").checked
+    doFetch({
+        action: 'togglePayments',
+        value: value
+    }).then(function (e) {});
 });
 
 //Enable Loyalty
@@ -2104,15 +2126,6 @@ stCb.onsuccess = function (event) {
     addStore();
 }
 
-
-//products background gradient
-$(document).ready(function () {
-    // run test on initial page load
-    checkSize();
-
-    // run test on resize of the window
-    $(window).resize(checkSize);
-});
 
 //Default Store Theme Color
 (function ($, window, document, undefined) {
