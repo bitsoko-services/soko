@@ -31,7 +31,7 @@ function addMobiVeri() {
 
         '</div>' +
         ' <div class="modal-footer blue-grey lighten-5">' +
-        ' <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>' +
+        ' <a id="submitPhoneNo" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Verify</a>' +
         '</div>');
 
     var forEach = function (array, callback, scope) {
