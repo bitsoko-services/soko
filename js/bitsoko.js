@@ -1230,7 +1230,7 @@ function orderUpdater() {
             var html = '<div id="order-card" class="card horizontal"><div class="card-image"><img src="' + reqs[i].icon + '">' +
                 '<div >New Order</div>' +
                 '<div ><span class="orders-' + reqs[i].id + '-cost"></span>/= </div>' +
-                ' <div class="card-action"><a href="tel:' + reqs[i].phone + '">call</a><a href="#">bill</a></div>' +
+                ' <div class="card-action"><a href="tel:' + reqs[i].phone + '">call</a><a onclick="javascript:orderFromHTML();" href="#">bill</a></div>' +
                 ' <div class="card-action"><a href="#">cancel</a><a href="#">complete</a></div>' +
                 '</div> <div class="card-stacked">' +
                 '<div class="card-content"><div class="">order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' +
@@ -1928,7 +1928,10 @@ $('#deliveriesToggle').click(function (e) {
     var isValid = true;
     $('#submitPhoneNo').click(function () {
         phoneNo_ = $('#inp-phone').val();
-        if (phoneNo_ == '' || phoneNo_ == null) {
+        if (phoneNo_ == '' || phoneNo_ == null && e.status == "ok") {
+            $('#MobileModal').modal({
+                dismissible: false,
+            });
             Materialize.toast('Ooops! Please enter phone number', 3000);
             $('#phoneNumber').css({
                 "border-bottom": "1px solid red",
@@ -2225,7 +2228,6 @@ stCb.onsuccess = function (event) {
 
 })(jQuery, window, document);
 
-
 //Input Initiallization
 function userNamesInput() {
     var fetchedData = doFetch({
@@ -2240,3 +2242,32 @@ function userNamesInput() {
     });
 }
 userNamesInput();
+
+
+
+//PDF Converter 
+function orderFromHTML() {
+    var pdf = new jsPDF('p', 'pt', 'letter');
+    source = $('#order-card')[0];
+    specialElementHandlers = {
+        '#bypassme': function (element, renderer) {
+            return true
+        }
+    };
+    margins = {
+        top: 80,
+        bottom: 60,
+        left: 40,
+        width: 522
+    };
+    pdf.fromHTML(
+        source,
+        margins.left,
+        margins.top, {
+            'width': margins.width,
+            'elementHandlers': specialElementHandlers
+        },
+        function (dispose) {
+            pdf.save('order-bill.pdf');
+        }, margins);
+}
