@@ -91,5 +91,5 @@ function changedConfCode(t) {
     });
 }
 addMobiVeri();
-changedPhnNum(t);
-changedConfCode(t);
+//changedPhnNum();
+//changedConfCode();

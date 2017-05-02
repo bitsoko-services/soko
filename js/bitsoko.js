@@ -869,14 +869,25 @@ function addOrderItems(orderid, orderItems) {
 
     getActvStoreProds(orderid, orderItems).then(function (p) {
 
-        var orderItems = $.parseJSON(p.orderItems);
+        var orderItems = $.parseJSON(p.orderItems.items);
+        var orderUser = {
+            name: p.orderItems.name,
+            icon: p.orderItems.icon,
+            number: p.orderItems.phone
+        };
         var orderid = p.orderid;
         var p = p.allProds;
         tCost = 0;
-        for (var i = 0, orderItems = orderItems, tCost = tCost, orderid = orderid; i < p.length; ++i) {
-            for (var ii = 0, p = p, orderid = orderid, tCost = tCost; ii < orderItems.length; ++ii) {
+        invoiceDat = [];
+        for (var i = 0, orderItems = orderItems, invoiceDat = invoiceDat, tCost = tCost, orderid = orderid; i < p.length; ++i) {
+            for (var ii = 0, p = p, orderid = orderid, invoiceDat = invoiceDat, tCost = tCost; ii < orderItems.length; ++ii) {
                 var test = new RegExp(orderItems[ii].pid).test(p[i].id);
                 if (test) {
+                    invoiceDat.push({
+                        name: orderUser,
+                        prod: p[i],
+                        count: orderItems[ii].count
+                    });
                     //console.log('Matched!! ' + p[i]);
                     if (parseInt(orderItems[ii].count) > 1) {
                         var sss = 's';
@@ -894,6 +905,7 @@ function addOrderItems(orderid, orderItems) {
         };
         $(".orders-" + orderid + "-cost").append(tCost);
 
+        createInvoiceListener(orderid, invoiceDat);
 
     });
 }
@@ -1227,17 +1239,18 @@ function orderUpdater() {
         for (var i = 0; i < reqs.length; ++i) {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
-            var html = '<div id="order-card" class="card horizontal"><div class="card-image"><img src="' + reqs[i].icon + '">' +
-                '<div >New Order</div>' +
+            var id = 'order-card-' + i;
+            var html = '<div id="order-card-' + i + '" class="card horizontal"><div class="card-image"><img src="' + reqs[i].icon + '">' +
+                '<div class="pdfHide">New Order</div>' +
                 '<div ><span class="orders-' + reqs[i].id + '-cost"></span>/= </div>' +
-                ' <div class="card-action"><a href="tel:' + reqs[i].phone + '">call</a><a onclick="javascript:orderFromHTML();" href="#">bill</a></div>' +
-                ' <div class="card-action"><a href="#">cancel</a><a href="#">complete</a></div>' +
+                ' <div class="card-action"><a class="pdfHide" href="tel:' + reqs[i].phone + '">call</a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide">bill</a></div>' +
+                ' <div class="card-action"><a href="#" class="pdfHide">cancel</a><a href="#" class="pdfHide">complete</a></div>' +
                 '</div> <div class="card-stacked">' +
                 '<div class="card-content"><div class="">order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' +
                 '</div></div>';
             // var html = '<div class="card"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + reqs[i].promoBanner + '" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="' + reqs[i].promoLogo + '" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<svg class="activator" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 26px;margin-left: 8px;margin-top: 7px;" xml:space="preserve"><g xmlns="http://www.w3.org/2000/svg"><path d="M438.931,30.403c-40.4-40.5-106.1-40.5-146.5,0l-268.6,268.5c-2.1,2.1-3.4,4.8-3.8,7.7l-19.9,147.4 c-0.6,4.2,0.9,8.4,3.8,11.3c2.5,2.5,6,4,9.5,4c0.6,0,1.2,0,1.8-0.1l88.8-12c7.4-1,12.6-7.8,11.6-15.2c-1-7.4-7.8-12.6-15.2-11.6 l-71.2,9.6l13.9-102.8l108.2,108.2c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l268.6-268.5c19.6-19.6,30.4-45.6,30.4-73.3 S458.531,49.903,438.931,30.403z M297.631,63.403l45.1,45.1l-245.1,245.1l-45.1-45.1L297.631,63.403z M160.931,416.803l-44.1-44.1 l245.1-245.1l44.1,44.1L160.931,416.803z M424.831,152.403l-107.9-107.9c13.7-11.3,30.8-17.5,48.8-17.5c20.5,0,39.7,8,54.2,22.4 s22.4,33.7,22.4,54.2C442.331,121.703,436.131,138.703,424.831,152.403z" fill="#FFFFFF"></path></g></svg></a><p>' + reqs[i].promoName + '</p><p>' + reqs[i].promoDesc + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + reqs[i].id + '-subscribers"></div>' + '</div><div class="card-reveal">' + '<form class="col s12"> <div class="row"> <div class="input-field col s12"> <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name" required> <label for="newPromo-name" class="">Name</label> </div></div><div class="row"> <div class="input-field col s12"> <input id="newPromo-desc" type="text" class="validate js-loc-button-notification-input" value="" stitm="msg" required> <label for="newPromo-desc" class="">Desc</label> </div></div><div class="row"> <div class="file-field input-field"> <div class="btn"><span>image</span> <input id="newPromo-image" type="file" stitm="customImage" required> </div></div></div><div class="row"> <div class="input-field col s6"> <input placeholder="" id="newPromo-discount" type="number" class="validate" min="0" max="90"> <label for="newPromo-discount" class="">% discount</label> </div><div class="input-field col s6"> <input placeholder="" id="newPromo-offers" type="number" class="validate" min="0"> <label for="newPromo-offers" class="">minimum buyers</label> </div></div><div class="row" style="height:200px;overflow:auto;"> <h6 style="text-align:center;">Add an item to this promotion</h6> <ul class="promo-add-new-promotion2"></ul> </div></form>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">remove promotion</a><br><a class="backBtnPromo waves-effect waves-light btn">back</a> </div>' + '</div></div>';
             $(".orders-holda").prepend($.parseHTML(html));
-            addOrderItems(reqs[i].id, reqs[i].items);
+            addOrderItems(reqs[i].id, reqs[i]);
         }
         //$('.products-collapsible').collapsible();
         // $('select').material_select();
@@ -2048,7 +2061,7 @@ $('#makeCard').click(function () {
 
 });
 
-//scroll to top onclick add promo 
+//scroll to top onclick add promo
 $("#makeCard").on("click", function () {
     $(window).scrollTop(0);
 });
@@ -2104,7 +2117,7 @@ $('#submitProdForm').click(function (e) {
     }
 });
 
-
+/*
 //switch store desktop version
 $("#collection_dskt").html('');
 screen.keepAwake = true;
@@ -2114,8 +2127,12 @@ stCb.onsuccess = function (event) {
         var svcs = event.target.result;
         var services = JSON.parse(svcs);
         localStorage.services_test = JSON.stringify(services)
-    } catch (err) {}
+    } catch (err) {
+        console.log(err);
+    }
     $("#collection_dskt").html('');
+    console.log(services);
+
     for (var i = 0; i < services.length; ++i) {
         var html = ' <li style="cursor:pointer" class="collection-item avatar closeSwitchStore" style="" svid="' + services[i].id + '"><img src="' + services[i].bannerPath + '" alt="" class="circle"><div class="row">' + '<p class="collections-title">' + services[i].name + '</strong></p><p class="collections-content">...</p></div>' + '</li>';
         $("#collection_dskt").append(html);
@@ -2128,6 +2145,8 @@ stCb.onsuccess = function (event) {
     };
     addStore();
 }
+*/
+
 
 
 //Default Store Theme Color
@@ -2241,33 +2260,74 @@ function userNamesInput() {
 
     });
 }
-userNamesInput();
 
-
-
-//PDF Converter 
-function orderFromHTML() {
-    var pdf = new jsPDF('p', 'pt', 'letter');
-    source = $('#order-card')[0];
-    specialElementHandlers = {
-        '#bypassme': function (element, renderer) {
-            return true
+function transferListener() {
+    var forEach = function (array, callback, scope) {
+        for (var i = 0; i < array.length; i++) {
+            callback.call(scope, i, array[i]); // passes back stuff we need
         }
     };
-    margins = {
-        top: 80,
-        bottom: 60,
-        left: 40,
-        width: 522
-    };
-    pdf.fromHTML(
-        source,
-        margins.left,
-        margins.top, {
-            'width': margins.width,
-            'elementHandlers': specialElementHandlers
-        },
-        function (dispose) {
-            pdf.save('order-bill.pdf');
-        }, margins);
+    var myNodeList = document.querySelectorAll('#transfer-shop');
+    forEach(myNodeList, function (index, value) {
+        value.addEventListener("change", userNamesInput);
+    });
 }
+transferListener();
+
+
+
+
+function createInvoiceListener(orderid, invoiceDat) {
+
+    var forEach = function (array, callback, scope) {
+        for (var i = 0; i < array.length; i++) {
+            callback.call(scope, i, array[i]); // passes back stuff we need
+        }
+    };
+    var myNodeList = document.querySelectorAll('#do-bill-' + orderid);
+    forEach(myNodeList, function (index, value) {
+        value.addEventListener("pointerdown", function (ev) {
+            console.log(invoiceDat);
+            var rows = [];
+            for (var i = 0; i < invoiceDat.length; i++) {
+                var count = invoiceDat[i].count;
+                var name = invoiceDat[i].prod.name;
+                var icon = invoiceDat[i].name.icon;
+                var number = invoiceDat[i].name.number;
+                var loc = 'dgclauigfckiuj';
+                rows.push([count, name, number]);
+            }
+
+            var columns = ["Number of Items", "Name of Item", "Mobile Number"];
+
+            var doc = new jsPDF();
+            doc.autoTable(columns, rows);
+            doc.save('table.pdf');
+
+        });
+    });
+}
+
+function orderFromHTML(id) {
+    var columns = ["Number of Items", "Name of Item"];
+    var rows = []
+    $('#' + id + ' .card-content .chip').each(function () {
+        console.log($(this).text().split(' '));
+        rows.push($(this).text().split(' '));
+    });
+
+    var doc = new jsPDF();
+    doc.autoTable(columns, rows);
+    doc.save('table.pdf');
+}
+
+//var columns = ["Number of Items", "Name of Item"];
+//var rows = []
+//$('#' + id + ' .card-content .chip').each(function () {
+//    console.log($(this).text().split(' '));
+//    rows.push($(this).text().split(' '));
+//});
+//
+//var doc = new jsPDF();
+//doc.autoTable(columns, rows);
+//doc.save('table.pdf');
