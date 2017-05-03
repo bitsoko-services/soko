@@ -2017,54 +2017,54 @@ $('#monday').click(function () {
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {});
 });
-$('#tue').click(function () {
-    var value = document.getElementById("tue").checked
-    doFetch({
-        action: 'tuesdayChecked',
-        value: value,
-        id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {});
-});
-$('#wed').click(function () {
-    var value = document.getElementById("wed").checked
-    doFetch({
-        action: 'wednesdayChecked',
-        value: value,
-        id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {});
-});
-$('#thur').click(function () {
-    var value = document.getElementById("thur").checked
-    doFetch({
-        action: 'thursdayChecked',
-        value: value,
-        id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {});
-});
-$('#fri').click(function () {
-    var value = document.getElementById("fri").checked
-    doFetch({
-        action: 'fridayChecked',
-        value: value,
-        id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {});
-});
-$('#sat').click(function () {
-    var value = document.getElementById("sat").checked
-    doFetch({
-        action: 'saturdayChecked',
-        value: value,
-        id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {});
-});
-$('#sun').click(function () {
-    var value = document.getElementById("sun").checked
-    doFetch({
-        action: 'sundayChecked',
-        value: value,
-        id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {});
-});
+//$('#tue').click(function () {
+//    var value = document.getElementById("tue").checked
+//    doFetch({
+//        action: 'tuesdayChecked',
+//        value: value,
+//        id: localStorage.getItem('soko-active-store')
+//    }).then(function (e) {});
+//});
+//$('#wed').click(function () {
+//    var value = document.getElementById("wed").checked
+//    doFetch({
+//        action: 'wednesdayChecked',
+//        value: value,
+//        id: localStorage.getItem('soko-active-store')
+//    }).then(function (e) {});
+//});
+//$('#thur').click(function () {
+//    var value = document.getElementById("thur").checked
+//    doFetch({
+//        action: 'thursdayChecked',
+//        value: value,
+//        id: localStorage.getItem('soko-active-store')
+//    }).then(function (e) {});
+//});
+//$('#fri').click(function () {
+//    var value = document.getElementById("fri").checked
+//    doFetch({
+//        action: 'fridayChecked',
+//        value: value,
+//        id: localStorage.getItem('soko-active-store')
+//    }).then(function (e) {});
+//});
+//$('#sat').click(function () {
+//    var value = document.getElementById("sat").checked
+//    doFetch({
+//        action: 'saturdayChecked',
+//        value: value,
+//        id: localStorage.getItem('soko-active-store')
+//    }).then(function (e) {});
+//});
+//$('#sun').click(function () {
+//    var value = document.getElementById("sun").checked
+//    doFetch({
+//        action: 'sundayChecked',
+//        value: value,
+//        id: localStorage.getItem('soko-active-store')
+//    }).then(function (e) {});
+//});
 
 //Empty Promo Card
 $('#makeCard').click(function () {

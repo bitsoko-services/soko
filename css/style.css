@@ -2960,7 +2960,7 @@ tr.group:hover {
 .orders-holda .card-image img {
     width: 100% !important;
     object-fit: cover !important;
-    padding-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .orders-holda .card-image .card-action {
