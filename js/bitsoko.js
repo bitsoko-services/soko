@@ -2014,73 +2014,16 @@ $('#paymentsToggle').click(function (e) {
 });
 
 //Enable Loyalty
-$('#loyaltyToggle').click(function () {
-    var value = document.getElementById("loyaltyToggle").checked
-    doFetch({
-        action: 'toggleLayalty',
-        value: value,
-        id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {});
-});
+//$('#loyaltyToggle').click(function () {
+//    var value = document.getElementById("loyaltyToggle").checked
+//    doFetch({
+//        action: 'toggleLayalty',
+//        value: value,
+//        id: localStorage.getItem('soko-active-store')
+//    }).then(function (e) {});
+//});
+$('#loyaltyToggle').click(function () {});
 
-
-// Notifications Settings
-//$('#monday').click(function () {
-//    var value = document.getElementById("monday").checked
-//    doFetch({
-//        action: 'mondayChecked',
-//        value: value,
-//        id: localStorage.getItem('soko-active-store')
-//    }).then(function (e) {});
-//});
-//$('#tue').click(function () {
-//    var value = document.getElementById("tue").checked
-//    doFetch({
-//        action: 'tuesdayChecked',
-//        value: value,
-//        id: localStorage.getItem('soko-active-store')
-//    }).then(function (e) {});
-//});
-//$('#wed').click(function () {
-//    var value = document.getElementById("wed").checked
-//    doFetch({
-//        action: 'wednesdayChecked',
-//        value: value,
-//        id: localStorage.getItem('soko-active-store')
-//    }).then(function (e) {});
-//});
-//$('#thur').click(function () {
-//    var value = document.getElementById("thur").checked
-//    doFetch({
-//        action: 'thursdayChecked',
-//        value: value,
-//        id: localStorage.getItem('soko-active-store')
-//    }).then(function (e) {});
-//});
-//$('#fri').click(function () {
-//    var value = document.getElementById("fri").checked
-//    doFetch({
-//        action: 'fridayChecked',
-//        value: value,
-//        id: localStorage.getItem('soko-active-store')
-//    }).then(function (e) {});
-//});
-//$('#sat').click(function () {
-//    var value = document.getElementById("sat").checked
-//    doFetch({
-//        action: 'saturdayChecked',
-//        value: value,
-//        id: localStorage.getItem('soko-active-store')
-//    }).then(function (e) {});
-//});
-//$('#sun').click(function () {
-//    var value = document.getElementById("sun").checked
-//    doFetch({
-//        action: 'sundayChecked',
-//        value: value,
-//        id: localStorage.getItem('soko-active-store')
-//    }).then(function (e) {});
-//});
 
 //Empty Promo Card
 $('#makeCard').click(function () {
@@ -2372,10 +2315,10 @@ function createInvoiceListener(orderid, invoiceDat) {
                 var loc = 'dgclauigfckiuj';
                 rows.push([count, name, number]);
             }
-
             var columns = ["Number of Items", "Name of Item", "Mobile Number"];
 
             var doc = new jsPDF();
+            //            doc.text('testing', 10, 10)
             doc.autoTable(columns, rows);
             doc.save('table.pdf');
 
@@ -2396,13 +2339,27 @@ function orderFromHTML(id) {
     doc.save('table.pdf');
 }
 
-//var columns = ["Number of Items", "Name of Item"];
-//var rows = []
-//$('#' + id + ' .card-content .chip').each(function () {
-//    console.log($(this).text().split(' '));
-//    rows.push($(this).text().split(' '));
-//});
 //
-//var doc = new jsPDF();
-//doc.autoTable(columns, rows);
-//doc.save('table.pdf');
+
+
+//rewardPoints()
+document.getElementById("visitInput").oninput = function () {
+    rewardPoints();
+};
+document.getElementById("shareInput").oninput = function () {
+    rewardPoints();
+};
+document.getElementById("purchaseInput").oninput = function () {
+    rewardPoints();
+};
+
+function rewardPoints() {
+    doFetch({
+        action: 'rewardPoints',
+        data: {
+            perVisit: document.querySelector('#visitInput').value,
+            perShare: document.querySelector('#shareInput').value,
+            perPurchase: document.querySelector('#purchaseInput').value
+        }
+    })
+}
