@@ -2971,6 +2971,21 @@ tr.group:hover {
     padding: 10px 0px 10px 10px !important;
 }
 
+@media screen and (max-width: 400px) {
+    .orders-holda .card-image {
+        max-width: 50% !important;
+    }
+    .card-action .pdfHide i {
+        border: solid #ffab40 1px !important;
+        padding: 5px 5px 5px 5px !important;
+        border-radius: 5px !important;
+        font-size: 0.8em !important;
+    }
+    .card-action .pdfHide {
+        margin-right: 10px !important;
+    }
+}
+
 
 /**********************************************
 ***********************************************
