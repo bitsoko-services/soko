@@ -1665,6 +1665,22 @@ function updateStore(t) {
             };
             img.src = URL.createObjectURL(file);
         }
+    } else if (name == "notifyDays") {
+        var dayData = JSON.stringify({
+            mon: document.getElementsByClassName("notifyDays-mon")[0].checked,
+            tue: document.getElementsByClassName("notifyDays-tue")[0].checked,
+            wed: document.getElementsByClassName("notifyDays-wed")[0].checked,
+            thur: document.getElementsByClassName("notifyDays-thur")[0].checked,
+            fri: document.getElementsByClassName("notifyDays-fri")[0].checked,
+            sat: document.getElementsByClassName("notifyDays-sat")[0].checked,
+            sun: document.getElementsByClassName("notifyDays-sun")[0].checked
+        })
+        doFetch({
+            action: 'doEditStore',
+            id: localStorage.getItem('soko-active-store'),
+            prop: name,
+            val: dayData
+        }).then(function (e) {});
     } else {
         doFetch({
             action: 'doEditStore',
@@ -2009,14 +2025,14 @@ $('#loyaltyToggle').click(function () {
 
 
 // Notifications Settings
-$('#monday').click(function () {
-    var value = document.getElementById("monday").checked
-    doFetch({
-        action: 'mondayChecked',
-        value: value,
-        id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {});
-});
+//$('#monday').click(function () {
+//    var value = document.getElementById("monday").checked
+//    doFetch({
+//        action: 'mondayChecked',
+//        value: value,
+//        id: localStorage.getItem('soko-active-store')
+//    }).then(function (e) {});
+//});
 //$('#tue').click(function () {
 //    var value = document.getElementById("tue").checked
 //    doFetch({
