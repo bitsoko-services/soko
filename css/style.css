@@ -2947,6 +2947,12 @@ tr.group:hover {
     margin-left: 10px;
 }
 
+.notificationSetting li {
+    display: inline-block;
+    width: 20px;
+    margin-left: 1.5%;
+}
+
 
 /**********************************************
 ***********************************************
