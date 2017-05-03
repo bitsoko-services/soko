@@ -1240,11 +1240,11 @@ function orderUpdater() {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
             var id = 'order-card-' + i;
-            var html = '<div id="order-card-' + i + '" class="card horizontal"><div class="card-image"><img src="' + reqs[i].icon + '">' +
-                '<div class="pdfHide">New Order</div>' +
-                '<div ><span class="orders-' + reqs[i].id + '-cost"></span>/= </div>' +
-                ' <div class="card-action"><a class="pdfHide" href="tel:' + reqs[i].phone + '">call</a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide">bill</a></div>' +
-                ' <div class="card-action"><a href="#" class="pdfHide">cancel</a><a href="#" class="pdfHide">complete</a></div>' +
+            var html = '<div style="padding:10px;border-radius:7px;" id="order-card-' + i + '" class="card horizontal"><div class="card-image"><img style="border-radius:5px;" src="' + reqs[i].icon + '">' +
+                '<div style="text-align:center;padding-right:15%;" class="pdfHide">New Order</div>' +
+                '<div style="text-align:center;padding-right:15%;">Total:<span class="orders-' + reqs[i].id + '-cost"></span>/= </div>' +
+                ' <div class="card-action"><a class="pdfHide" href="tel:' + reqs[i].phone + '"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">call</i></a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">bill</i></a></div>' +
+                ' <div class="card-action" style="padding-left:0 !important;"><a href="#" class="pdfHide"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">cancel</i></a><a href="#" class="pdfHide"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">complete</i></a></div>' +
                 '</div> <div class="card-stacked">' +
                 '<div class="card-content"><div class="">order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' +
                 '</div></div>';

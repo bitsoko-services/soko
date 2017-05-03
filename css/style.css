@@ -2953,6 +2953,24 @@ tr.group:hover {
     margin-left: 1.5%;
 }
 
+.orders-holda .card-image {
+    max-width: 55% !important;
+}
+
+.orders-holda .card-image img {
+    width: 100% !important;
+    object-fit: cover !important;
+    padding-bottom: 5px;
+}
+
+.orders-holda .card-image .card-action {
+    text-align: center !important;
+}
+
+.orders-holda .card-stacked .card-content {
+    padding: 10px 0px 10px 10px !important;
+}
+
 
 /**********************************************
 ***********************************************
