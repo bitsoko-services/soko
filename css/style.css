@@ -3182,3 +3182,105 @@ tr.group:hover {
         padding-left: 60px;
     }
 }
+
+
+/**********************************************
+                  order range slider
+**********************************************/
+
+.timeline {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline .li {
+    transition: all 200ms ease-in;
+}
+
+.timeline .timestamp {
+    margin-bottom: 20px;
+    padding: 0% 2% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 100;
+}
+
+.timeline .status {
+    display: flex;
+    justify-content: center;
+    border-top: 2px solid #D6DCE0;
+    position: relative;
+    transition: all 200ms ease-in;
+}
+
+.timeline .status h4 {
+    font-weight: 600;
+}
+
+.timeline .status:before {
+    content: "";
+    width: -25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: -15px;
+    left: 32%;
+    transition: all 200ms ease-in;
+}
+
+.timeline .li.complete .status {
+    border-top: 2px solid #ffab40;
+}
+
+.timeline .li.complete .status:before {
+    background-color: #ffab40;
+    border: none;
+    transition: all 200ms ease-in;
+}
+
+.timeline .pendingCircle {
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-color: #ffab40;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: -15px;
+    left: 30%;
+    transition: all 200ms ease-in;
+    border-top: none !important;
+}
+
+.timeline .deliveryCircle {
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-color: #ffab40;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: -15px;
+    left: 30%;
+    transition: all 200ms ease-in;
+    border-top: none !important;
+}
+
+.timeline .completeCircle {
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-color: #ffab40;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: -15px;
+    left: 30%;
+    transition: all 200ms ease-in;
+    border-top: none !important;
+}
