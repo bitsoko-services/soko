@@ -3247,7 +3247,7 @@ tr.group:hover {
     content: "";
     width: 25px;
     height: 25px;
-    background-color: #ffab40;
+    background-color: #32ce32;
     border-radius: 25px;
     border: 1px solid #ddd;
     position: absolute;
@@ -3283,4 +3283,12 @@ tr.group:hover {
     left: 30%;
     transition: all 200ms ease-in;
     border-top: none !important;
+}
+
+.pendingText {
+    color: #32ce32;
+}
+
+.pendingCol {
+    border-top: 2px solid #32ce32 !important;
 }

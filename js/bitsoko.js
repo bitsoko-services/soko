@@ -1244,7 +1244,7 @@ function orderUpdater() {
                 '<div style="text-align:center;padding-right:15%;" class="pdfHide">New Order</div>' +
                 '<div style="text-align:center;padding-right:15%;">Total:<span class="orders-' + reqs[i].id + '-cost"></span>/= </div>' +
                 ' <div class="card-action"><a class="pdfHide" href="tel:' + reqs[i].phone + '"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">call</i></a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">bill</i></a></div>' +
-                ' <div class="card-action" style="padding:16px 0px 16px 0px !important;"><ul class="timeline" id="timeline"><li class="li complete completePending"><span class="date"></span><div class="timestamp"><span class="date"><span class="author" style="font-size:10px;">PENDING</span></span></div><div class="status pendingCol"><div class="pendingCircle"></div><span class="date"></span></div></li><li class="li complete completeDeliver"><span class="date"></span><div class="timestamp"><span class="date"><span class="author" style="font-size:10px;">DELIVERED</span></span></div><div class="status deliveredCol"><div class="deliveryCircle"></div><span class="date"></span></div></li><li class="li complete completeConf"><span class="date"></span><div class="timestamp"><span class="date"><span class="author" style="font-size:10px;">COMPLETE</span></span></div><div class="status completeCol"><div class="completeCircle"></div><span class="date"></span></div></li></ul></div>' +
+                ' <div class="card-action" style="padding:16px 0px 16px 0px !important;"><ul class="timeline" id="timeline"><li class="li complete completePending"><span class="date"></span><div class="timestamp"><span class="date"><span class="pendingText" style="font-size:10px;">PENDING</span></span></div><div class="status pendingCol"><div class="pendingCircle"></div><span class="date"></span></div></li><li class="li complete completeDeliver"><span class="date"></span><div class="timestamp"><span class="date"><span class="deliveryText" style="font-size:10px;">DELIVERED</span></span></div><div class="status deliveredCol"><div class="deliveryCircle"></div><span class="date"></span></div></li><li class="li complete completeConf"><span class="date"></span><div class="timestamp"><span class="date"><span class="completeText" style="font-size:10px;">COMPLETE</span></span></div><div class="status completeCol"><div class="completeCircle"></div><span class="date"></span></div></li></ul></div>' +
                 '</div> <div class="card-stacked">' +
                 '<div class="card-content"><div class="">order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' +
                 '</div></div>';
@@ -2374,13 +2374,16 @@ function color(i) {
     $('.completePending').click(function () {
         $(".pendingCol").css('border-top', '2px solid #32ce32');
         $(".pendingCircle").css('background-color', '#32ce32');
+        $(".pendingText").css('color', '#32ce32');
     });
     $('.completeDeliver').click(function () {
         $(".deliveredCol").css('border-top', '2px solid #32ce32');
         $(".deliveryCircle").css('background-color', '#32ce32');
+        $(".deliveryText").css('color', '#32ce32');
     });
     $('.completeConf').click(function () {
         $(".completeCol").css('border-top', '2px solid #32ce32');
         $(".completeCircle").css('background-color', '#32ce32');
+        $(".completeText").css('color', '#32ce32');
     });
 }
