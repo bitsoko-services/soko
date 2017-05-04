@@ -3013,6 +3013,18 @@ tr.group:hover {
     height: 60vh !important;
 }
 
+#editStoreModal {
+    top: 15% !important;
+}
+
+#newStoreModal {
+    top: 15% !important;
+}
+
+#loyaltyModal {
+    top: 15% !important;
+}
+
 @media screen and (min-width: 993px) {
     .navbar-fixed {
         display: none;
