@@ -1252,7 +1252,7 @@ function orderUpdater() {
 
             $(".orders-holda").prepend($.parseHTML(html));
             addOrderItems(reqs[i].id, reqs[i]);
-            color(i);
+            orderRangeSldr();
         }
         //$('.products-collapsible').collapsible();
         // $('select').material_select();
@@ -2298,7 +2298,6 @@ transferListener();
 
 
 function createInvoiceListener(orderid, invoiceDat) {
-
     var forEach = function (array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
             callback.call(scope, i, array[i]); // passes back stuff we need
@@ -2319,26 +2318,22 @@ function createInvoiceListener(orderid, invoiceDat) {
             }
             var columns = ["Number of Items", "Name of Item", "Mobile Number"];
 
+
             var doc = new jsPDF();
-            //            doc.text('testing', 10, 10)
-            doc.autoTable(columns, rows);
+            //            doc.setFontSize(10);
+            //            doc.text('Company XYZ', 15, 25);
+            //            doc.text('Nairobi, Kenys', 15, 30);
+            //            doc.text('Kimathi Street', 15, 35);
+            doc.autoTable(columns, rows, {
+                margin: {
+                    top: 40
+                },
+                theme: 'striped',
+            });
             doc.save('table.pdf');
 
         });
     });
-}
-
-function orderFromHTML(id) {
-    var columns = ["Number of Items", "Name of Item"];
-    var rows = []
-    $('#' + id + ' .card-content .chip').each(function () {
-        console.log($(this).text().split(' '));
-        rows.push($(this).text().split(' '));
-    });
-
-    var doc = new jsPDF();
-    doc.autoTable(columns, rows);
-    doc.save('table.pdf');
 }
 
 //rewardPoints()
@@ -2366,11 +2361,6 @@ function rewardPoints() {
 
 //Order range slider
 function orderRangeSldr() {
-
-}
-orderRangeSldr();
-
-function color(i) {
     $('.completePending').click(function () {
         $(".pendingCol").css('border-top', '2px solid #32ce32');
         $(".pendingCircle").css('background-color', '#32ce32');
@@ -2387,3 +2377,12 @@ function color(i) {
         $(".completeText").css('color', '#32ce32');
     });
 }
+
+//Edit Store On Window Size
+$(document).ready(function () {
+    if ($(window).width() > 992) {
+        $('.editStore').click(function () {
+            $("#editStoreModal").modal('open');
+        })
+    }
+})
