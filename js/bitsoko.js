@@ -2337,10 +2337,11 @@ function createInvoiceListener(orderid, invoiceDat) {
 
 
             var doc = new jsPDF();
-            //            doc.setFontSize(10);
-            //            doc.text('Company XYZ', 15, 25);
-            //            doc.text('Nairobi, Kenys', 15, 30);
-            //            doc.text('Kimathi Street', 15, 35);
+
+            doc.fromHTML($('#pdfTest').get(0), 15, 15, {
+                'width': 170
+            });
+            doc.text('Kimathi Street', 15, 35);
             doc.autoTable(columns, rows, {
                 margin: {
                     top: 40
