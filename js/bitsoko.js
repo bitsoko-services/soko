@@ -387,6 +387,9 @@ function refreshBills(month, year) {
         billing_amount = ''
         promotion_id = ''
         dailyBill = ''
+        var daily = '';
+        var prev_date = '';
+        var dailyTotal = 0;
         $.each(bills, function (index, obj) {
             var promotionId = obj.promoid;
             var promoRate = obj.rate;
@@ -394,18 +397,32 @@ function refreshBills(month, year) {
             parsed_date = splitted[0] + ' ' + splitted[2];
             month_name = splitted[1];
             if (splitted[1] == months[month] && splitted[3] == year) {
-                console.log('This was added');
-                dailyBill += '<li class="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span class="dailyBill">' + (0.167) + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>' + 'Billing for Promo ' + promotionId + ' is ' + promoRate + '</span></div></li>';
+                console.log('Prev is: ' + prev_date + ' and current is: ' + parsed_date);
+                if (prev_date != parsed_date) {
+                    //Remove the no results text if it is the last li
+                    if ($('.rowBill').last().hasClass('noresults')) {
+                        $('#rowBIll').html('');
+                    }
+                    dailyTotal = 0.167;
+                    dailyBill = '<li class="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span class="dailyBill">' + dailyTotal + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>Billing for Promo ' + promotionId + ' is ' + promoRate + '</span></br></div></li>';
+                    $('#rowBIll').append(dailyBill);
+                } else {
+                    console.log('This should fire');
+                    daily = '<span>Billing for Promo ' + promotionId + ' is ' + promoRate + '</span></br>';
+                    console.log('Daily value is: ' + daily);
+                    dailyTotal = dailyTotal + 0.167;
+                    console.log('New daily total should be: ' + dailyTotal);
+                    $('.rowBill .collapsible-body').last().append(daily);
+                    $('.dailyBill').last().text(dailyTotal);
+                }
+                prev_date = parsed_date;
             }
         });
-        console.log('Daily bill is: ' + dailyBill);
         $('.cust-count').html(bills.length);
         //        $('#billingDate').html(billing_string);
         //        $('#dailyBill').html(billing_amount);
         if (dailyBill == '') {
-            $('#rowBIll').html('<li class="rowBill"><div class="collapsible-header"> No results found </div></li>');
-        } else {
-            $('#rowBIll').html(dailyBill);
+            $('#rowBIll').html('<li class="rowBill noresults"><div class="collapsible-header"> No results found </div></li>');
         }
         //$('.month').html(month_name);
         var billcharges = parseFloat(bills.length * 0.167).toFixed(3);
