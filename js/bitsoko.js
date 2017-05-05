@@ -2324,31 +2324,48 @@ function createInvoiceListener(orderid, invoiceDat) {
     forEach(myNodeList, function (index, value) {
         value.addEventListener("pointerdown", function (ev) {
             console.log(invoiceDat);
-            var rows = [];
-            for (var i = 0; i < invoiceDat.length; i++) {
-                var count = invoiceDat[i].count;
-                var name = invoiceDat[i].prod.name;
-                var icon = invoiceDat[i].name.icon;
-                var number = invoiceDat[i].name.number;
-                var loc = 'dgclauigfckiuj';
-                rows.push([count, name, number]);
-            }
-            var columns = ["Number of Items", "Name of Item", "Mobile Number"];
-
-
-            var doc = new jsPDF();
-
-            doc.fromHTML($('#pdfTest').get(0), 15, 15, {
-                'width': 170
-            });
-            doc.text('Kimathi Street', 15, 35);
-            doc.autoTable(columns, rows, {
-                margin: {
-                    top: 40
+            var pdf = new jsPDF('p', 'pt', 'letter');
+            source = $('.pdfAppend')[0];
+            specialElementHandlers = {
+                '.pdfHide': function (element, renderer) {
+                    return true
+                }
+            };
+            margins = {
+                top: 20,
+                bottom: 60,
+                left: 40,
+                width: 522
+            };
+            pdf.fromHTML(
+                source,
+                margins.left, // x coord
+                margins.top, { // y coord
+                    'width': margins.width, // max width of content on PDF
+                    'elementHandlers': specialElementHandlers
                 },
-                theme: 'striped',
-            });
-            doc.save('table.pdf');
+
+                function (dispose) {
+                    // Add you function here 
+                    var rows = [];
+                    for (var i = 0, rows = rows; i < invoiceDat.length; i++) {
+                        var count = invoiceDat[i].count;
+                        var name = invoiceDat[i].prod.name;
+                        var icon = invoiceDat[i].name.icon;
+                        var number = invoiceDat[i].name.number;
+                        var loc = 'dgclauigfckiuj';
+                        rows.push([count, name, number]);
+                    }
+                    var columns = ["Number of Items", "Name of Item", "Mobile Number"];
+                    pdf.autoTable(columns, rows, {
+                        margin: {
+                            top: 230
+                        },
+                        theme: 'striped',
+                    });
+                    pdf.save('table.pdf');
+                }, margins);
+
 
         });
     });
