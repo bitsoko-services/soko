@@ -887,10 +887,14 @@ function addOrderItems(orderid, orderItems) {
     getActvStoreProds(orderid, orderItems).then(function (p) {
 
         var orderItems = $.parseJSON(p.orderItems.items);
+
+        //name: p.orderItems.name,
+
+        //number: p.orderItems.phone
         var orderUser = {
-            name: p.orderItems.name,
+            name: 'a name',
             icon: p.orderItems.icon,
-            number: p.orderItems.phone
+            number: '0707'
         };
         var orderid = p.orderid;
         var p = p.allProds;
@@ -1261,13 +1265,14 @@ function orderUpdater() {
                 '<div style="text-align:center;padding-right:15%;" class="pdfHide">New Order</div>' +
                 '<div style="text-align:center;padding-right:15%;">Total:<span class="orders-' + reqs[i].id + '-cost"></span>/= </div>' +
                 ' <div class="card-action"><a class="pdfHide" href="tel:' + reqs[i].phone + '"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">call</i></a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">bill</i></a></div>' +
-                ' <div class="card-action" style="padding:16px 0px 16px 0px !important;"><ul class="timeline" id="timeline"><li class="li complete completePending"><span class="date"></span><div class="timestamp"><span class="date"><span class="pendingText" style="font-size:10px;">PENDING</span></span></div><div class="status pendingCol"><div class="pendingCircle"></div><span class="date"></span></div></li><li class="li complete completeDeliver"><span class="date"></span><div class="timestamp"><span class="date"><span class="deliveryText" style="font-size:10px;">DELIVERED</span></span></div><div class="status deliveredCol"><div class="deliveryCircle"></div><span class="date"></span></div></li><li class="li complete completeConf"><span class="date"></span><div class="timestamp"><span class="date"><span class="completeText" style="font-size:10px;">COMPLETE</span></span></div><div class="status completeCol"><div class="completeCircle"></div><span class="date"></span></div></li></ul></div>' +
+                ' <div class="card-action" style="padding:16px 0px 16px 0px !important;"><ul class="timeline" id="timeline"><li class="li complete completePending"><span class="date"></span><div class="timestamp"><span class="date"><span class="pendingText" style="font-size:10px;">PENDING</span></span></div><div class="status pendingCol"><p class="pendingCircle"> <input name="group1" type="radio" id="test1"> <label for="test1"></label> </p><span class="date"></span></div></li><li class="li complete completeDeliver"><span class="date"></span><div class="timestamp"><span class="date"><span class="deliveryText" style="font-size:10px;">DELIVERED</span></span></div><div class="status deliveredCol"><p class="deliveryCircle"> <input name="group1" type="radio" id="test1"> <label for="test1"></label> </p><span class="date"></span></div></li><li class="li complete completeConf"><span class="date"></span><div class="timestamp"><span class="date"><span class="completeText" style="font-size:10px;">COMPLETE</span></span></div><div class="status completeCol"><p class="completeCircle"> <input name="group1" type="radio" id="test1"> <label for="test1"></label> </p><span class="date"></span></div></li></ul></div>' +
                 '</div> <div class="card-stacked">' +
                 '<div class="card-content"><div class="">order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' +
                 '</div></div>';
             // var html = '<div class="card"><div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + reqs[i].promoBanner + '" alt="user bg"></div><div class="card-content" style="padding: 0px 20px;">' + '<img src="' + reqs[i].promoLogo + '" alt="" class="circle responsive-img activator card-profile-image">' + '<a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">' + '<svg class="activator" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 26px;margin-left: 8px;margin-top: 7px;" xml:space="preserve"><g xmlns="http://www.w3.org/2000/svg"><path d="M438.931,30.403c-40.4-40.5-106.1-40.5-146.5,0l-268.6,268.5c-2.1,2.1-3.4,4.8-3.8,7.7l-19.9,147.4 c-0.6,4.2,0.9,8.4,3.8,11.3c2.5,2.5,6,4,9.5,4c0.6,0,1.2,0,1.8-0.1l88.8-12c7.4-1,12.6-7.8,11.6-15.2c-1-7.4-7.8-12.6-15.2-11.6 l-71.2,9.6l13.9-102.8l108.2,108.2c2.5,2.5,6,4,9.5,4s7-1.4,9.5-4l268.6-268.5c19.6-19.6,30.4-45.6,30.4-73.3 S458.531,49.903,438.931,30.403z M297.631,63.403l45.1,45.1l-245.1,245.1l-45.1-45.1L297.631,63.403z M160.931,416.803l-44.1-44.1 l245.1-245.1l44.1,44.1L160.931,416.803z M424.831,152.403l-107.9-107.9c13.7-11.3,30.8-17.5,48.8-17.5c20.5,0,39.7,8,54.2,22.4 s22.4,33.7,22.4,54.2C442.331,121.703,436.131,138.703,424.831,152.403z" fill="#FFFFFF"></path></g></svg></a><p>' + reqs[i].promoName + '</p><p>' + reqs[i].promoDesc + '</p>' + '<p style="text-align: center;padding: 15px 20px;"><i style="float: left;" class="promo-state-icon mdi-notification-sync"> 0 shares</i>' + '<i class="promo-state-icon mdi-action-favorite"> 0 likes </i>' + '<i style="float: right;" class="promo-state-icon mdi-action-receipt"> 0 sales </i></p>' + '<label>offer subscribers</label><div class="divider" style="margin: 10px;"></div><div class="promo-' + reqs[i].id + '-subscribers"></div>' + '</div><div class="card-reveal">' + '<form class="col s12"> <div class="row"> <div class="input-field col s12"> <input id="newPromo-name" type="text" class="validate js-loc-button-notification-input" value="" value="" stitm="name" required> <label for="newPromo-name" class="">Name</label> </div></div><div class="row"> <div class="input-field col s12"> <input id="newPromo-desc" type="text" class="validate js-loc-button-notification-input" value="" stitm="msg" required> <label for="newPromo-desc" class="">Desc</label> </div></div><div class="row"> <div class="file-field input-field"> <div class="btn"><span>image</span> <input id="newPromo-image" type="file" stitm="customImage" required> </div></div></div><div class="row"> <div class="input-field col s6"> <input placeholder="" id="newPromo-discount" type="number" class="validate" min="0" max="90"> <label for="newPromo-discount" class="">% discount</label> </div><div class="input-field col s6"> <input placeholder="" id="newPromo-offers" type="number" class="validate" min="0"> <label for="newPromo-offers" class="">minimum buyers</label> </div></div><div class="row" style="height:200px;overflow:auto;"> <h6 style="text-align:center;">Add an item to this promotion</h6> <ul class="promo-add-new-promotion2"></ul> </div></form>' + '<div class="row" style="text-align: center;margin: 20px 0px;"> <a class="removePromo waves-effect waves-light btn" style="margin-bottom:10px;">remove promotion</a><br><a class="backBtnPromo waves-effect waves-light btn">back</a> </div>' + '</div></div>';
 
             $(".orders-holda").prepend($.parseHTML(html));
+            console.log(reqs[i]);
             addOrderItems(reqs[i].id, reqs[i]);
             orderRangeSldr();
         }
@@ -2334,7 +2339,7 @@ function createInvoiceListener(orderid, invoiceDat) {
             margins = {
                 top: 20,
                 bottom: 60,
-                left: 40,
+                left: 450,
                 width: 522
             };
             pdf.fromHTML(
@@ -2348,22 +2353,42 @@ function createInvoiceListener(orderid, invoiceDat) {
                 function (dispose) {
                     // Add you function here 
                     var rows = [];
-                    for (var i = 0, rows = rows; i < invoiceDat.length; i++) {
+                    var totalPrice = 0;
+                    for (var i = 0, totalPrice = totalPrice, rows = rows; i < invoiceDat.length; i++) {
+                        totalPrice = invoiceDat[i].prod.price + totalPrice;
+
+                        var custDetails = invoiceDat[i].name.name;
+                        var ordrImgPath = invoiceDat[i].name.icon;
+                        var img = new Image();
+                        img.setAttribute('crossOrigin', 'anonymous');
+                        img.onload = function () {
+                            var canvas = document.createElement("canvas");
+                            canvas.width = this.width;
+                            canvas.height = this.height;
+                            var ctx = canvas.getContext("2d");
+                            ctx.drawImage(this, 0, 0);
+                            var dataURL = canvas.toDataURL("image/jpg");
+                            var columns = ["Number of Items", "Name of Item", "Description", "Price"];
+                            pdf.addImage(dataURL, 'JPEG', 15, 200, 100, 100);
+                            pdf.text(custDetails, 35, 25);
+                            rows.push(['', '', 'Total', totalPrice + '/=']);
+                            pdf.autoTable(columns, rows, {
+                                margin: {
+                                    top: 330
+                                },
+                                theme: 'striped',
+                            });
+                            pdf.save('table.pdf');
+                        };
+                        img.src = ordrImgPath;
+
                         var count = invoiceDat[i].count;
                         var name = invoiceDat[i].prod.name;
-                        var icon = invoiceDat[i].name.icon;
-                        var number = invoiceDat[i].name.number;
+                        var description = invoiceDat[i].prod.description;
+                        var price = invoiceDat[i].prod.price;
                         var loc = 'dgclauigfckiuj';
-                        rows.push([count, name, number]);
+                        rows.push([count, name, description, price]);
                     }
-                    var columns = ["Number of Items", "Name of Item", "Mobile Number"];
-                    pdf.autoTable(columns, rows, {
-                        margin: {
-                            top: 230
-                        },
-                        theme: 'striped',
-                    });
-                    pdf.save('table.pdf');
                 }, margins);
 
 
