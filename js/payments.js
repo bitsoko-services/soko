@@ -179,17 +179,17 @@ if (window.PaymentRequest) {
     payButton.setAttribute('style', 'display: inline;');
     payButton.addEventListener('click', function () {
         onBuyClicked(request);
-        request = initPaymentRequest2();
+        request = initPaymentRequest();
     });
     payButton2.setAttribute('style', 'display: inline;');
     payButton2.addEventListener('click', function () {
         onBuyClicked(request);
-        request = initPaymentRequest();
+        request = initPaymentRequest3();
     });
     payButton3.setAttribute('style', 'display: inline;');
     payButton3.addEventListener('click', function () {
         onBuyClicked(request);
-        request = initPaymentRequest3();
+        request = initPaymentRequest2();
     });
 } else {
     ChromeSamples.setStatus('This browser does not support web payments');
