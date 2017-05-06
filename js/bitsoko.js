@@ -2038,15 +2038,9 @@ $('#paymentsToggle').click(function (e) {
 });
 
 //Enable Loyalty
-//$('#loyaltyToggle').click(function () {
-//    var value = document.getElementById("loyaltyToggle").checked
-//    doFetch({
-//        action: 'toggleLayalty',
-//        value: value,
-//        id: localStorage.getItem('soko-active-store')
-//    }).then(function (e) {});
-//});
-$('#loyaltyToggle').click(function () {});
+$('.loyaltyCls').click(function () {
+    $('#loyaltyModal').modal('close');
+});
 
 
 //Empty Promo Card

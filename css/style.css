@@ -3313,3 +3313,17 @@ tr.group:hover {
 .pendingCol {
     border-top: 2px solid #32ce32 !important;
 }
+
+
+/********************************************
+            LOAYLTY POINTS
+********************************************/
+
+#loyaltyPoints a {
+    display: block !important;
+    margin-bottom: 15px !important;
+}
+
+#loyaltyPoints {
+    top: 20% !important;
+}
