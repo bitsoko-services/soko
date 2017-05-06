@@ -1,74 +1,107 @@
-function onBuyClicked() {
-        if (!window.PaymentRequest) {
-            // PaymentRequest API is not available. Forwarding to
-            // legacy form based experience.
-            location.href = '/checkout';
-            return;
-        }
+/**
+ * Builds PaymentRequest for credit cards, but does not show any UI yet.
+ *
+ * @return {PaymentRequest} The PaymentRequest oject.
+ */
+function initPaymentRequest() {
+    let networks = ['amex', 'diners', 'discover', 'jcb', 'mastercard', 'unionpay',
+      'visa', 'mir'];
+    let types = ['debit', 'credit', 'prepaid'];
+    let supportedInstruments = [{
+        supportedMethods: networks,
+  }, {
+        supportedMethods: ['basic-card'],
+        data: {
+            supportedNetworks: networks,
+            supportedTypes: types
+        },
+  }];
 
-        // Supported payment methods
-        var supportedInstruments = [{
-            supportedMethods: ['basic-card']
-            data: {
-                supportedNetworks: [
-              'visa', 'mastercard', 'amex', 'discover',
-              'diners', 'jcb', 'unionpay'
-            ]
+    let details = {
+        total: {
+            label: 'Loyalty Points',
+            amount: {
+                currency: 'USD',
+                value: '55.00'
             }
-      }];
-
-        // Checkout details
-        var details = {
-            displayItems: [{
-                label: 'Original donation amount',
+        },
+        displayItems: [
+            {
+                label: '10 points = ',
                 amount: {
                     currency: 'USD',
-                    value: '65.00'
-                }
-        }, {
-                label: 'Friends and family discount',
-                amount: {
-                    currency: 'USD',
-                    value: '-10.00'
-                }
-        }],
-            total: {
-                label: 'Total due',
-                amount: {
-                    currency: 'USD',
-                    value: '55.00'
-                }
-            }
-        };
+                    value: '1.00'
+                },
+      },
+    ],
+    };
 
-        // 1. Create a `PaymentRequest` instance
-        var request = new PaymentRequest(supportedInstruments, details);
-
-        // 2. Show the native UI with `.show()`
-        request.show()
-            // 3. Process the payment
-            .then(result => {
-                // POST the payment information to the server
-                return fetch('/pay', {
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(result.toJSON())
-                }).then(response => {
-                    // 4. Display payment results
-                    if (response.status === 200) {
-                        // Payment successful
-                        return result.complete('success');
-                    } else {
-                        // Payment failure
-                        return result.complete('fail');
-                    }
-                }).catch(() => {
-                    return result.complete('fail');
-                });
-            });
+    return new PaymentRequest(supportedInstruments, details);
 }
 
-document.querySelector('#buy100').addEventListener('click', onBuyClicked);
+/**
+ * Invokes PaymentRequest for credit cards.
+ *
+ * @param {PaymentRequest} request The PaymentRequest object.
+ */
+function onBuyClicked(request) {
+    request.show().then(function (instrumentResponse) {
+            sendPaymentToServer(instrumentResponse);
+        })
+        .catch(function (err) {
+            ChromeSamples.setStatus(err);
+        });
+}
+
+/**
+ * Simulates processing the payment data on the server.
+ *
+ * @param {PaymentResponse} instrumentResponse The payment information to
+ * process.
+ */
+function sendPaymentToServer(instrumentResponse) {
+    // There's no server-side component of these samples. No transactions are
+    // processed and no money exchanged hands. Instantaneous transactions are not
+    // realistic. Add a 2 second delay to make it seem more real.
+    window.setTimeout(function () {
+        instrumentResponse.complete('success')
+            .then(function () {
+                document.getElementById('result').innerHTML =
+                    instrumentToJsonString(instrumentResponse);
+            })
+            .catch(function (err) {
+                ChromeSamples.setStatus(err);
+            });
+    }, 2000);
+}
+
+/**
+ * Converts the payment instrument into a JSON string.
+ *
+ * @private
+ * @param {PaymentResponse} instrument The instrument to convert.
+ * @return {string} The JSON string representation of the instrument.
+ */
+function instrumentToJsonString(instrument) {
+    let details = instrument.details;
+    details.cardNumber = 'XXXX-XXXX-XXXX-' + details.cardNumber.substr(12);
+    details.cardSecurityCode = '***';
+
+    return JSON.stringify({
+        methodName: instrument.methodName,
+        details: details,
+    }, undefined, 2);
+}
+
+const payButton = document.getElementById('buy100');
+payButton.setAttribute('style', 'display: none;');
+if (window.PaymentRequest) {
+    let request = initPaymentRequest();
+    payButton.setAttribute('style', 'display: inline;');
+    payButton.addEventListener('click', function () {
+        onBuyClicked(request);
+        request = initPaymentRequest();
+    });
+} else {
+    ChromeSamples.setStatus('This browser does not support web payments');
+}
