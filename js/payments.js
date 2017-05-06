@@ -22,7 +22,7 @@ function initPaymentRequest() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: '55.00'
+                value: '10.00'
             }
         },
         displayItems: [
