@@ -3316,6 +3316,60 @@ tr.group:hover {
 
 
 /********************************************
+            Radio Group
+********************************************/
+
+.radio-group input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+}
+
+.radio-group label {
+    color: #9a929e;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.radio-group input[type=radio]:checked+label {
+    color: #ccc8ce;
+    background: #675f6b;
+}
+
+.radio-group label+input[type=radio]+label {
+    border-left: solid 3px #675f6b;
+}
+
+.radio-group {
+    border: solid 2px #dadada;
+    display: inline-block;
+    margin: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: -31px;
+}
+
+.radio-group label {
+    padding: 2px;
+    font-size: 10px !important;
+}
+
+.radio-group label:before {
+    display: none
+}
+
+.radio-group label:after {
+    display: none
+}
+
+.radioPad {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+
+/********************************************
             LOAYLTY POINTS
 ********************************************/
 

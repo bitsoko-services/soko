@@ -219,7 +219,7 @@ function loadPOS() {
         }
         $("#switchStoreContent").html('');
         for (var i = 0; i < services.length; ++i) {
-            var html = ' <li class="collection-item avatar closeSwitchStore" style="" svid="' + services[i].id + '"><img src="' + services[i].bannerPath + '" alt="" class="circle"><div class="row">' + '<p class="collections-title">' + services[i].name + '</strong></p><p class="collections-content">...</p></div>' + '</li>';
+            var html = ' <li class="collection-item avatar" style="" svid="' + services[i].id + '"><img src="' + services[i].bannerPath + '" alt="" class="circle closeSwitchStore" svid="' + services[i].id + '"><div class="row closeSwitchStore" svid="' + services[i].id + '" style="width:50%;float:left;">' + '<p class="collections-title">' + services[i].name + '</strong></p><p class="collections-content">...</p></div>' + '</li>';
             $("#switchStoreContent").append(html);
             localStorage.setItem('soko-store-id-' + services[i].id, JSON.stringify(services[i]));
             localStorage.setItem('soko-active-store', services[0].id);
@@ -1265,7 +1265,7 @@ function orderUpdater() {
                 '<div style="text-align:center;padding-right:15%;" class="pdfHide">New Order</div>' +
                 '<div style="text-align:center;padding-right:15%;">Total:<span class="orders-' + reqs[i].id + '-cost"></span>/= </div>' +
                 ' <div class="card-action"><a class="pdfHide" href="tel:' + reqs[i].phone + '"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">call</i></a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">bill</i></a></div>' +
-                ' <div class="card-action" style="padding:16px 0px 16px 0px !important;"><ul class="timeline" id="timeline"><li class="li complete completePending"><span class="date"></span><div class="timestamp"><span class="date"><span class="pendingText" style="font-size:10px;">PENDING</span></span></div><div class="status pendingCol"><p class="pendingCircle"> <input name="group1" type="radio" id="test1"> <label for="test1"></label> </p><span class="date"></span></div></li><li class="li complete completeDeliver"><span class="date"></span><div class="timestamp"><span class="date"><span class="deliveryText" style="font-size:10px;">DELIVERED</span></span></div><div class="status deliveredCol"><p class="deliveryCircle"> <input name="group1" type="radio" id="test1"> <label for="test1"></label> </p><span class="date"></span></div></li><li class="li complete completeConf"><span class="date"></span><div class="timestamp"><span class="date"><span class="completeText" style="font-size:10px;">COMPLETE</span></span></div><div class="status completeCol"><p class="completeCircle"> <input name="group1" type="radio" id="test1"> <label for="test1"></label> </p><span class="date"></span></div></li></ul></div>' +
+                ' <div class="card-action" style="padding:16px 0px 16px 0px !important;"><div class="radio-group"><input type="radio" id="option-one" name="selector"><label class="radioPad" for="option-one">Pending</label><input type="radio" id="option-two" name="selector"><label class="radioPad" for="option-two">Delivered</label><input type="radio" id="option-three" name="selector"><label class="radioPad" for="option-three">Complete</label> </div></div>' +
                 '</div> <div class="card-stacked">' +
                 '<div class="card-content"><div class="">order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' +
                 '</div></div>';
@@ -1518,7 +1518,6 @@ function switchStore() {
     $('.sidebar-collapse').sideNav('hide');
     setTimeout(function () {
         $('#switchStoreModal').modal({
-            dismissible: false,
             ready: function () {}
         }).modal('open');
     }, 200);
