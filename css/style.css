@@ -2954,7 +2954,7 @@ tr.group:hover {
 }
 
 .orders-holda .card-image {
-    max-width: 55% !important;
+    max-width: 100% !important;
 }
 
 .orders-holda .card-image img {
@@ -2973,7 +2973,7 @@ tr.group:hover {
 
 @media screen and (max-width: 400px) {
     .orders-holda .card-image {
-        max-width: 50% !important;
+        max-width: 100% !important;
     }
     .card-action .pdfHide i {
         border: solid #ffab40 1px !important;
@@ -3333,12 +3333,12 @@ tr.group:hover {
 }
 
 .radio-group input[type=radio]:checked+label {
-    color: #ccc8ce;
-    background: #675f6b;
+    color: white;
+    background: #22a022;
 }
 
 .radio-group label+input[type=radio]+label {
-    border-left: solid 3px #675f6b;
+    border-left: solid 2px #dadada;
 }
 
 .radio-group {
@@ -3364,7 +3364,7 @@ tr.group:hover {
 }
 
 .radioPad {
-    padding: 0px !important;
+    padding: 0px 10px 0px 10px !important;
     margin: 0px !important;
 }
 
@@ -3380,4 +3380,9 @@ tr.group:hover {
 
 #loyaltyPoints {
     top: 20% !important;
+}
+
+#switchStoreModal {
+    z-index: 1000 !important;
+    max-height: 50% !important;
 }
