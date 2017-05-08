@@ -69,14 +69,20 @@ header .brand-logo {
 	height: auto!important;
 }
 
-.card .horizontal > .card-image {
+.orders-holda > .card > .s7 {
 	max-width: 30% !important;
 }
 
 
-.card .horizontal > .col .s12 {
+.orders-holda > .card > .s12 {
 	width: 100% !important;
 	text-align: center;
+}
+.orders-holda > .card > .s12 > div {
+	width: 100% !important;
+}
+.orders-holda > .card > .s12 > div > label {
+	width: 25% !important;
 }
 
 
