@@ -1264,7 +1264,7 @@ function orderUpdater() {
             var html = '<div style="padding:10px;border-radius:7px;" id="order-card-' + i + '" class="card"><div class="col s7" style="padding:0px;"><div class="card-image"><img style="border-radius:5px;" src="' + reqs[i].icon + '">' +
                 '<div style="text-align:center;padding-right:15%;" class="pdfHide">New Order</div>' +
                 '<div style="text-align:center;padding-right:15%;">Total:<span class="orders-' + reqs[i].id + '-cost"></span>/= </div>' +
-                ' <div class="card-action"><a class="pdfHide" href="tel:' + reqs[i].phone + '"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">call</i></a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">bill</i></a></div>' +
+                ' <div class="card-action" style="padding-left:0px;"><a class="pdfHide" href="tel:' + reqs[i].phone + '" style="margin-right:5px;"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">call</i></a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">bill</i></a></div>' +
                 ' <div class="card-action" style="padding:16px 0px 16px 0px !important;"></div>' +
                 '</div></div><div class="col s5" style="padding:0px;"> <div class="card-stacked">' +
                 '<div class="card-content"><div class="">order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' +
