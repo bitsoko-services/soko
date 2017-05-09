@@ -87,6 +87,9 @@ header .brand-logo {
 .orders-holda > .card > .s7 > div > img {
 	height: auto !important;
 }
+.orders-holda > .card > .s7 > div > .card-action {
+	padding: 5px 5px !important;
+}
 .orders-holda > .card > .s5 {
 	width: 61.6666666667% !important;
 }
