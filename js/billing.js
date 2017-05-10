@@ -184,45 +184,56 @@ function createInvoiceListener(orderid, invoiceDat) {
                     var totalPrice = 0;
                     for (var i = 0, totalPrice = totalPrice, rows = rows; i < invoiceDat.length; i++) {
                         totalPrice = invoiceDat[i].prod.price + totalPrice;
-
-                        var custDetails = invoiceDat[i].name.name;
-                        var ordrImgPath = invoiceDat[i].name.icon;
-                        var img = new Image();
-                        img.setAttribute('crossOrigin', 'anonymous');
-                        img.onload = function () {
-                            var canvas = document.createElement("canvas");
-                            canvas.width = this.width;
-                            canvas.height = this.height;
-                            var ctx = canvas.getContext("2d");
-                            ctx.drawImage(this, 0, 0);
-                            var dataURL = canvas.toDataURL("image/jpg");
-                            var columns = ["Number of Items", "Name of Item", "Description", "Price"];
-                            pdf.addImage(dataURL, 'JPEG', 15, 200, 100, 100);
-                            pdf.text(custDetails, 35, 25);
-                            rows.push(['', '', 'Total', totalPrice + '/=']);
-                            pdf.autoTable(columns, rows, {
-                                margin: {
-                                    top: 330
-                                },
-                                theme: 'striped',
-                            });
-                            pdf.save('table.pdf');
-                        };
-                        img.src = ordrImgPath;
-
                         var count = invoiceDat[i].count;
+                        var ordrImgPath = invoiceDat[i].name.icon;
                         var name = invoiceDat[i].prod.name;
+                        var icon = invoiceDat[i].name.icon;
                         var description = invoiceDat[i].prod.description;
                         var price = invoiceDat[i].prod.price;
+                        var number = invoiceDat[i].name.number;
                         var loc = 'dgclauigfckiuj';
+                        var userName = 'Name';
+                        var phoneNum = '+254';
                         rows.push([count, name, description, price]);
                     }
+                    var img = new Image();
+                    img.setAttribute('crossOrigin', 'anonymous');
+                    img.onload = function () {
+                        var canvas = document.createElement("canvas");
+                        canvas.width = this.width;
+                        canvas.height = this.height;
+                        var ctx = canvas.getContext("2d");
+                        ctx.drawImage(this, 0, 0);
+                        var dataURL = canvas.toDataURL("image/jpg");
+                        pdf.addImage(dataURL, 'JPEG', 35, 240, 80, 80);
+                        pdf.text(userName, 45, 350);
+                        pdf.text(phoneNum, 45, 370);
+                        var columns = ["Number of Items", "Name of Item", "Description", "Price"];
+                        rows.push(['', '', 'Total', totalPrice + '/=']);
+                        pdf.autoTable(columns, rows, {
+                            margin: {
+                                top: 430
+                            },
+                            theme: 'striped',
+                        });
+                        pdf.save('table.pdf');
+                    };
+                    img.src = ordrImgPath;
                 }, margins);
 
 
         });
     });
 }
+
+
+
+
+
+
+
+
+
 //function serviceBillUpdater() {
 //    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
 //        var reqs = event.target.result;
