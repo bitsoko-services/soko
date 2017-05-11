@@ -30,7 +30,14 @@ function loadPOS() {
             var html = ' <li class="collection-item avatar" style="" svid="' + services[i].id + '"><img src="' + services[i].bannerPath + '" alt="" class="circle closeSwitchStore" svid="' + services[i].id + '"><div class="row closeSwitchStore" svid="' + services[i].id + '" style="width:50%;float:left;">' + '<p class="collections-title">' + services[i].name + '</strong></p><p class="collections-content">...</p></div>' + '</li>';
             $("#switchStoreContent").append(html);
             localStorage.setItem('soko-store-id-' + services[i].id, JSON.stringify(services[i]));
-            localStorage.setItem('soko-active-store', services[0].id);
+		
+		if(getBitsOpt('s')==undefined){
+		localStorage.setItem('soko-active-store', services[0].id);
+            
+		}else{
+		localStorage.setItem('soko-active-store', getBitsOpt('s'));
+            
+		}
             // initialisePush('soko-store-id-' + services[i].id);
         }
         var shroot = document.querySelectorAll(".closeSwitchStore");
