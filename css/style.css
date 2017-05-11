@@ -3386,3 +3386,106 @@ tr.group:hover {
     z-index: 1000 !important;
     max-height: 50% !important;
 }
+
+
+/********************************************
+            Promotion
+********************************************/
+
+.counter-right,
+.counter-left {
+    transition: 0.5s;
+}
+
+.counter-right:disabled {
+    background: #6c7271
+}
+
+.counter-left:disabled {
+    background: #6c7271
+}
+
+
+/********************************************
+            Reward Points
+********************************************/
+
+#buy100 {
+    background: #26a69a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border-radius: 4;
+    width: 230px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#buy10000 {
+    background: #26a69a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border-radius: 4;
+    width: 230px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#buy1000 {
+    background: #26a69a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border-radius: 4;
+    width: 230px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+}
+
+#msg {
+    width: 163px;
+    height: 60px;
+    background: #ffab40;
+    margin-left: 25%;
+    position: relative;
+}
+
+#reverseMsg {
+    width: 163px;
+    height: 60px;
+    background: #ffab40;
+    margin-right: 15%;
+    position: relative;
+}
+
+#msg:before {
+    content: "";
+    position: absolute;
+    border-bottom: 30px solid transparent;
+    border-right: 21px solid #ffab40;
+    border-top: 30px solid transparent;
+    height: 0px;
+    width: 0px;
+    margin-left: -102px;
+}
+
+#reverseMsg:after {
+    content: "";
+    position: absolute;
+    border-bottom: 30px solid transparent;
+    border-left: 21px solid #ffab40;
+    border-top: 30px solid transparent;
+    height: 0px;
+    width: 0px;
+    right: -20px;
+    top: 0;
+}
+
+.rewardbtn {
+    height: 60px !important;
+}

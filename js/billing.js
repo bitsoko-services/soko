@@ -183,18 +183,18 @@ function createInvoiceListener(orderid, invoiceDat) {
                     var rows = [];
                     var totalPrice = 0;
                     for (var i = 0, totalPrice = totalPrice, rows = rows; i < invoiceDat.length; i++) {
-                        totalPrice = invoiceDat[i].prod.price + totalPrice;
+                        totalPrice = invoiceDat[i].prod.price * invoiceDat[i].count + totalPrice;
                         var count = invoiceDat[i].count;
                         var ordrImgPath = invoiceDat[i].name.icon;
                         var name = invoiceDat[i].prod.name;
                         var icon = invoiceDat[i].name.icon;
-                        var description = invoiceDat[i].prod.description;
-                        var price = invoiceDat[i].prod.price;
+                        var unitPrice = invoiceDat[i].prod.price;
+                        var price = invoiceDat[i].prod.price * invoiceDat[i].count;
                         var number = invoiceDat[i].name.number;
                         var loc = 'dgclauigfckiuj';
                         var userName = 'Name';
                         var phoneNum = '+254';
-                        rows.push([count, name, description, price]);
+                        rows.push([count, name, unitPrice, price]);
                     }
                     var img = new Image();
                     img.setAttribute('crossOrigin', 'anonymous');
@@ -208,7 +208,7 @@ function createInvoiceListener(orderid, invoiceDat) {
                         pdf.addImage(dataURL, 'JPEG', 35, 240, 80, 80);
                         pdf.text(userName, 45, 350);
                         pdf.text(phoneNum, 45, 370);
-                        var columns = ["Number of Items", "Name of Item", "Description", "Price"];
+                        var columns = ["Number of Items", "Name of Item", "Cost Per Unit", "Total Cost"];
                         rows.push(['', '', 'Total', totalPrice + '/=']);
                         pdf.autoTable(columns, rows, {
                             margin: {
