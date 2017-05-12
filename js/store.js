@@ -118,6 +118,19 @@ function editStoreCallback() {
     });
 }
 
+
+function editPromoCallback() {
+    var forEach = function (array, callback, scope) {
+        for (var i = 0; i < array.length; i++) {
+            callback.call(scope, i, array[i]); // passes back stuff we need
+        }
+    };
+    var myNodeList = document.querySelectorAll('.p-card input,.p-card textarea');
+    forEach(myNodeList, function (index, value) {
+        value.addEventListener("change", updateProm);
+    });
+}
+
 function newStore() {
     $('.sidebar-collapse').sideNav('hide');
     setTimeout(function () {
@@ -207,6 +220,32 @@ function doNewStore() {
             console.log(e);
         }
     });
+}
+
+function updateProm(t) {
+    console.log($(t.target));
+    var name = $(t.target).attr('pritm');
+    var val = $(t.target).val();
+	doFetch({
+            action: 'doEditPromo',
+            id: $(t.target).parents('form[class^="col"]').attr('fid'),
+            prop: name,
+            val: val
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                if (name == 'shopTransfer') {
+                    $('#transfer-shop').autocomplete({
+                        data: e.users
+                    });
+                }
+                Materialize.toast('modified ' + name + '..', 3000);
+            } else {
+                console.log(e);
+            }
+        });
+	
+	
+	
 }
 
 function updateStore(t) {
