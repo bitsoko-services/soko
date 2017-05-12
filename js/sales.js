@@ -82,7 +82,7 @@ function addOrderItems(orderid, orderItems) {
                 }
             };
         };
-        $(".orders-" + orderid + "-cost").append(tCost);
+        $(".orders-" + orderid + "-cost").text(tCost);
 
         createInvoiceListener(orderid, invoiceDat);
 
