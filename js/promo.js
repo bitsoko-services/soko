@@ -51,6 +51,7 @@ function promoUpdater() {
         for (var i = 0; i < shroot.length; ++i) {
             shroot[i].addEventListener("touchstart", castPromo, false);
         };
+	    editPromoCallback();
     }
 }
 
