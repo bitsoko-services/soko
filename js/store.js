@@ -233,14 +233,10 @@ function updateProm(t) {
             val: val
         }).then(function (e) {
             if (e.status == 'ok') {
-                if (name == 'shopTransfer') {
-                    $('#transfer-shop').autocomplete({
-                        data: e.users
-                    });
-                }
                 Materialize.toast('modified ' + name + '..', 3000);
             } else {
-                console.log(e);
+               
+                Materialize.toast('please try again..', 2000);
             }
         });
 	
