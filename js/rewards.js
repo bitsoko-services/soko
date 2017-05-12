@@ -22,7 +22,7 @@ function initPaymentRequest() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: '10.00'
+                value: '100.00'
             }
         },
         displayItems: [
@@ -58,7 +58,7 @@ function initPaymentRequest2() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: '100.00'
+                value: '1000.00'
             }
         },
         displayItems: [
@@ -94,7 +94,7 @@ function initPaymentRequest3() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: '1000.00'
+                value: '10000.00'
             }
         },
         displayItems: [
@@ -183,13 +183,13 @@ if (window.PaymentRequest) {
     });
     payButton2.setAttribute('style', 'display: inline;');
     payButton2.addEventListener('click', function () {
-        onBuyClicked(request);
-        request = initPaymentRequest3();
+        onBuyClicked(request2);
+        request2 = initPaymentRequest2();
     });
     payButton3.setAttribute('style', 'display: inline;');
     payButton3.addEventListener('click', function () {
-        onBuyClicked(request);
-        request = initPaymentRequest2();
+        onBuyClicked(request3);
+        request3 = initPaymentRequest3();
     });
 } else {
     ChromeSamples.setStatus('This browser does not support web payments');
