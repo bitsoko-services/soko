@@ -294,7 +294,20 @@ function doNewPromo() {
 //Remove Promotion
 $(document).on('touchstart click', '.removePromo', function (event) {
     console.log("Promotion Removed Successfully");
+    parent_div = $(this).parent().parent().parent().remove();
+    id = $(parent_div).attr('id')
     $(this).parent().parent().parent().remove();
+    doFetch({
+        action: 'removeProduct',
+        id: id
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            //document.querySelector('#prodImg-holda-'+prid).src = val;
+            //  Materialize.toast('modified '+name+'..', 3000);
+        } else {
+            console.log(e);
+        }
+    });
 });
 
 //Hide Card Reveal on Promotion Page
