@@ -266,9 +266,9 @@ var murl ='https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.9
   xhr.onload = function() {
   		
   	  //if we make a successful request and it returns an address
-	  if(this.status==200 && JSON.parse(xhr.responseText).contents.results.length > 0){
+	  if(this.status==200){
 	  	//get formatted address from https://developers.google.com/maps/documentation/geocoding/#ReverseGeocoding
-	  	var result = JSON.parse(xhr.responseText).contents.results[0].formatted_address;
+	  	var result = JSON.parse(xhr.responseText);
 	  	resolve(result);
       } else {
       	//send some general error
