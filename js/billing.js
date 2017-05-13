@@ -206,6 +206,10 @@ function createInvoiceListener(orderid, invoiceDat) {
                         ctx.drawImage(this, 0, 0);
                         var dataURL = canvas.toDataURL("image/jpg");
                         pdf.addImage(dataURL, 'JPEG', 35, 240, 80, 80);
+                        
+                        getMapImg('').then(function(map){
+                        
+                        pdf.addImage(map, 'JPEG', 350, 240, 80, 80);
                         pdf.text(userName, 45, 350);
                         pdf.text(phoneNum, 45, 370);
                         var columns = ["Number of Items", "Name of Item", "Cost Per Unit", "Total Cost"];
@@ -217,6 +221,10 @@ function createInvoiceListener(orderid, invoiceDat) {
                             theme: 'striped',
                         });
                         pdf.save('table.pdf');
+                        
+                        });
+                        
+                        
                     };
                     img.src = ordrImgPath;
                 }, margins);
@@ -227,7 +235,25 @@ function createInvoiceListener(orderid, invoiceDat) {
 }
 
 
-
+function getMapImg(url){
+var url ='https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=400x400&key=AIzaSyBEpLoOInTvRSrkLpTHSu8EE3jiFD1Vk7E';
+return new Promise(function(resolve, reject) {
+    
+    var img = new Image();
+                    img.setAttribute('crossOrigin', 'anonymous');
+                    img.onload = function () {
+                        var canvas = document.createElement("canvas");
+                        canvas.width = this.width;
+                        canvas.height = this.height;
+                        var ctx = canvas.getContext("2d");
+                        ctx.drawImage(this, 0, 0);
+                        var dataURL = canvas.toDataURL("image/jpg");
+                        resolve(dataURL);
+                    };
+                    img.src = url;
+});
+    
+}
 
 
 
