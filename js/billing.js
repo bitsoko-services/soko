@@ -207,7 +207,7 @@ function createInvoiceListener(orderid, invoiceDat) {
                         var dataURL = canvas.toDataURL("image/jpg");
                         pdf.addImage(dataURL, 'JPEG', 35, 240, 80, 80);
                         
-                        getMapImg('').then(function(res){
+                        getCoordDet('').then(function(res){
                         
                         pdf.addImage(res[0], 'JPEG', 350, 240, 80, 80);
                         pdf.text(res[1].results[0].formatted_address, 200, 350);
@@ -233,63 +233,6 @@ function createInvoiceListener(orderid, invoiceDat) {
 
         });
     });
-}
-
-
-function getMapImg(url){
-    var mapKey='AIzaSyBEpLoOInTvRSrkLpTHSu8EE3jiFD1Vk7E';
-var murl ='https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=9&size=400x400&key='+mapKey;
-    
- return new Promise(function(resolve, reject) {
-    var imgm=new Promise(function(resolve, reject) {
-    
-    var img = new Image();
-                    img.setAttribute('crossOrigin', 'anonymous');
-                    img.onload = function () {
-                        var canvas = document.createElement("canvas");
-                        canvas.width = this.width;
-                        canvas.height = this.height;
-                        var ctx = canvas.getContext("2d");
-                        ctx.drawImage(this, 0, 0);
-                        var dataURL = canvas.toDataURL("image/jpg");
-                        resolve(dataURL);
-                    };
-                    img.src = murl;
-});
-        var textm=new Promise(function(resolve, reject) {
-    
-     var url =' https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key='+mapKey
-  //make the Ajax request
-  var xhr = new XMLHttpRequest();
-
-  xhr.open("GET", url);
-  xhr.onload = function() {
-  		
-  	  //if we make a successful request and it returns an address
-	  if(this.status==200){
-	  	//get formatted address from https://developers.google.com/maps/documentation/geocoding/#ReverseGeocoding
-	  	var result = JSON.parse(xhr.responseText);
-	  	resolve(result);
-      } else {
-      	//send some general error
-          reject('geocoding error');
-      }
-
-  }
-
-  xhr.send();
-             
-});
-    
-  
-    
-    Promise.all([imgm, textm]).then(values => { 
-  resolve(values);
-}).catch(reason => { 
-  reject(reason)
-});
-});
-    
 }
 
 
