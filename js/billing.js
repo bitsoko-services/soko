@@ -207,10 +207,10 @@ function createInvoiceListener(orderid, invoiceDat) {
                         var dataURL = canvas.toDataURL("image/jpg");
                         pdf.addImage(dataURL, 'JPEG', 35, 240, 80, 80);
                         
-                        getMapImg('').then(function(map){
-                        console.log(map);
-                            return;
-                        pdf.addImage(map, 'JPEG', 350, 240, 80, 80);
+                        getMapImg('').then(function(res){
+                        
+                        pdf.addImage(res[0], 'JPEG', 350, 240, 80, 80);
+                        pdf.text(res[1].results[0].formatted_address, 200, 350);
                         pdf.text(userName, 45, 350);
                         pdf.text(phoneNum, 45, 370);
                         var columns = ["Number of Items", "Name of Item", "Cost Per Unit", "Total Cost"];
