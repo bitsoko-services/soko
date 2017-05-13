@@ -293,5 +293,19 @@ $('#submitProdForm').click(function (e) {
 //Remove Product
 $(document).on('touchstart click', '.removeProduct', function (event) {
     console.log("Product Removed Successfully");
+    parent_div = $(this).parent().parent().parent().parent()
+    id = $(parent_div).attr('prid')
     $(this).parent().parent().parent().parent().remove();
+    //    console.log(event)
+    doFetch({
+        action: 'removeProduct',
+        id: id
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            //document.querySelector('#prodImg-holda-'+prid).src = val;
+            //  Materialize.toast('modified '+name+'..', 3000);
+        } else {
+            console.log(e);
+        }
+    });
 });
