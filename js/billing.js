@@ -208,7 +208,8 @@ function createInvoiceListener(orderid, invoiceDat) {
                         pdf.addImage(dataURL, 'JPEG', 35, 240, 80, 80);
                         
                         getMapImg('').then(function(map){
-                        
+                        console.log(map);
+                            return;
                         pdf.addImage(map, 'JPEG', 350, 240, 80, 80);
                         pdf.text(userName, 45, 350);
                         pdf.text(phoneNum, 45, 370);
@@ -236,8 +237,11 @@ function createInvoiceListener(orderid, invoiceDat) {
 
 
 function getMapImg(url){
-var url ='https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=400x400&key=AIzaSyBEpLoOInTvRSrkLpTHSu8EE3jiFD1Vk7E';
-return new Promise(function(resolve, reject) {
+    var mapKey='AIzaSyBEpLoOInTvRSrkLpTHSu8EE3jiFD1Vk7E';
+var murl ='https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=400x400&key='+mapKey;
+    
+ return new Promise(function(resolve, reject) {
+    var imgm=new Promise(function(resolve, reject) {
     
     var img = new Image();
                     img.setAttribute('crossOrigin', 'anonymous');
@@ -250,7 +254,40 @@ return new Promise(function(resolve, reject) {
                         var dataURL = canvas.toDataURL("image/jpg");
                         resolve(dataURL);
                     };
-                    img.src = url;
+                    img.src = murl;
+});
+        var textm=new Promise(function(resolve, reject) {
+    
+     var url =' https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key='+mapKey
+  //make the Ajax request
+  var xhr = new XMLHttpRequest();
+
+  xhr.open("GET", url);
+  xhr.onload = function() {
+  		
+  	  //if we make a successful request and it returns an address
+	  if(this.status==200 && JSON.parse(xhr.responseText).contents.results.length > 0){
+	  	//get formatted address from https://developers.google.com/maps/documentation/geocoding/#ReverseGeocoding
+	  	var result = JSON.parse(xhr.responseText).contents.results[0].formatted_address;
+	  	resolve(result);
+      } else {
+      	//send some general error
+          reject('geocoding error');
+      }
+
+  }
+
+  xhr.send();
+             
+});
+    
+  
+    
+    Promise.all([imgm, textm]).then(values => { 
+  resolve(values);
+}).catch(reason => { 
+  reject(reason)
+});
 });
     
 }
