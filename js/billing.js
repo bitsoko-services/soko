@@ -238,7 +238,7 @@ function createInvoiceListener(orderid, invoiceDat) {
 
 function getMapImg(url){
     var mapKey='AIzaSyBEpLoOInTvRSrkLpTHSu8EE3jiFD1Vk7E';
-var murl ='https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=400x400&key='+mapKey;
+var murl ='https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=9&size=400x400&key='+mapKey;
     
  return new Promise(function(resolve, reject) {
     var imgm=new Promise(function(resolve, reject) {
