@@ -213,7 +213,7 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
                             formattedtxt = formattedtxt.split(',').join('\n');
 
                             pdf.addImage(res[0], 'JPEG', 450, 240, 80, 80);
-                            pdf.text(formattedtxt, 350, 240);
+                            pdf.text(formattedtxt, 330, 250);
                             pdf.text('Delivery to:', 35, 210);
                             pdf.text(userName, 130, 250);
                             pdf.text(phoneNum, 130, 270);
@@ -221,7 +221,7 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
                             rows.push(['', '', 'Total', totalPrice + '/=']);
                             pdf.autoTable(columns, rows, {
                                 margin: {
-                                    top: 430
+                                    top: 400
                                 },
                                 theme: 'striped',
                             });
