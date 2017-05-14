@@ -174,7 +174,7 @@ function orderUpdater() {
 
             $(".orders-holda").prepend($.parseHTML(html));
             console.log(reqs[i]);
-            addOrderItems(reqs[i].id, reqs[i]);
+            addOrderItems(reqs[i].id, reqs[i], reqs[i].location);
         }
         //$('.products-collapsible').collapsible();
         // $('select').material_select();
