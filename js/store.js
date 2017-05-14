@@ -302,6 +302,9 @@ function updateStore(t) {
             prop: name,
             val: dayData
         }).then(function (e) {});
+    } else if (name == "shopTransfer") {
+       //TO-DO
+	    //move the shop transfer function
     } else {
         doFetch({
             action: 'doEditStore',
@@ -310,11 +313,7 @@ function updateStore(t) {
             val: val
         }).then(function (e) {
             if (e.status == 'ok') {
-                if (name == 'shopTransfer') {
-                    $('#transfer-shop').autocomplete({
-                        data: e.users
-                    });
-                }
+               
                 Materialize.toast('modified ' + name + '..', 3000);
             } else {
                 console.log(e);
