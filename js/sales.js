@@ -25,7 +25,7 @@ function refreshSalesOrders() {
     */
 }
 
-function getActvStoreProds(orderid, orderItems) {
+function getActvStoreProds(orderid, orderItems, orderLoc) {
 
     return new Promise(function (resolve, reject) {
 
@@ -34,15 +34,16 @@ function getActvStoreProds(orderid, orderItems) {
             var p = {};
             p.orderid = orderid;
             p.orderItems = orderItems;
+            p.orderLoc = orderLoc;
             p.allProds = $.parseJSON(event.target.result);
             resolve(p);
         }
     });
 }
 
-function addOrderItems(orderid, orderItems) {
+function addOrderItems(orderid, orderItems, orderLoc) {
 
-    getActvStoreProds(orderid, orderItems).then(function (p) {
+    getActvStoreProds(orderid, orderItems, orderLoc).then(function (p) {
 
         var orderItems = $.parseJSON(p.orderItems.items);
 
@@ -55,6 +56,7 @@ function addOrderItems(orderid, orderItems) {
             number: '0707'
         };
         var orderid = p.orderid;
+        var orderLoc = p.orderLoc;
         var p = p.allProds;
         tCost = 0;
         invoiceDat = [];
@@ -84,7 +86,7 @@ function addOrderItems(orderid, orderItems) {
         };
         $(".orders-" + orderid + "-cost").text(tCost);
 
-        createInvoiceListener(orderid, invoiceDat);
+        createInvoiceListener(orderid, invoiceDat, orderLoc);
 
     });
 }
