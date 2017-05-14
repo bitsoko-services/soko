@@ -480,15 +480,23 @@ document.addEventListener('visibilitychange', function (event) {
 });
 
 
+
 //Input Initiallization
-function userNamesInput() {
+function userNamesInput(elmID) {
     var fetchedData = doFetch({
         action: 'getAllUsers',
-        data: $('#transfer-shop').val()
+        data: $('#'+elmID).val()
     }).then(function (e) {
+var dat={}
 
-        $('#transfer-shop').autocomplete({
-            data: e.data
+for(var iii in e.users){
+  var nm=e.users[iii].name;
+  var icn=e.users[iii].icon;
+dat[nm] = icn;
+
+}
+        $('#'+elmID).autocomplete({
+            data: dat
         });
 
     });
@@ -502,7 +510,7 @@ function transferListener() {
     };
     var myNodeList = document.querySelectorAll('#transfer-shop');
     forEach(myNodeList, function (index, value) {
-        value.addEventListener("change", userNamesInput);
+        value.addEventListener("change", userNamesInput('transfer-shop'));
     });
 }
 transferListener();
