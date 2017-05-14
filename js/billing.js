@@ -190,10 +190,10 @@ function createInvoiceListener(orderid, invoiceDat) {
                         var icon = invoiceDat[i].name.icon;
                         var unitPrice = invoiceDat[i].prod.price;
                         var price = invoiceDat[i].prod.price * invoiceDat[i].count;
-                        var number = invoiceDat[i].name.number;
+                       // var number = invoiceDat[i].name.number;
                         var loc = 'dgclauigfckiuj';
-                        var userName = 'Name';
-                        var phoneNum = '+254';
+                        var userName = invoiceDat[i].name.name;
+                        var phoneNum = invoiceDat[i].name.number;
                         rows.push([count, name, unitPrice, price]);
                     }
                     var img = new Image();
@@ -211,6 +211,7 @@ function createInvoiceListener(orderid, invoiceDat) {
                         
                         pdf.addImage(res[0], 'JPEG', 350, 240, 80, 80);
                         pdf.text(res[1].results[0].formatted_address, 200, 350);
+                        pdf.text('Delivery to:', 45, 150);
                         pdf.text(userName, 45, 350);
                         pdf.text(phoneNum, 45, 370);
                         var columns = ["Number of Items", "Name of Item", "Cost Per Unit", "Total Cost"];
