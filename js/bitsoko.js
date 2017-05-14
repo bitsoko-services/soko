@@ -510,7 +510,7 @@ function transferListener() {
     };
     var myNodeList = document.querySelectorAll('#transfer-shop');
     forEach(myNodeList, function (index, value) {
-        value.addEventListener("change", userNamesInput);
+        value.addEventListener("change", userNamesInput('transfer-shop'));
     });
 }
 transferListener();
