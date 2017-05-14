@@ -513,7 +513,6 @@ function transferListener() {
         value.addEventListener("change", userNamesInput('transfer-shop'));
     });
 }
-transferListener();
 
 
 
