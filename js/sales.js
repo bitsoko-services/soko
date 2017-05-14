@@ -42,7 +42,7 @@ function getActvStoreProds(orderid, orderItems, orderLoc) {
 }
 
 function addOrderItems(orderid, orderItems, orderLoc) {
-
+console.log(orderid, orderItems, orderLoc);
     getActvStoreProds(orderid, orderItems, orderLoc).then(function (p) {
 
         var orderItems = $.parseJSON(p.orderItems.items);
