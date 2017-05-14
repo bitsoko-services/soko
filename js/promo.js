@@ -125,13 +125,13 @@ $("select.promo-add-ProdList").select2({
 	     $( "select.promo-add-ProdList" ).append( $.parseHTML( html ) );
        */
             for (var i = 0; i < e.length; ++i) {
-                var html = '<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12"> <div class="col s6"> <input name="promoItems" type="checkbox" id="checker-' + e[i].id + '" pid="' + e[i].id + '"/><label for="checker-' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4"><div style="display:inline-flex;"><button href="#" id="minus-' + e[i].id + '" class="counter-left" disabled>-</button><input class="' + e[i].id + '" type="number" value="0" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" id="plus-' + e[i].id + '" class="counter-right" disabled>+</button></div></div></div></p>' + '</li>' + '</li>';
+                var html = '<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '" checked="checked"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>';
                 $(".promo-add-new-promotion2").append($.parseHTML(html));
-                document.getElementById('checker-' + e[i].id).onchange = function (e) {
-                    $(this).attr('pid');
-                    document.getElementById('plus-' + $(this).attr('pid')).disabled = !this.checked;
-                    document.getElementById('minus-' + $(this).attr('pid')).disabled = !this.checked;
-                };
+                //                document.getElementById('checker-' + e[i].id).onchange = function (e) {
+                //                    $(this).attr('pid');
+                //                    document.getElementById('plus-' + $(this).attr('pid')).disabled = !this.checked;
+                //                    document.getElementById('minus-' + $(this).attr('pid')).disabled = !this.checked;
+                //                };
 
                 //scroll to top onclick add promo
                 $("#makeCard").on("click", function () {
