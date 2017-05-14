@@ -40,11 +40,11 @@ function refreshBills(month, year) {
                     dailyBill = '<li class="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span class="dailyBill">' + dailyTotal + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>Billing for Promo ' + promotionId + ' is ' + promoRate + '</span></br></div></li>';
                     $('#rowBIll').append(dailyBill);
                 } else {
-                    console.log('This should fire');
+                   // console.log('This should fire');
                     daily = '<span>Billing for Promo ' + promotionId + ' is ' + promoRate + '</span></br>';
-                    console.log('Daily value is: ' + daily);
+                    //console.log('Daily value is: ' + daily);
                     dailyTotal = dailyTotal + 0.167;
-                    console.log('New daily total should be: ' + dailyTotal);
+                    //console.log('New daily total should be: ' + dailyTotal);
                     $('.rowBill .collapsible-body').last().append(daily);
                     $('.dailyBill').last().text(dailyTotal);
                 }
@@ -59,7 +59,7 @@ function refreshBills(month, year) {
         }
         //$('.month').html(month_name);
         var billcharges = parseFloat(bills.length * 0.167).toFixed(3);
-        console.log("Biliing charges----------->>" + billcharges)
+        //console.log("Biliing charges----------->>" + billcharges)
         $('#serviceBillCharges').html(billcharges);
         if (e.status == "ok") {
             console.log(e)
@@ -156,7 +156,7 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
     var myNodeList = document.querySelectorAll('#do-bill-' + orderid);
     forEach(myNodeList, function (index, value) {
         value.addEventListener("pointerdown", function (ev) {
-            console.log(invoiceDat);
+            console.log(invoiceDat, orderLoc);
             var pdf = new jsPDF('p', 'pt', 'letter');
             source = $('.pdfAppend')[0];
             specialElementHandlers = {
