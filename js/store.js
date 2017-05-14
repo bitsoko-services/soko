@@ -155,6 +155,7 @@ function editStore() {
             ready: function () {
                 editStoreCallback();
                 reqLoc();
+		transferListener();
                 var xx = activeStore();
                 document.querySelector('#editStoreModal #editStore-name').value = xx.name;
                 document.querySelector('#editStoreModal #editStore-description').value = xx.description;
