@@ -147,7 +147,7 @@ $(document).ready(function () {
     })
 });
 
-function createInvoiceListener(orderid, invoiceDat) {
+function createInvoiceListener(orderid, invoiceDat, orderLoc) {
     var forEach = function (array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
             callback.call(scope, i, array[i]); // passes back stuff we need
@@ -182,7 +182,7 @@ function createInvoiceListener(orderid, invoiceDat) {
                     // Add you function here 
                     var rows = [];
                     var totalPrice = 0;
-                    for (var i = 0, totalPrice = totalPrice, rows = rows; i < invoiceDat.length; i++) {
+                    for (var i = 0, totalPrice = totalPrice, rows = rows, orderLoc=orderLoc; i < invoiceDat.length; i++) {
                         totalPrice = invoiceDat[i].prod.price * invoiceDat[i].count + totalPrice;
                         var count = invoiceDat[i].count;
                         var ordrImgPath = invoiceDat[i].name.icon;
@@ -191,7 +191,7 @@ function createInvoiceListener(orderid, invoiceDat) {
                         var unitPrice = invoiceDat[i].prod.price;
                         var price = invoiceDat[i].prod.price * invoiceDat[i].count;
                        // var number = invoiceDat[i].name.number;
-                        var loc = 'dgclauigfckiuj';
+                        //var loc = 'dgclauigfckiuj';
                         var userName = invoiceDat[i].name.name;
                         var phoneNum = invoiceDat[i].name.number;
                         rows.push([count, name, unitPrice, price]);
@@ -207,7 +207,7 @@ function createInvoiceListener(orderid, invoiceDat) {
                         var dataURL = canvas.toDataURL("image/jpg");
                         pdf.addImage(dataURL, 'JPEG', 35, 240, 80, 80);
                         
-                        getCoordDet('').then(function(res){
+                        getCoordDet(orderLoc).then(function(res){
                         
                         pdf.addImage(res[0], 'JPEG', 350, 240, 80, 80);
                         pdf.text(res[1].results[0].formatted_address, 200, 350);
