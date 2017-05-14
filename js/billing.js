@@ -40,7 +40,7 @@ function refreshBills(month, year) {
                     dailyBill = '<li class="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span class="dailyBill">' + dailyTotal + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>Billing for Promo ' + promotionId + ' is ' + promoRate + '</span></br></div></li>';
                     $('#rowBIll').append(dailyBill);
                 } else {
-                   // console.log('This should fire');
+                    // console.log('This should fire');
                     daily = '<span>Billing for Promo ' + promotionId + ' is ' + promoRate + '</span></br>';
                     //console.log('Daily value is: ' + daily);
                     dailyTotal = dailyTotal + 0.167;
@@ -182,7 +182,7 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
                     // Add you function here 
                     var rows = [];
                     var totalPrice = 0;
-                    for (var i = 0, totalPrice = totalPrice, rows = rows, orderLoc=orderLoc; i < invoiceDat.length; i++) {
+                    for (var i = 0, totalPrice = totalPrice, rows = rows, orderLoc = '-1.2833196999999998, 36.8185068'; i < invoiceDat.length; i++) {
                         totalPrice = invoiceDat[i].prod.price * invoiceDat[i].count + totalPrice;
                         var count = invoiceDat[i].count;
                         var ordrImgPath = invoiceDat[i].name.icon;
@@ -190,7 +190,7 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
                         var icon = invoiceDat[i].name.icon;
                         var unitPrice = invoiceDat[i].prod.price;
                         var price = invoiceDat[i].prod.price * invoiceDat[i].count;
-                       // var number = invoiceDat[i].name.number;
+                        // var number = invoiceDat[i].name.number;
                         //var loc = 'dgclauigfckiuj';
                         var userName = invoiceDat[i].name.name;
                         var phoneNum = invoiceDat[i].name.number;
@@ -206,27 +206,30 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
                         ctx.drawImage(this, 0, 0);
                         var dataURL = canvas.toDataURL("image/jpg");
                         pdf.addImage(dataURL, 'JPEG', 35, 240, 80, 80);
-                        
-                        getCoordDet(orderLoc).then(function(res){
-                        
-                        pdf.addImage(res[0], 'JPEG', 350, 240, 80, 80);
-                        pdf.text(res[1].results[0].formatted_address, 200, 350);
-                        pdf.text('Delivery to:', 45, 150);
-                        pdf.text(userName, 45, 350);
-                        pdf.text(phoneNum, 45, 370);
-                        var columns = ["Number of Items", "Name of Item", "Cost Per Unit", "Total Cost"];
-                        rows.push(['', '', 'Total', totalPrice + '/=']);
-                        pdf.autoTable(columns, rows, {
-                            margin: {
-                                top: 430
-                            },
-                            theme: 'striped',
+
+                        getCoordDet(orderLoc).then(function (res) {
+
+                            var formattedtxt = res[1].results[0].formatted_address;
+                            formattedtxt = formattedtxt.split(',').join('\n');
+
+                            pdf.addImage(res[0], 'JPEG', 450, 240, 80, 80);
+                            pdf.text(formattedtxt, 350, 240);
+                            pdf.text('Delivery to:', 35, 210);
+                            pdf.text(userName, 130, 250);
+                            pdf.text(phoneNum, 130, 270);
+                            var columns = ["Number of Items", "Name of Item", "Cost Per Unit", "Total Cost"];
+                            rows.push(['', '', 'Total', totalPrice + '/=']);
+                            pdf.autoTable(columns, rows, {
+                                margin: {
+                                    top: 430
+                                },
+                                theme: 'striped',
+                            });
+                            pdf.save('table.pdf');
+
                         });
-                        pdf.save('table.pdf');
-                        
-                        });
-                        
-                        
+
+
                     };
                     img.src = ordrImgPath;
                 }, margins);
