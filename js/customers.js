@@ -228,7 +228,13 @@ function getActvStoreCust(promoid, promoSubs) {
             var p = {};
             p.promoid = promoid;
             p.promoSubs = promoSubs;
-            p.allCust = $.parseJSON(event.target.result);
+            try{
+              p.allCust = $.parseJSON(event.target.result);
+            }catch(err){
+            refreshCustomers();
+                return;
+            }
+          
             resolve(p);
         }
     });
