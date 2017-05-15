@@ -24,7 +24,21 @@ function profileLoaded(p) {
     //p.ownerid=1;
     localStorage.setItem('soko-owner-id', p.bitsokoUserID);
     Materialize.toast('Signing in...', 3000)
+   updateStores();
     doFetch({
+        action: 'getMadr',
+        id: p.bitsokoUserID
+    }).then(function (e) {
+        if (e.status == "ok") {
+            localStorage.setItem('bitsoko-wallets-addr', e.adr)
+        } else {
+            console.log('Error: unable to load merchant info');
+        }
+    });
+}
+
+function updateStores(){
+ doFetch({
         action: 'merchantServiceLoader',
         id: localStorage.getItem('bits-user-name')
     }).then(function (e) {
@@ -44,21 +58,9 @@ function profileLoaded(p) {
                 }
             });
             $('#firstStoreModal').modal('open');
-        } else {
-            createService(p);
         }
     }).catch(function (err) {
         loadPOS();
-    });
-    doFetch({
-        action: 'getMadr',
-        id: p.bitsokoUserID
-    }).then(function (e) {
-        if (e.status == "ok") {
-            localStorage.setItem('bitsoko-wallets-addr', e.adr)
-        } else {
-            console.log('Error: unable to load merchant info');
-        }
     });
 }
 
@@ -255,7 +257,7 @@ function process(e,event) {
 }
 
 */
-
+/*
 
 function addTransaction(t) {
     var x = document.querySelector('link[type="trn-template"]');
@@ -393,7 +395,7 @@ function createService(p) {
         });
     });
 }
-
+*/
 function checkNotes() {
     console.log('should be checking for notes');
 }
