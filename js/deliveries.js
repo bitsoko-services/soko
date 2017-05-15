@@ -3,6 +3,7 @@ $('#deliveriesToggle').click(function (e) {
     e.preventDefault();
     $('#MobileModal').modal('open');
     $('#deliveriesToggle').sideNav('hide');
+    deliveryListener();
     //    $('#mobileVerification').modal({
     //        dismissible: false,
     //    });

@@ -396,10 +396,24 @@ $(document).on('touchstart click', '.removeProduct', function (event) {
     })
 
     if (found) {
-        //        return found_id
-        console.log('product is checked')
+        console.log('product is checked');
+        Materialize.toast('This product is in an active promotion', 3000);
     } else {
-        console.log('the product is not checked')
+        console.log('the product is not checked');
+        parent_div = $(this).parent().parent().parent().parent()
+        id = $(parent_div).attr('prid')
+        //    console.log(event)
+        doFetch({
+            action: 'removeProduct',
+            id: id
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                console.log("Product Removed Successfully");
+                $(this).parent().parent().parent().parent().remove();
+            } else {
+                console.log(e);
+            }
+        });
     }
 
 })
