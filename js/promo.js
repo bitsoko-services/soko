@@ -293,16 +293,16 @@ function doNewPromo() {
 
 //Remove Promotion
 $(document).on('touchstart click', '.removePromo', function (event) {
-    console.log("Promotion Removed Successfully");
     parent_div = $(this).parent().parent().parent().remove();
-    id = $(parent_div).attr('id')
-    $(this).parent().parent().parent().remove();
+    id = $(parent_div).attr('id').replace(/\D/g, '');
+
     doFetch({
-        action: 'removeProduct',
+        action: 'removePromotion',
         id: id
     }).then(function (e) {
         if (e.status == 'ok') {
-            //document.querySelector('#prodImg-holda-'+prid).src = val;
+            console.log("Promotion Removed Successfully");
+            $(this).parent().parent().parent().remove();
             //  Materialize.toast('modified '+name+'..', 3000);
         } else {
             console.log(e);
