@@ -291,21 +291,115 @@ $('#submitProdForm').click(function (e) {
 //};
 
 //Remove Product
+//$(document).on('touchstart click', '.removeProduct', function (event) {
+//    console.log("Product Removed Successfully");
+//    parent_div = $(this).parent().parent().parent().parent()
+//    id = $(parent_div).attr('prid')
+//    $(this).parent().parent().parent().parent().remove();
+//    //    console.log(event)
+//    doFetch({
+//        action: 'removeProduct',
+//        id: id
+//    }).then(function (e) {
+//        if (e.status == 'ok') {
+//            //document.querySelector('#prodImg-holda-'+prid).src = val;
+//            //  Materialize.toast('modified '+name+'..', 3000);
+//        } else {
+//            console.log(e);
+//        }
+//    });
+//});
+
+
+//$(document).on('touchstart click', '.removeProduct', function (event) {
+//    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-promotions').onsuccess = function (event) {
+//        try {
+//            e = JSON.parse(event.target.result);
+//        } catch (err) {
+//            console.log('unable to access products list. ' + err);
+//            return;
+//        }
+//        console.log(ttt);
+//        if ($('input[name=promoItems]').is(':checked')) {
+//            Materialize.toast('This Product Is In An Active Promotion', 3000);
+//        } else if (document.getElementsByName("promoItems").checked = false) {
+//            console.log("Product Removed Successfully");
+//            parent_div = $(this).parent().parent().parent().parent()
+//            id = $(parent_div).attr('prid')
+//            $(this).parent().parent().parent().parent().remove();
+//            //    console.log(event)
+//            doFetch({
+//                action: 'removeProduct',
+//                id: id
+//            }).then(function (e) {
+//                if (e.status == 'ok') {
+//                    //document.querySelector('#prodImg-holda-'+prid).src = val;
+//                    //  Materialize.toast('modified '+name+'..', 3000);
+//                } else {
+//                    console.log(e);
+//                }
+//            });
+//        } else {
+//            console.log("Unable to get product list");
+//        }
+//    }
+//});
+
+
+function getProductsPromotions() {
+    promos_to_products = {}
+    promotions = $('.promotions-holda').find('.p-card')
+
+    $.each(promotions, function (index, promotion) {
+        unique_id = $(promotion).attr('id')
+        promos_to_products[unique_id] = []
+    })
+
+    $.each(promotions, function (index, promotion) {
+        products_in_promotion = $(promotion).find('li');
+        $.each(products_in_promotion, function (index, products) {
+            check = $(products).find('input')[0]
+            if ($(check).is(':checked')) {
+                product_id = $(check).attr('id')
+                promos_to_products[$(promotion).attr('id')].push(product_id)
+            }
+        })
+
+    })
+
+    //    console.log('checked products: ', promos_to_products)
+
+    return promos_to_products
+}
+
 $(document).on('touchstart click', '.removeProduct', function (event) {
-    console.log("Product Removed Successfully");
+    event.preventDefault()
+
+    //    console.log('clicked event')
+
     parent_div = $(this).parent().parent().parent().parent()
-    id = $(parent_div).attr('prid')
-    $(this).parent().parent().parent().parent().remove();
-    //    console.log(event)
-    doFetch({
-        action: 'removeProduct',
-        id: id
-    }).then(function (e) {
-        if (e.status == 'ok') {
-            //document.querySelector('#prodImg-holda-'+prid).src = val;
-            //  Materialize.toast('modified '+name+'..', 3000);
-        } else {
-            console.log(e);
-        }
-    });
-});
+    search_for = $(parent_div).attr('prid')
+
+    console.log('id to check: ', search_for)
+
+    promos = getProductsPromotions()
+    found = false
+    found_id = null
+
+    $.each(promos, function (key, value) {
+        $.each(value, function (index, product_id) {
+            if (search_for == product_id) {
+                found = true
+                found_id = product_id
+            }
+        })
+    })
+
+    if (found) {
+        //        return found_id
+        console.log('product is checked')
+    } else {
+        console.log('the product is not checked')
+    }
+
+})
