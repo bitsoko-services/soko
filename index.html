@@ -168,6 +168,21 @@
             <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="#loyaltyPoints">Buy Points</a>
         </div>
     </div>
+    <!-- Modal Structure -->
+    <div id="cancelOrderModal" class="modal" style="border-radius:10p;">
+        <div class="modal-content" style="padding:0px;">
+            <div class="opacitySelectedColor" style="text-align:center;background:#ff0000;margin:0px;padding:10px;color:white;">
+                <h5 style="margin:0px;">CANCEL ORDER</h5>
+            </div>
+            <div style="padding:20px;">
+                <p>Are you sure you want to cancel this order?</p>
+            </div>
+        </div>
+        <div style="text-align:center;margin-bottom:20px;">
+            <a class="opacitySelectedColor waves-effect waves-light btn">YES</a>
+            <a class="opacitySelectedColor waves-effect waves-light btn">NO</a>
+        </div>
+    </div>
     <!--- Loyalty Points Start --->
     <div id="loyaltyPoints" class="modal">
         <div class="modal-content" style="padding:0px; border-radius:5px;">
@@ -389,14 +404,14 @@
     </div>
     <!-- Delivery Modal Structure -->
     <div id="MobileModal" class="modal modal-fixed-footer bottom-sheet MobileModal" style="z-index:1000;">
-	
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="delivery-members" type="text" class="validate" placeholder="username">
-                            <label for="delivery-members" class="">Delivery Operators</label>
-                        </div>
-                    </div>
-	</div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="delivery-members" type="text" class="validate" placeholder="username">
+                <label for="delivery-members" class="">Delivery Operators</label>
+            </div>
+        </div>
+    </div>
     <!-- Mobile Verification Modal End -->
     <!-- editStore Modal Start -->
     <div id="editStoreModal" class="modal modal-fixed-footer">

@@ -181,17 +181,21 @@ function orderUpdater() {
             var orderStatus = reqs[i].id;
 
             $(document).on('touchstart click', '#cancel' + orderStatus, function () {
+                var cancelBtn = $(this).parent().parent().parent();
+                id = $(cancelBtn).attr('id').replace(/\D/g, '');
                 doFetch({
                     action: 'orderStatus',
                     id: id,
                     state: 'Cancelled'
                 }).then(function (e) {
                     if (e.status == 'ok') {} else {
-                        console.log(e);
+                        //                        $('#cancelOrderModal').modal('open');
                     }
                 });
             });
             $(document).on('touchstart click', '#deliver' + orderStatus, function () {
+                var deliveredBtn = $(this).parent().parent().parent();
+                id = $(deliveredBtn).attr('id').replace(/\D/g, '');
                 doFetch({
                     action: 'orderStatus',
                     id: id,
@@ -203,6 +207,8 @@ function orderUpdater() {
                 });
             });
             $(document).on('touchstart click', '#complete' + orderStatus, function () {
+                var completeBtn = $(this).parent().parent().parent();
+                id = $(completeBtn).attr('id').replace(/\D/g, '');
                 doFetch({
                     action: 'orderStatus',
                     id: id,
