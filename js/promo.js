@@ -20,8 +20,8 @@ function promoUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access promotions list. ' + err);
-
-            reqs = [];
+refreshPromotions();
+            return;
         }
 
         $(".allPromosCount").html(reqs.length);
