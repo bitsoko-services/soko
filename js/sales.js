@@ -60,6 +60,8 @@ function addOrderItems(orderid, orderItems, orderLoc) {
         var p = p.allProds;
         tCost = 0;
         invoiceDat = [];
+        $(".orders-" + orderid + "-items").html('');
+                    
         for (var i = 0, orderItems = orderItems, invoiceDat = invoiceDat, tCost = tCost, orderid = orderid; i < p.length; ++i) {
             for (var ii = 0, p = p, orderid = orderid, invoiceDat = invoiceDat, tCost = tCost; ii < orderItems.length; ++ii) {
                 var test = new RegExp(orderItems[ii].pid).test(p[i].id);
@@ -75,6 +77,7 @@ function addOrderItems(orderid, orderItems, orderLoc) {
                     } else {
                         var sss = '';
                     }
+                    
                     var html = '<div class="chip" style="margin:5px;"><img src="' + p[i].imagePath + '" alt="">' + orderItems[ii].count + ' ' + p[i].name.split(" ")[0] + '' + sss + '</div>';
                     $(".orders-" + orderid + "-items").append($.parseHTML(html));
                     tCost = tCost + (p[i].price * parseInt(orderItems[ii].count));
