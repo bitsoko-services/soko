@@ -206,6 +206,7 @@ return;
                             $('#cancelOrderModal').modal('close');
                         });
                     } else {}
+                    refreshSalesOrders();
                 });
             });
             $(document).on('touchstart click', '#deliver' + orderStatus, function () {
@@ -219,6 +220,7 @@ return;
                     if (e.status == 'ok') {} else {
                         console.log(e);
                     }
+                    refreshSalesOrders();
                 });
             });
             $(document).on('touchstart click', '#complete' + orderStatus, function () {
@@ -232,6 +234,7 @@ return;
                     if (e.status == 'ok') {} else {
                         console.log(e);
                     }
+                    refreshSalesOrders();
                 });
             });
         }
