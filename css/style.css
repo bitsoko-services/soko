@@ -3489,3 +3489,19 @@ tr.group:hover {
 .rewardbtn {
     height: 60px !important;
 }
+
+
+/********************************************
+            Products Page
+********************************************/
+
+.prodImgDskt {
+    border-radius: 4px !important;
+    height: 70px !important;
+    width: 70px !important;
+    margin: 10px !important;
+}
+
+.products-collapsible .collapsible-body {
+    min-width: 100%;
+}
