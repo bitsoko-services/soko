@@ -4,7 +4,12 @@ function refreshSalesOrders() {
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         console.log(e);
+         if (e.status == 'ok') {   
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + id + '-orders');
+        }else{
+        
+        getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + id + '-orders');
+        }
         orderUpdater();
     }).catch(function (err) {
         orderUpdater();
