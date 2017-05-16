@@ -113,6 +113,7 @@ function updateThisPage(pg) {
             productsUpdater();
             break;
         case 'storefront':
+		refreshSalesOrders();
             promoUpdater();
             break;
         case 'beacons':
