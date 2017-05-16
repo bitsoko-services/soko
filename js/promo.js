@@ -1,7 +1,7 @@
 function refreshPromotions() {
     doFetch({
         action: 'getPromotions',
-        id: id
+        id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         console.log(e);
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.promotions), 'soko-store-' + id + '-promotions');
