@@ -148,8 +148,8 @@ function orderUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access orders list. ' + err);
-
-            reqs = [];
+            refreshSalesOrders();
+return;
         }
 
         $(".allOrdersCount").html(reqs.length);
