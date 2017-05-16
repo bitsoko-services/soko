@@ -4,7 +4,12 @@ function refreshPromotions() {
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         console.log(e);
+              if (e.status == 'ok') {   
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.promotions), 'soko-store-' + id + '-promotions');
+	}else{
+        
+        getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + id + '-promotions');
+        }
         promoUpdater();
         promoCreator();
     }).catch(function (err) {
