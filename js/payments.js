@@ -3,9 +3,6 @@ $('#paymentsToggle').click(function (e) {
     e.preventDefault();
     $('#paymentsToggle').sideNav('hide');
     $('#MobileModal').modal('open');
-    //    $('#mobileVerification').modal({
-    //        dismissible: false,
-    //    });
     var isValid = true;
     $('#submitPhoneNo').click(function () {
         phoneNo_ = $('#inp-phone').val();
