@@ -3198,12 +3198,22 @@ tr.group:hover {
     .card {
         /* height: 50vh !important; */
     }
+    .prdList {
+        margin: 2%;
+    }
     .prodImgDskt {
         float: none !important;
         width: 100% !important;
         height: 50% !important;
         background-size: contain !important;
         background-color: #BAE0FC;
+        margin: 0px !important;
+    }
+    .products .collapsible {
+        border-top: none !important;
+    }
+    .products .collapsible .divider {
+        display: none;
     }
     .products-collapsible .collapsible-header {
         padding-left: 60px;
@@ -3497,9 +3507,6 @@ tr.group:hover {
 
 .prodImgDskt {
     border-radius: 4px !important;
-    height: 70px !important;
-    width: 70px !important;
-    margin: 10px !important;
 }
 
 .products-collapsible .collapsible-body {
