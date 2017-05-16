@@ -1,7 +1,7 @@
 function refreshSalesOrders() {
     doFetch({
         action: 'getOrders',
-        id: id
+        id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         console.log(e);
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + id + '-orders');
