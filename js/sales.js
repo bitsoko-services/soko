@@ -202,8 +202,9 @@ function orderUpdater() {
                         if (e.status == 'ok') {
                             $(cancelBtn).parent().parent().remove();
                         } else {
-                            refreshSalesOrders();
+
                         }
+                        refreshSalesOrders();
                     });
                 });
             });
