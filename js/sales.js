@@ -196,6 +196,13 @@ function orderUpdater() {
                         $(document).on('touchstart click', '#yesBtn', function () {
                             $(cancelBtn).parent().parent().remove();
                             $('#cancelOrderModal').modal('close');
+                            doFetch({
+                                action: 'orderStatus',
+                                id: id,
+                                state: 'orderCancelled'
+                            }).then(function (e) {
+                                if (e.status == 'ok') {} else {}
+                            });
                         });
                         $(document).on('touchstart click', '#noBtn', function () {
                             $('#cancelOrderModal').modal('close');

@@ -48,7 +48,7 @@
 
     <link rel="import" href="https://bitsoko.io/bitsAssets/html/connector.html" async> </head>
 
-<body style="overflow-x: hidden;" onload="startGoogle">
+<body style="overflow-x: hidden;" onload="startGoogle();">
     <bits-connect></bits-connect>
     <!-- Start Page Loading -->
     <!-- End Page Loading -->
@@ -410,6 +410,10 @@
                 <input id="delivery-members" type="text" class="validate" placeholder="username">
                 <label for="delivery-members" class="">Delivery Operators</label>
             </div>
+            <div class="input-field col s12">
+                <input id="editStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" stitm="lonlat" disabled="">
+                <label for="editStore-Location" class="active">Location</label>
+            </div>
         </div>
     </div>
     <!-- Mobile Verification Modal End -->
@@ -473,12 +477,6 @@
                                     </div></span></div>
                             </li>
                         </ul>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="transfer-shop" type="text" class="validate" placeholder="username" stitm="shopTransfer">
-                            <label for="transfer-shop" class="">Transfer Shop</label>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="file-field input-field">
@@ -546,6 +544,12 @@
                         <div class="input-field col s12">
                             <input id="editStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" stitm="lonlat" disabled>
                             <label for="editStore-Location" class="">Location</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="transfer-shop" type="text" class="validate" placeholder="username" stitm="shopTransfer">
+                            <label for="transfer-shop" class="">Transfer Shop</label>
                         </div>
                     </div>
                 </form>
