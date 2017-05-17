@@ -82,6 +82,9 @@ angular.module('sokoApp', [])
         } catch (err) {
             console.log('no user profile found : ', err);
             $('#login').modal('open');
+            $('#login').modal({
+                dismissible: false,
+            });
             $('#login').on('load', function () {
                 startGoogle();
             })
@@ -113,7 +116,7 @@ function updateThisPage(pg) {
             productsUpdater();
             break;
         case 'storefront':
-		refreshSalesOrders();
+            refreshSalesOrders();
             promoUpdater();
             break;
         case 'beacons':

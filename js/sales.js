@@ -4,11 +4,11 @@ function refreshSalesOrders() {
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         console.log(e);
-         if (e.status == 'ok') {   
-        getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + id + '-orders');
-        }else{
-        
-        getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + id + '-orders');
+        if (e.status == 'ok') {
+            getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + id + '-orders');
+        } else {
+
+            getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + id + '-orders');
         }
         orderUpdater();
     }).catch(function (err) {
@@ -154,7 +154,7 @@ function orderUpdater() {
         } catch (err) {
             console.log('unable to access orders list. ' + err);
             refreshSalesOrders();
-return;
+            return;
         }
 
         $(".allOrdersCount").html(reqs.length);
@@ -191,29 +191,20 @@ return;
             $(document).on('touchstart click', '#cancel' + orderStatus, function () {
                 var cancelBtn = $(this).parent();
                 id = $(cancelBtn).attr('gid').replace(/\D/g, '');
-                doFetch({
-                    action: 'orderStatus',
-                    id: id,
-                    state: 'Cancelled'
-                }).then(function (e) {
-                    if (e.status == 'ok') {
-                        $('#cancelOrderModal').modal('open');
-                        $(document).on('touchstart click', '#yesBtn', function () {
+                $('#cancelOrderModal').modal('open');
+                $(document).on('touchstart click', '#yesBtn', function () {
+                    $('#cancelOrderModal').modal('close');
+                    doFetch({
+                        action: 'orderStatus',
+                        id: id,
+                        state: 'Cancelled'
+                    }).then(function (e) {
+                        if (e.status == 'ok') {
                             $(cancelBtn).parent().parent().remove();
-                            $('#cancelOrderModal').modal('close');
-                            doFetch({
-                                action: 'orderStatus',
-                                id: id,
-                                state: 'orderCancelled'
-                            }).then(function (e) {
-                                if (e.status == 'ok') {} else {}
-                            });
-                        });
-                        $(document).on('touchstart click', '#noBtn', function () {
-                            $('#cancelOrderModal').modal('close');
-                        });
-                    } else {}
-                    refreshSalesOrders();
+                        } else {
+                            refreshSalesOrders();
+                        }
+                    });
                 });
             });
             $(document).on('touchstart click', '#deliver' + orderStatus, function () {

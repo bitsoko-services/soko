@@ -3500,6 +3500,10 @@ tr.group:hover {
     height: 60px !important;
 }
 
+#cancelOrderModal {
+    top: 30% !important;
+}
+
 
 /********************************************
             Products Page
