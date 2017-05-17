@@ -1,10 +1,15 @@
 function refreshSalesOrders() {
     doFetch({
         action: 'getOrders',
-        id: id
+        id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         console.log(e);
+         if (e.status == 'ok') {   
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + id + '-orders');
+        }else{
+        
+        getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + id + '-orders');
+        }
         orderUpdater();
     }).catch(function (err) {
         orderUpdater();
@@ -148,8 +153,8 @@ function orderUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access orders list. ' + err);
-
-            reqs = [];
+            refreshSalesOrders();
+return;
         }
 
         $(".allOrdersCount").html(reqs.length);
@@ -208,6 +213,7 @@ function orderUpdater() {
                             $('#cancelOrderModal').modal('close');
                         });
                     } else {}
+                    refreshSalesOrders();
                 });
             });
             $(document).on('touchstart click', '#deliver' + orderStatus, function () {
@@ -221,6 +227,7 @@ function orderUpdater() {
                     if (e.status == 'ok') {} else {
                         console.log(e);
                     }
+                    refreshSalesOrders();
                 });
             });
             $(document).on('touchstart click', '#complete' + orderStatus, function () {
@@ -234,6 +241,7 @@ function orderUpdater() {
                     if (e.status == 'ok') {} else {
                         console.log(e);
                     }
+                    refreshSalesOrders();
                 });
             });
         }
