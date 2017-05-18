@@ -32,3 +32,20 @@ $('#deliveriesToggle').click(function (e) {
         }
     });
 });
+
+//Delivery Members
+$('document').ready(function () {
+    $('body').on('click', $('#MobileModal ul.autocomplete-content li'), function () {
+        var value = $('#delivery-members').val();
+        if (value != '') {
+            var deliveryMembers = $('#delivery-members').val()
+            doFetch({
+                action: 'deliveryMembers',
+                store: localStorage.getItem('soko-active-store'),
+                data: deliveryMembers
+            }).then(function (e) {
+                if (e.status == 'ok') {} else {}
+            });
+        }
+    });
+});
