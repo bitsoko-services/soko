@@ -207,20 +207,19 @@ function doNewPromo() {
     //        }
     //        selcIds.push(parseInt(allItms.find(findChosen).id));
     //    }
-    var boxes = $('input[name=promoItems]:checked');
+    var boxes = $('#newPromoModal input[name=promoItems]:checked');
     for (i = 0; i < boxes.length; i++) {
-        console.log('ID is: ' + boxes[i].id);
+        //console.log('ID is: ' + boxes[i].id);
         var productID = boxes[i].id;
-        console.log('The item is added ' + $('li.circle input.' +
-            productID).val() + ' times');
+       // console.log('The item is added ' + $('li.circle input.' + productID).val() + ' times');
         var times = $('li.circle input.' + productID).val();
         for (j = 0; j < times; j++) {
-            console.log('Product is: ' + productID);
+         //   console.log('Product is: ' + productID);
             selcIds.push(parseInt(productID));
         }
     }
 
-    console.log(boxes);
+    //console.log(boxes);
     $('.promo-add-new-promotion2')
     doFetch({
         action: 'doNewPromo',
