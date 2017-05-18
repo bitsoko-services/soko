@@ -3122,15 +3122,6 @@ tr.group:hover {
     #billingPage {
         margin-top: 6px;
     }
-    .swichStoreDsktInfo {
-        display: block !important;
-    }
-    .switchStore {
-        display: none !important;
-    }
-    .swichStoreDskt nav {
-        display: block !important;
-    }
     .newStore {
         margin-left: 43px;
     }
@@ -3143,9 +3134,6 @@ tr.group:hover {
     }
     #firstProdModal {
         margin-left: 33% !important;
-    }
-    .addNewStoreDsktInfo {
-        display: block !important;
     }
     .newStore {
         display: none !important;
@@ -3217,6 +3205,20 @@ tr.group:hover {
     }
     .products-collapsible .collapsible-header {
         padding-left: 60px;
+    }
+    #MobileModal {
+        width: 78vw !important;
+        padding: 30px;
+    }
+    #loyaltyModal {
+        text-align: center;
+    }
+    #switchStoreModal {
+        margin-left: 22vw !important;
+    }
+    .swtchStrDskt {
+        width: 78vw !important;
+        z-index: -1 !important;
     }
 }
 

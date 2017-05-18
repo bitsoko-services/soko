@@ -30,14 +30,14 @@ function loadPOS() {
             var html = ' <li class="collection-item avatar" style="" svid="' + services[i].id + '"><img src="' + services[i].bannerPath + '" alt="" class="circle closeSwitchStore" svid="' + services[i].id + '"><div class="row closeSwitchStore" svid="' + services[i].id + '" style="width:50%;float:left;">' + '<p class="collections-title">' + services[i].name + '</strong></p><p class="collections-content">...</p></div>' + '</li>';
             $("#switchStoreContent").append(html);
             localStorage.setItem('soko-store-id-' + services[i].id, JSON.stringify(services[i]));
-		
-		if(getBitsOpt('s')==undefined){
-		localStorage.setItem('soko-active-store', services[0].id);
-            
-		}else{
-		localStorage.setItem('soko-active-store', getBitsOpt('s'));
-            
-		}
+
+            if (getBitsOpt('s') == undefined) {
+                localStorage.setItem('soko-active-store', services[0].id);
+
+            } else {
+                localStorage.setItem('soko-active-store', getBitsOpt('s'));
+
+            }
             // initialisePush('soko-store-id-' + services[i].id);
         }
         var shroot = document.querySelectorAll(".closeSwitchStore");
@@ -155,7 +155,7 @@ function editStore() {
             ready: function () {
                 editStoreCallback();
                 reqLoc();
-		transferListener();
+                transferListener();
                 var xx = activeStore();
                 document.querySelector('#editStoreModal #editStore-name').value = xx.name;
                 document.querySelector('#editStoreModal #editStore-description').value = xx.description;
@@ -227,22 +227,22 @@ function updateProm(t) {
     console.log($(t.target));
     var name = $(t.target).attr('pritm');
     var val = $(t.target).val();
-	doFetch({
-            action: 'doEditPromo',
-            id: $(t.target).parents('form[class^="col"]').attr('fid'),
-            prop: name,
-            val: val
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                Materialize.toast('modified ' + name + '..', 3000);
-            } else {
-               
-                Materialize.toast('please try again..', 2000);
-            }
-        });
-	
-	
-	
+    doFetch({
+        action: 'doEditPromo',
+        id: $(t.target).parents('form[class^="col"]').attr('fid'),
+        prop: name,
+        val: val
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            Materialize.toast('modified ' + name + '..', 3000);
+        } else {
+
+            Materialize.toast('please try again..', 2000);
+        }
+    });
+
+
+
 }
 
 function updateStore(t) {
@@ -304,8 +304,8 @@ function updateStore(t) {
             val: dayData
         }).then(function (e) {});
     } else if (name == "shopTransfer") {
-       //TO-DO
-	    //move the shop transfer function
+        //TO-DO
+        //move the shop transfer function
     } else {
         doFetch({
             action: 'doEditStore',
@@ -314,7 +314,7 @@ function updateStore(t) {
             val: val
         }).then(function (e) {
             if (e.status == 'ok') {
-               
+
                 Materialize.toast('modified ' + name + '..', 3000);
             } else {
                 console.log(e);
@@ -398,4 +398,5 @@ for (var i = 0; i < shroot.length; ++i) {
 var shroot = document.querySelectorAll(".switchStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", switchStore, false);
+    shroot[i].addEventListener("click", switchStore, false);
 };
