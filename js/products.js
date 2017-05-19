@@ -216,7 +216,6 @@ for (var i = 0; i < shroot.length; ++i) {
 */
 //Products Form Validation
 $('#submitProdForm').click(function (e) {
-    //    var isValid = true;
     name_ = $('#name').val();
     description_ = $('#description').val();
     image_ = $('#image').val();
@@ -254,10 +253,9 @@ $('#submitProdForm').click(function (e) {
             "background": ""
         });
     } else {
+        console.log("Product added");
         var shroot = document.querySelectorAll(".addProduct");
-        for (var i = 0; i < shroot.length; ++i) {
-            shroot[i].addEventListener("touchstart", addProduct, false);
-        };
+        addProduct();
         $("#name, #description, #image, #amount, #prodCy").css({
             "border-bottom": "2px solid green",
             "background": ""
