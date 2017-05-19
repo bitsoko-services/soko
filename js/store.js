@@ -382,6 +382,23 @@ stCb.onsuccess = function (event) {
 }
 */
 
+//Shop Transfer
+$('document').ready(function () {
+    $('body').on('click', $('#transfer-shop ul.autocomplete-content li'), function () {
+        var value = $('#transfer-shop').val();
+        if (value != '') {
+            var transferStore = $('#transfer-shop').val()
+            doFetch({
+                action: 'transferStore',
+                store: localStorage.getItem('soko-active-store'),
+                data: transferStore
+            }).then(function (e) {
+                if (e.status == 'ok') {} else {}
+            });
+        }
+    });
+});
+
 
 var shroot = document.querySelectorAll(".newStore");
 for (var i = 0; i < shroot.length; ++i) {
