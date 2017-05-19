@@ -156,7 +156,7 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
     var myNodeList = document.querySelectorAll('#do-bill-' + orderid);
     forEach(myNodeList, function (index, value) {
         value.addEventListener("pointerdown", function (ev) {
-          
+
             var pdf = new jsPDF('p', 'pt', 'letter');
             source = $('.pdfAppend')[0];
             specialElementHandlers = {
@@ -196,14 +196,14 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
                         var phoneNum = invoiceDat[i].name.number;
                         rows.push([count, name, unitPrice, price]);
                     }
-                      console.log(invoiceDat, orderLoc);
-                        getUserImg(ordrImgPath).then(function (imgURL) {
-                            pdf.addImage(imgURL, 'JPEG', 35, 240, 80, 80);
-                              console.log(invoiceDat, orderLoc);
-                            getCoordDet(orderLoc).then(function (res) {
+                    console.log(invoiceDat, orderLoc);
+                    getUserImg(ordrImgPath).then(function (imgURL) {
+                        pdf.addImage(imgURL, 'JPEG', 35, 240, 80, 80);
+                        console.log(invoiceDat, orderLoc);
+                        getCoordDet(orderLoc).then(function (res) {
                             //res[0] is the map image
                             //res[1] is the map text
-                                  console.log(invoiceDat, orderLoc);
+                            console.log(invoiceDat, orderLoc);
                             var formattedtxt = res[1].results[0].formatted_address;
                             formattedtxt = formattedtxt.split(',').join('\n');
 
@@ -223,8 +223,8 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
                             pdf.save('table.pdf');
 
                         });
-                        });
-                        
+                    });
+
                 }, margins);
 
 
@@ -233,31 +233,33 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
 }
 
 
-function getUserImg(url){
+function getUserImg(url) {
 
- return new Promise(function(resolve, reject) {
-     
-                    var img = new Image();
-                    img.setAttribute('crossOrigin', 'anonymous');
-                    img.onload = function () {
-                        var canvas = document.createElement("canvas");
-                        canvas.width = this.width;
-                        canvas.height = this.height;
-                        var ctx = canvas.getContext("2d");
-                        ctx.drawImage(this, 0, 0);
-                        var dataURL = canvas.toDataURL("image/jpg");
-                    resolve(dataURL);
+    return new Promise(function (resolve, reject) {
+
+        var img = new Image();
+        img.setAttribute('crossOrigin', 'anonymous');
+        img.onload = function () {
+            var canvas = document.createElement("canvas");
+            canvas.width = this.width;
+            canvas.height = this.height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(this, 0, 0);
+            var dataURL = canvas.toDataURL("image/jpg");
+            resolve(dataURL);
 
 
-                    };
-     
-                    img.src = url;
- });
-    
+        };
+
+        img.src = url;
+    });
+
 }
 
 
-
+$('#billingClickEvent').click(function () {
+    $("#billingPage").click();
+})
 
 //function serviceBillUpdater() {
 //    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
