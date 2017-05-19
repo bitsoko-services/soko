@@ -253,7 +253,6 @@ $('#submitProdForm').click(function (e) {
             "background": ""
         });
     } else {
-        console.log("Product added");
         var shroot = document.querySelectorAll(".addProduct");
         addProduct();
         $("#name, #description, #image, #amount, #prodCy").css({

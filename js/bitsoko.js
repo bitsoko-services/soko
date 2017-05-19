@@ -494,8 +494,9 @@ function userNamesInput(elmID) {
         var dat = {}
 
         for (var iii in e.users) {
-            var nm = e.users[iii].name;
+            var nm = e.users[iii].uid;
             var icn = e.users[iii].icon;
+             //var id = e.users[iii].id;
             dat[nm] = icn;
 
         }
