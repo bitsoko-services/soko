@@ -402,14 +402,13 @@ $(document).on('touchstart click', '.removeProduct', function (event) {
         console.log('the product is not checked');
         parent_div = $(this).parent().parent().parent().parent()
         id = $(parent_div).attr('prid')
-        //    console.log(event)
         doFetch({
             action: 'removeProduct',
             id: id
         }).then(function (e) {
             if (e.status == 'ok') {
                 console.log("Product Removed Successfully");
-                $(this).parent().parent().parent().parent().remove();
+                $(parent_div).remove();
             } else {
                 console.log(e);
             }
@@ -417,3 +416,7 @@ $(document).on('touchstart click', '.removeProduct', function (event) {
     }
 
 })
+
+$(document).on('touchstart click', '#firstProdModal', function (event) {
+    $('#add-product').modal('open');
+});

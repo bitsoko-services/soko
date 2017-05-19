@@ -24,7 +24,7 @@ function profileLoaded(p) {
     //p.ownerid=1;
     localStorage.setItem('soko-owner-id', p.bitsokoUserID);
     Materialize.toast('Signing in...', 3000)
-   updateStores();
+    updateStores();
     doFetch({
         action: 'getMadr',
         id: p.bitsokoUserID
@@ -37,14 +37,14 @@ function profileLoaded(p) {
     });
 }
 
-function updateStores(){
- doFetch({
+function updateStores() {
+    doFetch({
         action: 'merchantServiceLoader',
         id: localStorage.getItem('bits-user-name')
     }).then(function (e) {
         if (e.status == "ok") {
             $('#login').modal('close');
-		
+
             $('#newStoreModal').modal('close');
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.services), 'soko-stores');
             localStorage.setItem('bitsoko-stores', 'true');
@@ -489,17 +489,17 @@ document.addEventListener('visibilitychange', function (event) {
 function userNamesInput(elmID) {
     var fetchedData = doFetch({
         action: 'getAllUsers',
-        data: $('#'+elmID).val()
+        data: $('#' + elmID).val()
     }).then(function (e) {
-var dat={}
+        var dat = {}
 
-for(var iii in e.users){
-  var nm=e.users[iii].name;
-  var icn=e.users[iii].icon;
-dat[nm] = icn;
+        for (var iii in e.users) {
+            var nm = e.users[iii].name;
+            var icn = e.users[iii].icon;
+            dat[nm] = icn;
 
-}
-        $('#'+elmID).autocomplete({
+        }
+        $('#' + elmID).autocomplete({
             data: dat
         });
 
