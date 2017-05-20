@@ -486,17 +486,19 @@ document.addEventListener('visibilitychange', function (event) {
 
 
 //Input Initiallization
+var deliveryGuys = {}
+
 function userNamesInput(elmID) {
     var fetchedData = doFetch({
         action: 'getAllUsers',
         data: $('#' + elmID).val()
     }).then(function (e) {
         var dat = {}
-
+        deliveryGuys = e.users;
         for (var iii in e.users) {
-            var nm = e.users[iii].uid;
+            var nm = e.users[iii].name;
             var icn = e.users[iii].icon;
-             //var id = e.users[iii].id;
+            //var id = e.users[iii].id;
             dat[nm] = icn;
 
         }
@@ -520,7 +522,7 @@ function transferListener() {
 }
 
 
-
+//
 function deliveryListener() {
     var forEach = function (array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
@@ -532,7 +534,6 @@ function deliveryListener() {
         value.addEventListener("change", userNamesInput('delivery-members'));
     });
 }
-
 
 
 

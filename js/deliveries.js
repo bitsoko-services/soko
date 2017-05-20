@@ -38,14 +38,21 @@ $('document').ready(function () {
     $('body').on('click', $('#MobileModal ul.autocomplete-content li'), function () {
         var value = $('#delivery-members').val();
         if (value != '') {
-            var deliveryMembers = $('#delivery-members').val()
-            doFetch({
-                action: 'deliveryMembers',
-                store: localStorage.getItem('soko-active-store'),
-                data: deliveryMembers
-            }).then(function (e) {
-                if (e.status == 'ok') {} else {}
-            });
+            var deliveryMembers = $('#delivery-members').val();
+            for (var i in deliveryGuys) {
+                var name = deliveryGuys[i].name;
+                var id = deliveryGuys[i].id;
+                if (deliveryMembers == name) {
+                    doFetch({
+                        action: 'deliveryMembers',
+                        store: localStorage.getItem('soko-active-store'),
+                        data: id
+                    }).then(function (e) {
+                        if (e.status == 'ok') {} else {}
+                    });
+                }
+            }
+
         }
     });
 });
