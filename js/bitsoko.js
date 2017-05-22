@@ -35,6 +35,8 @@ function profileLoaded(p) {
             console.log('Error: unable to load merchant info');
         }
     });
+	
+sponsoredProdListener();
 }
 
 function updateStores() {
@@ -575,7 +577,6 @@ function sponsoredProdListener() {
     });
 }
 
-sponsoredProdListener();
 
 
 
