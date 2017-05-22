@@ -183,6 +183,21 @@
             <a class="waves-effect waves-light btn" id="noBtn">NO</a>
         </div>
     </div>
+    <!-- Remove Member Modal Structure -->
+    <div id="removeMemberModal" class="modal" style="border-radius:10p;">
+        <div class="modal-content" style="padding:0px;">
+            <div class="opacitySelectedColor" style="text-align:center;background:#ff0000;margin:0px;padding:10px;color:white;">
+                <h5 style="margin:0px;">REMOVE MEMBER</h5>
+            </div>
+            <div style="padding:20px;">
+                <p>Are you sure you want to remove this member?</p>
+            </div>
+        </div>
+        <div style="text-align:center;margin-bottom:20px;">
+            <a class="waves-effect waves-light btn" id="yesMemberBtn">YES</a>
+            <a class="waves-effect waves-light btn" id="noMemberBtn">NO</a>
+        </div>
+    </div>
     <!--- Loyalty Points Start --->
     <div id="loyaltyPoints" class="modal">
         <div class="modal-content" style="padding:0px; border-radius:5px;">
@@ -409,6 +424,15 @@
             <div class="input-field col s12">
                 <input id="delivery-members" type="text" class="validate" placeholder="username">
                 <label for="delivery-members" class="">Delivery Operators</label>
+            </div>
+            <div class="input-field col s6">
+                <input placeholder="" id="delivery_Rate" type="number" class="validate" min="0" style="margin-bottom:0px;">
+                <label for="delivery_Rate" class="active">Delivery Rate</label> </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <div id="membersLst">
+                </div>
             </div>
         </div>
     </div>

@@ -35,8 +35,8 @@ function profileLoaded(p) {
             console.log('Error: unable to load merchant info');
         }
     });
-	
-sponsoredProdListener();
+
+    sponsoredProdListener();
 }
 
 function updateStores() {
@@ -489,6 +489,10 @@ document.addEventListener('visibilitychange', function (event) {
 
 //Input Initiallization
 var deliveryGuys = {}
+[{
+        id: 66,
+        active: 'true'
+}]
 
 function userNamesInput(elmID) {
     var fetchedData = doFetch({
@@ -524,7 +528,7 @@ function sponpProdNamesInput(elmID) {
         var dat = {}
         sponProds = e.products;
         for (var iii in e.products) {
-            var nm = e.products[iii].name +" - "+e.products[iii].price;
+            var nm = e.products[iii].name + " - " + e.products[iii].price;
             var icn = e.products[iii].icon;
             //var id = e.users[iii].id;
             dat[nm] = icn;

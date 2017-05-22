@@ -52,7 +52,29 @@ $('document').ready(function () {
                     });
                 }
             }
-
         }
     });
+});
+
+
+//Delivery Member List
+function deliveryMemberLst() {
+    var deliveryMembers = $('#delivery-members').val();
+    for (var s in deliveryGuys) {
+        var name = deliveryGuys[s].name;
+        var id = deliveryGuys[s].icon;
+        if ($('#delivery-members').val() == 0) {
+            $("#membersLst").append('<div class="chip removeMember"> <img src="' + id + '"> ' + name + ' </div>');
+        }
+        $('.removeMember').click(function () {
+            $('#removeMemberModal').modal('open');
+        })
+    }
+}
+
+$('.MobileModal').modal({
+    ready: function (modal, trigger) {
+        deliveryListener();
+        deliveryMemberLst();
+    },
 });

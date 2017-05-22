@@ -400,15 +400,15 @@ $('document').ready(function () {
     });
 });
 
-function storeTheme() {
-    var initialTheme = $('#colorChosen').val();
-    $(".selectedColor").css("background-color", initialTheme);
-    $(".opacitySelectedColor").css({
-        'background-color': initialTheme,
-        'filter': 'brightness(1.3)'
-    })
-}
-storeTheme();
+//function storeTheme() {
+//    var initialTheme = $('#colorChosen').val();
+//    $(".selectedColor").css("background-color", initialTheme);
+//    $(".opacitySelectedColor").css({
+//        'background-color': initialTheme,
+//        'filter': 'brightness(1.3)'
+//    })
+//}
+//storeTheme();
 
 
 var shroot = document.querySelectorAll(".newStore");
