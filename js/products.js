@@ -417,3 +417,11 @@ $(document).on('touchstart click', '.removeProduct', function (event) {
 $(document).on('touchstart click', '#firstProdModal', function (event) {
     $('#add-product').modal('open');
 });
+$(document).on('touchstart click', '.newProdBtn', function (event) {
+    //    $('#add-product').modal('open');
+    $('.fixed-action-btn').closeFAB();
+});
+$(document).on('touchstart click', '.newProdBtn', function (event) {
+    //    $('#newSponsoredProduct').modal('open');
+    $('.fixed-action-btn').closeFAB();
+});

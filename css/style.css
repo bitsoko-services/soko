@@ -3518,3 +3518,11 @@ tr.group:hover {
 .products-collapsible .collapsible-body {
     min-width: 100%;
 }
+
+.newProdBtn {
+    border-radius: 5px !important;
+}
+
+.newProdBtnName {
+    font-size: 1rem !important;
+}

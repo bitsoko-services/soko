@@ -81,16 +81,19 @@
     </div>
     <!-- addProduct Modal start //////////////////////////////////////////////////////////////////////////// -->
     <div id="add-product" class="modal modal-fixed-footer">
+        <div class="opacitySelectedColor swtchStrDskt" style="text-align:center;background:#7eb7c8;margin:0px;padding:10px;color:white;position:fixed;width:100%;z-index:1;">
+            <h5 style="margin:0px;">ADD NEW PRODUCT</h5>
+        </div>
         <div class="modal-content">
             <form id="formValidate" class="col s12">
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s12" style="margin-top:40px;">
                         <input id="name" type="text" class="validate" prid="name" autocomplete="off" required>
                         <label for="name" class="">Name</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s12" style="margin-top:0px;">
                         <input id="description" type="text" class="validate" prid="description" autocomplete="off" required>
                         <label for="description" class="">Description</label>
                     </div>
@@ -102,11 +105,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col s6" style="margin-top:0px;">
                         <input placeholder="" id="amount" type="number" class="validate" min="0" prid="price" required>
                         <label for="amount" class="active">Amount</label>
                     </div>
-                    <div class="input-field col s6">
+                    <div class="input-field col s6" style="margin-top:0px;">
                         <div class="select-wrapper initialized" prid="metric"> <span class="caret"></span>
                             <select class="initialized">
                                 <option value="" disabled="">measurement</option>
@@ -117,11 +120,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col s6" style="margin-top:0px;">
                         <input placeholder="" id="prod-cy" type="number" class="validate" min="0" max="1000" prid="rstQuantity" required>
                         <label for="prod-cy" class="active"> Quantity</label>
                     </div>
-                    <div class="input-field col s6">
+                    <div class="input-field col s6" style="margin-top:0px;">
                         <div class="select-wrapper initialized" prid="rstDuration"> <span class="caret"></span>
                             <select class="initialized">
                                 <option value="" disabled="">duration</option>
@@ -385,6 +388,19 @@
         </div>
     </div>
     <!--- Loyalty Points End --->
+    <!--- Sponsored start --->
+    <div id="spnsrdModal" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix"></i> <input type="text" id="check-prod-input" class="autocomplete"> <label for="check-prod-input">Autocomplete</label> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- newPromo Modal Start -->
     <div id="newPromoModal" class="modal modal-fixed-footer">
         <div class="modal-content" style="padding:0px;">
@@ -983,20 +999,25 @@
                         <div class="nav-wrapper"><a style="line-height:14px;font-size:20px;" class="page-title">Products</a></div>
                     </div>
                 </nav>
-                <!-- Modal Structure -->
-                <div class="row">
-                    <div class="col s12">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">textsms</i>
-                                <input type="text" id="check-prod-input" class="autocomplete">
-                                <label for="check-prod-input">Autocomplete</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <ul class="products-collapsible collapsible collapsible-accordion chStoreUpdate" data-collapsible="accordion"> </ul>
-                <div class="fixed-action-btn"> <a class="opacitySelectedColor waves-effect waves-light modal-trigger btn" href="#add-product"><i class="mdi-content-add right"></i>Add Product</a> </div>
+                <!--               <div class="fixed-action-btn"> <a class="opacitySelectedColor waves-effect waves-light modal-trigger btn" href="#newProdModal"><i class="mdi-content-add right"></i>Add Product</a> </div>-->
+                <div class="fixed-action-btn click-to-toggle">
+                    <a class="btn-floating" style="width:150px;height:35px;border-radius:5px;background:#26A69A;">
+                        <p style="margin-top:0px !important;text-align:center;">ADD PRODUCTS</p>
+                    </a>
+                    <ul style="bottom:35px !important;">
+                        <li>
+                            <a href="#spnsrdModal" class="btn-floating newProdBtn" style="width:auto !important; padding: 0px 10px 0px 10px;background:#26A69A;">
+                                <p class="material-icons newProdBtnName" style="margin-top:0px !important;font-size:0.8rem;">Sponsored Products</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#add-product" class="btn-floating newProdBtn" style="width:auto !important; padding: 0px 10px 0px 10px;font-size:0.8rem;background:#26A69A;">
+                                <p class="material-icons newProdBtnName" style="margin-top:0px !important;">New Products</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="col s12 m4 l4 billing" style="display:none;">
                 <nav class="top-nav" style="background:#7EB7C8;height:48px;margin-bottom:40px; display:none;">
