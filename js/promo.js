@@ -4,11 +4,11 @@ function refreshPromotions() {
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         console.log(e);
-              if (e.status == 'ok') {   
-        getObjectStore('data', 'readwrite').put(JSON.stringify(e.promotions), 'soko-store-' + id + '-promotions');
-	}else{
-        
-        getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + id + '-promotions');
+        if (e.status == 'ok') {
+            getObjectStore('data', 'readwrite').put(JSON.stringify(e.promotions), 'soko-store-' + id + '-promotions');
+        } else {
+
+            getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + id + '-promotions');
         }
         promoUpdater();
         promoCreator();
@@ -25,7 +25,7 @@ function promoUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access promotions list. ' + err);
-refreshPromotions();
+            refreshPromotions();
             return;
         }
 
@@ -211,10 +211,10 @@ function doNewPromo() {
     for (i = 0; i < boxes.length; i++) {
         //console.log('ID is: ' + boxes[i].id);
         var productID = boxes[i].id;
-       // console.log('The item is added ' + $('li.circle input.' + productID).val() + ' times');
+        // console.log('The item is added ' + $('li.circle input.' + productID).val() + ' times');
         var times = $('li.circle input.' + productID).val();
         for (j = 0; j < times; j++) {
-         //   console.log('Product is: ' + productID);
+            //   console.log('Product is: ' + productID);
             selcIds.push(parseInt(productID));
         }
     }
@@ -314,6 +314,30 @@ $(document).on('touchstart click', '.removePromo', function (event) {
     });
 });
 
+//Promotion Form Validation
+$('.doAddNewPromo').click(function (e) {
+    promo_name = $('#newPromo-name').val();
+    promo_description = $('#newPromo-desc').val();
+    promo_image = $('#newPromo-image').val();
+    promo_discount = $('#newPromo-discount').val();
+    promo_minBuyer = $('#newPromo-offers').val();
+    isValid = true;
+    if (promo_name == '' || promo_name == null) {
+        Materialize.toast('Ooops! Please enter promotion name', 3000);
+    } else if (promo_description == '' || promo_description == null) {
+        Materialize.toast('Ooops! Please enter promotion description', 3000);
+    } else if (promo_image == '' || promo_image == null) {
+        Materialize.toast('Ooops! Please select an image', 3000);
+    } else if (promo_discount == '' || promo_discount == null) {
+        Materialize.toast('Ooops! Please enter discount', 3000);
+    } else if (promo_minBuyer == '' || promo_minBuyer == null) {
+        Materialize.toast('Ooops! Please enter minimum buyers', 3000);
+    } else {
+        doNewPromo();
+    }
+});
+
+
 //Hide Card Reveal on Promotion Page
 $(document).on('touchstart click', '.backBtnPromo', function (event) {
     $(this).parent().parent().hide();
@@ -324,7 +348,7 @@ $(document).on('touchstart click', '.multiple-select-dropdown', function (event)
     event.stopPropagation();
 });
 
-var shroot = document.querySelectorAll(".doAddNewPromo");
-for (var i = 0; i < shroot.length; ++i) {
-    shroot[i].addEventListener("touchstart", doNewPromo, false);
-};
+//var shroot = document.querySelectorAll(".doAddNewPromo");
+//for (var i = 0; i < shroot.length; ++i) {
+//    shroot[i].addEventListener("touchstart", doNewPromo, false);
+//};
