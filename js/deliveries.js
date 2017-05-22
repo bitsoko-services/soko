@@ -64,11 +64,30 @@ function deliveryMemberLst() {
     for (var s in deliveryGuys) {
         var name = deliveryGuys[s].name;
         var id = deliveryGuys[s].icon;
-        if ($('#delivery-members').val() == 0) {
+        if ($('#delivery-members').val() != '') {
             $("#membersLst").append('<div class="chip removeMember"> <img src="' + id + '"> ' + name + ' </div>');
+        } else {
+            $("#membersLst").append('<div class="chip removeMember">You do not have delivery Members</div>');
         }
         $('.removeMember').click(function () {
+            var removeMember = $(this)
             $('#removeMemberModal').modal('open');
+            $('#yesMemberBtn').on('click', function () {
+                $('#removeMemberModal').modal('close');
+                doFetch({
+                    action: 'deliveryMembers',
+                    store: localStorage.getItem('soko-active-store'),
+                    do: 'remove',
+                    data: id
+                }).then(function (e) {
+                    if (e.status == 'ok') {
+                        $(removeMember).remove();
+                    } else {}
+                });
+            });
+            $('#noMemberBtn').on('click', function () {
+                $('#removeMemberModal').modal('close');
+            });
         })
     }
 }
