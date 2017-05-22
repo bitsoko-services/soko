@@ -160,6 +160,7 @@ function editStore() {
                 document.querySelector('#editStoreModal #editStore-name').value = xx.name;
                 document.querySelector('#editStoreModal #editStore-description').value = xx.description;
                 document.querySelector('#editStoreModal #editStore-Phone').value = xx.phone;
+                document.querySelector('#editStoreModal #colorChosen').value = xx.theme;
                 Materialize.updateTextFields();
             }
         }).modal('open');
@@ -398,6 +399,16 @@ $('document').ready(function () {
         }
     });
 });
+
+function storeTheme() {
+    var initialTheme = $('#colorChosen').val();
+    $(".selectedColor").css("background-color", initialTheme);
+    $(".opacitySelectedColor").css({
+        'background-color': initialTheme,
+        'filter': 'brightness(1.3)'
+    })
+}
+storeTheme();
 
 
 var shroot = document.querySelectorAll(".newStore");
