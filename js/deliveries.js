@@ -46,6 +46,7 @@ $('document').ready(function () {
                     doFetch({
                         action: 'deliveryMembers',
                         store: localStorage.getItem('soko-active-store'),
+                        do: 'add',
                         data: id
                     }).then(function (e) {
                         if (e.status == 'ok') {} else {}
