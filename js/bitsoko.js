@@ -35,6 +35,8 @@ function profileLoaded(p) {
             console.log('Error: unable to load merchant info');
         }
     });
+	
+sponsoredProdListener();
 }
 
 function updateStores() {
@@ -509,6 +511,32 @@ function userNamesInput(elmID) {
     });
 }
 
+
+//Input Initiallization
+var sponProds = {}
+
+function sponpProdNamesInput(elmID) {
+    var fetchedData = doFetch({
+        action: 'getAllProducts',
+        data: $('#' + elmID).val(),
+        filter: 'sponsored'
+    }).then(function (e) {
+        var dat = {}
+        sponProds = e.products;
+        for (var iii in e.products) {
+            var nm = e.products[iii].name +" - "+e.products[iii].price;
+            var icn = e.products[iii].icon;
+            //var id = e.users[iii].id;
+            dat[nm] = icn;
+
+        }
+        $('#' + elmID).autocomplete({
+            data: dat
+        });
+
+    });
+}
+
 function transferListener() {
     var forEach = function (array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
@@ -532,6 +560,20 @@ function deliveryListener() {
     var myNodeList = document.querySelectorAll('#delivery-members');
     forEach(myNodeList, function (index, value) {
         value.addEventListener("change", userNamesInput('delivery-members'));
+    });
+}
+
+
+//
+function sponsoredProdListener() {
+    var forEach = function (array, callback, scope) {
+        for (var i = 0; i < array.length; i++) {
+            callback.call(scope, i, array[i]); // passes back stuff we need
+        }
+    };
+    var myNodeList = document.querySelectorAll('#check-prod-input');
+    forEach(myNodeList, function (index, value) {
+        value.addEventListener("change", sponpProdNamesInput('check-prod-input'));
     });
 }
 
