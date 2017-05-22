@@ -523,7 +523,7 @@ function sponpProdNamesInput(elmID) {
     }).then(function (e) {
         var dat = {}
         sponProds = e.products;
-        for (var iii in e.users) {
+        for (var iii in e.products) {
             var nm = e.products[iii].name +" - "+e.products[iii].price;
             var icn = e.products[iii].icon;
             //var id = e.users[iii].id;
