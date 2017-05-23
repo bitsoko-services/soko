@@ -415,18 +415,18 @@ $(document).on('touchstart click', '.removeProduct', function (event) {
 })
 
 //Sponsored Products
-$('document').ready(function () {
-    $('body').on('click', $('#check-prod-input ul.autocomplete-content li'), function () {
-        doFetch({
-            action: 'doStoreProduct',
-            store: localStorage.getItem('soko-active-store'),
-            do: 'add',
-            id: id
-        }).then(function (e) {
-            if (e.status == 'ok') {} else {}
-        });
-    });
-});
+//$('document').ready(function () {
+//    $('body').on('click', $('#check-prod-input ul.autocomplete-content li'), function () {
+//        doFetch({
+//            action: 'doStoreProduct',
+//            store: localStorage.getItem('soko-active-store'),
+//            do: 'add',
+//            id: id
+//        }).then(function (e) {
+//            if (e.status == 'ok') {} else {}
+//        });
+//    });
+//});
 
 
 
