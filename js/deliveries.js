@@ -109,16 +109,41 @@ function deliveryMbr() {
 
     });
     $.each(matched, function (index, obj) {
-        delete obj.id
-        console.log(obj)
+        delete obj.id;
+        name = obj.name;
+        icon = obj.icon
+        console.log(obj);
+        $("#membersLst").append('<div class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
+        $('.removeMember').click(function () {
+            var removeMember = $(this)
+            $('#removeMemberModal').modal('open');
+            $('#yesMemberBtn').on('click', function () {
+                $('#removeMemberModal').modal('close');
+                doFetch({
+                    action: 'deliveryMembers',
+                    store: localStorage.getItem('soko-active-store'),
+                    do: 'remove',
+                    data: id
+                }).then(function (e) {
+                    if (e.status == 'ok') {
+                        $(removeMember).remove();
+                    } else {}
+                });
+            });
+            $('#noMemberBtn').on('click', function () {
+                $('#removeMemberModal').modal('close');
+            });
+        })
     })
 }
-
-
-
-$('.MobileModal').modal({
+//$(document).on('touchstart click', '#delivMbr', function (event) {
+//    $.delay(2000, function () {
+//        deliveryMbr();
+//    });
+//
+//});
+$('#MobileModal').modal({
     ready: function (modal, trigger) {
-        deliveryListener();
         deliveryMbr();
     },
 });
