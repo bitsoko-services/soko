@@ -43,23 +43,14 @@ $('document').ready(function () {
                 var name = deliveryGuys[i].name;
                 var id = deliveryGuys[i].id;
                 if (deliveryMembers == name) {
-                    function confMbr(event) {
-                        $('#confirmMemberModal').modal('open');
-                        $(document).on('touchstart', '#yesConfirmBtn', function (event) {
-                            event.preventDefault
-                            doFetch({
-                                action: 'deliveryMembers',
-                                store: localStorage.getItem('soko-active-store'),
-                                do: 'add',
-                                data: id
-                            }).then(function (e) {
-                                if (e.status == 'ok') {
-                                    $('#confirmMemberModal').modal('close');
-                                } else {}
-                            });
-                        });
-                    }
-                    confMbr();
+                    doFetch({
+                        action: 'deliveryMembers',
+                        store: localStorage.getItem('soko-active-store'),
+                        do: 'add',
+                        data: id
+                    }).then(function (e) {
+                        if (e.status == 'ok') {} else {}
+                    });
                 }
             }
         }
