@@ -142,8 +142,17 @@ function deliveryMbr() {
 //    });
 //
 //});
-$('#MobileModal').modal({
-    ready: function (modal, trigger) {
-        deliveryMbr();
-    },
+//$('#MobileModal').modal({
+//    ready: function (modal, trigger) {
+//        deliveryMbr();
+//    },
+//});
+$(document).ready(function () {
+    $("#delivMbr").click(function (event) {
+        //        event.preventDefault()
+
+        console.log("------------>>  clicked");
+        deliveryListener();
+        setTimeout(deliveryMbr, 3000);
+    });
 });
