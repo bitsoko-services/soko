@@ -144,3 +144,15 @@ $(document).ready(function () {
         setTimeout(deliveryMbr, 1000);
     });
 });
+
+//Delivery Rate
+$("#delivery_Rate").on("change", function () {
+    deliveryRate = $("#delivery_Rate").val();
+    doFetch({
+        action: 'deliveryRate',
+        store: localStorage.getItem('soko-active-store'),
+        rate: deliveryRate
+    }).then(function (e) {
+        if (e.status == 'ok') {} else {}
+    });
+});
