@@ -148,11 +148,8 @@ function deliveryMbr() {
 //    },
 //});
 $(document).ready(function () {
-    $("#delivMbr").click(function (event) {
-        //        event.preventDefault()
-
-        console.log("------------>>  clicked");
+    $(document).on('touchstart', '#delivMbr', function (event) {
         deliveryListener();
-        setTimeout(deliveryMbr, 3000);
+        setTimeout(deliveryMbr, 1000);
     });
 });
