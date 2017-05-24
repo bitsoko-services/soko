@@ -2760,7 +2760,7 @@ tr.group:hover {
 }
 
 #mobileVerification {
-    z-index: 999 !important;
+    /*    z-index: 999 !important;*/
 }
 
 
@@ -3395,7 +3395,7 @@ tr.group:hover {
 }
 
 #switchStoreModal {
-    z-index: 1000 !important;
+    /*    z-index: 1000 !important;*/
     max-height: 50% !important;
 }
 
