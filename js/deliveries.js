@@ -43,7 +43,6 @@ $('document').ready(function () {
                 var name = deliveryGuys[i].name;
                 var id = deliveryGuys[i].id;
                 if (deliveryMembers == name) {
-                    $('#confirmMemberModal').modal('open');
                     doFetch({
                         action: 'deliveryMembers',
                         store: localStorage.getItem('soko-active-store'),
