@@ -43,14 +43,23 @@ $('document').ready(function () {
                 var name = deliveryGuys[i].name;
                 var id = deliveryGuys[i].id;
                 if (deliveryMembers == name) {
-                    doFetch({
-                        action: 'deliveryMembers',
-                        store: localStorage.getItem('soko-active-store'),
-                        do: 'add',
-                        data: id
-                    }).then(function (e) {
-                        if (e.status == 'ok') {} else {}
-                    });
+                    function confMbr(event) {
+                        $('#confirmMemberModal').modal('open');
+                        $(document).on('touchstart', '#yesConfirmBtn', function (event) {
+                            event.preventDefault
+                            doFetch({
+                                action: 'deliveryMembers',
+                                store: localStorage.getItem('soko-active-store'),
+                                do: 'add',
+                                data: id
+                            }).then(function (e) {
+                                if (e.status == 'ok') {
+                                    $('#confirmMemberModal').modal('close');
+                                } else {}
+                            });
+                        });
+                    }
+                    confMbr();
                 }
             }
         }
@@ -136,17 +145,6 @@ function deliveryMbr() {
         })
     })
 }
-//$(document).on('touchstart click', '#delivMbr', function (event) {
-//    $.delay(2000, function () {
-//        deliveryMbr();
-//    });
-//
-//});
-//$('#MobileModal').modal({
-//    ready: function (modal, trigger) {
-//        deliveryMbr();
-//    },
-//});
 $(document).ready(function () {
     $(document).on('touchstart', '#delivMbr', function (event) {
         deliveryListener();
