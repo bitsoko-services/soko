@@ -43,6 +43,7 @@ $('document').ready(function () {
                 var name = deliveryGuys[i].name;
                 var id = deliveryGuys[i].id;
                 if (deliveryMembers == name) {
+                    $('#confirmMemberModal').modal('open');
                     doFetch({
                         action: 'deliveryMembers',
                         store: localStorage.getItem('soko-active-store'),
@@ -92,7 +93,8 @@ $('document').ready(function () {
 //    }
 //}
 function deliveryMbr() {
-    var obj = JSON.parse(localStorage.getItem('soko-store-id-12'));
+    var storeId = localStorage.getItem('soko-active-store');
+    var obj = JSON.parse(localStorage.getItem('soko-store-id-' + storeId));;
     var matched = []
     var deliveryMembers = JSON.parse(obj.deliveryMembers);
     var users = deliveryGuys
