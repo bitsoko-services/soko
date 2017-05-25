@@ -103,6 +103,17 @@ function addPromoSubscribers(promoid, promoSubs) {
         };
     });
 }
+function promoOpenCb(){
+	$('.card-content > .btn-floating').on("click touchstart", function() {var e=this;setTimeout(function () {
+       console.log($(e));$(e).parent().parent().css( "height",$( ".card-reveal > div" ).outerHeight( )+"px" );
+    }, 300);
+	});
+		      }
+
+function promoCloseCb(){
+$('.backBtnPromo').on("click touchstart", function() {$(this).parent().parent().parent().css( "height","auto" );});
+}
+
 
 function promoCreator() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
@@ -163,6 +174,10 @@ $("select.promo-add-ProdList").select2({
                 add.val(add_)
             })
         }
+	    
+	    
+promoOpenCb();
+	    promoCloseCb();
     }
 }
 
