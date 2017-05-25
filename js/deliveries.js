@@ -138,10 +138,12 @@ function deliveryMbr() {
     })
 }
 $(document).ready(function () {
-    $(document).on('touchstart', '#delivMbr', function (event) {
+    $("#delivMbr").one("touchstart", function () {
         deliveryListener();
         setTimeout(deliveryMbr, 1000);
     });
+//    $(document).on('touchstart', '#delivMbr', function (event) {
+            //    });
 });
 
 //Delivery Rate
