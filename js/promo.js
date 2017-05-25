@@ -98,9 +98,10 @@ function promoOpenCb(){
 
 function promoCloseCb(){
 $('.backBtnPromo').on("click touchstart", function() {
+	var e=this;
 	setTimeout(function () {
 	
-	$(this).parent().parent().parent().parent().css( "height","auto" );
+	$(e).parent().parent().parent().parent().css( "height","auto" );
  $( ".card-reveal" ).css( "display","none" );	
     }, 300);
 	
