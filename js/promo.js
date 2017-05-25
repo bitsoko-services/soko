@@ -91,7 +91,7 @@ function promoOpenCb(){
 		setTimeout(function () {
 			
        $(e).parent().parent().css( "height",$( "div[style^='display: block;'].card-reveal > form" ).outerHeight( )+"px" );
-		
+	 $( ".card-reveal" ).css( "display","block" );	
     }, 300);
 	});
 		      }
