@@ -99,7 +99,7 @@ function promoOpenCb(){
 function promoCloseCb(){
 $('.backBtnPromo').on("click touchstart", function() {
 	$(this).parent().parent().parent().parent().css( "height","auto" );
- $( "div[style^='display: block;'].card-reveal" ).css( "display","none" );
+ $( ".card-reveal" ).css( "display","none" );
 	
 });
 }
