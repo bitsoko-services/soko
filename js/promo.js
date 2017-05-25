@@ -223,7 +223,7 @@ function doNewPromo() {
     $('.promo-add-new-promotion2')
     doFetch({
         action: 'doNewPromo',
-        ownerid: activeStore().id,
+        ownerid: JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).id,
         name: document.querySelector('#newPromo-name').value,
         desc: document.querySelector('#newPromo-desc').value,
         image: document.querySelector('#newPromo-image').value,
