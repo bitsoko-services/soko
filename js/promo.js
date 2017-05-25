@@ -104,8 +104,12 @@ function addPromoSubscribers(promoid, promoSubs) {
     });
 }
 function promoOpenCb(){
-	$('.card-content > .btn-floating').on("click touchstart", function() {var e=this;setTimeout(function () {
-       console.log($(e));$(e).parent().parent().css( "height",$( ".card-reveal > div" ).outerHeight( )+"px" );
+	$('.card-content > .btn-floating').on("click touchstart", function() {
+		var e=this;
+		setTimeout(function () {
+			
+       $(e).parent().parent().css( "height",$( "div[style^='display: block;'].card-reveal > div" ).outerHeight( )+"px" );
+		
     }, 300);
 	});
 		      }
