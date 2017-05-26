@@ -11,10 +11,8 @@ function refreshPromotions() {
             getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + id + '-promotions');
         }
         promoUpdater();
-        promoCreator();
     }).catch(function (err) {
         promoUpdater();
-        promoCreator();
     });
 }
 
@@ -77,6 +75,7 @@ function promoUpdater() {
             shroot[i].addEventListener("touchstart", castPromo, false);
         };
         editPromoCallback();
+        promoCreator();
     }
 }
 
