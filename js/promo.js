@@ -93,6 +93,9 @@ function promoOpenCb(){
 		
        parCard.css( "height",$( "div[style^='display: block;'].card-reveal > form" ).outerHeight( )+"px" );
 	parCard.scrollTop();
+			
+window.scrollTo( 0, parCard.position().top );
+
 	$( ".card > .card-reveal > form" ).css( "display","block" );
     }, 300);
 	});
