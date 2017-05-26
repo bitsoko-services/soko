@@ -595,16 +595,6 @@ document.getElementById("purchaseInput").oninput = function () {
     rewardPoints();
 };
 
-function rewardPoints() {
-    doFetch({
-        action: 'rewardPoints',
-        data: {
-            perVisit: document.querySelector('#visitInput').value,
-            perShare: document.querySelector('#shareInput').value,
-            perPurchase: document.querySelector('#purchaseInput').value
-        }
-    })
-}
 
 function persistentFunc() {
     if (navigator.storage && navigator.storage.persist)

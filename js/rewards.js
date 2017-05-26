@@ -3,6 +3,20 @@ $('.loyaltyCls').click(function () {
     $('#loyaltyModal').modal('close');
 });
 
+//Reward Points
+function rewardPoints() {
+    doFetch({
+        action: 'rewardPoints',
+        data: {
+            id: localStorage.getItem('soko-active-store'),
+            perVisit: document.querySelector('#visitInput').value,
+            perShare: document.querySelector('#shareInput').value,
+            perPurchase: document.querySelector('#purchaseInput').value
+        }
+    })
+}
+
+//Buy Points
 function initPaymentRequest() {
     let networks = ['amex', 'diners', 'discover', 'jcb', 'mastercard', 'unionpay',
       'visa', 'mir'];
