@@ -22,6 +22,7 @@
 
 body {
     background-color: #efefef;
+    font-family: 'Lato', sans-serif !important;
 }
 
 .user-details {
@@ -3219,6 +3220,16 @@ tr.group:hover {
     .swtchStrDskt {
         width: 78vw !important;
         z-index: -1 !important;
+    }
+    .tabs {
+        height: 45px !important;
+    }
+    .tabs li a {
+        line-height: 45px !important;
+    }
+    #MobileModal {
+        width: 50% !important;
+        margin-right: 15%;
     }
 }
 
