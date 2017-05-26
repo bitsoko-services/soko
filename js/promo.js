@@ -89,8 +89,10 @@ function promoOpenCb(){
 	$('.card-content > .btn-floating').on("click touchstart", function() {
 		var e=this;
 		setTimeout(function () {
-			
-       $(e).parent().parent().css( "height",$( "div[style^='display: block;'].card-reveal > form" ).outerHeight( )+"px" );
+			var parCard=$(e).parent().parent();
+		
+       parCard.css( "height",$( "div[style^='display: block;'].card-reveal > form" ).outerHeight( )+"px" );
+	parCard.scrollTop();
 	$( ".card > .card-reveal > form" ).css( "display","block" );
     }, 300);
 	});
