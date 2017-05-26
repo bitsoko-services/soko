@@ -413,7 +413,8 @@ $('document').ready(function () {
 
 //Notification Days If Checked
 function notifyCheckbox() {
-    var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-12')).notifyDays);
+    var storeId = JSON.parse(localStorage.getItem('soko-active-store'));
+    var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + storeId)).notifyDays);
     if (ifChecked.mon == false) {
         $('#mon').attr('checked', false);
     }
