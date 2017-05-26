@@ -1,6 +1,6 @@
 // SOKO Server-JavaScript Document
 try {
-    sokoVersion = 125;
+    sokoVersion = 126;
     sokoInstall = function (event) {}
     sokoNotificationClick = function (dat) {
         // 	      event.notification.close();
