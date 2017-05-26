@@ -411,6 +411,33 @@ $('document').ready(function () {
 //storeTheme();
 
 
+//Notification Days If Checked
+function notifyCheckbox() {
+    var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-12')).notifyDays);
+    if (ifChecked.mon == false) {
+        $('#mon').attr('checked', false);
+    }
+    if (ifChecked.tue == false) {
+        $('#tue').attr('checked', false);
+    }
+    if (ifChecked.wed == false) {
+        $('#wed').attr('checked', false);
+    }
+    if (ifChecked.thur == false) {
+        $('#thur').attr('checked', false);
+    }
+    if (ifChecked.fri == false) {
+        $('#fri').attr('checked', false);
+    }
+    if (ifChecked.sat == false) {
+        $('#sat').attr('checked', false);
+    }
+    if (ifChecked.sun == false) {
+        $('#sun').attr('checked', false);
+    }
+}
+notifyCheckbox()
+
 var shroot = document.querySelectorAll(".newStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", newStore, false);
