@@ -413,26 +413,27 @@ $('document').ready(function () {
 
 //Notification Days If Checked
 function notifyCheckbox() {
+    var nullChecked = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays;
     var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays);
-    if (ifChecked.mon == false) {
+    if (ifChecked.mon == false || nullChecked == "") {
         $('#mon').attr('checked', false);
     }
-    if (ifChecked.tue == false) {
+    if (ifChecked.tue == false || nullChecked == "") {
         $('#tue').attr('checked', false);
     }
-    if (ifChecked.wed == false) {
+    if (ifChecked.wed == false || nullChecked == "") {
         $('#wed').attr('checked', false);
     }
-    if (ifChecked.thur == false) {
+    if (ifChecked.thur == false || nullChecked == "") {
         $('#thur').attr('checked', false);
     }
-    if (ifChecked.fri == false) {
+    if (ifChecked.fri == false || nullChecked == "") {
         $('#fri').attr('checked', false);
     }
-    if (ifChecked.sat == false) {
+    if (ifChecked.sat == false || nullChecked == "") {
         $('#sat').attr('checked', false);
     }
-    if (ifChecked.sun == false) {
+    if (ifChecked.sun == false || nullChecked == "") {
         $('#sun').attr('checked', false);
     }
 }
