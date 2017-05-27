@@ -3053,9 +3053,6 @@ tr.group:hover {
         float: left;
         margin: 2%;
     }
-    .collection-item {
-        display: none;
-    }
     .products-collapsible li {
         width: 44%;
         height: 65vh;
@@ -3093,7 +3090,13 @@ tr.group:hover {
         margin-top: 5px !important;
     }
     #editStoreModal {
-        margin-left: 35% !important;
+        margin-left: 38% !important;
+        width: 45%;
+    }
+    #editStoreModal .modal-content::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3) !important;
+        background-color: rgba(76, 150, 143, 0.67);
     }
     #MobileModal {
         width: 80% !important;
@@ -3214,9 +3217,10 @@ tr.group:hover {
     }
     #loyaltyModal {
         text-align: center;
+        width: 40%;
     }
     #switchStoreModal {
-        margin-left: 22vw !important;
+        margin-left: 23% !important;
     }
     .swtchStrDskt {
         width: 78vw !important;
@@ -3229,11 +3233,31 @@ tr.group:hover {
         line-height: 45px !important;
     }
     #MobileModal {
-        width: 50% !important;
-        margin-right: 15%;
+        width: 43% !important;
+        margin-right: 20%;
+        padding: 0px;
     }
     #rewardsIcon {
         margin-left: 15px;
+    }
+    .side-nav {
+        width: 23% !important;
+    }
+    #loyaltyPoints {
+        width: 40%;
+        margin-left: 43%;
+    }
+    #loyaltyPoints h5 {
+        font-size: 1.5rem;
+    }
+    #newPromoModal {
+        width: 50%;
+        margin-left: 35%;
+    }
+    #spnsrdModal {
+        width: 40%;
+        margin-left: 41%;
+        margin-top: 10%;
     }
 }
 
