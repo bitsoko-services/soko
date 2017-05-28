@@ -410,34 +410,89 @@ $('document').ready(function () {
 //}
 //storeTheme();
 
-
 //Notification Days If Checked
-function notifyCheckbox() {
-    var nullChecked = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays;
-    var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays);
-    if (ifChecked.mon == false || nullChecked == "") {
-        $('#mon').attr('checked', false);
+$(".editStore").click(function () {
+    function notifyCheckbox() {
+        try {
+            var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays);
+            if (ifChecked.mon == true) {
+                document.getElementById("mon").checked = true;
+            }
+        } catch (err) {
+            var nullChecked = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays;
+            if (nullChecked == "") {
+                document.getElementById("mon").checked = false;
+            }
+        }
+        try {
+            var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays);
+            if (ifChecked.tue == true) {
+                document.getElementById("tue").checked = true;
+            }
+        } catch (err) {
+            var nullChecked = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays;
+            if (nullChecked == "") {
+                document.getElementById("tue").checked = false;
+            }
+        }
+        try {
+            var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays);
+            if (ifChecked.wed == true) {
+                document.getElementById("wed").checked = true;
+            }
+        } catch (err) {
+            var nullChecked = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays;
+            if (nullChecked == "") {
+                document.getElementById("wed").checked = false;
+            }
+        }
+        try {
+            var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays);
+            if (ifChecked.thur == true) {
+                document.getElementById("thur").checked = true;
+            }
+        } catch (err) {
+            var nullChecked = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays;
+            if (nullChecked == "") {
+                document.getElementById("thur").checked = false;
+            }
+        }
+        try {
+            var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays);
+            if (ifChecked.fri == true) {
+                document.getElementById("fri").checked = true;
+            }
+        } catch (err) {
+            var nullChecked = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays;
+            if (nullChecked == "") {
+                document.getElementById("fri").checked = false;
+            }
+        }
+        try {
+            var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays);
+            if (ifChecked.sat == true) {
+                document.getElementById("sat").checked = true;
+            }
+        } catch (err) {
+            var nullChecked = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays;
+            if (nullChecked == "") {
+                document.getElementById("sat").checked = false;
+            }
+        }
+        try {
+            var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays);
+            if (ifChecked.sun == true) {
+                document.getElementById("sun").checked = true;
+            }
+        } catch (err) {
+            var nullChecked = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays;
+            if (nullChecked == "") {
+                document.getElementById("sun").checked = false;
+            }
+        }
     }
-    if (ifChecked.tue == false || nullChecked == "") {
-        $('#tue').attr('checked', false);
-    }
-    if (ifChecked.wed == false || nullChecked == "") {
-        $('#wed').attr('checked', false);
-    }
-    if (ifChecked.thur == false || nullChecked == "") {
-        $('#thur').attr('checked', false);
-    }
-    if (ifChecked.fri == false || nullChecked == "") {
-        $('#fri').attr('checked', false);
-    }
-    if (ifChecked.sat == false || nullChecked == "") {
-        $('#sat').attr('checked', false);
-    }
-    if (ifChecked.sun == false || nullChecked == "") {
-        $('#sun').attr('checked', false);
-    }
-}
-notifyCheckbox()
+    notifyCheckbox()
+});
 
 var shroot = document.querySelectorAll(".newStore");
 for (var i = 0; i < shroot.length; ++i) {
