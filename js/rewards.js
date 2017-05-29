@@ -7,8 +7,8 @@ $('.loyaltyCls').click(function () {
 function rewardPoints() {
     doFetch({
         action: 'rewardPoints',
+        id: localStorage.getItem('soko-active-store'),
         data: {
-            id: localStorage.getItem('soko-active-store'),
             perVisit: document.querySelector('#visitInput').value,
             perShare: document.querySelector('#shareInput').value,
             perPurchase: document.querySelector('#purchaseInput').value
