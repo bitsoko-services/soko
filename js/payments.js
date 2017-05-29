@@ -21,3 +21,10 @@ $('#paymentsToggle').click(function () {
         });
     }
 });
+
+
+//Payments on/off
+var paymentOnOff = JSON.parse(localStorage.getItem('soko-store-id-12')).payments;
+if (paymentOnOff == "1") {
+    document.getElementById("paymentsToggle").checked = true;
+}
