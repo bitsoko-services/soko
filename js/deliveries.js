@@ -115,7 +115,8 @@ function deliveryMbr() {
         icon = obj.icon
         console.log(obj);
         $("#membersLst").append('<div class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
-        $('.removeMember').click(function () {
+        $("#ordMembersLst").append('<div class="chip selectMmbr"> <img src="' + icon + '"> ' + name + ' </div>');
+        $('#MobileModal .removeMember').click(function () {
             var removeMember = $(this)
             $('#removeMemberModal').modal('open');
             $('#yesMemberBtn').on('click', function () {
@@ -137,14 +138,14 @@ function deliveryMbr() {
         })
     })
 }
-$(document).ready(function () {
-    $("#delivMbr").one("touchstart", function () {
-        deliveryListener();
-        setTimeout(deliveryMbr, 1000);
-    });
-//    $(document).on('touchstart', '#delivMbr', function (event) {
-            //    });
-});
+//$(document).ready(function () {
+//    $("#delivMbr").one("touchstart", function () {
+//        deliveryListener();
+//        setTimeout(deliveryMbr, 1000);
+//    });
+//    //    $(document).on('touchstart', '#delivMbr', function (event) {
+//    //    });
+//});
 
 //Delivery Rate
 $("#delivery_Rate").on("change", function () {

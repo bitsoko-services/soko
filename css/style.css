@@ -34,6 +34,17 @@ body {
     margin-right: 10px;
 }
 
+.selectMmbr {
+    transition: 0.5s;
+}
+
+.deliveryToggle {
+    background-color: #14c814;
+    color: white;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
 #store-dropdown li a {
     padding-top: 10px;
 }
