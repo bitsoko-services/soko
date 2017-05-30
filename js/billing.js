@@ -36,6 +36,7 @@ function refreshBills(month, year) {
                     if ($('.rowBill').last().hasClass('noresults')) {
                         $('#rowBIll').html('');
                     }
+
                     dailyTotal = 0.167;
                     dailyBill = '<li class="rowBill"><div class="collapsible-header"> <div class="row"> <div class="anything col s6"><span id="billingDate">' + parsed_date + '</span></div><div class="anything col s6"><span class="dailyBill">' + dailyTotal + '</span></div></div></div><div class="collapsible-body" style="padding:10px;padding-left:25%;"><span>Billing for Promo ' + promotionId + ' is ' + promoRate + '</span></br></div></li>';
                     $('#rowBIll').append(dailyBill);
@@ -120,6 +121,7 @@ $(document).ready(function () {
     $('#month').text(month[0]);
     $('#year').text(year);
     $('#right').click(function () {
+        $('#rowBIll').html('');
         if (currMonth === 11) {
             currMonth = 0;
             $('#month').text(month[currMonth]);
@@ -133,6 +135,7 @@ $(document).ready(function () {
         }
     })
     $('#left').click(function () {
+        $('#rowBIll').html('');
         if (currMonth === 0) {
             currMonth = 11;
             $('#month').text(month[currMonth]);
