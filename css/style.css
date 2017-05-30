@@ -3569,3 +3569,20 @@ tr.group:hover {
 .newProdBtnName {
     font-size: 1rem !important;
 }
+
+
+/******* permanent changes ********/
+
+.permanentChng h6 {
+    text-align: center;
+    border-bottom: 1px solid red;
+    line-height: 0;
+    padding: 0;
+    margin-bottom: 25px;
+    color: red;
+}
+
+.permanentChng h6 span {
+    background: white;
+    padding: 0 5px;
+}
