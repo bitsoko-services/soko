@@ -110,12 +110,12 @@ function deliveryMbr() {
 
     });
     $.each(matched, function (index, obj) {
-        delete obj.id;
+        var id = obj.id;
         name = obj.name;
         icon = obj.icon
         console.log(obj);
         $("#membersLst").append('<div class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
-        $("#ordMembersLst").append('<div class="chip selectMmbr"> <img src="' + icon + '"> ' + name + ' </div>');
+        $("#ordMembersLst").append('<div class="chip selectMmbr ' + id + '"> <img src="' + icon + '"> ' + name + ' </div>');
         $('#MobileModal .removeMember').click(function () {
             var removeMember = $(this)
             $('#removeMemberModal').modal('open');
@@ -136,16 +136,20 @@ function deliveryMbr() {
                 $('#removeMemberModal').modal('close');
             });
         })
+        $("." + id).click(function () {
+            var oderId = $(".radioDelivered").parent().attr('gid')
+            doFetch({
+                action: 'oderDeliveryMembers',
+                cardId: oderId,
+                id: id
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    Materialize.toast('Delivery member selected successfully', 3000);
+                } else {}
+            });
+        })
     })
 }
-//$(document).ready(function () {
-//    $("#delivMbr").one("touchstart", function () {
-//        deliveryListener();
-//        setTimeout(deliveryMbr, 1000);
-//    });
-//    //    $(document).on('touchstart', '#delivMbr', function (event) {
-//    //    });
-//});
 
 //Delivery Rate
 $("#delivery_Rate").on("change", function () {
