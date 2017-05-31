@@ -140,7 +140,7 @@ function deliveryMbr() {
             var oderId = $(".radioDelivered").parent().attr('gid')
             doFetch({
                 action: 'oderDeliveryMembers',
-                cardId: oderId,
+                orderId: oderId,
                 id: id
             }).then(function (e) {
                 if (e.status == 'ok') {
