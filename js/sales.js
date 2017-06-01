@@ -220,11 +220,6 @@ function orderUpdater() {
         $('.radioDelivered').on('click', function () {
             $('#deliverOrderModal').modal('open');
         })
-        $(".delivMbr").one("touchstart", function () {
-            deliveryListener();
-            setTimeout(deliveryMbr, 1000);
-            $(".delivMbr").off("touchstart");
-        });
         //        $('.radioDelivered').on('click', function () {
         //            var id = $(this).attr('id');
         //            var split = id.split('_');
