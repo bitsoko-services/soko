@@ -11,6 +11,7 @@ $('#paymentsToggle').click(function () {
         var value = document.getElementById("paymentsToggle").checked
         doFetch({
             action: 'togglePayments',
+            id: localStorage.getItem('soko-active-store'),
             value: value
         }).then(function (e) {
             if (e.status == 'ok') {
