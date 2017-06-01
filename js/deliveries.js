@@ -1,19 +1,20 @@
 //Enable Deliveries
+
 $('#deliveriesToggle').click(function (e) {
     e.preventDefault();
-    $('#MobileModal').modal('open');
+     $('#MobileModal').modal({ 
+      ready: function(modal, trigger) { 
+       deliveryMbr();
+          deliveryListener();
+      }
+            }).modal('open');
     $('#deliveriesToggle').sideNav('hide');
-    deliveryListener();
-    //    $('#mobileVerification').modal({
-    //        dismissible: false,
-    //    });
+    
     var isValid = true;
     $('#submitPhoneNo').click(function () {
         phoneNo_ = $('#inp-phone').val();
         if (phoneNo_ == '' || phoneNo_ == null && e.status == "ok") {
-            $('#MobileModal').modal({
-                dismissible: false,
-            });
+           
             Materialize.toast('Ooops! Please enter phone number', 3000);
             $('#phoneNumber').css({
                 "border-bottom": "1px solid red",
@@ -35,6 +36,12 @@ $('#deliveriesToggle').click(function (e) {
 
 //Delivery Members
 $('document').ready(function () {
+    
+     $('#deliverOrderModal').modal({ 
+      ready: function(modal, trigger) { 
+       deliveryMbr();
+      }
+         
     $('body').on('click', $('#MobileModal ul.autocomplete-content li'), function () {
         var value = $('#delivery-members').val();
         if (value != '') {
@@ -96,7 +103,10 @@ function deliveryMbr() {
     var obj = JSON.parse(localStorage.getItem('soko-store-id-' + storeId));;
     var matched = []
     var deliveryMembers = JSON.parse(obj.deliveryMembers);
-    var users = deliveryGuys
+    var users = deliveryGuys;
+     $("#membersLst").html('');
+        $("#ordMembersLst").html('');
+        
     var memberIds = deliveryMembers.map(function (member) {
         users.forEach(function (user) {
             if (user.id === member.id) {
@@ -109,6 +119,7 @@ function deliveryMbr() {
         });
 
     });
+    
     $.each(matched, function (index, obj) {
         var id = obj.id;
         name = obj.name;
