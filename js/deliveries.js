@@ -35,7 +35,7 @@ $('#deliveriesToggle').click(function (e) {
 
 //Delivery Members
 $('document').ready(function () {
-    $('body').on('click', $('#MobileModal ul.autocomplete-content li'), function () {
+    $('body #MobileModal').on('click', $('ul.autocomplete-content li'), function () {
         var value = $('#delivery-members').val();
         if (value != '') {
             var deliveryMembers = $('#delivery-members').val();
@@ -115,7 +115,7 @@ function deliveryMbr() {
         icon = obj.icon
         console.log(obj);
         $("#membersLst").append('<div class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
-        $("#ordMembersLst").append('<div class="chip selectMmbr ' + id + '"> <img src="' + icon + '"> ' + name + ' </div>');
+        $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s8"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s4"><div class="switch"> <label> <input type="checkbox"> <span class="lever"></span> </label> </div></div></div>');
         $('#MobileModal .removeMember').click(function () {
             var removeMember = $(this)
             $('#removeMemberModal').modal('open');
