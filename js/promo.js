@@ -309,17 +309,15 @@ function doNewPromo() {
 
 //Remove Promotion
 $(document).on('touchstart click', '.removePromo', function (event) {
-    parent_div = $(this).parent().parent().parent().remove();
-    id = $(parent_div).attr('id').replace(/\D/g, '');
-
+    parent_div = $(this).parent().parent().parent().parent().remove();
+    id = $(this).parent().parent().attr("fid");
     doFetch({
         action: 'removePromotion',
         id: id
     }).then(function (e) {
         if (e.status == 'ok') {
-            console.log("Promotion Removed Successfully");
-            $(this).parent().parent().parent().remove();
-            //  Materialize.toast('modified '+name+'..', 3000);
+            Materialize.toast('Promotion Removed Successfully', 3000);
+            parent_div
         } else {
             console.log(e);
         }
