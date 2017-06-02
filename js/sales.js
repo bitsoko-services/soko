@@ -235,7 +235,12 @@ function orderUpdater() {
             });
         });
         $('.radioDelivered').on('click', function () {
-            $('#deliverOrderModal').modal('open');
+            $('#deliverOrderModal').modal({
+                ready: function (modal, trigger) {
+                    deliveryListener();
+                    setTimeout(deliveryMbr, 1000);
+                }
+            }).modal('open');
         })
         //        $('.radioDelivered').on('click', function () {
         //            var id = $(this).attr('id');
