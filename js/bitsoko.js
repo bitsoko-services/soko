@@ -619,3 +619,10 @@ $(".clickPromo").click(function () {
         'box-shadow': 'none',
     });
 });
+
+
+//Sign out
+$(".signOut").click(function () {
+    indexedDB.deleteDatabase('data');
+    location.reload();
+});
