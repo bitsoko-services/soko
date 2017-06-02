@@ -65,6 +65,10 @@ footer.page-footer {
     padding-top: 0px;
 }
 
+.beacons .collection-item:last-child {
+    padding-bottom: 25px;
+}
+
 select {
     background-color: transparent;
     width: 100%;
