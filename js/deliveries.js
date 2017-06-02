@@ -99,81 +99,77 @@ $('document').ready(function () {
 //    }
 //}
 function deliveryMbr() {
-    var storeId = localStorage.getItem('soko-active-store');
-    var obj = JSON.parse(localStorage.getItem('soko-store-id-' + storeId));;
-    var matched = []
-    try {
-        var deliveryMembers = JSON.parse(obj.deliveryMembers);
-    } catch (err) {
-        var deliveryMembers = [];
-    }
-    var users = deliveryGuys;
-    $("#membersLst").html('');
-    $("#ordMembersLst").html('');
 
-    var memberIds = deliveryMembers.map(function (member) {
-        users.forEach(function (user) {
-            if (user.id === member.id) {
-                matched.push({
-                    icon: user.icon,
-                    name: user.name,
-                    id: user.id
-                })
-            }
+
+    doFetch({
+        action: 'getDeliveryMembers',
+        id: localStorage.getItem('soko-active-store')
+    }).then(function (e) {
+
+
+
+        var matched = []
+        try {
+            var deliveryMembers = JSON.parse(e.members);
+        } catch (err) {
+            var deliveryMembers = [];
+        }
+        var users = deliveryGuys;
+        $("#membersLst").html('');
+        $("#ordMembersLst").html('');
+
+        var memberIds = deliveryMembers.map(function (member) {
+            users.forEach(function (user) {
+                if (user.id === member.id) {
+                    matched.push({
+                        icon: user.icon,
+                        name: user.name,
+                        id: user.id
+                    })
+                }
+            });
+
         });
 
-    });
-
-    $.each(matched, function (index, obj) {
-        var id = obj.id;
-        name = obj.name;
-        icon = obj.icon
-        console.log(obj);
-        $("#membersLst").append('<div class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
-        $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s8"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s4" style="padding-top:5px;"><input class="with-gap" name="group1" type="radio" id="radio_' + id + '"/> <label for="radio_' + id + '"></label></div></div>');
-        $('#MobileModal .removeMember').click(function () {
-            var removeMember = $(this)
-            $('#removeMemberModal').modal('open');
-            $('#yesMemberBtn').on('click', function () {
-                $('#removeMemberModal').modal('close');
-                doFetch({
-                    action: 'deliveryMembers',
-                    store: localStorage.getItem('soko-active-store'),
-                    do: 'remove',
-                    data: id
-                }).then(function (e) {
-                    if (e.status == 'ok') {
-                        $(removeMember).remove();
-                    } else {}
+        $.each(matched, function (index, obj) {
+            var id = obj.id;
+            name = obj.name;
+            icon = obj.icon
+            console.log(obj);
+            $("#membersLst").append('<div class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
+            $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s8"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s4" style="padding-top:5px;"><input class="with-gap" name="group1" type="radio" id="radio_' + id + '"/> <label for="radio_' + id + '"></label></div></div>');
+            $('#MobileModal .removeMember').click(function () {
+                var removeMember = $(this)
+                $('#removeMemberModal').modal('open');
+                $('#yesMemberBtn').on('click', function () {
+                    $('#removeMemberModal').modal('close');
+                    doFetch({
+                        action: 'deliveryMembers',
+                        store: localStorage.getItem('soko-active-store'),
+                        do: 'remove',
+                        data: id
+                    }).then(function (e) {
+                        if (e.status == 'ok') {
+                            $(removeMember).remove();
+                        } else {}
+                    });
+                });
+                $('#noMemberBtn').on('click', function () {
+                    $('#removeMemberModal').modal('close');
                 });
             });
-            $('#noMemberBtn').on('click', function () {
-                $('#removeMemberModal').modal('close');
-            });
-        })
-        $("." + id, "#radio_" + id).click(function () {
-            var oderId = $(".radioDelivered").parent().attr('gid')
-            doFetch({
-                action: 'oderDeliveryMembers',
-                orderId: oderId,
-                id: id
-            }).then(function (e) {
-                if (e.status == 'ok') {
-                    Materialize.toast('Delivery member selected successfully', 3000);
-                } else {}
-            });
-        })
-        $("#radio_" + id).click(function () {
-            var oderId = $(".radioDelivered").parent().attr('gid')
-            doFetch({
-                action: 'oderDeliveryMembers',
-                orderId: oderId,
-                id: id
-            }).then(function (e) {
-                if (e.status == 'ok') {
-                    Materialize.toast('Delivery member selected successfully', 3000);
-                } else {}
-            });
+            $("#radio_" + id).click(function () {
+                var orderId = $(".radioDelivered").parent().attr('gid');
+                doFetch({
+                    action: 'orderDeliveryMembers',
+                    orderId: orderId,
+                    id: id
+                }).then(function (e) {
+                    if (e.status == 'ok') {
+                        Materialize.toast('Delivery member selected successfully', 3000);
+                    } else {}
+                });
+            })
         })
     })
 }
