@@ -195,9 +195,8 @@ function orderUpdater() {
                     ' <div class="card-action" style="padding:16px 0px 16px 0px !important;"></div>' +
                     '</div></div><div class="col s5 ordItm" style="padding:0px;"> <div class="card-stacked">' +
                     '<div class="card-content"><div>order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' +
-                    '</div></div><div class="col s12 style="width:100%;text-align:center !important;"><div class="radio-group" gid="' + reqs[i].id + '"><input type="radio" id="cancel' + reqs[i].id + '" name="selector"><label id="cancelLable_' + reqs[i].id + '" class="radioPad radioCancel" for="cancel' + reqs[i].id + '">Cancel</label><input type="radio" id="pending' + reqs[i].id + '" name="selector" checked><label class="radioPad" for="pending' + reqs[i].id + '">Pending</label><input type="radio" id="deliver' + reqs[i].id + '" name="selector"><label id="deliveredLable_' + reqs[i].id + '" class="radioPad radioDelivered delivMbr" for="deliver' + reqs[i].id + '">Delivered</label></div></div></div>';
+                    '</div></div><div class="col s12 style="width:100%;text-align:center !important;"><div class="radio-group" gid="' + reqs[i].id + '"><input type="radio" id="cancel' + reqs[i].id + '" name="selector"><label id="cancelLable_' + reqs[i].id + '" class="radioPad radioCancel" for="cancel' + reqs[i].id + '">Cancel</label><input type="radio" id="pending' + reqs[i].id + '" name="selector" checked><label class="radioPad" for="pending' + reqs[i].id + '">Pending</label><input type="radio" id="deliver' + reqs[i].id + '" name="selector"><label id="deliveredLable_' + reqs[i].id + '" class="radioPad radioDelivered delivMbr" for="deliver' + reqs[i].id + '"  onclick="orderCrdId()" >Delivered</label></div></div></div>';
             }
-
             $(".orders-holda").prepend($.parseHTML(html));
             $(".sales-holda").prepend($.parseHTML(deliveredHTML));
             //            console.log(reqs[i]);
@@ -307,3 +306,10 @@ $('document').ready(function () {
         }
     });
 });
+
+function orderCrdId() {
+    $(".radioDelivered").click(function () {
+        var orderCrdId = $(this).attr("id").replace(/^\D+/g, '');
+        $("#deliverOrderModal").attr('gid', orderCrdId);
+    });
+}

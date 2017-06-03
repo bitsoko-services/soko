@@ -159,7 +159,7 @@ function deliveryMbr() {
                 });
             });
             $("#radio_" + id).click(function () {
-                var orderId = $(".radioDelivered").parent().attr('gid');
+                var orderId = $("#deliverOrderModal").attr('gid');
                 doFetch({
                     action: 'orderDeliveryMembers',
                     orderId: orderId,
