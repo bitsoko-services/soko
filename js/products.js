@@ -429,7 +429,11 @@ $(document).on('touchstart click', '.removeProduct', function (event) {
 //});
 
 
-
+ $('#spnsrdModal').modal({
+        ready: function (modal, trigger) {
+            sponsoredProdListener();
+        }
+    });
 
 $(document).on('touchstart click', '#firstProdModal', function (event) {
     $('#add-product').modal('open');
