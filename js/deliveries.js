@@ -42,7 +42,7 @@ $('document').ready(function () {
             deliveryMbr();
         }
     });
-    $('body').on('click', $('#MobileModal ul.autocomplete-content li'), function () {
+    $('#MobileModal').on('click', $('ul.autocomplete-content li'), function () {
         var value = $('#delivery-members').val();
         if (value != '') {
             var deliveryMembers = $('#delivery-members').val();
@@ -167,6 +167,7 @@ function deliveryMbr() {
                 }).then(function (e) {
                     if (e.status == 'ok') {
                         Materialize.toast('Delivery member selected successfully', 3000);
+                        $('#deliverOrderModal').modal('close');
                     } else {}
                 });
             })

@@ -159,6 +159,7 @@ function orderUpdater() {
         } catch (err) {
             console.log('unable to access orders list. ' + err);
             refreshSalesOrders();
+            orderCollapsible();
             return;
         }
 
@@ -187,19 +188,16 @@ function orderUpdater() {
                     '<div class="card-content" style="padding-top:0px;"><div>order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' +
                     '</div></div><div style="text-align:center;padding-right:15%;">Total:<span class="orders-' + reqs[i].id + '-cost"></span>/= </div></div>';
             } else {
-                console.log("Not delvered")
-                html = '<div style="padding:10px;border-radius:7px;" id="order-card-' + i + '" class="card"><div class="col s7" style="padding:0px;"><div class="card-image"><img style="border-radius:5px;" src="' + reqs[i].icon + '">' +
-                    '<div style="text-align:center;padding-right:15%;" class="pdfHide">New Order</div>' +
-                    '<div style="text-align:center;padding-right:15%;">Total:<span class="orders-' + reqs[i].id + '-cost"></span>/= </div>' +
-                    ' <div class="card-action" style="padding-left:0px;"><a class="pdfHide" href="tel:' + reqs[i].phone + '" style="margin-right:5px;"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">call</i></a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide"><i style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;">bill</i></a></div>' +
-                    ' <div class="card-action" style="padding:16px 0px 16px 0px !important;"></div>' +
-                    '</div></div><div class="col s5 ordItm" style="padding:0px;"> <div class="card-stacked">' +
-                    '<div class="card-content"><div>order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' +
-                    '</div></div><div class="col s12 style="width:100%;text-align:center !important;"><div class="radio-group" gid="' + reqs[i].id + '"><input type="radio" id="cancel' + reqs[i].id + '" name="selector"><label id="cancelLable_' + reqs[i].id + '" class="radioPad radioCancel" for="cancel' + reqs[i].id + '">Cancel</label><input type="radio" id="pending' + reqs[i].id + '" name="selector" checked><label class="radioPad" for="pending' + reqs[i].id + '">Pending</label><input type="radio" id="deliver' + reqs[i].id + '" name="selector"><label id="deliveredLable_' + reqs[i].id + '" class="radioPad radioDelivered delivMbr" for="deliver' + reqs[i].id + '"  onclick="orderCrdId()" >Delivered</label></div></div></div>';
+                console.log("Not delvered");
+                html = '<ul class="collapsible" data-collapsible="accordion" style="width:100%;"> <li> <div class="collapsible-header" style="padding:5px 10px;"> <div class="row" style="margin-bottom:0px;line-height:2rem;"> <div class="col s7" style="color:#8f8f8f;">ORDER SUMMARY</div><div class="col s5"> <div style="float:right;padding:5px;"> <a class="pdfHide" href="tel:' + reqs[i].phone + '" style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;color:black;margin-right:10px;">call</a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide" style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;color:black;">bill</a> </div></div></div><div class="row" style="margin-bottom:15px;"> <div class="col s3"> <img style="background:#26A69A; height:70px; width:70px; border-radius:100%;" src="' + reqs[i].icon + '"/></div><div class="col s9" style="line-height:1.4rem;padding:5px; color:#8f8f8f;"><span style="font-weight:bold;color:black;"> Nairobi, Kenya </span><br>Kimathi Street <br>Order PIN: 8809</div></div></div><div class="collapsible-body" style="padding:0px;"> <span> <div class="orderLst" style="padding:10px 24px;background:white;"> <ul><li><div class="row"><div class="col s6"><div class="orders-' + reqs[i].id + '-items"></div></div><div class="col s6"></div></div></li><div class="row"><li><div class="col s6">Total</div><div class="col s6"><span class="orders-' + reqs[i].id + '-cost"></span>/=</div></div></li></ul> </div><div class="orderStatus" style="background:#F5F5F5; text-align:center; padding:10px;"><div class="radio-group" gid="' + reqs[i].id + '"><input type="radio" id="cancel' + reqs[i].id + '" name="selector"><label id="cancelLable_' + reqs[i].id + '" class="radioPad radioCancel" for="cancel' + reqs[i].id + '">Cancel</label><input type="radio" id="pending' + reqs[i].id + '" name="selector" checked><label class="radioPad" for="pending' + reqs[i].id + '">Pending</label><input type="radio" id="deliver' + reqs[i].id + '" name="selector"><label id="deliveredLable_' + reqs[i].id + '" class="radioPad radioDelivered delivMbr" for="deliver' + reqs[i].id + '"  onclick="orderCrdId()" >Delivered</label></div> </div><div class="orderTime" style="background:white;padding:0px 15px;"> <div class="row" style="margin-bottom:0px;"> <div class="col s6"><p>Show less</p></div><div class="col s6"><p style="float:right;">3 hours ago</p></div></div></div></span> </div></li></ul>'
+
             }
             $(".orders-holda").prepend($.parseHTML(html));
+
+            setTimeout(function () {
+                $('.collapsible').collapsible();
+            }, 100);
             $(".sales-holda").prepend($.parseHTML(deliveredHTML));
-            //            console.log(reqs[i]);
             addOrderItems(reqs[i].id, reqs[i], reqs[i].location);
 
             //            var orderStatus = reqs[i].id;

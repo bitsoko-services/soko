@@ -48,7 +48,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <link rel="import" href="https://bitsoko.io/bitsAssets/html/connector.html" async> </head>
 
-<body style="overflow-x: hidden;" onload="startGoogle();">
+<body style="overflow-x: hidden;" onload="startGoogle(); orderCollapsible();">
     <bits-connect></bits-connect>
     <!-- Start Page Loading -->
     <!-- End Page Loading -->
@@ -215,7 +215,7 @@
         </div>
     </div>
     <!-- Remove Member Modal Structure -->
-    <div id="removeMemberModal" class="modal" style="border-radius:10p;">
+    <div id="removeMemberModal" class="modal" style="border-radius:10p;z-index:1000 !important;">
         <div class="modal-content" style="padding:0px;">
             <div class="opacitySelectedColor" style="text-align:center;background:#ff0000;margin:0px;padding:10px;color:white;">
                 <h5 style="margin:0px;">REMOVE MEMBER</h5>
@@ -990,6 +990,7 @@
                         <div class="col s12" style="margin-top:30px;">
 
                             <div id="sales" style="background-color: rgba(0,0,0,0);">
+                                <div class="testing"></div>
                                 <ul style="border: none;" class="collection orders-holda chStoreUpdate">
                                     <!-- start tab content-->
                                     <!-- end tab content-->
