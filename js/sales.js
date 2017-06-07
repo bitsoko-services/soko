@@ -67,7 +67,7 @@ function addOrderItems(orderid, orderItems, orderLoc) {
 
 
     var latlng = orderLocation;
-    var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
+    var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
     $.getJSON(url, function (data) {
         formatted = []
         var address = data.results[0].formatted_address.split(",")
