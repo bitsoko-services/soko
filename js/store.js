@@ -494,6 +494,21 @@ $(".editStore").click(function () {
     notifyCheckbox()
 });
 
+//Delete Store
+$(".deleteStore").click(function () {
+    storeId = localStorage.getItem('soko-active-store');
+    doFetch({
+        action: 'deleterStore',
+        store: storeId
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            $('#editStoreModal').modal('close');
+            Materialize.toast('Store deleted successfully', 3000);
+        }
+    });
+})
+
+
 var shroot = document.querySelectorAll(".newStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", newStore, false);

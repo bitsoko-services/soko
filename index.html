@@ -48,7 +48,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <link rel="import" href="https://bitsoko.io/bitsAssets/html/connector.html" async> </head>
 
-<body style="overflow-x: hidden;" onload="startGoogle(); orderCollapsible();">
+<body style="overflow-x: hidden;" onload="startGoogle(); setTimeout(refreshSalesOrders, 3000);">
     <bits-connect></bits-connect>
     <!-- Start Page Loading -->
     <!-- End Page Loading -->
@@ -625,6 +625,9 @@
                             <input id="transfer-shop" type="text" class="validate" placeholder="username" stitm="shopTransfer">
                             <label for="transfer-shop" class="">Transfer Shop</label>
                         </div>
+                    </div>
+                    <div class="row">
+                        <a class="waves-effect waves-light btn deleteStore" style="background:red;">Delete Store</a>
                     </div>
                 </form>
             </div>
