@@ -235,6 +235,8 @@
             <div class="opacitySelectedColor" style="text-align:center; background:#7eb7c8; margin:0px; padding:10px; color:white;">
                 <h5 style="margin:0px;">PURCHASE LOYALTY POINTS</h5>
             </div>
+            <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;line-height: 0px;display:block;margin:10px auto;" />
+            <p style="text-align: center; padding: 0% 5%;color: #575757;">Points bought will be deposited to the owners account</p>
             <div style="padding:20px; text-aling:center:">
                 <a id="buy100" class="rewardbtn waves-effect waves-light btn" style="width:230px;height:60px !important;">
                     <icon style="width:35px;position:relative;left:10px;">
@@ -470,11 +472,19 @@
         <div class="opacitySelectedColor" style="text-align:center;background:#7eb7c8;margin:0px;padding:10px;color:white;">
             <h5 style="margin:0px;">DELIVERY OPERATORS</h5>
         </div>
-        <div class="row" style="padding:15px;">
-            <div class="input-field col s6">
-                <input placeholder="" id="delivery_Rate" type="number" class="validate" min="0" style="margin-bottom:0px;width:65px;">
+        <div class="row" style="padding:15px;padding-bottom:0px;">
+            <div class="input-field col s3">
+                <input placeholder="" id="delivery_Rate" type="number" class="validate" min="0" style="margin-bottom:0px;">
                 <label for="delivery_Rate" class="active">Delivery Rate</label>
             </div>
+            <div class="input-field col s5" style="margin-left: 20px; margin-top: 16px;">
+                <select>
+      <option value="1" selected>per km</option>
+    </select>
+                <label>Rate per kilometer</label>
+            </div>
+        </div>
+        <div class="row" style="padding:15px;padding-top:0px;">
             <div class="input-field col s12" style="margin-top:30px;">
                 <input id="delivery-members" type="text" class="validate" placeholder="username">
                 <label for="delivery-members" class="">Delivery Operators</label>
@@ -528,12 +538,11 @@
                             <div class="select-wrapper initialized"><span class="caret">▼</span>
                                 <select prnm="metric" class="initialized">
                                 <option value="" disabled="" selected="">Categories</option>
-                                <option value="1">category 1</option>
-                                <option value="2">category 2</option>
-                                <option value="3">category 3</option>
-                                <option value="4">category 4</option>
-                                <option value="5">category 5</option>
-                                <option value="6">category 6</option> '</select>
+                                    <div class="storeCategory">
+<option value="1">category 1</option>
+
+                                    </div>
+                                </select>
                             </div>
                             <label for="editStore-Phone" class="">Category</label>
                         </div>

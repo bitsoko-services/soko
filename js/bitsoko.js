@@ -39,6 +39,7 @@ function profileLoaded(p) {
     sponsoredProdListener();
 }
 
+
 function updateStores() {
     doFetch({
         action: 'merchantServiceLoader',
@@ -49,6 +50,12 @@ function updateStores() {
 
             $('#newStoreModal').modal('close');
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.services), 'soko-stores');
+
+//            var xx = e.settings
+//            var xxx = xx.prodCategories
+//            for (var i = 0; i < xxx.length; i++) {
+//                console.log(xxx[i].name);
+//            }
             localStorage.setItem('bitsoko-stores', 'true');
             loadPOS();
         } else if (e.msg == "no services") {
@@ -66,6 +73,14 @@ function updateStores() {
     }).catch(function (err) {
         loadPOS();
     });
+
+    //    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('bits-user-name') + '-orders').onsuccess = function (event) {
+    //        console.log('[+]refresh sales order, from server: ', event.target.result)
+    //    }
+
+    //    getObjectStore('data', 'readwrite').get('soko-stores').onsuccess = function (event) {
+    //        console.log('[+]refresh sales order, from server: ', JSON.parse(event.target.result))
+    //    }
 }
 
 function reqMsg(data) {

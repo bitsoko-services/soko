@@ -186,3 +186,5 @@ $("#delivery_Rate").on("change", function () {
         if (e.status == 'ok') {} else {}
     });
 });
+var rateInput = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRate;
+$('#delivery_Rate').val(rateInput);

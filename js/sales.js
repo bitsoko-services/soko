@@ -30,6 +30,8 @@ function refreshSalesOrders() {
     */
 }
 
+
+
 function getActvStoreProds(orderid, orderItems, orderLoc) {
 
     return new Promise(function (resolve, reject) {
