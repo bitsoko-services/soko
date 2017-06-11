@@ -470,27 +470,22 @@
     <!-- Delivery Modal Structure -->
     <div id="MobileModal" class="modal modal-fixed-footer MobileModal" style=";border-radius:4px;">
         <div class="opacitySelectedColor" style="text-align:center;background:#7eb7c8;margin:0px;padding:10px;color:white;">
-            <h5 style="margin:0px;">DELIVERY OPERATORS</h5>
+            <h5 style="margin:0px;">Manage Deliveries</h5>
         </div>
         <div class="row" style="padding:15px;padding-bottom:0px;">
             <div class="input-field col s3">
                 <input placeholder="" id="delivery_Rate" type="number" class="validate" min="0" style="margin-bottom:0px;">
-                <label for="delivery_Rate" class="active">Delivery Rate</label>
-            </div>
-            <div class="input-field col s5" style="margin-left: 20px; margin-top: 16px;">
-                <select>
-      <option value="1" selected>per km</option>
-    </select>
-                <label>Rate per kilometer</label>
+                <label for="delivery_Rate" class="active">Rate per Kilometer</label>
             </div>
         </div>
         <div class="row" style="padding:15px;padding-top:0px;">
             <div class="input-field col s12" style="margin-top:30px;">
                 <input id="delivery-members" type="text" class="validate" placeholder="username">
-                <label for="delivery-members" class="">Delivery Operators</label>
+                <label for="delivery-members" class="">Add Operators</label>
             </div>
         </div>
         <div class="row">
+		<label for="membersLst" class="active">Current Operators</label>
             <div class="input-field col s12">
                 <div id="membersLst">
                 </div>
