@@ -34,12 +34,52 @@ function beaconsUpdater() {
         var st = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
         for (var i = 0, st = st; i < reqs.length; ++i) {
             if (parseInt(reqs[i].service) == parseInt(localStorage.getItem('soko-active-store'))) {
-                var html = '<li class="collection-item">' + '<div class="row"><div class="col s4">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p></div><div class="col s8"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option selected="" value="' + st.id + '">' + st.name + '</option><option value="0">disabled</option></select></div></div></div></li>';
+                var html = '<li class="collection-item">' + '<div class="row"><div class="col s4">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="switch"> <label><input type="checkbox" class="toggleBeacon" id="toggleBeacon_' + reqs[i].id + '" bid="' + reqs[i].id + '"> <span class="lever" bid="' + reqs[i].id + '"></span> </label> </div></div><div class="col s8"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option selected="" value="' + st.id + '">' + st.name + '</option><option value="0">disabled</option></select></div></div></div></li>';
                 $(".beacons-holda-connected").append($.parseHTML(html));
+                $("#toggleBeacon_" + reqs[i].id).prop("checked", true);
             } else if (parseInt(reqs[i].service) == parseInt('0')) {
-                var html = '<li class="collection-item">' + '<div class="row"><div class="col s4">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Not Connected</p></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option value="0" selected="">disabled</option><option value="' + st.id + '">' + st.name + '</option></select></div></div></div></li>';
+                var html = '<li class="collection-item">' + '<div class="row"><div class="col s4">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Not Connected</p><div class="switch"> <label><input type="checkbox" class="toggleBeacon" id="toggleBeacon_' + reqs[i].id + '" bid="' + reqs[i].id + '"> <span class="lever" bid="' + reqs[i].id + '"></span></label> </div></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option value="0" selected="">disabled</option><option value="' + st.id + '">' + st.name + '</option></select></div></div></div></li>';
                 $(".beacons-holda-available").append($.parseHTML(html));
+                $("#toggleBeacon_" + reqs[i].id).prop("checked", false);
             }
+
+            $('.toggleBeacon ').unbind().click(function () {
+                var value = this;
+                var val = $(value).attr('bid')
+                if ($(value).prop("checked") == true) {
+                    var value = document.getElementsByClassName("toggleBeacon").checked
+                    var val = this.getAttribute('bid');
+                    doFetch({
+                        action: 'doSetBeacon',
+                        id: val,
+                        to: localStorage.getItem("soko-active-store")
+                    }).then(function (e) {
+                        if (e.status == 'ok') {
+                            Materialize.toast('beacon updated ..', 3000);
+                            refreshBeacons();
+                        } else {
+                            console.log(e);
+                        }
+                    });
+                } else {
+                    var value = document.getElementsByClassName("toggleBeacon").checked
+                    var val = this.getAttribute('bid');
+                    doFetch({
+                        action: 'doSetBeacon',
+                        id: val,
+                        to: 0
+                    }).then(function (e) {
+                        if (e.status == 'ok') {
+                            Materialize.toast('beacon updated ..', 3000);
+                            refreshBeacons();
+                        } else {
+                            console.log(e);
+                        }
+                    });
+                }
+            });
+
+            getBeaconStatus()
         }
         updateBeaconMonitor();
     }
@@ -70,5 +110,13 @@ function updateBeaconMonitor() {
                 }
             });
         });
+    });
+}
+
+function getBeaconStatus() {
+    ////Active beacon 
+    $('.toggleBeacon').click(function () {
+        var value = document.getElementsByClassName("toggleBeacon").checked
+        var val = $(this).attr('bid');
     });
 }

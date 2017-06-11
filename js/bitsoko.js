@@ -50,12 +50,12 @@ function updateStores() {
 
             $('#newStoreModal').modal('close');
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.services), 'soko-stores');
-
-//            var xx = e.settings
-//            var xxx = xx.prodCategories
-//            for (var i = 0; i < xxx.length; i++) {
-//                console.log(xxx[i].name);
-//            }
+            var xx = e.settings
+            var xxx = xx.prodCategories
+            for (var i = 0; i < xxx.length; i++) {
+                console.log(xxx[i].name);
+                $(".categorySelect").append('<option value="' + xxx[i].id + '">' + xxx[i].name + '</option>');
+            }
             localStorage.setItem('bitsoko-stores', 'true');
             loadPOS();
         } else if (e.msg == "no services") {
