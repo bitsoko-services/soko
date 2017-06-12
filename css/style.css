@@ -437,7 +437,7 @@ header .brand-logo img {
         font-size: 36px;
     }
     ul.side-nav.leftside-navigation {
-        top: 56px !important;
+        top: 0px !important;
     }
 }
 
