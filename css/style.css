@@ -3449,7 +3449,8 @@ tr.group:hover {
 }
 
 #loyaltyPoints {
-    top: 20% !important;
+    top: 11% !important;
+    max-height: 80%;
 }
 
 #switchStoreModal {
