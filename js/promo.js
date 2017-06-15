@@ -21,8 +21,10 @@ function refreshPromotions() {
             getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + id + '-promotions');
         }
         promoUpdater();
+        promoCreator();
     }).catch(function (err) {
         promoUpdater();
+        promoCreator();
     });
 }
 
@@ -55,7 +57,6 @@ function promoUpdater() {
 
             $(".promotions-holda").prepend($.parseHTML(html));
             addPromoSubscribers(reqs[i].id, reqs[i].promoSubs);
-            promoCreator(reqs[i].id);
             $(".editPromoBtn").click(function () {
                 uniqueId = $(this).attr('id')
                 $("#" + uniqueId).width("100%")
@@ -116,36 +117,7 @@ function addPromoSubscribers(promoid, promoSubs) {
     });
 }
 
-function promoOpenCb() {
-    $('.card-content > .btn-floating').on("click touchstart", function () {
-        var e = this;
-        setTimeout(function () {
-            var parCard = $(e).parent().parent();
-
-            parCard.css("height", $("div[style^='display: block;'].card-reveal > form").outerHeight() + "px");
-            parCard.scrollTop();
-
-            window.scrollTo(0, parCard.position().top);
-
-            $(".card > .card-reveal > form").css("display", "block");
-        }, 300);
-    });
-}
-
-//function promoCloseCb() {
-//    $('.backBtnPromo').on("click touchstart", function () {
-//        var e = this;
-//        setTimeout(function () {
-//
-//            $(e).parent().parent().parent().parent().css("height", "auto");
-//            $(".card-reveal").css("display", "none");
-//        }, 300);
-//
-//    });
-//}
-
-
-function promoCreator(promoID) {
+function promoCreator() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
         try {
             e = JSON.parse(event.target.result);
@@ -159,6 +131,7 @@ function promoCreator(promoID) {
         } else {
             //setupPromos(e);
 
+            $(".promo-add-new-promotion2").html('');
             for (var i = 0; i < e.length; ++i) {
 
                 $(".promo-add-new-promotion2").append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="0" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>');
@@ -194,10 +167,6 @@ function promoCreator(promoID) {
                 add.val(add_)
             })
         }
-
-
-        promoOpenCb();
-        promoCloseCb();
     }
 }
 
