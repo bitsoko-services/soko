@@ -3602,3 +3602,48 @@ tr.group:hover {
     background: white;
     padding: 0 5px;
 }
+
+
+/***************************************
+             Promotion Car
+****************************************/
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 25px;
+    right: 0;
+    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 4%;
+    width: 100%;
+    /* text-align: center; */
+    margin-top: 30px;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 49px;
+    right: 20px;
+    font-size: 33px;
+    z-index: 099999999999999999999;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {
+        font-size: 20px
+    }
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
