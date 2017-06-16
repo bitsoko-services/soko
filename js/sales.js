@@ -53,35 +53,41 @@ var adress = "";
 get_orderItems = []
 
 function addOrderItems(orderid, orderItems, orderLoc) {
-
-    console.log('[+]order items unique id: ', orderItems.id)
-
+    console.log('[+]order items unique id: ', orderItems.from);
     get_orderItems.push(orderItems);
     var orderLocation = orderItems.location;
+    var orderCrdName = orderItems.name;
 
     date_info = getDateHours(orderItems.date)
-
     tag = '#elapsed_time_' + orderItems.id
-
     console.log('[++]tag id: ', tag)
-
     $(tag).text(date_info)
 
+    for (var i in deliveryGuys) {
+        var name = deliveryGuys[i].name;
+        var id = deliveryGuys[i].id;
+        if (orderItems.from == id) {
+            console.log("-------------------->>");
+            console.log(name);
+        }
+    }
 
     var latlng = orderLocation;
     var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
     $.getJSON(url, function (data) {
         formatted = []
         var address = data.results[0].formatted_address.split(",")
-        bolden = '<span style="color:black;font-weight:600;">' + address[0] + '</span>'
+        bolden = '<span style="">' + address[0] + '</span>'
         formatted.push(bolden)
         $.each(address, function (index, value) {
             if (index !== 0) {
                 formatted.push(value)
             }
         })
-        formatted_html = formatted.join('<br />')
+        formatted_html = formatted[0]
         location_tag = '#orderLocation_' + orderItems.id
+        name_tag = '#orderCardName_' + orderItems.id
+        $(name_tag).text(orderCrdName);
         $(location_tag).html(formatted_html);
     });
     getActvStoreProds(orderid, orderItems, orderLoc).then(function (p) {
@@ -213,18 +219,13 @@ function orderUpdater() {
             var deliveredHTML = "";
             if (reqs[i].state == "Complete") {
                 console.log("Delivered");
-                deliveredHTML = '<div style="padding:10px;border-radius:7px;" id="order-card-' + i + '" class="card"><div class="col s3" style="padding:0px;"><div class="card-image"><img style="border-radius:5px;height:12vh;" src="' + reqs[i].icon + '">' +
-                    ' <div class="card-action" style="padding:16px 0px 16px 0px !important;"></div>' +
-                    '</div></div><div class="col s9 ordItm" style="padding:0px;"> <div class="card-stacked">' +
-                    '<div class="card-content" style="padding-top:0px;"><div>order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' +
-                    '</div></div><div style="text-align:center;padding-right:15%;">Total:<span class="orders-' + reqs[i].id + '-cost"></span>/= </div></div>';
+                deliveredHTML = '<div style="padding:10px;border-radius:7px;" id="order-card-' + i + '" class="card"><div class="col s3" style="padding:0px;"><div class="card-image"><img style="border-radius:5px;height:12vh;" src="' + reqs[i].icon + '">' + ' <div class="card-action" style="padding:16px 0px 16px 0px !important;"></div>' + '</div></div><div class="col s9 ordItm" style="padding:0px;"> <div class="card-stacked">' + '<div class="card-content" style="padding-top:0px;"><div>order items</div><div class="orders-' + reqs[i].id + '-items"></div> </div>' + '</div></div><div style="text-align:center;padding-right:15%;">Total:<span class="orders-' + reqs[i].id + '-cost"></span>/= </div></div>';
             } else {
                 console.log("Not delvered");
-                html = '<ul class="collapsible" data-collapsible="accordion" style="width:100%;"> <li><div class="row" style="margin-bottom:0px;line-height:2rem;padding:5px 10px;background:white;"> <div class="col s7" style="color:#8f8f8f; font-size:0.7em;">ORDER SUMMARY</div><div class="col s5"> <div style="float:right;"> <a class="pdfHide" href="tel:' + reqs[i].phone + '" style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;color:#6a6969;margin-right:10px;font-size:0.7em;">CALL</a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide" style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;color:#6a6969;font-size:0.7em;">BILL</a> </div></div></div> <div class="collapsible-header" style="padding:5px 10px;"><div class="row"> <div class="col s3" style="height:70px;"> <img style="background:#26A69A; height:70px; width:70px; border-radius:100%;" src="' + reqs[i].icon + '"/></div><div class="col s9" style="line-height:1.4rem;padding:5px; color:#8f8f8f;"><span id="orderLocation_' + reqs[i].id + '"></span></div></div> <div class="row" style="color:#8f8f8f;font-size:0.7em;"><div class="col s6" style="font-size:1.2em;">Show more</div><div class="col s6"><p style="margin:0px;float:right;"><span class="orders-' + reqs[i].id + '-cost"></span>/=</p></div></div></div><div class="collapsible-body" style="padding:0px;"> <span> <div class="orderLst" style="padding:10px 24px;background:white;"> <ul><li><div class="row"><div class="col s6"><div class="orders-' + reqs[i].id + '-items"></div></div><div class="col s6"></div></div></li><div class="row" style="font-size:0.9em;padding-top:10px;"><li><div class="col s6">Total</div><div class="col s6"><p style="float:right;margin:0px;"><span class="orders-' + reqs[i].id + '-cost"></span>/=</p></div></div></li></ul> </div><div class="orderStatus" style="background:#F5F5F5; text-align:center; padding:10px;"><div class="radio-group" gid="' + reqs[i].id + '"><input type="radio" id="cancel' + reqs[i].id + '" name="selector"><label id="cancelLable_' + reqs[i].id + '" class="radioPad radioCancel" for="cancel' + reqs[i].id + '">Cancel</label><input type="radio" id="pending' + reqs[i].id + '" name="selector" checked><label class="radioPad" for="pending' + reqs[i].id + '">Pending</label><input type="radio" id="deliver' + reqs[i].id + '" name="selector"><label id="deliveredLable_' + reqs[i].id + '" class="radioPad radioDelivered delivMbr" for="deliver' + reqs[i].id + '"  onclick="orderCrdId()" >Delivered</label></div> </div><div class="orderTime" style="background:white;padding:0px 15px;"> <div class="row" style="margin-bottom:0px;font-size:0.8em;"> <div class="col s6"><p>Show less</p></div><div class="col s6"><p style="float:right;" id="elapsed_time_' + reqs[i].id + '">3 hours ago</p></div></div></div></span> </div></li></ul>'
+                html = '<ul class="collapsible" data-collapsible="accordion" style="width:100%;"> <li><div class="row" style="margin-bottom:0px;line-height:2rem;padding:5px 10px;background:white;"> <div class="col s7" style="color:#8f8f8f; font-size:0.7em;">ORDER SUMMARY</div><div class="col s5"> <div style="float:right;"> <a class="pdfHide" href="tel:' + reqs[i].phone + '" style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;color:#6a6969;margin-right:10px;font-size:0.7em;">CALL</a><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide" style="border:solid #ffab40 1px; padding: 5px 10px 5px 10px;border-radius:5px;color:#6a6969;font-size:0.7em;">BILL</a> </div></div></div> <div class="collapsible-header" style="padding:5px 10px;"><div class="row"> <div class="col s3" style="height:70px;"> <img style="background:#26A69A; height:70px; width:70px; border-radius:100%;" src="' + reqs[i].icon + '"/></div><div class="col s9" style="line-height:1.4rem;padding:5px; color:#8f8f8f;"><span id="orderCardName_' + reqs[i].id + '" style="color:black;font-weight:600;"></span> <br><span id="orderLocation_' + reqs[i].id + '"></span><br>Ksh. <span class="orders-' + reqs[i].id + '-cost"></span></div></div> <div class="row" style="color:#8f8f8f;font-size:0.7em;"><div class="col s6" style="font-size:1.2em;">Show more</div><div class="col s6"><p style="margin:0px;float:right;"><span id="elapsed_time_' + reqs[i].id + '"></span>/=</p></div></div></div><div class="collapsible-body" style="padding:0px;"> <span> <div class="orderLst" style="padding:10px 24px;background:white;"> <ul><li><div class="row"><div class="col s6"><div class="orders-' + reqs[i].id + '-items"></div></div><div class="col s6"></div></div></li><div class="row" style="font-size:0.9em;padding-top:10px;"><li><div class="col s6">Total</div><div class="col s6"><p style="float:right;margin:0px;"><span class="orders-' + reqs[i].id + '-cost"></span>/=</p></div></div></li></ul> </div><div class="orderStatus" style="background:#F5F5F5; text-align:center; padding:10px;"><div class="radio-group" gid="' + reqs[i].id + '"><input type="radio" id="cancel' + reqs[i].id + '" name="selector"><label id="cancelLable_' + reqs[i].id + '" class="radioPad radioCancel" for="cancel' + reqs[i].id + '">Cancel</label><input type="radio" id="pending' + reqs[i].id + '" name="selector" checked><label class="radioPad" for="pending' + reqs[i].id + '">Pending</label><input type="radio" id="deliver' + reqs[i].id + '" name="selector"><label id="deliveredLable_' + reqs[i].id + '" class="radioPad radioDelivered delivMbr" for="deliver' + reqs[i].id + '"  onclick="orderCrdId()" >Delivered</label></div> </div><div class="orderTime" style="background:white;padding:0px 15px;"> <div class="row" style="margin-bottom:0px;font-size:0.8em;"> <div class="col s6"><p>Show less</p></div><div class="col s6"><p style="float:right;" id="elapsed_time_' + reqs[i].id + '"></p></div></div></div></span> </div></li></ul>'
 
             }
             $(".orders-holda").prepend($.parseHTML(html));
-
             setTimeout(function () {
                 $('.collapsible').collapsible();
             }, 100);
@@ -350,49 +351,29 @@ function getDateHours(date_from_server) {
 
     if (hours >= 24) {
         days = parseInt(hours / 24)
-
         hours = parseInt(hours % 24)
-
-
-
         return days + ' days, ' + hours + ' hours ago'
-
     } else if (hours < 24 && hours > 1) {
         total_minutes = hours * 60
-
         hours_string = '' + hours
         if (hours_string.search('.') !== -1) {
             complete_hours = parseFloat(hours_string.split('.')[0])
             complete_minutes = complete_hours * 60
-
             remainder = total_minutes - complete_minutes
-
             remainder = parseInt(remainder)
-
             return complete_hours + ' hours, ' + remainder + ' minutes ago'
-
-
         } else {
             return hours + ' hours ago'
         }
-
-
     } else if (hours < 1) {
         minutes = hours * 60
-
         if (minutes < 1) {
             seconds = minutes * 60
-
             seconds = parseInt(seconds)
-
             return seconds + ' seconds ago'
-
-
         } else {
             minutes = parseInt(minutes)
-
             return minutes + ' minutes ago'
-
         }
     }
 }

@@ -437,7 +437,7 @@ header .brand-logo img {
         font-size: 36px;
     }
     ul.side-nav.leftside-navigation {
-        top: 56px !important;
+        top: 0px !important;
     }
 }
 
@@ -3449,7 +3449,8 @@ tr.group:hover {
 }
 
 #loyaltyPoints {
-    top: 20% !important;
+    top: 11% !important;
+    max-height: 80%;
 }
 
 #switchStoreModal {
@@ -3600,4 +3601,49 @@ tr.group:hover {
 .permanentChng h6 span {
     background: white;
     padding: 0 5px;
+}
+
+
+/***************************************
+             Promotion Car
+****************************************/
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 25px;
+    right: 0;
+    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 4%;
+    width: 100%;
+    /* text-align: center; */
+    margin-top: 30px;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    font-size: 33px;
+    z-index: 099999999999999999999;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {
+        font-size: 20px
+    }
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
 }

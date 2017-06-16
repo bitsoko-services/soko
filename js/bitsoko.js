@@ -50,12 +50,32 @@ function updateStores() {
 
             $('#newStoreModal').modal('close');
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.services), 'soko-stores');
+            var xx = e.settings
+            var xxx = xx.prodCategories
+            for (var i = 0; i < xxx.length; i++) {
+                console.log(xxx[i].name);
+                $("#categorySelect").append('<option value="' + xxx[i].id + '">' + xxx[i].name + '</option>');
+            }
+            setTimeout(function () {
+                $(".categoriesRow").find("li").click(function () {
+                    var inputVal = $(".categoriesRow input").val()
+                    console.log(inputVal)
+                    for (var i in xxx) {
+                        var name = xxx[i].name;
+                        var id = xxx[i].id;
+                        if (inputVal == name) {
+                            doFetch({
+                                action: 'storeCategory',
+                                store: localStorage.getItem('soko-active-store'),
+                                category: id
+                            }).then(function (e) {
+                                if (e.status == 'ok') {} else {}
+                            });
+                        }
+                    }
+                });
+            }, 5000);
 
-//            var xx = e.settings
-//            var xxx = xx.prodCategories
-//            for (var i = 0; i < xxx.length; i++) {
-//                console.log(xxx[i].name);
-//            }
             localStorage.setItem('bitsoko-stores', 'true');
             loadPOS();
         } else if (e.msg == "no services") {

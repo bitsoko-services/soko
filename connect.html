@@ -1,0 +1,199 @@
+<!-- Defines element markup -->
+<html>
+
+<head>
+    <script>
+        contio = location.origin;
+
+    </script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="bitsAssets/js/broadcastChannel.js"></script>
+    <script src="bitsAssets/js/storeManager.js"></script>
+
+</head>
+
+<body>
+
+    <template class="bits-connect">
+    
+     
+</template>
+
+
+    <script>
+        // Gets content from <template>
+        var bitsConnector;
+        var swReg;
+
+        var appli = '';
+        if (location.origin.includes('localhost:8000')) {
+
+            appli = '/s';
+        } else if (location.origin.includes('localhost:9000')) {
+
+            appli = '/b';
+        } else {
+            appli = location.pathname.substring(0, 2);
+        }
+        var conSet = {
+            'forceNew': true,
+            'reconnection': true,
+            'reconnectionDelay': 1000,
+            'reconnectionAttempts': 100
+        };
+
+        var constr;
+        switch (appli) {
+            case '/s':
+
+                constr = contio + '/serviceHandler';
+                meName = 'service-' + localStorage.getItem('soko-active-store');
+                break;
+            case '/r':
+
+                constr = contio + '/rootHandler';
+                meName = 'user-' + localStorage.getItem('bits-user-name');
+                break;
+            case '/c':
+
+                constr = contio + '/connectHandler';
+                meName = 'api';
+                break;
+            default:
+
+                constr = contio;
+                meName = 'user-' + localStorage.getItem('bits-user-name');
+
+        }
+
+        try {
+
+            bitsServer = io.connect(constr, conSet);
+
+            console.log('connected');
+        } catch (err) {
+            console.log('NOT connected');
+        }
+
+
+
+
+
+        bitsServer.on('connect_error', function(err) {
+            //  servPage.source.postMessage({status: 'bad',msg:err}, servPage.origin);
+
+            reject({
+                status: 'disconnected',
+                msg: err
+            });
+        });
+        bitsServer.once('disconnect', function() {
+            bitsServer.once('connect', function() {
+                console.log('Connected for the second time!');
+            });
+            bitsServer.on('connect_error', function(err) {
+                //  servPage.source.postMessage({status: 'bad',msg:err}, servPage.origin);
+
+                reject({
+                    status: 'disconnected',
+                    msg: err
+                });
+            });
+            bitsServer.connect();
+        });
+
+        contio = location.origin;
+        /*   */
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register(contio + '/sw.js', {
+                scope: contio
+            }).then(function(reg) {
+                // Registration was successful. Now, check to see whether the Service Worker is controlling the page.
+                if (navigator.serviceWorker.controller) {
+                    // If .controller is set, then this page is being actively controlled by the Service Worker.
+                    // Show the interface for sending messages to the service worker.
+
+                    swReg = reg;
+                    try {
+
+                        startmessage();
+
+                    } catch (err) {
+                        console.log('not initialized messaging');
+                    }
+
+                    //console.log('ServiceWorker registration Active');
+                } else {
+                    // If .controller isn't set, then prompt the user to reload the page so that the Service Worker can take
+                    // control. Until that happens, the Service Worker's message handler won't be used.
+                    // window.location.reload();
+                    if (window.location.origin == 'https://bitsoko.io') {
+                        window.location.reload();
+                    } else {
+                        console.log('RELOAD PAGE TO ACTIVATE SERVICE WORKER!!');
+                    }
+
+                }
+            }).catch(function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        }
+
+        var doFetch;
+
+        (function(window, document, undefined) {
+            // Refers to the "importer", which is index.html
+
+
+            document.addEventListener('visibilitychange', function(event) {
+                if (!document.hidden && localStorage.getItem('bitsoko-enable-autoreload') != 'false') {
+                    // The page is visible.
+
+                    //bitsConnector.querySelector("iframe[bits]").src = bitsConnector.querySelector("iframe[bits]").src;
+
+                    setTimeout(function() {
+
+                        checkNewPay();
+                    }, 1000);
+                } else {
+                    // The page is hidden. 
+                }
+            });
+
+
+        })(window, document);
+
+
+        function doFetch(data, e) {
+
+            return new Promise(function(resolve, reject) {
+                //  console.log(bitsConnector);
+
+                if (!bitsServer.connected) {
+                    reject({
+                        status: 'disconnected',
+                        msg: 'no connection found'
+                    });
+                    // return;
+                }
+
+                console.log('sending ', data, ' to server');
+                bitsServer.on(data.action, function(dat) {
+                    if (data.action == dat.action) {
+
+                        resolve(dat);
+
+                    }
+                    // bitsServer.emit('clientid', { testing: event.data });
+                }).emit(data.action, data);
+
+            });
+        }
+
+        //autoReload = false;
+
+    </script>
+</body>
+
+</html>

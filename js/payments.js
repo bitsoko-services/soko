@@ -9,6 +9,7 @@ $('#paymentsToggle').click(function () {
         $('#deliveriesToggle').sideNav('hide');
         $('#confirmContact').modal('open');
         var value = document.getElementById("paymentsToggle").checked
+        console.log(value)
         doFetch({
             action: 'togglePayments',
             id: localStorage.getItem('soko-active-store'),

@@ -509,6 +509,13 @@ $(".deleteStore").click(function () {
 })
 
 
+//Hide Settings If Owner Do Not Much
+var bitsUserName = localStorage.getItem("bits-user-name");
+var sokoOwner = localStorage.getItem("soko-owner-id");
+if (bitsUserName != sokoOwner) {
+    $(".settingsIcon").hide();
+}
+
 var shroot = document.querySelectorAll(".newStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", newStore, false);
