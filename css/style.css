@@ -3631,7 +3631,7 @@ tr.group:hover {
 
 .overlay .closebtn {
     position: absolute;
-    top: 49px;
+    top: 60px;
     right: 20px;
     font-size: 33px;
     z-index: 099999999999999999999;
