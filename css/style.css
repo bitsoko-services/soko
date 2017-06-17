@@ -3417,6 +3417,7 @@ tr.group:hover {
     margin: 0;
     border-radius: 10px;
     overflow: hidden;
+    width: 100%;
     padding: -31px;
 }
 
@@ -3646,4 +3647,8 @@ tr.group:hover {
         top: 15px;
         right: 35px;
     }
+}
+
+.radioPad {
+    width: 33.3%;
 }
