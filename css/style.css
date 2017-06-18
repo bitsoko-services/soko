@@ -2859,7 +2859,7 @@ tr.group:hover {
 
 .header {
     width: 100%;
-    /* background-color: #717373; */
+    background-color: #717373;
     display: flex;
 }
 
@@ -3675,3 +3675,10 @@ tr.group:hover {
 /*******************************************
                  RANGE SLIDER
 *********************************************/
+
+input[type=range]::-webkit-slider-thumb {
+    background-color: #7EB7C8;
+    height: 30px;
+    width: 30px;
+    margin-top: -15px;
+}

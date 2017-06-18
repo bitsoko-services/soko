@@ -436,6 +436,7 @@ $(document).on('touchstart click', '.removeProduct', function (event) {
             if (e.status == 'ok') {
                 console.log("Product Removed Successfully");
                 $(parent_div).remove();
+                refreshProducts();
             } else {
                 console.log(e);
             }

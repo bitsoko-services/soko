@@ -1053,32 +1053,33 @@
 </div>
 -->
                 <div class="row">
-                    <div style="background: white; padding: 20px; border-radius: 5px;margin:10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);">
+                    <div style="background: white; padding: 20px; border-radius: 5px;margin:10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);margin-top:60px;">
+                        <div class="row">
+                            <span style="width:85px;height:85px;background: #7EB7C8;border-radius:50%;display: block;margin-left: auto;margin-right: auto;margin-top: -66px;border: solid white 7px;"><span><div class="input-field col s12" style=" margin-top: 37%;color: white;">
+                                    <input id="rangeOutputId" type="number" value="60" class="validate" style="    margin: 0px; text-align: center; width: 60px; font-size: 2.5em; border-bottom: none; margin-left: -5px; margin-top: -5px;">
+                                    <label for="first_name" class="active" style="text-align:center;color: white;margin-top: -5px;margin-left: -10px;font-size: 1em;">Ksh.</label>
+                                </div></span></span>
+                        </div>
                         <div class="row" style="margin-bottom:20px;">
                             <div class="col s9">Rate per Kilometer</div>
                             <div class="col s3" style="margin-top:-10px;">
-                                <div class="input-field col s12">
-                                    <input placeholder="Placeholder" id="rangeOutputId" type="number" value="60" class="validate" style="margin:0px;text-align:center;width:60px;margin-top:-15px;">
-                                    <label for="first_name" class="active" style="text-align:center;">Ksh.</label>
-                                </div>
-                                <!--                            <input id="rangeOutputId" value="24" style="margin:0px;text-align:center;width:60px;float:right;margin-top:-15px;">-->
+                                <input id="sliderAmount" value="60" type="number" style="margin-top:-10px;text-align:center;" />
                             </div>
                         </div>
                         <input id="slide" type="range" min="1" max="100" step="1" value="60" oninput="rangeOutputId.value = slide.value">
-                        <div id="sliderAmount"></div>
                     </div>
                 </div>
-                <div class="row" style="padding:15px;padding-top:0px;background: white; margin: 0px; border-radius: 5px; margin-bottom: 20px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);">
+                <div class="row" style="padding:15px;padding-top:0px;background: white; margin: 0px; border-radius: 5px; margin-bottom: 20px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);margin-top:35px;">
+                    <div style="text-align:center;">
+                        <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -10px;">Add Operators</a>
+                    </div>
                     <div class="input-field col s12" style="margin-top:30px;">
                         <input id="delivery-members" type="text" class="validate" placeholder="username">
-                        <label for="delivery-members" class="">Add Operators</label>
                     </div>
                 </div>
-                <div class="row" style="background: white; margin-left: auto; margin-right: auto; border-radius: 5px; padding: 10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);">
-                    <div class="currentOprt">
-                        <h6><span>Current Operators</span></h6>
-                    </div>
-                    <div class="input-field col s12">
+                <div class="row" style="background: white; margin-left: auto; margin-right: auto; border-radius: 5px; padding: 10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);text-align:center;margin-top:40px;margin-bottom:20px;">
+                    <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -17px;">Current Operators</a>
+                    <div class="input-field col s12" style="text-align:left;">
                         <div id="membersLst">
                         </div>
                     </div>
@@ -1428,7 +1429,10 @@
             sliderDiv = document.getElementById("sliderAmount");
 
         slide.onchange = function() {
-            sliderDiv.innerHTML = this.value;
+            sliderDiv.innerHTML = $("#sliderAmount").val(this.value);
+            $("#slide").attr("value") = $("#sliderAmount").val(this.value)
+            var sliderVal = $("#sliderAmount").val();
+            $("#slide").val(sliderVal);
         }
 
     </script>
