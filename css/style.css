@@ -2859,7 +2859,7 @@ tr.group:hover {
 
 .header {
     width: 100%;
-    background-color: #717373;
+    /* background-color: #717373; */
     display: flex;
 }
 
@@ -3604,6 +3604,24 @@ tr.group:hover {
     padding: 0 5px;
 }
 
+.currentOprt h6 {
+    text-align: center;
+    border-bottom: 1px solid #9e9e9e;
+    line-height: 0;
+    padding: 0;
+    margin-bottom: 25px;
+    width: 65%;
+    color: #9e9e9e;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.currentOprt h6 span {
+    background: white;
+    padding: 0 5px;
+}
+
 
 /***************************************
              Promotion Car
@@ -3652,3 +3670,8 @@ tr.group:hover {
 .radioPad {
     width: 33.3%;
 }
+
+
+/*******************************************
+                 RANGE SLIDER
+*********************************************/
