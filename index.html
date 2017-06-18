@@ -193,7 +193,18 @@
                 <h5 style="margin:0px;">ORDER DELIVERY</h5>
             </div>
             <div style="padding:0px 20px; 20px; 20px;">
-                <p style="text-align:center;padding-bottom:25px;">Select delivery members to complete this order</p>
+                <p style="text-align:center;padding-bottom:25px;">Select a delivery member or add their number to complete this order</p>
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s9">
+                            <input placeholder=" " id="delivery_operator_no" type="number" class="validate">
+                            <label for="first_name">Phone Number</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <a id="addNewOperator" class="waves-effect waves-light" style="background:#26A69A;padding:10px;border-radius:5px;color:white;text-transform:uppercase;">add</a>
+                        </div>
+                    </div>
+                </form>
                 <div id="ordMembersLst" style="padding-bottom:25px;">
                 </div>
             </div>

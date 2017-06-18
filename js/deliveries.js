@@ -188,3 +188,21 @@ $("#delivery_Rate").on("change", function () {
 });
 var rateInput = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRate;
 $('#delivery_Rate').val(rateInput);
+
+
+//New Operator
+$('#addNewOperator').on('click', function () {
+    var inputVal = $("#delivery_operator_no").val();
+    var orderId = $("#deliverOrderModal").attr('gid');;
+    doFetch({
+        action: 'createNewOperator',
+        number: inputVal,
+        orderId: orderId
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            Materialize.toast('Delivery member added successfully', 3000);
+        } else {
+            Materialize.toast('Error! Please try again later', 3000);
+        }
+    });
+});
