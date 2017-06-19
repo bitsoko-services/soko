@@ -347,7 +347,8 @@ function orderCrdId() {
 function getDateHours(date_from_server) {
     date_now = new Date()
     date_from_server = new Date(date_from_server)
-    var hours = Math.abs(date_now - date_from_server) / 36e5;
+    var kenyaGMT = Math.abs(date_now - date_from_server) / 36e5;
+    var hours = kenyaGMT - 3;
 
     if (hours >= 24) {
         days = parseInt(hours / 24)
