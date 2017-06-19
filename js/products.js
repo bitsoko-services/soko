@@ -4,7 +4,7 @@ function refreshProducts() {
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         console.log(e);
-        getObjectStore('data', 'readwrite').put(JSON.stringify(e.products), 'soko-store-' + id + '-products');
+        getObjectStore('data', 'readwrite').put(JSON.stringify(e.products), 'soko-store-' + localStorage.getItem('soko-active-store') + '-products');
         productsUpdater();
         promoCreator();
     }).catch(function (err) {
@@ -459,8 +459,9 @@ $(document).on('touchstart click', '.removeProduct', function (event) {
 //    });
 //});
 
-$(document).on('touchstart click', '#firstProdModal', function (event) {
+$(document).on('touchstart click', '.addFirstProdModal', function (event) {
     $('#add-product').modal('open');
+    $('#firstProdModal').modal('close');
 });
 $(document).on('touchstart click', '.newProdBtn', function (event) {
     //    $('#add-product').modal('open');
