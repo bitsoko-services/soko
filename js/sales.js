@@ -5,10 +5,10 @@ function refreshSalesOrders() {
     }).then(function (e) {
         console.log(e);
         if (e.status == 'ok') {
-            getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + id + '-orders');
+            getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + localStorage.getItem('soko-active-store') + '-orders');
         } else {
 
-            getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + id + '-orders');
+            getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + localStorage.getItem('soko-active-store') + '-orders');
         }
         orderUpdater();
     }).catch(function (err) {
