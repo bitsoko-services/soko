@@ -42,7 +42,7 @@ $('document').ready(function () {
             deliveryMbr();
         }
     });
-    $('#MobileModal').on('click', $('ul.autocomplete-content li'), function () {
+    $('.deliveries').on('click', $('ul.autocomplete-content li'), function () {
         var value = $('#delivery-members').val();
         if (value != '') {
             var deliveryMembers = $('#delivery-members').val();
@@ -138,7 +138,7 @@ function deliveryMbr() {
             console.log(obj);
             $("#membersLst").append('<div class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
             $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s10"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s2" style="padding-top:5px;"><input class="with-gap" name="group1" type="radio" id="radio_' + id + '"/> <label for="radio_' + id + '"></label></div></div>');
-            $('#MobileModal .removeMember').click(function () {
+            $('.removeMember').click(function () {
                 var removeMember = $(this)
                 $('#removeMemberModal').modal('open');
                 $('#yesMemberBtn').on('click', function () {
