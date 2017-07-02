@@ -336,86 +336,6 @@ $('#submitProdForm').click(function (e) {
         });
     }
 });
-//Remove product
-//var shroot = document.querySelectorAll(".removeProduct");
-//for (var i = 0; i < shroot.length; ++i) {
-//    //     id=$(this).attr('prid');
-//    //console.log(id);
-//    shroot[i].addEventListener("touchstart", function () {
-//        console.log(this)
-//        doFetch({
-//            action: 'doProdRemove'
-//            , id: $(this).attr('prid')
-//        }).then(function (e) {
-//            if (e.status == 'ok') {
-//                $(document).on('touchstart click', '.removeProduct', function (event) {
-//                    console.log("Product Removed Successfully");
-//                    $(this).parent().parent().parent().parent().remove();
-//                });
-//                //document.querySelector('#prodImg-holda-'+prid).src = val;
-//                //  Materialize.toast('modified '+name+'..', 3000);
-//            }
-//            else {
-//                console.log(e);
-//            }
-//        });
-//    }, false);
-//};
-
-//Remove Product
-//$(document).on('touchstart click', '.removeProduct', function (event) {
-//    console.log("Product Removed Successfully");
-//    parent_div = $(this).parent().parent().parent().parent()
-//    id = $(parent_div).attr('prid')
-//    $(this).parent().parent().parent().parent().remove();
-//    //    console.log(event)
-//    doFetch({
-//        action: 'removeProduct',
-//        id: id
-//    }).then(function (e) {
-//        if (e.status == 'ok') {
-//            //document.querySelector('#prodImg-holda-'+prid).src = val;
-//            //  Materialize.toast('modified '+name+'..', 3000);
-//        } else {
-//            console.log(e);
-//        }
-//    });
-//});
-
-
-//$(document).on('touchstart click', '.removeProduct', function (event) {
-//    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-promotions').onsuccess = function (event) {
-//        try {
-//            e = JSON.parse(event.target.result);
-//        } catch (err) {
-//            console.log('unable to access products list. ' + err);
-//            return;
-//        }
-//        console.log(ttt);
-//        if ($('input[name=promoItems]').is(':checked')) {
-//            Materialize.toast('This Product Is In An Active Promotion', 3000);
-//        } else if (document.getElementsByName("promoItems").checked = false) {
-//            console.log("Product Removed Successfully");
-//            parent_div = $(this).parent().parent().parent().parent()
-//            id = $(parent_div).attr('prid')
-//            $(this).parent().parent().parent().parent().remove();
-//            //    console.log(event)
-//            doFetch({
-//                action: 'removeProduct',
-//                id: id
-//            }).then(function (e) {
-//                if (e.status == 'ok') {
-//                    //document.querySelector('#prodImg-holda-'+prid).src = val;
-//                    //  Materialize.toast('modified '+name+'..', 3000);
-//                } else {
-//                    console.log(e);
-//                }
-//            });
-//        } else {
-//            console.log("Unable to get product list");
-//        }
-//    }
-//});
 
 
 function getProductsPromotions() {
@@ -446,10 +366,7 @@ function getProductsPromotions() {
 
 function rmvProduct() {
     $(".removeProduct").off().click(function () {
-        console.log("clicked_--------------")
-
-        //    console.log('clicked event')
-
+        console.log("clicked_--------------");
         parent_div = $(this).parent().parent().parent().parent()
         search_for = $(parent_div).attr('prid')
 
@@ -491,21 +408,6 @@ function rmvProduct() {
 
     })
 }
-//Sponsored Products
-//$('document').ready(function () {
-//    $('body').on('click', $('#check-prod-input ul.autocomplete-content li'), function () {
-//        doFetch({
-//            action: 'doStoreProduct',
-//            store: localStorage.getItem('soko-active-store'),
-//            do: 'add',
-//            id: id
-//        }).then(function (e) {
-//            if (e.status == 'ok') {} else {}
-//        });
-//    });
-//});
-
-
 
 $(document).on('touchstart click', '.addFirstProdModal', function (event) {
     $('#add-product').modal('open');

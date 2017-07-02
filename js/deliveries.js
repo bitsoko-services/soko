@@ -56,7 +56,9 @@ $('document').ready(function () {
                         do: 'add',
                         data: id
                     }).then(function (e) {
-                        if (e.status == 'ok') {} else {}
+                        if (e.status == 'ok') {
+                            deliveryMbr();
+                        } else {}
                     });
                 }
             }
