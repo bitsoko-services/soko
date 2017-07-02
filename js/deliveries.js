@@ -178,8 +178,8 @@ function deliveryMbr() {
 }
 
 //Delivery Rate
-$("#delivery_Rate").on("change", function () {
-    deliveryRate = $("#delivery_Rate").val();
+$("#sliderAmount").on("change", function () {
+    deliveryRate = $("#sliderAmount").val();
     doFetch({
         action: 'deliveryRate',
         store: localStorage.getItem('soko-active-store'),
