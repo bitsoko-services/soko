@@ -134,9 +134,6 @@ function promoCreator() {
             $(".promo-add-new-promotion2").html('');
             $(".promo-add-new-promotion3").html('');
             for (var i = 0; i < e.length; ++i) {
-                var promoID = $('#promotions').find('[name="promoItems"]').parent().parent().parent().parent().parent().parent().attr("fid")
-                console.log("----------------------promoID")
-                console.log(promoID)
 
                 $(".promo-add-new-promotion2").append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="0" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>');
 
