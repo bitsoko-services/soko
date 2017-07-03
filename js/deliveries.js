@@ -56,7 +56,9 @@ $('document').ready(function () {
                         do: 'add',
                         data: id
                     }).then(function (e) {
-                        if (e.status == 'ok') {} else {}
+                        if (e.status == 'ok') {
+                            deliveryMbr();
+                        } else {}
                     });
                 }
             }
@@ -176,8 +178,8 @@ function deliveryMbr() {
 }
 
 //Delivery Rate
-$("#delivery_Rate").on("change", function () {
-    deliveryRate = $("#delivery_Rate").val();
+$("#sliderAmount").on("change", function () {
+    deliveryRate = $("#sliderAmount").val();
     doFetch({
         action: 'deliveryRate',
         store: localStorage.getItem('soko-active-store'),
