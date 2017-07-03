@@ -3408,17 +3408,20 @@ tr.group:hover {
 }
 
 .radio-group label+input[type=radio]+label {
-    border-left: solid 2px #dadada;
+    border-left: solid 0.6px #dadada;
 }
 
 .radio-group {
-    border: solid 2px #dadada;
+    border: solid 0.5px #dadada;
     display: inline-block;
     margin: 0;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     overflow: hidden;
     width: 100%;
     padding: -31px;
+    border-right: 0.6px;
+    border-left: 0.6px;
+    line-height: 21px;
 }
 
 .radio-group label {
@@ -3668,7 +3671,7 @@ tr.group:hover {
 }
 
 .radioPad {
-    width: 33.3%;
+    width: 25%;
 }
 
 
