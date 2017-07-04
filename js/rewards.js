@@ -206,5 +206,5 @@ if (window.PaymentRequest) {
         request3 = initPaymentRequest3();
     });
 } else {
-    ChromeSamples.setStatus('This browser does not support web payments');
+    console.log('This browser does not support web payments');
 }
