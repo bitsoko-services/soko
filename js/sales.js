@@ -389,7 +389,7 @@ function getDateHours(date_from_server) {
     if (hours >= 24) {
         days = parseInt(hours / 24)
         hours = parseInt(hours % 24)
-        return days + ' days, ' + hours + ' hours ago'
+        return days + ' days, ' + hours + ' hrs ago'
     } else if (hours < 24 && hours > 1) {
         total_minutes = hours * 60
         hours_string = '' + hours
@@ -398,52 +398,19 @@ function getDateHours(date_from_server) {
             complete_minutes = complete_hours * 60
             remainder = total_minutes - complete_minutes
             remainder = parseInt(remainder)
-            return complete_hours + ' hours, ' + remainder + ' minutes ago'
+            return complete_hours + ' hrs, ' + remainder + ' min ago'
         } else {
-            return hours + ' hours ago'
+            return hours + ' hrs ago'
         }
     } else if (hours < 1) {
         minutes = hours * 60
         if (minutes < 1) {
             seconds = minutes * 60
             seconds = parseInt(seconds)
-            return seconds + ' seconds ago'
+            return seconds + ' s ago'
         } else {
             minutes = parseInt(minutes)
-            return minutes + ' minutes ago'
+            return minutes + ' min ago'
         }
     }
 }
-
-
-//
-//Start delivery rate
-
-//            var d = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRate
-//            console.log(d)
-//            var p = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).lonlat
-//            console.log(p)
-//            var str = localStorage.getItem('soko-active-store');
-//            x = str.split(",")[0];
-//            console.log("x=" + x)
-//            y = str.split(",")[1];
-//            console.log("y=" + y);
-//            getLoc().then(function showPosition(e) {
-//
-//                //--geting the shop delivery Rates---------------------------------------------------------------------------------------//
-//                console.log("calculating rates")
-//                //var distance =getDistanceFromLatLonInKm(from-lat,from-long,to-lat,from-long);
-//                var distance = getDistanceFromLatLonInKm(e.coords.latitude, e.coords.longitude, x, y);
-//                console.log(distance);
-//                //--rates
-//                var rates = Math.ceil(d * distance);
-//                console.log("The shops delivery rates are " + rates);
-//
-//                //console.log(y);
-//                //add delivery rate to totals 
-//                var divObj = document.getElementById("totals");
-//                var totalCost = parseInt(divObj.innerHTML) + rates
-//                console.log(totalCost);
-//            })
-
-//End delivery rate
