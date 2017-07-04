@@ -596,9 +596,9 @@ function managerListener() {
             callback.call(scope, i, array[i]); // passes back stuff we need
         }
     };
-    var myNodeList = document.querySelectorAll('#storeMangers');
+    var myNodeList = document.querySelectorAll('#storeManagers');
     forEach(myNodeList, function (index, value) {
-        value.addEventListener("change", userNamesInput('storeMangers'));
+        value.addEventListener("change", userNamesInput('storeManagers'));
     });
 }
 managerListener();
