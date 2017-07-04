@@ -590,6 +590,22 @@ function transferListener() {
 
 
 //
+function managerListener() {
+    var forEach = function (array, callback, scope) {
+        for (var i = 0; i < array.length; i++) {
+            callback.call(scope, i, array[i]); // passes back stuff we need
+        }
+    };
+    var myNodeList = document.querySelectorAll('#storeMangers');
+    forEach(myNodeList, function (index, value) {
+        value.addEventListener("change", userNamesInput('storeMangers'));
+    });
+}
+managerListener();
+
+
+
+//
 function deliveryListener() {
     var forEach = function (array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
