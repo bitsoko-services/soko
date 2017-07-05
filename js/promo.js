@@ -185,6 +185,26 @@ function castPromo(t) {
     }
 }
 
+//Promotion image to b4
+var imgB4 = ""
+
+function readFile() {
+
+    if (this.files && this.files[0]) {
+
+        var FR = new FileReader();
+
+        FR.addEventListener("load", function (e) {
+            imgB4 = e.target.result;
+        });
+
+        FR.readAsDataURL(this.files[0]);
+    }
+
+}
+
+document.getElementById("newPromo-image").addEventListener("change", readFile);
+
 function doNewPromo() {
     var items = [];
     var x = document.querySelector('.promo-add-new-promotion2 ul');
@@ -210,7 +230,7 @@ function doNewPromo() {
         ownerid: JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).id,
         name: document.querySelector('#newPromo-name').value,
         desc: document.querySelector('#newPromo-desc').value,
-        image: document.querySelector('#newPromo-image').value,
+        image: imgB4,
         items: selcIds,
         discount: document.querySelector('#newPromo-discount').value,
         offers: document.querySelector('#newPromo-offers').value
@@ -242,6 +262,9 @@ $(document).on('touchstart click', '.removePromo', function (event) {
     });
 });
 
+
+
+
 //Promotion Form Validation
 $('.doAddNewPromo').click(function (e) {
     promo_name = $('#newPromo-name').val();
@@ -265,6 +288,60 @@ $('.doAddNewPromo').click(function (e) {
     }
 });
 
+
+//Update promo
+function updateProm(t) {
+    console.log($(t.target));
+    var name = $(t.target).attr('pritm');
+    var val = $(t.target).val();
+    var switchID = $(t.target).attr('id')
+    var value = document.getElementById(switchID).checked
+    console.log(value)
+    if (name == "public") {
+        doFetch({
+            action: 'doEditPromo',
+            id: $(t.target).attr('fid'),
+            prop: name,
+            val: value
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                Materialize.toast('modified ' + name + '..', 3000);
+            } else {
+
+                Materialize.toast('please try again..', 2000);
+            }
+        });
+
+    } else if (name == "customImage") {
+        doFetch({
+            action: 'doEditPromo',
+            id: $(t.target).parents('form[class^="col"]').attr('fid'),
+            prop: name,
+            val: imgB4
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                Materialize.toast('modified ' + name + '..', 3000);
+            } else {
+
+                Materialize.toast('please try again..', 2000);
+            }
+        });
+    } else {
+        doFetch({
+            action: 'doEditPromo',
+            id: $(t.target).parents('form[class^="col"]').attr('fid'),
+            prop: name,
+            val: val
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                Materialize.toast('modified ' + name + '..', 3000);
+            } else {
+
+                Materialize.toast('please try again..', 2000);
+            }
+        });
+    }
+}
 
 //Hide Card Reveal on Promotion Page
 //$(document).on('touchstart click', '.backBtnPromo', function (event) {

@@ -48,6 +48,7 @@ function managersID() {
         var id = deliveryGuys[i].id;
         var icon = deliveryGuys[i].icon;
         if (mangagerIds == id) {
+            $("#managersLst").html("");
             $("#managersLst").append('<div class="chip removeManager" id="' + id + '"> <img src="' + icon + '"> ' + name + '<span style="    padding-left: 15px;font-size: 1rem;">x</span> </div>');
         }
     }

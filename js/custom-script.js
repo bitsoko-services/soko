@@ -81,10 +81,14 @@ angular.module('sokoApp', [])
             profileLoaded(JSON.parse(event.target.result));
         } catch (err) {
             console.log('no user profile found : ', err);
-            $('#login').modal('open');
-            setTimeout(function () {
-                startGoogle()
-            }, 1000);
+            $('#login').modal({
+                dismissible: false,
+                ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                    startGoogle()
+                },
+                complete: function () {} // Callback for Modal close
+            }).modal('open');
+
         }
     }
     $('.sidebar-collapse').sideNav({
