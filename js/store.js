@@ -486,6 +486,20 @@ $(".deleteStore").click(function () {
     });
 })
 
+//update location
+$("#updateLoc").click(function () {
+    myLoc();
+    setTimeout(function () {
+        doFetch({
+            loc: document.querySelector('#editStore-Location').value
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                Materialize.toast('Location updated successfully', 3000);
+            }
+        });
+    }, 3000);
+});
+
 
 //Hide Settings If Owner Do Not Much
 var bitsUserName = localStorage.getItem("bits-user-name");
