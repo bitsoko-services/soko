@@ -224,45 +224,6 @@ function doNewStore() {
     });
 }
 
-function updateProm(t) {
-    console.log($(t.target));
-    var name = $(t.target).attr('pritm');
-    var val = $(t.target).val();
-    var switchID = $(t.target).attr('id')
-    var value = document.getElementById(switchID).checked
-    console.log(value)
-    if (name == "public") {
-        doFetch({
-            action: 'doEditPromo',
-            id: $(t.target).attr('fid'),
-            prop: name,
-            val: value
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                Materialize.toast('modified ' + name + '..', 3000);
-            } else {
-
-                Materialize.toast('please try again..', 2000);
-            }
-        });
-
-    } else {
-        doFetch({
-            action: 'doEditPromo',
-            id: $(t.target).parents('form[class^="col"]').attr('fid'),
-            prop: name,
-            val: val
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                Materialize.toast('modified ' + name + '..', 3000);
-            } else {
-
-                Materialize.toast('please try again..', 2000);
-            }
-        });
-    }
-}
-
 function updateStore(t) {
     console.log($(t.target));
     var name = $(t.target).attr('stitm');
@@ -524,6 +485,20 @@ $(".deleteStore").click(function () {
         }
     });
 })
+
+//update location
+$("#updateLoc").click(function () {
+    myLoc();
+    setTimeout(function () {
+        doFetch({
+            loc: document.querySelector('#editStore-Location').value
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                Materialize.toast('Location updated successfully', 3000);
+            }
+        });
+    }, 3000);
+});
 
 
 //Hide Settings If Owner Do Not Much
