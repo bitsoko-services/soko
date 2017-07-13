@@ -330,7 +330,6 @@ function updateProm(t) {
             } else {
 
                 Materialize.toast('please try again..', 2000);
-            \\\\.
         });
 
     } else if (name == "customImage") {
