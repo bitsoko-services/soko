@@ -42,6 +42,7 @@ $(document).on("click", ".removeManager", function () {
 
 
 function managersID() {
+    try{
     var mangagerIds = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).managers)[0]
     for (var i in deliveryGuys) {
         var name = deliveryGuys[i].name;
@@ -51,6 +52,9 @@ function managersID() {
             $("#managersLst").html("");
             $("#managersLst").append('<div class="chip removeManager" id="' + id + '"> <img src="' + icon + '"> ' + name + '<span style="    padding-left: 15px;font-size: 1rem;">x</span> </div>');
         }
+    }
+    }catch(err){
+    console.log(err);
     }
 }
 managersID()
