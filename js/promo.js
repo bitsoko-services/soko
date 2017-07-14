@@ -314,10 +314,10 @@ $('.doAddNewPromo').click(function (e) {
 function updateProm(t) {
     console.log($(t.target));
     var name = $(t.target).attr('pritm');
-    var val = $(t.target).val();
     var switchID = $(t.target).attr('id')
     var value = document.getElementById(switchID).checked
-    console.log(value)
+
+    //console.log(value)
     if (name == "public") {
         doFetch({
             action: 'doEditPromo',
@@ -364,19 +364,45 @@ function updateProm(t) {
         });
 
     } else if (name == "customImage") {
-        doFetch({
-            action: 'doEditPromo',
-            id: $(t.target).parents('form[class^="col"]').attr('fid'),
-            prop: name,
-            val: imgB4
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                Materialize.toast('modified ' + name + '..', 3000);
-            } else {
+        var files = t.target.files;
+        var file = files[0];
+        if (file) {
+            var canvas = document.querySelectorAll('#tmp-canvas > canvas')[0];
+            var ctx = canvas.getContext("2d");
+            var cw = canvas.width;
+            var ch = canvas.height;
+            // limit the image to 150x100 maximum size
+            var maxW = 480;
+            var maxH = 320;
+            var img = new Image;
+            img.onload = function () {
+                var iw = img.width;
+                var ih = img.height;
+                var scale = Math.min((maxW / iw), (maxH / ih));
+                var iwScaled = iw * scale;
+                var ihScaled = ih * scale;
+                canvas.width = iwScaled;
+                canvas.height = ihScaled;
+                ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
+                val = canvas.toDataURL();
+                doFetch({
+                    action: 'doEditPromo',
+                    id: $(t.target).parents('form[class^="col"]').attr('fid'),
+                    prop: name,
+                    val: val
+                }).then(function (e) {
+                    if (e.status == 'ok') {
+                        // document.querySelector('#prodImg-holda-' + prid).src = val;
+                        Materialize.toast('modified ' + name + '..', 3000);
+                    } else {
 
-                Materialize.toast('please try again..', 2000);
-            }
-        });
+                        Materialize.toast('please try again..', 2000);
+                    }
+                });
+            };
+            img.src = URL.createObjectURL(file);
+        }
+
     } else {
         doFetch({
             action: 'doEditPromo',
