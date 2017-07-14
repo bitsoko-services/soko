@@ -15,7 +15,7 @@ function refreshProducts() {
 
 $(".prodactsPage").one("click", function () {
     var noOfprod = $(".badge").text();
-    if (noOfprod == 2) {
+    if (noOfprod == 1) {
         $("#dlvryHelpModal").modal("open")
     }
 });
