@@ -13,6 +13,22 @@ function refreshProducts() {
     });
 }
 
+var noOfprod = $(".badge").text();
+
+$(".prodactsPage").one("click", function () {
+    if (noOfprod == 1) {
+        $("#dlvryHelpModal").modal("open")
+    }
+});
+$("#submitProdForm").one("click", function () {
+    if (noOfprod == 1) {
+        $("#dlvryHelpModal").modal("open")
+    }
+});
+$('#dlvryPage').click(function () {
+    $("#deliveryPage").click();
+})
+
 function productsUpdater() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
         var reqs = event.target.result;
@@ -21,6 +37,7 @@ function productsUpdater() {
         } catch (err) {
             reqs = []
         };
+
         $(".products-collapsible").html('');
         $(".allProdCount").html(reqs.length);
         if (reqs.length == 0) {
