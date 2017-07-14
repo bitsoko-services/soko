@@ -13,14 +13,14 @@ function refreshProducts() {
     });
 }
 
-var noOfprod = $(".badge").text();
-
 $(".prodactsPage").one("click", function () {
-    if (noOfprod == 1) {
+    var noOfprod = $(".badge").text();
+    if (noOfprod == 2) {
         $("#dlvryHelpModal").modal("open")
     }
 });
 $("#submitProdForm").one("click", function () {
+    var noOfprod = $(".badge").text();
     if (noOfprod == 1) {
         $("#dlvryHelpModal").modal("open")
     }
