@@ -13,6 +13,7 @@ function loadPOS() {
             $('#newStoreModal').modal('open');
             return;
         }
+        $("#storeNo").text(services.length)
         if (services.length == 0) {
             $('#firstStoreModal').modal({
                 dismissible: false,
@@ -42,7 +43,7 @@ function loadPOS() {
         }
         var shroot = document.querySelectorAll(".closeSwitchStore");
         for (var i = 0; i < shroot.length; ++i) {
-            shroot[i].addEventListener("touchstart", doSwitchStore, false);
+            shroot[i].addEventListener("click", doSwitchStore, false);
         };
         addStore();
     }
@@ -522,6 +523,5 @@ for (var i = 0; i < shroot.length; ++i) {
 };
 var shroot = document.querySelectorAll(".switchStore");
 for (var i = 0; i < shroot.length; ++i) {
-    shroot[i].addEventListener("touchstart", switchStore, false);
     shroot[i].addEventListener("click", switchStore, false);
 };

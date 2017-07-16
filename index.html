@@ -135,6 +135,7 @@
         <div class="modal-content" style="padding:0px;">
             <div class="opacitySelectedColor swtchStrDskt" style="text-align:center;background:#7eb7c8;margin:0px;padding:10px;color:white;position:fixed;width:100%;z-index:1;">
                 <h5 style="margin:0px;">SWITCH STORE</h5>
+                <p style="margin:0px;">STORES: <span id="storeNo"></span></p>
             </div>
             <div style="padding:24px;" class="swtchStrDskt">
                 <ul style="margin-top:40px;" id="switchStoreContent" class="collection"></ul>
@@ -868,6 +869,20 @@
                             </i>Deliveries
                         </a>
                     </li>
+                    <li class="bold pageBoxShadow">
+                        <a href="#" id="rewardsPage" page="rewards" class="waves-effect waves-cyan nav" style="">
+                            <i style="padding-top:5px;">
+                                <svg class="deliveriesIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;float: left;height: 40px;margin-left: -6px; margin-right:9px;padding:7px;" xml:space="preserve">
+<g xmlns="http://www.w3.org/2000/svg">
+    <path d="M275.664,105.599h-0.865c-5.89,0-10.667,4.777-10.667,10.667s4.777,10.667,10.667,10.667h0.865     c5.89,0,10.667-4.776,10.667-10.667S281.554,105.599,275.664,105.599z"></path>
+    <path d="M466.616,219.649c-4.166-4.164-10.918-4.164-15.086,0l-6.858,6.858l-6.858-6.858c-4.166-4.164-10.918-4.164-15.086,0     c-4.165,4.165-4.165,10.919,0,15.086l6.858,6.858l-6.858,6.858c-4.164,4.166-4.164,10.921,0.002,15.086     c2.083,2.082,4.813,3.124,7.542,3.124c2.73,0,5.459-1.042,7.542-3.124l6.858-6.858l6.858,6.858     c2.083,2.082,4.813,3.124,7.542,3.124s5.459-1.042,7.542-3.124c4.165-4.165,4.165-10.919,0-15.086l-6.858-6.858l6.858-6.858     C470.781,230.57,470.781,223.816,466.616,219.649z"></path>
+    <path d="M395.149,219.649c-4.166-4.164-10.918-4.164-15.086,0l-6.858,6.858l-6.858-6.858c-4.166-4.164-10.918-4.164-15.086,0     c-4.165,4.165-4.165,10.919,0,15.086l6.858,6.858l-6.858,6.858c-4.164,4.166-4.164,10.921,0.002,15.086     c2.083,2.082,4.813,3.124,7.542,3.124c2.73,0,5.459-1.042,7.542-3.124l6.858-6.858l6.858,6.858     c2.083,2.082,4.813,3.124,7.542,3.124s5.459-1.042,7.542-3.124c4.165-4.165,4.165-10.919,0-15.086l-6.858-6.858l6.858-6.858     C399.314,230.57,399.314,223.816,395.149,219.649z"></path>
+    <path d="M474.667,131.727H343.706V95.619c0-14.716-6.781-28.179-18.605-36.94c-11.822-8.76-26.677-11.326-40.754-7.042     c-0.147,0.045-0.293,0.093-0.439,0.144l-67.438,23.768h-56.452L92.581,51.781c-0.146-0.051-0.292-0.099-0.44-0.144     C78.065,47.35,63.21,49.92,51.386,58.68c-11.823,8.761-18.605,22.224-18.605,36.94v36.395C14.336,134.268,0,150.016,0,169.06v256     c0,20.586,16.748,37.333,37.333,37.333h437.333c20.586,0,37.333-16.748,37.333-37.333v-256     C512,148.475,495.252,131.727,474.667,131.727z M228.961,126.938h13.312c5.89,0,10.667-4.777,10.667-10.667     s-4.776-10.667-10.667-10.667h-13.312V93.765l61.801-21.779c7.482-2.211,15.358-0.819,21.638,3.835     c6.337,4.695,9.972,11.911,9.972,19.799v41.296c0,7.888-3.634,15.103-9.972,19.799c-6.279,4.653-14.157,6.046-21.638,3.835     l-61.801-21.779V126.938z M216.469,156.986l36.774,12.96l23.868,41.34l-12.182-2.127c-5.098-0.891-10.079,1.995-11.853,6.843     l-4.247,11.614l-40.779-70.629H216.469z M168.858,96.882h38.77v38.77h-38.77V96.882z M171.25,156.987l-40.779,70.629     l-4.247-11.614c-1.773-4.848-6.768-7.733-11.853-6.843l-12.181,2.127l24.586-42.585l33.242-11.715H171.25z M54.114,95.619     c0-7.887,3.634-15.103,9.972-19.799c4.324-3.204,9.405-4.862,14.595-4.862c2.347,0,4.716,0.338,7.045,1.027l61.798,21.779V105.6     H100.82c-5.89,0-10.667,4.777-10.667,10.667s4.776,10.667,10.667,10.667h46.705v11.836l-61.798,21.779     c-7.486,2.211-15.36,0.818-21.641-3.835c-6.337-4.695-9.972-11.913-9.972-19.799V95.619z M490.667,425.06c0,8.822-7.178,16-16,16     H37.333c-8.822,0-16-7.178-16-16v-31.086h469.333V425.06z M490.667,372.641H21.333v-53.333h469.333V372.641z M490.667,297.973     H21.333V169.06c0-8.273,6.309-15.099,14.369-15.918c3.052,8.147,8.409,15.322,15.683,20.711     c8.069,5.979,17.55,9.072,27.232,9.072c4.506,0,9.054-0.67,13.524-2.03c0.147-0.045,0.293-0.093,0.44-0.144l3.268-1.152     l-23.548,40.787c-2.07,3.587-1.878,8.049,0.495,11.444c2.374,3.395,6.498,5.107,10.578,4.396l25.879-4.519l9.025,24.673     c1.423,3.889,4.97,6.604,9.097,6.962c0.309,0.026,0.617,0.039,0.923,0.039c3.787,0,7.32-2.015,9.235-5.333l52.116-90.268     l52.116,90.268c1.916,3.318,5.449,5.333,9.235,5.333c0.306,0,0.614-0.014,0.923-0.039c4.127-0.358,7.674-3.073,9.096-6.962     l9.025-24.673l25.881,4.519c4.078,0.711,8.204-1.001,10.578-4.396c2.373-3.396,2.565-7.857,0.495-11.444l-22.835-39.551     c0.061,0.02,0.121,0.042,0.181,0.06c4.47,1.361,9.018,2.03,13.523,2.03c9.682,0,19.164-3.093,27.231-9.072     c7.3-5.408,12.67-12.613,15.716-20.795h133.851c8.822,0,16,7.178,16,16V297.973z"></path>
+</g>
+</svg>
+                            </i>Rewards
+                        </a>
+                    </li>
                     <li class="bold" style="display:none;">
                         <div class="switch">
                             <span>
@@ -950,26 +965,6 @@
                                 </div>
                                 </span>
                                 <span>
-                                        <div class="switch">
-                                            <span id="rewardsIcon" style="float:left;">
-                                                <svg class="deliveriesIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;float: left;height: 40px;margin-left: 6px; margin-right:9px;padding:6px;" xml:space="preserve">
-                                                    <g xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M275.664,105.599h-0.865c-5.89,0-10.667,4.777-10.667,10.667s4.777,10.667,10.667,10.667h0.865     c5.89,0,10.667-4.776,10.667-10.667S281.554,105.599,275.664,105.599z"/>
-			                                            <path d="M466.616,219.649c-4.166-4.164-10.918-4.164-15.086,0l-6.858,6.858l-6.858-6.858c-4.166-4.164-10.918-4.164-15.086,0     c-4.165,4.165-4.165,10.919,0,15.086l6.858,6.858l-6.858,6.858c-4.164,4.166-4.164,10.921,0.002,15.086     c2.083,2.082,4.813,3.124,7.542,3.124c2.73,0,5.459-1.042,7.542-3.124l6.858-6.858l6.858,6.858     c2.083,2.082,4.813,3.124,7.542,3.124s5.459-1.042,7.542-3.124c4.165-4.165,4.165-10.919,0-15.086l-6.858-6.858l6.858-6.858     C470.781,230.57,470.781,223.816,466.616,219.649z"/>
-			                                            <path d="M395.149,219.649c-4.166-4.164-10.918-4.164-15.086,0l-6.858,6.858l-6.858-6.858c-4.166-4.164-10.918-4.164-15.086,0     c-4.165,4.165-4.165,10.919,0,15.086l6.858,6.858l-6.858,6.858c-4.164,4.166-4.164,10.921,0.002,15.086     c2.083,2.082,4.813,3.124,7.542,3.124c2.73,0,5.459-1.042,7.542-3.124l6.858-6.858l6.858,6.858     c2.083,2.082,4.813,3.124,7.542,3.124s5.459-1.042,7.542-3.124c4.165-4.165,4.165-10.919,0-15.086l-6.858-6.858l6.858-6.858     C399.314,230.57,399.314,223.816,395.149,219.649z"/>
-			                                            <path d="M474.667,131.727H343.706V95.619c0-14.716-6.781-28.179-18.605-36.94c-11.822-8.76-26.677-11.326-40.754-7.042     c-0.147,0.045-0.293,0.093-0.439,0.144l-67.438,23.768h-56.452L92.581,51.781c-0.146-0.051-0.292-0.099-0.44-0.144     C78.065,47.35,63.21,49.92,51.386,58.68c-11.823,8.761-18.605,22.224-18.605,36.94v36.395C14.336,134.268,0,150.016,0,169.06v256     c0,20.586,16.748,37.333,37.333,37.333h437.333c20.586,0,37.333-16.748,37.333-37.333v-256     C512,148.475,495.252,131.727,474.667,131.727z M228.961,126.938h13.312c5.89,0,10.667-4.777,10.667-10.667     s-4.776-10.667-10.667-10.667h-13.312V93.765l61.801-21.779c7.482-2.211,15.358-0.819,21.638,3.835     c6.337,4.695,9.972,11.911,9.972,19.799v41.296c0,7.888-3.634,15.103-9.972,19.799c-6.279,4.653-14.157,6.046-21.638,3.835     l-61.801-21.779V126.938z M216.469,156.986l36.774,12.96l23.868,41.34l-12.182-2.127c-5.098-0.891-10.079,1.995-11.853,6.843     l-4.247,11.614l-40.779-70.629H216.469z M168.858,96.882h38.77v38.77h-38.77V96.882z M171.25,156.987l-40.779,70.629     l-4.247-11.614c-1.773-4.848-6.768-7.733-11.853-6.843l-12.181,2.127l24.586-42.585l33.242-11.715H171.25z M54.114,95.619     c0-7.887,3.634-15.103,9.972-19.799c4.324-3.204,9.405-4.862,14.595-4.862c2.347,0,4.716,0.338,7.045,1.027l61.798,21.779V105.6     H100.82c-5.89,0-10.667,4.777-10.667,10.667s4.776,10.667,10.667,10.667h46.705v11.836l-61.798,21.779     c-7.486,2.211-15.36,0.818-21.641-3.835c-6.337-4.695-9.972-11.913-9.972-19.799V95.619z M490.667,425.06c0,8.822-7.178,16-16,16     H37.333c-8.822,0-16-7.178-16-16v-31.086h469.333V425.06z M490.667,372.641H21.333v-53.333h469.333V372.641z M490.667,297.973     H21.333V169.06c0-8.273,6.309-15.099,14.369-15.918c3.052,8.147,8.409,15.322,15.683,20.711     c8.069,5.979,17.55,9.072,27.232,9.072c4.506,0,9.054-0.67,13.524-2.03c0.147-0.045,0.293-0.093,0.44-0.144l3.268-1.152     l-23.548,40.787c-2.07,3.587-1.878,8.049,0.495,11.444c2.374,3.395,6.498,5.107,10.578,4.396l25.879-4.519l9.025,24.673     c1.423,3.889,4.97,6.604,9.097,6.962c0.309,0.026,0.617,0.039,0.923,0.039c3.787,0,7.32-2.015,9.235-5.333l52.116-90.268     l52.116,90.268c1.916,3.318,5.449,5.333,9.235,5.333c0.306,0,0.614-0.014,0.923-0.039c4.127-0.358,7.674-3.073,9.096-6.962     l9.025-24.673l25.881,4.519c4.078,0.711,8.204-1.001,10.578-4.396c2.373-3.396,2.565-7.857,0.495-11.444l-22.835-39.551     c0.061,0.02,0.121,0.042,0.181,0.06c4.47,1.361,9.018,2.03,13.523,2.03c9.682,0,19.164-3.093,27.231-9.072     c7.3-5.408,12.67-12.613,15.716-20.795h133.851c8.822,0,16,7.178,16,16V297.973z"/>
-                                                    </g>
-                                                </svg>Rewards
-                                            </span>
-                                <label>
-                                                <a href="#loyaltyModal" style="padding-right:0px;">
-                                                    <input type="checkbox" id="loyaltyToggle" type="checkbox" style="background: rgb(128, 210, 147);" class="js-push-button-notification">
-                                                    <span style="margin-top:13px;" class="lever right"></span>
-                                                </a>
-                                            </label>
-        </div>
-        </span>
-        <span>
                                         <div class="pageBoxShadow" id="billingClickEvent" style="margin-top:5px;">
                                             <a href="#" id="billingPage" page="billing" class="waves-effect waves-cyan nav" style="display:;"> 
                                                 <i style="padding-top:6px;">
@@ -980,32 +975,32 @@
                                             </a>
                                         </div>
                                     </span>
-    </div>
-    </li>
-    </ul>
-    </li>
-    <div class="divider"> </div>
-    <li>
-        <a href="#" class="switchStore">
-            <i>
+        </div>
+        </li>
+        </ul>
+        </li>
+        <div class="divider"> </div>
+        <li>
+            <a href="#" class="switchStore">
+                <i>
                                 <svg viewBox="0 0 20 20" class="svg-icon" style="padding-top:6px;">
                                     <path d="M6.634,13.591H2.146c-0.247,0-0.449,0.201-0.449,0.448v2.692c0,0.247,0.202,0.449,0.449,0.449h4.488c0.247,0,0.449-0.202,0.449-0.449v-2.692C7.083,13.792,6.881,13.591,6.634,13.591 M6.185,16.283h-3.59v-1.795h3.59V16.283zM6.634,8.205H2.146c-0.247,0-0.449,0.202-0.449,0.449v2.692c0,0.247,0.202,0.449,0.449,0.449h4.488c0.247,0,0.449-0.202,0.449-0.449V8.653C7.083,8.407,6.881,8.205,6.634,8.205 M6.185,10.897h-3.59V9.103h3.59V10.897z M6.634,2.819H2.146c-0.247,0-0.449,0.202-0.449,0.449V5.96c0,0.247,0.202,0.449,0.449,0.449h4.488c0.247,0,0.449-0.202,0.449-0.449V3.268C7.083,3.021,6.881,2.819,6.634,2.819 M6.185,5.512h-3.59V3.717h3.59V5.512z M15.933,5.683c-0.175-0.168-0.361-0.33-0.555-0.479l1.677-1.613c0.297-0.281,0.088-0.772-0.31-0.772H9.336c-0.249,0-0.448,0.202-0.448,0.449v7.107c0,0.395,0.471,0.598,0.758,0.326l1.797-1.728c0.054,0.045,0.107,0.094,0.161,0.146c0.802,0.767,1.243,1.786,1.243,2.867c0,1.071-0.435,2.078-1.227,2.837c-0.7,0.671-1.354,1.086-2.345,1.169c-0.482,0.041-0.577,0.733-0.092,0.875c0.687,0.209,1.12,0.314,1.839,0.314c0.932,0,1.838-0.173,2.673-0.505c0.835-0.33,1.603-0.819,2.262-1.449c1.322-1.266,2.346-2.953,2.346-4.751C18.303,8.665,17.272,6.964,15.933,5.683 M15.336,14.578c-1.124,1.077-2.619,1.681-4.217,1.705c0.408-0.221,0.788-0.491,1.122-0.812c0.97-0.929,1.504-2.168,1.504-3.485c0-1.328-0.539-2.578-1.521-3.516c-0.178-0.17-0.357-0.321-0.548-0.456c-0.125-0.089-0.379-0.146-0.569,0.041L9.769,9.327v-5.61h5.861l-1.264,1.216c-0.099,0.094-0.148,0.229-0.137,0.366c0.014,0.134,0.088,0.258,0.202,0.332c0.313,0.204,0.61,0.44,0.882,0.7c1.158,1.111,2.092,2.581,2.092,4.145C17.405,12.026,16.48,13.482,15.336,14.578"></path>
                                 </svg>
                             </i>Switch Store
-        </a>
-    </li>
-    <li>
-        <a href="#" class="newStore">
-            <i style="width:25px;padding-top:5px;margin-left:-40px;">
+            </a>
+        </li>
+        <li>
+            <a href="#" class="newStore">
+                <i style="width:25px;padding-top:5px;margin-left:-40px;">
                                 <svg class="svg-icon" viewBox="0 0 20 20">
                                     <path d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10"></path>
                                 </svg>
                             </i>Add New Store
-        </a>
-    </li>
-    <li class="bold soko-admin-manager-btn" style="margin-top:7px;display:none;">
-        <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClicked">
-            <i class="mdi-social-people">
+            </a>
+        </li>
+        <li class="bold soko-admin-manager-btn" style="margin-top:7px;display:none;">
+            <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClicked">
+                <i class="mdi-social-people">
                                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width:20px;" xml:space="preserve">
                                                         <g xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M340.421,26.649c-14.309-15.274-33.718-23.686-54.647-23.686h-59.546c-20.93,0-40.338,8.411-54.647,23.686    c-14.31,15.273-21.441,35.186-20.079,56.072l2.647,40.582l6.181,94.763c2.141,32.837,20.633,61.91,49.468,77.769    c14.469,7.957,30.333,11.934,46.204,11.934c15.868,0,31.74-3.979,46.204-11.933c28.834-15.86,47.327-44.933,49.468-77.77    l7.062-108.285v-0.001l1.764-27.058C361.863,61.835,354.731,41.922,340.421,26.649z M171.855,81.395    c-0.99-15.197,4.199-29.686,14.61-40.799c10.412-11.113,24.533-17.233,39.762-17.233h59.546c1.321,0,2.629,0.063,3.932,0.154    l-15.776,42.071c-1.313,2.119-7.634,11.502-22.063,21.244c-14.09,9.513-38.767,21.163-78.034,24.871L171.855,81.395z     M331.317,216.738c-1.686,25.852-16.243,48.739-38.944,61.224c-22.775,12.526-49.972,12.527-72.747-0.001    c-22.7-12.484-37.258-35.372-38.945-61.222l-5.523-84.681c57.446-5.269,88.778-26.267,104.215-41.341    c4.128,4.734,10.025,9.094,17.645,13.03c8.232,4.253,21.934,8.723,40.798,13.318L331.317,216.738z M340.145,81.394l-0.978,14.994    c-18.902-4.751-28.216-8.403-32.783-10.763c-11.121-5.747-13.632-10.5-13.699-11.959c0.008-0.02,0.013-0.041,0.02-0.061    c0.006-0.015,0.013-0.029,0.018-0.044l16.797-44.793c5.927,2.874,11.346,6.845,16.015,11.828    C335.947,51.709,341.136,66.2,340.145,81.394z"/>
@@ -1015,14 +1010,14 @@
                                                         </g>
                                                     </svg>
                                                 </i> Managers
-        </a>
-    </li>
-    <li class="li-hover">
-        <div class="divider"></div>
-    </li>
-    <li class="bold">
-        <a href="#" class="waves-effect waves-cyan nav signOut" style="">
-            <i style="padding-top:5px;padding-left:5px;">
+            </a>
+        </li>
+        <li class="li-hover">
+            <div class="divider"></div>
+        </li>
+        <li class="bold">
+            <a href="#" class="waves-effect waves-cyan nav signOut" style="">
+                <i style="padding-top:5px;padding-left:5px;">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;" xml:space="preserve" style="width:20px;">
                                 <g>
                                     <g>
@@ -1032,17 +1027,17 @@
                                 </g>
                                 </svg>
                             </i>Sign Out
-        </a>
-    </li>
-    <li class="li-hover">
-        <div class="divider"></div>
-    </li>
-    <!--------- Contact Us ---------->
-    <ul class="collapsible" data-collapsible="accordion">
-        <li>
-            <div class="collapsible-header contactIcon" style="padding-bottom: 4px">
-                <div>
-                    <i style="padding-top:3px;">
+            </a>
+        </li>
+        <li class="li-hover">
+            <div class="divider"></div>
+        </li>
+        <!--------- Contact Us ---------->
+        <ul class="collapsible" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header contactIcon" style="padding-bottom: 4px">
+                    <div>
+                        <i style="padding-top:3px;">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve" width="20px">
                                             <g>
                                                 <g>
@@ -1060,10 +1055,10 @@
                                             </g>
                                         </svg>
                                     </i>
-                </div>Contact Us
-            </div>
-            <div class="collapsible-body" style="padding:0px;">
-                <span>
+                    </div>Contact Us
+                </div>
+                <div class="collapsible-body" style="padding:0px;">
+                    <span>
                                     <a href="" id="phoneNo">
                                         <i>
                                             <svg  style="width:25px;padding-top:7px;" class="svg-icon" viewBox="0 0 20 20">
@@ -1072,7 +1067,7 @@
                                         </i>Call Us
                                     </a>
                                 </span>
-                <span>
+                    <span>
                                     <a href="mailto:gaseema@bitsoko.io?Subject=Hello%20again" target="_top">
                                         <i style="margin-left:-42px;">
                                             <svg  style="width:25px;padding-top:7px;" class="svg-icon" viewBox="0 0 20 20">
@@ -1081,86 +1076,86 @@
                                         </i>Email Us
                                     </a>
                                 </span>
-            </div>
+                </div>
+            </li>
+        </ul>
+        <li class="li-hover" style="margin-bottom:15px;">
+            <div class="divider"></div>
         </li>
-    </ul>
-    <li class="li-hover" style="margin-bottom:15px;">
-        <div class="divider"></div>
-    </li>
-    </ul>
-    </aside>
-    <!-- END LEFT SIDEBAR NAV-->
-    <!-- //////////////////////////////////////////////////////////////////////////// -->
-    <!-- START CONTENT -->
-    <section id="content">
-        <!--breadcrumbs start-->
-        <div id="breadcrumbs-wrapper"></div>
-        <!--breadcrumbs end-->
-        <!--start container-->
-        <div class="container">
-            <div class="col s12 m4 l4 storefront">
-                <div class="col s12 m8 l9">
-                    <div class="row">
-                        <div class="col s12" style="padding:0px;position:fixed;z-index:10;">
-                            <ul class="selectedColor tabs tab-storefront-active z-depth-1" style="width: 100%; background-color:#0F5F76;margin-top:-1px;height:30px;">
-                                <li class="tab col s3">
-                                    <a class="white-text active" href="#sales" style="line-height: 25px;" onclick="refreshSalesOrders();">Sales</a>
-                                </li>
-                                <li class="tab col s3">
-                                    <a class="white-text" href="#promotions" style="line-height: 25px;" onclick="refreshProducts();">Promotions</a>
-                                </li>
-                                <div class="selectedColor indicator" style="right: 121px; left: 121px;"></div>
-                                <div class="selectedColor indicator" style="right: 121px; left: 121px;"></div>
-                            </ul>
-                        </div>
-                        <div class="col s12" style="margin-top:30px;">
-                            <div id="sales" style="background-color: rgba(0,0,0,0);">
-                                <div class="testing"></div>
-
-                                <ul style="border: none;" class="collection orders-holda chStoreUpdate">
-                                    <!-- start tab content-->
-                                    <!-- end tab content-->
-                                </ul>
-                                <ul style="border: none;" class="collection sales-holda chStoreUpdate">
-                                    <!-- start tab content-->
-                                    <!-- end tab content-->
+        </ul>
+        </aside>
+        <!-- END LEFT SIDEBAR NAV-->
+        <!-- //////////////////////////////////////////////////////////////////////////// -->
+        <!-- START CONTENT -->
+        <section id="content">
+            <!--breadcrumbs start-->
+            <div id="breadcrumbs-wrapper"></div>
+            <!--breadcrumbs end-->
+            <!--start container-->
+            <div class="container">
+                <div class="col s12 m4 l4 storefront">
+                    <div class="col s12 m8 l9">
+                        <div class="row">
+                            <div class="col s12" style="padding:0px;position:fixed;z-index:10;">
+                                <ul class="selectedColor tabs tab-storefront-active z-depth-1" style="width: 100%; background-color:#0F5F76;margin-top:-1px;height:30px;">
+                                    <li class="tab col s3">
+                                        <a class="white-text active" href="#sales" style="line-height: 25px;" onclick="refreshSalesOrders();">Sales</a>
+                                    </li>
+                                    <li class="tab col s3">
+                                        <a class="white-text" href="#promotions" style="line-height: 25px;" onclick="refreshProducts();">Promotions</a>
+                                    </li>
+                                    <div class="selectedColor indicator" style="right: 121px; left: 121px;"></div>
+                                    <div class="selectedColor indicator" style="right: 121px; left: 121px;"></div>
                                 </ul>
                             </div>
-                            <div id="promotions" style="background-color: rgba(0,0,0,0);">
-                                <ul class="collection promotions-holda chStoreUpdate" style="border: none;">
-                                    <!--start tab content -->
-                                    <!-- end tab content -->
-                                </ul>
-                                <div class="fixed-action-btn" style="z-index:0;">
-                                    <a class="modal-trigger waves-effect waves-light btn" href="#newPromoModal">
-                                        <i class="mdi-action-redeem left">
+                            <div class="col s12" style="margin-top:30px;">
+                                <div id="sales" style="background-color: rgba(0,0,0,0);">
+                                    <div class="testing"></div>
+
+                                    <ul style="border: none;" class="collection orders-holda chStoreUpdate">
+                                        <!-- start tab content-->
+                                        <!-- end tab content-->
+                                    </ul>
+                                    <ul style="border: none;" class="collection sales-holda chStoreUpdate">
+                                        <!-- start tab content-->
+                                        <!-- end tab content-->
+                                    </ul>
+                                </div>
+                                <div id="promotions" style="background-color: rgba(0,0,0,0);">
+                                    <ul class="collection promotions-holda chStoreUpdate" style="border: none;">
+                                        <!--start tab content -->
+                                        <!-- end tab content -->
+                                    </ul>
+                                    <div class="fixed-action-btn" style="z-index:0;">
+                                        <a class="modal-trigger waves-effect waves-light btn" href="#newPromoModal">
+                                            <i class="mdi-action-redeem left">
                                                 </i>New
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s12 m4 l4 customers" style="display:none;">
-                <ul id="" class="collection customers-holda chStoreUpdate"> </ul>
-            </div>
-            <div class="col s12 m4 l4 beacons" style="display:none;">
-                <nav class="top-nav" style="background:#7EB7C8;height:48px;margin-bottom:40px; display:none;">
-                    <div class="container">
-                        <div class="nav-wrapper">
-                            <a style="line-height:48px;font-size:20px;" class="page-title">Beacons</a>
+                <div class="col s12 m4 l4 customers" style="display:none;">
+                    <ul id="" class="collection customers-holda chStoreUpdate"> </ul>
+                </div>
+                <div class="col s12 m4 l4 beacons" style="display:none;">
+                    <nav class="top-nav" style="background:#7EB7C8;height:48px;margin-bottom:40px; display:none;">
+                        <div class="container">
+                            <div class="nav-wrapper">
+                                <a style="line-height:48px;font-size:20px;" class="page-title">Beacons</a>
+                            </div>
                         </div>
-                    </div>
-                </nav>
-                <ul id="" class="collection beacons-holda-connected chStoreUpdate" style="overflow:inherit;"> </ul>
-                <ul id="" class="collection beacons-holda-available chStoreUpdate" style="overflow:inherit;"> </ul>
-            </div>
-            <div class="col s12 m4 l4 deliveries" style="display:none;">
-                <div class="row">
-                    <div style="background: white; padding: 20px; border-radius: 5px;margin:10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);margin-top:60px;">
-                        <div class="row">
-                            <span style="width:85px;height:85px;background: #7EB7C8;border-radius:50%;display: block;margin-left: auto;margin-right: auto;margin-top: -66px;border: solid white 7px;">
+                    </nav>
+                    <ul id="" class="collection beacons-holda-connected chStoreUpdate" style="overflow:inherit;"> </ul>
+                    <ul id="" class="collection beacons-holda-available chStoreUpdate" style="overflow:inherit;"> </ul>
+                </div>
+                <div class="col s12 m4 l4 deliveries" style="display:none;">
+                    <div class="row">
+                        <div style="background: white; padding: 20px; border-radius: 5px;margin:10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);margin-top:60px;">
+                            <div class="row">
+                                <span style="width:85px;height:85px;background: #7EB7C8;border-radius:50%;display: block;margin-left: auto;margin-right: auto;margin-top: -66px;border: solid white 7px;">
                                         <span>
                                             <div class="input-field col s12" style=" margin-top: 37%;color: white;">
                                                 <input id="rangeOutputId" type="number" value="60" class="validate" style="    margin: 0px; text-align: center; width: 60px; font-size: 2.5em; border-bottom: none; margin-left: -5px; margin-top: -5px;color: white;" disabled>
@@ -1168,136 +1163,150 @@
                                                 </label>
                                             </div>
                                         </span>
-                            </span>
+                                </span>
+                            </div>
+                            <div class="row" style="margin-bottom:20px;">
+                                <div class="col s9">Rate per Kilometer</div>
+                                <div class="col s3" style="margin-top:-10px;">
+                                    <input id="sliderAmount" value="60" type="number" style="margin-top:-10px;text-align:center;" />
+                                </div>
+                            </div>
+                            <input id="slide" type="range" min="1" max="100" step="1" value="60" oninput="rangeOutputId.value = slide.value">
                         </div>
-                        <div class="row" style="margin-bottom:20px;">
-                            <div class="col s9">Rate per Kilometer</div>
-                            <div class="col s3" style="margin-top:-10px;">
-                                <input id="sliderAmount" value="60" type="number" style="margin-top:-10px;text-align:center;" />
+                    </div>
+                    <div class="row" style="padding:15px;padding-top:0px;background: white; margin: 0px; border-radius: 5px; margin-bottom: 20px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);margin-top:35px;">
+                        <div style="text-align:center;">
+                            <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -10px;">Add Operators</a>
+                        </div>
+                        <div class="input-field col s12" style="margin-top:30px;">
+                            <input id="delivery-members" type="text" class="validate" placeholder="username">
+                        </div>
+                    </div>
+                    <div class="row" style="background: white; margin-left: auto; margin-right: auto; border-radius: 5px; padding: 10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);text-align:center;margin-top:40px;margin-bottom:20px;">
+                        <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -17px;">Current Operators</a>
+                        <div class="input-field col s12" style="text-align:left;">
+                            <div id="membersLst">
                             </div>
                         </div>
-                        <input id="slide" type="range" min="1" max="100" step="1" value="60" oninput="rangeOutputId.value = slide.value">
                     </div>
                 </div>
-                <div class="row" style="padding:15px;padding-top:0px;background: white; margin: 0px; border-radius: 5px; margin-bottom: 20px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);margin-top:35px;">
-                    <div style="text-align:center;">
-                        <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -10px;">Add Operators</a>
-                    </div>
-                    <div class="input-field col s12" style="margin-top:30px;">
-                        <input id="delivery-members" type="text" class="validate" placeholder="username">
-                    </div>
-                </div>
-                <div class="row" style="background: white; margin-left: auto; margin-right: auto; border-radius: 5px; padding: 10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);text-align:center;margin-top:40px;margin-bottom:20px;">
-                    <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -17px;">Current Operators</a>
-                    <div class="input-field col s12" style="text-align:left;">
-                        <div id="membersLst">
+                <div class="col s12 m4 l4 rewards" style="display:none;">
+                    <div class="row" style="text-align:center;">
+                        <div class="opacitySelectedColor" style="text-align:center;background:#7eb7c8;margin:0px;padding:10px;color:white;">
+                            <h5 style="margin:0px;">STORE REWARD</h5>
+                            <p style="padding:0px;margin:0px;">10 points = Ksh. 1</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4 l4 products" style="display:none;">
-                <nav class="top-nav" style="background:#7EB7C8; display:none;height:48px;">
-                    <div class="container">
-                        <div class="nav-wrapper"><a style="line-height:14px;font-size:20px;" class="page-title">Products</a></div>
-                    </div>
-                </nav>
-                <ul class="products-collapsible collapsible collapsible-accordion chStoreUpdate" data-collapsible="accordion" style="background:white;"> </ul>
-                <div class="fixed-action-btn click-to-toggle">
-                    <a class="btn-floating" style="width:150px;height:35px;border-radius:5px;background:#26A69A;">
-                        <p style="margin-top:0px !important;text-align:center;">ADD PRODUCTS</p>
-                    </a>
-                    <ul style="bottom:35px !important;">
-                        <li>
-                            <a href="#spnsrdModal" class="btn-floating newProdBtn" style="width:auto !important; padding: 0px 10px 0px 10px;background:#26A69A;">
-                                <p class="material-icons newProdBtnName" style="margin-top:0px !important;font-size:0.8rem;">Sponsored Products</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#add-product" class="btn-floating newProdBtn" style="width:auto !important; padding: 0px 10px 0px 10px;font-size:0.8rem;background:#26A69A;">
-                                <p class="material-icons newProdBtnName" style="margin-top:0px !important;">New Products</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col s12 m4 l4 billing" style="display:none;">
-                <nav class="top-nav" style="background:#7EB7C8;height:48px;margin-bottom:40px; display:none;">
-                    <div class="container">
-                        <div class="nav-wrapper">
-                            <a style="line-height:48px;font-size:20px;" class="page-title">Billing</a>
+                        <div style="padding:20px;">
+                            <p>1 point for every <input style="width:35px;margin-top:-10px; height: 1rem;" type="number" class="validate inputReward perVisit" id="visitInput"> visit</p>
+                            <p>1 point for every <input style="width:35px; height: 1rem;" type="number" class="validate inputReward perShare" id="shareInput"> link shared</p>
+                            <p>1 point for every purchase worth <input style="width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput"></p>
                         </div>
+                        <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="#loyaltyPoints" style="display:block;    width: 170px; margin-left: auto; margin-right: auto;">Buy Points</a>
                     </div>
-                </nav>
-                <div style="text-align:center;padding-bottom:30px;">
-                    <p style="margin-bottom: 0px; font-size: 1.3em; width: 60%;">TOTAL</p>
-                    <p id="serviceBill" style="font-size: 2em; margin-top: 0px; margin-bottom: 0px; width: 60%;">Ksh
-                        <span id="serviceBillCharges"></span>
-                    </p>
-                    <a class="payButton" style="background-color: rgba(103, 103, 103, 0.71);padding: 7px; padding-left: 20px; padding-right: 20px; font-weight: bold; color: white; border-radius: 5px; padding-bottom: 10px; float: right; position: absolute; top: 90px; right: 80px;">PAY</a>
-                    <div id="dailyBilling"></div>
                 </div>
-                <!-- Modal Structure -->
-                <div class="calender">
-                    <div class="header" style="height: 60px; line-height: 20px;">
-                        <div class="hand left" id="left">
-                            <i>
+                <div class="col s12 m4 l4 products" style="display:none;">
+                    <nav class="top-nav" style="background:#7EB7C8; display:none;height:48px;">
+                        <div class="container">
+                            <div class="nav-wrapper"><a style="line-height:14px;font-size:20px;" class="page-title">Products</a></div>
+                        </div>
+                    </nav>
+                    <ul class="products-collapsible collapsible collapsible-accordion chStoreUpdate" data-collapsible="accordion" style="background:white;"> </ul>
+                    <div class="fixed-action-btn click-to-toggle">
+                        <a class="btn-floating" style="width:150px;height:35px;border-radius:5px;background:#26A69A;">
+                            <p style="margin-top:0px !important;text-align:center;">ADD PRODUCTS</p>
+                        </a>
+                        <ul style="bottom:35px !important;">
+                            <li>
+                                <a href="#spnsrdModal" class="btn-floating newProdBtn" style="width:auto !important; padding: 0px 10px 0px 10px;background:#26A69A;">
+                                    <p class="material-icons newProdBtnName" style="margin-top:0px !important;font-size:0.8rem;">Sponsored Products</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#add-product" class="btn-floating newProdBtn" style="width:auto !important; padding: 0px 10px 0px 10px;font-size:0.8rem;background:#26A69A;">
+                                    <p class="material-icons newProdBtnName" style="margin-top:0px !important;">New Products</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col s12 m4 l4 billing" style="display:none;">
+                    <nav class="top-nav" style="background:#7EB7C8;height:48px;margin-bottom:40px; display:none;">
+                        <div class="container">
+                            <div class="nav-wrapper">
+                                <a style="line-height:48px;font-size:20px;" class="page-title">Billing</a>
+                            </div>
+                        </div>
+                    </nav>
+                    <div style="text-align:center;padding-bottom:30px;">
+                        <p style="margin-bottom: 0px; font-size: 1.3em; width: 60%;">TOTAL</p>
+                        <p id="serviceBill" style="font-size: 2em; margin-top: 0px; margin-bottom: 0px; width: 60%;">Ksh
+                            <span id="serviceBillCharges"></span>
+                        </p>
+                        <a class="payButton" style="background-color: rgba(103, 103, 103, 0.71);padding: 7px; padding-left: 20px; padding-right: 20px; font-weight: bold; color: white; border-radius: 5px; padding-bottom: 10px; float: right; position: absolute; top: 90px; right: 80px;">PAY</a>
+                        <div id="dailyBilling"></div>
+                    </div>
+                    <!-- Modal Structure -->
+                    <div class="calender">
+                        <div class="header" style="height: 60px; line-height: 20px;">
+                            <div class="hand left" id="left">
+                                <i>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;background: inherit; height:35px; width:35px; padding:5px; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(54, 54, 54, 0.63), 0 3px 1px -2px rgb(38, 36, 36);border-radius:50%;" xml:space="preserve" width="20px" >
                                             <g xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225   c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z" fill="#FFFFFF"/>
                                             </g>
                                         </svg>
                                     </i>
-                        </div>
-                        <div class="monthYear">
-                            <p style="color: white; font-size: 1.5em; margin: 10px 0px 0px;" class="month" id="month"></p>
-                            <p style="color:white;margin-top:0px;" class="year" id="year"></p>
-                        </div>
-                        <div class="hand right" id="right">
-                            <i>
+                            </div>
+                            <div class="monthYear">
+                                <p style="color: white; font-size: 1.5em; margin: 10px 0px 0px;" class="month" id="month"></p>
+                                <p style="color:white;margin-top:0px;" class="year" id="year"></p>
+                            </div>
+                            <div class="hand right" id="right">
+                                <i>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;background: inherit; height:35px; width:35px; padding:5px; box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(54, 54, 54, 0.63), 0 3px 1px -2px rgb(38, 36, 36);border-radius:50%;" xml:space="preserve" width="20px">
                                             <g xmlns="http://www.w3.org/2000/svg">
                                             <path d="M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5   c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z   " fill="#FFFFFF"/>
                                             </g>
                                         </svg>
                                     </i>
-                        </div>
-                    </div>
-                    <div class="main">
-                        <ul class="days"> </ul>
-                    </div>
-                </div>
-                <ul class="collapsible" data-collapsible="accordion" style="border:none;box-shadow:none;margin:0px;">
-                    <li>
-                        <div class="collapsible-header">
-                            <div class="row" id="rowBIll">
-                                <div class="anything col s6"><span id="billingDate">Date</span></div>
-                                <div class="anything col s6"><span id="dailyBill">Bill</span></div>
                             </div>
                         </div>
-                        <div class="collapsible-body"><span></span></div>
-                    </li>
-                </ul>
-            </div>
-            <div class="col s12 m4 l4 Managers" style="display:none;">
-                <div class="row" style="padding:15px;padding-top:0px;background: white; margin: 0px; border-radius: 5px; margin-bottom: 20px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);margin-top:35px;">
-                    <div style="text-align:center;">
-                        <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -10px;">Add Managers</a>
+                        <div class="main">
+                            <ul class="days"> </ul>
+                        </div>
                     </div>
-                    <div class="input-field col s12" style="margin-top:30px;">
-                        <input id="storeManagers" type="text" class="validate" placeholder="username">
-                        <ul class="autocomplete-content dropdown-content"></ul>
-                    </div>
+                    <ul class="collapsible" data-collapsible="accordion" style="border:none;box-shadow:none;margin:0px;">
+                        <li>
+                            <div class="collapsible-header">
+                                <div class="row" id="rowBIll">
+                                    <div class="anything col s6"><span id="billingDate">Date</span></div>
+                                    <div class="anything col s6"><span id="dailyBill">Bill</span></div>
+                                </div>
+                            </div>
+                            <div class="collapsible-body"><span></span></div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="row" style="background: white; margin-left: auto; margin-right: auto; border-radius: 5px; padding: 10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);text-align:center;margin-top:40px;margin-bottom:20px;">
-                    <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -17px;">Current Managers</a>
-                    <div class="input-field col s12" style="text-align:left;">
-                        <div id="managersLst">
+                <div class="col s12 m4 l4 Managers" style="display:none;">
+                    <div class="row" style="padding:15px;padding-top:0px;background: white; margin: 0px; border-radius: 5px; margin-bottom: 20px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);margin-top:35px;">
+                        <div style="text-align:center;">
+                            <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -10px;">Add Managers</a>
+                        </div>
+                        <div class="input-field col s12" style="margin-top:30px;">
+                            <input id="storeManagers" type="text" class="validate" placeholder="username">
+                            <ul class="autocomplete-content dropdown-content"></ul>
+                        </div>
+                    </div>
+                    <div class="row" style="background: white; margin-left: auto; margin-right: auto; border-radius: 5px; padding: 10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);text-align:center;margin-top:40px;margin-bottom:20px;">
+                        <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -17px;">Current Managers</a>
+                        <div class="input-field col s12" style="text-align:left;">
+                            <div id="managersLst">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </div>
     </div>
     <!-- END MAIN -->
