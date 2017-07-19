@@ -139,11 +139,11 @@ function getActiveStoreProd(p) {
 }
 
 function promoCreator(proId) {
-    console.log(proId);
+    //    console.log(proId);
     getActiveStoreProd(proId).then(function (ee) {
         var proId = ee.ret;
         var e = ee.plist;
-        console.log(proId);
+        //        console.log(proId);
         if (e.length == 0) {
             var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Product Found</span></li>';
             $(".promotions-holda").append($.parseHTML(html));

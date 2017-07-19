@@ -220,11 +220,11 @@ function searchCust(inp) {
 
 
 function getActvStoreCust(promoid, promoSubs) {
-    console.log(promoid, promoSubs);
+    //    console.log(promoid, promoSubs);
     return new Promise(function (resolve, reject) {
-        console.log(promoid, promoSubs);
+        //        console.log(promoid, promoSubs);
         getObjectStore('data', 'readwrite').get("soko-store-customers-" + localStorage.getItem('soko-active-store')).onsuccess = function (event) {
-            console.log(promoid, promoSubs);
+            //            console.log(promoid, promoSubs);
             var p = {};
             p.promoid = promoid;
             p.promoSubs = promoSubs;

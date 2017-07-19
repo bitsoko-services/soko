@@ -18,6 +18,14 @@ $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
         }
     }
 });
+
+
+var managerId = JSON.parse(localStorage.getItem("soko-owner-id"))
+var shopOwner = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).owner
+if (managerId != shopOwner) {
+    $("#settingsOpt").hide()
+}
+
 $(document).on("click", ".removeManager", function () {
     var removeManager = $(this);
     var id = $(this).attr("id")
@@ -39,7 +47,6 @@ $(document).on("click", ".removeManager", function () {
         $('#removeManagerModal').modal('close');
     });
 });
-
 
 function managersID() {
     try {
