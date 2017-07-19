@@ -155,11 +155,19 @@ function promoCreator(proId) {
 
             for (var i = 0, proId = proId; i < e.length; ++i) {
 
-                $(".promo-add-new-promotion2").append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="0" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>');
+                $(".promo-add-new-promotion2").append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input name="promoItems" type="checkbox" id="checker-' + e[i].id + '" pid="' + e[i].id + '"/><label for="checker-' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button href="#" class="counter-left" id="plus-' + e[i].id + '" disabled>-</button><input class="' + e[i].id + '" type="number" value="0" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right" id="minus-' + e[i].id + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
 
                 $(".promo-add-new-promotion-" + proId).append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input prod_id="' + e[i].id + '" name="promoItems" type="checkbox" id="prod' + e[i].id + '-' + proId + '"/><label for="prod' + e[i].id + '-' + proId + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button href="#" class="counter-left">-</button><input class="' + e[i].id + '" type="number" value="0" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right">+</button></div></div></div></p>' + '</li>' + '</li>');
+
+                $('#checker-' + e[i].id).click(function () {
+                    var checkerID = $(this).attr('pid');
+                    console.log(checkerID)
+                    $('#plus-' + checkerID).attr('disabled', !this.checked)
+                    $('#minus-' + checkerID).attr('disabled', !this.checked)
+                });
             }
             $('select').material_select();
+
 
             $('.counter-left').click(function (event) {
                 event.preventDefault()

@@ -826,10 +826,15 @@
                 <ul id="slide-out" class="side-nav fixed leftside-navigation">
                     <li class="user-details get-color cyan darken-2 btn-flat dropdown-button" style="background-color:#7eb7c8!important;" href="#" data-activates="store-dropdown">
                         <div class="row pdfAppend " style="text-align:center;">
-                            <a class="waves-effect waves-light white-text profile-btn store-name" style="text-align:left; display:none;">my store</a>
-                            <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;line-height: 0px;display:block;margin-top:10px;margin-bottom:10px;" />
-                            <a class="waves-effect waves-light white-text profile-btn store-name" style="text-align:left;">my store</a>
-                            <p class="user-roal store-desc" style="text-align:left;"></p>
+                            <div class="row" style="padding-top:90px;">
+                                <div class="col s3"><a class="waves-effect waves-light white-text profile-btn store-name" style="text-align:left; display:none;">my store</a>
+                                    <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;line-height: 0px;display:block;margin-top:10px;margin-bottom:10px;" /></div>
+                                <div class="col s9"><a class="waves-effect waves-light white-text profile-btn store-name" style="text-align:left; line-height:3;">my store</a>
+                                    <p class="user-roal store-desc" style="text-align:left; line-height:1;"></p>
+                                </div>
+                            </div>
+
+
                         </div>
                     </li>
                     <li class="bold clickPromo" onclick="refreshSalesOrders();">
@@ -909,7 +914,7 @@
                             </i>Billing
                         </a>
                     </li>
-                    <li style="margin-top:-40px;">
+                    <li style="margin-top:-40px;" id="settingsOpt">
                         <!--------- SETTINGS ---------->
                         <ul class="collapsible" data-collapsible="accordion" style="margin-top:45px;">
                             <li>
@@ -922,7 +927,7 @@
                                         </i>
                                     </div>Settings
                                 </div>
-                                <div class="collapsible-body" style="padding:0px;">
+                                <div class="collapsible-body" style="padding:0px; background: rgb(243, 243, 243);">
                                     <span>
                                         <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); managerListener();">
                                             <i class="mdi-social-people">
@@ -979,7 +984,7 @@
         </li>
         </ul>
         </li>
-        <div class="divider"> </div>
+        <div class="divider" style="margin:0px;"> </div>
         <li>
             <a href="#" class="switchStore">
                 <i>
