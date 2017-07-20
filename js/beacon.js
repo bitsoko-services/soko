@@ -22,9 +22,9 @@ function beaconsUpdater() {
         $(".beacons-holda-connected").html('');
         $(".beacons-holda-available").html('');
         if (reqs.length > 0) {
-            var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth green circle"></i>' + '<span class="collection-header">Connected Beacons</span><p>' + reqs.length + ' Found</p></li>';
+            var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth green circle"></i>' + '<span class="collection-header" style="pointer-events: none;">Connected Beacons</span><p>' + reqs.length + ' Found</p></li>';
             $(".beacons-holda-connected").append($.parseHTML(html));
-            var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth pink circle"></i>' + '<span class="collection-header">Available Beacons</span><p>' + reqs.length + ' Found</p></li>';
+            var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth pink circle"></i>' + '<span class="collection-header" style="pointer-events: none;">Available Beacons</span><p>' + reqs.length + ' Found</p></li>';
             $(".beacons-holda-available").append($.parseHTML(html));
         } else {
             var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">No Beacons Found</span><p>click here to add a beacon</p></li>';

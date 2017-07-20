@@ -670,11 +670,11 @@ ul.side-nav.leftside-navigation li {
 }
 
 ul.side-nav.leftside-navigation li:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: none;
 }
 
 ul.side-nav.leftside-navigation li.active {
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: transparent;
     margin-bottom: 5px;
 }
 
@@ -3778,7 +3778,13 @@ ul.side-nav.leftside-navigation li:hover {
 .side-nav.fixed .collapsible-header:hover {
     background-color: none;
 }
+
 ul.side-nav.leftside-navigation li:hover {
     background-color: none;
     margin-bottom: 8px;
+}
+
+.side-nav .collapsible-header:hover,
+.side-nav.fixed .collapsible-header:hover {
+    background-color: none !important;
 }
