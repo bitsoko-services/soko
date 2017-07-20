@@ -16,7 +16,7 @@ function refreshPromotions() {
 
         }
         if (e.status == 'ok') {
-            getObjectStore('data', 'readwrite').put(JSON.stringify(e.promotions), 'soko-store-' + id + '-promotions');
+            getObjectStore('data', 'readwrite').put(JSON.stringify(e.promotions), 'soko-store-' + localStorage.getItem('soko-active-store') + '-promotions');
         } else {
 
             getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + id + '-promotions');
