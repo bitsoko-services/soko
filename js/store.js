@@ -492,13 +492,30 @@ $("#updateLoc").click(function () {
     myLoc();
     setTimeout(function () {
         doFetch({
-            loc: document.querySelector('#editStore-Location').value
+            action: 'doEditStore',
+            id: localStorage.getItem('soko-active-store'),
+            prop: "lonlat",
+            val: document.querySelector('#editStore-Location').value
         }).then(function (e) {
             if (e.status == 'ok') {
                 Materialize.toast('Location updated successfully', 3000);
             }
         });
     }, 3000);
+});
+
+//update theme color
+$("#themeUpdate").click(function () {
+    doFetch({
+        action: 'doEditStore',
+        id: localStorage.getItem('soko-active-store'),
+        prop: "theme",
+        val: document.querySelector('#colorChosen').value
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            Materialize.toast('Theme color changed successfully', 3000);
+        }
+    });
 });
 
 

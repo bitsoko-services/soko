@@ -100,15 +100,37 @@ angular.module('sokoApp', [])
     $('.modal').modal();
     $(document).on('click', '.side-nav > li > a', function () {
         if ($(this).hasClass("nav")) {
-            $('#content > .container > div').css('display', 'none');
-            $('.sidebar-collapse').sideNav('hide');
-            $('body').attr('page', $(this).attr('page'));
-            $('#content > .container > .' + $(this).attr('page')).css('display', 'block');
-            updateThisPage($(this).attr('page'));
+            var clickedOn = $(this).attr('page');
+
+            switchTo(clickedOn);
+
+
         }
         $(this).toggleClass('active');
     });
+
+
+
+
+
+
+
 });
+
+
+
+if (getBitsOpt('page') != undefined) {
+    switchTo(getBitsOpt('page'))
+}
+
+
+function switchTo(co) {
+    $('#content > .container > div').css('display', 'none');
+    $('.sidebar-collapse').sideNav('hide');
+    $('body').attr('page', co);
+    $('#content > .container > .' + co).css('display', 'block');
+    updateThisPage(co);
+}
 
 function updateThisPage(pg) {
 

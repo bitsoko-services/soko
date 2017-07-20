@@ -108,3 +108,8 @@ function createCanvas() {
     };
 
 })(jQuery, window, document);
+
+
+//Theme Chosen
+var colorChosen = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme
+$("#colorChosen").css("background", colorChosen);
