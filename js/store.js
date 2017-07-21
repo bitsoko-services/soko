@@ -25,6 +25,9 @@ function loadPOS() {
             });
             $('#firstStoreModal').modal('open');
             return;
+        } else if (services.length > 5) {
+            $("#switchStoreLimit").hide();
+            $("#newStorePad i").css("margin-left", "0px");
         }
         $("#switchStoreContent").html('');
         for (var i = 0; i < services.length; ++i) {
