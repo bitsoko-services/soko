@@ -50,15 +50,24 @@ $('document').ready(function () {
                 var name = deliveryGuys[i].name;
                 var id = deliveryGuys[i].id;
                 if (deliveryMembers == name) {
-                    doFetch({
-                        action: 'deliveryMembers',
-                        store: localStorage.getItem('soko-active-store'),
-                        do: 'add',
-                        data: id
-                    }).then(function (e) {
-                        if (e.status == 'ok') {
-                            deliveryMbr();
-                        } else {}
+                    $("#confirmAddMember").modal("open");
+                    $("#operatorName").html(name);
+                    var thisOperator = id;
+                    $('#yesOperatorBtn').on('click', function () {
+                        doFetch({
+                            action: 'deliveryMembers',
+                            store: localStorage.getItem('soko-active-store'),
+                            do: 'add',
+                            data: thisOperator
+                        }).then(function (e) {
+                            if (e.status == 'ok') {
+                                deliveryMbr();
+                                $("#confirmAddMember").modal("close");
+                            } else {}
+                        });
+                    });
+                    $('#noOperatorBtn').on('click', function () {
+                        $("#confirmAddMember").modal("close");
                     });
                 }
             }
