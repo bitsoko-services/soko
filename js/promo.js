@@ -308,6 +308,7 @@ $(document).on('touchstart click', '.removePromo', function (event) {
     }).then(function (e) {
         if (e.status == 'ok') {
             Materialize.toast('Promotion Removed Successfully', 3000);
+            refreshPromotions();
             parent_div
         } else {
             console.log(e);
