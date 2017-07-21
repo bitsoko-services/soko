@@ -201,7 +201,7 @@ function updateMerch(s) {
     $('.store-desc').html(s.description);
     //$('.store-img').attr('src', s.icon);
     //document.getElementByClass('user-details')
-    $("ul.side-nav.leftside-navigation li.user-details").css("background", "linear-gradient(transparent, rgba(0, 0, 0, 0.37)), url(" + s.bannerPath + ") no-repeat center center").css("background-size", "cover");;
+    $("ul.side-nav.leftside-navigation li.user-details").css("background", "url(" + s.bannerPath + ") no-repeat center center").css("background-size", "cover");;
     var x = document.getElementsByClassName('user-details');
     var i;
     for (i = 0, s = s; i < x.length; i++) {
