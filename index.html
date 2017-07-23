@@ -619,24 +619,17 @@
                         </div>
                     </div>
                     <div>
-                        <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px;">
+                        <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px; margin-bottom:40px;">
                             <li>
-                                <label for="editStore-Phone" class="active" style=" ">Store Theme</label>
-                                <div class="row" style=" margin-top: 10px;">
-                                    <div class="col s8" style="padding:0px;">
-                                        <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px;padding: 0px;margin-right: 39px;">
-
-                                            <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="#0f5f76" stitm="theme" style="border-radius: 5px;margin-bottom: 0px;padding-left: 15px;">
-                                        </div>
-                                        <div class="collapsible-body" style="padding:10px;">
-                                            <span>
-                                                <div id="themeCanvas"><canvas id="spectrum-color" height="200"></canvas><canvas id="spectrum-all" height="200" width="20"></canvas><canvas id="spectrum-color" height="200"></canvas><canvas id="spectrum-all" height="200" width="20"></canvas></div>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col s4">
-                                        <a class="waves-effect waves-light btn" style=" padding-top: 2px; padding-bottom: 38px;" id="themeUpdate">ok</a>
-                                    </div>
+                                <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%; float:left; border-bottom:none;">
+                                    <label for="editStore-Phone" class="active">Store Theme</label>
+                                    <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; margin-bottom:0px; color:black;" disabled>
+                                </div>
+                                <a class="waves-effect waves-light btn" style=" padding-top: 2px; padding-bottom: 38px; margin-top:43px;" id="themeUpdate">ok</a>
+                                <div class="collapsible-body" style="padding:10px; width:100%;">
+                                    <span>
+                                        <div id="themeCanvas"></div>
+                                    </span>
                                 </div>
                             </li>
                         </ul>
