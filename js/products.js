@@ -81,26 +81,6 @@ function productsUpdater() {
                 btn.onclick = function () {
                     modal.style.display = "block";
                 }
-                $(document).on('touchstart click', '#yesMemberBtn', function (event) {
-                    var sponsoredID = $("#rmvSpnsrdProd").attr("sid");
-                    $(this).unbind(event);
-                    doFetch({
-                        action: 'removeSponsoredProduct',
-                        store: localStorage.getItem('soko-active-store'),
-                        do: 'remove',
-                        id: id
-                    }).then(function (e) {
-                        if (e.status == 'ok') {
-                            $("#rmvSpnsrdProd").hide();
-                            document.getElementById(id).remove();
-                            document.getElementById("sprdprod_" + id).remove();
-                            Materialize.toast('Sponsored product removed successfully', 3000);
-                        } else {}
-                    });
-                });
-                $(document).on('touchstart click', '#noMemberBtn', function (event) {
-                    $("#rmvSpnsrdProd").hide();
-                });
             }
 
 
@@ -122,6 +102,28 @@ function productsUpdater() {
         initProdCallback();
     }
 }
+
+$(document).on('touchstart click', '#yesSponsoredBtn', function (event) {
+    var sponsoredID = $("#rmvSpnsrdProd").attr("sid");
+    $(this).unbind(event);
+    doFetch({
+        action: 'removeSponsoredProduct',
+        store: localStorage.getItem('soko-active-store'),
+        do: 'remove',
+        id: sponsoredID
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            $("#rmvSpnsrdProd").hide();
+            document.getElementById(id).remove();
+            document.getElementById("sprdprod_" + id).remove();
+            Materialize.toast('Sponsored product removed successfully', 3000);
+        } else {}
+    });
+});
+$(document).on('touchstart click', '#noSponsoredBtn', function (event) {
+    $("#rmvSpnsrdProd").hide();
+});
+
 $('#spnsrdModal').on('click', $('ul.autocomplete-content li'), function () {
     var value = $('.sponsoredPrd').val();
     if (value != '') {
