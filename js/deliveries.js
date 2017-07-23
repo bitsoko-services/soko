@@ -166,6 +166,11 @@ function deliveryMbr() {
             })
         })
     })
+    var rateInput = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRate;
+    $('#delivery_Rate').val(rateInput);
+    $("#sliderAmount").val(rateInput);
+    $("#slide").val(rateInput);
+    $("#rangeOutputId").val(rateInput);
 }
 //Remove Delivery Member
 $(document).on('click', '.removeMember', function (e) {
@@ -203,11 +208,6 @@ $("#sliderAmount").on("change", function () {
         if (e.status == 'ok') {} else {}
     });
 });
-var rateInput = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRate;
-$('#delivery_Rate').val(rateInput);
-$("#sliderAmount").val(rateInput);
-$("#slide").val(rateInput);
-$("#rangeOutputId").val(rateInput);
 
 
 //New Operator
