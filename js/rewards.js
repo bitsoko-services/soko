@@ -16,6 +16,36 @@ function rewardPoints() {
     })
 }
 
+function updateRewardpoints(t) {
+    var rwditm = $(t.target).attr('rwditm');
+    var name = $(t.target).attr('rwditm');
+    var val = $(t.target).val();
+    doFetch({
+        action: 'storeRewards',
+        value: val,
+        prop: name,
+    }).then(function (e) {
+        if (e.status == 'ok') {} else {}
+    });
+}
+
+
+//Call Back
+function rewardsCallback() {
+    var forEach = function (array, callback, scope) {
+        for (var i = 0; i < array.length; i++) {
+            callback.call(scope, i, array[i]); // passes back stuff we need
+        }
+    };
+    var myNodeList = document.querySelectorAll('#rewardsPoints input');
+    forEach(myNodeList, function (index, value) {
+        value.addEventListener("change", updateRewardpoints);
+    });
+}
+
+rewardsCallback()
+
+
 //Buy Points
 function initPaymentRequest() {
     let networks = ['amex', 'diners', 'discover', 'jcb', 'mastercard', 'unionpay',
@@ -208,3 +238,6 @@ if (window.PaymentRequest) {
 } else {
     console.log('This browser does not support web payments');
 }
+$(document).on("click", "#rewardsPage", function () {
+    $(".navbar-color").css("box-shadow", "none");
+});

@@ -9,7 +9,7 @@ function refreshCustomers() {
         //        $('#serviceBillCharges').html(e.customers.length * 0.167);
         console.log("The customer count is " + (e.customers.length + 1));
         cusLen = e.customers.length;
-        $('.subsribersNumb').html('hello');
+        $(".cusLen").html(cusLen)
         for (var i = 0; i < e.customers.length; i++) {
             //timeline.push({time:'',type:'cust',title:'Name',body:'',amount:''});
         };

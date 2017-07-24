@@ -42,7 +42,7 @@ $('document').ready(function () {
             deliveryMbr();
         }
     });
-    $('.deliveries').on('click', $('ul.autocomplete-content li'), function () {
+    $('.deliveryField').on('click', $('ul.autocomplete-content li'), function (e) {
         var value = $('#delivery-members').val();
         if (value != '') {
             var deliveryMembers = $('#delivery-members').val();
@@ -50,15 +50,26 @@ $('document').ready(function () {
                 var name = deliveryGuys[i].name;
                 var id = deliveryGuys[i].id;
                 if (deliveryMembers == name) {
-                    doFetch({
-                        action: 'deliveryMembers',
-                        store: localStorage.getItem('soko-active-store'),
-                        do: 'add',
-                        data: id
-                    }).then(function (e) {
-                        if (e.status == 'ok') {
-                            deliveryMbr();
-                        } else {}
+                    $("#confirmAddMember").modal("open");
+                    $("#operatorName").html(name);
+                    var thisOperator = id;
+                    $('#yesOperatorBtn').on('click', function (event) {
+                        event.preventDefault();
+                        doFetch({
+                            action: 'deliveryMembers',
+                            store: localStorage.getItem('soko-active-store'),
+                            do: 'add',
+                            data: thisOperator
+                        }).then(function (e) {
+                            if (e.status == 'ok') {
+                                deliveryMbr();
+                                $("#confirmAddMember").modal("close");
+                                $('#delivery-members').val("");
+                            } else {}
+                        });
+                    });
+                    $('#noOperatorBtn').on('click', function () {
+                        $("#confirmAddMember").modal("close");
                     });
                 }
             }
@@ -138,28 +149,8 @@ function deliveryMbr() {
             name = obj.name;
             icon = obj.icon
             console.log(obj);
-            $("#membersLst").append('<div class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
+            $("#membersLst").append('<div id="' + id + '" class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
             $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s10"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s2" style="padding-top:5px;"><input class="with-gap" name="group1" type="radio" id="radio_' + id + '"/> <label for="radio_' + id + '"></label></div></div>');
-            $('.removeMember').click(function () {
-                var removeMember = $(this)
-                $('#removeMemberModal').modal('open');
-                $('#yesMemberBtn').on('click', function () {
-                    $('#removeMemberModal').modal('close');
-                    doFetch({
-                        action: 'deliveryMembers',
-                        store: localStorage.getItem('soko-active-store'),
-                        do: 'remove',
-                        data: id
-                    }).then(function (e) {
-                        if (e.status == 'ok') {
-                            $(removeMember).remove();
-                        } else {}
-                    });
-                });
-                $('#noMemberBtn').on('click', function () {
-                    $('#removeMemberModal').modal('close');
-                });
-            });
             $("#radio_" + id).click(function () {
                 var orderId = $("#deliverOrderModal").attr('gid');
                 doFetch({
@@ -175,8 +166,37 @@ function deliveryMbr() {
             })
         })
     })
+    var rateInput = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRate;
+    $('#delivery_Rate').val(rateInput);
+    $("#sliderAmount").val(rateInput);
+    $("#slide").val(rateInput);
+    $("#rangeOutputId").val(rateInput);
 }
-
+//Remove Delivery Member
+$(document).on('click', '.removeMember', function (e) {
+    e.stopPropagation();
+    var removeMember = $(this).attr("id");
+    console.log(removeMember);
+    $('#removeMemberModal').modal('open');
+    $('#yesMemberBtn').on('click', function () {
+        doFetch({
+            action: 'deliveryMembers',
+            store: localStorage.getItem('soko-active-store'),
+            do: 'remove',
+            data: removeMember
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                $(removeMember).remove();
+                $('#removeMemberModal').modal('close');
+                deliveryMbr();
+                console.log($("#delivery-members").val(""));
+            } else {}
+        });
+    });
+    $('#noMemberBtn').on('click', function () {
+        $('#removeMemberModal').modal('close');
+    });
+});
 //Delivery Rate
 $("#sliderAmount").on("change", function () {
     deliveryRate = $("#sliderAmount").val();
@@ -188,8 +208,6 @@ $("#sliderAmount").on("change", function () {
         if (e.status == 'ok') {} else {}
     });
 });
-var rateInput = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRate;
-$('#delivery_Rate').val(rateInput);
 
 
 //New Operator

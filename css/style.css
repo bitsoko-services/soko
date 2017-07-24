@@ -3524,7 +3524,7 @@ tr.group:hover {
 }
 
 #msg {
-    width: 163px;
+    width: 165px;
     height: 60px;
     background: #ffab40;
     margin-left: 25%;
@@ -3548,6 +3548,45 @@ tr.group:hover {
     height: 0px;
     width: 0px;
     margin-left: -102px;
+}
+
+#test-swipe-2 #msg {
+    width: 165px;
+    height: 60px;
+    background: #80C342;
+    margin-left: 25%;
+    position: relative;
+}
+
+#test-swipe-2 #reverseMsg {
+    width: 163px;
+    height: 60px;
+    background: #80C342;
+    margin-right: 15%;
+    position: relative;
+}
+
+#test-swipe-2 #msg:before {
+    content: "";
+    position: absolute;
+    border-bottom: 30px solid transparent;
+    border-right: 21px solid #80C342;
+    border-top: 30px solid transparent;
+    height: 0px;
+    width: 0px;
+    margin-left: -102px;
+}
+
+#test-swipe-2 #reverseMsg:after {
+    content: "";
+    position: absolute;
+    border-bottom: 30px solid transparent;
+    border-left: 21px solid #80C342;
+    border-top: 30px solid transparent;
+    height: 0px;
+    width: 0px;
+    right: -20px;
+    top: 0;
 }
 
 #reverseMsg:after {
@@ -3787,4 +3826,17 @@ ul.side-nav.leftside-navigation li:hover {
 .side-nav .collapsible-header:hover,
 .side-nav.fixed .collapsible-header:hover {
     background-color: none !important;
+}
+
+.side-nav .collapsible-header:hover,
+.side-nav.fixed .collapsible-header:hover {
+    background-color: transparent;
+}
+
+.user-details {
+    background-size: cover !important;
+}
+
+#rewardsPoints p:last-child {
+    box-shadow: none;
 }
