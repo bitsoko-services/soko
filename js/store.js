@@ -521,6 +521,11 @@ $("#themeUpdate").click(function () {
 });
 
 
+//Close New Store Modal
+$(document).on("click", "#closeNewStoreModal", function () {
+    $("#newStoreModal").modal("close")
+});
+
 //Hide Settings If Owner Do Not Much
 var bitsUserName = localStorage.getItem("bits-user-name");
 var sokoOwner = localStorage.getItem("soko-owner-id");
