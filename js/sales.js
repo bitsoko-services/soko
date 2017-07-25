@@ -196,7 +196,7 @@ function orderUpdater() {
         } catch (err) {
             console.log('unable to access orders list. ' + err);
             refreshSalesOrders();
-            //            orderCollapsible();
+            // orderCollapsible();
             return;
         }
 
