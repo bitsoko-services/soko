@@ -388,7 +388,8 @@ function getProductsPromotions() {
         $.each(products_in_promotion, function (index, products) {
             check = $(products).find('input')[0]
             if ($(check).is(':checked')) {
-                product_id = $(check).attr('prod_id')
+                product_id = $(check).attr('prod_id');
+                console.log("prodId------------" + product_id)
                 promos_to_products[$(promotion).attr('id')].push(product_id)
             }
         })

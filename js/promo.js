@@ -30,6 +30,22 @@ function refreshPromotions() {
     });
 }
 
+function checkedProdsInPromo() {
+    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-promotions').onsuccess = function (event) {
+        var reqs = JSON.parse(event.target.result);
+        for (var i = 0; i < reqs.length; ++i) {
+            var tt = JSON.parse(reqs[i].promoItems);
+            promoID = reqs[i].id
+            console.log(tt)
+            for (var prop in tt) {
+                var checked = "#prod" + tt[prop] + "-" + promoID;
+                console.log(checked)
+                $(checked).prop('checked', true);
+            }
+        }
+    }
+}
+
 function promoUpdater() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-promotions').onsuccess = function (event) {
         var reqs = event.target.result;
@@ -37,7 +53,7 @@ function promoUpdater() {
             reqs = JSON.parse(reqs);
         } catch (err) {
             console.log('unable to access promotions list. ' + err);
-            refreshPromotions();
+            setTimeout(refreshPromotions, 3000);
             return;
         }
 
@@ -47,6 +63,10 @@ function promoUpdater() {
         if (reqs.length == 0) {
             var html = '<li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem cyan circle"></i>' + '<span class="collection-header">No Promotions Found</span></li>';
             $(".promotions-holda").append($.parseHTML(html));
+        }
+
+        function logArrayElements(element, index, array) {
+            console.log('a[' + index + '] = ' + element);
         }
 
         for (var i = 0; i < reqs.length; ++i) {
@@ -93,7 +113,6 @@ function promoUpdater() {
             shroot[i].addEventListener("touchstart", castPromo, false);
         };
         editPromoCallback();
-
     }
 }
 

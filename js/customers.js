@@ -18,6 +18,7 @@ function refreshCustomers() {
     }).catch(function (err) {
         addAllCust();
     });
+    checkedProdsInPromo()
 }
 
 function addCustomer(c) {
