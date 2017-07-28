@@ -151,11 +151,13 @@
                 <h5 style="margin:0px;">STORE REWARD</h5>
                 <p style="padding:0px;margin:0px;">10 points = Ksh. 1</p>
             </div>
-            <div style="padding:20px;">
-                <p>1 point for every <input style="width:35px;margin-top:-10px; height: 1rem;" type="number" class="validate inputReward perVisit" id="visitInput"> visit</p>
-                <p>1 point for every <input style="width:35px; height: 1rem;" type="number" class="validate inputReward perShare" id="shareInput"> link shared</p>
-                <p>1 point for every purchase worth <input style="width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput"></p>
-            </div>
+            <!--
+<div style="padding:20px;">
+    <p>1 point for every <input style="width:35px;margin-top:-10px; height: 1rem;" type="number" class="validate inputReward perVisit" id="visitInput"> visit</p>
+    <p>1 point for every <input style="width:35px; height: 1rem;" type="number" class="validate inputReward perShare" id="shareInput"> link shared</p>
+    <p>1 point for every purchase worth <input style="width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput"></p>
+</div>
+-->
         </div>
         <div style="text-align:center;margin-bottom:20px;">
             <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="#loyaltyPoints">Buy Points</a>
@@ -286,7 +288,7 @@
     <div id="removeManagerModal" class="modal" style="border-radius:10p;z-index:1000 !important;">
         <div class="modal-content" style="padding:0px;">
             <div class="opacitySelectedColor" style="text-align:center;background:#ff0000;margin:0px;padding:10px;color:white;">
-                <h5 style="margin:0px;">REMOVE MEMBER</h5>
+                <h5 style="margin:0px;">REMOVE MANAGER</h5>
             </div>
             <div style="padding:20px;">
                 <p>Are you sure you want to remove this manager?</p>
@@ -324,7 +326,9 @@
                     <a class="active" href="#test-swipe-1"><img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;line-height: 0px;display:block;margin:10px auto;border:solid white 3px; height:ininitial;" /></a>
                 </li>
                 <li class="tab col s6" style="height:initial;">
-                    <a href="#test-swipe-2"><img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;line-height: 0px;display:block;margin:10px auto;border:solid white 3px;" /></a>
+                    <a href="#test-swipe-2">
+                        <p alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;height: 70px;line-height: 0px;display:block;margin:10px auto;border:solid white 3px;background: #79bb3c;line-height: 2.1;font-size: 2em;font-weight: bold;">k</p>
+                    </a>
                 </li>
             </ul>
             <div id="test-swipe-1" class="col s12">
@@ -1151,7 +1155,7 @@
                                 </div>
                                 <div class="collapsible-body" style="padding: 0px; background: rgb(245, 245, 245); width: 100%; display: none; padding-bottom: 100vh !important; overflow: hidden !important; margin-top: 30px;">
                                     <span>
-                                        <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); managerListener();">
+                                        <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); managerListener(); getManager();">
                                             <i class="mdi-social-people">
                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width:20px;" xml:space="preserve">
                                                     <g xmlns="http://www.w3.org/2000/svg">
@@ -1438,6 +1442,10 @@
                             <p style="background: white; line-height: 4; margin: 0px; box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px;"><span style="color: white; padding: 19.5px; background: #009688;">5</span><input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="firstVisitPoints"> point for the first <input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="firstVisitVal">visit</p>
                         </div>
                         <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="#loyaltyPoints" style="display:block;    width: 170px; margin-left: auto; margin-right: auto;">Buy Points</a>
+                        <div>
+                            <button id="readButton" onclick="onReadButtonClick()">Get Characteristic User Description</button>
+
+                        </div>
                     </div>
                 </div>
                 <div class="col s12 m4 l4 products" style="display:none;">

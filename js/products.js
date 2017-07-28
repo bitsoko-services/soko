@@ -252,9 +252,10 @@ function addProduct() {
         id: localStorage.getItem('soko-active-store'),
         prod: newProdDat
     }).then(function (e) {
+        Materialize.toast('tests', 3000);
         if (e.status == 'ok') {
             refreshProducts();
-            Materialize.toast('added ..', 3000);
+            Materialize.toast('Product added successfully', 3000);
             $('#add-product').modal('close');
         } else {
             console.log(e);
@@ -388,7 +389,8 @@ function getProductsPromotions() {
         $.each(products_in_promotion, function (index, products) {
             check = $(products).find('input')[0]
             if ($(check).is(':checked')) {
-                product_id = $(check).attr('prod_id')
+                product_id = $(check).attr('prod_id');
+                console.log("prodId------------" + product_id)
                 promos_to_products[$(promotion).attr('id')].push(product_id)
             }
         })

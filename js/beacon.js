@@ -120,3 +120,73 @@ function getBeaconStatus() {
         var val = $(this).attr('bid');
     });
 }
+
+
+//Write Descriptor
+var myDescriptor;
+
+function onReadButtonClick() {
+    let serviceUuid = "000000ff-0000-1000-8000-00805f9b34fb";
+    if (serviceUuid.startsWith('0x')) {
+        serviceUuid = parseInt(serviceUuid);
+    }
+
+    let characteristicUuid = "0000ff01-0000-1000-8000-00805f9b34fb";
+    if (characteristicUuid.startsWith('0x')) {
+        characteristicUuid = parseInt(characteristicUuid);
+    }
+
+    console.log('Requesting any Bluetooth Device...');
+    navigator.bluetooth.requestDevice({
+            // filters: [...] <- Prefer filters to save energy & show relevant devices.
+            acceptAllDevices: true,
+            optionalServices: [serviceUuid]
+        })
+        .then(device => {
+            console.log('Connecting to GATT Server...');
+            return device.gatt.connect();
+        })
+        .then(server => {
+            console.log('Getting Service...');
+            return server.getPrimaryService(serviceUuid);
+        })
+        .then(service => {
+            console.log('Getting Characteristic...');
+            return service.getCharacteristic(characteristicUuid);
+        })
+        .then(characteristic => {
+            console.log('Getting Descriptor...');
+            return characteristic.getDescriptor(0x2902);
+        })
+        .then(descriptor => {
+            //            document.querySelector('#writeButton').disabled = !descriptor.characteristic.properties.write;
+            myDescriptor = descriptor;
+            console.log('Reading Descriptor...');
+            return descriptor.readValue();
+        })
+        .then(value => {
+            let decoder = new TextDecoder('utf-8');
+            console.log('> Characteristic User Description: ' + decoder.decode(value));
+            onWriteButtonClick()
+        })
+        .catch(function (error) {
+            //            document.querySelector('#writeButton').disabled = true;
+            console.log('Argh! ' + error);
+        });
+}
+
+function onWriteButtonClick() {
+    if (!myDescriptor) {
+        return;
+    }
+    let encoder = new TextEncoder('utf-8');
+    let value = "";
+    console.log('Setting Characteristic User Description...');
+    myDescriptor.writeValue(encoder.encode(value))
+        .then(_ => {
+            console.log('> Characteristic User Description changed to: ' + value);
+        })
+        .catch(error => {
+            console.log('Argh! ' + error);
+        });
+}

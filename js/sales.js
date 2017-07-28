@@ -98,7 +98,7 @@ function addOrderItems(orderid, orderItems, orderLoc) {
 
         //number: p.orderItems.phone
         var orderUser = {
-            name: 'a name',
+            name: orderCrdName,
             icon: p.orderItems.icon,
             number: '0707'
         };
@@ -196,7 +196,7 @@ function orderUpdater() {
         } catch (err) {
             console.log('unable to access orders list. ' + err);
             refreshSalesOrders();
-            orderCollapsible();
+            // orderCollapsible();
             return;
         }
 
