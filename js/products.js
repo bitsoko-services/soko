@@ -252,9 +252,10 @@ function addProduct() {
         id: localStorage.getItem('soko-active-store'),
         prod: newProdDat
     }).then(function (e) {
+        Materialize.toast('tests', 3000);
         if (e.status == 'ok') {
             refreshProducts();
-            Materialize.toast('added ..', 3000);
+            Materialize.toast('Product added successfully', 3000);
             $('#add-product').modal('close');
         } else {
             console.log(e);
