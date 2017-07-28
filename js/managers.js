@@ -17,7 +17,7 @@ $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
                     manager: id
                 }).then(function (e) {
                     if (e.status == 'ok') {
-                        $("#managersLst").append('<div id="' + thisId + '" class="chip removeMember"> <img src="' + thisIcon + '"> ' + thisName + ' </div>');
+                        $("#managersLst").append('<div id="' + thisId + '" class="chip removeManager"> <img src="' + thisIcon + '"> ' + thisName + ' </div>');
                         $("#storeManagers").val("");
                     } else {}
                 });
@@ -36,7 +36,7 @@ function getManager() {
             var id = deliveryGuys[t].id;
             var icon = deliveryGuys[t].icon;
             if (mngrId == id) {
-                $("#managersLst").append('<div id="' + id + '" class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
+                $("#managersLst").append('<div id="' + id + '" class="chip removeManager"> <img src="' + icon + '"> ' + name + ' </div>');
             }
         }
     }
@@ -62,7 +62,7 @@ $(document).on("click", ".removeManager", function () {
             data: id
         }).then(function (e) {
             if (e.status == 'ok') {
-                $(removeManager).remove();
+                $(this).remove();
             } else {}
         });
     });

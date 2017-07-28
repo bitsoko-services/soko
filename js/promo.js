@@ -39,8 +39,9 @@ function checkedProdsInPromo() {
             console.log(tt)
             for (var prop in tt) {
                 var checked = "#prod" + tt[prop] + "-" + promoID;
-                console.log(checked)
                 $(checked).prop('checked', true);
+                $("#editPlus-" + tt[prop]).prop("disabled", false);
+                $("#editMinus-" + tt[prop]).prop("disabled", false);
             }
         }
     }
