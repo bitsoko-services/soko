@@ -37,6 +37,13 @@ function profileLoaded(p) {
     });
 
     sponsoredProdListener();
+    var storeColor = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme
+    $('.selectedColor').css('cssText', 'background: ' + storeColor + ' !important');
+    $('nav').css("box-shadow", "none");
+    $('.opacitySelectedColor').css({
+        background: '' + storeColor + '',
+        filter: 'brightness(1.3)'
+    });
 }
 
 
@@ -93,14 +100,6 @@ function updateStores() {
     }).catch(function (err) {
         loadPOS();
     });
-
-    //    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('bits-user-name') + '-orders').onsuccess = function (event) {
-    //        console.log('[+]refresh sales order, from server: ', event.target.result)
-    //    }
-
-    //    getObjectStore('data', 'readwrite').get('soko-stores').onsuccess = function (event) {
-    //        console.log('[+]refresh sales order, from server: ', JSON.parse(event.target.result))
-    //    }
 }
 
 function reqMsg(data) {

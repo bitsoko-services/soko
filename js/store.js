@@ -159,6 +159,7 @@ function editStore() {
                 editStoreCallback();
                 reqLoc();
                 transferListener();
+                updateStores()
                 var xx = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
                 document.querySelector('#editStoreModal #editStore-name').value = xx.name;
                 document.querySelector('#editStoreModal #editStore-description').value = xx.description;
@@ -492,18 +493,23 @@ $(".deleteStore").click(function () {
 //update location
 $("#updateLoc").click(function () {
     myLoc();
-    setTimeout(function () {
-        doFetch({
-            action: 'doEditStore',
-            id: localStorage.getItem('soko-active-store'),
-            prop: "lonlat",
-            val: document.querySelector('#editStore-Location').value
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                Materialize.toast('Location updated successfully', 3000);
-            }
-        });
-    }, 3000);
+    var locationField = document.getElementById('editStore-Location').value
+    if (locationField == "location not found") {
+        console.log("error getting location")
+    } else {
+        setTimeout(function () {
+            doFetch({
+                action: 'doEditStore',
+                id: localStorage.getItem('soko-active-store'),
+                prop: "lonlat",
+                val: document.querySelector('#editStore-Location').value
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    Materialize.toast('Location updated successfully', 3000);
+                }
+            });
+        }, 3000);
+    }
 });
 
 //update theme color

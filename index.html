@@ -321,7 +321,7 @@
             <div class="opacitySelectedColor" style="text-align:center; background:#7eb7c8; margin:0px; padding:10px; color:white;height:18vh;">
                 <h5 style="margin:0px;padding-top:2.5vh;">PURCHASE LOYALTY POINTS</h5>
             </div>
-            <ul id="tabs-swipe-demo" class="tabs" style="background:transparent; height:initial; margin-top: -50px;">
+            <ul id="tabs-swipe-demo" class="tabs" style="background:transparent; height: 90px !important;; margin-top: -50px;">
                 <li class="tab col s6" style="height:initial;">
                     <a class="active" href="#test-swipe-1"><img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;line-height: 0px;display:block;margin:10px auto;border:solid white 3px; height:ininitial;" /></a>
                 </li>
@@ -752,7 +752,7 @@
                     </div>
                     <div class="row">
                         <div class="file-field input-field">
-                            <div class="btn"><span>image</span>
+                            <div class="btn opacitySelectedColor"><span>image</span>
                                 <input id="newPromo-image" type="file" stitm="customImage">
                             </div>
                         </div>
@@ -775,7 +775,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="doAddNewPromo waves-effect waves-green btn-flat" style="background:#26A69A;color:white;margin-bottom:10px;">add</a>
+            <a href="#!" class="doAddNewPromo waves-effect waves-green btn-flat opacitySelectedColor" style="background:#26A69A;color:white;margin-bottom:10px;">add</a>
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
         </div>
     </div>
@@ -819,7 +819,7 @@
                                     <label for="editStore-Phone" class="active">Store Theme</label>
                                     <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; margin-bottom:0px; color:black;" disabled>
                                 </div>
-                                <a class="waves-effect waves-light btn" style=" padding-top: 2px; padding-bottom: 38px; margin-top:43px;" id="themeUpdate">ok</a>
+                                <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; margin-top:43px;" id="themeUpdate">ok</a>
                                 <div class="collapsible-body" style="padding:10px; width:100%;">
                                     <span>
                                         <div id="themeCanvas"></div>
@@ -898,7 +898,7 @@
                             <label for="editStore-Location" class="">Location</label>
                         </div>
                         <div class="input-field col s3">
-                            <a class="waves-effect waves-light btn" style="    padding:0 7px; font-size:0.75rem;" id="updateLoc">update</a>
+                            <a class="waves-effect waves-light btn opacitySelectedColor" style="    padding:0 7px; font-size:0.75rem;" id="updateLoc">update</a>
                         </div>
                     </div>
                     <div class="permanentChng">
@@ -1177,7 +1177,7 @@
                                             </i>Edit Store Information
                                         </a> 
                                     </span>
-                                    <span>
+                                    <span style="display:none;">
                                         <div class="switch" style="margin-top:5px;">
                                             <span>
                                                 <svg class="paymentIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 59.998 59.998" style="enable-background:new 0 0 59.998 59.998;width: 25px;margin-left: 15px; margin-right: 15px;" xml:space="preserve">
@@ -1327,16 +1327,16 @@
                 <div class="col s12 m4 l4 storefront">
                     <div class="col s12 m8 l9">
                         <div class="row">
-                            <div class="col s12" style="padding:0px;position:fixed;z-index:10;">
-                                <ul class="selectedColor tabs tab-storefront-active z-depth-1" style="width: 100%; background-color:#0F5F76;margin-top:-1px;height:30px;">
+                            <div class="col s12" style="padding:0px;position:fixed;z-index:10; margin-top:-1px;">
+                                <ul class="selectedColor tabs tab-storefront-active z-depth-1" style="width: 100%; background-color:#0F5F76;margin-top:-1px;height:30px !important;">
                                     <li class="tab col s3">
                                         <a class="white-text active" href="#sales" style="line-height: 25px;" onclick="refreshSalesOrders();">Sales</a>
                                     </li>
                                     <li class="tab col s3">
                                         <a class="white-text" href="#promotions" style="line-height: 25px;" onclick="refreshProducts();">Promotions</a>
                                     </li>
-                                    <div class="selectedColor indicator" style="right: 121px; left: 121px;"></div>
-                                    <div class="selectedColor indicator" style="right: 121px; left: 121px;"></div>
+                                    <div class="indicator" style="right: 121px; left: 121px;"></div>
+                                    <div class="indicator" style="right: 121px; left: 121px;"></div>
                                 </ul>
                             </div>
                             <div class="col s12" style="margin-top:30px;">
@@ -1361,7 +1361,7 @@
                                         <!-- end tab content -->
                                     </ul>
                                     <div class="fixed-action-btn" style="z-index:0;">
-                                        <a class="modal-trigger waves-effect waves-light btn" href="#newPromoModal">
+                                        <a class="modal-trigger waves-effect waves-light btn opacitySelectedColor" href="#newPromoModal">
                                             <i class="mdi-action-redeem left">
                                                 </i>New
                                         </a>
@@ -1426,8 +1426,8 @@
                 </div>
                 <div id="rewards" class="col s12 m4 l4 rewards" style="display:none;">
                     <div class="row" style="text-align:center;">
-                        <div class="opacitySelectedColor" style="text-align:center;background:#0F5F76;margin:0px;padding:10px;color:white; border-bottom: solid white 3px;">
-                            <h5 style="margin:0px;font-size: 15px;">STORE REWARD</h5>
+                        <div class="selectedColor" style="text-align:center;background:#0F5F76;margin:0px;padding:10px;color:white; border-bottom: solid white 3px;">
+                            <h5 style="margin:0px;font-size: 15px;    padding-bottom: 15px; color:white;">REWARDS</h5>
                             <!--                            <p style="padding:0px;margin:0px;">10 points = Ksh. 1</p>-->
                         </div>
                         <div style="padding:10px; text-align:left;" id="rewardsPoints">
@@ -1442,10 +1442,12 @@
                             <p style="background: white; line-height: 4; margin: 0px; box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px;"><span style="color: white; padding: 19.5px; background: #009688;">5</span><input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="firstVisitPoints"> point for the first <input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="firstVisitVal">visit</p>
                         </div>
                         <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="#loyaltyPoints" style="display:block;    width: 170px; margin-left: auto; margin-right: auto;">Buy Points</a>
-                        <div>
-                            <button id="readButton" onclick="onReadButtonClick()">Get Characteristic User Description</button>
+                        <!--
+<div>
+    <button id="readButton" onclick="onReadButtonClick()">Get Characteristic User Description</button>
 
-                        </div>
+</div>
+-->
                     </div>
                 </div>
                 <div class="col s12 m4 l4 products" style="display:none;">
@@ -1456,17 +1458,17 @@
                     </nav>
                     <ul class="products-collapsible collapsible collapsible-accordion chStoreUpdate" data-collapsible="accordion" style="background:white;"> </ul>
                     <div class="fixed-action-btn click-to-toggle">
-                        <a class="btn-floating" style="width:55px;height:55px;border-radius:50%;background:#26A69A; line-height:55px; font-size:2em;">
+                        <a class="btn-floating opacitySelectedColor" style="width:55px;height:55px;border-radius:50%;background:#26A69A; line-height:55px; font-size:2em;">
                             <p style="margin-top:0px !important;text-align:center;">+</p>
                         </a>
                         <ul style="bottom:50px !important;">
                             <li>
-                                <a href="#spnsrdModal" class="btn-floating newProdBtn" style="width:auto !important; padding: 0px 10px 0px 10px;background:#26A69A; margin-left:-15px;">
+                                <a href="#spnsrdModal" class="btn-floating newProdBtn opacitySelectedColor" style="width:auto !important; padding: 0px 10px 0px 10px;background:#26A69A; margin-left:-15px;">
                                     <p class="material-icons newProdBtnName" style="margin-top:0px !important;font-size:0.8rem;">Sponsored</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#add-product" class="btn-floating newProdBtn" style="width:auto !important; padding: 0px 10px 0px 10px;font-size:0.8rem;background:#26A69A;">
+                                <a href="#add-product" class="btn-floating newProdBtn opacitySelectedColor" style="width:auto !important; padding: 0px 10px 0px 10px;font-size:0.8rem;background:#26A69A;">
                                     <p class="material-icons newProdBtnName" style="margin-top:0px !important;">New</p>
                                 </a>
                             </li>

@@ -81,6 +81,8 @@ function productsUpdater() {
                 btn.onclick = function () {
                     modal.style.display = "block";
                 }
+
+
             }
 
 
@@ -89,6 +91,13 @@ function productsUpdater() {
             //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
             $(".products-collapsible").append($.parseHTML(html));
         }
+
+        var storeColor = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme
+        $('.opacitySelectedColor').css({
+            background: '' + storeColor + '',
+            filter: 'brightness(1.3)'
+        });
+
         rmvProduct();
         $('#spnsrdModal').modal({
             ready: function (modal, trigger) {
