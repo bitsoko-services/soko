@@ -92,11 +92,7 @@ function productsUpdater() {
             $(".products-collapsible").append($.parseHTML(html));
         }
 
-        var storeColor = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme
-        $('.opacitySelectedColor').css({
-            background: '' + storeColor + '',
-            filter: 'brightness(1.3)'
-        });
+        loadTheme();
 
         rmvProduct();
         $('#spnsrdModal').modal({

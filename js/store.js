@@ -193,6 +193,7 @@ function doSwitchStore() {
             promoUpdater();
             billingUpdater();
             productsUpdater();
+            storeOwner();
         }
     }).modal('close');
 }
@@ -533,10 +534,14 @@ $(document).on("click", "#closeNewStoreModal", function () {
 });
 
 //Hide Settings If Owner Do Not Much
-var bitsUserName = localStorage.getItem("bits-user-name");
-var sokoOwner = localStorage.getItem("soko-owner-id");
-if (bitsUserName != sokoOwner) {
-    $(".settingsIcon").hide();
+function storeOwner() {
+    var bitsUserName = localStorage.getItem("bits-user-name");
+    var sokoOwner = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).owner;
+    if (bitsUserName != sokoOwner) {
+        $(".settingsIcon").hide();
+    } else {
+        $(".settingsIcon").css("display", "block");
+    }
 }
 
 var shroot = document.querySelectorAll(".newStore");

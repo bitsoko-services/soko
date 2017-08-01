@@ -37,6 +37,10 @@ function profileLoaded(p) {
     });
 
     sponsoredProdListener();
+    loadTheme();
+}
+
+function loadTheme() {
     var storeColor = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme
     $('.selectedColor').css('cssText', 'background: ' + storeColor + ' !important');
     $('nav').css("box-shadow", "none");
@@ -44,6 +48,7 @@ function profileLoaded(p) {
         background: '' + storeColor + '',
         filter: 'brightness(1.3)'
     });
+    storeOwner();
 }
 
 
