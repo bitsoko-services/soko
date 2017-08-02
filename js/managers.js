@@ -2,6 +2,7 @@ $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
     var value = $('#sokoMangers').val();
     if (value != '') {
         var managerSlct = $('#storeManagers').val();
+        $("#managersLst").html("")
         for (var i in deliveryGuys) {
             var name = deliveryGuys[i].name;
             var id = deliveryGuys[i].id;
