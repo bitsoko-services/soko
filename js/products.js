@@ -101,7 +101,7 @@ function productsUpdater() {
             }
         });
 
-        $('.products-collapsible').collapsible();
+        //        $('.products-collapsible').collapsible();
         $('select').material_select();
         Materialize.updateTextFields();
         initProdCallback();

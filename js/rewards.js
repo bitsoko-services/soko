@@ -48,8 +48,7 @@ rewardsCallback()
 
 //Buy Points
 function initPaymentRequest() {
-    let networks = ['amex', 'diners', 'discover', 'jcb', 'mastercard', 'unionpay',
-      'visa', 'mir'];
+    let networks = ['mastercard', 'visa'];
     let types = ['debit', 'credit', 'prepaid'];
     let supportedInstruments = [{
         supportedMethods: networks,

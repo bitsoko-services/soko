@@ -194,6 +194,7 @@ function doSwitchStore() {
             billingUpdater();
             productsUpdater();
             storeOwner();
+            loadTheme()
         }
     }).modal('close');
 }

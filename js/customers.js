@@ -10,6 +10,7 @@ function refreshCustomers() {
         console.log("The customer count is " + (e.customers.length + 1));
         cusLen = e.customers.length;
         $(".cusLen").html(cusLen)
+        console.log(cusLen)
         for (var i = 0; i < e.customers.length; i++) {
             //timeline.push({time:'',type:'cust',title:'Name',body:'',amount:''});
         };

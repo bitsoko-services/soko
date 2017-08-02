@@ -42,12 +42,28 @@ function profileLoaded(p) {
 
 function loadTheme() {
     var storeColor = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme
-    $('.selectedColor').css('cssText', 'background: ' + storeColor + ' !important');
-    $('nav').css("box-shadow", "none");
-    $('.opacitySelectedColor').css({
-        background: '' + storeColor + '',
-        filter: 'brightness(1.3)'
-    });
+    if (storeColor == "") {
+        $('.selectedColor').css('cssText', 'background: #0F5F76 !important');
+        $('nav').css("box-shadow", "none");
+        $('.opacitySelectedColor').css({
+            background: '#0F5F76',
+            filter: 'brightness(1.3)'
+        });
+    } else if (storeColor == null) {
+        $('.selectedColor').css('cssText', 'background: #0F5F76 !important');
+        $('nav').css("box-shadow", "none");
+        $('.opacitySelectedColor').css({
+            background: '#0F5F76',
+            filter: 'brightness(1.3)'
+        });
+    } else {
+        $('.selectedColor').css('cssText', 'background: ' + storeColor + ' !important');
+        $('nav').css("box-shadow", "none");
+        $('.opacitySelectedColor').css({
+            background: '' + storeColor + '',
+            filter: 'brightness(1.3)'
+        });
+    }
     storeOwner();
 }
 

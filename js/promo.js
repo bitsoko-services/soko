@@ -209,8 +209,32 @@ function promoCreator(proId) {
                     var checkerID = $(this).attr('prod_id');
                     console.log(checkerID)
 
-                    var value = $(this).attr('id').checked;
-                    console.log(value)
+                    var value = $(this).attr('id');
+                    var checkerState = document.getElementById(value).checked
+                    if (checkerState == true) {
+                        doFetch({
+                            action: 'addPromoProd',
+                            id: checkerID,
+                        }).then(function (e) {
+                            if (e.status == 'ok') {
+
+                            } else {
+                                console.log(e);
+                            }
+                        });
+                    } else if (checkerState == false) {
+                        doFetch({
+                            action: 'removePromoProd',
+                            id: checkerID,
+                        }).then(function (e) {
+                            if (e.status == 'ok') {
+
+                            } else {
+                                console.log(e);
+                            }
+                        });
+                    }
+
 
                     $('#editPlus-' + checkerID).attr('disabled', !this.checked)
                     $('#editMinus-' + checkerID).attr('disabled', !this.checked)
