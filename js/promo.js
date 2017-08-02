@@ -208,6 +208,10 @@ function promoCreator(proId) {
                 $('#prod' + e[i].id + '-' + proId).click(function () {
                     var checkerID = $(this).attr('prod_id');
                     console.log(checkerID)
+
+                    var value = $(this).attr('id').checked;
+                    console.log(value)
+
                     $('#editPlus-' + checkerID).attr('disabled', !this.checked)
                     $('#editMinus-' + checkerID).attr('disabled', !this.checked)
                 });
