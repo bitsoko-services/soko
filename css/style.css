@@ -3844,3 +3844,33 @@ ul.side-nav.leftside-navigation li:hover {
 .tabs {
     height: 30px !important;
 }
+
+
+/*******************************************
+                 RWEWARDS
+*********************************************/
+
+.rewardCard {
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.rewardCard .row {
+    padding: 10px;
+}
+
+.rewardCard .switch {
+    float: right;
+}
+
+.rewardCard .lever {
+    margin: 0px !important;
+}
+
+.rewardsHeader {
+    width: 100.1%;
+    position: fixed;
+    margin-top: -1px;
+    z-index: 1;
+}

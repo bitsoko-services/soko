@@ -1426,22 +1426,126 @@
                 </div>
                 <div id="rewards" class="col s12 m4 l4 rewards" style="display:none;">
                     <div class="row" style="text-align:center;">
-                        <div class="selectedColor" style="text-align:center;background:#0F5F76;margin:0px;padding:10px;color:white; border-bottom: solid white 3px;">
+                        <div class="selectedColor rewardsHeader" style="text-align:center;background:#0F5F76;margin:0px;padding:10px;color:white; border-bottom: solid white 3px;">
                             <h5 style="margin:0px;font-size: 15px;    padding-bottom: 15px; color:white;">REWARDS</h5>
                             <!--                            <p style="padding:0px;margin:0px;">10 points = Ksh. 1</p>-->
                         </div>
                         <div style="padding:10px; text-align:left;" id="rewardsPoints">
-                            <p style="background: white; line-height: 4; margin: 0px; box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px;"><span style="color: white; padding: 19.5px; background: #009688;">1</span><input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="visitPoints"> point for every <input style="margin: 0px 10px; width:35px;margin-top:-10px; height: 1rem;" type="number" class="validate inputReward perVisit" id="visitInput" rwditm="visitVal"> visit</p>
+                            <div class="rewardCard" style="margin-top: 35px;">
+                                <div class="row">
+                                    <div class="col s9">VISITS</div>
+                                    <div class="col s3">
+                                        <div class="switch">
+                                            <label>
+                                              <input type="checkbox" id="visitSwitch" rwditm="visitState">
+                                              <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider" style="margin:5px 0px;"></div>
+                                <div class="row">
+                                    <form class="col s12">
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="visitPoints" placeholder="">
+                                                <label for="first_name">Points</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perVisit" id="visitInput" rwditm="visitVal" placeholder="">
+                                                <label for="first_name">Per Visit</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="rewardCard">
+                                <div class="row">
+                                    <div class="col s9">SHARE</div>
+                                    <div class="col s3">
+                                        <div class="switch">
+                                            <label>
+                                              <input type="checkbox" id="shareSwitch" rwditm="shareState">
+                                              <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider" style="margin:5px 0px;"></div>
+                                <div class="row">
+                                    <form class="col s12">
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="sharePoints" placeholder="">
+                                                <label for="first_name">Points</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perShare" id="shareInput" rwditm="shareVal" placeholder="">
+                                                <label for="first_name">Per Ling Shared</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="rewardCard">
+                                <div class="row">
+                                    <div class="col s9">PURCHASE</div>
+                                    <div class="col s3">
+                                        <div class="switch">
+                                            <label>
+                                              <input type="checkbox" id="purchaseSwitch" rwditm="purchaseState">
+                                              <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider" style="margin:5px 0px;"></div>
+                                <div class="row">
+                                    <form class="col s12">
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="purchasePoints" placeholder="">
+                                                <label for="first_name">Points</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="purchaseVal" placeholder="">
+                                                <label for="first_name">Purchase Worth</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="rewardCard">
+                                <div class="row">
+                                    <div class="col s9">DELIVERIES</div>
+                                    <div class="col s3">
+                                        <div class="switch">
+                                            <label>
+                                              <input type="checkbox" id="deliverySwitch" rwditm="deliveryState">
+                                              <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider" style="margin:5px 0px;"></div>
+                                <div class="row">
+                                    <form class="col s12">
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="deliveryPoits" placeholder="">
+                                                <label for="first_name">Points</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="deliveryVal" placeholder="">
+                                                <label for="first_name">Deliveries Made</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
 
-                            <p style="background: white; line-height: 4; margin: 0px; box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px;"><span style="color: white; padding: 19.5px; background: #009688;">2</span><input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="sharePoints"> point for every <input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perShare" id="shareInput" rwditm="shareVal"> link shared</p>
-
-                            <p style="background: white; line-height: 4; margin: 0px; box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px;"><span style="color: white; padding: 19.5px; background: #009688;">3</span><input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="purchasePoints"> point for every purchase worth <input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="purchaseVal"></p>
-
-                            <p style="background: white; line-height: 4; margin: 0px; box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px;"><span style="color: white; padding: 19.5px; background: #009688;">4</span><input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="deliveryPoits"> point for every <input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="deliveryVal">deliveries made</p>
-
-                            <p style="background: white; line-height: 4; margin: 0px; box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px;"><span style="color: white; padding: 19.5px; background: #009688;">5</span><input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="firstVisitPoints"> point for the first <input style="margin: 0px 10px; width:35px; height: 1rem;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="firstVisitVal">visit</p>
                         </div>
-                        <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="#loyaltyPoints" style="display:block;    width: 170px; margin-left: auto; margin-right: auto;">Buy Points</a>
+                        <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="#loyaltyPoints" style="display:block;    width: 170px; margin-left: auto; margin-right: auto; margin-bottom:20px;">Buy Points</a>
                         <!--
 <div>
     <button id="readButton" onclick="onReadButtonClick()">Get Characteristic User Description</button>

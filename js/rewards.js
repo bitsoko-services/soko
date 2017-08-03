@@ -3,30 +3,51 @@ $('.loyaltyCls').click(function () {
     $('#loyaltyModal').modal('close');
 });
 
-//Reward Points
-function rewardPoints() {
-    doFetch({
-        action: 'rewardPoints',
-        id: localStorage.getItem('soko-active-store'),
-        data: {
-            perVisit: document.querySelector('#visitInput').value,
-            perShare: document.querySelector('#shareInput').value,
-            perPurchase: document.querySelector('#purchaseInput').value
-        }
-    })
-}
-
 function updateRewardpoints(t) {
     var rwditm = $(t.target).attr('rwditm');
     var name = $(t.target).attr('rwditm');
     var val = $(t.target).val();
-    doFetch({
-        action: 'storeRewards',
-        value: val,
-        prop: name,
-    }).then(function (e) {
-        if (e.status == 'ok') {} else {}
-    });
+    if (rwditm == "visitState") {
+        doFetch({
+            action: 'storeRewards',
+            value: $(this).prop("checked"),
+            prop: name,
+        }).then(function (e) {
+            if (e.status == 'ok') {} else {}
+        });
+    } else if (rwditm == "shareState") {
+        doFetch({
+            action: 'storeRewards',
+            value: $(this).prop("checked"),
+            prop: name,
+        }).then(function (e) {
+            if (e.status == 'ok') {} else {}
+        });
+    } else if (rwditm == "purchaseState") {
+        doFetch({
+            action: 'storeRewards',
+            value: $(this).prop("checked"),
+            prop: name,
+        }).then(function (e) {
+            if (e.status == 'ok') {} else {}
+        });
+    } else if (rwditm == "deliveryState") {
+        doFetch({
+            action: 'storeRewards',
+            value: $(this).prop("checked"),
+            prop: name,
+        }).then(function (e) {
+            if (e.status == 'ok') {} else {}
+        });
+    } else {
+        doFetch({
+            action: 'storeRewards',
+            value: val,
+            prop: name,
+        }).then(function (e) {
+            if (e.status == 'ok') {} else {}
+        });
+    }
 }
 
 

@@ -654,19 +654,6 @@ function sponsoredProdListener() {
 
 
 
-
-//rewardPoints()
-document.getElementById("visitInput").oninput = function () {
-    rewardPoints();
-};
-document.getElementById("shareInput").oninput = function () {
-    rewardPoints();
-};
-document.getElementById("purchaseInput").oninput = function () {
-    rewardPoints();
-};
-
-
 function persistentFunc() {
     if (navigator.storage && navigator.storage.persist)
         navigator.storage.persisted().then(persistent => {
