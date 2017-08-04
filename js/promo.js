@@ -329,7 +329,7 @@ function doNewPromo() {
         }
     }
 
-    //$('.promo-add-new-promotion2')
+    Materialize.toast("Adding promotion. Please wait", null, 'promoWaitToast');
     doFetch({
         action: 'doNewPromo',
         ownerid: JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).id,
@@ -341,7 +341,8 @@ function doNewPromo() {
         offers: document.querySelector('#newPromo-offers').value
     }).then(function (e) {
         if (e.status == 'ok') {
-            Materialize.toast('added new promotion..', 3000);
+            $('.promoWaitToast').remove();
+            Materialize.toast('Added new promotion successfully', 3000);
             refreshPromotions();
             $('#newPromoModal').modal('close');
         } else {
@@ -354,11 +355,13 @@ function doNewPromo() {
 $(document).on('touchstart click', '.removePromo', function (event) {
     parent_div = $(this).parent().parent().parent().parent().parent().parent().parent().remove();
     id = $(this).parent().parent().attr("fid");
+    Materialize.toast("Removing promotion. Please wait", null, 'promoWaitToast');
     doFetch({
         action: 'removePromotion',
         id: id
     }).then(function (e) {
         if (e.status == 'ok') {
+            $('.promoWaitToast').remove();
             Materialize.toast('Promotion Removed Successfully', 3000);
             refreshPromotions();
             parent_div
