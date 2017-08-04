@@ -217,9 +217,10 @@ function promoCreator(proId) {
                             id: checkerID,
                         }).then(function (e) {
                             if (e.status == 'ok') {
-
+                                Materialize.toast('Promotion item added successfully', 3000);
                             } else {
                                 console.log(e);
+                                Materialize.toast('Error! Please try again', 3000);
                             }
                         });
                     } else if (checkerState == false) {
@@ -228,9 +229,10 @@ function promoCreator(proId) {
                             id: checkerID,
                         }).then(function (e) {
                             if (e.status == 'ok') {
-
+                                Materialize.toast('Promotion item removed successfully', 3000);
                             } else {
                                 console.log(e);
+                                Materialize.toast('Error! Please try again', 3000);
                             }
                         });
                     }
