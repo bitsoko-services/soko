@@ -368,31 +368,40 @@ stCb.onsuccess = function (event) {
 */
 
 //Shop Transfer
-$('document').ready(function () {
-    $('body').on('click', $('#transfer-shop ul.autocomplete-content li'), function () {
-        var value = $('#transfer-shop').val();
-        if (value != '') {
-            var transferStore = $('#transfer-shop').val()
-            doFetch({
-                action: 'transferStore',
-                store: localStorage.getItem('soko-active-store'),
-                data: transferStore
-            }).then(function (e) {
-                if (e.status == 'ok') {} else {}
-            });
+var transferShopVal = ""
+$(document).on('click', $('ul.autocomplete-content li'), function (e) {
+    var value = $('#transfer-shop').val();
+    if (value != '') {
+        var selectedId = value;
+        console.log(selectedId)
+        for (var i in deliveryGuys) {
+            var name = deliveryGuys[i].name;
+            var id = deliveryGuys[i].id;
+            if (selectedId == name) {
+                transferShopVal = id;
+                $("#transferShopModal").show();
+                $("#transferName").html(name);
+            }
         }
+    }
+});
+$('#transferYesBtn').on('click', function (event) {
+    $('#transfer-shop').val("");
+    $("#transferShopModal").hide();
+    doFetch({
+        action: 'transferStore',
+        store: localStorage.getItem('soko-active-store'),
+        data: transferShopVal
+    }).then(function (e) {
+        if (e.status == 'ok') {
+
+        } else {}
     });
 });
-
-//function storeTheme() {
-//    var initialTheme = $('#colorChosen').val();
-//    $(".selectedColor").css("background-color", initialTheme);
-//    $(".opacitySelectedColor").css({
-//        'background-color': initialTheme,
-//        'filter': 'brightness(1.3)'
-//    })
-//}
-//storeTheme();
+$('#transferNoBtn').on('click', function (event) {
+    $('#transfer-shop').val("");
+    $("#transferShopModal").hide();
+});
 
 //Notification Days If Checked
 $(".editStore").click(function () {
