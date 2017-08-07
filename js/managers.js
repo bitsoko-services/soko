@@ -2,7 +2,6 @@ $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
     var value = $('#sokoMangers').val();
     if (value != '') {
         var managerSlct = $('#storeManagers').val();
-        $("#managersLst").html("")
         for (var i in deliveryGuys) {
             var name = deliveryGuys[i].name;
             var id = deliveryGuys[i].id;
@@ -20,6 +19,7 @@ $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
                     if (e.status == 'ok') {
                         $("#managersLst").append('<div id="' + thisId + '" class="chip removeManager"> <img src="' + thisIcon + '"> ' + thisName + ' </div>');
                         $("#storeManagers").val("");
+                        getManager()
                     } else {}
                 });
             }
@@ -28,6 +28,7 @@ $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
 });
 
 function getManager() {
+    $("#managersLst").html("")
     var getMngr = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).managers);
     for (var i = 0; i < getMngr.length; i++) {
         var mngrId = getMngr[i].id;

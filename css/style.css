@@ -3048,8 +3048,19 @@ tr.group:hover {
 }
 
 @media screen and (min-width: 993px) {
+    #removeManagerModal {
+        width: 35%;
+        margin-left: 40%;
+        margin-top: 6%;
+    }
+    .tabs {
+        height: 43px !important;
+    }
     .navbar-fixed {
         display: none;
+    }
+    .promoSettings {
+        margin-top: -2.7%;
     }
     ul.side-nav.leftside-navigation {
         top: 0px;
@@ -3261,7 +3272,7 @@ tr.group:hover {
         margin-left: 15px;
     }
     .side-nav {
-        width: 23% !important;
+        width: 24% !important;
     }
     #loyaltyPoints {
         width: 40%;
@@ -3842,7 +3853,7 @@ ul.side-nav.leftside-navigation li:hover {
 }
 
 .tabs {
-    height: 30px !important;
+    height: 30px;
 }
 
 
