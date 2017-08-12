@@ -159,6 +159,7 @@ function editStore() {
                 editStoreCallback();
                 reqLoc();
                 transferListener();
+                updateStores()
                 var xx = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
                 document.querySelector('#editStoreModal #editStore-name').value = xx.name;
                 document.querySelector('#editStoreModal #editStore-description').value = xx.description;
@@ -192,6 +193,8 @@ function doSwitchStore() {
             promoUpdater();
             billingUpdater();
             productsUpdater();
+            storeOwner();
+            loadTheme()
         }
     }).modal('close');
 }
@@ -365,31 +368,40 @@ stCb.onsuccess = function (event) {
 */
 
 //Shop Transfer
-$('document').ready(function () {
-    $('body').on('click', $('#transfer-shop ul.autocomplete-content li'), function () {
-        var value = $('#transfer-shop').val();
-        if (value != '') {
-            var transferStore = $('#transfer-shop').val()
-            doFetch({
-                action: 'transferStore',
-                store: localStorage.getItem('soko-active-store'),
-                data: transferStore
-            }).then(function (e) {
-                if (e.status == 'ok') {} else {}
-            });
+var transferShopVal = ""
+$(document).on('click', $('ul.autocomplete-content li'), function (e) {
+    var value = $('#transfer-shop').val();
+    if (value != '') {
+        var selectedId = value;
+        console.log(selectedId)
+        for (var i in deliveryGuys) {
+            var name = deliveryGuys[i].name;
+            var id = deliveryGuys[i].id;
+            if (selectedId == name) {
+                transferShopVal = id;
+                $("#transferShopModal").show();
+                $("#transferName").html(name);
+            }
         }
+    }
+});
+$('#transferYesBtn').on('click', function (event) {
+    $('#transfer-shop').val("");
+    $("#transferShopModal").hide();
+    doFetch({
+        action: 'transferStore',
+        store: localStorage.getItem('soko-active-store'),
+        data: transferShopVal
+    }).then(function (e) {
+        if (e.status == 'ok') {
+
+        } else {}
     });
 });
-
-//function storeTheme() {
-//    var initialTheme = $('#colorChosen').val();
-//    $(".selectedColor").css("background-color", initialTheme);
-//    $(".opacitySelectedColor").css({
-//        'background-color': initialTheme,
-//        'filter': 'brightness(1.3)'
-//    })
-//}
-//storeTheme();
+$('#transferNoBtn').on('click', function (event) {
+    $('#transfer-shop').val("");
+    $("#transferShopModal").hide();
+});
 
 //Notification Days If Checked
 $(".editStore").click(function () {
@@ -492,18 +504,23 @@ $(".deleteStore").click(function () {
 //update location
 $("#updateLoc").click(function () {
     myLoc();
-    setTimeout(function () {
-        doFetch({
-            action: 'doEditStore',
-            id: localStorage.getItem('soko-active-store'),
-            prop: "lonlat",
-            val: document.querySelector('#editStore-Location').value
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                Materialize.toast('Location updated successfully', 3000);
-            }
-        });
-    }, 3000);
+    var locationField = document.getElementById('editStore-Location').value
+    if (locationField == "location not found") {
+        console.log("error getting location")
+    } else {
+        setTimeout(function () {
+            doFetch({
+                action: 'doEditStore',
+                id: localStorage.getItem('soko-active-store'),
+                prop: "lonlat",
+                val: document.querySelector('#editStore-Location').value
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    Materialize.toast('Location updated successfully', 3000);
+                }
+            });
+        }, 3000);
+    }
 });
 
 //update theme color
@@ -527,10 +544,14 @@ $(document).on("click", "#closeNewStoreModal", function () {
 });
 
 //Hide Settings If Owner Do Not Much
-var bitsUserName = localStorage.getItem("bits-user-name");
-var sokoOwner = localStorage.getItem("soko-owner-id");
-if (bitsUserName != sokoOwner) {
-    $(".settingsIcon").hide();
+function storeOwner() {
+    var bitsUserName = localStorage.getItem("bits-user-name");
+    var sokoOwner = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).owner;
+    if (bitsUserName != sokoOwner) {
+        $(".settingsIcon").hide();
+    } else {
+        $(".settingsIcon").css("display", "block");
+    }
 }
 
 var shroot = document.querySelectorAll(".newStore");

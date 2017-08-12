@@ -37,6 +37,34 @@ function profileLoaded(p) {
     });
 
     sponsoredProdListener();
+    loadTheme();
+}
+
+function loadTheme() {
+    var storeColor = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme
+    if (storeColor == "") {
+        $('.selectedColor').css('cssText', 'background: #0F5F76 !important');
+        $('nav').css("box-shadow", "none");
+        $('.opacitySelectedColor').css({
+            background: '#0F5F76',
+            filter: 'brightness(1.3)'
+        });
+    } else if (storeColor == null) {
+        $('.selectedColor').css('cssText', 'background: #0F5F76 !important');
+        $('nav').css("box-shadow", "none");
+        $('.opacitySelectedColor').css({
+            background: '#0F5F76',
+            filter: 'brightness(1.3)'
+        });
+    } else {
+        $('.selectedColor').css('cssText', 'background: ' + storeColor + ' !important');
+        $('nav').css("box-shadow", "none");
+        $('.opacitySelectedColor').css({
+            background: '' + storeColor + '',
+            filter: 'brightness(1.3)'
+        });
+    }
+    storeOwner();
 }
 
 
@@ -93,14 +121,6 @@ function updateStores() {
     }).catch(function (err) {
         loadPOS();
     });
-
-    //    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('bits-user-name') + '-orders').onsuccess = function (event) {
-    //        console.log('[+]refresh sales order, from server: ', event.target.result)
-    //    }
-
-    //    getObjectStore('data', 'readwrite').get('soko-stores').onsuccess = function (event) {
-    //        console.log('[+]refresh sales order, from server: ', JSON.parse(event.target.result))
-    //    }
 }
 
 function reqMsg(data) {
@@ -632,19 +652,6 @@ function sponsoredProdListener() {
     });
 }
 
-
-
-
-//rewardPoints()
-document.getElementById("visitInput").oninput = function () {
-    rewardPoints();
-};
-document.getElementById("shareInput").oninput = function () {
-    rewardPoints();
-};
-document.getElementById("purchaseInput").oninput = function () {
-    rewardPoints();
-};
 
 
 function persistentFunc() {

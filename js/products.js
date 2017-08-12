@@ -81,6 +81,8 @@ function productsUpdater() {
                 btn.onclick = function () {
                     modal.style.display = "block";
                 }
+
+
             }
 
 
@@ -89,6 +91,9 @@ function productsUpdater() {
             //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
             $(".products-collapsible").append($.parseHTML(html));
         }
+
+        loadTheme();
+
         rmvProduct();
         $('#spnsrdModal').modal({
             ready: function (modal, trigger) {
@@ -96,7 +101,7 @@ function productsUpdater() {
             }
         });
 
-        $('.products-collapsible').collapsible();
+        //        $('.products-collapsible').collapsible();
         $('select').material_select();
         Materialize.updateTextFields();
         initProdCallback();
@@ -247,14 +252,15 @@ function addProduct() {
     forEach(myNodeList, function (index, value) {
         // value.addEventListener("change", updateStore);
     });
+    Materialize.toast("Adding product. Please wait", null, 'prodWaitToast');
     doFetch({
         action: 'doNewProduct',
         id: localStorage.getItem('soko-active-store'),
         prod: newProdDat
     }).then(function (e) {
-        Materialize.toast('tests', 3000);
         if (e.status == 'ok') {
             refreshProducts();
+            $('.prodWaitToast').remove();
             Materialize.toast('Product added successfully', 3000);
             $('#add-product').modal('close');
         } else {
@@ -430,11 +436,13 @@ function rmvProduct() {
             console.log('the product is not checked');
             parent_div = $(this).parent().parent().parent().parent()
             id = $(parent_div).attr('prid')
+            Materialize.toast("Removing product. Please wait", null, 'prodWaitToast');
             doFetch({
                 action: 'removeProduct',
                 id: id
             }).then(function (e) {
                 if (e.status == 'ok') {
+                    $('.prodWaitToast').remove();
                     Materialize.toast('Product Removed Successfully', 3000);
                     $(parent_div).remove();
                     refreshProducts();
