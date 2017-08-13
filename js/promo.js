@@ -35,6 +35,16 @@ function checkedProdsInPromo() {
         var reqs = JSON.parse(event.target.result);
         for (var i = 0; i < reqs.length; ++i) {
             var tt = JSON.parse(reqs[i].promoItems);
+
+            //Unique count
+            uniqueCount = tt;
+            var count = {};
+            uniqueCount.forEach(function (i) {
+                count[i] = (count[i] || 0) + 1;
+            });
+            console.log(count);
+
+
             promoID = reqs[i].id
             console.log(tt)
             for (var prop in tt) {
@@ -42,6 +52,7 @@ function checkedProdsInPromo() {
                 $(checked).prop('checked', true);
                 $("#editPlus-" + tt[prop]).prop("disabled", false);
                 $("#editMinus-" + tt[prop]).prop("disabled", false);
+                //                $("#prodEdit_" + tt[prop]).val(count);
             }
         }
     }

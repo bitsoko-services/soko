@@ -1,7 +1,8 @@
 //Fetch rate
 function fetchRate() {
     fetchRates().then(function (e) {
-        console.log(e.data.baseEx)
+        console.log(e.data.data[0].coinRate * 10)
+        $("#fetchedRate").html(e.data.data[0].coinRate * 10)
     })
 }
 
