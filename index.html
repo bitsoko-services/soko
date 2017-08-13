@@ -1376,9 +1376,8 @@
                                         <!-- end tab content -->
                                     </ul>
                                     <div class="fixed-action-btn" style="z-index:0;">
-                                        <a class="modal-trigger waves-effect waves-light btn opacitySelectedColor" href="#newPromoModal">
-                                            <i class="mdi-action-redeem left">
-                                                </i>New
+                                        <a class="btn-floating opacitySelectedColor" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em;" href="#newPromoModal">
+                                            <p style="margin-top:0px !important;text-align:center;">+</p>
                                         </a>
                                     </div>
                                 </div>
@@ -1442,8 +1441,8 @@
                 <div id="rewards" class="col s12 m4 l4 rewards" style="display:none;">
                     <div class="row" style="text-align:center;">
                         <div class="selectedColor rewardsHeader" style="text-align:center;background:#0F5F76;margin:0px;padding:10px;color:white; border-bottom: solid white 3px;">
-                            <h5 style="margin:0px;font-size: 15px;    padding-bottom: 15px; color:white;">REWARDS</h5>
-                            <!--                            <p style="padding:0px;margin:0px;">10 points = Ksh. 1</p>-->
+                            <h5 style="margin:0px;font-size: 15px; color:white;">REWARDS</h5>
+                            <p style="padding:0px;margin:0px; color:white;">10 points = Ksh. <span id="fetchedRate"></span></p>
                         </div>
                         <div style="padding:10px; text-align:left;" id="rewardsPoints">
                             <div class="rewardCard" style="margin-top: 35px;">
@@ -1576,7 +1575,7 @@
                         </div>
                     </nav>
                     <ul class="products-collapsible collapsible collapsible-accordion chStoreUpdate" data-collapsible="accordion" style="background:white;"> </ul>
-                    <div class="fixed-action-btn click-to-toggle">
+                    <div class="fixed-action-btn click-to-toggle" style="z-index:990;">
                         <a class="btn-floating opacitySelectedColor" style="width:55px;height:55px;border-radius:50%;background:#26A69A; line-height:55px; font-size:2em;">
                             <p style="margin-top:0px !important;text-align:center;">+</p>
                         </a>

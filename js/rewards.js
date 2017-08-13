@@ -1,3 +1,10 @@
+//Fetch rate
+function fetchRate() {
+    fetchRates().then(function (e) {
+        console.log(e.data.baseEx)
+    })
+}
+
 //Enable Loyalty
 $('.loyaltyCls').click(function () {
     $('#loyaltyModal').modal('close');

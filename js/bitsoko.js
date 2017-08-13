@@ -41,6 +41,10 @@ function profileLoaded(p) {
 }
 
 function loadTheme() {
+    //load store name
+    document.title = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).name;
+
+    //load store theme theme
     var storeColor = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme
     if (storeColor == "") {
         $('.selectedColor').css('cssText', 'background: #0F5F76 !important');
