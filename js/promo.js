@@ -43,6 +43,8 @@ function checkedProdsInPromo() {
                 count[i] = (count[i] || 0) + 1;
             });
             console.log(count);
+            //            console.log(Object.keys(count))
+            //            console.log(Object.values(count))
 
 
             promoID = reqs[i].id
@@ -52,7 +54,9 @@ function checkedProdsInPromo() {
                 $(checked).prop('checked', true);
                 $("#editPlus-" + tt[prop]).prop("disabled", false);
                 $("#editMinus-" + tt[prop]).prop("disabled", false);
-                //                $("#prodEdit_" + tt[prop]).val(count);
+                for (var s in count) {
+                    $("#prodEdit_" + s).val(count[s]);
+                }
             }
         }
     }
