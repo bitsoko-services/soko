@@ -3537,7 +3537,7 @@ tr.group:hover {
 #msg {
     width: 165px;
     height: 60px;
-    background: #ffab40;
+    background: #80C342;
     margin-left: 25%;
     position: relative;
 }
@@ -3545,7 +3545,7 @@ tr.group:hover {
 #reverseMsg {
     width: 163px;
     height: 60px;
-    background: #ffab40;
+    background: #80C342;
     margin-right: 15%;
     position: relative;
 }
@@ -3554,7 +3554,7 @@ tr.group:hover {
     content: "";
     position: absolute;
     border-bottom: 30px solid transparent;
-    border-right: 21px solid #ffab40;
+    border-right: 21px solid #80C342;
     border-top: 30px solid transparent;
     height: 0px;
     width: 0px;
@@ -3604,7 +3604,7 @@ tr.group:hover {
     content: "";
     position: absolute;
     border-bottom: 30px solid transparent;
-    border-left: 21px solid #ffab40;
+    border-left: 21px solid #80C342;
     border-top: 30px solid transparent;
     height: 0px;
     width: 0px;
