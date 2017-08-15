@@ -1,8 +1,25 @@
 //Fetch rate
 function fetchRate() {
     fetchRates().then(function (e) {
-        $("#fetchedRate").html(e.data.data[0].coinRate * e.data.baseEx)
-    })
+        if (e.status == "ok") {
+            coinList = e.data.data;
+            for (var i in coinList) {
+                var rate = coinList[i].coinRate;
+                var roundOff = rate * e.data.baseEx;
+                var mKobo = roundOff * 1000
+                var xKobo = roundOff * 10000
+                var cKobo = roundOff * 100000
+
+                $("#fetchedRate").html(roundOff.toFixed(4));
+                $("#M-kobo").html(mKobo.toFixed(0));
+                $("#X-kobo").html(xKobo.toFixed(0));
+                $("#C-kobo").html(cKobo.toFixed(0));
+            }
+
+        } else {
+            console.log("error");
+        }
+    });
 }
 
 //Enable Loyalty
