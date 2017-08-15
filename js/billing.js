@@ -62,11 +62,13 @@ function refreshBills(month, year) {
         var billcharges = parseFloat(bills.length * 0.167).toFixed(3);
         //console.log("Biliing charges----------->>" + billcharges)
         $('#serviceBillCharges').html(billcharges);
+        /*
         if (e.status == "ok") {
             console.log(e)
         } else {
             console.log("error");
         };
+        */
     });
 }
 
