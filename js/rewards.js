@@ -10,7 +10,7 @@ function fetchRate() {
                 var xKobo = roundOff * 10000
                 var cKobo = roundOff * 100000
 
-                $("#fetchedRate").html(roundOff.toFixed(4));
+                $("#fetchedRate").html(roundOff.toFixed(2));
                 $("#M-kobo").html(mKobo.toFixed(0));
                 $("#X-kobo").html(xKobo.toFixed(0));
                 $("#C-kobo").html(cKobo.toFixed(0));
