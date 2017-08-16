@@ -1147,10 +1147,10 @@
             <div id="breadcrumbs-wrapper"></div>
             <!--breadcrumbs end-->
             <!--start container-->
-            <div class="container" style="padding-left: 6px;;">
+            <div class="container" style="padding: 0px; margin: 0; width: 100%;">
                 <div class="col s12 m4 l4 storefront">
                     <div class="col s12 m8 l9">
-                        <div class="row">
+                        <div class="row" style="width: 100%; margin: 0;">
                             <div class="col s12" style="padding:0px;position:fixed;z-index:10; margin-top:-1px;">
                                 <ul class="selectedColor tabs tab-storefront-active z-depth-1" style="width: 100%; background-color:#0F5F76;margin-top:-1px;height:43px !important; width:101% !important;">
                                     <li class="tab col s3">
@@ -1197,7 +1197,7 @@
                 <div class="col s12 m4 l4 customers" style="display:none;">
                     <ul id="" class="collection customers-holda chStoreUpdate"> </ul>
                 </div>
-                <div class="col s12 m4 l4 beacons" style="display:none;">
+                <div class="col s12 m4 l4 beacons" style="display:none;     margin: 10px;">
                     <nav class="top-nav" style="background:#7EB7C8;height:48px;margin-bottom:40px; display:none;">
                         <div class="container">
                             <div class="nav-wrapper">
@@ -1208,7 +1208,7 @@
                     <ul id="" class="collection beacons-holda-connected chStoreUpdate" style="overflow:inherit;"> </ul>
                     <ul id="" class="collection beacons-holda-available chStoreUpdate" style="overflow:inherit;"> </ul>
                 </div>
-                <div class="col s12 m4 l4 deliveries" style="display:none;">
+                <div class="col s12 m4 l4 deliveries" style="display:none;     margin: 10px;">
                     <div class="row">
                         <div style="background: white; padding: 20px; border-radius: 5px;margin:10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);margin-top:60px;">
                             <div class="row">
@@ -1248,13 +1248,13 @@
                     </div>
                 </div>
                 <div id="rewards" class="col s12 m4 l4 rewards" style="display:none;">
-                    <div class="row" style="text-align:center;">
+                    <div class="row" style="text-align:center; margin: 0px;">
                         <div class="selectedColor rewardsHeader" style="text-align:center;background:#0F5F76;margin:0px;padding:10px;color:white; border-bottom: solid white 3px;">
                             <h5 style="margin:0px;font-size: 15px; color:white; padding-bottom:10px;">REWARDS</h5>
                         </div>
                         <div style="padding:10px; text-align:left;" id="rewardsPoints">
                             <div class="rewardCard" style="margin-top: 35px;">
-                                <div class="row">
+                                <div class="row" style="margin:0px;">
                                     <div class="col s9">VISITS</div>
                                     <div class="col s3">
                                         <div class="switch">
@@ -1270,11 +1270,11 @@
                                     <form class="col s12">
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="visitKes" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward visitsCard" id="purchaseInput" rwditm="visitKes" placeholder="" value="1" disabled>
                                                 <label for="first_name">Ksh</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perVisit" id="visitInput" rwditm="visitVal" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward visitsCard" id="visitInput" rwditm="visitVal" placeholder="" value="1" disabled>
                                                 <label for="first_name">Per Visit</label>
                                             </div>
                                         </div>
@@ -1298,11 +1298,11 @@
                                     <form class="col s12">
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="shareKes" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward shareCard" id="purchaseInput" rwditm="shareKes" placeholder="" value="1" disabled>
                                                 <label for="first_name">Ksh</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perShare" id="shareInput" rwditm="shareVal" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward shareCard" id="shareInput" rwditm="shareVal" placeholder="" value="1" disabled>
                                                 <label for="first_name">Per Link Shared</label>
                                             </div>
                                         </div>
@@ -1326,11 +1326,11 @@
                                     <form class="col s12">
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="purchaseKes" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward purchaseCard" id="purchaseInput" rwditm="purchaseKes" placeholder="" value="1" disabled>
                                                 <label for="first_name">Ksh</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="purchaseVal" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward purchaseCard" id="purchaseInput" rwditm="purchaseVal" placeholder="" value="1" disabled>
                                                 <label for="first_name">Purchase Worth</label>
                                             </div>
                                         </div>
@@ -1354,11 +1354,11 @@
                                     <form class="col s12">
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="deliveryKes" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward deliveryCard" id="purchaseInput" rwditm="deliveryKes" placeholder="" value="1" disabled>
                                                 <label for="first_name">Ksh</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="deliveryVal" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward deliveryCard" id="purchaseInput" rwditm="deliveryVal" placeholder="" value="1" disabled>
                                                 <label for="first_name">Deliveries Made</label>
                                             </div>
                                         </div>
@@ -1382,7 +1382,7 @@
                             <div class="nav-wrapper"><a style="line-height:14px;font-size:20px;" class="page-title">Products</a></div>
                         </div>
                     </nav>
-                    <ul class="products-collapsible collapsible collapsible-accordion chStoreUpdate" data-collapsible="accordion" style="background:white;"> </ul>
+                    <ul class="products-collapsible collapsible collapsible-accordion chStoreUpdate" data-collapsible="accordion" style="background:white; margin: 10px;"> </ul>
                     <div class="fixed-action-btn click-to-toggle" style="z-index:990;">
                         <a class="btn-floating opacitySelectedColor" style="width:55px;height:55px;border-radius:50%;background:#26A69A; line-height:55px; font-size:2em;">
                             <p style="margin-top:0px !important;text-align:center;">+</p>

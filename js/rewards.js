@@ -32,6 +32,11 @@ function updateRewardpoints(t) {
     var name = $(t.target).attr('rwditm');
     var val = $(t.target).val();
     if (rwditm == "visitState") {
+        if ($(this).prop("checked") == false) {
+            $(".visitsCard").prop('disabled', true);
+        } else {
+            $(".visitsCard").prop('disabled', false);
+        }
         doFetch({
             action: 'storeRewards',
             value: $(this).prop("checked"),
@@ -40,6 +45,11 @@ function updateRewardpoints(t) {
             if (e.status == 'ok') {} else {}
         });
     } else if (rwditm == "shareState") {
+        if ($(this).prop("checked") == false) {
+            $(".shareCard").prop('disabled', true);
+        } else {
+            $(".shareCard").prop('disabled', false);
+        }
         doFetch({
             action: 'storeRewards',
             value: $(this).prop("checked"),
@@ -48,6 +58,11 @@ function updateRewardpoints(t) {
             if (e.status == 'ok') {} else {}
         });
     } else if (rwditm == "purchaseState") {
+        if ($(this).prop("checked") == false) {
+            $(".purchaseCard").prop('disabled', true);
+        } else {
+            $(".purchaseCard").prop('disabled', false);
+        }
         doFetch({
             action: 'storeRewards',
             value: $(this).prop("checked"),
@@ -56,6 +71,11 @@ function updateRewardpoints(t) {
             if (e.status == 'ok') {} else {}
         });
     } else if (rwditm == "deliveryState") {
+        if ($(this).prop("checked") == false) {
+            $(".deliveryCard").prop('disabled', true);
+        } else {
+            $(".deliveryCard").prop('disabled', false);
+        }
         doFetch({
             action: 'storeRewards',
             value: $(this).prop("checked"),
