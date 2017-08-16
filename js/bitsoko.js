@@ -41,8 +41,17 @@ function profileLoaded(p) {
 }
 
 function loadTheme() {
-    //load store name
-    document.title = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).name;
+    //load store name + user name
+    var userName = localStorage.getItem("bits-user-name");
+    var storeName = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).name;
+
+    for (var i in deliveryGuys) {
+        var name = deliveryGuys[i].name;
+        var id = deliveryGuys[i].id;
+        if (userName == id) {
+            document.title = name + " " + storeName
+        }
+    }
 
     //load store theme theme
     var storeColor = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme

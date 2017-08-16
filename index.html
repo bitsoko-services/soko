@@ -979,7 +979,7 @@
                                 </div>
                                 <div class="collapsible-body" style="padding: 0px; background: rgb(245, 245, 245); width: 100%; display: none; padding-bottom: 65vh !important; overflow: hidden !important; margin-top: 30px;">
                                     <span>
-                                        <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); managerListener(); getManager();">
+                                        <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); managerListener(); setTimeout(getManager, 2000);">
                                             <i class="mdi-social-people">
                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width:20px;" xml:space="preserve">
                                                     <g xmlns="http://www.w3.org/2000/svg">
@@ -1250,7 +1250,7 @@
                 <div id="rewards" class="col s12 m4 l4 rewards" style="display:none;">
                     <div class="row" style="text-align:center;">
                         <div class="selectedColor rewardsHeader" style="text-align:center;background:#0F5F76;margin:0px;padding:10px;color:white; border-bottom: solid white 3px;">
-                            <h5 style="margin:0px;font-size: 15px; color:white;">REWARDS</h5>
+                            <h5 style="margin:0px;font-size: 15px; color:white; padding-bottom:10px;">REWARDS</h5>
                         </div>
                         <div style="padding:10px; text-align:left;" id="rewardsPoints">
                             <div class="rewardCard" style="margin-top: 35px;">
@@ -1270,7 +1270,7 @@
                                     <form class="col s12">
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="visitPoints" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="visitKes" placeholder="" value="1">
                                                 <label for="first_name">Ksh</label>
                                             </div>
                                             <div class="input-field col s6">
@@ -1298,7 +1298,7 @@
                                     <form class="col s12">
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="sharePoints" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="shareKes" placeholder="" value="1">
                                                 <label for="first_name">Ksh</label>
                                             </div>
                                             <div class="input-field col s6">
@@ -1326,7 +1326,7 @@
                                     <form class="col s12">
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="purchasePoints" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="purchaseKes" placeholder="" value="1">
                                                 <label for="first_name">Ksh</label>
                                             </div>
                                             <div class="input-field col s6">
@@ -1354,7 +1354,7 @@
                                     <form class="col s12">
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="deliveryPoits" placeholder="" value="1">
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward perPurchase" id="purchaseInput" rwditm="deliveryKes" placeholder="" value="1">
                                                 <label for="first_name">Ksh</label>
                                             </div>
                                             <div class="input-field col s6">
