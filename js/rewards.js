@@ -6,9 +6,9 @@ function fetchRate() {
             for (var i in coinList) {
                 var rate = coinList[i].coinRate;
                 var roundOff = rate * e.data.baseEx;
-                var mKobo = roundOff * 1000
-                var xKobo = roundOff * 10000
-                var cKobo = roundOff * 100000
+                mKobo = roundOff * 1000
+                xKobo = roundOff * 10000
+                cKobo = roundOff * 100000
 
                 $("#fetchedRate").html(roundOff.toFixed(2));
                 $("#M-kobo").html(mKobo.toFixed(0));
@@ -130,7 +130,7 @@ function initPaymentRequest() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: '100.00'
+                value: mKobo
             }
         },
         displayItems: [
@@ -166,7 +166,7 @@ function initPaymentRequest2() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: '1000.00'
+                value: xKobo
             }
         },
         displayItems: [
@@ -202,7 +202,7 @@ function initPaymentRequest3() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: '10000.00'
+                value: cKobo
             }
         },
         displayItems: [
