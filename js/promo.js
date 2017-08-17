@@ -47,9 +47,7 @@ function checkedProdsInPromo() {
             //            console.log(Object.values(count))
             promoID = reqs[i].id
             for (var prop in tt) {
-                console.log("===" + tt[prop])
                 var checked = "#prod" + tt[prop] + "-" + promoID;
-                console.log("===" + checked)
                 $(checked).prop('checked', true);
                 $("#editPlus-" + tt[prop] + "-" + promoID).prop("disabled", false);
                 $("#editMinus-" + tt[prop] + "-" + promoID).prop("disabled", false);

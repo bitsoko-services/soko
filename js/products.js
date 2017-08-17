@@ -279,7 +279,7 @@ $(document).on("click", "#addComplProd", function () {
         Materialize.toast("Ooops! Please enter a product", 3000);
         $("#complProd").css("border-bottom", "solid 1px red")
     } else {
-        Materialize.toast("Adding product. Please wait", null, 'complProd');
+        Materialize.toast("Adding product. Please wait", 10000, 'complProd');
         $("#complProd").css("border-bottom", "1px solid #9e9e9e")
         doFetch({
             action: 'addComplProd',
