@@ -2490,6 +2490,10 @@ tr.group:hover {
     width: 20%;
 }
 
+.fixed-action-btn ul li {
+    margin-bottom: 6px;
+}
+
 
 /*----------------------------------------
     Gallary  Page
