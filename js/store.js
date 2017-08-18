@@ -394,7 +394,7 @@ $('#transferYesBtn').on('click', function (event) {
         data: transferShopVal
     }).then(function (e) {
         if (e.status == 'ok') {
-
+            location.reload();
         } else {}
     });
 });
