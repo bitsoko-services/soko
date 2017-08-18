@@ -3889,3 +3889,12 @@ ul.side-nav.leftside-navigation li:hover {
     margin-top: -8px;
     z-index: 998;
 }
+
+#socialIcns {
+    text-align: center;
+}
+
+#socialIcns li {
+    display: inline-block;
+    padding-right: 10px;
+}
