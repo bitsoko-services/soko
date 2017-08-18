@@ -2490,6 +2490,10 @@ tr.group:hover {
     width: 20%;
 }
 
+.fixed-action-btn ul li {
+    margin-bottom: 6px;
+}
+
 
 /*----------------------------------------
     Gallary  Page
@@ -3048,6 +3052,61 @@ tr.group:hover {
 }
 
 @media screen and (min-width: 993px) {
+    ul.side-nav.leftside-navigation li {
+        margin-top: 10px !important;
+    }
+    #content {
+        width: 74vw !important;
+        float: right !important;
+    }
+    .deliveries {
+        margin: 10% 20% !important;
+    }
+    #rewardsPoints {
+        margin: 0 20% !important;
+    }
+    .products {
+        margin-left: -20px !important;
+    }
+    .rewardsHeader {
+        padding-top: 20px;
+        text-align: left;
+        padding-left: 30%;
+    }
+    #contactModal {
+        margin-top: 10% !important;
+        width: 30% !important;
+        height: 45% !important;
+        margin-left: 50% !important;
+    }
+    #add-product {
+        width: 35% !important;
+    }
+    #add-product::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
+    #add-product::-webkit-scrollbar {
+        width: 5px;
+        background-color: #F5F5F5;
+    }
+    .swtchStrDskt {
+        z-index: 1 !important;
+    }
+    #spnsrdModal {
+        margin-top: 10% !important;
+    }
+    #complimentaryModal {
+        width: 35% !important;
+        margin-left: 45% !important;
+        margin-top: 10% !important;
+        top: -20% !important;
+    }
+    #add-product h5 {
+        text-align: left !important;
+        padding-left: 8% !important;
+    }
     #removeManagerModal {
         width: 35%;
         margin-left: 40%;
@@ -3272,7 +3331,7 @@ tr.group:hover {
         margin-left: 15px;
     }
     .side-nav {
-        width: 24% !important;
+        width: 25% !important;
     }
     #loyaltyPoints {
         width: 40%;
@@ -3288,7 +3347,8 @@ tr.group:hover {
     #spnsrdModal {
         width: 40%;
         margin-left: 41%;
-        margin-top: 10%;
+        margin-top: 10% !important;
+        top: -20% !important;
     }
 }
 
@@ -3465,7 +3525,7 @@ tr.group:hover {
 }
 
 #loyaltyPoints {
-    top: 11% !important;
+    top: 15% !important;
     max-height: 80%;
 }
 
@@ -3537,7 +3597,7 @@ tr.group:hover {
 #msg {
     width: 165px;
     height: 60px;
-    background: #ffab40;
+    background: #80C342;
     margin-left: 25%;
     position: relative;
 }
@@ -3545,7 +3605,7 @@ tr.group:hover {
 #reverseMsg {
     width: 163px;
     height: 60px;
-    background: #ffab40;
+    background: #80C342;
     margin-right: 15%;
     position: relative;
 }
@@ -3554,7 +3614,7 @@ tr.group:hover {
     content: "";
     position: absolute;
     border-bottom: 30px solid transparent;
-    border-right: 21px solid #ffab40;
+    border-right: 21px solid #80C342;
     border-top: 30px solid transparent;
     height: 0px;
     width: 0px;
@@ -3604,7 +3664,7 @@ tr.group:hover {
     content: "";
     position: absolute;
     border-bottom: 30px solid transparent;
-    border-left: 21px solid #ffab40;
+    border-left: 21px solid #80C342;
     border-top: 30px solid transparent;
     height: 0px;
     width: 0px;
@@ -3882,6 +3942,15 @@ ul.side-nav.leftside-navigation li:hover {
 .rewardsHeader {
     width: 100.1%;
     position: fixed;
-    margin-top: -1px;
-    z-index: 1;
+    margin-top: -8px;
+    z-index: 998;
+}
+
+#socialIcns {
+    text-align: center;
+}
+
+#socialIcns li {
+    display: inline-block;
+    padding-right: 10px;
 }

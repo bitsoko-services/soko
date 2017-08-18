@@ -35,13 +35,25 @@ function checkedProdsInPromo() {
         var reqs = JSON.parse(event.target.result);
         for (var i = 0; i < reqs.length; ++i) {
             var tt = JSON.parse(reqs[i].promoItems);
+
+            //Unique count
+            uniqueCount = tt;
+            var count = {};
+            uniqueCount.forEach(function (i) {
+                count[i] = (count[i] || 0) + 1;
+            });
+            console.log(count);
+            //            console.log(Object.keys(count))
+            //            console.log(Object.values(count))
             promoID = reqs[i].id
-            console.log(tt)
             for (var prop in tt) {
                 var checked = "#prod" + tt[prop] + "-" + promoID;
                 $(checked).prop('checked', true);
-                $("#editPlus-" + tt[prop]).prop("disabled", false);
-                $("#editMinus-" + tt[prop]).prop("disabled", false);
+                $("#editPlus-" + tt[prop] + "-" + promoID).prop("disabled", false);
+                $("#editMinus-" + tt[prop] + "-" + promoID).prop("disabled", false);
+                for (var s in count) {
+                    $("#prodEdit_" + s).val(count[s]);
+                }
             }
         }
     }
@@ -187,9 +199,10 @@ function promoCreator(proId) {
 
                 $(".promo-add-new-promotion2").append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '" pid="' + e[i].id + '"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button href="#" class="counter-left" id="plus-' + e[i].id + '" disabled>-</button><input class="' + e[i].id + '" type="number" value="0" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right" id="minus-' + e[i].id + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
 
-                $(".promo-add-new-promotion-" + proId).append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input prod_id="' + e[i].id + '" name="promoItems" type="checkbox" id="prod' + e[i].id + '-' + proId + '"/><label for="prod' + e[i].id + '-' + proId + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button href="#" class="counter-left" id="editMinus-' + e[i].id + '" disabled>-</button><input prodEdit="' + e[i].id + '" id="prodEdit_' + e[i].id + '" class="prod' + e[i].id + '-' + proId + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right" id="editPlus-' + e[i].id + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
+                $(".promo-add-new-promotion-" + proId).append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input prod_id="' + e[i].id + '" name="promoItems" type="checkbox" id="prod' + e[i].id + '-' + proId + '"/><label for="prod' + e[i].id + '-' + proId + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button href="#" class="counter-left" id="editMinus-' + e[i].id + '-' + proId + '" disabled>-</button><input prodEdit="' + e[i].id + '" id="prodEdit_' + e[i].id + '" class="prod' + e[i].id + '-' + proId + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right" id="editPlus-' + e[i].id + '-' + proId + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
 
                 $("#prodEdit_" + e[i].id).change(function () {
+                    var inputId = $(this).attr("prodedit");
                     var selcIds = new Array();
                     var boxes = $('#promoEdit input[name=promoItems]:checked');
 
@@ -202,7 +215,20 @@ function promoCreator(proId) {
                             var ret = productID.replace('prod', '');
                             console.log(ret);
                             console.log('Product is: ' + ret);
-                            selcIds.push(parseInt(productID));
+                            selcIds.push(parseInt(inputId));
+                            doFetch({
+                                action: 'doEditPromo',
+                                id: inputId,
+                                prop: "items",
+                                value: selcIds
+                            }).then(function (e) {
+                                if (e.status == 'ok') {
+                                    Materialize.toast('Promotion item added successfully', 3000);
+                                } else {
+                                    console.log(e);
+                                    Materialize.toast('Error! Please try again', 3000);
+                                }
+                            });
                         }
                     }
                 })
@@ -221,8 +247,10 @@ function promoCreator(proId) {
                     var checkerState = document.getElementById(value).checked
                     if (checkerState == true) {
                         doFetch({
-                            action: 'addPromoProd',
+                            action: 'doEditPromo',
                             id: checkerID,
+                            prop: "promoProduct",
+                            value: checkerState
                         }).then(function (e) {
                             if (e.status == 'ok') {
                                 Materialize.toast('Promotion item added successfully', 3000);
@@ -233,8 +261,10 @@ function promoCreator(proId) {
                         });
                     } else if (checkerState == false) {
                         doFetch({
-                            action: 'removePromoProd',
+                            action: 'doEditPromo',
                             id: checkerID,
+                            prop: "promoProduct",
+                            value: checkerState
                         }).then(function (e) {
                             if (e.status == 'ok') {
                                 Materialize.toast('Promotion item removed successfully', 3000);

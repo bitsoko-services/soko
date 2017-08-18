@@ -1,3 +1,27 @@
+//Fetch rate
+function fetchRate() {
+    fetchRates().then(function (e) {
+        if (e.status == "ok") {
+            coinList = e.data.data;
+            for (var i in coinList) {
+                var rate = coinList[i].coinRate;
+                var roundOff = rate * e.data.baseEx;
+                mKobo = roundOff * 1000
+                xKobo = roundOff * 10000
+                cKobo = roundOff * 100000
+
+                $("#fetchedRate").html(roundOff.toFixed(2));
+                $("#M-kobo").html(mKobo.toFixed(0));
+                $("#X-kobo").html(xKobo.toFixed(0));
+                $("#C-kobo").html(cKobo.toFixed(0));
+            }
+
+        } else {
+            console.log("error");
+        }
+    });
+}
+
 //Enable Loyalty
 $('.loyaltyCls').click(function () {
     $('#loyaltyModal').modal('close');
@@ -8,6 +32,11 @@ function updateRewardpoints(t) {
     var name = $(t.target).attr('rwditm');
     var val = $(t.target).val();
     if (rwditm == "visitState") {
+        if ($(this).prop("checked") == false) {
+            $(".visitsCard").prop('disabled', true);
+        } else {
+            $(".visitsCard").prop('disabled', false);
+        }
         doFetch({
             action: 'storeRewards',
             value: $(this).prop("checked"),
@@ -16,6 +45,11 @@ function updateRewardpoints(t) {
             if (e.status == 'ok') {} else {}
         });
     } else if (rwditm == "shareState") {
+        if ($(this).prop("checked") == false) {
+            $(".shareCard").prop('disabled', true);
+        } else {
+            $(".shareCard").prop('disabled', false);
+        }
         doFetch({
             action: 'storeRewards',
             value: $(this).prop("checked"),
@@ -24,6 +58,11 @@ function updateRewardpoints(t) {
             if (e.status == 'ok') {} else {}
         });
     } else if (rwditm == "purchaseState") {
+        if ($(this).prop("checked") == false) {
+            $(".purchaseCard").prop('disabled', true);
+        } else {
+            $(".purchaseCard").prop('disabled', false);
+        }
         doFetch({
             action: 'storeRewards',
             value: $(this).prop("checked"),
@@ -32,6 +71,11 @@ function updateRewardpoints(t) {
             if (e.status == 'ok') {} else {}
         });
     } else if (rwditm == "deliveryState") {
+        if ($(this).prop("checked") == false) {
+            $(".deliveryCard").prop('disabled', true);
+        } else {
+            $(".deliveryCard").prop('disabled', false);
+        }
         doFetch({
             action: 'storeRewards',
             value: $(this).prop("checked"),
@@ -86,7 +130,7 @@ function initPaymentRequest() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: '100.00'
+                value: mKobo
             }
         },
         displayItems: [
@@ -122,7 +166,7 @@ function initPaymentRequest2() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: '1000.00'
+                value: xKobo
             }
         },
         displayItems: [
@@ -158,7 +202,7 @@ function initPaymentRequest3() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: '10000.00'
+                value: cKobo
             }
         },
         displayItems: [

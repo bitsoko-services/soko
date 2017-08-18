@@ -226,3 +226,28 @@ $('#addNewOperator').on('click', function () {
         }
     });
 });
+
+$(document).on("click", "#addOperatorNumb", function () {
+    operatorNumb = $('#OperatorNumb').val()
+    if (operatorNumb == "") {
+        Materialize.toast("Ooops! Please enter a phone number", 3000);
+        $("#OperatorNumb").css("border-bottom", "solid 1px red")
+    } else if (operatorNumb.length < 10) {
+        Materialize.toast("Ooops! Input too short", 3000);
+        $("#OperatorNumb").css("border-bottom", "solid 1px red")
+    } else {
+        Materialize.toast("Sending invite link. Please wait", 10000, 'operatorNumb');
+        $("#OperatorNumb").css("border-bottom", "1px solid #9e9e9e")
+        doFetch({
+            action: 'deliveryMembers',
+            number: operatorNumb
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                Materialize.toast('Invite link sent successfully', 3000);
+                $('.operatorNumb').remove();
+            } else {
+                console.log(e);
+            }
+        });
+    }
+});
