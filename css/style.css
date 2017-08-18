@@ -3052,6 +3052,61 @@ tr.group:hover {
 }
 
 @media screen and (min-width: 993px) {
+    ul.side-nav.leftside-navigation li {
+        margin-top: 10px !important;
+    }
+    #content {
+        width: 74vw !important;
+        float: right !important;
+    }
+    .deliveries {
+        margin: 10% 20% !important;
+    }
+    #rewardsPoints {
+        margin: 0 20% !important;
+    }
+    .products {
+        margin-left: -20px !important;
+    }
+    .rewardsHeader {
+        padding-top: 20px;
+        text-align: left;
+        padding-left: 30%;
+    }
+    #contactModal {
+        margin-top: 10% !important;
+        width: 30% !important;
+        height: 45% !important;
+        margin-left: 50% !important;
+    }
+    #add-product {
+        width: 35% !important;
+    }
+    #add-product::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
+    #add-product::-webkit-scrollbar {
+        width: 5px;
+        background-color: #F5F5F5;
+    }
+    .swtchStrDskt {
+        z-index: 1 !important;
+    }
+    #spnsrdModal {
+        margin-top: 10% !important;
+    }
+    #complimentaryModal {
+        width: 35% !important;
+        margin-left: 45% !important;
+        margin-top: 10% !important;
+        top: -20% !important;
+    }
+    #add-product h5 {
+        text-align: left !important;
+        padding-left: 8% !important;
+    }
     #removeManagerModal {
         width: 35%;
         margin-left: 40%;
@@ -3276,7 +3331,7 @@ tr.group:hover {
         margin-left: 15px;
     }
     .side-nav {
-        width: 24% !important;
+        width: 25% !important;
     }
     #loyaltyPoints {
         width: 40%;
@@ -3292,7 +3347,8 @@ tr.group:hover {
     #spnsrdModal {
         width: 40%;
         margin-left: 41%;
-        margin-top: 10%;
+        margin-top: 10% !important;
+        top: -20% !important;
     }
 }
 
