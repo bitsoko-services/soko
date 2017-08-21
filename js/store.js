@@ -308,6 +308,24 @@ function updateStore(t) {
     }
 }
 
+//Dominant Color
+function dominantColor() {
+    var _URL = window.URL || window.webkitURL;
+    $("#editStore-image").change(function (e) {
+        var image, file;
+        if ((file = this.files[0])) {
+            image = new Image();
+            image.onload = function () {
+                var sourceImage = image;
+                var colorThief = new ColorThief();
+                var color = colorThief.getColor(sourceImage);
+                console.log("rgb(" + color + ")")
+            }
+        };
+        image.src = _URL.createObjectURL(file);
+    });
+}
+
 //Edit Store On Window Size
 $(document).ready(function () {
     if ($(window).width() > 992) {
