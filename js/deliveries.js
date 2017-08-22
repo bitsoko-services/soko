@@ -205,7 +205,11 @@ $("#sliderAmount").on("change", function () {
         store: localStorage.getItem('soko-active-store'),
         rate: deliveryRate
     }).then(function (e) {
-        if (e.status == 'ok') {} else {}
+        if (e.status == 'ok') {
+            Materialize.toast('Delivery rate set successfully', 3000);
+        } else {
+            Materialize.toast('Error!!! Please try again later', 3000);
+        }
     });
 });
 
