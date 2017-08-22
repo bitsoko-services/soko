@@ -522,28 +522,28 @@
     <!--- Loyalty Points End --->
 
 
-    <!--- Complimentary Modal start --->
-    <div id="complimentaryModal" class="modal" style="margin-top:25% !important;">
+    <!--- Category Modal start --->
+    <div id="categoryModal" class="modal" style="margin-top:25% !important;">
         <div class="modal-content" style="padding:0px;">
             <div class="row">
                 <div class="opacitySelectedColor" style="text-align:center;background:#7eb7c8;margin:0px;padding:10px;color:white;">
-                    <h5 style="margin:0px; font-size: 1.3rem;">COMPLIMENTARY PRODUCTS</h5>
+                    <h5 style="margin:0px; font-size: 1.3rem;">ADD NEW CATEGORIES</h5>
                 </div>
                 <div class="col s12">
                     <div class="row" style="margin-bottom:0px;">
                         <div class="input-field col s12">
                             <div class="row">
                                 <div class="col s9" style="padding:0px;">
-                                    <input type="text" id="complProd" placeholder="Add Complimentary Products">
+                                    <input type="text" id="categoryName" placeholder="Add a category">
                                     <label for="check-prod-input"></label>
                                 </div>
                                 <div class="col s3" style="margin-top:7px; padding:0px;">
-                                    <a class="waves-effect waves-light btn" id="addComplProd" style="font-size: 2rem; padding: 10px; line-height: 0.5; border-radius: 3px; float: right;">+</a>
+                                    <a class="waves-effect waves-light btn" id="addCategory" style="font-size: 2rem; padding: 10px; line-height: 0.5; border-radius: 3px; float: right;">+</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row complProdLst">
+                    <div class="row categoryLst">
                     </div>
                 </div>
             </div>
@@ -625,6 +625,7 @@
                 </svg>
             </li>
         </ul>
+        <p>BITSOKO SERVICES LTD BIIC</p>
     </div>
 
     <!--- Contact Us Modal end --->
@@ -1088,6 +1089,12 @@
                                     </div>
                                 </div>
                                 <div class="collapsible-body" style="padding: 0px; background: rgb(245, 245, 245); width: 100%; display: none; padding-bottom: 65vh !important; overflow: hidden !important; margin-top: 30px;">
+                                    <div class="permanentChng" style="padding-top:10px;">
+                                        <div style="padding: 0px 5%;">
+                                            <h6 style=" border-bottom: solid 1px #cccccc; margin-bottom: 25px; color: #7c7c7c;"><span style="background: #EFEFEF;">SETTINGS</span></h6>
+                                        </div>
+                                        <ul style="border: none;" class="collection sales-holda chStoreUpdate"></ul>
+                                    </div>
                                     <span>
                                         <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); managerListener(); setTimeout(getManager, 2000);">
                                             <i class="mdi-social-people">
@@ -1484,8 +1491,8 @@
                         </a>
                         <ul style="bottom:55px !important;">
                             <li>
-                                <a href="#complimentaryModal" class="btn-floating newProdBtn opacitySelectedColor" style="width:auto !important; padding: 0px 10px 0px 10px;background:#26A69A; margin-left:-30px;">
-                                    <p class="material-icons newProdBtnName" style="margin-top:0px !important;font-size:0.8rem;">Complimentary</p>
+                                <a href="#categoryModal" class="btn-floating newProdBtn opacitySelectedColor" style="width:auto !important; padding: 0px 17px;background:#26A69A; margin-left:-23px;">
+                                    <p class="material-icons newProdBtnName" style="margin-top:0px !important;font-size:0.8rem;">Categories</p>
                                 </a>
                             </li>
                             <li>
