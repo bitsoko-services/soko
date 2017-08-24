@@ -194,7 +194,7 @@ function doSwitchStore() {
             billingUpdater();
             productsUpdater();
             storeOwner();
-            loadTheme()
+            loadTheme();
         }
     }).modal('close');
 }
@@ -569,6 +569,7 @@ function storeOwner() {
         $(".settingsIcon").hide();
     } else {
         $(".settingsIcon").css("display", "block");
+        $("#settingsOpt").css("display", "block");
     }
 }
 
