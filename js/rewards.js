@@ -1,4 +1,8 @@
 //Fetch rate
+var mKobo = ""
+var cKobo = ""
+var xKobo = ""
+
 function fetchRate() {
     fetchRates().then(function (e) {
         if (e.status == "ok") {
@@ -20,7 +24,9 @@ function fetchRate() {
             console.log("error");
         }
     });
+    console.log(mKobo);
 }
+fetchRate()
 
 //Enable Loyalty
 $('.loyaltyCls').click(function () {
@@ -130,7 +136,7 @@ function initPaymentRequest() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: mKobo
+                value: "3000"
             }
         },
         displayItems: [
@@ -166,7 +172,7 @@ function initPaymentRequest2() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: xKobo
+                value: "30000"
             }
         },
         displayItems: [
@@ -202,7 +208,7 @@ function initPaymentRequest3() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: cKobo
+                value: "300000"
             }
         },
         displayItems: [
