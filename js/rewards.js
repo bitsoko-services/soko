@@ -9,7 +9,8 @@ function fetchRate() {
             coinList = e.data.data;
             for (var i in coinList) {
                 var rate = coinList[i].coinRate;
-                var roundOff = rate * e.data.baseEx;
+                var bankCharges = 5; // %
+                var roundOff = rate * (e.data.baseEx+((e.data.baseEx * bankCharges)/100)); //inclusive bank charges
                 mKobo = roundOff * 1000
                 xKobo = roundOff * 10000
                 cKobo = roundOff * 100000
