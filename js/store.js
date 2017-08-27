@@ -159,7 +159,6 @@ function editStore() {
                 editStoreCallback();
                 reqLoc();
                 transferListener();
-                updateStores()
                 var xx = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
                 document.querySelector('#editStoreModal #editStore-name').value = xx.name;
                 document.querySelector('#editStoreModal #editStore-description').value = xx.description;

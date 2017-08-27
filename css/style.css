@@ -2951,28 +2951,6 @@ tr.group:hover {
                  PLUS MINUS ICONS
 ************************************************/
 
-.counter-left {
-    width: 30px;
-    height: 30px;
-    background: #299288;
-    border-radius: 50%;
-    content: '-';
-    border: none;
-    color: white;
-    margin-right: 10px;
-}
-
-.counter-right {
-    width: 30px;
-    height: 30px;
-    background: #299288;
-    border-radius: 50%;
-    content: '+';
-    border: none;
-    color: white;
-    margin-left: 10px;
-}
-
 .notificationSetting li {
     display: inline-block;
     width: 20px;
@@ -3545,11 +3523,15 @@ tr.group:hover {
 }
 
 .counter-right:disabled {
-    background: #6c7271
+    background: #6c7271 !important;
 }
 
 .counter-left:disabled {
-    background: #6c7271
+    background: #6c7271 !important;
+}
+
+[name=counter]:disabled {
+    background: #6c7271 !important;
 }
 
 

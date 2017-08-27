@@ -197,9 +197,9 @@ function promoCreator(proId) {
 
             for (var i = 0, proId = proId; i < e.length; ++i) {
 
-                $(".promo-add-new-promotion2").append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '" pid="' + e[i].id + '"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button href="#" class="counter-left" id="plus-' + e[i].id + '" disabled>-</button><input class="' + e[i].id + '" type="number" value="0" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right" id="minus-' + e[i].id + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
+                $(".promo-add-new-promotion2").append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '" pid="' + e[i].id + '"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-left" id="plus-' + e[i].id + '" disabled>-</button><input class="' + e[i].id + '" type="number" value="0" style="width:30px;text-align:center;margin-top:-6px;"><button style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-right" id="minus-' + e[i].id + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
 
-                $(".promo-add-new-promotion-" + proId).append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input prod_id="' + e[i].id + '" name="promoItems" type="checkbox" id="prod' + e[i].id + '-' + proId + '"/><label for="prod' + e[i].id + '-' + proId + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button href="#" class="counter-left" id="editMinus-' + e[i].id + '-' + proId + '" disabled>-</button><input prodEdit="' + e[i].id + '" id="prodEdit_' + e[i].id + '" class="prod' + e[i].id + '-' + proId + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button href="#" class="counter-right" id="editPlus-' + e[i].id + '-' + proId + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
+                $(".promo-add-new-promotion-" + proId).append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input prod_id="' + e[i].id + '" class="itemsChecker' + proId + '" type="checkbox" id="prod' + e[i].id + '-' + proId + '" name="' + e[i].id + '-' + proId + '"/><label for="prod' + e[i].id + '-' + proId + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button pid="' + proId + '" name="counter" style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-left' + proId + '" id="editMinus-' + e[i].id + '-' + proId + '" disabled>-</button><input prodEdit="' + e[i].id + '" id="prodEdit_' + e[i].id + '-' + proId + '" class="prod' + e[i].id + '-' + proId + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button pid="' + proId + '" name="counter" style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-right' + proId + '" id="editPlus-' + e[i].id + '-' + proId + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
 
                 $("#prodEdit_" + e[i].id).change(function () {
                     var inputId = $(this).attr("prodedit");
@@ -239,49 +239,111 @@ function promoCreator(proId) {
                     $('#plus-' + checkerID).attr('disabled', !this.checked)
                     $('#minus-' + checkerID).attr('disabled', !this.checked)
                 });
-                $('#prod' + e[i].id + '-' + proId).click(function () {
-                    var checkerID = $(this).attr('prod_id');
+                $('#prod' + e[i].id + "-" + proId).click(function () {
+                    var checkerID = $(this).attr('name');
                     console.log(checkerID)
-
-                    var value = $(this).attr('id');
-                    var checkerState = document.getElementById(value).checked
-                    if (checkerState == true) {
-                        doFetch({
-                            action: 'doEditPromo',
-                            id: checkerID,
-                            prop: "promoProduct",
-                            value: checkerState
-                        }).then(function (e) {
-                            if (e.status == 'ok') {
-                                Materialize.toast('Promotion item added successfully', 3000);
-                            } else {
-                                console.log(e);
-                                Materialize.toast('Error! Please try again', 3000);
-                            }
-                        });
-                    } else if (checkerState == false) {
-                        doFetch({
-                            action: 'doEditPromo',
-                            id: checkerID,
-                            prop: "promoProduct",
-                            value: checkerState
-                        }).then(function (e) {
-                            if (e.status == 'ok') {
-                                Materialize.toast('Promotion item removed successfully', 3000);
-                            } else {
-                                console.log(e);
-                                Materialize.toast('Error! Please try again', 3000);
-                            }
-                        });
-                    }
-
-
                     $('#editPlus-' + checkerID).attr('disabled', !this.checked)
                     $('#editMinus-' + checkerID).attr('disabled', !this.checked)
+                });
+                $('#editPlus-' + +e[i].id + '-' + proId).click(function () {
+                    itemsInput = this.id.replace(/\editPlus-/, '');
+                    CheckerInput = $("#prodEdit_" + itemsInput).val();
+                    console.log(CheckerInput)
+                    checkerInputVal = JSON.parse(CheckerInput) + 1;
+                    checkerInputId = $(this).attr("pid");
+                    var selectedId = new Array();
+                    for (tt = 0, selectedId = selectedId; tt < checkerInputVal; tt++) {
+                        selectedId.push(parseInt(checkerInputId));
+                    }
+                    doFetch({
+                        action: 'doEditPromo',
+                        id: checkerInputId,
+                        prop: "items",
+                        value: selectedId
+                    }).then(function (e) {
+                        if (e.status == 'ok') {} else {
+                            console.log(e);
+                            Materialize.toast('Error! Please try again', 3000);
+                        }
+
+                    })
+                })
+                $('#editMinus-' + +e[i].id + '-' + proId).click(function () {
+                    itemsInput = this.id.replace(/\editMinus-/, '');
+                    CheckerInput = $("#prodEdit_" + itemsInput).val();
+                    console.log(CheckerInput)
+                    checkerInputVal = CheckerInput - 1;
+                    checkerInputId = $(this).attr("pid");
+                    var selectedId = new Array();
+                    for (tt = 0, selectedId = selectedId; tt < checkerInputVal; tt++) {
+                        selectedId.push(parseInt(checkerInputId));
+                    }
+                    doFetch({
+                        action: 'doEditPromo',
+                        id: checkerInputId,
+                        prop: "items",
+                        value: selectedId
+                    }).then(function (e) {
+                        if (e.status == 'ok') {} else {
+                            console.log(e);
+                            Materialize.toast('Error! Please try again', 3000);
+                        }
+
+                    })
+                })
+                $('#prod' + e[i].id + '-' + proId).click(function () {
+                    var checkBoxSelected = $("." + this.className);
+                    var checkBoxClass = this.name;
+                    var checkBoxId = $(this).attr("class").replace(/\D+/g, "");
+                    console.log(checkBoxId)
+                    var selectedId = new Array();
+                    for (a = 0, selectedId = selectedId; a < checkBoxSelected.length; a++) {
+                        var checkerState = checkBoxSelected;
+
+                        if (checkerState[a].checked == true) {
+                            itemsInput = checkerState[a].id.replace(/\prod/, '');
+                            checkerInputVal = $("#prodEdit_" + itemsInput).val();
+                            checkerInputId = $("#prodEdit_" + itemsInput).attr("prodedit");
+                            for (tt = 0, selectedId = selectedId; tt < checkerInputVal; tt++) {
+                                selectedId.push(parseInt(checkerInputId));
+                            }
+                        } else {
+                            console.log("unchecked")
+                        }
+                    }
+                    doFetch({
+                        action: 'doEditPromo',
+                        id: checkBoxId,
+                        prop: "items",
+                        value: selectedId
+                    }).then(function (e) {
+                        if (e.status == 'ok') {} else {
+                            console.log(e);
+                            Materialize.toast('Error! Please try again', 3000);
+                        }
+                    });
                 });
             }
             $('select').material_select();
 
+
+            $('.counter-left' + proId).click(function (event) {
+                event.preventDefault()
+                minus = $(this).next('input')
+                minus_ = minus.val()
+                if (minus_ !== '1') {
+                    minus_ = parseInt(minus_) - 1
+                }
+                minus.val(minus_)
+            })
+
+            $('.counter-right' + proId).click(function (event) {
+                event.preventDefault()
+                add = $(this).prev('input')
+                add_ = add.val()
+                add_ = parseInt(add_) + 1
+                add.val(add_)
+            })
 
             $('.counter-left').click(function (event) {
                 event.preventDefault()
