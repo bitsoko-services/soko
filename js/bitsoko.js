@@ -106,9 +106,10 @@ function updateStores() {
                         var id = xxx[i].id;
                         if (inputVal == name) {
                             doFetch({
-                                action: 'storeCategory',
-                                store: localStorage.getItem('soko-active-store'),
-                                category: id
+                                action: 'doEditStore',
+                                id: localStorage.getItem('soko-active-store'),
+                                prop: "category",
+                                val: id
                             }).then(function (e) {
                                 if (e.status == 'ok') {} else {}
                             });

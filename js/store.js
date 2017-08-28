@@ -159,7 +159,6 @@ function editStore() {
                 editStoreCallback();
                 reqLoc();
                 transferListener();
-                updateStores()
                 var xx = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
                 document.querySelector('#editStoreModal #editStore-name').value = xx.name;
                 document.querySelector('#editStoreModal #editStore-description').value = xx.description;
@@ -194,7 +193,7 @@ function doSwitchStore() {
             billingUpdater();
             productsUpdater();
             storeOwner();
-            loadTheme()
+            loadTheme();
         }
     }).modal('close');
 }
@@ -306,6 +305,24 @@ function updateStore(t) {
             }
         });
     }
+}
+
+//Dominant Color
+function dominantColor() {
+    var _URL = window.URL || window.webkitURL;
+    $("#editStore-image").change(function (e) {
+        var image, file;
+        if ((file = this.files[0])) {
+            image = new Image();
+            image.onload = function () {
+                var sourceImage = image;
+                var colorThief = new ColorThief();
+                var color = colorThief.getColor(sourceImage);
+                console.log("rgb(" + color + ")")
+            }
+        };
+        image.src = _URL.createObjectURL(file);
+    });
 }
 
 //Edit Store On Window Size
@@ -551,6 +568,7 @@ function storeOwner() {
         $(".settingsIcon").hide();
     } else {
         $(".settingsIcon").css("display", "block");
+        $("#settingsOpt").css("display", "block");
     }
 }
 

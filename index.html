@@ -334,11 +334,12 @@
     <div id="loyaltyPoints" class="modal">
         <div class="modal-content" style="padding:0px; border-radius:5px;">
             <div class="opacitySelectedColor" style="text-align:center; background:#7eb7c8; margin:0px; padding:10px; color:white;height:18vh;">
-                <h5 style="margin:0px;padding-top:2.5vh;font-size: 1.4rem;">GET KOBOCOIN</h5>
-                <p style="margin:0px;">1 kobo = <span id="fetchedRate"> </span> KES</p>
+                <h5 style="margin:0px;padding-top:1.2vh;font-size: 1.4rem;">BUY KOBOCOIN</h5>
+                <p style="margin:0px;">current price</p>
+                <p style="margin:0px;">1 kobo = <span id="fetchedRate"> </span> kes</p>
             </div>
             <p alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;height: 70px;line-height: 0px;display:block;margin:10px auto;border:solid white 3px;background: #79bb3c;line-height: 2.1;font-size: 2em;text-align: center;font-weight: bold;margin-top: -5vh;position: relative;color: white;" src="https://lh4.googleusercontent.com/-kQ74_X2nV68/AAAAAAAAAAI/AAAAAAAAAAA/AMp5VUoO7VUnHLbcGv5WMTgIrs3IFWwdqQ/s96-c/photo.jpg">K</p>
-            <p style="text-align: center; padding: 0% 5%;color: #575757;    margin: 0px;">Points bought will be deposited to the owners account</p>
+            <p style="text-align: center; padding: 0% 5%;color: #575757;    margin: 0px;">Points bought will be deposited to the owners account. Credit card charges include 5% bank charges.</p>
             <div style="padding:20px; text-aling:center:">
                 <a id="buy100" class="rewardbtn waves-effect waves-light btn" style="width:230px;height:60px !important;">
                     <icon style="width:35px;position:relative;left:10px;">
@@ -393,7 +394,7 @@
                     </icon>
                     <div id="msg" style="color:white;">
                         <div style="text-align:center;padding:8px;">
-                            <h5 style="line-height:0px;font-weight:bold;">BUY 1000</h5>
+                            <h5 style="line-height:0px;font-weight:bold;">1000</h5>
                             <p style="margin:0px;">KES. <span id="M-kobo"></span></p>
                         </div>
                     </div>
@@ -402,7 +403,7 @@
                     <div id="buy100" class="rewardBtn">
                         <div id="reverseMsg" style="color:white;">
                             <div style="text-align:center;padding:8px;">
-                                <h5 style="line-height:0px;font-weight:bold;">BUY 10000</h5>
+                                <h5 style="line-height:0px;font-weight:bold;">10000</h5>
                                 <p style="margin:0px;">KES. <span id="X-kobo"></span></p>
                             </div>
                         </div>
@@ -511,7 +512,7 @@
                     </icon>
                     <div id="msg" style="color:white;">
                         <div style="text-align:center;padding:8px;">
-                            <h5 style="line-height:0px;font-weight:bold;">BUY 100000</h5>
+                            <h5 style="line-height:0px;font-weight:bold;">100000</h5>
                             <p style="margin:0px;">KES. <span id="C-kobo"></span></p>
                         </div>
                     </div>
@@ -522,28 +523,28 @@
     <!--- Loyalty Points End --->
 
 
-    <!--- Complimentary Modal start --->
-    <div id="complimentaryModal" class="modal" style="margin-top:25% !important;">
+    <!--- Category Modal start --->
+    <div id="categoryModal" class="modal" style="margin-top:25% !important;">
         <div class="modal-content" style="padding:0px;">
             <div class="row">
                 <div class="opacitySelectedColor" style="text-align:center;background:#7eb7c8;margin:0px;padding:10px;color:white;">
-                    <h5 style="margin:0px; font-size: 1.3rem;">COMPLIMENTARY PRODUCTS</h5>
+                    <h5 style="margin:0px; font-size: 1.3rem;">CATEGORIES</h5>
                 </div>
                 <div class="col s12">
                     <div class="row" style="margin-bottom:0px;">
                         <div class="input-field col s12">
                             <div class="row">
                                 <div class="col s9" style="padding:0px;">
-                                    <input type="text" id="complProd" placeholder="Add Complimentary Products">
+                                    <input type="text" id="categoryName" placeholder="Add a category">
                                     <label for="check-prod-input"></label>
                                 </div>
                                 <div class="col s3" style="margin-top:7px; padding:0px;">
-                                    <a class="waves-effect waves-light btn" id="addComplProd" style="font-size: 2rem; padding: 10px; line-height: 0.5; border-radius: 3px; float: right;">+</a>
+                                    <a class="waves-effect waves-light btn" id="addCategory" style="font-size: 2rem; padding: 10px; line-height: 0.5; border-radius: 3px; float: right;">+</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row complProdLst">
+                    <div class="row categoryLst">
                     </div>
                 </div>
             </div>
@@ -625,6 +626,7 @@
                 </svg>
             </li>
         </ul>
+        <p>BITSOKO SERVICES LTD BIIC</p>
     </div>
 
     <!--- Contact Us Modal end --->
@@ -672,6 +674,15 @@
                 <h5 style="margin:0px; pointer-events: none; font-size:1.4em;">ADD NEW PROMOTION</h5>
             </div>
             <div style="padding:10px 24px 24px 24px;">
+                <div class="permanentChng">
+                    <div style="padding: 0px 15%;">
+                        <h6 style=" border-bottom: solid 1px #cccccc; color: #7c7c7c;">
+                            <span style="background: #FAFAFA;">Promotion State</span>
+                        </h6>
+                    </div>
+                </div>
+                <div class="radio-group" gid="162" style="border-radius:5px;">
+                    <input type="radio" id="private" name="selector162" stitm="private" class="promoState" fid="162"><label id="private_162" class="radioPad" for="private" style="width:33.3%; text-align:center;border-left:solid 1px; border-radius:5px; border-bottom-right-radius: 0px; border-top-right-radius: 0px;">Private</label><input type="radio" id="semi_public" name="selector162" stitm="semi-public" class="promoState" fid="162"><label class="radioPad" for="semi_public" style="width:33.3%; text-align:center;">Semi-Public</label><input type="radio" id="public" name="selector162" stitm="public" class="promoState" fid="162" checked="checked"><label id="public_162" class="radioPad" for="public" style="width:33.3%; text-align:center;border-radius:5px; border-right:solid 1px; border-bottom-left-radius: 0px; border-top-left-radius: 0px;"> Public </label></div>
                 <form class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
@@ -720,7 +731,7 @@
             <div class="opacitySelectedColor" style="text-align:center;background:#7eb7c8;margin:0px;padding:10px;color:white;">
                 <h5 style="margin:0px;">EDIT STORE</h5>
             </div>
-            <div style="padding:24px;">
+            <div style="padding:10px;">
                 <form class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
@@ -762,7 +773,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="row">
+                    <div class="row" style="padding-left: 15px;">
                         <div class="file-field input-field">
                             <div class="opacitySelectedColor btn">
                                 <span>image</span>
@@ -826,6 +837,12 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="row budget">
+                        <div class="input-field col s12">
+                            <input id="dailyBudget" type="text" class="validate" placeholder="Ksh" stitm="dailyBudget">
+                            <label for="dailyBudget" class="active">Daily Budget</label>
+                        </div>
+                    </div>
                     <div class="row" style="margin-bottom:0px;">
                         <div class="input-field col s9">
                             <input id="editStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" stitm="lonlat" disabled>
@@ -836,7 +853,7 @@
                         </div>
                     </div>
                     <div class="permanentChng">
-                        <h6><span>These changes will be permanent</span></h6>
+                        <h6><span style="background:#FAFAFA;">These changes will be permanent</span></h6>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
@@ -1088,6 +1105,11 @@
                                     </div>
                                 </div>
                                 <div class="collapsible-body" style="padding: 0px; background: rgb(245, 245, 245); width: 100%; display: none; padding-bottom: 65vh !important; overflow: hidden !important; margin-top: 30px;">
+                                    <div class="permanentChng" style="padding: 10px 10% 0px;">
+                                        <div style="padding: 0px 5%;">
+                                            <h6 style=" border-bottom: solid 1px #cccccc; margin-bottom: 25px; color: #7c7c7c;"><span style="background: #F5F5F5;">SETTINGS</span></h6>
+                                        </div>
+                                    </div>
                                     <span>
                                         <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); managerListener(); setTimeout(getManager, 2000);">
                                             <i class="mdi-social-people">
@@ -1103,7 +1125,7 @@
                                         </a>
                                     </span>
                                     <span>
-                                        <a href="#" class="editStore">
+                                        <a class="editStore">
                                             <i style="width:25px;padding-top:5px;">
                                                 <svg class="svg-icon" viewBox="0 0 20 20">
                                                     <path d="M18.303,4.742l-1.454-1.455c-0.171-0.171-0.475-0.171-0.646,0l-3.061,3.064H2.019c-0.251,0-0.457,0.205-0.457,0.456v9.578c0,0.251,0.206,0.456,0.457,0.456h13.683c0.252,0,0.457-0.205,0.457-0.456V7.533l2.144-2.146C18.481,5.208,18.483,4.917,18.303,4.742 M15.258,15.929H2.476V7.263h9.754L9.695,9.792c-0.057,0.057-0.101,0.13-0.119,0.212L9.18,11.36h-3.98c-0.251,0-0.457,0.205-0.457,0.456c0,0.253,0.205,0.456,0.457,0.456h4.336c0.023,0,0.899,0.02,1.498-0.127c0.312-0.077,0.55-0.137,0.55-0.137c0.08-0.018,0.155-0.059,0.212-0.118l3.463-3.443V15.929z M11.241,11.156l-1.078,0.267l0.267-1.076l6.097-6.091l0.808,0.808L11.241,11.156z"></path>
@@ -1450,10 +1472,10 @@
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <input style="margin-bottom: 0;" type="number" class="validate inputReward deliveryCard" id="purchaseInput" rwditm="deliveryKes" placeholder="" value="1" disabled>
-                                                <label for="first_name">Ksh</label>
+                                                <label for="first_name">Percent ( % )</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward deliveryCard" id="purchaseInput" rwditm="deliveryVal" placeholder="" value="1" disabled>
+                                                <input style="margin-bottom: 0;" type="number" class="validate inputReward" id="purchaseInput" rwditm="deliveryVal" placeholder="" value="1" disabled>
                                                 <label for="first_name">Deliveries Made</label>
                                             </div>
                                         </div>
@@ -1484,8 +1506,8 @@
                         </a>
                         <ul style="bottom:55px !important;">
                             <li>
-                                <a href="#complimentaryModal" class="btn-floating newProdBtn opacitySelectedColor" style="width:auto !important; padding: 0px 10px 0px 10px;background:#26A69A; margin-left:-30px;">
-                                    <p class="material-icons newProdBtnName" style="margin-top:0px !important;font-size:0.8rem;">Complimentary</p>
+                                <a href="#categoryModal" class="btn-floating newProdBtn opacitySelectedColor" style="width:auto !important; padding: 0px 17px;background:#26A69A; margin-left:-23px;">
+                                    <p class="material-icons newProdBtnName" style="margin-top:0px !important;font-size:0.8rem;">Categories</p>
                                 </a>
                             </li>
                             <li>
@@ -1515,12 +1537,6 @@
                             <span id="serviceBillCharges"></span>
                         </p>
                         <a class="payButton" style="background-color: rgba(103, 103, 103, 0.71);padding: 7px; padding-left: 20px; padding-right: 20px; font-weight: bold; color: white; border-radius: 5px; padding-bottom: 10px; float: right; position: absolute; top: 90px; right: 80px;">PAY</a>
-                        <div class="carousel carousel-slider">
-                            <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/800/400/food/1"></a>
-                            <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"></a>
-                            <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"></a>
-                            <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"></a>
-                        </div>
                         <div id="dailyBilling"></div>
                     </div>
                     <!-- Modal Structure -->
