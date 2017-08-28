@@ -301,8 +301,6 @@ function promoCreator(proId) {
                             console.log("unchecked")
                         }
                     }
-                    removeValue(tag_story, 90)
-                    selectedId.pop(JSON.parse(selectedItem));
                     doFetch({
                         action: 'doEditPromo',
                         id: checkBoxId,
