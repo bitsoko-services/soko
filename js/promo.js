@@ -246,50 +246,70 @@ function promoCreator(proId) {
                     $('#editMinus-' + checkerID).attr('disabled', !this.checked)
                 });
                 $('#editPlus-' + +e[i].id + '-' + proId).click(function () {
-                    itemsInput = this.id.replace(/\editPlus-/, '');
-                    CheckerInput = $("#prodEdit_" + itemsInput).val();
-                    console.log(CheckerInput)
-                    checkerInputVal = JSON.parse(CheckerInput) + 1;
-                    checkerInputId = $(this).attr("pid");
+                    var checkBox = "itemsChecker" + $(this).attr("pid");
+                    var checkBoxSelected = $("." + checkBox);
+                    var checkBoxClass = this.name;
+                    var checkBoxId = $(this).attr("class").replace(/\D+/g, "");
+                    console.log(checkBoxId)
                     var selectedId = new Array();
-                    for (tt = 0, selectedId = selectedId; tt < checkerInputVal; tt++) {
-                        selectedId.push(parseInt(checkerInputId));
+                    for (a = 0, selectedId = selectedId; a < checkBoxSelected.length; a++) {
+                        var checkerState = checkBoxSelected;
+
+                        if (checkerState[a].checked == true) {
+                            itemsInput = checkerState[a].id.replace(/\prod/, '');
+                            checkerInputVal = $("#prodEdit_" + itemsInput).val();
+                            checkerInputId = $("#prodEdit_" + itemsInput).attr("prodedit");
+                            for (tt = 0, selectedId = selectedId; tt < checkerInputVal; tt++) {
+                                selectedId.push(parseInt(checkerInputId));
+                            }
+                        } else {
+                            console.log("unchecked")
+                        }
                     }
                     doFetch({
                         action: 'doEditPromo',
-                        id: checkerInputId,
+                        id: checkBoxId,
                         prop: "items",
-                        value: selectedId
+                        val: selectedId
                     }).then(function (e) {
                         if (e.status == 'ok') {} else {
                             console.log(e);
                             Materialize.toast('Error! Please try again', 3000);
                         }
-
-                    })
+                    });
                 })
                 $('#editMinus-' + +e[i].id + '-' + proId).click(function () {
-                    itemsInput = this.id.replace(/\editMinus-/, '');
-                    CheckerInput = $("#prodEdit_" + itemsInput).val();
-                    console.log(CheckerInput)
-                    checkerInputVal = CheckerInput - 1;
-                    checkerInputId = $(this).attr("pid");
+                    var checkBox = "itemsChecker" + $(this).attr("pid");
+                    var checkBoxSelected = $("." + checkBox);
+                    var checkBoxClass = this.name;
+                    var checkBoxId = $(this).attr("class").replace(/\D+/g, "");
+                    console.log(checkBoxId)
                     var selectedId = new Array();
-                    for (tt = 0, selectedId = selectedId; tt < checkerInputVal; tt++) {
-                        selectedId.push(parseInt(checkerInputId));
+                    for (a = 0, selectedId = selectedId; a < checkBoxSelected.length; a++) {
+                        var checkerState = checkBoxSelected;
+
+                        if (checkerState[a].checked == true) {
+                            itemsInput = checkerState[a].id.replace(/\prod/, '');
+                            checkerInputVal = $("#prodEdit_" + itemsInput).val();
+                            checkerInputId = $("#prodEdit_" + itemsInput).attr("prodedit");
+                            for (tt = 0, selectedId = selectedId; tt < checkerInputVal; tt++) {
+                                selectedId.push(parseInt(checkerInputId));
+                            }
+                        } else {
+                            console.log("unchecked")
+                        }
                     }
                     doFetch({
                         action: 'doEditPromo',
-                        id: checkerInputId,
+                        id: checkBoxId,
                         prop: "items",
-                        value: selectedId
+                        val: selectedId
                     }).then(function (e) {
                         if (e.status == 'ok') {} else {
                             console.log(e);
                             Materialize.toast('Error! Please try again', 3000);
                         }
-
-                    })
+                    });
                 })
                 $('#prod' + e[i].id + '-' + proId).click(function () {
                     var checkBoxSelected = $("." + this.className);
@@ -315,7 +335,7 @@ function promoCreator(proId) {
                         action: 'doEditPromo',
                         id: checkBoxId,
                         prop: "items",
-                        value: selectedId
+                        val: selectedId
                     }).then(function (e) {
                         if (e.status == 'ok') {} else {
                             console.log(e);
