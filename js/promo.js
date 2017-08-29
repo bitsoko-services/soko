@@ -246,6 +246,7 @@ function promoCreator(proId) {
                     $('#editMinus-' + checkerID).attr('disabled', !this.checked)
                 });
                 $('#editPlus-' + +e[i].id + '-' + proId).click(function () {
+                    $('.counter').remove();
                     var selectedItem = $(this).attr("checkedID")
                     var checkBox = "itemsChecker" + $(this).attr("pid");
                     var checkBoxSelected = $("." + checkBox);
@@ -276,11 +277,12 @@ function promoCreator(proId) {
                     }).then(function (e) {
                         if (e.status == 'ok') {} else {
                             console.log(e);
-                            Materialize.toast('Error! Please try again', 3000);
+                            Materialize.toast('Error! Please try again', 3000, 'counter');
                         }
                     });
                 })
                 $('#editMinus-' + +e[i].id + '-' + proId).click(function () {
+                    $('.counter').remove();
                     var selectedItem = JSON.parse($(this).attr("checkedID"));
                     var checkBox = "itemsChecker" + $(this).attr("pid");
                     var checkBoxSelected = $("." + checkBox);
@@ -318,7 +320,7 @@ function promoCreator(proId) {
                     }).then(function (e) {
                         if (e.status == 'ok') {} else {
                             console.log(e);
-                            Materialize.toast('Error! Please try again', 3000);
+                            Materialize.toast('Error! Please try again', 3000, 'counter');
                         }
                     });
                 })
