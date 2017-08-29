@@ -281,6 +281,7 @@ function promoCreator(proId) {
                     });
                 })
                 $('#editMinus-' + +e[i].id + '-' + proId).click(function () {
+                    var selectedItem = JSON.parse($(this).attr("checkedID"));
                     var checkBox = "itemsChecker" + $(this).attr("pid");
                     var checkBoxSelected = $("." + checkBox);
                     var checkBoxClass = this.name;
@@ -301,6 +302,14 @@ function promoCreator(proId) {
                             console.log("unchecked")
                         }
                     }
+                    if (!Array.prototype.remove) {
+                        Array.prototype.remove = function (val) {
+                            var i = this.indexOf(val);
+                            return i > -1 ? this.splice(i, 1) : [];
+                        };
+                    }
+                    var array = selectedId;
+                    array.remove(selectedItem);
                     doFetch({
                         action: 'doEditPromo',
                         id: checkBoxId,
