@@ -42,19 +42,26 @@ function checkedProdsInPromo() {
             uniqueCount.forEach(function (i) {
                 count[i] = (count[i] || 0) + 1;
             });
-            console.log(count);
             //            console.log(Object.keys(count))
             //            console.log(Object.values(count))
             promoID = reqs[i].id
-            for (var prop in tt) {
-                var checked = "#prod" + tt[prop] + "-" + promoID;
-                $(checked).prop('checked', true);
-                $("#editPlus-" + tt[prop] + "-" + promoID).prop("disabled", false);
-                $("#editMinus-" + tt[prop] + "-" + promoID).prop("disabled", false);
-                for (var s in count) {
-                    $("#prodEdit_" + s).val(count[s]);
-                }
+            console.log(count);
+            console.log("Array for promo ID " + promoID);
+
+            for (var w = 0; w < promoID.length; ++w) {
+
             }
+
+            //            for (var prop in tt) {
+            //                var checked = "#prod" + tt[prop] + "-" + promoID;
+            //                $(checked).prop('checked', true);
+            //                $("#editPlus-" + tt[prop] + "-" + promoID).prop("disabled", false);
+            //                $("#editMinus-" + tt[prop] + "-" + promoID).prop("disabled", false);
+            //                for (var s in count) {
+            //                    //                    console.log("++++++++++++++++" + count[s])
+            //                    $("#prodEdit_" + tt[prop] + "-" + promoID).val(count[s]);
+            //                }
+            //            }
         }
     }
 }
@@ -273,7 +280,7 @@ function promoCreator(proId) {
                         action: 'doEditPromo',
                         id: checkBoxId,
                         prop: "items",
-                        val: selectedId
+                        val: JSON.stringify(selectedId)
                     }).then(function (e) {
                         if (e.status == 'ok') {} else {
                             console.log(e);
@@ -316,7 +323,7 @@ function promoCreator(proId) {
                         action: 'doEditPromo',
                         id: checkBoxId,
                         prop: "items",
-                        val: selectedId
+                        val: JSON.stringify(selectedId)
                     }).then(function (e) {
                         if (e.status == 'ok') {} else {
                             console.log(e);
@@ -325,6 +332,7 @@ function promoCreator(proId) {
                     });
                 })
                 $('#prod' + e[i].id + '-' + proId).click(function () {
+                    $('.counter').remove();
                     var checkBoxSelected = $("." + this.className);
                     var checkBoxClass = this.name;
                     var checkBoxId = $(this).attr("class").replace(/\D+/g, "");
@@ -348,11 +356,11 @@ function promoCreator(proId) {
                         action: 'doEditPromo',
                         id: checkBoxId,
                         prop: "items",
-                        val: selectedId
+                        val: JSON.stringify(selectedId)
                     }).then(function (e) {
                         if (e.status == 'ok') {} else {
                             console.log(e);
-                            Materialize.toast('Error! Please try again', 3000);
+                            Materialize.toast('Error! Please try again', 3000, 'counter');
                         }
                     });
                 });
