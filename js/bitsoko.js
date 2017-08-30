@@ -23,7 +23,8 @@ function profileLoaded(p) {
     $('.profile-image').attr('src', p.image);
     //p.ownerid=1;
     localStorage.setItem('soko-owner-id', p.bitsokoUserID);
-    Materialize.toast('Signing in...', 3000)
+    Materialize.toast('Signing in...', 3000);
+    $("#signingIn").html("Signing In. Please Wait");
     updateStores();
     doFetch({
         action: 'getMadr',
