@@ -45,23 +45,22 @@ function checkedProdsInPromo() {
             //            console.log(Object.keys(count))
             //            console.log(Object.values(count))
             promoID = reqs[i].id
-            console.log(count);
             console.log("Array for promo ID " + promoID);
 
             for (var w = 0; w < promoID.length; ++w) {
 
             }
 
-            //            for (var prop in tt) {
-            //                var checked = "#prod" + tt[prop] + "-" + promoID;
-            //                $(checked).prop('checked', true);
-            //                $("#editPlus-" + tt[prop] + "-" + promoID).prop("disabled", false);
-            //                $("#editMinus-" + tt[prop] + "-" + promoID).prop("disabled", false);
-            //                for (var s in count) {
-            //                    //                    console.log("++++++++++++++++" + count[s])
-            //                    $("#prodEdit_" + tt[prop] + "-" + promoID).val(count[s]);
-            //                }
-            //            }
+            for (var prop in tt) {
+                var checked = "#prod" + tt[prop] + "-" + promoID;
+                $(checked).prop('checked', true);
+                $("#editPlus-" + tt[prop] + "-" + promoID).prop("disabled", false);
+                $("#editMinus-" + tt[prop] + "-" + promoID).prop("disabled", false);
+                for (var s in count) {
+                    console.log("++++++++++++++++" + count[s])
+                    $("#prodEdit_" + tt[prop] + "-" + promoID).val(count[s]);
+                }
+            }
         }
     }
 }
@@ -167,6 +166,16 @@ function addPromoSubscribers(promoid, promoSubs) {
             };
         };
     });
+}
+
+function refreshAllTokens() {
+    var tokens = allTokens['allTokens'];
+    for (var v = 0; v < tokens.length; v++) {
+        //        $("#tokenSelect").append('<option value="2">' + tokens[v] + '</option>');
+        $("#tokenSelect").append('<option value="" data-icon="https://bitsoko.co.ke/bitsAssets/images/currencies/' + tokens[v] + '.png" class="left circle">' + tokens[v] + '</option>');
+
+    }
+    $('select').material_select();
 }
 
 function getActiveStoreProd(p) {
