@@ -118,27 +118,6 @@ function updateStores() {
                     }
                 });
             }, 5000);
-            var tokens = allTokens['allTokens'];
-            for (var v = 0; v < tokens.length; v++) {
-                //        $("#tokenSelect").append('<option value="2">' + tokens[v] + '</option>');
-                $("#tokenSelect").append('<option value="" data-icon="https://bitsoko.co.ke/bitsAssets/images/currencies/' + tokens[v] + '.png" class="left circle">' + tokens[v] + '</option>');
-            }
-            setTimeout(function () {
-                $(".tokenSelect").find("li").click(function () {
-                    var inputVal = $(".tokenSelect input").val();
-                    selectedToken = Object.keys(tokens).find(key => tokens[key] === inputVal);
-
-                    doFetch({
-                        action: 'doEditStore',
-                        id: localStorage.getItem('soko-active-store'),
-                        prop: "token",
-                        val: selectedToken
-                    }).then(function (e) {
-                        if (e.status == 'ok') {} else {}
-                    });
-                });
-            }, 5000);
-
             localStorage.setItem('bitsoko-stores', 'true');
             loadPOS();
         } else if (e.msg == "no services") {

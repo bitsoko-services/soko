@@ -153,16 +153,12 @@ function onReadButtonClick() {
         .then(service => {
             console.log('Getting Characteristic...');
             return service.getCharacteristic(characteristicUuid);
+            return characteristic.writeValue("testing");
         })
         .then(characteristic => {
+            myCharacteristic = characteristic;
             console.log('Getting Descriptor...');
-            return characteristic.getDescriptor(0x2902);
-        })
-        .then(descriptor => {
-            //            document.querySelector('#writeButton').disabled = !descriptor.characteristic.properties.write;
-            myDescriptor = descriptor;
-            console.log('Reading Descriptor...');
-            return descriptor.readValue();
+            return characteristic.readValue();
         })
         .then(value => {
             let decoder = new TextDecoder('utf-8');
@@ -176,13 +172,14 @@ function onReadButtonClick() {
 }
 
 function onWriteButtonClick() {
-    if (!myDescriptor) {
+    var storeName = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).name.toUpperCase()
+    if (!myCharacteristic) {
         return;
     }
     let encoder = new TextEncoder('utf-8');
-    let value = "";
+    let value = storeName;
     console.log('Setting Characteristic User Description...');
-    myDescriptor.writeValue(encoder.encode(value))
+    myCharacteristic.writeValue(encoder.encode(value))
         .then(_ => {
             console.log('> Characteristic User Description changed to: ' + value);
         })

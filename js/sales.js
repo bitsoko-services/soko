@@ -254,7 +254,6 @@ function orderUpdater() {
                     var name = deliveryGuys[ii].name;
                     var id = deliveryGuys[ii].id;
                     if (deliveredBy == id) {
-                        console.log("#deliveredBy_" + reqs[i].id);
                         $("#deliveredBy_" + reqs[i].id).text("Delivered By: " + name);
                     }
                 }

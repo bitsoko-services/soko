@@ -746,7 +746,7 @@
     <!-- Mobile Verification Modal End -->
     <!-- editStore Modal Start -->
     <div id="editStoreModal" class="modal modal-fixed-footer">
-        <div class="modal-content" style="padding:0px;">
+        <div class="modal-content" style="padding:0px;overflow-x: hidden;">
             <div class="opacitySelectedColor" style="text-align:center;background:#7eb7c8;margin:0px;padding:10px;color:white;">
                 <h5 style="margin:0px;">EDIT STORE</h5>
             </div>
@@ -1338,6 +1338,12 @@
                             </div>
                         </div>
                     </nav>
+                    <div style="background:white;width:100%;text-align:center;border-radius: 0px;border: solid gainsboro 0.1px;">
+                        <div class="opacitySelectedColor" style="background: rgb(22, 133, 33);filter: brightness(1.3);">
+                            <p style="color: white;padding: 5px;margin-top: 0PX;">STORE SIGN</p>
+                        </div>
+                        <a id="readButton" class="waves-effect waves-light btn" style="margin-bottom: 15px;" onclick="onReadButtonClick()">connect</a>
+                    </div>
                     <ul id="" class="collection beacons-holda-connected chStoreUpdate" style="overflow:inherit;"> </ul>
                     <ul id="" class="collection beacons-holda-available chStoreUpdate" style="overflow:inherit;"> </ul>
                 </div>
@@ -1389,7 +1395,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="rewards" class="col s12 m4 l4 rewards" style="display:none;">
+                <div id="rewards" class="col s12 m4 l4 rewards" style="display:none;overflow-x: hidden;">
                     <div class="row" style="text-align:center; margin: 0px;">
                         <div class="selectedColor rewardsHeader" style="text-align:center;background:#0F5F76;margin:0px;padding:10px;color:white; border-bottom: solid white 3px;">
                             <h5 style="margin:0px;font-size: 15px; color:white; padding-bottom:10px;">REWARDS</h5>
@@ -1510,12 +1516,6 @@
 
                         </div>
                         <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="#loyaltyPoints" style="display:block;    width: 170px; margin-left: auto; margin-right: auto; margin-bottom:20px;">Buy Points</a>
-                        <!--
-<div>
-    <button id="readButton" onclick="onReadButtonClick()">Get Characteristic User Description</button>
-
-</div>
--->
                     </div>
                 </div>
                 <div class="col s12 m4 l4 products" style="display:none;">
