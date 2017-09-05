@@ -4,22 +4,23 @@ var cKobo = ""
 var xKobo = ""
 
 function fetchRate() {
+    var storeRwrdCoin = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).rewardCoin
     fetchRates().then(function (e) {
         if (e.status == "ok") {
             coinList = e.data.data;
-            for (var i in coinList) {
-                var rate = coinList[i].coinRate;
+            if (storeRwrdCoin == "") {
+                var rate = coinList[0].coinRate;
                 var bankCharges = 5; // %
-                var roundOff = rate * (e.data.baseEx+((e.data.baseEx * bankCharges)/100)); //inclusive bank charges
-                mKobo = roundOff * 1000
-                xKobo = roundOff * 10000
-                cKobo = roundOff * 100000
+                var finalRate = rate * (e.data.baseEx + ((e.data.baseEx * bankCharges) / 100)); //inclusive bank charges
+                mKobo = finalRate * 1000
+                xKobo = finalRate * 10000
+                cKobo = finalRate * 100000
 
-                $("#fetchedRate").html(roundOff.toFixed(2));
+                $("#fetchedRate").html(finalRate.toFixed(2));
                 $("#M-kobo").html(mKobo.toFixed(0));
                 $("#X-kobo").html(xKobo.toFixed(0));
                 $("#C-kobo").html(cKobo.toFixed(0));
-            }
+            } else {}
 
         } else {
             console.log("error");
