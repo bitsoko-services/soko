@@ -45,43 +45,13 @@ function checkedProdsInPromo() {
             //            console.log(Object.keys(count))
             //            console.log(Object.values(count))
             promoID = reqs[i].id;
-            console.log(count);
-
-            prodsInPromoArray = new Array();
-            var prodsInPromo = Object.keys(count);
-            console.log(prodsInPromo)
-            for (var i = 0, prodsInPromoArray = prodsInPromoArray; i < prodsInPromo.length; ++i) {
-                prodsInPromoArray.push(parseInt(prodsInPromo[i]));
-            }
-            console.log(prodsInPromoArray);
-            var availableProds = $(".prodsInPromo");
-            newProdArray = new Array();
-            for (var s = 0, newProdArray = newProdArray; s < availableProds.length; ++s) {
-                compareAP = availableProds[s].id;
-                newProdArray.push(parseInt(compareAP));
-            }
-            console.log(newProdArray);
-            var array1 = prodsInPromoArray,
-                array2 = newProdArray;
-
-            function getMatch(a, b) {
-                var matches = [];
-
-                for (var i = 0; i < a.length; i++) {
-                    for (var e = 0; e < b.length; e++) {
-                        if (a[i] === b[e]) matches.push(a[i]);
-                    }
-                }
-                return matches;
-            }
-
-            var matchedProdsInPromo = getMatch(array1, array2);
-            for (var x = 0; x < matchedProdsInPromo.length; ++x) {
-                $("#" + matchedProdsInPromo[x]).attr("disabled", true)
-            }
+            xx = Object.keys(count);
+            console.log(xx)
             for (var prop in tt) {
+                console.log(tt)
                 var checked = "#prod" + tt[prop] + "-" + promoID;
                 $(checked).prop('checked', true);
+                $("#" + tt[prop]).prop("disabled", true);
                 $("#editPlus-" + tt[prop] + "-" + promoID).prop("disabled", false);
                 $("#editMinus-" + tt[prop] + "-" + promoID).prop("disabled", false);
 
@@ -233,7 +203,7 @@ function promoCreator(proId) {
 
             for (var i = 0, proId = proId; i < e.length; ++i) {
 
-                $(".promo-add-new-promotion2").append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input name="promoItems" class="prodsInPromo" type="checkbox" id="' + e[i].id + '" pid="' + e[i].id + '"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-left" id="plus-' + e[i].id + '" disabled>-</button><input class="' + e[i].id + '" type="number" value="0" style="width:30px;text-align:center;margin-top:-6px;"><button style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-right" id="minus-' + e[i].id + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
+                $(".promo-add-new-promotion2").append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input name="promoItems" type="checkbox" id="' + e[i].id + '" pid="' + e[i].id + '"/><label for="' + e[i].id + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-left" id="plus-' + e[i].id + '" disabled>-</button><input class="' + e[i].id + '" type="number" value="0" style="width:30px;text-align:center;margin-top:-6px;"><button style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-right" id="minus-' + e[i].id + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
 
                 $(".promo-add-new-promotion-" + proId).append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"> <input prod_id="' + e[i].id + '" class="itemsChecker' + proId + '" type="checkbox" id="prod' + e[i].id + '-' + proId + '" name="' + e[i].id + '-' + proId + '"/><label for="prod' + e[i].id + '-' + proId + '">' + e[i].name + '</label></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button checkedID="' + e[i].id + '" pid="' + proId + '" name="counter" style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-left' + proId + '" id="editMinus-' + e[i].id + '-' + proId + '" disabled>-</button><input prodEdit="' + e[i].id + '" id="prodEdit_' + e[i].id + '-' + proId + '" class="prod' + e[i].id + '-' + proId + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button checkedID="' + e[i].id + '" pid="' + proId + '" name="counter" style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-right' + proId + '" id="editPlus-' + e[i].id + '-' + proId + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
 
