@@ -547,11 +547,12 @@ $(".deleteStore").click(function () {
 //update location
 $("#updateLoc").click(function () {
     myLoc();
-    var locationField = document.getElementById('editStore-Location').value
-    if (locationField == "location not found") {
-        console.log("error getting location")
-    } else {
-        setTimeout(function () {
+    setTimeout(function () {
+        var locationField = document.getElementById('editStore-Location').value
+        if (locationField == "location not found") {
+            console.log("error getting location");
+            Materialize.toast('Error getting location. Please try again!', 3000);
+        } else {
             doFetch({
                 action: 'doEditStore',
                 id: localStorage.getItem('soko-active-store'),
@@ -562,8 +563,9 @@ $("#updateLoc").click(function () {
                     Materialize.toast('Location updated successfully', 3000);
                 }
             });
-        }, 3000);
-    }
+
+        }
+    }, 3000);
 });
 
 //update theme color
