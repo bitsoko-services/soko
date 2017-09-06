@@ -281,10 +281,12 @@ function promoCreator(proId) {
                         prop: "items",
                         val: JSON.stringify(selectedId)
                     }).then(function (e) {
-                        if (e.status == 'ok') {} else {
-                            console.log(e);
-                            Materialize.toast('Error! Please try again', 3000, 'counter');
-                        }
+                        if (e.status == 'ok') {
+                                    Materialize.toast('Promotion modified successfully', 3000);
+                                } else {
+                                    console.log(e);
+                                    Materialize.toast('Error! Please try again', 3000);
+                                }
                     });
                 })
                 $('#editMinus-' + +e[i].id + '-' + proId).click(function () {
@@ -324,10 +326,12 @@ function promoCreator(proId) {
                         prop: "items",
                         val: JSON.stringify(selectedId)
                     }).then(function (e) {
-                        if (e.status == 'ok') {} else {
-                            console.log(e);
-                            Materialize.toast('Error! Please try again', 3000, 'counter');
-                        }
+                           if (e.status == 'ok') {
+                                    Materialize.toast('Promotion modified successfully', 3000);
+                                } else {
+                                    console.log(e);
+                                    Materialize.toast('Error! Please try again', 3000);
+                                }
                     });
                 })
                 $('#prod' + e[i].id + '-' + proId).click(function () {
@@ -357,10 +361,12 @@ function promoCreator(proId) {
                         prop: "items",
                         val: JSON.stringify(selectedId)
                     }).then(function (e) {
-                        if (e.status == 'ok') {} else {
-                            console.log(e);
-                            Materialize.toast('Error! Please try again', 3000, 'counter');
-                        }
+                           if (e.status == 'ok') {
+                                    Materialize.toast('Promotion modified successfully', 3000);
+                                } else {
+                                    console.log(e);
+                                    Materialize.toast('Error! Please try again', 3000);
+                                }
                     });
                 });
             }
