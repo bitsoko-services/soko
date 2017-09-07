@@ -153,6 +153,7 @@ $(document).ready(function () {
 });
 
 function createInvoiceListener(orderid, invoiceDat, orderLoc) {
+    thisLoc = orderLoc
     var forEach = function (array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
             callback.call(scope, i, array[i]); // passes back stuff we need
@@ -187,7 +188,7 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
                     // Add you function here 
                     var rows = [];
                     var totalPrice = 0;
-                    for (var i = 0, totalPrice = totalPrice, rows = rows, orderLoc = '-1.2833196999999998, 36.8185068'; i < invoiceDat.length; i++) {
+                    for (var i = 0, totalPrice = totalPrice, rows = rows, thisLoc = thisLoc; i < invoiceDat.length; i++) {
                         totalPrice = invoiceDat[i].prod.price * invoiceDat[i].count + totalPrice;
                         var count = invoiceDat[i].count;
                         var ordrImgPath = invoiceDat[i].name.icon;
