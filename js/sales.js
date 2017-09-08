@@ -249,11 +249,11 @@ function orderUpdater() {
 
             if (reqs[i].state == "delivering") {
                 $("#deliveredBy_" + reqs[i].id).text(deliveredBy);
+                $("#deliver" + reqs[i].id).attr('checked', true);
                 for (var ii in deliveryGuys) {
                     var name = deliveryGuys[ii].name;
                     var id = deliveryGuys[ii].id;
                     if (deliveredBy == id) {
-                        console.log("#deliveredBy_" + reqs[i].id);
                         $("#deliveredBy_" + reqs[i].id).text("Delivered By: " + name);
                     }
                 }

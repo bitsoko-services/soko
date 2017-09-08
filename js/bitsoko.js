@@ -23,7 +23,8 @@ function profileLoaded(p) {
     $('.profile-image').attr('src', p.image);
     //p.ownerid=1;
     localStorage.setItem('soko-owner-id', p.bitsokoUserID);
-    Materialize.toast('Signing in...', 3000)
+    Materialize.toast('Signing in...', 3000);
+    $("#signingIn").html("Signing In. Please Wait");
     updateStores();
     doFetch({
         action: 'getMadr',
@@ -97,27 +98,26 @@ function updateStores() {
                 console.log(xxx[i].name);
                 $("#categorySelect").append('<option value="' + xxx[i].id + '">' + xxx[i].name + '</option>');
             }
-            setTimeout(function () {
-                $(".categoriesRow").find("li").click(function () {
-                    var inputVal = $(".categoriesRow input").val()
-                    console.log(inputVal)
-                    for (var i in xxx) {
-                        var name = xxx[i].name;
-                        var id = xxx[i].id;
-                        if (inputVal == name) {
-                            doFetch({
-                                action: 'doEditStore',
-                                id: localStorage.getItem('soko-active-store'),
-                                prop: "category",
-                                val: id
-                            }).then(function (e) {
-                                if (e.status == 'ok') {} else {}
-                            });
-                        }
+            $('.categoriesRow select').on('change', function () {
+                var inputVal = $(".categoriesRow input").val()
+                console.log(inputVal)
+                for (var i in xxx) {
+                    var name = xxx[i].name;
+                    var id = xxx[i].id;
+                    if (inputVal == name) {
+                        doFetch({
+                            action: 'doEditStore',
+                            id: localStorage.getItem('soko-active-store'),
+                            prop: "category",
+                            val: id
+                        }).then(function (e) {
+                            if (e.status == 'ok') {
+                                Materialize.toast('Store category selected successfully', 3000);
+                            } else {}
+                        });
                     }
-                });
-            }, 5000);
-
+                }
+            });
             localStorage.setItem('bitsoko-stores', 'true');
             loadPOS();
         } else if (e.msg == "no services") {

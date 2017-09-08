@@ -150,6 +150,31 @@ function activeStore() {
     return JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
 }
 
+function allTokens() {
+    $("#tokenSelect").html("")
+    var tokens = allTokens['allTokens'];
+    for (var v = 0; v < tokens.length; v++) {
+        //        $("#tokenSelect").append('<option value="2">' + tokens[v] + '</option>');
+        $("#tokenSelect").append('<option value="" data-icon="https://bitsoko.co.ke/bitsAssets/images/currencies/' + tokens[v] + '.png" class="left circle">' + tokens[v] + '</option>');
+    }
+    setTimeout(function () {
+        $(".tokenSelect").find("li").click(function () {
+            var inputVal = $(".tokenSelect input").val();
+            selectedToken = Object.keys(tokens).find(key => tokens[key] === inputVal);
+
+            doFetch({
+                action: 'doEditStore',
+                id: localStorage.getItem('soko-active-store'),
+                prop: "token",
+                val: selectedToken
+            }).then(function (e) {
+                if (e.status == 'ok') {} else {}
+            });
+        });
+    }, 5000);
+    $('select').material_select();
+}
+
 function editStore() {
     $('.sidebar-collapse').sideNav('hide');
     setTimeout(function () {
@@ -165,6 +190,7 @@ function editStore() {
                 document.querySelector('#editStoreModal #editStore-Phone').value = xx.phone;
                 document.querySelector('#editStoreModal #colorChosen').value = xx.theme;
                 Materialize.updateTextFields();
+                allTokens()
             }
         }).modal('open');
     }, 200);
@@ -309,21 +335,44 @@ function updateStore(t) {
 
 //Dominant Color
 function dominantColor() {
-    var _URL = window.URL || window.webkitURL;
-    $("#editStore-image").change(function (e) {
-        var image, file;
-        if ((file = this.files[0])) {
-            image = new Image();
-            image.onload = function () {
-                var sourceImage = image;
-                var colorThief = new ColorThief();
-                var color = colorThief.getColor(sourceImage);
-                console.log("rgb(" + color + ")")
-            }
-        };
-        image.src = _URL.createObjectURL(file);
-    });
+    if (activeStore().theme == "") {
+        var _URL = window.URL || window.webkitURL;
+        $("#editStore-image").change(function (e) {
+            var image, file;
+            if ((file = this.files[0])) {
+                image = new Image();
+                image.onload = function () {
+                    var sourceImage = image;
+                    var colorThief = new ColorThief();
+                    var color = colorThief.getColor(sourceImage);
+                    finalCol = "rgba(" + color + ")"
+
+                    function rgb2hex(rgb) {
+                        rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+                        return (rgb && rgb.length === 4) ? "#" +
+                            ("0" + parseInt(rgb[1], 10).toString(16)).slice(-2) +
+                            ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) +
+                            ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2) : '';
+                    }
+
+                    var hex = rgb2hex(finalCol);
+                    doFetch({
+                        action: 'doEditStore',
+                        id: localStorage.getItem('soko-active-store'),
+                        prop: "theme",
+                        val: hex
+                    }).then(function (e) {
+                        if (e.status == 'ok') {} else {
+                            console.log(e);
+                        }
+                    });
+                }
+            };
+            image.src = _URL.createObjectURL(file);
+        });
+    }
 }
+dominantColor()
 
 //Edit Store On Window Size
 $(document).ready(function () {
@@ -521,11 +570,12 @@ $(".deleteStore").click(function () {
 //update location
 $("#updateLoc").click(function () {
     myLoc();
-    var locationField = document.getElementById('editStore-Location').value
-    if (locationField == "location not found") {
-        console.log("error getting location")
-    } else {
-        setTimeout(function () {
+    setTimeout(function () {
+        var locationField = document.getElementById('editStore-Location').value
+        if (locationField == "location not found") {
+            console.log("error getting location");
+            Materialize.toast('Error getting location. Please try again!', 3000);
+        } else {
             doFetch({
                 action: 'doEditStore',
                 id: localStorage.getItem('soko-active-store'),
@@ -536,8 +586,9 @@ $("#updateLoc").click(function () {
                     Materialize.toast('Location updated successfully', 3000);
                 }
             });
-        }, 3000);
-    }
+
+        }
+    }, 3000);
 });
 
 //update theme color
