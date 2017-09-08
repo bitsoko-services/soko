@@ -783,14 +783,16 @@
                         </div>
                     </div>
                     <div>
-                        <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px; margin-bottom:40px;">
+                        <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px;">
                             <li>
-                                <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%; float:left; border-bottom:none;">
+                                <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%;">
                                     <label for="editStore-Phone" class="active">Store Theme</label>
-                                    <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; margin-bottom:0px; color:black;" disabled>
+                                    <div class="input-field col s6">
+                                        <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none">
+                                    </div>
                                 </div>
-                                <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; margin-top:43px;" id="themeUpdate">ok</a>
-                                <div class="collapsible-body" style="padding:10px; width:100%;">
+                                <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; position: absolute; right:10px; margin-top:-60px;;" id="themeUpdate">ok</a>
+                                <div class="collapsible-body" style="padding:10px;">
                                     <span>
                                         <div id="themeCanvas"></div>
                                     </span>
@@ -1767,6 +1769,7 @@
     <script src="js/contacts.js"></script>
     <script src="js/deliveries.js"></script>
     <script src="js/managers.js"></script>
+    <script src="js/color-thief.js"></script>
     <script>
         var slide = document.getElementById('slide'),
             sliderDiv = document.getElementById("sliderAmount");
