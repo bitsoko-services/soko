@@ -335,21 +335,44 @@ function updateStore(t) {
 
 //Dominant Color
 function dominantColor() {
-    var _URL = window.URL || window.webkitURL;
-    $("#editStore-image").change(function (e) {
-        var image, file;
-        if ((file = this.files[0])) {
-            image = new Image();
-            image.onload = function () {
-                var sourceImage = image;
-                var colorThief = new ColorThief();
-                var color = colorThief.getColor(sourceImage);
-                console.log("rgb(" + color + ")")
-            }
-        };
-        image.src = _URL.createObjectURL(file);
-    });
+    if (activeStore().theme == "") {
+        var _URL = window.URL || window.webkitURL;
+        $("#editStore-image").change(function (e) {
+            var image, file;
+            if ((file = this.files[0])) {
+                image = new Image();
+                image.onload = function () {
+                    var sourceImage = image;
+                    var colorThief = new ColorThief();
+                    var color = colorThief.getColor(sourceImage);
+                    finalCol = "rgba(" + color + ")"
+
+                    function rgb2hex(rgb) {
+                        rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+                        return (rgb && rgb.length === 4) ? "#" +
+                            ("0" + parseInt(rgb[1], 10).toString(16)).slice(-2) +
+                            ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) +
+                            ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2) : '';
+                    }
+
+                    var hex = rgb2hex(finalCol);
+                    doFetch({
+                        action: 'doEditStore',
+                        id: localStorage.getItem('soko-active-store'),
+                        prop: "theme",
+                        val: hex
+                    }).then(function (e) {
+                        if (e.status == 'ok') {} else {
+                            console.log(e);
+                        }
+                    });
+                }
+            };
+            image.src = _URL.createObjectURL(file);
+        });
+    }
 }
+dominantColor()
 
 //Edit Store On Window Size
 $(document).ready(function () {
