@@ -153,7 +153,7 @@ function initPaymentRequest() {
                 label: '1 point = ',
                 amount: {
                     currency: 'KES',
-                    value: finalRate.toFixed(2);
+                    value: finalRate.toFixed(2)
                 },
       },
     ],

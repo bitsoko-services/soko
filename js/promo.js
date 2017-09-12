@@ -45,15 +45,14 @@ function checkedProdsInPromo() {
             //            console.log(Object.keys(count))
             //            console.log(Object.values(count))
             promoID = reqs[i].id;
-            xx = Object.keys(count);
-            console.log(xx)
             for (var prop in tt) {
                 var checked = "#prod" + tt[prop] + "-" + promoID;
+
                 $(checked).prop('checked', true);
                 $("#" + tt[prop]).prop("disabled", true);
                 $("#editPlus-" + tt[prop] + "-" + promoID).prop("disabled", false);
                 $("#editMinus-" + tt[prop] + "-" + promoID).prop("disabled", false);
-                $("#prod" + tt[prop] + "-" + promoID).prop("disabled", true);
+                //                $("#prod" + tt[prop] + "-" + promoID).prop("disabled", true);
 
                 inputVal = count[$(checked).attr("prod_id")];
                 for (var s in tt) {
@@ -339,12 +338,14 @@ function promoCreator(proId) {
                 $('#prod' + e[i].id + '-' + proId).click(function () {
                     $('.counter').remove();
                     var checkBoxSelected = $("." + this.className);
+                    console.log(checkBoxSelected.selector)
                     var checkBoxClass = this.name;
                     var checkBoxId = $(this).attr("class").replace(/\D+/g, "");
                     console.log(checkBoxId)
                     var selectedId = new Array();
                     for (a = 0, selectedId = selectedId; a < checkBoxSelected.length; a++) {
                         var checkerState = checkBoxSelected;
+                        console.log(checkerState.length)
 
                         if (checkerState[a].checked == true) {
                             itemsInput = checkerState[a].id.replace(/\prod/, '');
@@ -356,6 +357,16 @@ function promoCreator(proId) {
                         } else {
                             console.log("unchecked")
                         }
+                    }
+                    promoArray = selectedId;
+                    var rmvDuplicates = uniqueArray = promoArray.filter(function (item, pos, self) {
+                        return self.indexOf(item) == pos;
+                    });
+                    console.log(rmvDuplicates.length)
+                    if (rmvDuplicates.length >= 5) {
+                        $("" + checkBoxSelected.selector + "").prop("disabled", true)
+                    } else {
+                        $("" + checkBoxSelected.selector + "").prop("disabled", false)
                     }
                     doFetch({
                         action: 'doEditPromo',
