@@ -364,7 +364,15 @@ function promoCreator(proId) {
                     });
                     console.log(rmvDuplicates.length)
                     if (rmvDuplicates.length >= 5) {
-                        $("" + checkBoxSelected.selector + "").prop("disabled", true)
+
+                        var thisClass = $("" + checkBoxSelected.selector + "");
+                        console.log(thisClass)
+                        for (var i = 0; i < thisClass.length; ++i) {
+                            if (thisClass[i].checked == false) {
+                                enableId = thisClass[i].id;
+                                $("#" + enableId).prop("disabled", true)
+                            }
+                        }
                     } else {
                         $("" + checkBoxSelected.selector + "").prop("disabled", false)
                     }
