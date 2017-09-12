@@ -112,6 +112,20 @@ function promoUpdater() {
                     });
                 }
             })
+            $(document).on('click', '#myNav' + reqs[i].id + '', function (event) {
+                checkedBoxes = $(this).attr("id").replace(/\D+/g, "");
+                var checkerState = $(".itemsChecker" + checkedBoxes).selector;
+                checkedItemsState = $("" + checkerState + ":checked");
+                allChecked = $("" + checkerState + "")
+                if (checkedItemsState.length >= 5) {
+                    $("" + checkerState + "").prop("disabled", true);
+                    for (var v = 0; v < checkedItemsState.length; ++v) {
+                        $("#" + checkedItemsState[v].id).prop("disabled", false);
+                    }
+                } else {}
+
+            })
+
             $(".closebtn").click(function () {
                 uniqueId = $(this).attr('id')
                 $("#" + uniqueId).width("0%")
@@ -248,7 +262,6 @@ function promoCreator(proId) {
                 });
                 $('#prod' + e[i].id + "-" + proId).click(function () {
                     var checkerID = $(this).attr('name');
-                    console.log(checkerID)
                     $('#editPlus-' + checkerID).attr('disabled', !this.checked)
                     $('#editMinus-' + checkerID).attr('disabled', !this.checked)
                 });
@@ -309,9 +322,7 @@ function promoCreator(proId) {
                             for (tt = 0, selectedId = selectedId; tt < checkerInputVal; tt++) {
                                 selectedId.push(parseInt(checkerInputId));
                             }
-                        } else {
-                            console.log("unchecked")
-                        }
+                        } else {}
                     }
                     if (!Array.prototype.remove) {
                         Array.prototype.remove = function (val) {
@@ -338,14 +349,11 @@ function promoCreator(proId) {
                 $('#prod' + e[i].id + '-' + proId).click(function () {
                     $('.counter').remove();
                     var checkBoxSelected = $("." + this.className);
-                    console.log(checkBoxSelected.selector)
                     var checkBoxClass = this.name;
                     var checkBoxId = $(this).attr("class").replace(/\D+/g, "");
-                    console.log(checkBoxId)
                     var selectedId = new Array();
                     for (a = 0, selectedId = selectedId; a < checkBoxSelected.length; a++) {
                         var checkerState = checkBoxSelected;
-                        console.log(checkerState.length)
 
                         if (checkerState[a].checked == true) {
                             itemsInput = checkerState[a].id.replace(/\prod/, '');
@@ -362,11 +370,9 @@ function promoCreator(proId) {
                     var rmvDuplicates = uniqueArray = promoArray.filter(function (item, pos, self) {
                         return self.indexOf(item) == pos;
                     });
-                    console.log(rmvDuplicates.length)
                     if (rmvDuplicates.length >= 5) {
 
                         var thisClass = $("" + checkBoxSelected.selector + "");
-                        console.log(thisClass)
                         for (var i = 0; i < thisClass.length; ++i) {
                             if (thisClass[i].checked == false) {
                                 enableId = thisClass[i].id;

@@ -192,7 +192,7 @@ function addAllCust() {
         try {
             var reqs = event.target.result;
             reqs = JSON.parse(reqs);
-            console.log(reqs);
+            //            console.log(reqs);
             for (var i = 0; i < reqs.length; ++i) {
                 // timeline.push({time:reqs[i].joined,uid:reqs[i].uid,type:'cust',title:reqs[i].name,body:reqs[i].servaccno,amount:reqs[i].img});
                 var html = ' <li class="collection-item avatar">' + '<img src="' + reqs[i].img + '" alt="" class="circle">' + '<span class="title">' + reqs[i].name + '</span>' + '<p>customer since<br> ' + reqs[i].uid + '</p>' + '</li>';
