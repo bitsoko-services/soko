@@ -510,25 +510,42 @@ function doNewPromo() {
 
     Materialize.toast("Adding promotion. Please wait", 10000, 'promoWaitToast');
     doFetch({
-        action: 'doNewPromo',
-        ownerid: JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).id,
-        name: document.querySelector('#newPromo-name').value,
-        desc: document.querySelector('#newPromo-desc').value,
-        image: imgB4,
-        items: selcIds,
-        discount: document.querySelector('#newPromo-discount').value,
-        offers: document.querySelector('#newPromo-offers').value,
-        state: selectedState
+        action: 'getProducts',
+        id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
-        if (e.status == 'ok') {
-            $('.promoWaitToast').remove();
-            Materialize.toast('Added new promotion successfully', 3000);
-            refreshPromotions();
-            $('#newPromoModal').modal('close');
-        } else {
-            console.log(e);
+        productList = e.products;
+        plAr = [];
+        for (var i = 0, plAr = plAr; i < productList.length; ++i) {
+            plAr.push(productList[i].name)
         }
-    });
+        if (plAr.indexOf(document.querySelector('#newPromo-name').value) == -1) {
+            doFetch({
+                action: 'doNewPromo',
+                ownerid: JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).id,
+                name: document.querySelector('#newPromo-name').value,
+                desc: document.querySelector('#newPromo-desc').value,
+                image: imgB4,
+                items: selcIds,
+                discount: document.querySelector('#newPromo-discount').value,
+                offers: document.querySelector('#newPromo-offers').value,
+                state: selectedState
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    $('.promoWaitToast').remove();
+                    Materialize.toast('Added new promotion successfully', 3000);
+                    refreshPromotions();
+                    $('#newPromoModal').modal('close');
+                } else {
+                    console.log(e);
+                }
+            });
+
+        } else {
+            Materialize.toast('Ooops! Seems you have a similar promotion', 3000);
+            $('.prodWaitToast').remove();
+        }
+    })
+
 }
 
 //Remove Promotion
