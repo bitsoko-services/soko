@@ -45,15 +45,14 @@ function checkedProdsInPromo() {
             //            console.log(Object.keys(count))
             //            console.log(Object.values(count))
             promoID = reqs[i].id;
-            xx = Object.keys(count);
-            console.log(xx)
             for (var prop in tt) {
                 var checked = "#prod" + tt[prop] + "-" + promoID;
+
                 $(checked).prop('checked', true);
                 $("#" + tt[prop]).prop("disabled", true);
                 $("#editPlus-" + tt[prop] + "-" + promoID).prop("disabled", false);
                 $("#editMinus-" + tt[prop] + "-" + promoID).prop("disabled", false);
-                $("#prod" + tt[prop] + "-" + promoID).prop("disabled", true);
+                //                $("#prod" + tt[prop] + "-" + promoID).prop("disabled", true);
 
                 inputVal = count[$(checked).attr("prod_id")];
                 for (var s in tt) {
@@ -113,6 +112,20 @@ function promoUpdater() {
                     });
                 }
             })
+            $(document).on('click', '#myNav' + reqs[i].id + '', function (event) {
+                checkedBoxes = $(this).attr("id").replace(/\D+/g, "");
+                var checkerState = $(".itemsChecker" + checkedBoxes).selector;
+                checkedItemsState = $("" + checkerState + ":checked");
+                allChecked = $("" + checkerState + "")
+                if (checkedItemsState.length >= 5) {
+                    $("" + checkerState + "").prop("disabled", true);
+                    for (var v = 0; v < checkedItemsState.length; ++v) {
+                        $("#" + checkedItemsState[v].id).prop("disabled", false);
+                    }
+                } else {}
+
+            })
+
             $(".closebtn").click(function () {
                 uniqueId = $(this).attr('id')
                 $("#" + uniqueId).width("0%")
@@ -249,7 +262,6 @@ function promoCreator(proId) {
                 });
                 $('#prod' + e[i].id + "-" + proId).click(function () {
                     var checkerID = $(this).attr('name');
-                    console.log(checkerID)
                     $('#editPlus-' + checkerID).attr('disabled', !this.checked)
                     $('#editMinus-' + checkerID).attr('disabled', !this.checked)
                 });
@@ -310,9 +322,7 @@ function promoCreator(proId) {
                             for (tt = 0, selectedId = selectedId; tt < checkerInputVal; tt++) {
                                 selectedId.push(parseInt(checkerInputId));
                             }
-                        } else {
-                            console.log("unchecked")
-                        }
+                        } else {}
                     }
                     if (!Array.prototype.remove) {
                         Array.prototype.remove = function (val) {
@@ -341,7 +351,6 @@ function promoCreator(proId) {
                     var checkBoxSelected = $("." + this.className);
                     var checkBoxClass = this.name;
                     var checkBoxId = $(this).attr("class").replace(/\D+/g, "");
-                    console.log(checkBoxId)
                     var selectedId = new Array();
                     for (a = 0, selectedId = selectedId; a < checkBoxSelected.length; a++) {
                         var checkerState = checkBoxSelected;
@@ -356,6 +365,22 @@ function promoCreator(proId) {
                         } else {
                             console.log("unchecked")
                         }
+                    }
+                    promoArray = selectedId;
+                    var rmvDuplicates = uniqueArray = promoArray.filter(function (item, pos, self) {
+                        return self.indexOf(item) == pos;
+                    });
+                    if (rmvDuplicates.length >= 5) {
+
+                        var thisClass = $("" + checkBoxSelected.selector + "");
+                        for (var i = 0; i < thisClass.length; ++i) {
+                            if (thisClass[i].checked == false) {
+                                enableId = thisClass[i].id;
+                                $("#" + enableId).prop("disabled", true)
+                            }
+                        }
+                    } else {
+                        $("" + checkBoxSelected.selector + "").prop("disabled", false)
                     }
                     doFetch({
                         action: 'doEditPromo',
@@ -485,25 +510,42 @@ function doNewPromo() {
 
     Materialize.toast("Adding promotion. Please wait", 10000, 'promoWaitToast');
     doFetch({
-        action: 'doNewPromo',
-        ownerid: JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).id,
-        name: document.querySelector('#newPromo-name').value,
-        desc: document.querySelector('#newPromo-desc').value,
-        image: imgB4,
-        items: selcIds,
-        discount: document.querySelector('#newPromo-discount').value,
-        offers: document.querySelector('#newPromo-offers').value,
-        state: selectedState
+        action: 'getProducts',
+        id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
-        if (e.status == 'ok') {
-            $('.promoWaitToast').remove();
-            Materialize.toast('Added new promotion successfully', 3000);
-            refreshPromotions();
-            $('#newPromoModal').modal('close');
-        } else {
-            console.log(e);
+        productList = e.products;
+        plAr = [];
+        for (var i = 0, plAr = plAr; i < productList.length; ++i) {
+            plAr.push(productList[i].name)
         }
-    });
+        if (plAr.indexOf(document.querySelector('#newPromo-name').value) == -1) {
+            doFetch({
+                action: 'doNewPromo',
+                ownerid: JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).id,
+                name: document.querySelector('#newPromo-name').value,
+                desc: document.querySelector('#newPromo-desc').value,
+                image: imgB4,
+                items: selcIds,
+                discount: document.querySelector('#newPromo-discount').value,
+                offers: document.querySelector('#newPromo-offers').value,
+                state: selectedState
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    $('.promoWaitToast').remove();
+                    Materialize.toast('Added new promotion successfully', 3000);
+                    refreshPromotions();
+                    $('#newPromoModal').modal('close');
+                } else {
+                    console.log(e);
+                }
+            });
+
+        } else {
+            Materialize.toast('Ooops! Seems you have a similar promotion', 3000);
+            $('.prodWaitToast').remove();
+        }
+    })
+
 }
 
 //Remove Promotion
