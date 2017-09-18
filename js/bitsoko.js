@@ -695,6 +695,6 @@ $(".clickPromo").click(function () {
 
 //Sign out
 $(".signOut").click(function () {
-    indexedDB.deleteDatabase('data');
-    location.reload();
+    localStorage.clear();
+    setTimeout(location.reload(), 2000)
 });

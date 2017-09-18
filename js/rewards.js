@@ -1,5 +1,5 @@
 //Fetch rate
-var mKobo = ""
+var finalRate;
 var cKobo = ""
 var xKobo = ""
 
@@ -11,22 +11,29 @@ function fetchRate() {
             if (storeRwrdCoin == "") {
                 var rate = coinList[0].coinRate;
                 var bankCharges = 5; // %
-                var finalRate = rate * (e.data.baseEx + ((e.data.baseEx * bankCharges) / 100)); //inclusive bank charges
-                mKobo = finalRate * 1000
-                xKobo = finalRate * 10000
-                cKobo = finalRate * 100000
+                finalRate = rate * (e.data.baseEx + ((e.data.baseEx * bankCharges) / 100)); //inclusive bank charges
 
                 $("#fetchedRate").html(finalRate.toFixed(2));
-                $("#M-kobo").html(mKobo.toFixed(0));
-                $("#X-kobo").html(xKobo.toFixed(0));
-                $("#C-kobo").html(cKobo.toFixed(0));
             } else {}
+
+            if (window.PaymentRequest) {
+                payButton.setAttribute('style', 'display: inline;');
+                payButton.addEventListener('click', function () {
+                    initPaymentRequest().show().then(function (instrumentResponse) {
+                            sendPaymentToServer(instrumentResponse);
+                        })
+                        .catch(function (err) {
+                            ChromeSamples.setStatus(err);
+                        });
+                });
+            } else {
+                console.log('This browser does not support web payments');
+            }
 
         } else {
             console.log("error");
         }
     });
-    console.log(mKobo);
 }
 fetchRate()
 
@@ -138,15 +145,15 @@ function initPaymentRequest() {
             label: 'Loyalty Points',
             amount: {
                 currency: 'KES',
-                value: "3000"
+                value: document.getElementById('buyPoints').value * finalRate
             }
         },
         displayItems: [
             {
-                label: '10 points = ',
+                label: '1 point = ',
                 amount: {
                     currency: 'KES',
-                    value: '1.00'
+                    value: finalRate.toFixed(2)
                 },
       },
     ],
@@ -155,91 +162,6 @@ function initPaymentRequest() {
     return new PaymentRequest(supportedInstruments, details);
 }
 
-function initPaymentRequest2() {
-    let networks = ['amex', 'diners', 'discover', 'jcb', 'mastercard', 'unionpay',
-      'visa', 'mir'];
-    let types = ['debit', 'credit', 'prepaid'];
-    let supportedInstruments = [{
-        supportedMethods: networks,
-  }, {
-        supportedMethods: ['basic-card'],
-        data: {
-            supportedNetworks: networks,
-            supportedTypes: types
-        },
-  }];
-
-    let details = {
-        total: {
-            label: 'Loyalty Points',
-            amount: {
-                currency: 'KES',
-                value: "30000"
-            }
-        },
-        displayItems: [
-            {
-                label: '10 points = ',
-                amount: {
-                    currency: 'KES',
-                    value: '1.00'
-                },
-      },
-    ],
-    };
-
-    return new PaymentRequest(supportedInstruments, details);
-}
-
-function initPaymentRequest3() {
-    let networks = ['amex', 'diners', 'discover', 'jcb', 'mastercard', 'unionpay',
-      'visa', 'mir'];
-    let types = ['debit', 'credit', 'prepaid'];
-    let supportedInstruments = [{
-        supportedMethods: networks,
-  }, {
-        supportedMethods: ['basic-card'],
-        data: {
-            supportedNetworks: networks,
-            supportedTypes: types
-        },
-  }];
-
-    let details = {
-        total: {
-            label: 'Loyalty Points',
-            amount: {
-                currency: 'KES',
-                value: "300000"
-            }
-        },
-        displayItems: [
-            {
-                label: '10 points = ',
-                amount: {
-                    currency: 'KES',
-                    value: '1.00'
-                },
-      },
-    ],
-    };
-
-    return new PaymentRequest(supportedInstruments, details);
-}
-
-/**
- * Invokes PaymentRequest for credit cards.
- *
- * @param {PaymentRequest} request The PaymentRequest object.
- */
-function onBuyClicked(request) {
-    request.show().then(function (instrumentResponse) {
-            sendPaymentToServer(instrumentResponse);
-        })
-        .catch(function (err) {
-            ChromeSamples.setStatus(err);
-        });
-}
 
 /**
  * Simulates processing the payment data on the server.
@@ -282,34 +204,9 @@ function instrumentToJsonString(instrument) {
 }
 
 const payButton = document.getElementById('buy100');
-const payButton2 = document.getElementById('buy1000');
-const payButton3 = document.getElementById('buy10000');
 
 payButton.setAttribute('style', 'display: none;');
-payButton2.setAttribute('style', 'display: none;');
-payButton3.setAttribute('style', 'display: none;');
-if (window.PaymentRequest) {
-    let request = initPaymentRequest();
-    let request2 = initPaymentRequest2();
-    let request3 = initPaymentRequest3();
-    payButton.setAttribute('style', 'display: inline;');
-    payButton.addEventListener('click', function () {
-        onBuyClicked(request);
-        request = initPaymentRequest();
-    });
-    payButton2.setAttribute('style', 'display: inline;');
-    payButton2.addEventListener('click', function () {
-        onBuyClicked(request2);
-        request2 = initPaymentRequest2();
-    });
-    payButton3.setAttribute('style', 'display: inline;');
-    payButton3.addEventListener('click', function () {
-        onBuyClicked(request3);
-        request3 = initPaymentRequest3();
-    });
-} else {
-    console.log('This browser does not support web payments');
-}
+
 $(document).on("click", "#rewardsPage", function () {
     $(".navbar-color").css("box-shadow", "none");
 });
