@@ -765,9 +765,9 @@
                             <label for="newStore-description" class=""> Description</label>
                         </div>
                     </div>
-                    <div class="row categoriesRow">
+                    <div class="row newStoreCatgry">
                         <div class="input-field col s12">
-                            <select class="categorySelect" id="categorySelect"><option value="" disabled selected>Choose a category</option></select>
+                            <select class="categorySelect" id="categorySelect"></select>
                             <label>Select Category</label>
                         </div>
                     </div>
@@ -780,10 +780,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input id="newStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" disabled>
+                        <div class="input-field col s9">
+                            <input id="newStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" disabled style="margin-top: 15px;">
                             <label for="newStore-Location" class="">Location</label>
                         </div>
+                        <div class="col s3"><a class="waves-effect waves-light btn opacitySelectedColor" style="padding: 0px 7px; font-size: 0.75rem;" id="storeLoc">update</a></div>
                     </div>
                 </form>
             </div>

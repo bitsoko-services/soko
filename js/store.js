@@ -223,17 +223,46 @@ function doSwitchStore() {
         }
     }).modal('close');
 }
+//Get Store Location
+$("#storeLoc").click(function () {
+    myLoc();
+    setTimeout(function () {
+        var locationField = document.getElementById('newStore-Location').value
+        if (locationField == "location not found") {
+            console.log("error getting location");
+            Materialize.toast('Error getting location. Please try again!', 3000);
+        } else {
+            doFetch({
+                action: 'doEditStore',
+                id: localStorage.getItem('soko-active-store'),
+                prop: "lonlat",
+                val: document.querySelector('#editStore-Location').value
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    Materialize.toast('Location updated successfully', 3000);
+                }
+            });
+
+        }
+    }, 3000);
+});
 
 function doNewStore() {
+    var locationField = document.getElementById('newStore-Location').value
     if (!$("#newStore-name").hasClass("valid")) {
         Materialize.toast('Ooops! your store needs a name!', 3000);
         return;
-    }
+    } 
+//    else if (locationField == "location not found") {
+    //        Materialize.toast('Ooops! set your store location', 3000);
+    //        return;
+    //    }
     doFetch({
         action: 'doNewStore',
         ownerid: localStorage.getItem('soko-owner-id'),
         name: document.querySelector('#newStore-name').value,
         desc: document.querySelector('#newStore-description').value,
+        category: document.querySelector('.newStoreCatgry input').value,
         loc: document.querySelector('#newStore-Location').value
     }).then(function (e) {
         if (e.status == 'ok') {
