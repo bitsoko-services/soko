@@ -586,6 +586,9 @@
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
         </div>
     </div>
+    <!-- Mobile Verification Modal Start -->
+    <div id="mobiVeri" class="modal bottom-sheet MobileModal">
+    </div>
     <!-- Mobile Verification Modal End -->
     <!-- editStore Modal Start -->
     <div id="editStoreModal" class="modal modal-fixed-footer">
@@ -760,6 +763,12 @@
                         <div class="input-field col s12">
                             <textarea id="newStore-description" class="materialize-textarea" length="120"></textarea>
                             <label for="newStore-description" class=""> Description</label>
+                        </div>
+                    </div>
+                    <div class="row categoriesRow">
+                        <div class="input-field col s12">
+                            <select class="categorySelect" id="categorySelect"><option value="" disabled selected>Choose a category</option></select>
+                            <label>Select Category</label>
                         </div>
                     </div>
                     <div class="row" style="display:none;">
@@ -1037,7 +1046,7 @@
         </ul>
         </li>
         <div class="divider" style="margin:10px 0px;"> </div>
-        <li id="addStoreLimit">
+        <li id="addStoreLimit" style="margin-left: 40px;">
             <a href="#" class="newStore">
                 <i style="width:25px;padding-top:5px;margin-left:-40px;">
                                 <svg class="svg-icon" viewBox="0 0 20 20">
@@ -1486,7 +1495,7 @@
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="js/custom-script.js"></script>
     <script src="js/bitsoko.js" type="text/javascript"></script>
-    <script src="https://bitsoko.co.ke/bitsAssets/js/bits-addMobiVeri.js"></script>
+    <script src="./js/bits-addMobiVeri.js"></script>
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();

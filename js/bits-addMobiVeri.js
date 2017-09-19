@@ -55,7 +55,7 @@ function changedPhnNum(t) {
 
     doFetch({
         action: 'doMobiVeri',
-        address: localStorage.getItem('bits-user-wallet'),
+        user: localStorage.getItem('bits-user-name'),
         val: val
     }).then(function (e) {
         if (e.status == 'ok') {
