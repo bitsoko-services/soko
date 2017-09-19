@@ -150,7 +150,7 @@ function activeStore() {
     return JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
 }
 
-function allTokens() {
+function allTokenCoins() {
     $("#tokenSelect").html("")
     var tokens = allTokens['allTokens'];
     for (var v = 0; v < tokens.length; v++) {
@@ -190,7 +190,7 @@ function editStore() {
                 document.querySelector('#editStoreModal #editStore-Phone').value = xx.phone;
                 document.querySelector('#editStoreModal #colorChosen').value = xx.theme;
                 Materialize.updateTextFields();
-                allTokens()
+                allTokenCoins()
             }
         }).modal('open');
     }, 200);
@@ -252,8 +252,8 @@ function doNewStore() {
     if (!$("#newStore-name").hasClass("valid")) {
         Materialize.toast('Ooops! your store needs a name!', 3000);
         return;
-    } 
-//    else if (locationField == "location not found") {
+    }
+    //    else if (locationField == "location not found") {
     //        Materialize.toast('Ooops! set your store location', 3000);
     //        return;
     //    }
