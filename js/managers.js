@@ -17,9 +17,9 @@ $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
                     manager: id
                 }).then(function (e) {
                     if (e.status == 'ok') {
-                        $("#managersLst").append('<div id="' + thisId + '" class="chip removeManager"> <img src="' + thisIcon + '"> ' + thisName + ' </div>');
+                        $("#managersLst").append('<div id="' + id + '" class="chip removeManager"> <img src="' + thisIcon + '"> ' + thisName + ' </div>');
                         $("#storeManagers").val("");
-                        getManager()
+                        Materialize.toast('' + thisName + ' added as a manager', 3000);
                     } else {}
                 });
             }
@@ -58,13 +58,15 @@ $(document).on("click", ".removeManager", function () {
     $('#yesManagerBtn').on('click', function () {
         $('#removeMemberModal').modal('close');
         doFetch({
-            action: 'storeManagers',
+            action: 'managerLst',
             store: localStorage.getItem('soko-active-store'),
             do: 'remove',
-            data: id
+            manager: id
         }).then(function (e) {
             if (e.status == 'ok') {
-                $(this).remove();
+                $("#managersLst #" + id + "").remove();
+                $("#removeManagerModal").modal("close");
+                Materialize.toast('Manager removed successfully', 3000);
             } else {}
         });
     });
