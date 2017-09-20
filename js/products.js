@@ -263,28 +263,55 @@ function addProduct() {
     }).then(function (e) {
         productList = e.products;
         plAr = [];
+        getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
+            var reqs = event.target.result;
+            try {
+                reqs = JSON.parse(reqs);
+            } catch (err) {
+                reqs = []
+            };
+            console.log(reqs.length);
+            if (reqs.length == 0) {
+                doFetch({
+                    action: 'doNewProduct',
+                    id: localStorage.getItem('soko-active-store'),
+                    prod: newProdDat
+                }).then(function (e) {
+                    if (e.status == 'ok') {
+                        refreshProducts();
+                        $('.prodWaitToast').remove();
+                        Materialize.toast('Product added successfully', 3000);
+                        $('#add-product').modal('close');
+                    } else {
+                        console.log(e);
+                    }
+                });
+            } else {
+                if (plAr.indexOf(newProdDat.name) == -1) {
+                    doFetch({
+                        action: 'doNewProduct',
+                        id: localStorage.getItem('soko-active-store'),
+                        prod: newProdDat
+                    }).then(function (e) {
+                        if (e.status == 'ok') {
+                            refreshProducts();
+                            $('.prodWaitToast').remove();
+                            Materialize.toast('Product added successfully', 3000);
+                            $('#add-product').modal('close');
+                        } else {
+                            console.log(e);
+                        }
+                    });
+
+                } else {
+                    Materialize.toast('Ooops! Seems you have a similar product', 3000);
+                    $('.prodWaitToast').remove();
+                }
+            }
+        }
+
         for (var i = 0, plAr = plAr; i < productList.length; ++i) {
             plAr.push(productList[i].name)
-        }
-        if (plAr.indexOf(newProdDat.name) == -1) {
-            doFetch({
-                action: 'doNewProduct',
-                id: localStorage.getItem('soko-active-store'),
-                prod: newProdDat
-            }).then(function (e) {
-                if (e.status == 'ok') {
-                    refreshProducts();
-                    $('.prodWaitToast').remove();
-                    Materialize.toast('Product added successfully', 3000);
-                    $('#add-product').modal('close');
-                } else {
-                    console.log(e);
-                }
-            });
-
-        } else {
-            Materialize.toast('Ooops! Seems you have a similar product', 3000);
-            $('.prodWaitToast').remove();
         }
     })
 }
