@@ -190,7 +190,8 @@ function editStore() {
                 document.querySelector('#editStoreModal #editStore-Phone').value = xx.phone;
                 document.querySelector('#editStoreModal #colorChosen').value = xx.theme;
                 Materialize.updateTextFields();
-                allTokenCoins()
+                allTokenCoins();
+                workingHours()
             }
         }).modal('open');
     }, 200);
@@ -650,6 +651,30 @@ function storeOwner() {
         $(".settingsIcon").css("display", "block");
         $("#settingsOpt").css("display", "block");
     }
+}
+
+
+// Working Hours
+function workingHours() {
+    $('.pm').hide();
+    $('.AmPm').on('click',
+        function () {
+            $('.am, .pm').toggle()
+        }
+    );
+
+    $(document).on("click", "#wkDayBtn", function () {
+        $("#wkDayModal").show();
+    });
+    $(document).on("click", "#satBtn", function () {
+        $("#satModal").show();
+    });
+    $(document).on("click", "#sunBtn", function () {
+        $("#sunModal").show();
+    });
+    $(document).on("click", ".closeModal", function () {
+        $(".modal2").hide();
+    });
 }
 
 var shroot = document.querySelectorAll(".newStore");

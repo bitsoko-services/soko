@@ -511,6 +511,364 @@
             </div>
         </div>
     </div>
+    <!--- Week Day Modal --->
+    <div>
+        <div id="wkDayModal" class="modal2" style="z-index:10000; padding-top: 50%;">
+            <div class="modal-content2">
+                <div class="timeHeader" style="width: 90px; display: block; margin-left: auto; margin-right: auto; background: white; padding: 7px; margin-top: -45px; border-radius: 50%;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <circle style="fill:#EA971E;" cx="255.997" cy="255.997" r="255.997"/>
+                        <path style="fill:#C27526;" d="M394.971,117.028C359.405,81.462,310.271,59.464,256,59.464  C147.456,59.465,59.465,147.456,59.464,256c0,54.271,21.998,103.405,57.564,138.971l115.991,115.991  c7.572,0.674,15.233,1.039,22.982,1.039C397.385,512,512,397.385,512,256c0-7.747-0.365-15.409-1.039-22.982L394.971,117.028z"/>
+                        <circle style="fill:#57565C;" cx="255.997" cy="255.997" r="196.538"/>
+                        <path style="fill:#2D2E30;" d="M256,59.465v393.07c108.544,0,196.536-87.992,196.536-196.536S364.543,59.465,256,59.465z"/>
+                        <circle style="fill:#FFFFFF;" cx="255.997" cy="255.997" r="143.026"/>
+                        <path style="fill:#AAC6E9;" d="M399.023,256c0-78.989-64.033-143.023-143.023-143.023v286.047  C334.99,399.023,399.023,334.99,399.023,256z"/>
+                        <g>
+                            <rect x="248.564" y="112.98" style="fill:#57565C;" width="14.865" height="38.975"/>
+                            <rect x="248.564" y="360.722" style="fill:#57565C;" width="14.865" height="38.975"/>
+                            <rect x="360.385" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
+                            <rect x="112.643" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
+                        </g>
+                        <rect x="241.628" y="241.628" style="fill:#A2482A;" width="88.355" height="28.738"/>
+                        <rect x="241.628" y="160.884" style="fill:#E25F3F;" width="28.738" height="109.492"/>    
+                    </svg>
+                </div>
+                <div class="modal-body2">
+                    <h5 style="margin:0px;">Opening Hours</h5>
+                    <div class="row" style="margin: 15px 0px; padding: 0px 10px;">
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="12">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="59">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <!--                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">-->
+                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top:-6px;">am</p>
+                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top:-6px;">pm</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                    </div>
+                    <h5>Closing Hours</h5>
+                    <div class="row" style="margin: 15px 0px; padding: 0px 10px;">
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="12">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="59">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <!--                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">-->
+                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top: -6px;">am</p>
+                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top: -6px;">pm</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-bottom:20px;">
+                    <a class="waves-effect waves-light btn closeModal" id="yesSponsoredBtn" style="position: relative; left: -25px;">Close</a>
+                    <a class="waves-effect waves-light btn" id="noSponsoredBtn" style="position: relative; right: -25px;">save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--- Saturday Modal --->
+    <div>
+        <div id="satModal" class="modal2" style="z-index:10000; padding-top: 50%;">
+            <div class="modal-content2">
+                <div class="timeHeader" style="width: 90px; display: block; margin-left: auto; margin-right: auto; background: white; padding: 7px; margin-top: -45px; border-radius: 50%;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <circle style="fill:#EA971E;" cx="255.997" cy="255.997" r="255.997"/>
+                        <path style="fill:#C27526;" d="M394.971,117.028C359.405,81.462,310.271,59.464,256,59.464  C147.456,59.465,59.465,147.456,59.464,256c0,54.271,21.998,103.405,57.564,138.971l115.991,115.991  c7.572,0.674,15.233,1.039,22.982,1.039C397.385,512,512,397.385,512,256c0-7.747-0.365-15.409-1.039-22.982L394.971,117.028z"/>
+                        <circle style="fill:#57565C;" cx="255.997" cy="255.997" r="196.538"/>
+                        <path style="fill:#2D2E30;" d="M256,59.465v393.07c108.544,0,196.536-87.992,196.536-196.536S364.543,59.465,256,59.465z"/>
+                        <circle style="fill:#FFFFFF;" cx="255.997" cy="255.997" r="143.026"/>
+                        <path style="fill:#AAC6E9;" d="M399.023,256c0-78.989-64.033-143.023-143.023-143.023v286.047  C334.99,399.023,399.023,334.99,399.023,256z"/>
+                        <g>
+                            <rect x="248.564" y="112.98" style="fill:#57565C;" width="14.865" height="38.975"/>
+                            <rect x="248.564" y="360.722" style="fill:#57565C;" width="14.865" height="38.975"/>
+                            <rect x="360.385" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
+                            <rect x="112.643" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
+                        </g>
+                        <rect x="241.628" y="241.628" style="fill:#A2482A;" width="88.355" height="28.738"/>
+                        <rect x="241.628" y="160.884" style="fill:#E25F3F;" width="28.738" height="109.492"/>    
+                    </svg>
+                </div>
+                <div class="modal-body2">
+                    <h5 style="margin:0px;">Opening Hours</h5>
+                    <div class="row" style="margin: 15px 0px; padding: 0px 10px;">
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="12">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="59">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <!--                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">-->
+                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top: -6px;">am</p>
+                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top: -6px;">pm</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                    </div>
+                    <h5>Closing Hours</h5>
+                    <div class="row" style="margin: 15px 0px; padding: 0px 10px;">
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="12">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <!--                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">-->
+                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">am</p>
+                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">pm</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-bottom:20px;">
+                    <a class="waves-effect waves-light btn closeModal" id="yesSponsoredBtn" style="position: relative; left: -25px;">Close</a>
+                    <a class="waves-effect waves-light btn" id="noSponsoredBtn" style="position: relative; right: -25px;">save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--- Sunday Modal --->
+    <div>
+        <div id="sunModal" class="modal2" style="z-index:10000; padding-top: 50%;">
+            <div class="modal-content2">
+                <div class="timeHeader" style="width: 90px; display: block; margin-left: auto; margin-right: auto; background: white; padding: 7px; margin-top: -45px; border-radius: 50%;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <circle style="fill:#EA971E;" cx="255.997" cy="255.997" r="255.997"/>
+                        <path style="fill:#C27526;" d="M394.971,117.028C359.405,81.462,310.271,59.464,256,59.464  C147.456,59.465,59.465,147.456,59.464,256c0,54.271,21.998,103.405,57.564,138.971l115.991,115.991  c7.572,0.674,15.233,1.039,22.982,1.039C397.385,512,512,397.385,512,256c0-7.747-0.365-15.409-1.039-22.982L394.971,117.028z"/>
+                        <circle style="fill:#57565C;" cx="255.997" cy="255.997" r="196.538"/>
+                        <path style="fill:#2D2E30;" d="M256,59.465v393.07c108.544,0,196.536-87.992,196.536-196.536S364.543,59.465,256,59.465z"/>
+                        <circle style="fill:#FFFFFF;" cx="255.997" cy="255.997" r="143.026"/>
+                        <path style="fill:#AAC6E9;" d="M399.023,256c0-78.989-64.033-143.023-143.023-143.023v286.047  C334.99,399.023,399.023,334.99,399.023,256z"/>
+                        <g>
+                            <rect x="248.564" y="112.98" style="fill:#57565C;" width="14.865" height="38.975"/>
+                            <rect x="248.564" y="360.722" style="fill:#57565C;" width="14.865" height="38.975"/>
+                            <rect x="360.385" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
+                            <rect x="112.643" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
+                        </g>
+                        <rect x="241.628" y="241.628" style="fill:#A2482A;" width="88.355" height="28.738"/>
+                        <rect x="241.628" y="160.884" style="fill:#E25F3F;" width="28.738" height="109.492"/>    
+                    </svg>
+                </div>
+                <div class="modal-body2">
+                    <h5 style="margin:0px;">Opening Hours</h5>
+
+                    <div class="row" style="margin: 15px 0px; padding: 0px 10px;">
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="12">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <!--                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">-->
+                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">am</p>
+                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">pm</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                    </div>
+                    <h5>Closing Hours</h5>
+                    <div class="row" style="margin: 15px 0px; padding: 0px 10px;">
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="12">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                        <div class="col s4">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
+                                </g>    
+                            </svg>
+                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">am</p>
+                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">pm</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
+                                <g>
+                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+                                </g>    
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="text-align:center;margin-bottom:20px;">
+                    <a class="waves-effect waves-light btn closeModal" id="yesSponsoredBtn" style="position: relative; left: -25px;">Close</a>
+                    <a class="waves-effect waves-light btn" id="noSponsoredBtn" style="position: relative; right: -25px;">save</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="spnsrdModal" class="modal" style="margin-top:25% !important;">
         <div class="modal-content" style="padding:0px;">
             <div class="row">
@@ -708,6 +1066,65 @@
                                     </p>
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+                    <div class="row workingHrs">
+                        <div class="col s12">
+                            <h6>Working Hours</h6>
+                        </div>
+                        <div class="row">
+                            <div class="col s2">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;" xml:space="preserve">
+                                    <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
+                                </svg>
+                            </div>
+                            <div class="col s7" style="padding:0px;">
+                                <div class="col s6" style="padding:0px;">
+                                    <p style="margin:0px;">Mon - Fri</p>
+                                </div>
+                                <div class="col s6">
+                                    <p style="margin:0px;"><span id="wkDayHrs">00</span>:<span id="wkDaymin">00</span></p>
+                                </div>
+                            </div>
+                            <div class="col s3">
+                                <a class="waves-effect waves-light btn" style=" padding: 5px 8px; line-height: 1; height: auto;" id="wkDayBtn">edit</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s2">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;" xml:space="preserve">
+                                    <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
+                                </svg>
+                            </div>
+                            <div class="col s7" style="padding:0px;">
+                                <div class="col s6" style="padding:0px;">
+                                    <p style="margin:0px;">Sat</p>
+                                </div>
+                                <div class="col s6">
+                                    <p style="margin:0px;"><span id="wkDayHrs">00</span>:<span id="wkDaymin">00</span></p>
+                                </div>
+                            </div>
+                            <div class="col s3">
+                                <a class="waves-effect waves-light btn" style=" padding: 5px 8px; line-height: 1; height: auto;" id="satBtn">edit</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s2">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;" xml:space="preserve">
+                                    <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
+                                </svg>
+                            </div>
+                            <div class="col s7" style="padding:0px;">
+                                <div class="col s6" style="padding:0px;">
+                                    <p style="margin:0px;">Sun</p>
+                                </div>
+                                <div class="col s6">
+                                    <p style="margin:0px;"><span id="wkDayHrs">00</span>:<span id="wkDaymin">00</span></p>
+                                </div>
+                            </div>
+                            <div class="col s3">
+                                <a class="waves-effect waves-light btn" style=" padding: 5px 8px; line-height: 1; height: auto;" id="sunBtn">edit</a>
+                            </div>
                         </div>
                     </div>
                     <div class="row budget">
