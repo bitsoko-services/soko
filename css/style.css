@@ -4062,3 +4062,20 @@ ul.side-nav.leftside-navigation li:hover {
     background: transparent !important;
     box-shadow: none !important;
 }
+
+#tokenList {
+    text-align: center;
+}
+
+#tokenList ul {
+    display: inline-block;
+    text-align: center;
+}
+
+#tokenList img {
+    border-radius: 50%;
+}
+
+#tokenList li {
+    padding: 3px;
+}

@@ -210,3 +210,16 @@ payButton.setAttribute('style', 'display: none;');
 $(document).on("click", "#rewardsPage", function () {
     $(".navbar-color").css("box-shadow", "none");
 });
+
+
+// Token List
+function allCoinLst() {
+    $('#loyaltyPoints').modal({
+        ready: function (modal, trigger) {
+            var tokens = allTokens['allTokens'];
+            for (var v = 0; v < tokens.length; v++) {
+                $("#tokenList").append('<ul><li><a href="https://bitsoko.co.ke/home/tokenMarket.html#' + tokens[v] + '" target="_blank"><img style="width:55px;" src="https://bitsoko.co.ke/bitsAssets/images/currencies/' + tokens[v] + '.png"><p style="margin:0px; color: #3a3838">' + tokens[v] + '</p></a></li></ul>')
+            }
+        }
+    });
+}

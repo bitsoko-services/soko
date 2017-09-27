@@ -365,18 +365,11 @@
                 <p style="margin:0px;">current price</p>
                 <p style="margin:0px;">1 kobo = <span id="fetchedRate"> </span> kes</p>
             </div>
-            <p alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;height: 70px;line-height: 0px;display:block;margin:10px auto;border:solid white 3px;background: #79bb3c;line-height: 2.1;font-size: 2em;text-align: center;font-weight: bold;margin-top: -5vh;position: relative;color: white;" src="https://lh4.googleusercontent.com/-kQ74_X2nV68/AAAAAAAAAAI/AAAAAAAAAAA/AMp5VUoO7VUnHLbcGv5WMTgIrs3IFWwdqQ/s96-c/photo.jpg">K</p>
-            <p style="text-align: center; padding: 0% 5%;color: #575757;    margin: 0px;">Points bought will be deposited to the owners account. Credit card charges include 5% bank charges.</p>
+            <img alt="" style="width:70px;height: 70px;line-height: 0px;display:block;margin:10px auto;border:solid white 3px;background: white;line-height: 2.1;font-size: 2em;text-align: center;font-weight: bold;margin-top: -5vh;position: relative;color: white; border-radius: 50%;" src="https://bitsoko.co.ke/bitsAssets/images/currencies/kobo.png">
+            <p style="text-align: center; padding: 0% 5%;color: #575757;    margin: 0px;">Select a coin to buy</p>
             <div style="padding:20px; text-aling:center:">
                 <div>
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input placeholder="Buy Points" id="buyPoints" type="text" class="validate" value="1">
-                                <label for="buyPoints">Enter Amount</label>
-                            </div>
-                        </div>
-                    </form>
+                    <div id="tokenList"></div>
                     <a id="buy100" class="waves-effect waves-light btn">BUY</a>
                 </div>
             </div>
@@ -1340,7 +1333,7 @@
                             </i>Deliveries
                         </a>
                     </li>
-                    <li class="bold pageBoxShadow" onclick="fetchRate()">
+                    <li class="bold pageBoxShadow" onclick="fetchRate(); allCoinLst();">
                         <a href="#" id="rewardsPage" page="rewards" class="waves-effect waves-cyan nav" style="">
                             <i style="padding-top:5px;">
                                 <svg class="deliveriesIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;float: left;height: 40px;margin-left: -6px; margin-right:9px;padding:7px;" xml:space="preserve">
