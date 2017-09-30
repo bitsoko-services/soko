@@ -669,7 +669,7 @@ function workingHours() {
     $('.pm').hide();
     $('.AmPm').on('click',
         function () {
-            $('.am, .pm').toggle()
+            $(this).siblings("p").toggle()
         }
     );
 
@@ -685,6 +685,21 @@ function workingHours() {
     $(document).on("click", ".closeModal", function () {
         $(".modal2").hide();
     });
+
+    $('.counterUp').click(function (event) {
+        event.preventDefault()
+        add = $(this).siblings("input")
+        add_ = add.val()
+        add_ = parseInt(add_) + 1
+        add.val(add_)
+    })
+    $('.counterDown').click(function (event) {
+        event.preventDefault()
+        add = $(this).siblings("input")
+        add_ = add.val()
+        add_ = parseInt(add_) - 1
+        add.val(add_)
+    })
 }
 
 var shroot = document.querySelectorAll(".newStore");
