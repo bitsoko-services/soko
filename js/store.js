@@ -687,18 +687,52 @@ function workingHours() {
     });
 
     $('.counterUp').click(function (event) {
-        event.preventDefault()
-        add = $(this).siblings("input")
-        add_ = add.val()
-        add_ = parseInt(add_) + 1
-        add.val(add_)
+        //        console.log($(this).siblings("input").attr("max"))
+        //        console.log(JSON.parse($(this).siblings("input").val()) + 1)
+        if ($(this).siblings("input").attr("class") == "hrs") {
+            if (JSON.parse($(this).siblings("input").val()) + 1 == 13) {
+                $(this).siblings("input").val(0)
+            } else {
+                event.preventDefault()
+                add = $(this).siblings("input")
+                add_ = add.val()
+                add_ = parseInt(add_) + 1
+                add.val(add_)
+            }
+        } else if ($(this).siblings("input").attr("class") == "min") {
+            if (JSON.parse($(this).siblings("input").val()) + 1 == 60) {
+                $(this).siblings("input").val(0)
+            } else {
+                event.preventDefault()
+                add = $(this).siblings("input")
+                add_ = add.val()
+                add_ = parseInt(add_) + 1
+                add.val(add_)
+            }
+        }
     })
     $('.counterDown').click(function (event) {
-        event.preventDefault()
-        add = $(this).siblings("input")
-        add_ = add.val()
-        add_ = parseInt(add_) - 1
-        add.val(add_)
+        if ($(this).siblings("input").attr("class") == "hrs") {
+            if (JSON.parse($(this).siblings("input").val()) - 1 == -1) {
+                $(this).siblings("input").val(12)
+            } else {
+                event.preventDefault()
+                add = $(this).siblings("input")
+                add_ = add.val()
+                add_ = parseInt(add_) - 1
+                add.val(add_)
+            }
+        } else if ($(this).siblings("input").attr("class") == "min") {
+            if (JSON.parse($(this).siblings("input").val()) - 1 == -1) {
+                $(this).siblings("input").val(59)
+            } else {
+                event.preventDefault()
+                add = $(this).siblings("input")
+                add_ = add.val()
+                add_ = parseInt(add_) - 1
+                add.val(add_)
+            }
+        }
     })
 }
 
