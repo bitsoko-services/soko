@@ -17,7 +17,7 @@ $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
                     manager: id
                 }).then(function (e) {
                     if (e.status == 'ok') {
-                        $("#managersLst").append('<div id="' + id + '" class="chip removeManager"> <img src="' + thisIcon + '"> ' + thisName + ' </div>');
+                        $("#managersLst").append('<div id="' + thisId + '" class="chip removeManager"> <img src="' + thisIcon + '"> ' + thisName + ' </div>');
                         $("#storeManagers").val("");
                         Materialize.toast('' + thisName + ' added as a manager', 3000);
                     } else {}
@@ -64,7 +64,7 @@ $(document).on("click", ".removeManager", function () {
             manager: id
         }).then(function (e) {
             if (e.status == 'ok') {
-                $("#managersLst #" + id + "").remove();
+                removeManager.remove();
                 $("#removeManagerModal").modal("close");
                 Materialize.toast('Manager removed successfully', 3000);
             } else {}
