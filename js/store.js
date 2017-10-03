@@ -735,7 +735,7 @@ function shareStore() {
         navigator.share({
                 title: 'Bitsoko',
                 text: storeName,
-                url: 'https://bitsoko.co.ke/soko/',
+                url: 'https://bitsoko.co.ke/bits/?s=' + localStorage.getItem('soko-active-store') + '',
             })
             .then(() => console.log('Successful share'))
             .catch((error) => console.log('Error sharing', error));
