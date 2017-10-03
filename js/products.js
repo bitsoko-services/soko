@@ -320,6 +320,8 @@ function refreshCategories() {
     $(".categoryLst").append('<div class="chip categoryChip">' + categoryName + '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.971 47.971" style="enable-background:new 0 0 47.971 47.971; width: 10px; margin-left: 5px;" xml:space="preserve"> <g> <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88 c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242 C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879 s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"/> </g> </svg> </div>');
 }
 
+
+//Add Category
 $(document).on("click", "#addCategory", function () {
     categoryName = $("#categoryName").val()
     if (categoryName == "") {
@@ -329,11 +331,14 @@ $(document).on("click", "#addCategory", function () {
         Materialize.toast("Adding category. Please wait", 10000, 'categoryName');
         $("#categoryName").css("border-bottom", "1px solid #9e9e9e");
         doFetch({
-            action: 'addCategory',
+            action: 'manageCategories',
+            store: localStorage.getItem('soko-active-store'),
+            do: 'add',
             name: categoryName
         }).then(function (e) {
             if (e.status == 'ok') {
                 $('#categoryName').val("");
+                $('.categoryName').remove();
                 Materialize.toast('Category added successfully', 3000);
                 refreshCategories();
             } else {
@@ -341,8 +346,34 @@ $(document).on("click", "#addCategory", function () {
             }
         });
     }
-    $(document).on("click", ".categoryChip", function () {
-        $(this).remove();
+})
+
+//Remove Category
+$(document).on("click", ".categoryChip", function () {
+    var selectedCategory = $(this)
+    var categoryName = $(this)[0].outerText;
+    $("#catgryName").text(categoryName)
+    $("#removeCategoryModal").show();
+    $(document).on("click", "#rmvCatgryYesBtn", function () {
+        Materialize.toast("Removing category. Please wait", 10000, 'categoryName');
+        doFetch({
+            action: 'manageCategories',
+            store: localStorage.getItem('soko-active-store'),
+            do: 'remove',
+            name: categoryName
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                $(selectedCategory).remove();
+                $('.categoryName').remove();
+                $("#removeCategoryModal").hide();
+                Materialize.toast('Category removed successfully', 3000);
+            } else {
+                console.log(e);
+            }
+        });
+    })
+    $(document).on("click", "#rmvCatgryNoBtn", function () {
+        $("#removeCategoryModal").hide();
     })
 })
 
