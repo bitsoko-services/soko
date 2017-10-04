@@ -12,7 +12,7 @@ function addMobiVeri() {
         ' </div>' +
         ' <div class="input-field col s4">' +
         '  <div class="input-field col s12">' +
-        '    <button class="inp-phone btn cyan waves-effect waves-light" type="submit" name="action" disabled><i class="mdi-navigation-refresh"></i></button>' +
+        '    <button class="inp-phone btn cyan waves-effect waves-light" type="submit" name="action" disabled>ok</button>' +
         '  </div>' +
         ' </div>' +
         ' </div>' +
@@ -24,7 +24,7 @@ function addMobiVeri() {
         ' </div>' +
         ' <div class="input-field col s4">' +
         '  <div class="input-field col s12">' +
-        '    <button class="inp-code btn cyan waves-effect waves-light" type="submit" name="action" disabled><i class="mdi-navigation-refresh"></i></button>' +
+        '    <button class="inp-code btn cyan waves-effect waves-light" type="submit" name="action" disabled>ok</button>' +
         '  </div>' +
         '  </div>' +
         ' </div>' +

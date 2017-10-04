@@ -57,6 +57,7 @@ function loadPOS() {
     }
     //  appMaster.animateScript();
     //setInterval(noteChecker,30000);
+    verifyNo()
 }
 
 
@@ -223,9 +224,25 @@ function doSwitchStore() {
             productsUpdater();
             storeOwner();
             loadTheme();
+            verifyNo();
         }
     }).modal('close');
 }
+
+//Verify Phone Number
+function verifyNo() {
+    doFetch({
+        action: 'userVerified',
+        uid: JSON.parse(localStorage.getItem("bits-user-name"))
+    }).then(function (e) {
+        if (e.data != "true") {
+            Materialize.toast('Please verify you phone number to continue', null);
+            $('.modal').modal();
+            $("#mobiVeri").modal("open");
+        }
+    })
+}
+
 //Get Store Location
 $("#storeLoc").click(function () {
     myLoc();
