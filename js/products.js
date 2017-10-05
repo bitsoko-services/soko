@@ -13,18 +13,16 @@ function refreshProducts() {
     });
 }
 
-$(".prodactsPage").one("click", function () {
-    var noOfprod = $(".badge").text();
-    if (noOfprod == 1) {
-        $("#dlvryHelpModal").modal("open")
-    }
-});
-$("#submitProdForm").one("click", function () {
-    var noOfprod = $(".badge").text();
-    if (noOfprod == 1) {
-        $("#dlvryHelpModal").modal("open")
-    }
-});
+function addManagers() {
+    $(".prodactsPage").one("click", function () {
+        var noOfMngrs = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).managers
+        if (noOfMngrs == "") {
+            $("#dlvryHelpModal").modal("open")
+        }
+    });
+}
+
+
 $('#dlvryPage').click(function () {
     $("#deliveryPage").click();
 })

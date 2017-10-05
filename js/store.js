@@ -65,7 +65,8 @@ function loadPOS() {
     }
     //  appMaster.animateScript();
     //setInterval(noteChecker,30000);
-    verifyNo()
+    verifyNo();
+    addManagers()
 }
 
 
@@ -233,6 +234,7 @@ function doSwitchStore() {
             storeOwner();
             loadTheme();
             verifyNo();
+            addManagers()
         }
     }).modal('close');
 }
