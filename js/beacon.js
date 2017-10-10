@@ -126,12 +126,18 @@ function getBeaconStatus() {
 var myDescriptor;
 
 function onReadButtonClick() {
-    let serviceUuid = "000000ff-0000-1000-8000-00805f9b34fb";
+    let serviceUuid = "db709546-bcb6-426d-9c53-592297035393";
     if (serviceUuid.startsWith('0x')) {
         serviceUuid = parseInt(serviceUuid);
     }
 
-    let characteristicUuid = "0000ff01-0000-1000-8000-00805f9b34fb";
+    //    let startupMessage = "8f5d6995-35e5-4a1f-8280-a70697147c19";
+    //    if (startupMessage.startsWith('0x')) {
+    //        startupMessage = parseInt(startupMessage);
+    //    }
+
+
+    let characteristicUuid = "8f5d6995-35e5-4a1f-8280-a70697147c19";
     if (characteristicUuid.startsWith('0x')) {
         characteristicUuid = parseInt(characteristicUuid);
     }
@@ -150,10 +156,14 @@ function onReadButtonClick() {
             console.log('Getting Service...');
             return server.getPrimaryService(serviceUuid);
         })
+        //        .then(service => {
+        //            console.log('Getting startupMessage...');
+        //            return service.getstartupMessage(startupMessage);
+        //            return characteristic.writeValue("testing");
+        //        })
         .then(service => {
             console.log('Getting Characteristic...');
             return service.getCharacteristic(characteristicUuid);
-            return characteristic.writeValue("testing");
         })
         .then(characteristic => {
             myCharacteristic = characteristic;
