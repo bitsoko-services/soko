@@ -131,10 +131,10 @@ function onReadButtonClick() {
         serviceUuid = parseInt(serviceUuid);
     }
 
-    //    let startupMessage = "8f5d6995-35e5-4a1f-8280-a70697147c19";
-    //    if (startupMessage.startsWith('0x')) {
-    //        startupMessage = parseInt(startupMessage);
-    //    }
+    let characteristicUuid2 = "5c5be607-4f2e-4f8e-b2b2-c16116c6783c";
+    if (characteristicUuid2.startsWith('0x')) {
+        characteristicUuid2 = parseInt(characteristicUuid2);
+    }
 
 
     let characteristicUuid = "8f5d6995-35e5-4a1f-8280-a70697147c19";
@@ -156,17 +156,15 @@ function onReadButtonClick() {
             console.log('Getting Service...');
             return server.getPrimaryService(serviceUuid);
         })
-        //        .then(service => {
-        //            console.log('Getting startupMessage...');
-        //            return service.getstartupMessage(startupMessage);
-        //            return characteristic.writeValue("testing");
-        //        })
         .then(service => {
             console.log('Getting Characteristic...');
+            return service.getCharacteristic(characteristicUuid2);
             return service.getCharacteristic(characteristicUuid);
         })
         .then(characteristic => {
+            startupNote = characteristic;
             myCharacteristic = characteristic;
+            shutDownNote = characteristic;
             console.log('Getting Descriptor...');
             return characteristic.readValue();
         })
@@ -183,13 +181,21 @@ function onReadButtonClick() {
 
 function onWriteButtonClick() {
     var storeName = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).name.toUpperCase()
+    if (!startupNote) {
+        return;
+    }
     if (!myCharacteristic) {
+        return;
+    }
+    if (!shutDownNote) {
         return;
     }
     let encoder = new TextEncoder('utf-8');
     let value = storeName;
     console.log('Setting Characteristic User Description...');
+    startupNote.writeValue(encoder.encode("WELCOME"))
     myCharacteristic.writeValue(encoder.encode(value))
+    shutDownNote.writeValue(encoder.encode("GOODBYE"))
         .then(_ => {
             console.log('> Characteristic User Description changed to: ' + value);
         })
