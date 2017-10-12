@@ -3331,6 +3331,15 @@ tr.group:hover {
         margin-top: 10% !important;
         top: -20% !important;
     }
+    #mobiVeri {
+        width: 75%;
+        margin-left: auto;
+    }
+    #completeOrder {
+        top: 35% !important;
+        width: 35%;
+        margin-left: 45%;
+    }
 }
 
 

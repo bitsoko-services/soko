@@ -245,7 +245,7 @@ function verifyNo() {
         uid: JSON.parse(localStorage.getItem("bits-user-name"))
     }).then(function (e) {
         if (e.data != "true") {
-            Materialize.toast('Please verify you phone number to continue', null);
+            Materialize.toast('Please verify you phone number to continue', 5000);
             $('.modal').modal();
             $("#mobiVeri").modal("open");
         }
