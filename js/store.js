@@ -265,7 +265,7 @@ $("#storeLoc").click(function () {
                 action: 'doEditStore',
                 id: localStorage.getItem('soko-active-store'),
                 prop: "lonlat",
-                val: document.querySelector('#editStore-Location').value
+                val: locationField
             }).then(function (e) {
                 if (e.status == 'ok') {
                     Materialize.toast('Location updated successfully', 3000);
