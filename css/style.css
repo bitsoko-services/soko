@@ -4088,3 +4088,11 @@ ul.side-nav.leftside-navigation li:hover {
 #tokenList li {
     padding: 3px;
 }
+
+.slctdCompOrd {
+    background: #dedbdb !important;
+}
+
+.salePromo {
+    transition: opacity 1s ease-out;
+}
