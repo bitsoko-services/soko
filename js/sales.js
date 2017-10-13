@@ -425,34 +425,34 @@ $(document).on('click', '.completeCard', function (event) {
         $("#slctSettings").css("display", "none");
         $(".salePromo").css("display", "block");
     }
-
-    $("#deleteOrder").click(function () {
-        $("#completeOrder").modal("open");
-
-        //        var slctLoop = $(".slctdCompOrd");
-        //        for (i = 0; i < slctLoop.length; i++) {
-        //            var selectedOrders = slctLoop[i].attributes[3].nodeValue;
-        //        }
-
-        $("#completeOrder").modal("open");
-        $(document).on('click', '#yesComptOrder', function (event) {
-            doFetch({
-                action: 'deleteOrders',
-                //                id: cardId, 
-                state: 'archive'
-            }).then(function (e) {
-                if (e.status == 'ok') {
-                    thisCard.remove();
-                    $("#completeOrder").modal("close");
-                } else {}
-            });
-
-        })
-        $(document).on('click', '#noComptOrder', function (event) {
-            $("#completeOrder").modal("close");
-        })
-    });
 })
+
+$("#deleteOrder").click(function () {
+    $("#completeOrder").modal("open");
+    console.log("Clicked");
+
+    var slctArray = $('.slctdCompOrd').map(function () {
+        return this.attributes[3].nodeValue;
+    }).get();
+
+    $(document).on('click', '#yesComptOrder', function (event) {
+        doFetch({
+            action: 'deleteOrders',
+            store: localStorage.getItem("soko-active-store"),
+            order: slctArray
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                thisCard.remove();
+                $("#completeOrder").modal("close");
+            } else {}
+        });
+
+    })
+    $(document).on('click', '#noComptOrder', function (event) {
+        $("#completeOrder").modal("close");
+    })
+});
+
 
 
 //Get distance between the shop and the order
