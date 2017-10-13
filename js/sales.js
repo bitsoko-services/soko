@@ -436,6 +436,7 @@ $("#deleteOrder").click(function () {
     }).get();
 
     $(document).on('click', '#yesComptOrder', function (event) {
+        Materialize.toast('Deleting selected orders', 10000, "orderDelete");
         doFetch({
             action: 'deleteOrders',
             store: localStorage.getItem("soko-active-store"),
@@ -444,6 +445,14 @@ $("#deleteOrder").click(function () {
             if (e.status == 'ok') {
                 thisCard.remove();
                 $("#completeOrder").modal("close");
+                $('.orderDelete').remove();
+                $(".cmplOrders").find(".slctdCompOrd").animate({
+                    'margin-top': '-10%',
+                    'opacity': '-1'
+                }, 1000, function () {
+                    $(this).remove();
+                });
+                Materialize.toast('Orders successfully deleted', 3000);
             } else {}
         });
 
