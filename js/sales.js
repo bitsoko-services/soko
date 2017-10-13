@@ -428,8 +428,13 @@ $(document).on('click', '.completeCard', function (event) {
 })
 
 $("#deleteOrder").click(function () {
-    $("#completeOrder").modal("open");
-    console.log("Clicked");
+    $('#completeOrder').modal({
+        complete: function () {
+            $(".slctdCompOrd").removeClass("slctdCompOrd");
+            $(".salePromo").css("display", "block");
+            $("#slctSettings").css("display", "none");
+        }
+    }).modal("open");
 
     var slctArray = $('.slctdCompOrd').map(function () {
         return this.attributes[3].nodeValue;
