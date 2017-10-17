@@ -690,17 +690,26 @@ function workingHours() {
     $('.pm').hide();
     $('.AmPm').on('click', function () {
         $(this).siblings("p").toggle(function () {
-            var opnAm = $(".openHours").find(".pm").css('display') == 'none';
-            var clsAm = $(".closeHours").find(".pm").css('display') == 'none';
-            if (opnAm == true) {
-                wkDayOpn = "am"
-            } else if (clsAm == true) {
-                wkDayCls = "am"
+
+            var actvClass = $(this).parent().parent()
+            var opnAm = actvClass.find(".am").css('display') == 'none';
+            var clsAm = actvClass.find(".pm").css('display') == 'none';
+            if (actvClass.attr('class').replace('row ', '') == "openHours") {
+                if (opnAm == true) {
+                    wkDayOpn = "pm"
+                } else {
+                    wkDayOpn = "am"
+                }
             } else {
-                wkDayOpn = "pm"
-                wkDayCls = "pm"
+                if (clsAm == true) {
+                    wkDayCls = "am"
+                } else {
+                    wkDayCls = "pm"
+                }
             }
         });
+        console.log("up " + wkDayOpn)
+        console.log("down " + wkDayCls)
     });
     $(document).on("click", "#wkDayBtn", function () {
         $("#wkDayModal").show();
