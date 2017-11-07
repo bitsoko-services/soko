@@ -260,6 +260,9 @@ function addProduct() {
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         productList = e.products;
+        if(typeof productList != 'object'){
+        productList = [];
+        }
         plAr = [];
         getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
             var reqs = event.target.result;
