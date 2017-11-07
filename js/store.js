@@ -708,8 +708,6 @@ function workingHours() {
                 }
             }
         });
-        console.log("up " + wkDayOpn)
-        console.log("down " + wkDayCls)
     });
     $(document).on("click", "#wkDayBtn", function () {
         $("#wkDayModal").show();
@@ -852,10 +850,10 @@ var shroot = document.querySelectorAll(".editStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", editStore, false);
 };
-var shroot = document.querySelectorAll(".doAddNewStore");
-for (var i = 0; i < shroot.length; ++i) {
-    shroot[i].addEventListener("touchstart", doNewStore, false);
-};
+//var shroot = document.querySelectorAll(".doAddNewStore");
+//for (var i = 0; i < shroot.length; ++i) {
+//    shroot[i].addEventListener("touchstart", doNewStore, false);
+//};
 var shroot = document.querySelectorAll(".switchStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("click", switchStore, false);
