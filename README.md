@@ -15,9 +15,6 @@ These instructions will get you a copy of the project up and running on your loc
 * Signage
 
 ### Prerequisites
-
-Getting Started
-
 ```
 - Code editor of your liking
 - Web Server For Chrome
@@ -38,7 +35,8 @@ $ cd soko
 Search for Web Server for Chrome in your list of applications
 
 # Enter Port 
-Enter [8010] as the port number on Web Server for Chrome and navigate to [localhost:8010/index.html] in your web browser.
+Enter [8010] as the port number on Web Server for Chrome and navigate 
+to [localhost:8010/index.html] in your web browser.
 
 
 ```
