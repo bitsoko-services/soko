@@ -193,19 +193,23 @@ function editStore() {
         $('#editStoreModal').modal({
             dismissible: false,
             ready: function () {
-                editStoreCallback();
-                reqLoc();
-                transferListener();
-                var xx = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
-                document.querySelector('#editStoreModal #editStore-name').value = xx.name;
-                document.querySelector('#editStoreModal #editStore-description').value = xx.description;
-                document.querySelector('#editStoreModal #editStore-Phone').value = xx.phone;
-                document.querySelector('#editStoreModal #colorChosen').value = xx.theme;
-                Materialize.updateTextFields();
-                allTokenCoins();
+                editStoreContent();
             }
         }).modal('open');
     }, 200);
+}
+
+function editStoreContent() {
+    editStoreCallback();
+    reqLoc();
+    transferListener();
+    var xx = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
+    document.querySelector('#editStoreModal #editStore-name').value = xx.name;
+    document.querySelector('#editStoreModal #editStore-description').value = xx.description;
+    document.querySelector('#editStoreModal #editStore-Phone').value = xx.phone;
+    document.querySelector('#editStoreModal #colorChosen').value = xx.theme;
+    Materialize.updateTextFields();
+    allTokenCoins();
 }
 
 function switchStore() {
