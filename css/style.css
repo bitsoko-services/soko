@@ -619,7 +619,7 @@ input.header-search-input:focus {
 ------------------------------------------*/
 
 nav.top-nav {
-    height: 122px;
+    height: 55px;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -3295,7 +3295,7 @@ tr.group:hover {
     }
     .swtchStrDskt {
         width: 78vw !important;
-        z-index: -1 !important;
+        z-index: 2 !important;
     }
     .tabs {
         height: 45px !important;
@@ -3330,6 +3330,77 @@ tr.group:hover {
         margin-left: 41%;
         margin-top: 10% !important;
         top: -20% !important;
+    }
+    #mobiVeri {
+        width: 75%;
+        margin-left: auto;
+    }
+    #completeOrder {
+        top: 35% !important;
+        width: 35%;
+        margin-left: 45%;
+    }
+    #newStoreModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+    }
+    #cancelOrderModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+    }
+    #confirmMemberModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+    }
+    #removeMemberModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+    }
+    #confirmAddMember {
+        width: 40%!important;
+        margin-left: 40%!important;
+    }
+    #firstProdModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+        margin-top: 10% !important;
+    }
+    #dlvryHelpModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+        margin-top: 10%!important;
+    }
+    #categoryModal {
+        width: 40% !important;
+        margin-left: 40%!important;
+        margin-top: 10%!important;
+    }
+    #wkDayModal {
+        padding-top: 10% !important;
+        padding-left: 35% !important;
+        padding-right: 20% !important;
+    }
+    #satModal {
+        padding-top: 10% !important;
+        padding-left: 35% !important;
+        padding-right: 20% !important;
+    }
+    #sunModal {
+        padding-top: 10% !important;
+        padding-left: 35% !important;
+        padding-right: 20% !important;
+    }
+    #rmvSpnsrdProd {
+        padding-left: 40% !important;
+        padding-right: 20% !important;
+    }
+    #firstStoreModal {
+        width: 40% !important;
+        text-align: center !important;
+        height: 50% !important;
+    }
+    .navDskt {
+        width: 75% !important
     }
 }
 
@@ -3785,7 +3856,7 @@ tr.group:hover {
     padding-top: 100px;
     /* Location of the box */
     left: 0;
-    top: 0;
+    top: 0px;
     width: 100%;
     /* Full width */
     height: 100%;
@@ -4061,4 +4132,41 @@ ul.side-nav.leftside-navigation li:hover {
 #editImgBtn {
     background: transparent !important;
     box-shadow: none !important;
+}
+
+#tokenList {
+    text-align: center;
+}
+
+#tokenList ul {
+    display: inline-block;
+    text-align: center;
+}
+
+#tokenList img {
+    border-radius: 50%;
+}
+
+#tokenList li {
+    padding: 3px;
+}
+
+.slctdCompOrd {
+    background: #dedbdb !important;
+}
+
+.salePromo {
+    transition: opacity 1s ease-out;
+}
+
+.completeCard {
+    transition: 0.5s;
+}
+
+#firstProdModal {
+    margin-top: 35%;
+}
+
+.billing {
+    margin-left: -13px;
 }

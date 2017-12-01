@@ -126,12 +126,18 @@ function getBeaconStatus() {
 var myDescriptor;
 
 function onReadButtonClick() {
-    let serviceUuid = "000000ff-0000-1000-8000-00805f9b34fb";
+    let serviceUuid = "db709546-bcb6-426d-9c53-592297035393";
     if (serviceUuid.startsWith('0x')) {
         serviceUuid = parseInt(serviceUuid);
     }
 
-    let characteristicUuid = "0000ff01-0000-1000-8000-00805f9b34fb";
+    let characteristicUuid2 = "5c5be607-4f2e-4f8e-b2b2-c16116c6783c";
+    if (characteristicUuid2.startsWith('0x')) {
+        characteristicUuid2 = parseInt(characteristicUuid2);
+    }
+
+
+    let characteristicUuid = "8f5d6995-35e5-4a1f-8280-a70697147c19";
     if (characteristicUuid.startsWith('0x')) {
         characteristicUuid = parseInt(characteristicUuid);
     }
@@ -152,11 +158,13 @@ function onReadButtonClick() {
         })
         .then(service => {
             console.log('Getting Characteristic...');
+            return service.getCharacteristic(characteristicUuid2);
             return service.getCharacteristic(characteristicUuid);
-            return characteristic.writeValue("testing");
         })
         .then(characteristic => {
+            startupNote = characteristic;
             myCharacteristic = characteristic;
+            shutDownNote = characteristic;
             console.log('Getting Descriptor...');
             return characteristic.readValue();
         })
@@ -173,13 +181,21 @@ function onReadButtonClick() {
 
 function onWriteButtonClick() {
     var storeName = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).name.toUpperCase()
+    if (!startupNote) {
+        return;
+    }
     if (!myCharacteristic) {
+        return;
+    }
+    if (!shutDownNote) {
         return;
     }
     let encoder = new TextEncoder('utf-8');
     let value = storeName;
     console.log('Setting Characteristic User Description...');
+    startupNote.writeValue(encoder.encode("WELCOME"))
     myCharacteristic.writeValue(encoder.encode(value))
+    shutDownNote.writeValue(encoder.encode("GOODBYE"))
         .then(_ => {
             console.log('> Characteristic User Description changed to: ' + value);
         })

@@ -96,7 +96,7 @@ function updateStores() {
             var xxx = xx.prodCategories
             for (var i = 0; i < xxx.length; i++) {
                 console.log(xxx[i].name);
-                $("#categorySelect").append('<option value="' + xxx[i].id + '">' + xxx[i].name + '</option>');
+                $(".categorySelect").append('<option value="' + xxx[i].id + '">' + xxx[i].name + '</option>');
             }
             $('.categoriesRow select').on('change', function () {
                 var inputVal = $(".categoriesRow input").val()

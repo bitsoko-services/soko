@@ -29,10 +29,18 @@ function loadPOS() {
             $("#addStoreLimit").hide();
         }
         $("#switchStoreContent").html('');
-        for (var i = 0; i < services.length; ++i) {
-            var html = ' <li class="collection-item avatar" style="" svid="' + services[i].id + '"><img src="' + services[i].bannerPath + '" alt="" class="circle closeSwitchStore" svid="' + services[i].id + '"><div class="row closeSwitchStore" svid="' + services[i].id + '" style="width:50%;float:left;">' + '<p class="collections-title">' + services[i].name + '</strong></p><p class="collections-content">...</p></div>' + '</li>';
-            $("#switchStoreContent").append(html);
+        for (var i = 0, services = services; i < services.length; ++i) {
             localStorage.setItem('soko-store-id-' + services[i].id, JSON.stringify(services[i]));
+
+            var bitsUserName = localStorage.getItem("bits-user-name");
+            var sokoOwner = JSON.parse(localStorage.getItem('soko-store-id-' + services[i].id + '')).owner;
+            if (bitsUserName != sokoOwner) {
+                var notOwned = ' <li class="collection-item avatar" style="" svid="' + services[i].id + '"><img src="' + services[i].bannerPath + '" alt="" class="circle closeSwitchStore" svid="' + services[i].id + '"><div class="row closeSwitchStore" svid="' + services[i].id + '" style="width:75%;float:left;">' + '<p class="collections-title">' + services[i].name + '</strong></p><p class="collections-content">...</p></div>' + '</li>';
+                $("#switchStoreContent").append(notOwned);
+            } else {
+                var owned = ' <li class="collection-item avatar" style="" svid="' + services[i].id + '"><img src="' + services[i].bannerPath + '" alt="" class="circle closeSwitchStore" svid="' + services[i].id + '"><div class="row closeSwitchStore" svid="' + services[i].id + '" style="width:75%;float:left; margin-bottom:0px;">' + '<div class="row"><div class="col s9"><p class="collections-title">' + services[i].name + '</strong></p><p class="collections-content">...</p></div><div class="col s3"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 268.765 268.765" style="margin-top: 15px;enable-background:new 0 0 268.765 268.765;width: 20px;height: 20px;" xml:space="preserve"><g id="Settings"><g><path style="fill-rule:evenodd;clip-rule:evenodd;fill: #5d5b5b;" d="M267.92,119.461c-0.425-3.778-4.83-6.617-8.639-6.617 c-12.315,0-23.243-7.231-27.826-18.414c-4.682-11.454-1.663-24.812,7.515-33.231c2.889-2.641,3.24-7.062,0.817-10.133 c-6.303-8.004-13.467-15.234-21.289-21.5c-3.063-2.458-7.557-2.116-10.213,0.825c-8.01,8.871-22.398,12.168-33.516,7.529 c-11.57-4.867-18.866-16.591-18.152-29.176c0.235-3.953-2.654-7.39-6.595-7.849c-10.038-1.161-20.164-1.197-30.232-0.08 c-3.896,0.43-6.785,3.786-6.654,7.689c0.438,12.461-6.946,23.98-18.401,28.672c-10.985,4.487-25.272,1.218-33.266-7.574 c-2.642-2.896-7.063-3.252-10.141-0.853c-8.054,6.319-15.379,13.555-21.74,21.493c-2.481,3.086-2.116,7.559,0.802,10.214 c9.353,8.47,12.373,21.944,7.514,33.53c-4.639,11.046-16.109,18.165-29.24,18.165c-4.261-0.137-7.296,2.723-7.762,6.597 c-1.182,10.096-1.196,20.383-0.058,30.561c0.422,3.794,4.961,6.608,8.812,6.608c11.702-0.299,22.937,6.946,27.65,18.415 c4.698,11.454,1.678,24.804-7.514,33.23c-2.875,2.641-3.24,7.055-0.817,10.126c6.244,7.953,13.409,15.19,21.259,21.508 c3.079,2.481,7.559,2.131,10.228-0.81c8.04-8.893,22.427-12.184,33.501-7.536c11.599,4.852,18.895,16.575,18.181,29.167 c-0.233,3.955,2.67,7.398,6.595,7.85c5.135,0.599,10.301,0.898,15.481,0.898c4.917,0,9.835-0.27,14.752-0.817 c3.897-0.43,6.784-3.786,6.653-7.696c-0.451-12.454,6.946-23.973,18.386-28.657c11.059-4.517,25.286-1.211,33.281,7.572 c2.657,2.89,7.047,3.239,10.142,0.848c8.039-6.304,15.349-13.534,21.74-21.494c2.48-3.079,2.13-7.559-0.803-10.213 c-9.353-8.47-12.388-21.946-7.529-33.524c4.568-10.899,15.612-18.217,27.491-18.217l1.662,0.043 c3.853,0.313,7.398-2.655,7.865-6.588C269.044,139.917,269.058,129.639,267.92,119.461z M134.595,179.491 c-24.718,0-44.824-20.106-44.824-44.824c0-24.717,20.106-44.824,44.824-44.824c24.717,0,44.823,20.107,44.823,44.824 C179.418,159.385,159.312,179.491,134.595,179.491z" fill="#FFFFFF"></path></g></g></svg></div></div></div>' + '</li>';
+                $("#switchStoreContent").append(owned);
+            }
 
             if (getBitsOpt('s') == undefined) {
                 localStorage.setItem('soko-active-store', services[0].id);
@@ -57,7 +65,11 @@ function loadPOS() {
     }
     //  appMaster.animateScript();
     //setInterval(noteChecker,30000);
+    verifyNo();
+    addManagers()
 }
+
+
 
 function addStore() {
     e = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
@@ -150,7 +162,7 @@ function activeStore() {
     return JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
 }
 
-function allTokens() {
+function allTokenCoins() {
     $("#tokenSelect").html("")
     var tokens = allTokens['allTokens'];
     for (var v = 0; v < tokens.length; v++) {
@@ -190,7 +202,7 @@ function editStore() {
                 document.querySelector('#editStoreModal #editStore-Phone').value = xx.phone;
                 document.querySelector('#editStoreModal #colorChosen').value = xx.theme;
                 Materialize.updateTextFields();
-                allTokens()
+                allTokenCoins();
             }
         }).modal('open');
     }, 200);
@@ -220,20 +232,66 @@ function doSwitchStore() {
             productsUpdater();
             storeOwner();
             loadTheme();
+            verifyNo();
+            addManagers()
         }
     }).modal('close');
 }
 
+//Verify Phone Number
+function verifyNo() {
+    doFetch({
+        action: 'userVerified',
+        uid: JSON.parse(localStorage.getItem("bits-user-name"))
+    }).then(function (e) {
+        if (e.data != "true") {
+            Materialize.toast('Please verify you phone number to continue', 5000);
+            $('.modal').modal();
+            $("#mobiVeri").modal("open");
+        }
+    })
+}
+
+//Get Store Location
+$("#storeLoc").click(function () {
+    myLoc();
+    setTimeout(function () {
+        var locationField = document.getElementById('newStore-Location').value
+        if (locationField == "location not found") {
+            console.log("error getting location");
+            Materialize.toast('Error getting location. Please try again!', 3000);
+        } else {
+            doFetch({
+                action: 'doEditStore',
+                id: localStorage.getItem('soko-active-store'),
+                prop: "lonlat",
+                val: locationField
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    Materialize.toast('Location updated successfully', 3000);
+                }
+            });
+
+        }
+    }, 3000);
+});
+
 function doNewStore() {
+    var locationField = document.getElementById('newStore-Location').value
     if (!$("#newStore-name").hasClass("valid")) {
         Materialize.toast('Ooops! your store needs a name!', 3000);
         return;
     }
+    //    else if (locationField == "location not found") {
+    //        Materialize.toast('Ooops! set your store location', 3000);
+    //        return;
+    //    }
     doFetch({
         action: 'doNewStore',
         ownerid: localStorage.getItem('soko-owner-id'),
         name: document.querySelector('#newStore-name').value,
         desc: document.querySelector('#newStore-description').value,
+        category: document.querySelector('.newStoreCatgry input').value,
         loc: document.querySelector('#newStore-Location').value
     }).then(function (e) {
         if (e.status == 'ok') {
@@ -623,6 +681,167 @@ function storeOwner() {
     }
 }
 
+
+// Working Hours
+function workingHours() {
+    var wkDayOpn = "am";
+    var wkDayCls = "am";
+
+    $('.pm').hide();
+    $('.AmPm').on('click', function () {
+        $(this).siblings("p").toggle(function () {
+
+            var actvClass = $(this).parent().parent()
+            var opnAm = actvClass.find(".am").css('display') == 'none';
+            var clsAm = actvClass.find(".pm").css('display') == 'none';
+            if (actvClass.attr('class').replace('row ', '') == "openHours") {
+                if (opnAm == true) {
+                    wkDayOpn = "pm"
+                } else {
+                    wkDayOpn = "am"
+                }
+            } else {
+                if (clsAm == true) {
+                    wkDayCls = "am"
+                } else {
+                    wkDayCls = "pm"
+                }
+            }
+        });
+    });
+    $(document).on("click", "#wkDayBtn", function () {
+        $("#wkDayModal").show();
+    });
+    $(document).on("click", "#satBtn", function () {
+        $("#satModal").show();
+    });
+    $(document).on("click", "#sunBtn", function () {
+        $("#sunModal").show();
+    });
+    $(document).on("click", ".closeModal", function () {
+        $(".modal2").hide();
+    });
+
+    $('.counterUp').click(function (event) {
+        //        console.log($(this).siblings("input").attr("max"))
+        //        console.log(JSON.parse($(this).siblings("input").val()) + 1)
+        if ($(this).siblings("input").attr("class") == "hrs") {
+            if (JSON.parse($(this).siblings("input").val()) + 1 == 13) {
+                $(this).siblings("input").val(0)
+            } else {
+                event.preventDefault()
+                add = $(this).siblings("input")
+                add_ = add.val()
+                add_ = parseInt(add_) + 1
+                add.val(add_)
+            }
+        } else if ($(this).siblings("input").attr("class") == "min") {
+            if (JSON.parse($(this).siblings("input").val()) + 1 == 60) {
+                $(this).siblings("input").val(0)
+            } else {
+                event.preventDefault()
+                add = $(this).siblings("input")
+                add_ = add.val()
+                add_ = parseInt(add_) + 1
+                add.val(add_)
+            }
+        }
+    })
+    $('.counterDown').click(function (event) {
+        if ($(this).siblings("input").attr("class") == "hrs") {
+            if (JSON.parse($(this).siblings("input").val()) - 1 == -1) {
+                $(this).siblings("input").val(12)
+            } else {
+                event.preventDefault()
+                add = $(this).siblings("input")
+                add_ = add.val()
+                add_ = parseInt(add_) - 1
+                add.val(add_)
+            }
+        } else if ($(this).siblings("input").attr("class") == "min") {
+            if (JSON.parse($(this).siblings("input").val()) - 1 == -1) {
+                $(this).siblings("input").val(59)
+            } else {
+                event.preventDefault()
+                add = $(this).siblings("input")
+                add_ = add.val()
+                add_ = parseInt(add_) - 1
+                add.val(add_)
+            }
+        }
+    })
+
+    //Save Working Hours
+    $(document).on("click", "#saveOpnHrs", function () {
+        var day = $(this).parent().parent().parent().attr("id");
+        console.log(day);
+        if (day == "wkDayModal") {
+            var opnHr = $("#wkOpnHr").val()
+            var opnMin = $("#wkOpenMin").val()
+
+            var clsHr = $("#wkclsHr").val()
+            var clsMin = $("#wkclsMin").val()
+
+            doFetch({
+                action: 'WorkingHours',
+                id: localStorage.getItem('soko-active-store'),
+                prop: "weekDay",
+                val: opnHr + ":" + opnMin + " " + wkDayOpn + " - " + clsHr + ":" + clsMin + " " + wkDayCls
+            }).then(function (e) {
+                if (e.status == 'ok') {} else {}
+            });
+
+        } else if (day == "satModal") {
+            var opnHr = $("#satOpnHr").val()
+            var opnMin = $("#satOpenMin").val()
+
+            var clsHr = $("#satclsHr").val()
+            var clsMin = $("#satclsMin").val()
+
+            doFetch({
+                action: 'WorkingHours',
+                id: localStorage.getItem('soko-active-store'),
+                prop: "saturday",
+                val: opnHr + ":" + opnMin + " " + wkDayOpn + " - " + clsHr + ":" + clsMin + " " + wkDayCls
+            }).then(function (e) {
+                if (e.status == 'ok') {} else {}
+            });
+
+        } else {
+            var opnHr = $("#sunOpnHr").val()
+            var opnMin = $("#sunOpenMin").val()
+
+            var clsHr = $("#sunclsHr").val()
+            var clsMin = $("#sunclsMin").val()
+
+            doFetch({
+                action: 'WorkingHours',
+                id: localStorage.getItem('soko-active-store'),
+                prop: "sunday",
+                val: opnHr + ":" + opnMin + " " + wkDayOpn + " - " + clsHr + ":" + clsMin + " " + wkDayCls
+            }).then(function (e) {
+                if (e.status == 'ok') {} else {}
+            });
+
+        }
+    })
+}
+workingHours()
+
+//Share
+function shareStore() {
+    var storeName = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).name
+    if (navigator.share) {
+        navigator.share({
+                title: 'Bitsoko',
+                text: storeName,
+                url: 'https://bitsoko.co.ke/bits/?s=' + localStorage.getItem('soko-active-store') + '',
+            })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+    }
+}
+
 var shroot = document.querySelectorAll(".newStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", newStore, false);
@@ -631,10 +850,10 @@ var shroot = document.querySelectorAll(".editStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", editStore, false);
 };
-var shroot = document.querySelectorAll(".doAddNewStore");
-for (var i = 0; i < shroot.length; ++i) {
-    shroot[i].addEventListener("touchstart", doNewStore, false);
-};
+//var shroot = document.querySelectorAll(".doAddNewStore");
+//for (var i = 0; i < shroot.length; ++i) {
+//    shroot[i].addEventListener("touchstart", doNewStore, false);
+//};
 var shroot = document.querySelectorAll(".switchStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("click", switchStore, false);
