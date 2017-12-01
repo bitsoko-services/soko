@@ -3340,6 +3340,68 @@ tr.group:hover {
         width: 35%;
         margin-left: 45%;
     }
+    #newStoreModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+    }
+    #cancelOrderModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+    }
+    #confirmMemberModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+    }
+    #removeMemberModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+    }
+    #confirmAddMember {
+        width: 40%!important;
+        margin-left: 40%!important;
+    }
+    #firstProdModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+        margin-top: 10% !important;
+    }
+    #dlvryHelpModal {
+        width: 40%!important;
+        margin-left: 40%!important;
+        margin-top: 10%!important;
+    }
+    #categoryModal {
+        width: 40% !important;
+        margin-left: 40%!important;
+        margin-top: 10%!important;
+    }
+    #wkDayModal {
+        padding-top: 10% !important;
+        padding-left: 35% !important;
+        padding-right: 20% !important;
+    }
+    #satModal {
+        padding-top: 10% !important;
+        padding-left: 35% !important;
+        padding-right: 20% !important;
+    }
+    #sunModal {
+        padding-top: 10% !important;
+        padding-left: 35% !important;
+        padding-right: 20% !important;
+    }
+    #rmvSpnsrdProd {
+        padding-left: 40% !important;
+        padding-right: 20% !important;
+    }
+    #firstStoreModal {
+        width: 40% !important;
+        text-align: center !important;
+        height: 50% !important;
+    }
+    .navDskt {
+        width: 75% !important
+    }
 }
 
 
@@ -4099,4 +4161,8 @@ ul.side-nav.leftside-navigation li:hover {
 
 .completeCard {
     transition: 0.5s;
+}
+
+#firstProdModal {
+    margin-top: 35%;
 }
