@@ -12,7 +12,7 @@ function addMobiVeri() {
         ' </div>' +
         ' <div class="input-field col s4">' +
         '  <div class="input-field col s12">' +
-        '    <button class="inp-phone btn cyan waves-effect waves-light" type="submit" name="action" disabled>ok</button>' +
+        '    <button class="inp-phone btn cyan waves-effect waves-light" type="submit" name="action" disabled style="background: rgb(38, 166, 154) !important; color: white !important;">ok</button>' +
         '  </div>' +
         ' </div>' +
         ' </div>' +
@@ -24,13 +24,13 @@ function addMobiVeri() {
         ' </div>' +
         ' <div class="input-field col s4">' +
         '  <div class="input-field col s12">' +
-        '    <button class="inp-code btn cyan waves-effect waves-light" type="submit" name="action" disabled>ok</button>' +
+        '    <button class="inp-code btn cyan waves-effect waves-light" type="submit" name="action" disabled style="background: rgb(38, 166, 154) !important; color: white !important;">ok</button>' +
         '  </div>' +
         '  </div>' +
         ' </div>' +
 
         '</div>' +
-        ' <div class="modal-footer blue-grey lighten-5">' +
+        ' <div class="modal-footer blue-grey lighten-5" style="display:none;">' +
         ' <a id="submitPhoneNo" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Verify</a>' +
         '</div>');
 
@@ -58,9 +58,11 @@ function changedPhnNum(t) {
         user: localStorage.getItem('bits-user-name'),
         val: val
     }).then(function (e) {
+        Materialize.toast('Sending confirmation code', 5000, "confirmCode");
         if (e.status == 'ok') {
             $('#inp-phone').prop('disabled', true);
             $('#inp-code').prop('disabled', false);
+            $('.confirmCode').remove();
             Materialize.toast('confirmation code sent', 5000);
         } else {
             $('#inp-phone').prop('disabled', false);
@@ -79,10 +81,11 @@ function changedConfCode(t) {
         address: localStorage.getItem('bits-user-wallet'),
         val: val
     }).then(function (e) {
+        Materialize.toast('Adding Phone Number...', 5000, 'addNo');
         if (e.status == 'ok') {
-
             $('#inp-phone').prop('disabled', false);
             $('#inp-code').prop('disabled', true);
+            $('.addNo').remove();
             Materialize.toast('Phone Number added', 3000);
 
         } else {
