@@ -1,5 +1,8 @@
 function addScannedToCart(prd){
-console.log(prd)
+console.log(prd);
+      // append product to shopping cart on dom here
+      
+                alert('added '+prd.name+' to cart')
 }
 var newCart=[];
       Quagga.onDetected(function(data){
@@ -20,7 +23,6 @@ var sts=$.parseJSON(event.target.result);
                 
                 
             addScannedToCart(sts[j]) 
-                alert('added '+sts[j].name+' to cart')
                
                }
                 if(!cpt){
