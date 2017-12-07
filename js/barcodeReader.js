@@ -45,6 +45,7 @@ var sts=$.parseJSON(event.target.result);
 
 
             Quagga.init({
+                numOfWorkers: navigator.hardwareConcurrency,
                 inputStream: {
                     name: "Live",
                     type: "LiveStream",
