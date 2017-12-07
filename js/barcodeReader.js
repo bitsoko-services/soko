@@ -14,23 +14,17 @@ var newCart=[];
 var sts=$.parseJSON(event.target.result);
             
             
-            var cpt=false;
             for(var j in sts ){
                 
             if(sts[j].barCode==bCode){
-               cpt=true;
                // we have found a matching code so we add it to the cart and continue scanning
-                
-                
-            addScannedToCart(sts[j]) 
+           addScannedToCart(sts[j]) 
                
-               }
-                if(!cpt){
-             // we have not found a matching code so we continue the scanning
-                    console.log('no product matched with '+bCode+' continuing search..')
-  startScanning();   
-                }
+               } 
+                  
             }
+              
+                startScanning(); 
         }  
                  
                  
