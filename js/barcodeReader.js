@@ -10,6 +10,7 @@ var newCart=[];
                // we have detected a code, since indexdb are async we have to pause quagga first and test if the 
                // scanned code is available in the list of products
   Quagga.stop();
+            // TODO: instead of checking the indexdb each time a code is detected, 
         getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
 var sts=$.parseJSON(event.target.result);
             
@@ -18,6 +19,7 @@ var sts=$.parseJSON(event.target.result);
                 
             if(sts[j].barCode==bCode){
                // we have found a matching code so we add it to the cart and continue scanning
+                  navigator.vibrate(500);
            addScannedToCart(sts[j]) 
                
                } 
