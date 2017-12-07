@@ -1,6 +1,13 @@
 $(".barCodeOpn").click(function () {
     $('#barCodeReader').modal({
         ready: function () {
+             Quagga.onDetected(function(data){
+
+              console.log(data.codeResult.code) 
+              alert(data.codeResult.code) 
+            })
+
+
             Quagga.init({
                 inputStream: {
                     name: "Live",
