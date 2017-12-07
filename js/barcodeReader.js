@@ -30,6 +30,7 @@ var sts=$.parseJSON(event.target.result);
                }
                 if(!cpt){
              // we have not found a matching code so we continue the scanning
+                    console.log('no product matched with '+bCode+' continuing search..')
   Quagga.start();   
                 }
             }
@@ -37,9 +38,6 @@ var sts=$.parseJSON(event.target.result);
                  
                  
                  
-                 
-              console.log() 
-              alert(data.codeResult.code) 
               
                  
                  
@@ -53,7 +51,7 @@ var sts=$.parseJSON(event.target.result);
                     target: document.querySelector('#quagaLauncher') // Or '#yourElement' (optional)
                 },
                 decoder: {
-                    readers: ["code_128_reader"]
+                    readers: ["ean_reader","ean_8_reader","code_128_reader"]
                 }
             }, function (err) {
                 if (err) {
