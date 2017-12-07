@@ -2,12 +2,7 @@ function addScannedToCart(prd){
 console.log(prd)
 }
 var newCart=[];
-
-
-$(".barCodeOpn").click(function () {
-    $('#barCodeReader').modal({
-        ready: function () {
-             Quagga.onDetected(function(data){
+      Quagga.onDetected(function(data){
              var bCode=data.codeResult.code;    
                // we have detected a code, since indexdb are async we have to pause quagga first and test if the 
                // scanned code is available in the list of products
@@ -31,7 +26,7 @@ var sts=$.parseJSON(event.target.result);
                 if(!cpt){
              // we have not found a matching code so we continue the scanning
                     console.log('no product matched with '+bCode+' continuing search..')
-  Quagga.start();   
+  startScanning();   
                 }
             }
         }  
@@ -44,7 +39,8 @@ var sts=$.parseJSON(event.target.result);
             })
 
 
-            Quagga.init({
+function startScanning(){
+Quagga.init({
                 numOfWorkers: navigator.hardwareConcurrency,
                 inputStream: {
                     name: "Live",
@@ -59,9 +55,16 @@ var sts=$.parseJSON(event.target.result);
                     console.log(err);
                     return
                 }
-                console.log("Initialization finished. Ready to start");
                 Quagga.start();
             })
+}
+
+$(".barCodeOpn").click(function () {
+    $('#barCodeReader').modal({
+        ready: function () {
+       
+startScanning();
+            
         },
         complete: function () {
             Quagga.stop()
