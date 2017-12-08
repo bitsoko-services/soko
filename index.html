@@ -1490,11 +1490,27 @@
 
     <!-- BarCode Reader Modal Start -->
 
-    <div id="barCodeReader" class="modal">
+    <div id="barCodeReader" class="modal" style="background-color: black;">
         <div id="quagaLauncher"></div>
-        <div id="scanLst"></div>
-        <div class="modal-footer">
-            <a class="waves-effect waves-light btn checkOutQuagga">ok</a>
+        <div id="scanLst">
+	
+    <div class="preloader-wrapper big active">    
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+       start scanning 
+	</div>
+        <div class="modal-footer" style="background-color: black;">
+            <a class="waves-effect waves-light btn checkOutQuagga">close</a>
+            <a class="waves-effect waves-light btn">print</a>
+            <a class="waves-effect waves-light btn">ok</a>
         </div>
     </div>
     <!-- BarCode Reader Modal End -->
