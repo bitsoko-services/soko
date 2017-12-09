@@ -462,6 +462,8 @@ for (var i = 0; i < shroot.length; ++i) {
         } else {
             newProdDat[val] = $(value).val();
         }
+        var newProdCat = $(".productCategory input").val();
+        newProdDat.productCategory = newProdCat;
     }, false);
 };
 /*
