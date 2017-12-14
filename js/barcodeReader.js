@@ -84,18 +84,22 @@ $("#quaggachckout").click(function () {
 
     console.log(itemsScanned);
 
-    doFetch({
-        action: 'makeOrder',
-        data: itemsScanned,
-        loc: location,
-        user: localStorage.getItem("bits-user-name")
-    }).then(function (e) {
-        if (e.status == "ok") {
-            console.log("success!", "your order has been sent!", "success");
-            refreshSalesOrders();
-            $("#barCodeReader").modal("close")
-        } else {
-            console.log("Cancelled", "your order is not sent", "error");
-        }
-    })
+    if (itemsScanned.length == 0) {
+        Materialize.toast("You haven't added items to your cart", 3000);
+    } else {
+        doFetch({
+            action: 'makeOrder',
+            data: itemsScanned,
+            loc: location,
+            user: localStorage.getItem("bits-user-name")
+        }).then(function (e) {
+            if (e.status == "ok") {
+                console.log("success!", "your order has been sent!", "success");
+                refreshSalesOrders();
+                $("#barCodeReader").modal("close")
+            } else {
+                console.log("Cancelled", "your order is not sent", "error");
+            }
+        })
+    }
 })
