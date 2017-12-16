@@ -77,21 +77,41 @@ $(".checkOutQuagga").click(function () {
 $("#quaggachckout").click(function () {
     var location = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).lonlat
     var itemsScanned = [];
+    var itemsArray = [];
     var itmScndChildren = document.getElementById("scanLst").children; //get container element children.
     for (var i = 0, len = itmScndChildren.length; i < len; i++) {
+        console.log(itmScndChildren[i].id);
         itemsScanned.push(itmScndChildren[i].id); //get child id.
-    }
 
-    console.log(itemsScanned);
+    }
+    var testdata = itemsScanned;
+    var i = 0,
+        x, count, item;
+    while (i < testdata.length) {
+        count = 1;
+        item = testdata[i];
+        x = i + 1;
+
+        while (x < testdata.length && (x = testdata.indexOf(item, x)) != -1) {
+            count += 1;
+            testdata.splice(x, 1);
+        }
+        testdata[i] = itemsArray.push({
+            pid: testdata[i],
+            count: '' + count + ''
+        });
+        ++i;
+    }
 
     if (itemsScanned.length == 0) {
         Materialize.toast("You haven't added items to your cart", 3000);
     } else {
         doFetch({
             action: 'makeOrder',
-            data: itemsScanned,
+            data: itemsArray,
             loc: location,
-            user: localStorage.getItem("bits-user-name")
+            user: localStorage.getItem("bits-user-name"),
+            service: localStorage.getItem("soko-active-store")
         }).then(function (e) {
             if (e.status == "ok") {
                 console.log("success!", "your order has been sent!", "success");
