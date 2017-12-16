@@ -15,7 +15,7 @@ Quagga.onDetected(function (data) {
 
     // we have detected a code, since indexdb are async we have to pause quagga first  and test if the 
     // scanned code is available in the list of products
-    //    Quagga.stop();
+        Quagga.stop();
     // TODO: instead of checking the indexdb each time a code is detected, 
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
         var sts = $.parseJSON(event.target.result);
@@ -31,8 +31,9 @@ Quagga.onDetected(function (data) {
                 Quagga.stop();
             }
         }
+             startScanning();
     }
-    //    startScanning();
+   
 })
 
 
