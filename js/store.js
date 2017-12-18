@@ -244,16 +244,22 @@ function doSwitchStore() {
 
 //Verify Phone Number
 function verifyNo() {
-    doFetch({
-        action: 'userVerified',
-        uid: JSON.parse(localStorage.getItem("bits-user-name"))
-    }).then(function (e) {
-        if (e.data != "true") {
-            Materialize.toast('Please verify you phone number to continue', 5000);
-            $('.modal').modal();
-            $("#mobiVeri").modal("open");
-        }
-    })
+    var $justtest = $('<span>Please verify phone number<span style="color:#eeff41;position: absolute; right: 0; margin-right: 20px; font-weight: bold; font-size: 1.2em;" id="verifyPhn">VERIFY</span></span>');
+    Materialize.toast($justtest, 10000);
+    //    var $toastContent = $('<span>Please verify phone number</span><button class="btn-flat toast-action" id="verifyPhn">verify</button>');
+    //    Materialize.toast($toastContent, null);
+    $("#verifyPhn").click(function () {
+        $(".toast").remove()
+        doFetch({
+            action: 'userVerified',
+            uid: JSON.parse(localStorage.getItem("bits-user-name"))
+        }).then(function (e) {
+            if (e.data != "true") {
+                $('.modal').modal();
+                $("#mobiVeri").modal("open");
+            }
+        })
+    });
 }
 
 //Get Store Location

@@ -58,6 +58,7 @@ function loadTheme() {
     var storeColor = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme
     if (storeColor == "") {
         $('.selectedColor').css('cssText', 'background: #0F5F76 !important');
+        $('head').append('<meta name="theme-color" content="#0F5F76" />');
         $('nav').css("box-shadow", "none");
         $('.opacitySelectedColor').css({
             background: '#0F5F76',
@@ -65,6 +66,7 @@ function loadTheme() {
         });
     } else if (storeColor == null) {
         $('.selectedColor').css('cssText', 'background: #0F5F76 !important');
+        $('head').append('<meta name="theme-color" content="#0F5F76" />');
         $('nav').css("box-shadow", "none");
         $('.opacitySelectedColor').css({
             background: '#0F5F76',
@@ -72,6 +74,7 @@ function loadTheme() {
         });
     } else {
         $('.selectedColor').css('cssText', 'background: ' + storeColor + ' !important');
+        $('head').append('<meta name="theme-color" content="' + storeColor + '" />');
         $('nav').css("box-shadow", "none");
         $('.opacitySelectedColor').css({
             background: '' + storeColor + '',

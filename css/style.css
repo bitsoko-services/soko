@@ -4170,3 +4170,27 @@ ul.side-nav.leftside-navigation li:hover {
 .billing {
     margin-left: -13px;
 }
+
+@media only screen and (max-width: 500px) {
+    .mobiNavHidden {
+        display: none !important;
+    }
+}
+
+
+/*******************************************
+               QUOGGA
+*********************************************/
+
+#quagaLauncher video {
+    /* width: 100%; */
+    /* height: 100%; */
+}
+
+#quagaLauncher {
+    height: 35vh;
+}
+
+#barCodeReader canvas {
+    display: none;
+}

@@ -104,7 +104,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
+                        <select class="productCategory">
                             <option value="" disabled selected>Choose a category</option>
                         </select>
                         <label>Category</label>
@@ -113,7 +113,7 @@
                 <div class="row">
                     <div class="selectedImage">
                         <span class="btn btn-success fileinput-button opacitySelectedColor">
-                            <span>Select file</span>
+                            <span>Add image</span>
                         <input id="image" type="file" prid="image" value="Image" required>
                         </span>
                     </div>
@@ -136,7 +136,7 @@
                 <div class="row">
                     <div class="input-field col s6" style="margin-top:0px;">
                         <input placeholder="" id="prod-cy" type="number" class="validate" min="0" max="1000" prid="rstQuantity" required>
-                        <label for="prod-cy" class="active"> Quantity</label>
+                        <label for="prod-cy" class="active"> Quantity / Stock</label>
                     </div>
                     <div class="input-field col s6" style="margin-top:0px;">
                         <div class="select-wrapper initialized" prid="rstDuration"> <span class="caret"></span>
@@ -147,6 +147,13 @@
                                 <option value="3">per Month</option>
                             </select>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12" style="margin-top:0px;">
+                        <input id="barcode-input" type="text" class="validate" prid="barCode" autocomplete="off" required>
+                        <label for="barcode-input" class="">Barcode ID</label>
                     </div>
                 </div>
             </form>
@@ -1209,7 +1216,7 @@
                     </div>
                     <div class="row categoriesRow">
                         <div class="input-field col s12">
-                            <select class="categorySelect" id="categorySelect"><option value="" disabled selected>Choose a category</option></select>
+                            <select class="categorySelect" id="categorySelect"></select>
                             <label>Select Category</label>
                         </div>
                     </div>
@@ -1486,6 +1493,22 @@
         </div>
     </div>
     <!-- newPromo Modal End -->
+
+
+    <!-- BarCode Reader Modal Start -->
+
+    <div id="barCodeReader" class="modal" style="background-color: black; height: 60%;">
+        <div id="quagaLauncher"></div>
+        <div id="scanLst" style="position: absolute;">
+        </div>
+        <div class="modal-footer" style="background-color: transparent;height: auto; text-align: center;position: absolute; bottom: 0;">
+            <a class="waves-effect waves-light btn checkOutQuagga" style="float: none;">close</a>
+            <a class="waves-effect waves-light btn" style="float: none;">print</a>
+            <a id="quaggachckout" class="waves-effect waves-light btn" style="display: block; width: 90%; margin-left: auto; margin-right: auto; float: none; padding: 0;">complete transaction</a>
+        </div>
+    </div>
+    <!-- BarCode Reader Modal End -->
+
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- START HEADER -->
     <header id="header" class="page-topbar">
@@ -1803,6 +1826,79 @@
                                         <!-- end tab content-->
                                     </ul>
 
+
+                                    <div class="fixed-action-btn" style="z-index: 1;">
+                                        <a class="btn-floating opacitySelectedColor barCodeOpn" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em; background: rgb(32, 29, 29); filter: brightness(1.3);" href="#barCodeReader">
+                                            <p style="margin-top:0px !important;text-align:center;padding: 9px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 480 480" style="enable-background:new 0 0 480 480;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M80,48H16C7.168,48,0,55.168,0,64v64c0,8.832,7.168,16,16,16c8.832,0,16-7.168,16-16V80h48c8.832,0,16-7.168,16-16    C96,55.168,88.832,48,80,48z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M464,336c-8.832,0-16,7.168-16,16v48h-48c-8.832,0-16,7.168-16,16c0,8.832,7.168,16,16,16h64c8.832,0,16-7.168,16-16v-64    C480,343.168,472.832,336,464,336z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M464,48h-64c-8.832,0-16,7.168-16,16c0,8.832,7.168,16,16,16h48v48c0,8.832,7.168,16,16,16c8.832,0,16-7.168,16-16V64    C480,55.168,472.832,48,464,48z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M80,400H32v-48c0-8.832-7.168-16-16-16c-8.832,0-16,7.168-16,16v64c0,8.832,7.168,16,16,16h64c8.832,0,16-7.168,16-16    C96,407.168,88.832,400,80,400z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M80,112c-8.832,0-16,7.168-16,16v224c0,8.832,7.168,16,16,16c8.832,0,16-7.168,16-16V128C96,119.168,88.832,112,80,112z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M144,112c-8.832,0-16,7.168-16,16v160c0,8.832,7.168,16,16,16c8.832,0,16-7.168,16-16V128    C160,119.168,152.832,112,144,112z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M208,112c-8.832,0-16,7.168-16,16v160c0,8.832,7.168,16,16,16c8.832,0,16-7.168,16-16V128    C224,119.168,216.832,112,208,112z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M272,112c-8.832,0-16,7.168-16,16v224c0,8.832,7.168,16,16,16c8.832,0,16-7.168,16-16V128    C288,119.168,280.832,112,272,112z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M336,112c-8.832,0-16,7.168-16,16v160c0,8.832,7.168,16,16,16c8.832,0,16-7.168,16-16V128    C352,119.168,344.832,112,336,112z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M400,112c-8.832,0-16,7.168-16,16v224c0,8.832,7.168,16,16,16c8.832,0,16-7.168,16-16V128    C416,119.168,408.832,112,400,112z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M144.64,336h-0.32c-8.832,0-15.84,7.168-15.84,16c0,8.832,7.328,16,16.16,16c8.832,0,16-7.168,16-16    C160.64,343.168,153.472,336,144.64,336z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M208.64,336h-0.32c-8.832,0-15.84,7.168-15.84,16c0,8.832,7.328,16,16.16,16c8.832,0,16-7.168,16-16    C224.64,343.168,217.472,336,208.64,336z" fill="#FFFFFF"></path>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M336.64,336h-0.32c-8.832,0-15.84,7.168-15.84,16c0,8.832,7.328,16,16.16,16c8.832,0,16-7.168,16-16    C352.64,343.168,345.472,336,336.64,336z" fill="#FFFFFF"></path>
+	</g>
+</g>
+</svg></p>
+                                        </a>
+                                    </div>
+
                                     <div class="permanentChng">
                                         <div style="padding: 0px 15%;">
                                             <h6 style=" border-bottom: solid 1px #cccccc; margin-bottom: 25px; color: #7c7c7c;"><span style="background: #EFEFEF;">COMPLETE ORDERS</span></h6>
@@ -1829,7 +1925,7 @@
                     <ul id="" class="collection customers-holda chStoreUpdate"> </ul>
                 </div>
                 <div class="col s12 m4 l4 beacons" style="display:none;     margin: 10px;">
-                    <nav class="top-nav selectedColor" style="background:#7EB7C8;height:48px;margin-bottom:40px; display:none;">
+                    <nav class="top-nav selectedColor mobiNavHidden" style="background:#7EB7C8;height:48px;margin-bottom:40px; display:none;">
                         <div class="container">
                             <div class="nav-wrapper">
                                 <a style="line-height:48px;font-size:20px;" class="page-title">Beacons</a>
@@ -2017,7 +2113,7 @@
                     </div>
                 </div>
                 <div class="col s12 m4 l4 products" style="display:none;">
-                    <nav class="top-nav selectedColor" style="background:#7EB7C8; display:none;height:48px;">
+                    <nav class="top-nav selectedColor mobiNavHidden" style="background:#7EB7C8; display:none;height:48px;">
                         <div class="container">
                             <div class="nav-wrapper"><a style="line-height:14px;font-size:20px;" class="page-title">Products</a></div>
                         </div>
@@ -2049,7 +2145,7 @@
 
                 <!--------- BILLING PAGE START ----------->
                 <div class="col s12 m4 l4 billing" style="display:none;">
-                    <nav class="top-nav selectedColor" style="background:#7EB7C8;height:48px;margin-bottom:40px; display:none;">
+                    <nav class="top-nav selectedColor  mobiNavHidden" style="background:#7EB7C8;height:48px;margin-bottom:40px; display:none;">
                         <div class="container">
                             <div class="nav-wrapper">
                                 <a style="line-height:48px;font-size:20px;" class="page-title">Billing</a>
@@ -2296,6 +2392,8 @@
     <script src="js/deliveries.js"></script>
     <script src="js/managers.js"></script>
     <script src="js/color-thief.js"></script>
+    <script src="js/quagga.js"></script>
+    <script src="js/barcodeReader.js"></script>
     <script>
         var slide = document.getElementById('slide'),
             sliderDiv = document.getElementById("sliderAmount");
