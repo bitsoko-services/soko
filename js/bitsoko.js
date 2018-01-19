@@ -88,7 +88,7 @@ function loadTheme() {
     navigator.webkitTemporaryStorage.queryUsageAndQuota(
         function (usedBytes, grantedBytes) {
             console.log('Bitsoko is using ', usedBytes, ' of ', grantedBytes, 'bytes');
-            if (usedBytes > 5000000000) {
+            if (usedBytes > 5000000) {
                 localStorage.clear();
                 setTimeout(function () {
                     location.reload();
