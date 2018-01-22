@@ -81,6 +81,9 @@ function loadTheme() {
             filter: 'brightness(1.3)'
         });
     }
+    //load store URL
+    window.location.hash = '#s=' + localStorage.getItem("soko-active-store") + '';
+
     storeOwner();
     editStoreContent();
 }

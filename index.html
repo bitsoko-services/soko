@@ -194,7 +194,7 @@
 -->
         </div>
         <div style="text-align:center;margin-bottom:20px;">
-            <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="#loyaltyPoints">Buy Points</a>
+            <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="https://bitsoko.co.ke/tm/index.html" target="_blank">Buy Points</a>
         </div>
     </div>
     <!-- Modal Structure -->
@@ -1683,7 +1683,7 @@
                                             <h6 style=" border-bottom: solid 1px #cccccc; margin-bottom: 25px; color: #7c7c7c;"><span style="background: #F5F5F5;">SETTINGS</span></h6>
                                         </div>
                                     </div>
-                                    <span>
+                                    <span id="opnMngPg">
                                         <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); managerListener(); setTimeout(getManager, 2000);">
                                             <i class="mdi-social-people">
                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width:20px;" xml:space="preserve">
@@ -2109,7 +2109,7 @@
                             </div>
 
                         </div>
-                        <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="#loyaltyPoints" style="display:block;    width: 170px; margin-left: auto; margin-right: auto; margin-bottom:20px;">Buy Points</a>
+                        <a class="opacitySelectedColor waves-effect waves-light btn loyaltyCls" href="https://bitsoko.co.ke/tm/index.html" target="_blank" style="display:block;    width: 170px; margin-left: auto; margin-right: auto; margin-bottom:20px;">Buy Points</a>
                     </div>
                 </div>
                 <div class="col s12 m4 l4 products" style="display:none;">
@@ -2424,6 +2424,26 @@
             // will fade out the whole DIV that covers the website.
             jQuery("#preloader").delay(6000).fadeOut("slow");
         })
+
+    </script>
+    <script>
+        //If Quota Exceeded Clear Index DB and refresh the page
+        navigator.webkitTemporaryStorage.queryUsageAndQuota(
+            function(usedBytes, grantedBytes) {
+                console.log('Bitsoko is using ', usedBytes, ' of ', 5000000, 'bytes');
+                if (usedBytes > 5000000) {
+                    var $toastContent = $('<span id="quotaExd" style="width:100%;">To continue, clear cache<a style="float: right; color: yellow; font-weight: bold; border: solid yellow 1px; padding: 2px 15px;">CLEAR</a></span>').add($('<button id="quotaExceeded">Clear</button>'));
+                    Materialize.toast($toastContent, 10000);
+                    $("#quotaExd").click(function() {
+                        localStorage.clear();
+                        setTimeout(location.reload(), 2000)
+                    });
+                }
+            },
+            function(e) {
+                console.log('Error', e);
+            }
+        );
 
     </script>
 </body>
