@@ -84,22 +84,6 @@ function loadTheme() {
     //load store URL
     window.location.hash = '#s=' + localStorage.getItem("soko-active-store") + '';
 
-    //If Quota Exceeded Clear Index DB and refresh the page
-    navigator.webkitTemporaryStorage.queryUsageAndQuota(
-        function (usedBytes, grantedBytes) {
-            console.log('Bitsoko is using ', usedBytes, ' of ', grantedBytes, 'bytes');
-            if (usedBytes > 5000000) {
-                localStorage.clear();
-                setTimeout(function () {
-                    location.reload();
-                }, 3000);
-            }
-        },
-        function (e) {
-            console.log('Error', e);
-        }
-    );
-
     storeOwner();
     editStoreContent();
 }

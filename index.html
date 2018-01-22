@@ -2426,6 +2426,26 @@
         })
 
     </script>
+    <script>
+        //If Quota Exceeded Clear Index DB and refresh the page
+        navigator.webkitTemporaryStorage.queryUsageAndQuota(
+            function(usedBytes, grantedBytes) {
+                console.log('Bitsoko is using ', usedBytes, ' of ', 5000000, 'bytes');
+                if (usedBytes > 5000000) {
+                    var $toastContent = $('<span id="quotaExd" style="width:100%;">To continue, clear cache<a style="float: right; color: yellow; font-weight: bold; border: solid yellow 1px; padding: 2px 15px;">CLEAR</a></span>').add($('<button id="quotaExceeded">Clear</button>'));
+                    Materialize.toast($toastContent, 10000);
+                    $("#quotaExd").click(function() {
+                        localStorage.clear();
+                        setTimeout(location.reload(), 2000)
+                    });
+                }
+            },
+            function(e) {
+                console.log('Error', e);
+            }
+        );
+
+    </script>
 </body>
 
 </html>
