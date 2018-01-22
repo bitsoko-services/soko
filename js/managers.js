@@ -29,7 +29,6 @@ $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
 
 //Open Managers Page
 $(document).on("click", "#opnMngPg", function () {
-    alert("clicked")
     $('#content > .container > div').css('display', 'none');
     $('#content > .container > .Managers').css('display', 'block');
 })
