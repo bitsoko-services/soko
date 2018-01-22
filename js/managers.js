@@ -107,3 +107,16 @@ $(document).ready(function () {
         $("#managersClicked").click();
     })
 });
+
+
+//Show Hide Managers
+$("#showHideMngr").click(function () {
+    var mngrState = $("#showHideMngr").prop("checked");
+    doFetch({
+        action: 'managerStats',
+        store: localStorage.getItem('soko-active-store'),
+        state: mngrState
+    }).then(function (e) {
+        if (e.status == 'ok') {} else {}
+    });
+})
