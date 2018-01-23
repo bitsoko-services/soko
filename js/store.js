@@ -194,6 +194,7 @@ function editStore() {
             dismissible: false,
             ready: function () {
                 editStoreContent();
+                allTokenCoins()
             }
         }).modal('open');
     }, 200);
@@ -209,7 +210,6 @@ function editStoreContent() {
     document.querySelector('#editStoreModal #editStore-Phone').value = xx.phone;
     document.querySelector('#editStoreModal #colorChosen').value = xx.theme;
     Materialize.updateTextFields();
-    allTokenCoins();
 }
 
 function switchStore() {
