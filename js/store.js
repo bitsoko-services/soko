@@ -243,7 +243,7 @@ function doSwitchStore() {
 }
 
 //Verify Phone Number
-function verifyNo() {
+function userNoPromp() {
     var $justtest = $('<span>Please verify phone number<span style="color:#eeff41;position: absolute; right: 0; margin-right: 20px; font-weight: bold; font-size: 1.2em;" id="verifyPhn">VERIFY</span></span>');
     Materialize.toast($justtest, 10000);
     //    var $toastContent = $('<span>Please verify phone number</span><button class="btn-flat toast-action" id="verifyPhn">verify</button>');
@@ -260,6 +260,15 @@ function verifyNo() {
             }
         })
     });
+}
+
+function verifyNo() {
+    var checkPhoneNo = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).phone
+    if (checkPhoneNo == "") {
+        userNoPromp()
+    } else if (checkPhoneNo == null) {
+        userNoPromp()
+    }
 }
 
 //Get Store Location

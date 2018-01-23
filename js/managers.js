@@ -113,7 +113,7 @@ $(document).ready(function () {
 $("#showHideMngr").click(function () {
     var mngrState = $("#showHideMngr").prop("checked");
     doFetch({
-        action: 'managerStats',
+        action: 'managerPanel',
         store: localStorage.getItem('soko-active-store'),
         state: mngrState
     }).then(function (e) {
