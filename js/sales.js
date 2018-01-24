@@ -259,14 +259,10 @@ function orderUpdater() {
                 }
             }
             var delrate = reqs[i].id;
-            console.log("Outside get distance " + delrate);
-            getDistanceFromLatLonInKm(shopLocationX, shopLocationY, orderCrdLocationX, orderCrdLocationY).then(function (e, delrate2) {
-                console.log(e)
-                console.log("Inside get distance " + delrate)
-                $("#oderDeliveryRate_" + delrate).html(e)
-            }).catch(function (errorurl) {
-                console.log('Error loading ' + errorurl)
-            })
+
+            console.log("Outside get cardId " + delrate);
+
+            getDistanceFromLatLonInKm(shopLocationX, shopLocationY, orderCrdLocationX, orderCrdLocationY, delrate);
         }
 
         setTimeout(function () {
@@ -474,3 +470,60 @@ $("#deleteOrder").click(function () {
         $("#completeOrder").modal("close");
     })
 });
+
+
+
+
+
+
+
+
+
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2, delrate) {
+    var resolved = new Promise(function (resolve, reject) {
+
+        var directionsService = new google.maps.DirectionsService();
+
+        var request = {
+            origin: lat1 + ',' + lon1, // a city, full address, landmark etc
+            destination: lat2 + ',' + lon2,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING
+        };
+        //        console.log(request);
+        directionsService.route(request, function (response, status) {
+            console.log(response, status)
+            if (status == google.maps.DirectionsStatus.OK) {
+                resolve(response.routes[0].legs[0].distance.value / 1000); // the distance in metres
+            } else {
+                var R = 6371; // Radius of the earth in km
+                var dLat = deg2rad(lat2 - lat1); // deg2rad below
+                var dLon = deg2rad(lon2 - lon1);
+                var a =
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                var d = R * c; // Distance in km
+
+                console.log('err: unable to get driving distance but distance at crow flies is ' + d);
+                resolve(d);
+            }
+        });
+
+    });
+
+    resolved.then(function (e) {
+        console.log(e)
+        console.log("Inside get cardId " + delrate + " delivery rate = " + e)
+        $("#oderDeliveryRate_" + delrate).html(e)
+    }).catch(function (errorurl) {
+        console.log('Error loading ' + errorurl)
+    })
+
+
+}
+
+
+function deg2rad(deg) {
+    return deg * (Math.PI / 180)
+}
