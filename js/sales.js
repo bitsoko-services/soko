@@ -258,11 +258,15 @@ function orderUpdater() {
                     }
                 }
             }
-            if (orderCrdRate == 0) {
-                $("#oderDeliveryRate_" + reqs[i].id).text(Math.ceil(getDistance(orderCrdLocationX, orderCrdLocationY, shopLocationX, shopLocationY)))
-            } else {
-                $("#oderDeliveryRate_" + reqs[i].id).text(Math.ceil(getDistance(orderCrdLocationX, orderCrdLocationY, shopLocationX, shopLocationY) * orderCrdRate))
-            }
+            var delrate = reqs[i].id;
+            console.log("Outside get distance " + delrate);
+            getDistanceFromLatLonInKm(shopLocationX, shopLocationY, orderCrdLocationX, orderCrdLocationY).then(function (e, delrate2) {
+                console.log(e)
+                console.log("Inside get distance " + delrate)
+                $("#oderDeliveryRate_" + delrate).html(e)
+            }).catch(function (errorurl) {
+                console.log('Error loading ' + errorurl)
+            })
         }
 
         setTimeout(function () {
@@ -271,13 +275,15 @@ function orderUpdater() {
             setTimeout(deliveryMbr, 1000);
         }, 100);
 
-        $('.radioCancel').on('click', function () {
+        //Cancel Order Btn
+        $('.radioCancel').unbind('click').click(function () {
             var id = $(this).attr('id');
             var split = id.split('_');
             var complete_id = split[1];
             $('#cancelOrderModal').modal('open');
 
-            $('#yesBtn').on('click', function () {
+            $('#yesBtn').unbind('click').click(function () {
+                console.log("clicked")
                 $('#cancelOrderModal').modal('close');
                 doFetch({
                     action: 'orderStatus',
@@ -293,9 +299,11 @@ function orderUpdater() {
                     refreshSalesOrders();
                 });
             });
-            $('#noBtn').on('click', function () {
+            $('#noBtn').unbind('click').click(function () {
+                console.log("clicked")
                 $('#cancelOrderModal').modal('close');
             });
+            return false;
         });
         $('.radioDelivered').on('click', function () {
             $('#deliverOrderModal').modal({
@@ -466,23 +474,3 @@ $("#deleteOrder").click(function () {
         $("#completeOrder").modal("close");
     })
 });
-
-
-
-//Get distance between the shop and the order
-function getDistance(lat1, lon1, lat2, lon2) {
-    var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(lat2 - lat1); // deg2rad below
-    var dLon = deg2rad(lon2 - lon1);
-    var a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c; // Distance in km
-    return d;
-}
-
-function deg2rad(deg) {
-    return deg * (Math.PI / 180)
-}
