@@ -26,6 +26,12 @@ body {
     font-weight: initial;
 }
 
+@media screen and (max-height: 549px) {
+    #sideNavFooter {
+        position: initial !important;
+    }
+}
+
 .user-details {
     width: 100%;
 }
