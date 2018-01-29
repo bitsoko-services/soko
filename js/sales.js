@@ -487,7 +487,8 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2, delrate) {
         var request = {
             origin: lat1 + ',' + lon1, // a city, full address, landmark etc
             destination: lat2 + ',' + lon2,
-            travelMode: google.maps.DirectionsTravelMode.DRIVING
+            travelMode: google.maps.DirectionsTravelMode.DRIVING,
+            key: "AIzaSyCz60ye2t1p1Cx2dhIt03q1UDeNao_4Iao"
         };
         //        console.log(request);
         directionsService.route(request, function (response, status) {

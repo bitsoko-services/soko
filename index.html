@@ -1487,8 +1487,7 @@
                     </div>
                     <div class="row newStoreCatgry">
                         <div class="input-field col s12">
-                            <select class="categorySelect" id="categorySelect"></select>
-                            <label>Select Category</label>
+                            <select class="categorySelect nwStrCat" id="categorySelect"> <option value="" disabled selected>Select Category</option></select>
                         </div>
                     </div>
                     <div class="row" style="display:none;">
@@ -2279,6 +2278,7 @@
 
                 <!--------- Token Sale PAGE START ----------->
                 <div class="col s12 m4 l4 tokenSale" style="display:none;">
+                    <div>ddd</div>
                     <div class="fixed-action-btn" style="z-index:0;">
                         <a class="btn-floating opacitySelectedColor" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em; background: rgb(32, 29, 29); filter: brightness(1.3);" href="#tokenMrktSettings">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 231.233 231.233" style="enable-background:new 0 0 231.233 231.233;margin: 10px;" xml:space="preserve">
@@ -2537,6 +2537,25 @@
                 console.log('Error', e);
             }
         );
+
+        //Store Categories
+        $("#addStoreLimit").one("click", function() {
+            $('select').material_select();
+            doFetch({
+                action: 'merchantServiceLoader',
+                id: localStorage.getItem('bits-user-name')
+            }).then(function(e) {
+                console.log(e.settings.prodCategories);
+                var storeCat = e.settings.prodCategories;
+                for (var i = 0; i < storeCat.length; i++) {
+                    $(".categorySelect").append('<option value="' + storeCat[i].id + '">' + storeCat[i].name + '</option>');
+                    $('select').material_select();
+                    $(".nwStrCat").siblings("option").css("display", "none")
+                }
+            });
+
+
+        });
 
     </script>
 </body>
