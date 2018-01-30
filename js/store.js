@@ -864,6 +864,9 @@ function shareStore() {
     }
 }
 
+
+
+
 var shroot = document.querySelectorAll(".newStore");
 for (var i = 0; i < shroot.length; ++i) {
     shroot[i].addEventListener("touchstart", newStore, false);

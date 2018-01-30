@@ -258,11 +258,11 @@ function orderUpdater() {
                     }
                 }
             }
-            if (orderCrdRate == 0) {
-                $("#oderDeliveryRate_" + reqs[i].id).text(Math.ceil(getDistance(orderCrdLocationX, orderCrdLocationY, shopLocationX, shopLocationY)))
-            } else {
-                $("#oderDeliveryRate_" + reqs[i].id).text(Math.ceil(getDistance(orderCrdLocationX, orderCrdLocationY, shopLocationX, shopLocationY) * orderCrdRate))
-            }
+            var delrate = reqs[i].id;
+
+            console.log("Outside get cardId " + delrate);
+
+            getDistanceFromLatLonInKm(shopLocationX, shopLocationY, orderCrdLocationX, orderCrdLocationY, delrate);
         }
 
         setTimeout(function () {
@@ -271,13 +271,15 @@ function orderUpdater() {
             setTimeout(deliveryMbr, 1000);
         }, 100);
 
-        $('.radioCancel').on('click', function () {
+        //Cancel Order Btn
+        $('.radioCancel').unbind('click').click(function () {
             var id = $(this).attr('id');
             var split = id.split('_');
             var complete_id = split[1];
             $('#cancelOrderModal').modal('open');
 
-            $('#yesBtn').on('click', function () {
+            $('#yesBtn').unbind('click').click(function () {
+                console.log("clicked")
                 $('#cancelOrderModal').modal('close');
                 doFetch({
                     action: 'orderStatus',
@@ -293,9 +295,11 @@ function orderUpdater() {
                     refreshSalesOrders();
                 });
             });
-            $('#noBtn').on('click', function () {
+            $('#noBtn').unbind('click').click(function () {
+                console.log("clicked")
                 $('#cancelOrderModal').modal('close');
             });
+            return false;
         });
         $('.radioDelivered').on('click', function () {
             $('#deliverOrderModal').modal({
@@ -469,19 +473,57 @@ $("#deleteOrder").click(function () {
 
 
 
-//Get distance between the shop and the order
-function getDistance(lat1, lon1, lat2, lon2) {
-    var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(lat2 - lat1); // deg2rad below
-    var dLon = deg2rad(lon2 - lon1);
-    var a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c; // Distance in km
-    return d;
+
+
+
+
+
+
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2, delrate) {
+    var resolved = new Promise(function (resolve, reject) {
+
+        var directionsService = new google.maps.DirectionsService();
+
+        var request = {
+            origin: lat1 + ',' + lon1, // a city, full address, landmark etc
+            destination: lat2 + ',' + lon2,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING,
+            key: "AIzaSyCz60ye2t1p1Cx2dhIt03q1UDeNao_4Iao"
+        };
+        //        console.log(request);
+        directionsService.route(request, function (response, status) {
+            console.log(response, status)
+            if (status == google.maps.DirectionsStatus.OK) {
+                resolve(response.routes[0].legs[0].distance.value / 1000); // the distance in metres
+            } else {
+                var R = 6371; // Radius of the earth in km
+                var dLat = deg2rad(lat2 - lat1); // deg2rad below
+                var dLon = deg2rad(lon2 - lon1);
+                var a =
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                var d = R * c; // Distance in km
+
+                console.log('err: unable to get driving distance but distance at crow flies is ' + d);
+                resolve(d);
+            }
+        });
+
+    });
+
+    resolved.then(function (e) {
+        console.log(e)
+        console.log("Inside get cardId " + delrate + " delivery rate = " + e)
+        $("#oderDeliveryRate_" + delrate).html(e)
+    }).catch(function (errorurl) {
+        console.log('Error loading ' + errorurl)
+    })
+
+
 }
+
 
 function deg2rad(deg) {
     return deg * (Math.PI / 180)
