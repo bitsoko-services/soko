@@ -4200,3 +4200,20 @@ ul.side-nav.leftside-navigation li:hover {
 #barCodeReader canvas {
     display: none;
 }
+
+
+/*******************************************
+               Token Section
+*********************************************/
+
+.tokenOwnerCard {
+    background: white;
+    margin: 5px 7px;
+    padding: 5px 2px;
+    border-radius: 2px;
+}
+
+.tokenOwnerCard p {
+    margin: 2px;
+    color: #717070;
+}
