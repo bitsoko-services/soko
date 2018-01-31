@@ -1516,9 +1516,16 @@
     </div>
     <!-- newStore Modal End -->
     <!-- addFirstStore Modal Start -->
-    <div id="firstStoreModal" class="modal modal-fixed-footer">
-        <div class="modal-content">
-            <div style="height: 40px; width: 100%; display: inline-block; background-image: url(images/icon.png); background-size: 100px; background-repeat: no-repeat; background-position: 50% 0%; padding-top: 100px;" class="hidden-xs"> Add your details so that your <br> clients can easily find you</div>
+    <div id="firstStoreModal" class="modal modal-fixed-footer" style="overflow: initial !important;top: 30% !important;height: 40%;">
+        <img src="./images/icon.png" style="webkit-box-shadow: 0px 9px 23px -5px rgba(0,0,0,0.75); -moz-box-shadow: 0px 9px 23px -5px rgba(0,0,0,0.75); box-shadow: 0px 9px 23px -5px rgba(0,0,0,0.75);width: 110px; border-radius: 100%; margin-top: -50px;background: white; display: block; margin-left: auto; margin-right: auto;">
+        <!--
+<div class="modal-content">
+    <div style="height: 40px; width: 100%; display: inline-block; background-image: url(images/icon.png); background-size: 100px; background-repeat: no-repeat; background-position: 50% 0%; padding-top: 100px;margin-top: -80px;" class="hidden-xs"> Add your details so that your <br> clients can easily find you</div>
+</div>
+-->
+        <div class="modal-content" style="text-align: center;height:fit-content;">
+
+            <p>Add your details so that your <br> clients can easily find you</p>
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-action modal-close addFirstStoreModal waves-effect waves-green btn-flat">ok</a>
@@ -2577,6 +2584,23 @@
 
         //Store Categories
         $("#addStoreLimit").one("click", function() {
+            $('select').material_select();
+            doFetch({
+                action: 'merchantServiceLoader',
+                id: localStorage.getItem('bits-user-name')
+            }).then(function(e) {
+                console.log(e.settings.prodCategories);
+                var storeCat = e.settings.prodCategories;
+                for (var i = 0; i < storeCat.length; i++) {
+                    $(".categorySelect").append('<option value="' + storeCat[i].id + '">' + storeCat[i].name + '</option>');
+                    $('select').material_select();
+                    $(".nwStrCat").siblings("option").css("display", "none")
+                }
+            });
+
+
+        });
+        $("#addFirstStoreModal").one("click", function() {
             $('select').material_select();
             doFetch({
                 action: 'merchantServiceLoader',

@@ -32,6 +32,10 @@ body {
     }
 }
 
+#firstStoreModal {
+    top: 30% !important;
+}
+
 .user-details {
     width: 100%;
 }
