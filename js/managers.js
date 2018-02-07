@@ -1,3 +1,15 @@
+//Show Hide Managers
+$("#showHideMngr").click(function () {
+    var mngrState = $("#showHideMngr").prop("checked");
+    doFetch({
+        action: 'showHideManagers',
+        store: localStorage.getItem('soko-active-store'),
+        data: mngrState
+    }).then(function (e) {
+        if (e.status == 'ok') {} else {}
+    });
+})
+
 $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
     var value = $('#sokoMangers').val();
     if (value != '') {
@@ -107,16 +119,3 @@ $(document).ready(function () {
         $("#managersClicked").click();
     })
 });
-
-
-//Show Hide Managers
-$("#showHideMngr").click(function () {
-    var mngrState = $("#showHideMngr").prop("checked");
-    doFetch({
-        action: 'managerPanel',
-        store: localStorage.getItem('soko-active-store'),
-        state: mngrState
-    }).then(function (e) {
-        if (e.status == 'ok') {} else {}
-    });
-})
