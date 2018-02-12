@@ -32,12 +32,28 @@ body {
     }
 }
 
+#firstStoreModal {
+    top: 30% !important;
+}
+
 .user-details {
     width: 100%;
 }
 
 .promo-state-icon:before {
     margin-right: 10px;
+}
+
+.promo-inactive {
+    color: red;
+}
+
+.promo-inactive:before {
+    color: red;
+}
+
+.promo-active {
+    color: #046704;
 }
 
 .selectMmbr {
@@ -4199,4 +4215,21 @@ ul.side-nav.leftside-navigation li:hover {
 
 #barCodeReader canvas {
     display: none;
+}
+
+
+/*******************************************
+               Token Section
+*********************************************/
+
+.tokenOwnerCard {
+    background: white;
+    margin: 5px 7px;
+    padding: 5px 2px;
+    border-radius: 2px;
+}
+
+.tokenOwnerCard p {
+    margin: 2px;
+    color: #717070;
 }
