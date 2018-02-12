@@ -1528,7 +1528,7 @@
             <p>Add your details so that your <br> clients can easily find you</p>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close addFirstStoreModal waves-effect waves-green btn-flat">ok</a>
+            <a href="#!" class="modal-action modal-close addFirstStoreModal waves-effect waves-green btn-flat" onclick="loadCat();">ok</a>
         </div>
     </div>
     <!-- addFirstProd Modal End -->
@@ -2411,25 +2411,6 @@
     <script src="https://bitsoko.co.ke/bitsAssets/js/bits-addMobiVeri.js"></script>
     <script src="./js/tokenSale.js"></script>
     <script>
-        //Load Store Categories
-        $(document).on('click', '#addFirstStoreModal', function() {
-            $('select').material_select();
-            doFetch({
-                action: 'merchantServiceLoader',
-                id: localStorage.getItem('bits-user-name')
-            }).then(function(e) {
-                console.log(e.settings.prodCategories);
-                var storeCat = e.settings.prodCategories;
-                for (var i = 0; i < storeCat.length; i++) {
-                    $(".categorySelect").append('<option value="' + storeCat[i].id + '">' + storeCat[i].name + '</option>');
-                    $('select').material_select();
-                    $(".nwStrCat").siblings("option").css("display", "none")
-                }
-            });
-        });
-
-    </script>
-    <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function() {
@@ -2604,9 +2585,8 @@
                 console.log('Error', e);
             }
         );
-
-        //Store Categories
-        $("#addStoreLimit").one("click", function() {
+        //Load Store Categories
+        function loadCat() {
             $('select').material_select();
             doFetch({
                 action: 'merchantServiceLoader',
@@ -2620,9 +2600,7 @@
                     $(".nwStrCat").siblings("option").css("display", "none")
                 }
             });
-
-
-        });
+        }
 
     </script>
 </body>
