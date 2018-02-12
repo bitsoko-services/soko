@@ -24,7 +24,7 @@ function addManagers() {
 
 
 $('#dlvryPage').click(function () {
-    $("#deliveryPage").click();
+    $("#managersClickEvent").click();
 })
 
 function productsUpdater() {
@@ -560,7 +560,7 @@ function rmvProduct() {
 
 //Product Category
 function prodCategory() {
-    var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-12')).productCategory);
+    var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory);
     for (var pc = 0; pc < prodCat.length; ++pc) {
 
         $(".productCategory").append('<option value="' + prodCat[pc].name + '">' + prodCat[pc].name + '</option>');
@@ -583,6 +583,7 @@ function initialProdCat() {
 var categoryList = [];
 
 function loadProdCategory() {
+    $("#categoryModal").find(".categoryChip").remove()
     var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).productCategory);
     for (var pc = 0, prodCat = prodCat; pc < prodCat.length; ++pc) {
         categoryList.push(prodCat[pc].name);
