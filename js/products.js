@@ -16,7 +16,7 @@ function refreshProducts() {
 function addManagers() {
     $(".prodactsPage").one("click", function () {
         var noOfMngrs = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).managers
-        if (noOfMngrs == "") {
+        if (noOfMngrs == "[]") {
             $("#dlvryHelpModal").modal("open")
         }
     });
