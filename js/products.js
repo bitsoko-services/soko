@@ -130,7 +130,6 @@ function productsUpdater() {
                 $("#prodImg-holda-" + reqs[i].id).css("background-image", "url(../images/no-image-icon-15.png)");
                 console.log("No Image")
             }
-            //            initialProdCat()
         }
 
         loadTheme();
@@ -154,15 +153,20 @@ function productsUpdater() {
 function populateProductCategories() {
     setTimeout(function () {
         for (var i = 0; i < prodUID.length; ++i) {
-            console.log(prodUID[i].id);
             //Product Categories
-            var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).productCategory);
-            for (var pc = 0; pc < prodCat.length; ++pc) {
-                $(".changeCategory-" + prodUID[i].id).append('<option class="remove">' + prodCat[pc].name + '</option>');
+            var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
+            if (checkProdCat == "") {
+                console.log("Can not find product categories")
+            } else {
+                var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).productCategory);
+                for (var pc = 0; pc < prodCat.length; ++pc) {
+                    $(".changeCategory-" + prodUID[i].id).append('<option class="remove">' + prodCat[pc].name + '</option>');
+                }
             }
         }
         $('select').material_select();
         $('.remove').remove();
+        initialProdCat()
     }, 1000);
 };
 $(".prodactsPage").one("click", function () {
@@ -398,7 +402,6 @@ $(document).on("click", ".categoryChip", function () {
                 $('.categoryName').remove();
                 $("#removeCategoryModal").hide();
                 Materialize.toast('Category removed successfully', 3000);
-                updateStores();
             } else {
                 console.log(e);
             }
@@ -614,7 +617,11 @@ function initialProdCat() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
         var reqs = JSON.parse(event.target.result);
         for (var g = 0; g < reqs.length; ++g) {
-            $('.changeCategory-' + reqs[g].id + ' input').val(reqs[g].productCategory);
+            if (reqs[g].productCategory == null) {
+                $('.changeCategory-' + reqs[g].id + ' input').val("Choose a category");
+            } else {
+                $('.changeCategory-' + reqs[g].id + ' input').val(reqs[g].productCategory);
+            }
         }
     }
 }
@@ -624,7 +631,7 @@ var categoryList = [];
 
 function loadProdCategory() {
     $("#categoryModal").find(".categoryChip").remove();
-    var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).category
+    var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
     if (checkProdCat == "") {
         console.log("Can not find product categories")
     } else {
@@ -638,7 +645,6 @@ function loadProdCategory() {
 }
 
 
-//Add Category
 $(document).on("click", "#addCategory", function () {
     var categoryName = $("#categoryName").val();
     var indexOfCat = categoryList.indexOf(categoryName);
@@ -651,30 +657,36 @@ $(document).on("click", "#addCategory", function () {
     } else if (categoryName == "") {
         Materialize.toast("Ooops! Please enter a product", 3000);
         $("#categoryName").css("border-bottom", "solid 1px red");
-    } else if (JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).productCategory).length >= 5) {
+    } else if ($(".categoryChip").length >= 5) {
         Materialize.toast("Ooops! You've reached the maximum number of categories", 3000);
         $("#categoryName").css("border-bottom", "solid 1px red");
     } else {
-        Materialize.toast("Adding category. Please wait", 10000, 'categoryName');
-        $("#categoryName").css("border-bottom", "1px solid #9e9e9e");
-        doFetch({
-            action: 'manageCategories',
-            store: localStorage.getItem('soko-active-store'),
-            do: 'add',
-            name: categoryName
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                $('#categoryName').val("");
-                $('.categoryName').remove();
-                Materialize.toast('Category added successfully', 3000);
-                $(".categoryLst").append('<div class="chip categoryChip">' + categoryName + '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.971 47.971" style="enable-background:new 0 0 47.971 47.971; width: 10px; margin-left: 5px;" xml:space="preserve"> <g> <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88 c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242 C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879 s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"/> </g> </svg> </div>');
-                updateStores();
-            } else {
-                console.log(e);
-            }
-        });
+        addProdCat()
     }
-})
+});
+
+//Add product category
+function addProdCat() {
+    var categoryName = $("#categoryName").val();
+    Materialize.toast("Adding category. Please wait", 10000, 'categoryName');
+    $("#categoryName").css("border-bottom", "1px solid #9e9e9e");
+    doFetch({
+        action: 'manageCategories',
+        store: localStorage.getItem('soko-active-store'),
+        do: 'add',
+        name: categoryName
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            $('#categoryName').val("");
+            $('.categoryName').remove();
+            Materialize.toast('Category added successfully', 3000);
+            $(".categoryLst").append('<div class="chip categoryChip">' + categoryName + '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.971 47.971" style="enable-background:new 0 0 47.971 47.971; width: 10px; margin-left: 5px;" xml:space="preserve"> <g> <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88 c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242 C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879 s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"/> </g> </svg> </div>');
+            //            updateStores();
+        } else {
+            console.log(e);
+        }
+    });
+}
 
 $(document).on('touchstart click', '.addFirstProdModal', function (event) {
     $('#add-product').modal('open');
