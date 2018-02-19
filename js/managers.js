@@ -1,9 +1,9 @@
 //Show Hide Managers
-$("#showHideMngr").click(function () {
+$(document).on("click", "#showHideMngr", function () {
     var mngrState = $("#showHideMngr").prop("checked");
     doFetch({
         action: 'showHideManagers',
-        store: localStorage.getItem('soko-active-store'),
+        id: localStorage.getItem('soko-owner-id'),
         data: mngrState
     }).then(function (e) {
         if (e.status == 'ok') {} else {}
