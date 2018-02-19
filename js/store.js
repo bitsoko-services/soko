@@ -1,3 +1,10 @@
+//Open Store Settings
+$(document).on("click", "#openStoreSet", function () {
+    $('#content > .container > div').css('display', 'none');
+    $('#content > .container > .editStorePage').css('display', 'block');
+});
+
+
 function loadPOS() {
     screen.keepAwake = true;
     var stCb = getObjectStore('data', 'readwrite').get('soko-stores');
@@ -127,7 +134,7 @@ function editStoreCallback() {
             callback.call(scope, i, array[i]); // passes back stuff we need
         }
     };
-    var myNodeList = document.querySelectorAll('#editStoreModal input,#editStoreModal textarea');
+    var myNodeList = document.querySelectorAll('#storeSettings input,#editStoreModal textarea');
     forEach(myNodeList, function (index, value) {
         value.addEventListener("change", updateStore);
     });
@@ -205,10 +212,10 @@ function editStoreContent() {
     reqLoc();
     transferListener();
     var xx = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
-    document.querySelector('#editStoreModal #editStore-name').value = xx.name;
-    document.querySelector('#editStoreModal #editStore-description').value = xx.description;
-    document.querySelector('#editStoreModal #editStore-Phone').value = xx.phone;
-    document.querySelector('#editStoreModal #colorChosen').value = xx.theme;
+    document.querySelector('#editStore-name').value = xx.name;
+    document.querySelector('#editStore-description').value = xx.description;
+    document.querySelector('#editStore-Phone').value = xx.phone;
+    document.querySelector('#colorChosen').value = xx.theme;
     Materialize.updateTextFields();
 }
 
