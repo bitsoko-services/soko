@@ -136,7 +136,7 @@ function updateThisPage(pg) {
 
     switch (pg) {
         case 'products':
-            //            productsUpdater();
+            productsUpdater();
             break;
         case 'storefront':
             refreshSalesOrders();
