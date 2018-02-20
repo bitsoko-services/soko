@@ -9,7 +9,7 @@ $("#tkSaleSet").click(function () {
     var mngrState = $("#tkSaleSet").prop("checked");
     doFetch({
         action: 'tokenize',
-        store: localStorage.getItem('soko-active-store'),
+        id: localStorage.getItem('soko-owner-id'),
         state: mngrState
     }).then(function (e) {
         if (e.status == 'ok') {

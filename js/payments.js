@@ -26,7 +26,13 @@ $('#paymentsToggle').click(function () {
 
 
 //Payments on/off
-var paymentOnOff = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).payments;
+try {
+    var paymentOnOff = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).payments;
+} catch (err) {
+    console.log(err);
+    var paymentOnOff = null
+}
+//var paymentOnOff = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).payments;
 if (paymentOnOff == "1") {
     document.getElementById("paymentsToggle").checked = true;
 }

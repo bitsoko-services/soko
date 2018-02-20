@@ -419,7 +419,14 @@ function updateStore(t) {
 
 //Dominant Color
 function dominantColor() {
-    if (activeStore().theme == "") {
+
+    try {
+        var activeStoreTheme = activeStore().theme
+    } catch (err) {
+        console.log(err);
+        var activeStoreTheme = null
+    }
+    if (activeStoreTheme == null) {
         var _URL = window.URL || window.webkitURL;
         $("#editStore-image").change(function (e) {
             var image, file;

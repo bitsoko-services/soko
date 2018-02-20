@@ -64,7 +64,13 @@ function getManager() {
 
 
 var managerId = JSON.parse(localStorage.getItem("soko-owner-id"))
-var shopOwner = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).owner
+try {
+    var shopOwner = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).owner
+} catch (err) {
+    console.log(err);
+    var shopOwner = null
+}
+//var shopOwner = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).owner
 if (managerId != shopOwner) {
     $("#settingsOpt").hide()
 }
