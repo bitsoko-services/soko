@@ -83,8 +83,6 @@ function loadTheme() {
     }
     //load store URL
 	
-    //window.location.hash = '#s=' + localStorage.getItem("soko-active-store") + '';
-
     storeOwner();
     editStoreContent();
 }
