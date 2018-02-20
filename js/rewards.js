@@ -4,7 +4,13 @@ var cKobo = ""
 var xKobo = ""
 
 function fetchRate() {
-    var storeRwrdCoin = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).rewardCoin
+    try {
+        var storeRwrdCoin = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).rewardCoin
+    } catch (err) {
+        console.log(err);
+        var storeRwrdCoin = null
+    }
+    //    var storeRwrdCoin = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).rewardCoin
     fetchRates().then(function (e) {
         if (e.status == "ok") {
             coinList = e.data.data;

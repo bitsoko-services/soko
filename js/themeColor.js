@@ -111,5 +111,11 @@ function createCanvas() {
 
 
 //Theme Chosen
-var colorChosen = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme
+try {
+    var colorChosen = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).theme
+} catch (err) {
+    console.log(err);
+    var colorChosen = null
+}
+
 $("#colorChosen").css("background", colorChosen);
