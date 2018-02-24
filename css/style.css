@@ -3234,7 +3234,7 @@ tr.group:hover {
         margin-left: 33% !important;
     }
     .newStore {
-        display: none !important;
+        margin-left: 0px !important;
     }
     .card-reveal::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -4179,6 +4179,7 @@ ul.side-nav.leftside-navigation li:hover {
 
 .salePromo {
     transition: opacity 1s ease-out;
+    overflow-x: hidden;
 }
 
 .completeCard {
@@ -4215,6 +4216,95 @@ ul.side-nav.leftside-navigation li:hover {
 
 #barCodeReader canvas {
     display: none;
+}
+
+
+/*******************************************
+               Enterprise Settings
+*********************************************/
+
+.entForms {
+    background: white;
+    margin: 0px 5%;
+    margin-left: 5% !important;
+    margin-top: 20px;
+    border-radius: 3px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.entServicesSettings {
+    background: white;
+    margin: 0px 5%;
+    margin-left: 5% !important;
+    margin-top: 20px;
+    border-radius: 3px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow-x: hidden !important;
+}
+
+.entServicesSettings h6 {
+    padding: 10px;
+    font-size: 1.2em;
+    color: #585555;
+    font-weight: bold;
+    border-bottom: solid 1px #f7f6f6;
+}
+
+.entServicesCard {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-box-shadow: 0px 0px 13px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 13px -2px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 13px -2px rgba(0, 0, 0, 0.75);
+    border-radius: 3px;
+    margin: auto !important;
+}
+
+.entForms h6 {
+    padding: 10px;
+    font-size: 1.2em;
+    color: #585555;
+    font-weight: bold;
+    border-bottom: solid 1px #f7f6f6;
+}
+
+.entForms .row {
+    margin-bottom: 0px;
+}
+
+.entStatus {
+    max-width: 90%;
+    background: white;
+    border-radius: 3px;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-left: 5% !important;
+    padding-top: 0px;
+}
+
+.entStatus h6 {
+    padding: 10px;
+    font-size: 1.2em;
+    color: #585555;
+    font-weight: bold;
+    border-bottom: solid 1px #f7f6f6;
+}
+
+.entServicesCard .file-field {
+    background: #0000000f;
 }
 
 
