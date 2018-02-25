@@ -3051,6 +3051,12 @@ tr.group:hover {
     top: 15% !important;
 }
 
+@media only screen and (max-width: 500px) {
+    #rewards h5 {
+        display: none;
+    }
+}
+
 @media screen and (min-width: 993px) {
     ul.side-nav.leftside-navigation li {
         margin-top: 10px;
@@ -4288,7 +4294,7 @@ ul.side-nav.leftside-navigation li:hover {
     max-width: 90%;
     background: white;
     border-radius: 3px;
-    padding: 10px;
+    padding: 10px 0px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -4303,7 +4309,7 @@ ul.side-nav.leftside-navigation li:hover {
     color: #585555;
     font-weight: bold;
     border-bottom: solid 1px #f7f6f6;
-    padding-left: 0px;
+    padding-left: 10px;
 }
 
 .entServicesCard .file-field {
