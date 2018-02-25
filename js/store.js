@@ -2,6 +2,7 @@
 $(document).on("click", "#openStoreSet", function () {
     $('#content > .container > div').css('display', 'none');
     $('#content > .container > .editStorePage').css('display', 'block');
+    $(".activePage").html("Store Settings")
 });
 
 

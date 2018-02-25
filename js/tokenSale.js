@@ -2,6 +2,7 @@
 $(document).on("click", "#tokenSale", function () {
     $('#content > .container > div').css('display', 'none');
     $('#content > .container > .tokenSale').css('display', 'block');
+    $(".activePage").html("Token Sale")
 });
 
 //Activate / Deactive Token Sale

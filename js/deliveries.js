@@ -1,5 +1,7 @@
+$(document).on('touchstart click', '#deliveryPage', function () {
+    $(".activePage").html("Deliveries")
+});
 //Enable Deliveries
-
 $('#deliveriesToggle').click(function (e) {
     e.preventDefault();
     $('#MobileModal').modal({

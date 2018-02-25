@@ -2,6 +2,7 @@
 $(document).on("click", "#entSettings", function () {
     $('#content > .container > div').css('display', 'none');
     $('#content > .container > .entSettings').css('display', 'block');
+    $(".activePage").html("Enterprise Settings")
 });
 
 
