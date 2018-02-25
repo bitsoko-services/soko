@@ -4307,6 +4307,24 @@ ul.side-nav.leftside-navigation li:hover {
     background: #0000000f;
 }
 
+.entBanner {
+    background: white;
+    margin: 5% !important;
+    border-radius: 3px
+}
+
+.entBanner form {
+    padding: 0px 10px;
+}
+
+.entBanner h6 {
+    padding: 10px;
+    font-size: 1.2em;
+    color: #585555;
+    font-weight: bold;
+    border-bottom: solid 1px #f7f6f6;
+}
+
 
 /*******************************************
                Token Section
