@@ -172,7 +172,9 @@ function populateProductCategories() {
 $(".prodactsPage").one("click", function () {
     populateProductCategories();
 });
-
+$(document).on('touchstart click', '.prodactsPage', function () {
+    $(".activePage").html("Products")
+});
 
 $(document).on('touchstart click', '#yesSponsoredBtn', function (event) {
     var sponsoredID = $("#rmvSpnsrdProd").attr("sid");

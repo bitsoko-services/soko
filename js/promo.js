@@ -700,6 +700,10 @@ function updateProm(t) {
     }
 }
 
+$(document).on('touchstart click', '.clickPromo', function () {
+    $(".activePage").html("")
+});
+
 //Hide Card Reveal on Promotion Page
 //$(document).on('touchstart click', '.backBtnPromo', function (event) {
 //    $(this).parent().parent().hide();

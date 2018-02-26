@@ -3,6 +3,10 @@ var finalRate;
 var cKobo = ""
 var xKobo = ""
 
+$(document).on('touchstart click', '#rewardsPage', function () {
+    $(".activePage").html("Rewards")
+});
+
 function fetchRate() {
     try {
         var storeRwrdCoin = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).rewardCoin

@@ -1,3 +1,7 @@
+$(document).on('touchstart click', '#beaconsPage', function () {
+    $(".activePage").html("Devices")
+});
+
 function refreshBeacons() {
     doFetch({
         action: 'getBeacons',

@@ -43,6 +43,7 @@ $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
 $(document).on("click", "#opnMngPg", function () {
     $('#content > .container > div').css('display', 'none');
     $('#content > .container > .Managers').css('display', 'block');
+    $(".activePage").html("Managers")
 })
 
 function getManager() {
