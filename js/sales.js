@@ -1,5 +1,4 @@
 function refreshSalesOrders() {
-    alert("called")
     doFetch({
         action: 'getOrders',
         id: localStorage.getItem('soko-active-store')
