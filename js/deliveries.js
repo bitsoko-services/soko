@@ -214,6 +214,39 @@ $("#sliderAmount").on("change", function () {
         }
     });
 });
+//Distace Set
+$("#distanceSliderAmount").on("change", function () {
+    deliveryDistance = $("#sliderAmount").val();
+    doFetch({
+        action: 'deliveryDistance',
+        store: localStorage.getItem('soko-active-store'),
+        rate: deliveryDistance
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            Materialize.toast('Delivery rate set successfully', 3000);
+        } else {
+            Materialize.toast('Error!!! Please try again later', 3000);
+        }
+    });
+});
+//Distace Slider
+var distanceSlide = document.getElementById('distaceSlide'),
+    distanceSliderDiv = document.getElementById("distanceSliderAmount");
+
+distanceSlide.onchange = function () {
+    distanceSliderDiv.innerHTML = $("#distanceSliderAmount").val(this.value);
+    var sliderVal = $("#distanceSliderAmount").val();
+    $("#distaceSlide").val(sliderVal);
+    var distanceVal = $("#distanceRangeOutputId").val()
+    $("#distaceSlide").val(distanceVal);
+    doFetch({
+        action: 'maxDeliveryDistace',
+        store: localStorage.getItem('soko-active-store'),
+        val: sliderVal
+    }).then(function (e) {
+        if (e.status == 'ok') {} else {}
+    });
+}
 
 
 //New Operator
