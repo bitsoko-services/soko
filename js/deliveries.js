@@ -218,7 +218,7 @@ $("#sliderAmount").on("change", function () {
 $("#distanceSliderAmount").on("change", function () {
     deliveryDistance = $("#sliderAmount").val();
     doFetch({
-        action: 'deliveryDistance',
+        action: 'maxDeliveryDistance',
         store: localStorage.getItem('soko-active-store'),
         rate: deliveryDistance
     }).then(function (e) {
