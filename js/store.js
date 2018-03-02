@@ -718,153 +718,6 @@ function storeOwner() {
     }
 }
 
-
-// Working Hours
-function workingHours() {
-    var wkDayOpn = "am";
-    var wkDayCls = "am";
-
-    $('.pm').hide();
-    $('.AmPm').on('click', function () {
-        $(this).siblings("p").toggle(function () {
-
-            var actvClass = $(this).parent().parent()
-            var opnAm = actvClass.find(".am").css('display') == 'none';
-            var clsAm = actvClass.find(".pm").css('display') == 'none';
-            if (actvClass.attr('class').replace('row ', '') == "openHours") {
-                if (opnAm == true) {
-                    wkDayOpn = "pm"
-                } else {
-                    wkDayOpn = "am"
-                }
-            } else {
-                if (clsAm == true) {
-                    wkDayCls = "am"
-                } else {
-                    wkDayCls = "pm"
-                }
-            }
-        });
-    });
-    $(document).on("click", "#wkDayBtn", function () {
-        $("#wkDayModal").show();
-    });
-    $(document).on("click", "#satBtn", function () {
-        $("#satModal").show();
-    });
-    $(document).on("click", "#sunBtn", function () {
-        $("#sunModal").show();
-    });
-    $(document).on("click", ".closeModal", function () {
-        $(".modal2").hide();
-    });
-
-    $('.counterUp').click(function (event) {
-        //        console.log($(this).siblings("input").attr("max"))
-        //        console.log(JSON.parse($(this).siblings("input").val()) + 1)
-        if ($(this).siblings("input").attr("class") == "hrs") {
-            if (JSON.parse($(this).siblings("input").val()) + 1 == 13) {
-                $(this).siblings("input").val(0)
-            } else {
-                event.preventDefault()
-                add = $(this).siblings("input")
-                add_ = add.val()
-                add_ = parseInt(add_) + 1
-                add.val(add_)
-            }
-        } else if ($(this).siblings("input").attr("class") == "min") {
-            if (JSON.parse($(this).siblings("input").val()) + 1 == 60) {
-                $(this).siblings("input").val(0)
-            } else {
-                event.preventDefault()
-                add = $(this).siblings("input")
-                add_ = add.val()
-                add_ = parseInt(add_) + 1
-                add.val(add_)
-            }
-        }
-    })
-    $('.counterDown').click(function (event) {
-        if ($(this).siblings("input").attr("class") == "hrs") {
-            if (JSON.parse($(this).siblings("input").val()) - 1 == -1) {
-                $(this).siblings("input").val(12)
-            } else {
-                event.preventDefault()
-                add = $(this).siblings("input")
-                add_ = add.val()
-                add_ = parseInt(add_) - 1
-                add.val(add_)
-            }
-        } else if ($(this).siblings("input").attr("class") == "min") {
-            if (JSON.parse($(this).siblings("input").val()) - 1 == -1) {
-                $(this).siblings("input").val(59)
-            } else {
-                event.preventDefault()
-                add = $(this).siblings("input")
-                add_ = add.val()
-                add_ = parseInt(add_) - 1
-                add.val(add_)
-            }
-        }
-    })
-
-    //Save Working Hours
-    $(document).on("click", "#saveOpnHrs", function () {
-        var day = $(this).parent().parent().parent().attr("id");
-        console.log(day);
-        if (day == "wkDayModal") {
-            var opnHr = $("#wkOpnHr").val()
-            var opnMin = $("#wkOpenMin").val()
-
-            var clsHr = $("#wkclsHr").val()
-            var clsMin = $("#wkclsMin").val()
-
-            doFetch({
-                action: 'WorkingHours',
-                id: localStorage.getItem('soko-active-store'),
-                prop: "weekDay",
-                val: opnHr + ":" + opnMin + " " + wkDayOpn + " - " + clsHr + ":" + clsMin + " " + wkDayCls
-            }).then(function (e) {
-                if (e.status == 'ok') {} else {}
-            });
-
-        } else if (day == "satModal") {
-            var opnHr = $("#satOpnHr").val()
-            var opnMin = $("#satOpenMin").val()
-
-            var clsHr = $("#satclsHr").val()
-            var clsMin = $("#satclsMin").val()
-
-            doFetch({
-                action: 'WorkingHours',
-                id: localStorage.getItem('soko-active-store'),
-                prop: "saturday",
-                val: opnHr + ":" + opnMin + " " + wkDayOpn + " - " + clsHr + ":" + clsMin + " " + wkDayCls
-            }).then(function (e) {
-                if (e.status == 'ok') {} else {}
-            });
-
-        } else {
-            var opnHr = $("#sunOpnHr").val()
-            var opnMin = $("#sunOpenMin").val()
-
-            var clsHr = $("#sunclsHr").val()
-            var clsMin = $("#sunclsMin").val()
-
-            doFetch({
-                action: 'WorkingHours',
-                id: localStorage.getItem('soko-active-store'),
-                prop: "sunday",
-                val: opnHr + ":" + opnMin + " " + wkDayOpn + " - " + clsHr + ":" + clsMin + " " + wkDayCls
-            }).then(function (e) {
-                if (e.status == 'ok') {} else {}
-            });
-
-        }
-    })
-}
-workingHours()
-
 //Share
 function shareStore() {
     var storeName = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).name
@@ -879,6 +732,53 @@ function shareStore() {
     }
 }
 
+
+//Save Working Hours
+$('.workingHrs input').change(function () {
+    var workingHrs = $(this).attr("id");
+    var workingHrsVal = $(this).val();
+
+    if (workingHrs == "mon-fri") {
+        doFetch({
+            action: 'WorkingHours',
+            id: localStorage.getItem('soko-active-store'),
+            prop: "weekDay",
+            val: workingHrsVal
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                Materialize.toast('Working hours set successfully.', 3000);
+            } else {
+                Materialize.toast('Error!!! Please try again later.', 3000);
+            }
+        });
+    } else if (workingHrs == "wkndSat") {
+        doFetch({
+            action: 'WorkingHours',
+            id: localStorage.getItem('soko-active-store'),
+            prop: "saturday",
+            val: workingHrsVal
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                Materialize.toast('Working hours set successfully.', 3000);
+            } else {
+                Materialize.toast('Error!!! Please try again later.', 3000);
+            }
+        });
+    } else {
+        doFetch({
+            action: 'WorkingHours',
+            id: localStorage.getItem('soko-active-store'),
+            prop: "sunday",
+            val: workingHrsVal
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                Materialize.toast('Working hours set successfully.', 3000);
+            } else {
+                Materialize.toast('Error!!! Please try again later.', 3000);
+            }
+        });
+    }
+});
 
 
 

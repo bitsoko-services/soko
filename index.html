@@ -822,364 +822,6 @@
             </div>
         </div>
     </div>
-    <!--- Week Day Modal --->
-    <div>
-        <div id="wkDayModal" class="modal2" style="z-index:10000; padding-top: 50%;">
-            <div class="modal-content2">
-                <div class="timeHeader" style="width: 90px; display: block; margin-left: auto; margin-right: auto; background: white; padding: 7px; margin-top: -45px; border-radius: 50%;">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                        <circle style="fill:#EA971E;" cx="255.997" cy="255.997" r="255.997"/>
-                        <path style="fill:#C27526;" d="M394.971,117.028C359.405,81.462,310.271,59.464,256,59.464  C147.456,59.465,59.465,147.456,59.464,256c0,54.271,21.998,103.405,57.564,138.971l115.991,115.991  c7.572,0.674,15.233,1.039,22.982,1.039C397.385,512,512,397.385,512,256c0-7.747-0.365-15.409-1.039-22.982L394.971,117.028z"/>
-                        <circle style="fill:#57565C;" cx="255.997" cy="255.997" r="196.538"/>
-                        <path style="fill:#2D2E30;" d="M256,59.465v393.07c108.544,0,196.536-87.992,196.536-196.536S364.543,59.465,256,59.465z"/>
-                        <circle style="fill:#FFFFFF;" cx="255.997" cy="255.997" r="143.026"/>
-                        <path style="fill:#AAC6E9;" d="M399.023,256c0-78.989-64.033-143.023-143.023-143.023v286.047  C334.99,399.023,399.023,334.99,399.023,256z"/>
-                        <g>
-                            <rect x="248.564" y="112.98" style="fill:#57565C;" width="14.865" height="38.975"/>
-                            <rect x="248.564" y="360.722" style="fill:#57565C;" width="14.865" height="38.975"/>
-                            <rect x="360.385" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
-                            <rect x="112.643" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
-                        </g>
-                        <rect x="241.628" y="241.628" style="fill:#A2482A;" width="88.355" height="28.738"/>
-                        <rect x="241.628" y="160.884" style="fill:#E25F3F;" width="28.738" height="109.492"/>    
-                    </svg>
-                </div>
-                <div class="modal-body2">
-                    <h5 style="margin:0px;">Opening Hours</h5>
-                    <div class="row openHours" style="margin: 15px 0px; padding: 0px 10px;">
-                        <div class="col s4" id="mon-fri">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="hrs" id="wkOpnHr" value="1" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="12">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="min" value="1" id="wkOpenMin" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="59">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <!--                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">-->
-                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top:-6px;">am</p>
-                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top:-6px;">pm</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                    </div>
-                    <h5>Closing Hours</h5>
-                    <div class="row closeHours" style="margin: 15px 0px; padding: 0px 10px;">
-                        <div class="col s4">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="hrs" id="wkclsHr" value="1" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="12">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="min" id="wkclsMin" value="1" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="59">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <!--                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">-->
-                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top: -6px;">am</p>
-                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top: -6px;">pm</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div style="text-align:center;margin-bottom:20px;">
-                    <a class="waves-effect waves-light btn closeModal" id="clsOpnHrs" style="position: relative; left: -25px;">Close</a>
-                    <a class="waves-effect waves-light btn" id="saveOpnHrs" style="position: relative; right: -25px;">save</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--- Saturday Modal --->
-    <div>
-        <div id="satModal" class="modal2" style="z-index:10000; padding-top: 50%;">
-            <div class="modal-content2">
-                <div class="timeHeader" style="width: 90px; display: block; margin-left: auto; margin-right: auto; background: white; padding: 7px; margin-top: -45px; border-radius: 50%;">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                        <circle style="fill:#EA971E;" cx="255.997" cy="255.997" r="255.997"/>
-                        <path style="fill:#C27526;" d="M394.971,117.028C359.405,81.462,310.271,59.464,256,59.464  C147.456,59.465,59.465,147.456,59.464,256c0,54.271,21.998,103.405,57.564,138.971l115.991,115.991  c7.572,0.674,15.233,1.039,22.982,1.039C397.385,512,512,397.385,512,256c0-7.747-0.365-15.409-1.039-22.982L394.971,117.028z"/>
-                        <circle style="fill:#57565C;" cx="255.997" cy="255.997" r="196.538"/>
-                        <path style="fill:#2D2E30;" d="M256,59.465v393.07c108.544,0,196.536-87.992,196.536-196.536S364.543,59.465,256,59.465z"/>
-                        <circle style="fill:#FFFFFF;" cx="255.997" cy="255.997" r="143.026"/>
-                        <path style="fill:#AAC6E9;" d="M399.023,256c0-78.989-64.033-143.023-143.023-143.023v286.047  C334.99,399.023,399.023,334.99,399.023,256z"/>
-                        <g>
-                            <rect x="248.564" y="112.98" style="fill:#57565C;" width="14.865" height="38.975"/>
-                            <rect x="248.564" y="360.722" style="fill:#57565C;" width="14.865" height="38.975"/>
-                            <rect x="360.385" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
-                            <rect x="112.643" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
-                        </g>
-                        <rect x="241.628" y="241.628" style="fill:#A2482A;" width="88.355" height="28.738"/>
-                        <rect x="241.628" y="160.884" style="fill:#E25F3F;" width="28.738" height="109.492"/>    
-                    </svg>
-                </div>
-                <div class="modal-body2">
-                    <h5 style="margin:0px;">Opening Hours</h5>
-                    <div class="row openHours" style="margin: 15px 0px; padding: 0px 10px;">
-                        <div class="col s4">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="hrs" id="satOpnHr" value="1" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="12">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="min" id="satOpenMin" value="1" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 0px; border-bottom: none; margin-top: -5px;" max="59">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <!--                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">-->
-                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top: -6px;">am</p>
-                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase; margin-top: -6px;">pm</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                    </div>
-                    <h5>Closing Hours</h5>
-                    <div class="row closeHours" style="margin: 15px 0px; padding: 0px 10px;">
-                        <div class="col s4">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="hrs" id="satclsHr" value="1" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="12">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="min" id="satclsMin" value="1" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <!--                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">-->
-                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">am</p>
-                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">pm</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div style="text-align:center;margin-bottom:20px;">
-                    <a class="waves-effect waves-light btn closeModal" id="clsOpnHrs" style="position: relative; left: -25px;">Close</a>
-                    <a class="waves-effect waves-light btn" id="saveOpnHrs" style="position: relative; right: -25px;">save</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--- Sunday Modal --->
-    <div>
-        <div id="sunModal" class="modal2" style="z-index:10000; padding-top: 50%;">
-            <div class="modal-content2">
-                <div class="timeHeader" style="width: 90px; display: block; margin-left: auto; margin-right: auto; background: white; padding: 7px; margin-top: -45px; border-radius: 50%;">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                        <circle style="fill:#EA971E;" cx="255.997" cy="255.997" r="255.997"/>
-                        <path style="fill:#C27526;" d="M394.971,117.028C359.405,81.462,310.271,59.464,256,59.464  C147.456,59.465,59.465,147.456,59.464,256c0,54.271,21.998,103.405,57.564,138.971l115.991,115.991  c7.572,0.674,15.233,1.039,22.982,1.039C397.385,512,512,397.385,512,256c0-7.747-0.365-15.409-1.039-22.982L394.971,117.028z"/>
-                        <circle style="fill:#57565C;" cx="255.997" cy="255.997" r="196.538"/>
-                        <path style="fill:#2D2E30;" d="M256,59.465v393.07c108.544,0,196.536-87.992,196.536-196.536S364.543,59.465,256,59.465z"/>
-                        <circle style="fill:#FFFFFF;" cx="255.997" cy="255.997" r="143.026"/>
-                        <path style="fill:#AAC6E9;" d="M399.023,256c0-78.989-64.033-143.023-143.023-143.023v286.047  C334.99,399.023,399.023,334.99,399.023,256z"/>
-                        <g>
-                            <rect x="248.564" y="112.98" style="fill:#57565C;" width="14.865" height="38.975"/>
-                            <rect x="248.564" y="360.722" style="fill:#57565C;" width="14.865" height="38.975"/>
-                            <rect x="360.385" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
-                            <rect x="112.643" y="248.901" style="fill:#57565C;" width="38.975" height="14.864"/>
-                        </g>
-                        <rect x="241.628" y="241.628" style="fill:#A2482A;" width="88.355" height="28.738"/>
-                        <rect x="241.628" y="160.884" style="fill:#E25F3F;" width="28.738" height="109.492"/>    
-                    </svg>
-                </div>
-                <div class="modal-body2">
-                    <h5 style="margin:0px;">Opening Hours</h5>
-
-                    <div class="row openHours" style="margin: 15px 0px; padding: 0px 10px;">
-                        <div class="col s4">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="hrs" id="sunOpnHr" value="1" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="12">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="min" id="sunOpenMin" value="1" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <!--                            <input type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">-->
-                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">am</p>
-                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">pm</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                    </div>
-                    <h5>Closing Hours</h5>
-                    <div class="row closeHours" style="margin: 15px 0px; padding: 0px 10px;">
-                        <div class="col s4">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="hrs" id="sunclsHr" value="1" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="12">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg class="counterUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <input class="min" id="sunclsMin" value="1" type="number" style="text-align: center; font-size: 1.3em; height: 2rem; margin-bottom: 5px; border-bottom: none;" max="59">
-                            <svg class="counterDown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                        <div class="col s4">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M433.968,278.657L248.387,92.79c-7.419-7.044-16.08-10.566-25.977-10.566c-10.088,0-18.652,3.521-25.697,10.566   L10.848,278.657C3.615,285.887,0,294.549,0,304.637c0,10.28,3.619,18.843,10.848,25.693l21.411,21.413   c6.854,7.23,15.42,10.852,25.697,10.852c10.278,0,18.842-3.621,25.697-10.852L222.41,213.271L361.168,351.74   c6.848,7.228,15.413,10.852,25.7,10.852c10.082,0,18.747-3.624,25.975-10.852l21.409-21.412   c7.043-7.043,10.567-15.608,10.567-25.693C444.819,294.545,441.205,285.884,433.968,278.657z"/>
-                                </g>    
-                            </svg>
-                            <p class="am" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">am</p>
-                            <p class="pm" style="margin: 3px; font-size: 1.3em; text-transform: uppercase;">pm</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="100%" height="30px" viewBox="0 0 444.819 444.819" style="enable-background:new 0 0 444.819 444.819; border: solid black 1px; padding: 5px; border-radius: 3px;" xml:space="preserve" class="AmPm">
-                                <g>
-                                    <path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561   L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416   C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848   c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693   C444.819,130.287,441.295,121.629,434.252,114.203z"/>
-                                </g>    
-                            </svg>
-                        </div>
-                    </div>
-
-                </div>
-                <div style="text-align:center;margin-bottom:20px;">
-                    <a class="waves-effect waves-light btn closeModal" id="clsOpnHrs" style="position: relative; left: -25px;">Close</a>
-                    <a class="waves-effect waves-light btn" id="saveOpnHrs" style="position: relative; right: -25px;">save</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <div id="spnsrdModal" class="modal" style="margin-top:25% !important;">
         <div class="modal-content" style="padding:0px;">
             <div class="row">
@@ -1595,7 +1237,7 @@
         <div class="navbar-fixed">
             <nav class="selectedColor navbar-color" style="box-shadow:none;">
                 <div class="nav-wrapper">
-                    <div href="#" data-activates="slide-out" class="opacitySelectedColor sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan" style="position:absolute;left:7px;top:7px;background:#0f5f76;padding:3px;">
+                    <div href="#" data-activates="slide-out" class="opacitySelectedColor sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only" style="position:absolute;left:7px;top:7px;background:#0f5f76;padding:3px;">
                         <div style="width: 25px;height: 2px;background-color: white;margin: 4px 0;display:block;margin-left:auto;margin-right:auto;margin-top: 9px;border-radius:5px;"></div>
                         <div style="width: 25px;height: 2px;background-color: white;margin: 4px 0;display:block;margin-left:auto;margin-right:auto;border-radius:5px;"></div>
                         <div style="width: 25px;height: 2px;background-color: white;margin: 4px 0;display:block;margin-left:auto;margin-right:auto;border-radius:5px;"></div>
@@ -1655,7 +1297,8 @@
                             <div class="row" style="padding-top:90px;">
                                 <div class="col s3" style="padding-left:0px; padding-right:5px;"><a class="waves-effect waves-light white-text profile-btn store-name" style="text-align:left; display:none;">my store</a>
                                     <img src="images/avatar.svg" alt="" class="circle responsive-img valign profile-image store-img" style="width:70px;line-height: 0px;display:block;margin-top:10px;margin-bottom:10px;" /></div>
-                                <div class="col s8" style="padding: 5px 10px 0px 0px;"><a class="waves-effect waves-light white-text profile-btn store-name" style="text-align:left; line-height:3;">my store</a>
+                                <div class="col s8" style="padding: 5px 10px 0px 0px;">
+                                    <p class="waves-effect waves-light white-text profile-btn store-name" style="text-align:left; line-height:3;width:100%;">my store</p>
                                     <p class="user-roal store-desc" style="text-align:left; line-height:1;"></p>
                                 </div>
                             </div>
@@ -1748,7 +1391,7 @@
                                 <div class="collapsible-header settingsIcon" style="">
                                     <div>
                                         <i style="float: right; margin: 0; height: 30px;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 268.765 268.765" style="enable-background:new 0 0 268.765 268.765;width: 20px;height: 20px;" xml:space="preserve">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 268.765 268.765" style="enable-background:new 0 0 268.765 268.765;width: 20px;height: 20px; position: absolute; top: -4px; right: 15px" xml:space="preserve">
                                                 <g id="Settings">
                                                     <g>
                                                         <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M267.92,119.461c-0.425-3.778-4.83-6.617-8.639-6.617    c-12.315,0-23.243-7.231-27.826-18.414c-4.682-11.454-1.663-24.812,7.515-33.231c2.889-2.641,3.24-7.062,0.817-10.133    c-6.303-8.004-13.467-15.234-21.289-21.5c-3.063-2.458-7.557-2.116-10.213,0.825c-8.01,8.871-22.398,12.168-33.516,7.529    c-11.57-4.867-18.866-16.591-18.152-29.176c0.235-3.953-2.654-7.39-6.595-7.849c-10.038-1.161-20.164-1.197-30.232-0.08    c-3.896,0.43-6.785,3.786-6.654,7.689c0.438,12.461-6.946,23.98-18.401,28.672c-10.985,4.487-25.272,1.218-33.266-7.574    c-2.642-2.896-7.063-3.252-10.141-0.853c-8.054,6.319-15.379,13.555-21.74,21.493c-2.481,3.086-2.116,7.559,0.802,10.214    c9.353,8.47,12.373,21.944,7.514,33.53c-4.639,11.046-16.109,18.165-29.24,18.165c-4.261-0.137-7.296,2.723-7.762,6.597    c-1.182,10.096-1.196,20.383-0.058,30.561c0.422,3.794,4.961,6.608,8.812,6.608c11.702-0.299,22.937,6.946,27.65,18.415    c4.698,11.454,1.678,24.804-7.514,33.23c-2.875,2.641-3.24,7.055-0.817,10.126c6.244,7.953,13.409,15.19,21.259,21.508    c3.079,2.481,7.559,2.131,10.228-0.81c8.04-8.893,22.427-12.184,33.501-7.536c11.599,4.852,18.895,16.575,18.181,29.167    c-0.233,3.955,2.67,7.398,6.595,7.85c5.135,0.599,10.301,0.898,15.481,0.898c4.917,0,9.835-0.27,14.752-0.817    c3.897-0.43,6.784-3.786,6.653-7.696c-0.451-12.454,6.946-23.973,18.386-28.657c11.059-4.517,25.286-1.211,33.281,7.572    c2.657,2.89,7.047,3.239,10.142,0.848c8.039-6.304,15.349-13.534,21.74-21.494c2.48-3.079,2.13-7.559-0.803-10.213    c-9.353-8.47-12.388-21.946-7.529-33.524c4.568-10.899,15.612-18.217,27.491-18.217l1.662,0.043    c3.853,0.313,7.398-2.655,7.865-6.588C269.044,139.917,269.058,129.639,267.92,119.461z M134.595,179.491    c-24.718,0-44.824-20.106-44.824-44.824c0-24.717,20.106-44.824,44.824-44.824c24.717,0,44.823,20.107,44.823,44.824    C179.418,159.385,159.312,179.491,134.595,179.491z" fill="#FFFFFF"></path>
@@ -1758,15 +1401,14 @@
                                         </i>
                                     </div>
                                 </div>
-                                <div class="collapsible-body" style="padding: 0px; background: rgb(245, 245, 245); width: 100%; display: none; padding-bottom: 65vh !important; overflow: hidden !important; margin-top: 20px;">
+                                <div class="collapsible-body" style="padding: 0px; background: rgb(245, 245, 245); width: 100%; display: none; padding-bottom: 65vh !important; overflow: hidden !important; margin-top: 20px; position: absolute; top: 27px;">
                                     <div class="permanentChng" style="padding: 10px 10% 0px;">
                                         <div style="padding: 0px 5%;">
                                             <h6 style=" border-bottom: solid 1px #cccccc; margin-bottom: 25px; color: #7c7c7c;"><span style="background: #F5F5F5;">SETTINGS</span></h6>
                                         </div>
                                     </div>
-
-                                    <span id="opnMngPg">
-                                        <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); managerListener(); setTimeout(getManager, 2000);">
+                                    <span class="row" id="opnMngPg">
+                                        <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); managerListener(); setTimeout(getManager, 2000);" style=" color:#272626;width:100%;">
                                             <i class="mdi-social-people">
                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width:20px;" xml:space="preserve">
                                                     <g xmlns="http://www.w3.org/2000/svg">
@@ -1779,17 +1421,16 @@
                                             </i> Managers
                                         </a>
                                     </span>
-
-                                    <span id="openStoreSet">
-                                        <a class="editStore" >
-                                            <i style="width:25px;padding-top:5px;">
-                                                <svg class="svg-icon" viewBox="0 0 20 20">
+                                    <span class="row">
+                                        <a href="#" class="waves-effect waves-cyan nav" style=" color:#272626;width:100%;" id="openStoreSet">
+                                            <i class="mdi-social-people">
+                                                <svg class="svg-icon" viewBox="0 0 20 20" style="margin-top: 5px;">
                                                     <path d="M18.303,4.742l-1.454-1.455c-0.171-0.171-0.475-0.171-0.646,0l-3.061,3.064H2.019c-0.251,0-0.457,0.205-0.457,0.456v9.578c0,0.251,0.206,0.456,0.457,0.456h13.683c0.252,0,0.457-0.205,0.457-0.456V7.533l2.144-2.146C18.481,5.208,18.483,4.917,18.303,4.742 M15.258,15.929H2.476V7.263h9.754L9.695,9.792c-0.057,0.057-0.101,0.13-0.119,0.212L9.18,11.36h-3.98c-0.251,0-0.457,0.205-0.457,0.456c0,0.253,0.205,0.456,0.457,0.456h4.336c0.023,0,0.899,0.02,1.498-0.127c0.312-0.077,0.55-0.137,0.55-0.137c0.08-0.018,0.155-0.059,0.212-0.118l3.463-3.443V15.929z M11.241,11.156l-1.078,0.267l0.267-1.076l6.097-6.091l0.808,0.808L11.241,11.156z"></path>
                                                 </svg>
-                                            </i>Edit Store Information
-                                        </a> 
+                                            </i> Edit Store Information
+                                        </a>
                                     </span>
-                                    <span style="display:none;">
+                                    <span class="row" style="display:none;">
                                         <div class="switch" style="margin-top:5px;">
                                             <span>
                                                 <svg class="paymentIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 59.998 59.998" style="enable-background:new 0 0 59.998 59.998;width: 25px;margin-left: 15px; margin-right: 15px;" xml:space="preserve">
@@ -1822,7 +1463,7 @@
 -->
                                 <span>
                                         <div class="pageBoxShadow" style="margin-top: 5px;">
-                                            <a href="#" id="tokenSale" page="tokenSale" class="waves-effect waves-cyan nav" style="display:;"> 
+                                            <a href="#" id="tokenSale" page="tokenSale" class="waves-effect waves-cyan nav" style=" color:#272626; width: 100%;"> 
                                                 <i style="padding-top:6px;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                                         <path d="M416.205,83.759l-5.375-38.392c-0.271-1.933-1.304-3.677-2.87-4.843c-1.565-1.165-3.531-1.655-5.462-1.359l-42.296,6.478    c-3.985,0.61-6.72,4.335-6.11,8.319c0.61,3.985,4.337,6.722,8.319,6.11l24.647-3.775c-32.96,40.749-68.409,75.459-105.538,103.27    c-32.308,24.2-65.951,43.274-99.994,56.694C123.587,239.1,84.023,237.6,83.634,237.586c-4.034-0.204-7.437,2.914-7.632,6.936    c-0.196,4.026,2.909,7.448,6.935,7.644c0.238,0.011,1.234,0.054,2.942,0.054c10.516,0,47.928-1.614,100.085-22.021    c35.368-13.838,70.271-33.529,103.741-58.527c38.462-28.727,75.122-64.598,109.128-106.721l2.916,20.832    c0.511,3.649,3.637,6.287,7.219,6.287c0.336,0,0.678-0.023,1.021-0.071C413.981,91.44,416.764,87.751,416.205,83.759z"></path>
@@ -2611,58 +2252,49 @@
                                     <div class="col s12">
                                         <h6>Working Hours</h6>
                                     </div>
-                                    <div class="row">
-                                        <div class="col s2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;" xml:space="preserve">
-                                    <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
-                                </svg>
+                                    <div class="row" style="padding-top: 45px;">
+                                        <div class="col s4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
+                                                <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
+                                            </svg>
                                         </div>
-                                        <div class="col s7" style="padding:0px;">
-                                            <div class="col s6" style="padding:0px;">
+                                        <div class="col s3" style="padding:0px;">
+                                            <div class="col s12" style="padding:0px;">
                                                 <p style="margin:0px;">Mon - Fri</p>
                                             </div>
-                                            <div class="col s6">
-                                                <p style="margin:0px;"><span id="wkDayHrs">00</span>:<span id="wkDaymin">00</span></p>
-                                            </div>
                                         </div>
                                         <div class="col s3">
-                                            <a class="waves-effect waves-light btn" style=" padding: 5px 8px; line-height: 1; height: auto;" id="wkDayBtn">edit</a>
+                                            <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="mon-fri" style="border-radius: 3px;" value="edit">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col s2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;" xml:space="preserve">
-                                    <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
-                                </svg>
+                                        <div class="col s4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
+                                                <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
+                                            </svg>
                                         </div>
-                                        <div class="col s7" style="padding:0px;">
-                                            <div class="col s6" style="padding:0px;">
+                                        <div class="col s3" style="padding:0px;">
+                                            <div class="col s12" style="padding:0px;">
                                                 <p style="margin:0px;">Sat</p>
                                             </div>
-                                            <div class="col s6">
-                                                <p style="margin:0px;"><span id="wkDayHrs">00</span>:<span id="wkDaymin">00</span></p>
-                                            </div>
                                         </div>
                                         <div class="col s3">
-                                            <a class="waves-effect waves-light btn" style=" padding: 5px 8px; line-height: 1; height: auto;" id="satBtn">edit</a>
+                                            <input type="text" class="timepicker btn opacitySelectedColor" id="wkndSat" style="border-radius: 3px;" value="edit">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col s2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;" xml:space="preserve">
-                                    <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
-                                </svg>
+                                        <div class="col s4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
+                                                <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
+                                            </svg>
                                         </div>
-                                        <div class="col s7" style="padding:0px;">
-                                            <div class="col s6" style="padding:0px;">
+                                        <div class="col s3" style="padding:0px;">
+                                            <div class="col s12" style="padding:0px;">
                                                 <p style="margin:0px;">Sun</p>
-                                            </div>
-                                            <div class="col s6">
-                                                <p style="margin:0px;"><span id="wkDayHrs">00</span>:<span id="wkDaymin">00</span></p>
                                             </div>
                                         </div>
                                         <div class="col s3">
-                                            <a class="waves-effect waves-light btn" style=" padding: 5px 8px; line-height: 1; height: auto;" id="sunBtn">edit</a>
+                                            <input type="text" class="timepicker btn opacitySelectedColor" id="wkndSun" style="border-radius: 3px;" value="edit">
                                         </div>
                                     </div>
                                 </div>
@@ -2929,6 +2561,18 @@
             jQuery("#status").delay(6000).fadeOut();
             // will fade out the whole DIV that covers the website.
             jQuery("#preloader").delay(6000).fadeOut("slow");
+            //Time picker Initialization
+            $('.timepicker').pickatime({
+                default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+                fromnow: 0, // set default time to * milliseconds from now (using with default = 'now')
+                twelvehour: true, // Use AM/PM or 24-hour format
+                donetext: 'OK', // text for done-button
+                cleartext: 'Clear', // text for clear-button
+                canceltext: 'Cancel', // Text for cancel-button
+                autoclose: false, // automatic close timepicker
+                ampmclickable: true, // make AM PM clickable
+                aftershow: function() {} //Function for after opening timepicker
+            });
         })
 
     </script>
