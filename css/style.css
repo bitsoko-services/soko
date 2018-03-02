@@ -4318,8 +4318,8 @@ ul.side-nav.leftside-navigation li:hover {
     border-radius: 3px;
     padding: 10px 0px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
     margin-left: 2.5% !important;
     padding-top: 0px;
     margin-top: 10px;

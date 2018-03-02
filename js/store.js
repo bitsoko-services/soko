@@ -1,5 +1,6 @@
 //Open Store Settings
 $(document).on("click", "#openStoreSet", function () {
+    $('.button-collapse').sideNav('hide');
     $('#content > .container > div').css('display', 'none');
     $('#content > .container > .editStorePage').css('display', 'block');
     $(".activePage").html("Store Settings")
