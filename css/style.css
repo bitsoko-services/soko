@@ -1808,6 +1808,18 @@ tr.group:hover {
     width: 280px;
 }
 
+#login {
+    margin-top: 30%;
+    height: 50%;
+    height: 260px;
+    overflow: initial !important;
+}
+
+#firstProdModal {
+    overflow: initial;
+    height: 40%;
+}
+
 .login-form-text {
     text-transform: uppercase;
     letter-spacing: 2px;
