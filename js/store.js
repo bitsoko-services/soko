@@ -399,7 +399,7 @@ function updateStore(t) {
             prop: name,
             val: dayData
         }).then(function (e) {});
-    } else if (name == "shopTransfer") {
+    } else if (name == "buyStoreTokens") {
         //TO-DO
         //move the shop transfer function
     } else {
