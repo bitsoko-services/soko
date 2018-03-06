@@ -143,8 +143,8 @@ function productsUpdater() {
         });
 
         //        $('.products-collapsible').collapsible();
-        $('select').material_select();
-        Materialize.updateTextFields();
+        $('select').formSelect();
+        M.updateTextFields();
         initProdCallback();
     }
 }
@@ -164,7 +164,7 @@ function populateProductCategories() {
                 }
             }
         }
-        $('select').material_select();
+        $('select').formSelect();
         $('.remove').remove();
         initialProdCat()
     }, 1000);
@@ -607,7 +607,7 @@ function prodCategory() {
         for (var pc = 0; pc < prodCat.length; ++pc) {
 
             $(".productCategory").append('<option value="' + prodCat[pc].name + '">' + prodCat[pc].name + '</option>');
-            $('select').material_select();
+            $('select').formSelect();
             $(".productCategory").siblings("option").remove()
             $(".changeCategory").siblings("option").remove()
         }

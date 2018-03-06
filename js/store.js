@@ -1,6 +1,6 @@
 //Open Store Settings
 $(document).on("click", "#openStoreSet", function () {
-    $('.button-collapse').sideNav('hide');
+    $('.sidenav').sidenav('close');
     $('#content > .container > div').css('display', 'none');
     $('#content > .container > .editStorePage').css('display', 'block');
     $(".activePage").html("Store Settings")
@@ -218,11 +218,11 @@ function editStoreContent() {
     document.querySelector('#editStore-description').value = xx.description;
     document.querySelector('#editStore-Phone').value = xx.phone;
     document.querySelector('#colorChosen').value = xx.theme;
-    Materialize.updateTextFields();
+    M.updateTextFields();
 }
 
 function switchStore() {
-    $('.sidebar-collapse').sideNav('hide');
+    $('.sidebar-collapse').sidenav('hide');
     setTimeout(function () {
         $('#switchStoreModal').modal({
             ready: function () {}

@@ -59,7 +59,10 @@ function beaconsUpdater() {
                         to: localStorage.getItem("soko-active-store")
                     }).then(function (e) {
                         if (e.status == 'ok') {
-                            Materialize.toast('beacon updated ..', 3000);
+                            M.toast({
+                                html: 'beacon updated ..',
+                                displayLength: 3000
+                            })
                             refreshBeacons();
                         } else {
                             console.log(e);
@@ -74,7 +77,10 @@ function beaconsUpdater() {
                         to: 0
                     }).then(function (e) {
                         if (e.status == 'ok') {
-                            Materialize.toast('beacon updated ..', 3000);
+                            M.toast({
+                                html: 'beacon updated ..',
+                                displayLength: 3000
+                            });
                             refreshBeacons();
                         } else {
                             console.log(e);
@@ -90,7 +96,7 @@ function beaconsUpdater() {
 }
 
 function updateBeaconMonitor() {
-    $('select').material_select();
+    $('select').formSelect();
     var forEach = function (array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
             callback.call(scope, i, array[i]); // passes back stuff we need

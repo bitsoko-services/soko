@@ -163,9 +163,9 @@ function promoUpdater() {
         if (cusLen == 1) {
             document.getElementById('subPlural').innerHTML = '';
         }
-        //$('.products-collapsible').collapsible();
-        $('select').material_select();
-        Materialize.updateTextFields();
+        //$('.products-collapsible').collapsible();;
+        $('select').formSelect();
+        M.updateTextFields();
         initProdCallback();
         var shroot = document.querySelectorAll(".castPromo");
         for (var i = 0; i < shroot.length; ++i) {
@@ -391,7 +391,7 @@ function promoCreator(proId) {
                     });
                 });
             }
-            $('select').material_select();
+            $('select').formSelect();
 
 
             $('.counter-left' + proId).click(function (event) {

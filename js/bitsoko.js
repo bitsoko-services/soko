@@ -23,7 +23,10 @@ function profileLoaded(p) {
     $('.profile-image').attr('src', p.image);
     //p.ownerid=1;
     localStorage.setItem('soko-owner-id', p.bitsokoUserID);
-    Materialize.toast('Signing in...', 3000);
+    M.toast({
+        html: 'Signing in...',
+        displayLength: 3000
+    })
     $("#signingIn").html("Signing In. Please Wait");
     updateStores();
     doFetch({
@@ -40,8 +43,6 @@ function profileLoaded(p) {
     sponsoredProdListener();
     loadTheme();
     walletFunctions(localStorage.getItem("bits-user-name"))
-    var $toastContent = $('<span>Unlock wallet</span>').add($('<button class="btn-flat toast-action" onclick="loadGdrive();">Unlock</button>'));
-    Materialize.toast($toastContent, 10000);
 }
 
 function loadTheme() {

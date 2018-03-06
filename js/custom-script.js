@@ -91,30 +91,22 @@ angular.module('sokoApp', [])
 
         }
     }
-    $('.sidebar-collapse').sideNav({
+    $('.sidebar-collapse').sidenav({
         menuWidth: 300, // Default is 300
         edge: 'left', // Choose the horizontal origin
         closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
         draggable: true // Choose whether you can drag to open on touch screens
     });
+    $('.sidenav').sidenav();
     $('.modal').modal();
-    $(document).on('click', '.side-nav > li > a', function () {
+    $(document).on('click', '#slide-out > li > a', function () {
+        alert("clicked")
         if ($(this).hasClass("nav")) {
             var clickedOn = $(this).attr('page');
-
             switchTo(clickedOn);
-
-
         }
         $(this).toggleClass('active');
     });
-
-
-
-
-
-
-
 });
 
 
@@ -126,7 +118,7 @@ if (getBitsOpt('page') != undefined) {
 
 function switchTo(co) {
     $('#content > .container > div').css('display', 'none');
-    $('.sidebar-collapse').sideNav('hide');
+    $('.sidenav').sidenav('close');
     $('body').attr('page', co);
     $('#content > .container > .' + co).css('display', 'block');
     updateThisPage(co);
