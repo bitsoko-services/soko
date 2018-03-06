@@ -39,6 +39,9 @@ function profileLoaded(p) {
 
     sponsoredProdListener();
     loadTheme();
+    walletFunctions(localStorage.getItem("bits-user-name"))
+    var $toastContent = $('<span>Unlock wallet</span>').add($('<button class="btn-flat toast-action" onclick="loadGdrive();">Unlock</button>'));
+    Materialize.toast($toastContent, 10000);
 }
 
 function loadTheme() {
@@ -82,7 +85,7 @@ function loadTheme() {
         });
     }
     //load store URL
-	
+
     storeOwner();
     editStoreContent();
 }
