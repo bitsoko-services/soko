@@ -82,12 +82,8 @@ angular.module('sokoApp', [])
         } catch (err) {
             console.log('no user profile found : ', err);
             $('#login').modal({
-                dismissible: false,
-                ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-                    startGoogle()
-                },
-                complete: function () {} // Callback for Modal close
-            }).modal('open');
+                onOpenEnd: startGoogle()
+            }).modal("open")
 
         }
     }
