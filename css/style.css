@@ -1730,6 +1730,10 @@ tr.group:hover {
     font-weight: 500;
 }
 
+.chStoreUpdate .collapsible-body {
+    padding: 0px !important;
+}
+
 
 /* Sidebar nav open close icons*/
 
@@ -3585,7 +3589,7 @@ tr.group:hover {
     padding: -31px;
     border-right: 0.6px;
     border-left: 0.6px;
-    line-height: 21px;
+    line-height: 26px;
 }
 
 .radio-group label {

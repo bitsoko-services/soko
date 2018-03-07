@@ -157,7 +157,7 @@ function deliveryMbr() {
             icon = obj.icon
             console.log(obj);
             $("#membersLst").append('<div id="' + id + '" class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
-            $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s10"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s2" style="padding-top:5px;"><input class="with-gap" name="group1" type="radio" id="radio_' + id + '"/> <label for="radio_' + id + '"></label></div></div>');
+            $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s10"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s2" style="padding-top:5px;"><form action="#"> <label for="radio_' + id + '"><input class="with-gap" name="group1" type="radio" id="radio_' + id + '"/><span></span></label></form></div></div>');
             $("#radio_" + id).click(function () {
                 var orderId = $("#deliverOrderModal").attr('gid');
                 doFetch({
