@@ -122,7 +122,10 @@ function updateStores() {
                             val: id
                         }).then(function (e) {
                             if (e.status == 'ok') {
-                                Materialize.toast('Store category selected successfully', 3000);
+                                M.toast({
+                                    html: 'Store category selected successfully',
+                                    displayLength: 3000
+                                })
                             } else {}
                         });
                     }

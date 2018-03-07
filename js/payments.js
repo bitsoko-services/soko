@@ -4,7 +4,10 @@ $('#paymentsToggle').click(function () {
     if (JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).phone == "") {
         $('#paymentsToggle').sideNav('hide');
         $('#editStoreModal').modal('open');
-        Materialize.toast('Please add your phone number', 3000);
+        M.toast({
+            html: 'Please add your phone number',
+            displayLength: 3000
+        })
     } else {
         $('#deliveriesToggle').sideNav('hide');
         $('#confirmContact').modal('open');

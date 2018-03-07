@@ -113,7 +113,10 @@ function updateBeaconMonitor() {
                 to: $(value).val()
             }).then(function (e) {
                 if (e.status == 'ok') {
-                    Materialize.toast('beacon updated ..', 3000);
+                    M.toast({
+                        html: 'beacon updated ...',
+                        displayLength: 3000
+                    })
                     refreshBeacons();
                 } else {
                     console.log(e);

@@ -31,7 +31,10 @@ $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
                     if (e.status == 'ok') {
                         $("#managersLst").append('<div id="' + thisId + '" class="chip removeManager"> <img src="' + thisIcon + '"> ' + thisName + ' </div>');
                         $("#storeManagers").val("");
-                        Materialize.toast('' + thisName + ' added as a manager', 3000);
+                        M.toast({
+                            html: '' + thisName + ' added as a manager',
+                            displayLength: 3000
+                        })
                     } else {}
                 });
             }
@@ -91,7 +94,10 @@ $(document).on("click", ".removeManager", function () {
             if (e.status == 'ok') {
                 removeManager.remove();
                 $("#removeManagerModal").modal("close");
-                Materialize.toast('Manager removed successfully', 3000);
+                M.toast({
+                    html: 'Manager removed successfully',
+                    displayLength: 3000
+                })
             } else {}
         });
     });

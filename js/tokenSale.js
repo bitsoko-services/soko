@@ -11,7 +11,10 @@ $("#calcTokenVal").click(function () {
     transferTokenValue("0x7D1Ce470c95DbF3DF8a3E87DCEC63c98E567d481", "0xb72627650f1149ea5e54834b2f468e5d430e67bf", parseFloat(tokenValue), allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate).then(function (r) {
         console.log("This is the TRID" + r);
         if (tokenValue == "") {
-            Materialize.toast('Ooops! Please input amount', 3000);
+            M.toast({
+                html: 'Ooops! Please input amount',
+                displayLength: 3000
+            })
         } else {
             doFetch({
                 action: "creditStore",
@@ -25,9 +28,16 @@ $("#calcTokenVal").click(function () {
             }).then(function (e) {
                 if (e.status == 'ok') {
                     $(".prodCatToast").remove();
-                    Materialize.toast('Product category changed successfully', 3000, "prodCatToast");
+                    M.toast({
+                        html: 'Product category changed successfully',
+                        classes: 'prodCatToast',
+                        displayLength: 3000
+                    })
                 } else {
-                    Materialize.toast('Error! Please try later', 3000);
+                    M.toast({
+                        html: 'Error! Please try later',
+                        displayLength: 3000
+                    })
                 }
             });
         }
@@ -43,9 +53,15 @@ $("#tkSaleSet").click(function () {
         state: mngrState
     }).then(function (e) {
         if (e.status == 'ok') {
-            Materialize.toast('Activated successfully', 3000);
+            M.toast({
+                html: 'Activated successfully',
+                displayLength: 3000
+            })
         } else {
-            Materialize.toast('Ooops! Try again later', 3000);
+            M.toast({
+                html: 'Ooops! Try again later',
+                displayLength: 3000
+            })
         }
     });
 })

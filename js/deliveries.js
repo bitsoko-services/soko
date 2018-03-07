@@ -16,15 +16,20 @@ $('#deliveriesToggle').click(function (e) {
     $('#submitPhoneNo').click(function () {
         phoneNo_ = $('#inp-phone').val();
         if (phoneNo_ == '' || phoneNo_ == null && e.status == "ok") {
-
-            Materialize.toast('Ooops! Please enter phone number', 3000);
+            M.toast({
+                html: 'Ooops! Please enter phone number',
+                displayLength: 3000
+            })
             $('#phoneNumber').css({
                 "border-bottom": "1px solid red",
                 "background": ""
             });
         } else {
             $('#deliveriesToggle').prop('checked', true);
-            Materialize.toast('Phone Number Verified', 3000);
+            M.toast({
+                html: 'Phone Number Verified',
+                displayLength: 3000
+            })
             var value = document.getElementById("deliveriesToggle").checked
             var phone_number = $('#inp-phone').val()
             doFetch({
@@ -161,7 +166,10 @@ function deliveryMbr() {
                     id: id
                 }).then(function (e) {
                     if (e.status == 'ok') {
-                        Materialize.toast('Delivery member selected successfully', 3000);
+                        M.toast({
+                            html: 'Delivery member selected successfully',
+                            displayLength: 3000
+                        })
                         $('#deliverOrderModal').modal('close');
                     } else {}
                 });
@@ -208,9 +216,15 @@ $("#sliderAmount").on("change", function () {
         rate: deliveryRate
     }).then(function (e) {
         if (e.status == 'ok') {
-            Materialize.toast('Delivery rate set successfully', 3000);
+            M.toast({
+                html: 'Delivery rate set successfully',
+                displayLength: 3000
+            })
         } else {
-            Materialize.toast('Error!!! Please try again later', 3000);
+            M.toast({
+                html: 'Error!!! Please try again later',
+                displayLength: 3000
+            })
         }
     });
 });
@@ -223,9 +237,15 @@ $("#distanceSliderAmount").on("change", function () {
         rate: deliveryDistance
     }).then(function (e) {
         if (e.status == 'ok') {
-            Materialize.toast('Delivery rate set successfully', 3000);
+            M.toast({
+                html: 'Delivery rate set successfully',
+                displayLength: 3000
+            })
         } else {
-            Materialize.toast('Error!!! Please try again later', 3000);
+            M.toast({
+                html: 'Error!!! Please try again later',
+                displayLength: 3000
+            })
         }
     });
 });
@@ -259,9 +279,15 @@ $('#addNewOperator').on('click', function () {
         orderId: orderId
     }).then(function (e) {
         if (e.status == 'ok') {
-            Materialize.toast('Delivery member added successfully', 3000);
+            M.toast({
+                html: 'Delivery member added successfully',
+                displayLength: 3000
+            })
         } else {
-            Materialize.toast('Error! Please try again later', 3000);
+            M.toast({
+                html: 'Error! Please try again later',
+                displayLength: 3000
+            })
         }
     });
 });
@@ -269,20 +295,33 @@ $('#addNewOperator').on('click', function () {
 $(document).on("click", "#addOperatorNumb", function () {
     operatorNumb = $('#OperatorNumb').val()
     if (operatorNumb == "") {
-        Materialize.toast("Ooops! Please enter a phone number", 3000);
+        M.toast({
+            html: 'Ooops! Please enter a phone number',
+            displayLength: 3000
+        })
         $("#OperatorNumb").css("border-bottom", "solid 1px red")
     } else if (operatorNumb.length < 10) {
-        Materialize.toast("Ooops! Input too short", 3000);
+        M.toast({
+            html: 'Ooops! Input too short',
+            displayLength: 3000
+        })
         $("#OperatorNumb").css("border-bottom", "solid 1px red")
     } else {
-        Materialize.toast("Sending invite link. Please wait", 10000, 'operatorNumb');
+        M.toast({
+            html: 'Sending invite link. Please wait',
+            classes: 'operatorNumb',
+            displayLength: 3000
+        })
         $("#OperatorNumb").css("border-bottom", "1px solid #9e9e9e")
         doFetch({
             action: 'deliveryMembers',
             number: operatorNumb
         }).then(function (e) {
             if (e.status == 'ok') {
-                Materialize.toast('Invite link sent successfully', 3000);
+                M.toast({
+                    html: 'Invite link sent successfully',
+                    displayLength: 3000
+                })
                 $('.operatorNumb').remove();
             } else {
                 console.log(e);

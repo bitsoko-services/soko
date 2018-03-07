@@ -238,7 +238,10 @@ function doSwitchStore() {
     $('.chStoreUpdate').append(html);
     $('#switchStoreModal').modal({
         complete: function () {
-            Materialize.toast('changing store..', 2000);
+            M.toast({
+                html: 'changing store..',
+                displayLength: 2000
+            })
             beaconsUpdater();
             promoUpdater();
             billingUpdater();
@@ -254,7 +257,11 @@ function doSwitchStore() {
 //Verify Phone Number
 function userNoPromp() {
     var $justtest = $('<span>Please verify phone number<span style="color:#eeff41;position: absolute; right: 0; margin-right: 20px; font-weight: bold; font-size: 1.2em;" id="verifyPhn">VERIFY</span></span>');
-    Materialize.toast($justtest, 10000);
+
+    M.toast({
+        html: $justtest,
+        displayLength: 10000
+    })
     //    var $toastContent = $('<span>Please verify phone number</span><button class="btn-flat toast-action" id="verifyPhn">verify</button>');
     //    Materialize.toast($toastContent, null);
     $("#verifyPhn").click(function () {
@@ -287,7 +294,10 @@ $("#storeLoc").click(function () {
         var locationField = document.getElementById('newStore-Location').value
         if (locationField == "location not found") {
             console.log("error getting location");
-            Materialize.toast('Error getting location. Please try again!', 3000);
+            M.toast({
+                html: 'Error getting location. Please try again!',
+                displayLength: 3000
+            })
         } else {
             doFetch({
                 action: 'doEditStore',
@@ -296,7 +306,10 @@ $("#storeLoc").click(function () {
                 val: locationField
             }).then(function (e) {
                 if (e.status == 'ok') {
-                    Materialize.toast('Location updated successfully', 3000);
+                    M.toast({
+                        html: 'Location updated successfully',
+                        displayLength: 3000
+                    })
                 }
             });
 
@@ -307,7 +320,10 @@ $("#storeLoc").click(function () {
 function doNewStore() {
     var locationField = document.getElementById('newStore-Location').value
     if (!$("#newStore-name").hasClass("valid")) {
-        Materialize.toast('Ooops! your store needs a name!', 3000);
+        M.toast({
+            html: 'Ooops! your store needs a name!',
+            displayLength: 3000
+        })
         return;
     }
     //    else if (locationField == "location not found") {
@@ -328,7 +344,10 @@ function doNewStore() {
                     profileLoaded(JSON.parse(event.target.result));
                     $('#newStoreModal').modal({
                         complete: function () {
-                            Materialize.toast('added new store..', 3000);
+                            M.toast({
+                                html: 'Added new store..',
+                                displayLength: 3000
+                            })
                         }
                     }).modal('close');
                 } catch (err) {
@@ -375,7 +394,10 @@ function updateStore(t) {
                 }).then(function (e) {
                     if (e.status == 'ok') {
                         //document.querySelector('#prodImg-holda-'+prid).src = val;
-                        Materialize.toast('modified ' + name + '..', 3000);
+                        M.toast({
+                            html: 'Modified ' + name + '...',
+                            displayLength: 3000
+                        })
                     } else {
                         console.log(e);
                     }
@@ -410,8 +432,10 @@ function updateStore(t) {
             val: val
         }).then(function (e) {
             if (e.status == 'ok') {
-
-                Materialize.toast('modified ' + name + '..', 3000);
+                M.toast({
+                    html: 'modified ' + name + '..',
+                    displayLength: 3000
+                })
             } else {
                 console.log(e);
             }
@@ -655,7 +679,10 @@ $(".deleteStore").click(function () {
     }).then(function (e) {
         if (e.status == 'ok') {
             $('#editStoreModal').modal('close');
-            Materialize.toast('Store deleted successfully', 3000);
+            M.toast({
+                html: 'Store deleted successfully',
+                displayLength: 3000
+            })
         }
     });
 })
@@ -667,7 +694,10 @@ $("#updateLoc").click(function () {
         var locationField = document.getElementById('editStore-Location').value
         if (locationField == "location not found") {
             console.log("error getting location");
-            Materialize.toast('Error getting location. Please try again!', 3000);
+            M.toast({
+                html: 'Error getting location. Please try again!',
+                displayLength: 3000
+            })
         } else {
             doFetch({
                 action: 'doEditStore',
@@ -676,7 +706,10 @@ $("#updateLoc").click(function () {
                 val: document.querySelector('#editStore-Location').value
             }).then(function (e) {
                 if (e.status == 'ok') {
-                    Materialize.toast('Location updated successfully', 3000);
+                    M.toast({
+                        html: 'Location updated successfully',
+                        displayLength: 3000
+                    })
                 }
             });
 
@@ -693,7 +726,10 @@ $("#themeUpdate").click(function () {
         val: document.querySelector('#colorChosen').value
     }).then(function (e) {
         if (e.status == 'ok') {
-            Materialize.toast('Theme color changed successfully', 3000);
+            M.toast({
+                html: 'Theme color changed successfully',
+                displayLength: 3000
+            })
         }
     });
 });
@@ -747,9 +783,15 @@ $('.workingHrs input').change(function () {
             val: workingHrsVal
         }).then(function (e) {
             if (e.status == 'ok') {
-                Materialize.toast('Working hours set successfully.', 3000);
+                M.toast({
+                    html: 'Working hours set successfully.',
+                    displayLength: 3000
+                })
             } else {
-                Materialize.toast('Error!!! Please try again later.', 3000);
+                M.toast({
+                    html: 'Error!!! Please try again later.',
+                    displayLength: 3000
+                })
             }
         });
     } else if (workingHrs == "wkndSat") {
@@ -760,9 +802,15 @@ $('.workingHrs input').change(function () {
             val: workingHrsVal
         }).then(function (e) {
             if (e.status == 'ok') {
-                Materialize.toast('Working hours set successfully.', 3000);
+                M.toast({
+                    html: 'Working hours set successfully.',
+                    displayLength: 3000
+                })
             } else {
-                Materialize.toast('Error!!! Please try again later.', 3000);
+                M.toast({
+                    html: 'Error!!! Please try again later.',
+                    displayLength: 3000
+                })
             }
         });
     } else {
@@ -773,9 +821,15 @@ $('.workingHrs input').change(function () {
             val: workingHrsVal
         }).then(function (e) {
             if (e.status == 'ok') {
-                Materialize.toast('Working hours set successfully.', 3000);
+                M.toast({
+                    html: 'Working hours set successfully.',
+                    displayLength: 3000
+                })
             } else {
-                Materialize.toast('Error!!! Please try again later.', 3000);
+                M.toast({
+                    html: 'Error!!! Please try again later.',
+                    displayLength: 3000
+                })
             }
         });
     }

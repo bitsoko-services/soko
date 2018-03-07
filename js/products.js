@@ -119,9 +119,16 @@ function productsUpdater() {
                 }).then(function (e) {
                     if (e.status == 'ok') {
                         $(".prodCatToast").remove();
-                        Materialize.toast('Product category changed successfully', 3000, "prodCatToast");
+                        M.toast({
+                            html: 'Product category changed successfully',
+                            classes: 'prodCatToast',
+                            displayLength: 3000
+                        })
                     } else {
-                        Materialize.toast('Error! Please try later', 3000);
+                        M.toast({
+                            html: 'Error! Please try later',
+                            displayLength: 3000
+                        })
                     }
                 });
             });
@@ -189,7 +196,10 @@ $(document).on('touchstart click', '#yesSponsoredBtn', function (event) {
             $("#rmvSpnsrdProd").hide();
             document.getElementById(id).remove();
             document.getElementById("sprdprod_" + id).remove();
-            Materialize.toast('Sponsored product removed successfully', 3000);
+            M.toast({
+                html: 'Sponsored product removed successfully',
+                displayLength: 3000
+            })
         } else {}
     });
 });
@@ -206,7 +216,11 @@ $('#spnsrdModal').on('click', $('ul.autocomplete-content li'), function () {
             var id = sponProds[i].id;
             var price = sponProds[i].price;
             if (sponsoredProduct == name + " - " + price) {
-                Materialize.toast('Adding sponsored product', 10000, 'spnsrdTst');
+                M.toast({
+                    html: 'Adding sponsored produc',
+                    classes: 'spnsrdTst',
+                    displayLength: 10000
+                })
                 doFetch({
                     action: 'addSponsoredProduct',
                     store: localStorage.getItem('soko-active-store'),
@@ -216,7 +230,10 @@ $('#spnsrdModal').on('click', $('ul.autocomplete-content li'), function () {
                     if (e.status == 'ok') {
                         $(".spnsrdTst").remove();
                         $('#spnsrdModal').modal('close');
-                        Materialize.toast('Sponsored product added successfully', 3000);
+                        M.toast({
+                            html: 'Sponsored product added successfully',
+                            displayLength: 3000
+                        })
                     } else {}
                 });
             }
@@ -262,7 +279,10 @@ function updateProd(t) {
                 }).then(function (e) {
                     if (e.status == 'ok') {
                         document.querySelector('#prodImg-holda-' + prid).src = val;
-                        Materialize.toast('modified ' + name + '..', 3000);
+                        M.toast({
+                            html: 'Modified ' + name + '..',
+                            displayLength: 3000
+                        })
                     } else {
                         console.log(e);
                     }
@@ -278,10 +298,15 @@ function updateProd(t) {
             val: value
         }).then(function (e) {
             if (e.status == 'ok') {
-                Materialize.toast('modified ' + name + '..', 3000);
+                M.toast({
+                    html: 'Modified ' + name + '..',
+                    displayLength: 3000
+                })
             } else {
-
-                Materialize.toast('please try again..', 2000);
+                M.toast({
+                    html: 'Please try again..',
+                    displayLength: 2000
+                })
             }
         });
     } else {
@@ -292,7 +317,10 @@ function updateProd(t) {
             val: val
         }).then(function (e) {
             if (e.status == 'ok') {
-                Materialize.toast('modified ' + name + '..', 3000);
+                M.toast({
+                    html: 'Modified ' + name + '..',
+                    displayLength: 3000
+                })
             } else {
                 console.log(e);
             }
@@ -322,7 +350,11 @@ function addProduct() {
     forEach(myNodeList, function (index, value) {
         // value.addEventListener("change", updateStore);
     });
-    Materialize.toast("Adding product. Please wait", null, 'prodWaitToast');
+    M.toast({
+        html: 'Adding product. Please wait',
+        classes: 'prodWaitToast',
+        displayLength: 10000
+    })
     doFetch({
         action: 'getProducts',
         id: localStorage.getItem('soko-active-store')
@@ -349,7 +381,10 @@ function addProduct() {
                     if (e.status == 'ok') {
                         refreshProducts();
                         $('.prodWaitToast').remove();
-                        Materialize.toast('Product added successfully', 3000);
+                        M.toast({
+                            html: 'Product added successfully',
+                            displayLength: 3000
+                        })
                         $('#add-product').modal('close');
                     } else {
                         console.log(e);
@@ -365,7 +400,10 @@ function addProduct() {
                         if (e.status == 'ok') {
                             refreshProducts();
                             $('.prodWaitToast').remove();
-                            Materialize.toast('Product added successfully', 3000);
+                            M.toast({
+                                html: 'Product added successfully',
+                                displayLength: 3000
+                            })
                             $('#add-product').modal('close');
                         } else {
                             console.log(e);
@@ -373,7 +411,10 @@ function addProduct() {
                     });
 
                 } else {
-                    Materialize.toast('Ooops! Seems you have a similar product', 3000);
+                    M.toast({
+                        html: 'Ooops! Seems you have a similar product',
+                        displayLength: 3000
+                    })
                     $('.prodWaitToast').remove();
                 }
             }
@@ -392,7 +433,11 @@ $(document).on("click", ".categoryChip", function () {
     $("#catgryName").text(categoryName)
     $("#removeCategoryModal").show();
     $(document).on("click", "#rmvCatgryYesBtn", function () {
-        Materialize.toast("Removing category. Please wait", 10000, 'categoryName');
+        M.toast({
+            html: 'Removing category. Please wai',
+            classes: 'categoryName',
+            displayLength: 10000
+        })
         doFetch({
             action: 'manageCategories',
             store: localStorage.getItem('soko-active-store'),
@@ -403,7 +448,10 @@ $(document).on("click", ".categoryChip", function () {
                 $(selectedCategory).remove();
                 $('.categoryName').remove();
                 $("#removeCategoryModal").hide();
-                Materialize.toast('Category removed successfully', 3000);
+                M.toast({
+                    html: 'Category removed successfully',
+                    displayLength: 3000
+                })
             } else {
                 console.log(e);
             }
@@ -489,25 +537,37 @@ $('#submitProdForm').click(function (e) {
     prodCy_ = $('#prod-cy').val();
     isValid = true;
     if (name_ == '' || name_ == null) {
-        Materialize.toast('Ooops! Please enter product name', 3000);
+        M.toast({
+            html: 'Ooops! Please enter product name',
+            displayLength: 3000
+        })
         $('#name').css({
             "border-bottom": "1px solid red",
             "background": ""
         });
     } else if (description_ == '' || description_ == null) {
-        Materialize.toast('Ooops! Please enter product description', 3000);
+        M.toast({
+            html: 'Ooops! Please enter product description',
+            displayLength: 3000
+        })
         $('#description').css({
             "border-bottom": "1px solid red",
             "background": ""
         });
     } else if (amount_ == '' || amount_ == null) {
-        Materialize.toast('Ooops! Please enter amount', 3000);
+        M.toast({
+            html: 'Ooops! Please enter amount',
+            displayLength: 3000
+        })
         $('#amount').css({
             "border-bottom": "1px solid red",
             "background": ""
         });
     } else if (prodCy_ == '' || prodCy_ == null) {
-        Materialize.toast('Ooops! Please enter quantity', 3000);
+        M.toast({
+            html: 'Ooops! Please enter quantity',
+            displayLength: 3000
+        })
         $('#prodCy').css({
             "border-bottom": "1px solid red",
             "background": ""
@@ -573,19 +633,29 @@ function rmvProduct() {
 
         if (found) {
             console.log('product is checked');
-            Materialize.toast('This product is in an active promotion', 3000);
+            M.toast({
+                html: 'This product is in an active promotion',
+                displayLength: 3000
+            })
         } else {
             console.log('the product is not checked');
             parent_div = $(this).parent().parent().parent().parent()
             id = $(parent_div).attr('prid')
-            Materialize.toast("Removing product. Please wait", null, 'prodWaitToast');
+            M.toast({
+                html: 'Removing product. Please wait',
+                classes: 'prodWaitToast',
+                displayLength: 10000
+            })
             doFetch({
                 action: 'removeProduct',
                 id: id
             }).then(function (e) {
                 if (e.status == 'ok') {
                     $('.prodWaitToast').remove();
-                    Materialize.toast('Product Removed Successfully', 3000);
+                    M.toast({
+                        html: 'Product Removed Successfully',
+                        displayLength: 3000
+                    })
                     $(parent_div).remove();
                     refreshProducts();
                 } else {
@@ -654,13 +724,22 @@ $(document).on("click", "#addCategory", function () {
     console.log(indexOfCat)
 
     if (indexOfCat >= 0) {
-        Materialize.toast("Ooops! That category already exist", 3000);
+        M.toast({
+            html: 'Ooops! That category already exist',
+            displayLength: 3000
+        })
         $("#categoryName").css("border-bottom", "solid 1px red");
     } else if (categoryName == "") {
-        Materialize.toast("Ooops! Please enter a product", 3000);
+        M.toast({
+            html: 'Ooops! Please enter a product',
+            displayLength: 3000
+        })
         $("#categoryName").css("border-bottom", "solid 1px red");
     } else if ($(".categoryChip").length >= 5) {
-        Materialize.toast("Ooops! You've reached the maximum number of categories", 3000);
+        M.toast({
+            html: 'Ooops! You have reached the maximum number of categories',
+            displayLength: 3000
+        })
         $("#categoryName").css("border-bottom", "solid 1px red");
     } else {
         addProdCat()
@@ -670,7 +749,11 @@ $(document).on("click", "#addCategory", function () {
 //Add product category
 function addProdCat() {
     var categoryName = $("#categoryName").val();
-    Materialize.toast("Adding category. Please wait", 10000, 'categoryName');
+    M.toast({
+        html: 'Adding category. Please wait',
+        classes: 'categoryName',
+        displayLength: 3000
+    })
     $("#categoryName").css("border-bottom", "1px solid #9e9e9e");
     doFetch({
         action: 'manageCategories',
@@ -681,7 +764,10 @@ function addProdCat() {
         if (e.status == 'ok') {
             $('#categoryName').val("");
             $('.categoryName').remove();
-            Materialize.toast('Category added successfully', 3000);
+            M.toast({
+                html: 'Category added successfully',
+                displayLength: 3000
+            })
             $(".categoryLst").append('<div class="chip categoryChip">' + categoryName + '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.971 47.971" style="enable-background:new 0 0 47.971 47.971; width: 10px; margin-left: 5px;" xml:space="preserve"> <g> <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88 c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242 C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879 s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"/> </g> </svg> </div>');
             //            updateStores();
         } else {

@@ -238,10 +238,16 @@ function promoCreator(proId) {
                                 value: selcIds
                             }).then(function (e) {
                                 if (e.status == 'ok') {
-                                    Materialize.toast('Promotion item added successfully', 3000);
+                                    M.toast({
+                                        html: 'Promotion item added successfully',
+                                        displayLength: 3000
+                                    })
                                 } else {
                                     console.log(e);
-                                    Materialize.toast('Error! Please try again', 3000);
+                                    M.toast({
+                                        html: 'Error! Please try again',
+                                        displayLength: 3000
+                                    })
                                 }
                             });
                         }
@@ -290,10 +296,16 @@ function promoCreator(proId) {
                         val: JSON.stringify(selectedId)
                     }).then(function (e) {
                         if (e.status == 'ok') {
-                            Materialize.toast('Promotion modified successfully', 3000);
+                            M.toast({
+                                html: 'Promotion modified successfully',
+                                displayLength: 3000
+                            })
                         } else {
                             console.log(e);
-                            Materialize.toast('Error! Please try again', 3000);
+                            M.toast({
+                                html: 'Error! Please try again',
+                                displayLength: 3000
+                            })
                         }
                     });
                 })
@@ -333,10 +345,16 @@ function promoCreator(proId) {
                         val: JSON.stringify(selectedId)
                     }).then(function (e) {
                         if (e.status == 'ok') {
-                            Materialize.toast('Promotion modified successfully', 3000);
+                            M.toast({
+                                html: 'Promotion modified successfully',
+                                displayLength: 3000
+                            })
                         } else {
                             console.log(e);
-                            Materialize.toast('Error! Please try again', 3000);
+                            M.toast({
+                                html: 'Error! Please try again',
+                                displayLength: 3000
+                            })
                         }
                     });
                 })
@@ -383,10 +401,16 @@ function promoCreator(proId) {
                         val: JSON.stringify(selectedId)
                     }).then(function (e) {
                         if (e.status == 'ok') {
-                            Materialize.toast('Promotion modified successfully', 3000);
+                            M.toast({
+                                html: 'Promotion modified successfully',
+                                displayLength: 3000
+                            })
                         } else {
                             console.log(e);
-                            Materialize.toast('Error! Please try again', 3000);
+                            M.toast({
+                                html: 'Error! Please try again',
+                                displayLength: 3000
+                            })
                         }
                     });
                 });
@@ -449,7 +473,10 @@ function castPromo(t) {
             to: precp
         }).then(function (e) {
             if (e.status == 'ok') {
-                Materialize.toast('sent promotion', 3000);
+                M.toast({
+                    html: 'Sent promotion',
+                    displayLength: 3000
+                })
             } else {
                 console.log(e);
             }
@@ -502,7 +529,11 @@ function doNewPromo() {
         }
     });
 
-    Materialize.toast("Adding promotion. Please wait", 10000, 'promoWaitToast');
+    M.toast({
+        html: 'Adding promotion. Please wait',
+        classes: 'promoWaitToast',
+        displayLength: 10000
+    })
     doFetch({
         action: 'getProducts',
         id: localStorage.getItem('soko-active-store')
@@ -526,7 +557,10 @@ function doNewPromo() {
             }).then(function (e) {
                 if (e.status == 'ok') {
                     $('.promoWaitToast').remove();
-                    Materialize.toast('Added new promotion successfully', 3000);
+                    M.toast({
+                        html: 'Added new promotion successfully',
+                        displayLength: 3000
+                    })
                     refreshPromotions();
                     $('#newPromoModal').modal('close');
                 } else {
@@ -535,7 +569,10 @@ function doNewPromo() {
             });
 
         } else {
-            Materialize.toast('Ooops! Seems you have a similar promotion', 3000);
+            M.toast({
+                html: 'Ooops! Seems you have a similar promotion',
+                displayLength: 3000
+            })
             $('.prodWaitToast').remove();
         }
     })
@@ -546,14 +583,21 @@ function doNewPromo() {
 $(document).on('touchstart click', '.removePromo', function (event) {
     parent_div = $(this).parent().parent().parent().parent().parent().parent().parent().remove();
     id = $(this).parent().parent().attr("fid");
-    Materialize.toast("Removing promotion. Please wait", null, 'promoWaitToast');
+    M.toast({
+        html: 'Removing promotion. Please wait',
+        classes: 'promoWaitToast',
+        displayLength: 10000
+    })
     doFetch({
         action: 'removePromotion',
         id: id
     }).then(function (e) {
         if (e.status == 'ok') {
             $('.promoWaitToast').remove();
-            Materialize.toast('Promotion Removed Successfully', 3000);
+            M.toast({
+                html: 'Promotion Removed Successfully',
+                displayLength: 3000
+            })
             refreshPromotions();
             parent_div
         } else {
@@ -574,15 +618,30 @@ $('.doAddNewPromo').click(function (e) {
     promo_minBuyer = $('#newPromo-offers').val();
     isValid = true;
     if (promo_name == '' || promo_name == null) {
-        Materialize.toast('Ooops! Please enter promotion name', 3000);
+        M.toast({
+            html: 'Ooops! Please enter promotion name',
+            displayLength: 3000
+        })
     } else if (promo_description == '' || promo_description == null) {
-        Materialize.toast('Ooops! Please enter promotion description', 3000);
+        M.toast({
+            html: 'Ooops! Please enter promotion description',
+            displayLength: 3000
+        })
     } else if (promo_image == '' || promo_image == null) {
-        Materialize.toast('Ooops! Please select an image', 3000);
+        M.toast({
+            html: 'Ooops! Please select an image',
+            displayLength: 3000
+        })
     } else if (promo_discount == '' || promo_discount == null) {
-        Materialize.toast('Ooops! Please enter discount', 3000);
+        M.toast({
+            html: 'Ooops! Please enter discount',
+            displayLength: 3000
+        })
     } else if (promo_minBuyer == '' || promo_minBuyer == null) {
-        Materialize.toast('Ooops! Please enter minimum buyers', 3000);
+        M.toast({
+            html: 'Ooops! Please enter minimum buyers',
+            displayLength: 3000
+        })
     } else {
         doNewPromo();
     }
@@ -606,10 +665,15 @@ function updateProm(t) {
             val: name
         }).then(function (e) {
             if (e.status == 'ok') {
-                Materialize.toast('modified ' + name + '..', 3000);
+                M.toast({
+                    html: 'Modified ' + name + '..',
+                    displayLength: 3000
+                })
             } else {
-
-                Materialize.toast('please try again..', 2000);
+                M.toast({
+                    html: 'Please try again..',
+                    displayLength: 2000
+                })
             }
         });
 
@@ -621,10 +685,15 @@ function updateProm(t) {
             val: name
         }).then(function (e) {
             if (e.status == 'ok') {
-                Materialize.toast('modified ' + name + '..', 3000);
+                M.toast({
+                    html: 'Modified ' + name + '..',
+                    displayLength: 3000
+                })
             } else {
-
-                Materialize.toast('please try again..', 2000);
+                M.toast({
+                    html: 'Please try again..',
+                    displayLength: 2000
+                })
             }
         });
 
@@ -636,10 +705,15 @@ function updateProm(t) {
             val: name
         }).then(function (e) {
             if (e.status == 'ok') {
-                Materialize.toast('modified ' + name + '..', 3000);
+                M.toast({
+                    html: 'Modified ' + name + '..',
+                    displayLength: 3000
+                })
             } else {
-
-                Materialize.toast('please try again..', 2000);
+                M.toast({
+                    html: 'Please try again..',
+                    displayLength: 2000
+                })
             }
         });
 
@@ -673,10 +747,15 @@ function updateProm(t) {
                 }).then(function (e) {
                     if (e.status == 'ok') {
                         // document.querySelector('#prodImg-holda-' + prid).src = val;
-                        Materialize.toast('modified ' + name + '..', 3000);
+                        M.toast({
+                            html: 'Modified ' + name + '..',
+                            displayLength: 3000
+                        })
                     } else {
-
-                        Materialize.toast('please try again..', 2000);
+                        M.toast({
+                            html: 'Please try again..',
+                            displayLength: 2000
+                        })
                     }
                 });
             };
@@ -691,10 +770,15 @@ function updateProm(t) {
             val: val
         }).then(function (e) {
             if (e.status == 'ok') {
-                Materialize.toast('modified ' + name + '..', 3000);
+                M.toast({
+                    html: 'Modified ' + name + '..',
+                    displayLength: 3000
+                })
             } else {
-
-                Materialize.toast('please try again..', 2000);
+                M.toast({
+                    html: 'Please try again..',
+                    displayLength: 2000
+                })
             }
         });
     }

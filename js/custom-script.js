@@ -100,7 +100,6 @@ angular.module('sokoApp', [])
     $('.sidenav').sidenav();
     $('.modal').modal();
     $(document).on('click', '#slide-out > li > a', function () {
-        alert("clicked")
         if ($(this).hasClass("nav")) {
             var clickedOn = $(this).attr('page');
             switchTo(clickedOn);

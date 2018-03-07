@@ -289,9 +289,15 @@ function orderUpdater() {
                 }).then(function (e) {
                     if (e.status == 'ok') {
                         $(complete_id).parent().parent().parent().parent().parent().parent().remove();
-                        Materialize.toast('Order Cancelled Successfully', 3000);
+                        M.toast({
+                            html: 'Order Cancelled Successfully',
+                            displayLength: 3000
+                        })
                     } else {
-                        Materialize.toast('Error! Please try again later', 3000);
+                        M.toast({
+                            html: 'Error! Please try again later',
+                            displayLength: 3000
+                        })
                     }
                     refreshSalesOrders();
                 });
@@ -446,7 +452,11 @@ $("#deleteOrder").click(function () {
     }).get();
 
     $(document).on('click', '#yesComptOrder', function (event) {
-        Materialize.toast('Deleting selected orders', 10000, "orderDelete");
+        M.toast({
+            html: 'Deleting selected orders',
+            classes: 'orderDelete',
+            displayLength: 10000
+        })
         doFetch({
             action: 'deleteOrders',
             store: localStorage.getItem("soko-active-store"),
@@ -462,7 +472,10 @@ $("#deleteOrder").click(function () {
                 }, 1000, function () {
                     $(this).remove();
                 });
-                Materialize.toast('Orders successfully deleted', 3000);
+                M.toast({
+                    html: 'Orders successfully deleted',
+                    displayLength: 3000
+                })
             } else {}
         });
 
