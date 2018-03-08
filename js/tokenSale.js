@@ -29,7 +29,7 @@ $("#calcTokenVal").click(function () {
                 if (e.status == 'ok') {
                     $(".prodCatToast").remove();
                     M.toast({
-                        html: 'Product category changed successfully',
+                        html: 'Tokens bought successfully',
                         classes: 'prodCatToast',
                         displayLength: 3000
                     })
