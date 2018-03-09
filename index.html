@@ -2573,17 +2573,6 @@
         navigator.webkitTemporaryStorage.queryUsageAndQuota(
             function(usedBytes, grantedBytes) {
                 console.log('Bitsoko is using ', usedBytes, ' of ', 5000000, 'bytes');
-                if (usedBytes > 5000000) {
-                    var $toastContent = $('<span id="quotaExd" style="width:100%;">To continue, clear cache<a style="float: right; color: yellow; font-weight: bold; border: solid yellow 1px; padding: 2px 15px;">CLEAR</a></span>');
-                    M.toast({
-                        html: $toastContent,
-                        displayLength: 1000
-                    })
-                    $("#quotaExd").click(function() {
-                        localStorage.clear();
-                        setTimeout(location.reload(), 2000)
-                    });
-                }
             },
             function(e) {
                 console.log('Error', e);
@@ -2591,16 +2580,18 @@
         );
         //Load Store Categories
         function loadCat() {
-            $('select').material_select();
+            $('select').formSelect();
             doFetch({
                 action: 'merchantServiceLoader',
                 id: localStorage.getItem('bits-user-name')
             }).then(function(e) {
+                $(".newStoreCatgry li").remove();
+                $(".nwStrCat option").remove();
                 console.log(e.settings.prodCategories);
                 var storeCat = e.settings.prodCategories;
                 for (var i = 0; i < storeCat.length; i++) {
                     $(".categorySelect").append('<option value="' + storeCat[i].id + '">' + storeCat[i].name + '</option>');
-                    $('select').material_select();
+                    $('select').formSelect();
                     $(".nwStrCat").siblings("option").css("display", "none")
                 }
             });

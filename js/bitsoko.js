@@ -42,7 +42,10 @@ function profileLoaded(p) {
 
     sponsoredProdListener();
     loadTheme();
-    walletFunctions(localStorage.getItem("bits-user-name"))
+    walletFunctions(localStorage.getItem("bits-user-name")).then(function (e) {
+
+        startGoogle()
+    })
 }
 
 function loadTheme() {
@@ -139,7 +142,8 @@ function updateStores() {
                 dismissible: false,
                 complete: function () {
                     $('#newStoreModal').modal({
-                        dismissible: false
+                        dismissible: false,
+                        onOpenStart: loadCat()
                     }).modal('open');
                 }
             });

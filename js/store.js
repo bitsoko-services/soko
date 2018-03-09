@@ -17,9 +17,10 @@ function loadPOS() {
             localStorage.services_test = JSON.stringify(services)
         } catch (err) {
             $('#newStoreModal').modal({
-                dismissible: false
-            });
-            $('#newStoreModal').modal('open');
+                dismissible: false,
+                onOpenEnd: getLoc(),
+                onOpenStart: loadCat()
+            }).modal('open');
             return;
         }
         $("#storeNo").text(services.length)
@@ -28,7 +29,9 @@ function loadPOS() {
                 dismissible: false,
                 complete: function () {
                     $('#newStoreModal').modal({
-                        dismissible: false
+                        dismissible: false,
+                        onOpenEnd: getLoc(),
+                        onOpenStart: loadCat()
                     }).modal('open');
                 }
             });
@@ -68,9 +71,10 @@ function loadPOS() {
     }
     stCb.onerror = function (event) {
         $('#newStoreModal').modal({
-            dismissible: false
-        });
-        $('#newStoreModal').modal('open');
+            dismissible: false,
+            onOpenEnd: getLoc(),
+            onOpenStart: loadCat()
+        }).modal('open');
     }
     //  appMaster.animateScript();
     //setInterval(noteChecker,30000);
@@ -156,13 +160,12 @@ function editPromoCallback() {
 }
 
 function newStore() {
-    $('.sidebar-collapse').sideNav('hide');
+    $('.sidebar-collapse').sidenav('close');
     setTimeout(function () {
         $('#newStoreModal').modal({
             dismissible: false,
-            ready: function () {
-                getLoc();
-            }
+            onOpenEnd: getLoc(),
+            onOpenStart: loadCat()
         }).modal('open');
     }, 200);
 }
@@ -343,7 +346,7 @@ function doNewStore() {
                 try {
                     profileLoaded(JSON.parse(event.target.result));
                     $('#newStoreModal').modal({
-                        complete: function () {
+                        onCloseEnd: function () {
                             M.toast({
                                 html: 'Added new store..',
                                 displayLength: 3000
@@ -736,7 +739,11 @@ $("#themeUpdate").click(function () {
 
 //Open New Store Modal
 $(document).on("click", "#addStoreLimit", function () {
-    $("#newStoreModal").modal("open")
+    $('#newStoreModal').modal({
+        dismissible: false,
+        onOpenEnd: getLoc(),
+        onOpenStart: loadCat()
+    }).modal('open');
 });
 //Close New Store Modal
 $(document).on("click", "#closeNewStoreModal", function () {
