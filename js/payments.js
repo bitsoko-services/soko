@@ -36,6 +36,6 @@ try {
     var paymentOnOff = null
 }
 //var paymentOnOff = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).payments;
-if (paymentOnOff == "1") {
-    document.getElementById("paymentsToggle").checked = true;
-}
+//if (paymentOnOff == "1") {
+//    document.getElementById("paymentsToggle").checked = true;
+//}

@@ -685,7 +685,13 @@ $(".deleteStore").click(function () {
             M.toast({
                 html: 'Store deleted successfully',
                 displayLength: 3000
-            })
+            });
+            location.reload()
+        } else {
+            M.toast({
+                html: 'Error! Please try again later',
+                displayLength: 3000
+            });
         }
     });
 })
