@@ -4392,3 +4392,8 @@ ul.side-nav.leftside-navigation li:hover {
     margin: 2px;
     color: #717070;
 }
+
+#buyStoreTokens {
+    margin-top: 20%;
+    overflow: initial;
+}

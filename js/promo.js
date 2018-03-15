@@ -783,6 +783,31 @@ function updateProm(t) {
     }
 }
 
+//Check Store Balance
+$(document).on("click", "#promoTab", function () {
+    doFetch({
+        action: "getPromotions",
+        id: localStorage.getItem("soko-active-store")
+    }).then(function (e) {
+        var promoLength = e.promotions.length
+        var promoStatus = e.promotions[0].promoStatus
+        if (promoLength != 0) {
+            if (promoStatus == "inactive") {
+                M.toast({
+                    html: 'Promotions are inactive<span id="openStoreTokenModal" class="right" style="color: yellow; border: solid yellow 1px; padding: 0px 10px; border-radius: 3px;">activate</span>',
+                    displayLength: 3000,
+                    classes: "tokenToast"
+                })
+            }
+        }
+        console.log(e.promotions.length)
+    })
+    $(document).on('touchstart click', '#openStoreTokenModal', function () {
+        $("#buyStoreTokens").modal("open");
+    });
+});
+
+
 $(document).on('touchstart click', '.clickPromo', function () {
     $(".activePage").html("")
 });
