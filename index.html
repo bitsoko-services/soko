@@ -386,76 +386,113 @@
         </div>
     </div>
 
+    <!-- Enterprise Settings Service One Modal Structure -->
+    <div id="addEntServiceOne" class="modal" style="overflow: initial; margin-top: 20%;">
+        <svg xmlns="http://www.w3.org/2000/svg;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512; width: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: -40px;box-shadow: 0px 9px 23px -5px rgba(0,0,0,0.75);border-radius: 50%;" xml:space="preserve">
+            <path style="fill:#80DEEA;" d="M505.461,198.261C479.279,84.684,377.53,0,256,0C114.616,0,0,114.615,0,256  c0,124.319,88.622,227.926,206.133,251.129L505.461,198.261z"/>
+            <path style="fill:#00BCD4;" d="M512,256c0-19.856-2.262-39.182-6.539-57.739L435.2,128l-271.658,52.875l-43.095-43.095  l-47.223,47.222l47.304,47.304l-47.304,47.304l47.304,47.304L73.224,374.22l132.91,132.91C222.265,510.315,238.935,512,256,512  C397.385,512,512,397.384,512,256z"/>
+            <polygon style="fill:#263238;" points="435.2,128 435.2,194.783 293.843,194.783 244.369,161.391 293.843,128 "/>
+            <rect x="152.487" y="128" style="fill:#006064;" width="141.357" height="66.783"/>
+            <path style="fill:#263238;" d="M96.835,128l-18.214,33.391l18.214,33.391c18.442,0,33.391-14.949,33.391-33.391  S115.277,128,96.835,128z"/>
+            <path style="fill:#006064;" d="M63.443,161.391c0,18.442,14.949,33.391,33.391,33.391V128C78.394,128,63.443,142.949,63.443,161.391  z"/>
+            <polygon style="fill:#263238;" points="435.2,222.609 435.2,289.391 293.843,289.391 244.369,256 293.843,222.609 "/>
+            <rect x="152.487" y="222.609" style="fill:#006064;" width="141.357" height="66.783"/>
+            <path style="fill:#263238;" d="M96.835,222.609L78.621,256l18.214,33.391c18.442,0,33.391-14.949,33.391-33.391  S115.277,222.609,96.835,222.609z"/>
+            <path style="fill:#006064;" d="M63.443,256c0,18.442,14.949,33.391,33.391,33.391v-66.783C78.394,222.609,63.443,237.558,63.443,256  z"/>
+            <polygon style="fill:#263238;" points="435.2,317.217 435.2,384 293.843,384 244.369,350.609 293.843,317.217 "/>
+            <rect x="152.487" y="317.217" style="fill:#006064;" width="141.357" height="66.783"/>
+            <path style="fill:#263238;" d="M96.835,317.217l-18.214,33.391L96.835,384c18.442,0,33.391-14.949,33.391-33.391  S115.277,317.217,96.835,317.217z"/>
+            <path style="fill:#006064;" d="M63.443,350.609c0,18.442,14.949,33.391,33.391,33.391v-66.783  C78.394,317.217,63.443,332.167,63.443,350.609z"/>    
+        </svg>
+        <div class="modal-content" style="padding: 5px 10px;">
+            <div class="row" style="margin-bottom: 0px;">
+                <form action="#" style="padding: 0px">
+                    <div class="file-field input-field" style="padding: 0px">
+                        <div class="btn">
+                            <span>File</span>
+                            <input type="file" id="entServOneImg" class="entServiceImage">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row" style="margin-bottom: 0px;">
+                <form class="col s12" style="padding: 0px">
+                    <div class="input-field col s12" style="padding: 0px">
+                        <input placeholder="Placeholder" id="serviceOneHeader" type="text" class="validate">
+                        <label for="serviceOneHeader" style="font-size: 1.2em; margin-left: -10px;">Title</label>
+                    </div>
+                </form>
+            </div>
+            <div class="row" style="margin-bottom: 0px;">
+                <form class="col s12" style="padding: 0px">
+                    <div class="input-field col s12" style="padding: 0px">
+                        <input placeholder="Placeholder" id="serviceOneBody" type="text" class="validate">
+                        <label for="serviceOneBody" style="font-size: 1.2em; margin-left: -10px;">Body</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-green btn" id="saveEntServOne">Save</a>
+        </div>
+    </div>
 
-    <!-- Enterprise Settings Modal Structure -->
-    <!-- <div id="tokenMrktSettings" class="modal" style="overflow: initial; margin-top: 20%; border-radius: 5px; width:90%;">
-        <div style="width:80px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;background: #FAFAFA;border-radius: 50%;padding: 5px;webkit-box-shadow: 0px 9px 23px -5px rgba(0,0,0,0.75); -moz-box-shadow: 0px 9px 23px -5px rgba(0,0,0,0.75); box-shadow: 0px 9px 23px -5px rgba(0,0,0,0.75)" xml:space="preserve">
-                <path style="fill: #00C7DA;" d="M499.401,211.3l-39.701-6.601c-5.1-19.799-12.9-38.699-23.4-56.4l22.8-32.098  c4.199-6,3.6-14.101-1.501-19.2L415,54.401c-5.099-5.101-13.2-5.7-19.2-1.501l-32.098,22.8C346,65.2,327.1,57.4,307.301,52.301  L300.7,12.599C299.5,5.4,293.2,0,286,0h-60c-7.2,0-13.5,5.4-14.7,12.599L204.699,52.3C184.9,57.4,166,65.2,148.299,75.7  l-32.098-22.8c-6-4.199-14.101-3.6-19.2,1.501L54.401,97c-5.101,5.099-5.7,13.2-1.501,19.2l22.8,32.098  C65.2,166,57.4,184.9,52.301,204.699L12.599,211.3C5.4,212.5,0,218.8,0,226v60c0,7.2,5.4,13.5,12.599,14.7l39.701,6.601  c5.1,19.799,12.9,38.699,23.4,56.4l-22.8,32.098c-4.199,6-3.6,14.101,1.501,19.2L97,457.599c5.099,5.101,13.2,5.7,19.2,1.501  l32.098-22.8c17.701,10.499,36.601,18.3,56.4,23.399l6.601,39.701C212.5,506.6,218.8,512,226,512h60c7.2,0,13.5-5.4,14.7-12.599  l6.601-39.701c19.799-5.1,38.699-12.9,56.4-23.4l32.098,22.8c6,4.199,14.101,3.6,19.2-1.501l42.6-42.599  c5.101-5.099,5.7-13.2,1.501-19.2l-22.8-32.098c10.499-17.701,18.3-36.601,23.399-56.4l39.701-6.601C506.6,299.5,512,293.2,512,286  v-60C512,218.8,506.6,212.5,499.401,211.3z M256,376c-66.301,0-120-53.699-120-120s53.699-120,120-120s120,53.699,120,120  S322.301,376,256,376z"></path>
-                <path style="fill: #59ABE2;" d="M512,226v60c0,7.2-5.4,13.5-12.599,14.7l-39.701,6.601c-5.1,19.799-12.9,38.699-23.4,56.4  l22.8,32.098c4.199,6,3.6,14.101-1.501,19.2L415,457.599c-5.099,5.101-13.2,5.7-19.2,1.501l-32.098-22.8  C346,446.8,327.1,454.6,307.301,459.699L300.7,499.4c-1.2,7.2-7.5,12.6-14.7,12.6h-30V376c66.301,0,120-53.699,120-120  s-53.699-120-120-120V0h30c7.2,0,13.5,5.4,14.7,12.599l6.601,39.701c19.799,5.1,38.699,12.9,56.4,23.4l32.098-22.8  c6-4.199,14.101-3.6,19.2,1.501L457.599,97c5.101,5.099,5.7,13.2,1.501,19.2l-22.8,32.098c10.499,17.701,18.3,36.601,23.399,56.4  l39.701,6.601C506.6,212.5,512,218.8,512,226z"></path>
-                <path style="fill:#1689FC;" d="M353.2,336.4L256,371.201L158.8,336.4c15.899-39.6,54.3-65.4,97.2-65.4S337.301,296.8,353.2,336.4z"></path>
-                <path style="fill:#17ACE8;" d="M256,181c-32.999,0-60,27.001-60,60s27.001,60,60,60s60-27.001,60-60S288.999,181,256,181z"></path>
-                <path style="fill: #59ABE2;" d="M256,121c-74.399,0-135,60.601-135,135s60.601,135,135,135s135-60.601,135-135S330.399,121,256,121z   M256,361c-57.9,0-105-47.1-105-105s47.1-105,105-105s105,47.1,105,105S313.9,361,256,361z"></path>
-                <path style="fill:#136EF1;" d="M353.2,336.4L256,371.201V271C298.9,271,337.301,296.8,353.2,336.4z"></path>
-                <path style="fill:#1689FC;" d="M316,241c0,32.999-27.001,60-60,60V181C288.999,181,316,208.001,316,241z"></path>
-                <path style="fill: #00C7DA;" d="M391,256c0,74.399-60.601,135-135,135v-30c57.9,0,105-47.1,105-105s-47.1-105-105-105v-30  C330.399,121,391,181.601,391,256z"></path>    
-            </svg>
-        </div>
-        <h5 style="text-align: center; padding: 5%; margin:0px;">Enterprise Settings</h5>
-        <div class="row">
-            <div class="col s8">
-                <p style=" margin: 0px; float: right; margin-right: 10px;">Acitivate / Deactivate Tokens</p>
-            </div>
-            <div class="col s4">
-                <div class="switch">
-                    <label>
-                        <input type="checkbox" id="tkSaleSet">
-                        <span class="lever"></span>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s8" style="
-                           ">
-                <p style=" margin: 0px; float: right; margin-right: 10px;">Show / Hide Managers</p>
-            </div>
-            <div class="col s4">
-                <div class="switch">
-                    <label>
-                        <input type="checkbox" id="showHideMngr">
-                        <span class="lever"></span>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="entForms">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="email" type="text" class="validate">
-                        <label for="email">About Header</label>
+    <!-- Enterprise Settings Service Two Modal Structure -->
+    <div id="addEntServiceTwo" class="modal" style="overflow: initial;margin-top: 20%;">
+        <svg xmlns="http://www.w3.org/2000/svg;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512; width: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: -40px;box-shadow: 0px 9px 23px -5px rgba(0,0,0,0.75);border-radius: 50%;" xml:space="preserve">
+            <path style="fill:#80DEEA;" d="M505.461,198.261C479.279,84.684,377.53,0,256,0C114.616,0,0,114.615,0,256  c0,124.319,88.622,227.926,206.133,251.129L505.461,198.261z"/>
+            <path style="fill:#00BCD4;" d="M512,256c0-19.856-2.262-39.182-6.539-57.739L435.2,128l-271.658,52.875l-43.095-43.095  l-47.223,47.222l47.304,47.304l-47.304,47.304l47.304,47.304L73.224,374.22l132.91,132.91C222.265,510.315,238.935,512,256,512  C397.385,512,512,397.384,512,256z"/>
+            <polygon style="fill:#263238;" points="435.2,128 435.2,194.783 293.843,194.783 244.369,161.391 293.843,128 "/>
+            <rect x="152.487" y="128" style="fill:#006064;" width="141.357" height="66.783"/>
+            <path style="fill:#263238;" d="M96.835,128l-18.214,33.391l18.214,33.391c18.442,0,33.391-14.949,33.391-33.391  S115.277,128,96.835,128z"/>
+            <path style="fill:#006064;" d="M63.443,161.391c0,18.442,14.949,33.391,33.391,33.391V128C78.394,128,63.443,142.949,63.443,161.391  z"/>
+            <polygon style="fill:#263238;" points="435.2,222.609 435.2,289.391 293.843,289.391 244.369,256 293.843,222.609 "/>
+            <rect x="152.487" y="222.609" style="fill:#006064;" width="141.357" height="66.783"/>
+            <path style="fill:#263238;" d="M96.835,222.609L78.621,256l18.214,33.391c18.442,0,33.391-14.949,33.391-33.391  S115.277,222.609,96.835,222.609z"/>
+            <path style="fill:#006064;" d="M63.443,256c0,18.442,14.949,33.391,33.391,33.391v-66.783C78.394,222.609,63.443,237.558,63.443,256  z"/>
+            <polygon style="fill:#263238;" points="435.2,317.217 435.2,384 293.843,384 244.369,350.609 293.843,317.217 "/>
+            <rect x="152.487" y="317.217" style="fill:#006064;" width="141.357" height="66.783"/>
+            <path style="fill:#263238;" d="M96.835,317.217l-18.214,33.391L96.835,384c18.442,0,33.391-14.949,33.391-33.391  S115.277,317.217,96.835,317.217z"/>
+            <path style="fill:#006064;" d="M63.443,350.609c0,18.442,14.949,33.391,33.391,33.391v-66.783  C78.394,317.217,63.443,332.167,63.443,350.609z"/>    
+        </svg>
+        <div class="modal-content" style="padding: 5px 10px;">
+            <div class="row" style="margin-bottom: 0px;">
+                <form action="#" style="padding: 0px">
+                    <div class="file-field input-field" style="padding: 0px">
+                        <div class="btn">
+                            <span>File</span>
+                            <input type="file" id="entServTwoImg" class="entServiceImage">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
                     </div>
-                </div>
-            </form>
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="email" type="text" class="validate">
-                        <label for="email">About Body</label>
+                </form>
+            </div>
+            <div class="row" style="margin-bottom: 0px;">
+                <form class="col s12" style="padding: 0px">
+                    <div class="input-field col s12" style="padding: 0px">
+                        <input placeholder="Placeholder" id="serviceTwoHeader" type="text" class="validate">
+                        <label for="serviceTwoHeader" style="font-size: 1.2em; margin-left: -10px;">Title</label>
                     </div>
-                </div>
-            </form>
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="email" type="text" class="validate">
-                        <label for="email">Services Header</label>
+                </form>
+            </div>
+            <div class="row" style="margin-bottom: 0px;">
+                <form class="col s12" style="padding: 0px">
+                    <div class="input-field col s12" style="padding: 0px">
+                        <input placeholder="Placeholder" id="serviceTwoBody" type="text" class="validate">
+                        <label for="serviceTwoBody" style="font-size: 1.2em; margin-left: -10px;">Body</label>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>-->
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-green btn" id="saveEntServTwo">Save</a>
+        </div>
+    </div>
 
     <!--- Loyalty Points Start --->
     <div id="loyaltyPoints" class="modal">
@@ -1831,7 +1868,7 @@
                             <div class="row entServicesSettings">
                                 <h6>Section One</h6>
                                 <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
-                                    <i id="addEntService">
+                                    <i id="addEntServiceOne">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100; width: 20px; float: left; margin-right: 10px;" xml:space="preserve">
                                             <path style="fill:white;" d="M40,50c0,2.762-2.238,5-5,5H5c-2.762,0-5-2.238-5-5s2.238-5,5-5h30C37.762,45,40,47.238,40,50z    M35,65H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,65,35,65z M97,45H80V28c0-2.762-2.238-3-5-3   s-5,0.238-5,3v17H53.5c-2.762,0-3,2.238-3,5s0.238,5,3,5H70v17c0,2.762,2.238,3,5,3s5-0.238,5-3V55h17c2.762,0,3-2.238,3-5   S99.762,45,97,45z M35,25H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,25,35,25z"/>
@@ -1844,9 +1881,9 @@
                                 </div>
                             </div>
                             <div class="row entServicesSettings">
-                                <h6>Section One</h6>
+                                <h6>Section Two</h6>
                                 <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
-                                    <i id="addEntService">
+                                    <i id="addEntServiceTwo">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100; width: 20px; float: left; margin-right: 10px;" xml:space="preserve">
                                             <path style="fill:white;" d="M40,50c0,2.762-2.238,5-5,5H5c-2.762,0-5-2.238-5-5s2.238-5,5-5h30C37.762,45,40,47.238,40,50z    M35,65H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,65,35,65z M97,45H80V28c0-2.762-2.238-3-5-3   s-5,0.238-5,3v17H53.5c-2.762,0-3,2.238-3,5s0.238,5,3,5H70v17c0,2.762,2.238,3,5,3s5-0.238,5-3V55h17c2.762,0,3-2.238,3-5   S99.762,45,97,45z M35,25H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,25,35,25z"/>
