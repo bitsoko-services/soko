@@ -8,15 +8,14 @@ $(document).on("click", "#tokenSale", function () {
 //Buy Store Tokens
 $("#calcTokenVal").click(function () {
     var tokenValue = $("#tokenVal").val();
-    alert(tokenValue)
-    transferTokenValue("0x7D1Ce470c95DbF3DF8a3E87DCEC63c98E567d481", "0xb72627650f1149ea5e54834b2f468e5d430e67bf", parseFloat(tokenValue), allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate).then(function (r) {
-        console.log("This is the TRID" + r);
-        if (tokenValue == "") {
-            M.toast({
-                html: 'Ooops! Please input amount',
-                displayLength: 3000
-            })
-        } else {
+    if (tokenValue == "") {
+        M.toast({
+            html: 'Ooops! Please input amount',
+            displayLength: 3000
+        })
+    } else {
+        transferTokenValue("0x7D1Ce470c95DbF3DF8a3E87DCEC63c98E567d481", "0xb72627650f1149ea5e54834b2f468e5d430e67bf", parseFloat(tokenValue), allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate).then(function (r) {
+            console.log("This is the TRID" + r);
             doFetch({
                 action: "creditStore",
                 contract: "0xb72627650f1149ea5e54834b2f468e5d430e67bf",
@@ -41,8 +40,8 @@ $("#calcTokenVal").click(function () {
                     })
                 }
             });
-        }
-    });
+        });
+    }
 });
 
 //Activate / Deactive Token Sale
