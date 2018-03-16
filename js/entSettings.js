@@ -150,25 +150,38 @@ $(document).on("click", "#saveEntServTwo", function (imgId) {
         var icon = srcData
         var title = $("#serviceTwoHeader").val()
         var body = $("#serviceTwoBody").val()
-        var servOneArray = {
-            icon,
-            title,
-            body
-        }
-        var newService = JSON.stringify(servOneArray)
-        doFetch({
-            action: 'entSettings',
-            id: localStorage.getItem('soko-owner-id'),
-            value: newService,
-            prop: "entImageList"
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                M.toast({
-                    html: 'Added successfully',
-                    displayLength: 3000
+        //Fetch Enterprise Info
+        $(document).ready(function () {
+            doFetch({
+                action: 'merchantServiceLoader',
+                id: localStorage.getItem("bits-user-name")
+            }).then(function (e) {
+                var stringifiedEntInfo = JSON.stringify(e.settings.entSettings)
+                var parsedEntInfo = JSON.parse(stringifiedEntInfo)
+                var serviceTwo = JSON.parse(parsedEntInfo.entImageList)
+
+
+                serviceTwo.push({
+                    icon,
+                    title,
+                    body
                 })
-            }
-        });
+                doFetch({
+                    action: 'entSettings',
+                    id: localStorage.getItem('soko-owner-id'),
+                    value: JSON.stringify(serviceTwo),
+                    prop: "entImageList"
+                }).then(function (e) {
+                    if (e.status == 'ok') {
+                        M.toast({
+                            html: 'Added successfully',
+                            displayLength: 3000
+                        })
+                    }
+                });
+
+            })
+        })
     }
 });
 
