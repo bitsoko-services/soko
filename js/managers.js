@@ -1,15 +1,3 @@
-//Show Hide Managers
-$(document).on("click", "#showHideMngr", function () {
-    var mngrState = $("#showHideMngr").prop("checked");
-    doFetch({
-        action: 'showHideManagers',
-        id: localStorage.getItem('soko-owner-id'),
-        data: mngrState
-    }).then(function (e) {
-        if (e.status == 'ok') {} else {}
-    });
-})
-
 $('.Managers').on('click', $('ul.autocomplete-content li'), function () {
     var value = $('#sokoMangers').val();
     if (value != '') {

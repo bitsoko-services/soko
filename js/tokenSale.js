@@ -43,25 +43,3 @@ $("#calcTokenVal").click(function () {
         });
     }
 });
-
-//Activate / Deactive Token Sale
-$("#tkSaleSet").click(function () {
-    var mngrState = $("#tkSaleSet").prop("checked");
-    doFetch({
-        action: 'tokenize',
-        id: localStorage.getItem('soko-owner-id'),
-        state: mngrState
-    }).then(function (e) {
-        if (e.status == 'ok') {
-            M.toast({
-                html: 'Activated successfully',
-                displayLength: 3000
-            })
-        } else {
-            M.toast({
-                html: 'Ooops! Try again later',
-                displayLength: 3000
-            })
-        }
-    });
-})
