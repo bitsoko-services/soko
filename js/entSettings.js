@@ -228,8 +228,42 @@ $(document).on("change", ".entSettings input", function (imgId) {
             currentInput.parent().parent().parent().attr("getval", srcData)
             alert(srcData)
         }
-    } else if (entInput == "serviceImageNoN") {}
+    } else if (inputChanged.hasClass("serviceImage")) {
+        imgId = inputChanged
+        base64Ent(imgId)
+        doFetch({
+            action: 'entSettings',
+            id: localStorage.getItem('soko-owner-id'),
+            value: srcData,
+            prop: "entBanner"
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                M.toast({
+                    html: 'Added successfully',
+                    displayLength: 3000
+                })
+            } else {}
+        });
+    } else if (entInput == "serviceImageNoN") {} else {
+        var getProp = inputChanged.attr("entinpt");
+        var inputVal = inputChanged.val();
+        console.log(inputVal)
+        doFetch({
+            action: 'entSettings',
+            id: localStorage.getItem('soko-owner-id'),
+            value: inputVal,
+            prop: getProp
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                M.toast({
+                    html: 'Added successfully',
+                    displayLength: 3000
+                })
+            } else {}
+        });
+    }
 })
+
 
 
 $(document).on("click", ".saveServiceOne", function () {
