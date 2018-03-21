@@ -3077,6 +3077,10 @@ tr.group:hover {
     ul.side-nav.leftside-navigation li {
         margin-top: 10px;
     }
+    #slide-out {
+        margin-left: 27% !important;
+        width: 26vw !important;
+    }
     .user-details {
         margin-top: -10px !important;
     }
