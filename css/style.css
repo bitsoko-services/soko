@@ -3077,6 +3077,17 @@ tr.group:hover {
     ul.side-nav.leftside-navigation li {
         margin-top: 10px;
     }
+    .navDskt {
+        margin-left: -10px !important;
+    }
+    .navbar-fixed {
+        height: 43px !important;
+        z-index: 10 !important;
+        display: block !important;
+    }
+    svg {
+        z-index: 99999
+    }
     #slide-out {
         margin-left: 27% !important;
         width: 26vw !important;
@@ -3448,7 +3459,8 @@ tr.group:hover {
         height: 50% !important;
     }
     .navDskt {
-        width: 75% !important
+        width: 75% !important;
+        margin-left: -10px;
     }
 }
 
@@ -4047,7 +4059,7 @@ ul.side-nav.leftside-navigation li:hover {
 .rewardsHeader {
     width: 100.1%;
     position: fixed;
-    margin-top: -8px;
+    margin-top: -2px;
     z-index: 998;
 }
 
