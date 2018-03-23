@@ -28,8 +28,6 @@ function beaconsUpdater() {
         if (reqs.length > 0) {
             var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth green circle"></i>' + '<span class="collection-header" style="pointer-events: none;">Connected Beacons</span><p>' + reqs.length + ' Found</p></li>';
             $(".beacons-holda-connected").append($.parseHTML(html));
-            var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth pink circle"></i>' + '<span class="collection-header" style="pointer-events: none;">Available Beacons</span><p>' + reqs.length + ' Found</p></li>';
-            $(".beacons-holda-available").append($.parseHTML(html));
         } else {
             var html = '<li class="collection-item avatar"><i class="mdi-action-settings-bluetooth cyan circle"></i>' + '<span class="collection-header">No Beacons Found</span><p>click here to add a beacon</p></li>';
             $(".beacons-holda-available").append($.parseHTML(html));
@@ -38,11 +36,11 @@ function beaconsUpdater() {
         var st = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store')));
         for (var i = 0, st = st; i < reqs.length; ++i) {
             if (parseInt(reqs[i].service) == parseInt(localStorage.getItem('soko-active-store'))) {
-                var html = '<li class="collection-item">' + '<div class="row"><div class="col s4">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="switch"> <label><input type="checkbox" class="toggleBeacon" id="toggleBeacon_' + reqs[i].id + '" bid="' + reqs[i].id + '"> <span class="lever" bid="' + reqs[i].id + '"></span> </label> </div></div><div class="col s8"><div class="input-field col s12"> <select id="promoSubSelect_' + reqs[i].id + '"><option value="1">Option 1</option></select> <label>Materialize Select</label> </div></div></div></li>';
+                var html = '<li class="collection-item">' + '<div class=""><div class="col s4">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Connected</p><div class="switch"> <label><input type="checkbox" class="toggleBeacon" id="toggleBeacon_' + reqs[i].id + '" bid="' + reqs[i].id + '"> <span class="lever" bid="' + reqs[i].id + '"></span> </label> </div></div><div class="col s8"><div class="input-field col s12"> <select id="promoSubSelect_' + reqs[i].id + '"><option value="1">Option 1</option></select> <label>Materialize Select</label> </div></div></div></li>';
                 $(".beacons-holda-connected").append($.parseHTML(html));
                 $("#toggleBeacon_" + reqs[i].id).prop("checked", true);
             } else if (parseInt(reqs[i].service) == parseInt('0')) {
-                var html = '<li class="collection-item">' + '<div class="row"><div class="col s4">' + '<p class="collections-title"><strong>#' + reqs[i].name + '</strong> Not Connected</p><div class="switch"> <label><input type="checkbox" class="toggleBeacon" id="toggleBeacon_' + reqs[i].id + '" bid="' + reqs[i].id + '"> <span class="lever" bid="' + reqs[i].id + '"></span></label> </div></div><div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option value="0" selected="">disabled</option><option value="' + st.id + '">' + st.name + '</option></select></div></div></div></li>';
+                var html = '<li>' + '<div class="row"><div class="col s12" style="background: #eaeaea; margin: 0px 5%; width: 90%; border-radius: 3px; border-bottom: solid white 1px;">' + '<p class="collections-title" style="float:left;"><strong>Beacon #' + reqs[i].name + '</strong></p><div class="switch right" style="margin-top:13px;"> <label><input type="checkbox" class="toggleBeacon" id="toggleBeacon_' + reqs[i].id + '" bid="' + reqs[i].id + '"> <span class="lever" bid="' + reqs[i].id + '"></span></label> </div></div><!--<div class="col s5"><div class="select-wrapper initialized"><span class="caret">▼</span><select class="initialized" bid="' + reqs[i].id + '"><option value="0" selected="">disabled</option><option value="' + st.id + '">' + st.name + '</option></select></div>--></div></div></li>';
                 $(".beacons-holda-available").append($.parseHTML(html));
                 $("#toggleBeacon_" + reqs[i].id).prop("checked", false);
             }
