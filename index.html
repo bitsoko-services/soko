@@ -237,6 +237,19 @@
         </div>
     </div>
     <!-- Add Operators End -->
+    <!-- Store Sign Modal Start -->
+    <div id="storeSign" class="modal open" style="overflow: initial; margin-top: 30%; border-radius: 5px;">
+        <div style="width:100px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;background: #00A2B2;border-radius:  50%;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35;margin: 18px;" xml:space="preserve">
+                <path d="M28.928,17.914l-1.293-1.293c4.226-4.227,4.225-11.103-0.002-15.328L28.928,0C33.867,4.938,33.867,12.976,28.928,17.914z    M26.69,2.236l-1.293,1.293c2.991,2.993,2.991,7.863,0,10.854l1.293,1.295C30.396,11.973,30.396,5.941,26.69,2.236z M24.382,4.543   l-1.293,1.293c1.722,1.722,1.722,4.521,0,6.24l1.294,1.293C26.816,10.938,26.816,6.978,24.382,4.543z M6.072,17.914l1.293-1.293   C3.139,12.395,3.14,5.519,7.367,1.293L6.072,0C1.132,4.938,1.132,12.976,6.072,17.914z M8.308,15.679l1.294-1.295   c-2.992-2.991-2.992-7.861,0-10.854L8.308,2.236C4.602,5.941,4.602,11.973,8.308,15.679z M10.616,13.371l1.294-1.295   c-1.72-1.72-1.72-4.519,0.001-6.238l-1.294-1.293C8.183,6.978,8.183,10.938,10.616,13.371z M12.811,22.23l4.479-3.951l-2.885-2.545   l-1.958,6.176L12.811,22.23z M16.085,10.438l1.205-1.062l-0.679-0.6L16.085,10.438z M12.811,23.23l-1.086,0.959L8.297,35h0.134   l8.859-7.814L12.811,23.23z M15.645,11.828l-0.991,3.125l3.203,2.826l3.246-2.863l-0.859-2.935l-2.387-2.106L15.645,11.828z    M19.85,10.632l-0.585-2l-0.841,0.741L19.85,10.632z M17.857,8.873l1.175-1.035l-1.019-3.481L16.86,7.995L17.857,8.873z    M17.857,27.684L9.565,35h3.077c0.151-2.641,2.319-4.738,4.996-4.738c2.677,0,4.845,2.1,4.997,4.738h3.515L17.857,27.684z    M23.757,23.984l-0.854-0.754l-4.479,3.953l8.449,7.455L23.757,23.984z M18.424,18.279l4.479,3.951l0.271-0.238l-1.839-6.281   L18.424,18.279z M22.335,22.73l-4.479-3.951l-4.479,3.951l4.479,3.953L22.335,22.73z" style="fill:  white;"></path>
+            </svg>
+        </div>
+        <h5 style="text-align: center; padding: 5%; margin:0px;">Connect Sign</h5>
+        <div class="row" style="text-align: center;">
+            <a id="readButton" class="waves-effect waves-light btn" style="margin-bottom: 15px;" onclick="onReadButtonClick()">connect</a>
+        </div>
+    </div>
+    <!-- Store Sign Modal End -->
     <!-- Mobile Verification Modal Start -->
     <!-- Modal Structure -->
     <div id="loyaltyModal" class="modal" style="border-radius:10p;">
@@ -1544,14 +1557,25 @@
                                 </div>
                             </div>
                         </nav>
-                        <div style="background:white;width:100%;text-align:center;border-radius: 0px;border: solid gainsboro 0.1px;">
-                            <div class="opacitySelectedColor" style="background: rgb(22, 133, 33);filter: brightness(1.3);">
-                                <p style="color: white;padding: 5px;margin-top: 0PX;">STORE SIGN</p>
-                            </div>
-                            <a id="readButton" class="waves-effect waves-light btn" style="margin-bottom: 15px;" onclick="onReadButtonClick()">connect</a>
-                        </div>
                         <ul id="" class="collection beacons-holda-connected chStoreUpdate" style="overflow:inherit;"> </ul>
                         <ul id="" class="collection beacons-holda-available chStoreUpdate" style="overflow:inherit;"> </ul>
+                        <div class="fixed-action-btn click-to-toggle direction-top" style="z-index:990; margin-right:4%;">
+                            <a class="btn-floating opacitySelectedColor" style="width: 55px; height: 55px; border-radius: 50%; background: rgb(35, 31, 31); line-height: 55px; font-size: 2em;" onclick="">
+                                <p style="margin-top:0px !important;text-align:center;">+</p>
+                            </a>
+                            <ul style="bottom:55px !important;">
+                                <li>
+                                    <a onclick="$('#storeSign').modal('open')" class="btn-floating opacitySelectedColor" style="padding: 0px 10px; background: rgb(35, 31, 31); margin-left: -15px; width: auto !important;margin-left: -15px; right: -11px; border-radius: 5px;">
+                                        <p class="material-icons" style="margin-top:0px !important;font-size:0.8rem;">Store Sign</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a onclick="" class="btn-floating newProdBtn opacitySelectedColor" style="padding: 0px 10px; font-size: 0.8rem; background: rgb(35, 31, 31); width: auto !important;">
+                                        <p class="material-icons" style="margin-top:0px !important;">Beacons</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="col s12 m4 l4 deliveries" style="display:none;margin: 10px;overflow-x: hidden;">
                         <div class="row">
