@@ -49,7 +49,7 @@ $('document').ready(function () {
             deliveryMbr();
         }
     });
-    $('.deliveryField').on('click', $('ul.autocomplete-content li'), function (e) {
+    $(document).on('click', $('.deliveryField ul.autocomplete-content li'), function (e) {
         var value = $('#delivery-members').val();
         if (value != '') {
             var deliveryMembers = $('#delivery-members').val();
@@ -72,7 +72,17 @@ $('document').ready(function () {
                                 deliveryMbr();
                                 $("#confirmAddMember").modal("close");
                                 $('#delivery-members').val("");
-                            } else {}
+                                $("#addOperatorsModal").modal("close");
+                                M.toast({
+                                    html: 'Operator added successfully.',
+                                    displayLength: 3000
+                                })
+                            } else {
+                                M.toast({
+                                    html: 'Error!!! Try again later',
+                                    displayLength: 3000
+                                })
+                            }
                         });
                     });
                     $('#noOperatorBtn').on('click', function () {
