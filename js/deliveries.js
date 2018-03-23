@@ -240,11 +240,11 @@ $("#sliderAmount").on("change", function () {
 });
 //Distace Set
 $("#distanceSliderAmount").on("change", function () {
-    deliveryDistance = $("#sliderAmount").val();
+    deliveryDistance = $("#distanceSliderAmount").val();
     doFetch({
-        action: 'maxDeliveryDistance',
+        action: 'deliveryRadius',
         store: localStorage.getItem('soko-active-store'),
-        rate: deliveryDistance
+        radius: deliveryDistance
     }).then(function (e) {
         if (e.status == 'ok') {
             M.toast({
@@ -270,9 +270,9 @@ distanceSlide.onchange = function () {
     var distanceVal = $("#distanceRangeOutputId").val()
     $("#distaceSlide").val(distanceVal);
     doFetch({
-        action: 'maxDeliveryDistace',
+        action: 'deliveryRadius',
         store: localStorage.getItem('soko-active-store'),
-        val: sliderVal
+        radius: sliderVal
     }).then(function (e) {
         if (e.status == 'ok') {} else {}
     });
