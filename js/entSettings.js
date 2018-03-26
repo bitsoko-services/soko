@@ -280,7 +280,17 @@ $(document).on("click", ".saveServiceOne", function () {
         value: JSON.stringify(finalArray),
         prop: "entIconList"
     }).then(function (e) {
-        if (e.status == 'ok') {} else {}
+        if (e.status == 'ok') {
+            M.toast({
+                html: 'Added successfully',
+                displayLength: 3000
+            })
+        } else {
+            M.toast({
+                html: 'Error! Try again later',
+                displayLength: 3000
+            })
+        }
     });
 })
 $(document).on("click", ".saveServiceTwo", function () {
@@ -308,7 +318,17 @@ $(document).on("click", ".saveServiceTwo", function () {
         value: JSON.stringify(finalArray),
         prop: "entIconList"
     }).then(function (e) {
-        if (e.status == 'ok') {} else {}
+        if (e.status == 'ok') {
+            M.toast({
+                html: 'Added successfully',
+                displayLength: 3000
+            })
+        } else {
+            M.toast({
+                html: 'Error! Try again later',
+                displayLength: 3000
+            })
+        }
     });
 })
 
