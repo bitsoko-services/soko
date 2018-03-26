@@ -143,11 +143,6 @@ function productsUpdater() {
         prodCategory();
 
         rmvProduct();
-        $('#spnsrdModal').modal({
-            ready: function (modal, trigger) {
-                sponsoredProdListener();
-            }
-        });
 
         //        $('.products-collapsible').collapsible();
         $('select').formSelect();

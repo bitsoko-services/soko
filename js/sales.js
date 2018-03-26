@@ -268,7 +268,6 @@ function orderUpdater() {
 
         setTimeout(function () {
             $('.collapsible').collapsible();
-            deliveryListener();
             setTimeout(deliveryMbr, 1000);
         }, 100);
 
@@ -311,7 +310,6 @@ function orderUpdater() {
         $('.radioDelivered').on('click', function () {
             $('#deliverOrderModal').modal({
                 ready: function (modal, trigger) {
-                    deliveryListener();
                     setTimeout(deliveryMbr, 1000);
                 }
             }).modal('open');

@@ -106,9 +106,9 @@ angular.module('sokoApp', [])
 
 
 
-if (getBitsOpt('page') != undefined) {
-    switchTo(getBitsOpt('page'))
-}
+//if (getBitsOpt('page') != undefined) {
+//    switchTo(getBitsOpt('page'))
+//}
 
 
 function switchTo(co) {

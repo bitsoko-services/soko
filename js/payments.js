@@ -1,6 +1,5 @@
 //Enable Payments
 $('#paymentsToggle').click(function () {
-    deliveryListener();
     if (JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).phone == "") {
         $('#paymentsToggle').sideNav('hide');
         $('#editStoreModal').modal('open');

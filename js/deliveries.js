@@ -6,7 +6,6 @@ $('#deliveriesToggle').click(function (e) {
     e.preventDefault();
     $('#MobileModal').modal({
         ready: function (modal, trigger) {
-            deliveryListener();
             setTimeout(deliveryMbr, 1000);
         }
     }).modal('open');
@@ -129,62 +128,44 @@ $('document').ready(function () {
 //    }
 //}
 function deliveryMbr() {
-
-
     doFetch({
         action: 'getDeliveryMembers',
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
-
-
-
-        var matched = []
         try {
-            var deliveryMembers = JSON.parse(e.members);
+            var deliveryMemberLst = JSON.parse(e.members)
         } catch (err) {
-            var deliveryMembers = [];
-        }
-        var users = deliveryGuys;
-        $("#membersLst").html('');
-        $("#ordMembersLst").html('');
 
-        var memberIds = deliveryMembers.map(function (member) {
-            users.forEach(function (user) {
-                if (user.id === member.id) {
-                    matched.push({
-                        icon: user.icon,
-                        name: user.name,
-                        id: user.id
+            var deliveryMemberLst = [];
+        }
+        for (var i = 0; i < deliveryMemberLst.length; i++) {
+            $("#membersLst").html("");
+            for (var s in deliveryGuys) {
+                var name = deliveryGuys[s].name;
+                var id = deliveryGuys[s].id;
+                var icon = deliveryGuys[s].icon;
+                if (deliveryMemberLst[i].id == id) {
+                    $("#membersLst").append('<div id="' + id + '" class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
+                    $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s10"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s2" style="padding-top:5px;"><form action="#"> <label for="radio_' + id + '"><input class="with-gap" name="group1" type="radio" id="radio_' + id + '"/><span></span></label></form></div></div>');
+                    $("#radio_" + id).click(function () {
+                        var orderId = $("#deliverOrderModal").attr('gid');
+                        doFetch({
+                            action: 'orderDeliveryMembers',
+                            orderId: orderId,
+                            id: id
+                        }).then(function (e) {
+                            if (e.status == 'ok') {
+                                M.toast({
+                                    html: 'Delivery member selected successfully',
+                                    displayLength: 3000
+                                })
+                                $('#deliverOrderModal').modal('close');
+                            } else {}
+                        });
                     })
                 }
-            });
-
-        });
-
-        $.each(matched, function (index, obj) {
-            var id = obj.id;
-            name = obj.name;
-            icon = obj.icon
-            console.log(obj);
-            $("#membersLst").append('<div id="' + id + '" class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
-            $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s10"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s2" style="padding-top:5px;"><form action="#"> <label for="radio_' + id + '"><input class="with-gap" name="group1" type="radio" id="radio_' + id + '"/><span></span></label></form></div></div>');
-            $("#radio_" + id).click(function () {
-                var orderId = $("#deliverOrderModal").attr('gid');
-                doFetch({
-                    action: 'orderDeliveryMembers',
-                    orderId: orderId,
-                    id: id
-                }).then(function (e) {
-                    if (e.status == 'ok') {
-                        M.toast({
-                            html: 'Delivery member selected successfully',
-                            displayLength: 3000
-                        })
-                        $('#deliverOrderModal').modal('close');
-                    } else {}
-                });
-            })
-        })
+            }
+        }
     })
     var rateInput = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRate;
     $('#delivery_Rate').val(rateInput);
@@ -192,6 +173,7 @@ function deliveryMbr() {
     $("#slide").val(rateInput);
     $("#rangeOutputId").val(rateInput);
 }
+
 //Remove Delivery Member
 $(document).on('click', '.removeMember', function (e) {
     e.stopPropagation();
