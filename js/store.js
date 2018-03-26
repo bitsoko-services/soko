@@ -92,7 +92,6 @@ function addStore() {
     productsUpdater();
     promoUpdater();
     beaconsUpdater();
-    refreshCustomers();
     //refreshBills();
     doFetch({
         action: 'getServiceTrans',

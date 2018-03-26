@@ -99,7 +99,6 @@ function promoUpdater() {
             var promoSubscribers = reqs[i].promoSubs
             var promoSubId = reqs[i].id
             for (var ps = 0, promoSubscribers = promoSubscribers; ps < promoSubscribers.length; ++ps) {
-                console.log(promoSubscribers[ps].id + " " + promoSubId)
                 promoIdArray = promoSubscribers[ps].id
 
 
@@ -159,7 +158,6 @@ function promoUpdater() {
             promoCreator(reqs[i].id);
             loadTheme();
         }
-        refreshCustomers()
         if (cusLen == 1) {
             document.getElementById('subPlural').innerHTML = '';
         }
@@ -173,6 +171,7 @@ function promoUpdater() {
         };
         editPromoCallback();
     }
+    refreshCustomers()
 }
 
 function getActiveStoreProd(p) {
