@@ -1,4 +1,4 @@
-$('.Managers').on('click', $('ul.autocomplete-content li'), function () {
+$('.addNewManager').on('click', $('ul.autocomplete-content li'), function () {
     var value = $('#sokoMangers').val();
     if (value != '') {
         var managerSlct = $('#storeManagers').val();
