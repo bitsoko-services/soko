@@ -1372,20 +1372,6 @@
                             </i>Billing
                     </a>
                 </li>
-                <li style="position: absolute;top: 132px;width: 100%;z-index: 10;margin-bottom: 0px;" id="settingsOpt">
-                    <!--------- SETTINGS ---------->
-                    <ul class="collapsible" data-collapsible="accordion" style="">
-                        <li class="">
-                            <svg id="openStoreSet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 268.765 268.765" style="enable-background:new 0 0 268.765 268.765;width: 20px;height: 20px; position: absolute; top: -4px; right: 15px" xml:space="preserve">
-                                                <g id="Settings">
-                                                    <g>
-                                                        <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M267.92,119.461c-0.425-3.778-4.83-6.617-8.639-6.617    c-12.315,0-23.243-7.231-27.826-18.414c-4.682-11.454-1.663-24.812,7.515-33.231c2.889-2.641,3.24-7.062,0.817-10.133    c-6.303-8.004-13.467-15.234-21.289-21.5c-3.063-2.458-7.557-2.116-10.213,0.825c-8.01,8.871-22.398,12.168-33.516,7.529    c-11.57-4.867-18.866-16.591-18.152-29.176c0.235-3.953-2.654-7.39-6.595-7.849c-10.038-1.161-20.164-1.197-30.232-0.08    c-3.896,0.43-6.785,3.786-6.654,7.689c0.438,12.461-6.946,23.98-18.401,28.672c-10.985,4.487-25.272,1.218-33.266-7.574    c-2.642-2.896-7.063-3.252-10.141-0.853c-8.054,6.319-15.379,13.555-21.74,21.493c-2.481,3.086-2.116,7.559,0.802,10.214    c9.353,8.47,12.373,21.944,7.514,33.53c-4.639,11.046-16.109,18.165-29.24,18.165c-4.261-0.137-7.296,2.723-7.762,6.597    c-1.182,10.096-1.196,20.383-0.058,30.561c0.422,3.794,4.961,6.608,8.812,6.608c11.702-0.299,22.937,6.946,27.65,18.415    c4.698,11.454,1.678,24.804-7.514,33.23c-2.875,2.641-3.24,7.055-0.817,10.126c6.244,7.953,13.409,15.19,21.259,21.508    c3.079,2.481,7.559,2.131,10.228-0.81c8.04-8.893,22.427-12.184,33.501-7.536c11.599,4.852,18.895,16.575,18.181,29.167    c-0.233,3.955,2.67,7.398,6.595,7.85c5.135,0.599,10.301,0.898,15.481,0.898c4.917,0,9.835-0.27,14.752-0.817    c3.897-0.43,6.784-3.786,6.653-7.696c-0.451-12.454,6.946-23.973,18.386-28.657c11.059-4.517,25.286-1.211,33.281,7.572    c2.657,2.89,7.047,3.239,10.142,0.848c8.039-6.304,15.349-13.534,21.74-21.494c2.48-3.079,2.13-7.559-0.803-10.213    c-9.353-8.47-12.388-21.946-7.529-33.524c4.568-10.899,15.612-18.217,27.491-18.217l1.662,0.043    c3.853,0.313,7.398-2.655,7.865-6.588C269.044,139.917,269.058,129.639,267.92,119.461z M134.595,179.491    c-24.718,0-44.824-20.106-44.824-44.824c0-24.717,20.106-44.824,44.824-44.824c24.717,0,44.823,20.107,44.823,44.824    C179.418,159.385,159.312,179.491,134.595,179.491z" fill="#FFFFFF"></path>
-                                                    </g>
-                                                </g>
-                                            </svg>
-                        </li>
-                    </ul>
-                </li>
                 <div class="divider" style="margin:10px 0px;"> </div>
                 <li class="bold soko-admin-manager-btn" style="margin-top:7px;display:none;">
                     <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClicked">
@@ -1913,305 +1899,202 @@
                         </div>
                     </div>
                     <!--------- Token Sale PAGE End ----------->
-                    <!--------- Enterprise Settings PAGE Start --------->
-                    <div class="col s12 m4 l4 entSettings" style="display:none;overflow-x: hidden;">
-                        <div class="row">
-                            <div class="row entStatus">
-                                <h6>Status</h6>
-                                <div class="row" style="margin-top: 20px">
-                                    <div class="col s8">
-                                        <p style=" margin: 0px; float: right; margin-right: 10px;">Activate / Deactivate Tokens</p>
-                                    </div>
-                                    <div class="col s4">
-                                        <!-- Disabled Switch -->
-                                        <div class="switch">
-                                            <label>
-                                            <input type="checkbox" id="tkSaleSet" entInpt="checkbox">
-                                            <span class="lever"></span>
-                                        </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: 20px">
-                                    <div class="col s8">
-                                        <p style=" margin: 0px; float: right; margin-right: 10px;">Show / Hide Managers</p>
-                                    </div>
-                                    <div class="col s4">
-                                        <!-- Disabled Switch -->
-                                        <div class="switch">
-                                            <label>
-                                            <input type="checkbox" id="showHideMngr" entInpt="checkbox"> 
-                                            <span class="lever"></span>
-                                        </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row entBanner">
-                                <h6>Banner</h6>
-                                <form action="#">
-                                    <div class="file-field input-field">
-                                        <div class="btn opacitySelectedColor">
-                                            <span>File</span>
-                                            <input type="file" id="entBanner" class="serviceImage" entInpt="entBanner">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate" type="text" entInpt="skipBannerInpt">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row entForms">
-                                <h6>About</h6>
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="entAboutHeader" entInpt="entAboutTitle" type="text" class="validate">
-                                            <label for="email">About Header</label>
-                                        </div>
-                                    </div>
-                                </form>
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="entAboutBody" entInpt="entAboutBody" type="text" class="validate">
-                                            <label for="email">About Body</label>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row entServicesSettings">
-                                <h6>Section One</h6>
-                                <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
-                                    <i id="addEntServiceOne">
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100; width: 20px; float: left; margin-right: 10px;" xml:space="preserve">
-                                            <path style="fill:white;" d="M40,50c0,2.762-2.238,5-5,5H5c-2.762,0-5-2.238-5-5s2.238-5,5-5h30C37.762,45,40,47.238,40,50z    M35,65H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,65,35,65z M97,45H80V28c0-2.762-2.238-3-5-3   s-5,0.238-5,3v17H53.5c-2.762,0-3,2.238-3,5s0.238,5,3,5H70v17c0,2.762,2.238,3,5,3s5-0.238,5-3V55h17c2.762,0,3-2.238,3-5   S99.762,45,97,45z M35,25H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,25,35,25z"/>
-
-                                        </svg>
-                                    </span>Add New
-                                </i>
-                                </div>
-                                <div class="entServicesContainer entServiceOne">
-                                </div>
-                            </div>
-                            <div class="row entServicesSettings">
-                                <h6>Section Two</h6>
-                                <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
-                                    <i id="addEntServiceTwo">
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100; width: 20px; float: left; margin-right: 10px;" xml:space="preserve">
-                                            <path style="fill:white;" d="M40,50c0,2.762-2.238,5-5,5H5c-2.762,0-5-2.238-5-5s2.238-5,5-5h30C37.762,45,40,47.238,40,50z    M35,65H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,65,35,65z M97,45H80V28c0-2.762-2.238-3-5-3   s-5,0.238-5,3v17H53.5c-2.762,0-3,2.238-3,5s0.238,5,3,5H70v17c0,2.762,2.238,3,5,3s5-0.238,5-3V55h17c2.762,0,3-2.238,3-5   S99.762,45,97,45z M35,25H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,25,35,25z"/>
-
-                                        </svg>
-                                    </span>Add New
-                                </i>
-                                </div>
-                                <div class="entServicesContainer entServiceTwo">
-                                </div>
-                            </div>
-                            <div class="row entBanner" style="margin-bottom: 20px;">
-                                <h6>Token Sale</h6>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <div class="opacitySelectedColor btn" id="tokenSale" stitm="entBanner" style="background: #00B39A;margin-bottom: 10px;margin-left: 10px;">
-                                            <a style="color: white;">Inspect</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <!--------- Settings PAGE Start --------->
+                    <div class="col s12 m4 l4 settingsPage" style="display:none;overflow-x: hidden;">
+                        <div class="col s12">
+                            <ul class="tabs selectedColor" style="margin-top:-1px;">
+                                <li class="tab col s6"><a class="active" href="#storeSettingsTab">Store Settings</a></li>
+                                <li class="tab col s6"><a href="#entSettingsTab">Enterprise Settings</a></li>
+                            </ul>
                         </div>
-                    </div>
-                    <!--------- Enterprise Settings PAGE End ----------->
-
-                    <!--------- Settings PAGE Start ----------->
-                    <div class="col s12 m4 l4 editStorePage" style="display:none;">
-                        <div id="storeSettings" style="padding:0px;overflow-x: hidden; border-radius: 3px;">
-                            <div>
-                                <form class="col s12">
-                                    <div class="row storeSettingsDivs">
-                                        <h6>Store Information</h6>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input id="editStore-name" type="text" class="validate" stitm="name" autocomplete="off" maxlength="25">
-                                                <label for="editStore-name" class="">Name</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input id="editStore-description" type="text" class="validate" stitm="description" autocomplete="off">
-                                                <label for="editStore-description" class=""> Description</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input id="editStore-Phone" type="text" class="validate" value="" stitm="phone">
-                                                <label for="editStore-Phone" class="">Phone</label>
-                                            </div>
-                                        </div>
-                                        <div class="file-field input-field" style="margin: 0px 10px;">
-                                            <div class="opacitySelectedColor btn">
-                                                <span>banner</span>
-                                                <input id="editStore-image" stitm="banner" type="file">
-                                            </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row storeSettingsDivs">
-                                        <h6>Business Category</h6>
-                                        <div class="row categoriesRow">
-                                            <div class="input-field col s12">
-                                                <select class="categorySelect" id="categorySelect"></select>
-                                                <label>Select Category</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row storeSettingsDivs" style="display: none;">
-                                        <h6>Business Token</h6>
-                                        <div class="row tokenRow">
-                                            <div class="input-field col s12">
-                                                <select class="icons tokenSelect" id="tokenSelect"><option value="" disabled selected>Choose a token</option></select>
-                                                <label>Select Token</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row storeSettingsDivs">
-                                        <h6>Store Theme</h6>
-                                        <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px;">
-                                            <li>
-                                                <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%;padding-bottom: 0px;border-bottom: none;">
-                                                    <div class="input-field col s12" style="padding: 0px;">
-                                                        <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none; margin-bottom: 0px;">
+                        <div id="storeSettingsTab" class="col s12">
+                            <div class="col s12 m4 l4 editStorePage" style="padding: 0px;">
+                                <div id="storeSettings" style="padding:0px;overflow-x: hidden; border-radius: 3px;">
+                                    <div>
+                                        <form class="col s12" style="padding: 0px">
+                                            <div class="row storeSettingsDivs">
+                                                <h6>Store Information</h6>
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <input id="editStore-name" type="text" class="validate" stitm="name" autocomplete="off" maxlength="25">
+                                                        <label for="editStore-name" class="">Name</label>
                                                     </div>
                                                 </div>
-                                                <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; position: absolute; right:20px; margin-top:-55px;;" id="themeUpdate">ok</a>
-                                                <div class="collapsible-body" style="padding:10px;">
-                                                    <span>
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <input id="editStore-description" type="text" class="validate" stitm="description" autocomplete="off">
+                                                        <label for="editStore-description" class=""> Description</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <input id="editStore-Phone" type="text" class="validate" value="" stitm="phone">
+                                                        <label for="editStore-Phone" class="">Phone</label>
+                                                    </div>
+                                                </div>
+                                                <div class="file-field input-field" style="margin: 0px 10px;">
+                                                    <div class="opacitySelectedColor btn">
+                                                        <span>banner</span>
+                                                        <input id="editStore-image" stitm="banner" type="file">
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row storeSettingsDivs">
+                                                <h6>Business Category</h6>
+                                                <div class="row categoriesRow">
+                                                    <div class="input-field col s12">
+                                                        <select class="categorySelect" id="categorySelect"></select>
+                                                        <label>Select Category</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row storeSettingsDivs" style="display: none;">
+                                                <h6>Business Token</h6>
+                                                <div class="row tokenRow">
+                                                    <div class="input-field col s12">
+                                                        <select class="icons tokenSelect" id="tokenSelect"><option value="" disabled selected>Choose a token</option></select>
+                                                        <label>Select Token</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row storeSettingsDivs">
+                                                <h6>Store Theme</h6>
+                                                <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px;">
+                                                    <li>
+                                                        <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%;padding-bottom: 0px;border-bottom: none;">
+                                                            <div class="input-field col s12" style="padding: 0px;">
+                                                                <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none; margin-bottom: 0px;">
+                                                            </div>
+                                                        </div>
+                                                        <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; position: absolute; right:20px; margin-top:-55px;;" id="themeUpdate">ok</a>
+                                                        <div class="collapsible-body" style="padding:10px;">
+                                                            <span>
                                                     <div id="themeCanvas"></div>
                                                 </span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="row storeSettingsDivs">
-                                        <h6>Notification Settings</h6>
-                                        <ul style="display: inline-flex; margin-left: 10px;">
-                                            <li>
-                                                <p style="margin-bottom:0px;">M</p><br>
-                                                <p style="margin-left:-2px;margin-top:-10px;">
-                                                    <label for="mon">
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="row storeSettingsDivs">
+                                                <h6>Notification Settings</h6>
+                                                <ul style="display: inline-flex; margin-left: 10px;">
+                                                    <li>
+                                                        <p style="margin-bottom:0px;">M</p><br>
+                                                        <p style="margin-left:-2px;margin-top:-10px;">
+                                                            <label for="mon">
                                                         <input stitm="notifyDays" class="notifyDays-mon" type="checkbox" id="mon" />
                                                         <span></span>
                                                     </label>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p style="margin-bottom:0px;">T</p><br>
-                                                <p style="margin-left:-2px;margin-top:-10px;">
-                                                    <label for="tue">
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="margin-bottom:0px;">T</p><br>
+                                                        <p style="margin-left:-2px;margin-top:-10px;">
+                                                            <label for="tue">
                                                     <input stitm="notifyDays" class="notifyDays-tue" type="checkbox" id="tue" />
                                                         <span></span>
                                                     </label>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p style="margin-bottom:0px;">W</p><br>
-                                                <p style="margin-left:-2px;margin-top:-10px;">
-                                                    <label for="wed">
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="margin-bottom:0px;">W</p><br>
+                                                        <p style="margin-left:-2px;margin-top:-10px;">
+                                                            <label for="wed">
                                                     <input stitm="notifyDays" class="notifyDays-wed" type="checkbox" id="wed" />
                                                         <span></span>
                                                     </label>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p style="margin-bottom:0px;">T</p><br>
-                                                <p style="margin-left:-2px;margin-top:-10px;">
-                                                    <label for="thur">
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="margin-bottom:0px;">T</p><br>
+                                                        <p style="margin-left:-2px;margin-top:-10px;">
+                                                            <label for="thur">
                                                     <input stitm="notifyDays" class="notifyDays-thur" type="checkbox" id="thur" />
                                                         <span></span>
                                                     </label>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p style="margin-bottom:0px;">F</p><br>
-                                                <p style="margin-left:-2px;margin-top:-10px;">
-                                                    <label for="fri">
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="margin-bottom:0px;">F</p><br>
+                                                        <p style="margin-left:-2px;margin-top:-10px;">
+                                                            <label for="fri">
                                                     <input stitm="notifyDays" class="notifyDays-fri" type="checkbox" id="fri" />
                                                         <span></span>
                                                     </label>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p style="margin-bottom:0px;">S</p><br>
-                                                <p style="margin-left:-2px;margin-top:-10px;">
-                                                    <label for="sat">
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="margin-bottom:0px;">S</p><br>
+                                                        <p style="margin-left:-2px;margin-top:-10px;">
+                                                            <label for="sat">
                                                     <input stitm="notifyDays" class="notifyDays-sat" type="checkbox" id="sat" />
                                                         <span></span>
                                                     </label>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p style="margin-bottom:0px;">S</p><br>
-                                                <p style="margin-left:-2px;margin-top:-10px;">
-                                                    <label for="sun">
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p style="margin-bottom:0px;">S</p><br>
+                                                        <p style="margin-left:-2px;margin-top:-10px;">
+                                                            <label for="sun">
                                                         <input stitm="notifyDays" class="notifyDays-sun" type="checkbox" id="sun" />
                                                         <span></span>
                                                     </label>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="row storeSettingsDivs">
-                                        <h6>Working Hours</h6>
-                                        <div class="row workingHrs" style="padding-top: 45px;">
-                                            <div class="col s4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="row storeSettingsDivs">
+                                                <h6>Working Hours</h6>
+                                                <div class="row workingHrs" style="padding-top: 45px;">
+                                                    <div class="col s4">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
                                                 <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
                                             </svg>
-                                            </div>
-                                            <div class="col s3" style="padding:0px;">
-                                                <div class="col s12" style="padding:0px;">
-                                                    <p style="margin:0px;">Mon - Fri</p>
+                                                    </div>
+                                                    <div class="col s3" style="padding:0px;">
+                                                        <div class="col s12" style="padding:0px;">
+                                                            <p style="margin:0px;">Mon - Fri</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col s3">
+                                                        <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="mon-fri" style="border-radius: 3px;" value="edit">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col s3">
-                                                <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="mon-fri" style="border-radius: 3px;" value="edit">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
+                                                <div class="row">
+                                                    <div class="col s4">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
                                                 <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
                                             </svg>
-                                            </div>
-                                            <div class="col s3" style="padding:0px;">
-                                                <div class="col s12" style="padding:0px;">
-                                                    <p style="margin:0px;">Sat</p>
+                                                    </div>
+                                                    <div class="col s3" style="padding:0px;">
+                                                        <div class="col s12" style="padding:0px;">
+                                                            <p style="margin:0px;">Sat</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col s3">
+                                                        <input type="text" class="timepicker btn opacitySelectedColor" id="wkndSat" style="border-radius: 3px;" value="edit">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col s3">
-                                                <input type="text" class="timepicker btn opacitySelectedColor" id="wkndSat" style="border-radius: 3px;" value="edit">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
+                                                <div class="row">
+                                                    <div class="col s4">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
                                                 <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
                                             </svg>
-                                            </div>
-                                            <div class="col s3" style="padding:0px;">
-                                                <div class="col s12" style="padding:0px;">
-                                                    <p style="margin:0px;">Sun</p>
+                                                    </div>
+                                                    <div class="col s3" style="padding:0px;">
+                                                        <div class="col s12" style="padding:0px;">
+                                                            <p style="margin:0px;">Sun</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col s3">
+                                                        <input type="text" class="timepicker btn opacitySelectedColor" id="wkndSun" style="border-radius: 3px;" value="edit">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col s3">
-                                                <input type="text" class="timepicker btn opacitySelectedColor" id="wkndSun" style="border-radius: 3px;" value="edit">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--
+                                            <!--
                                     <div class="row storeSettingsDivs">
                                         <h6>Buy Tokens</h6>
                                         <div class="row">
@@ -2223,56 +2106,170 @@
                                         </div>
                                     </div>
 -->
-                                    <div class="row storeSettingsDivs">
-                                        <h6>Daily Budget</h6>
-                                        <div class="row budget">
-                                            <div class="input-field col s12">
-                                                <input id="dailyBudget" type="text" class="validate" placeholder="Ksh" stitm="dailyBudget">
-                                                <label for="dailyBudget" class="active">Daily Budget</label>
+                                            <div class="row storeSettingsDivs">
+                                                <h6>Daily Budget</h6>
+                                                <div class="row budget">
+                                                    <div class="input-field col s12">
+                                                        <input id="dailyBudget" type="text" class="validate" placeholder="Ksh" stitm="dailyBudget">
+                                                        <label for="dailyBudget" class="active">Daily Budget</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row storeSettingsDivs">
+                                                <h6>Store Location</h6>
+                                                <div class="row" style="margin-bottom:0px;">
+                                                    <div class="input-field col s9">
+                                                        <input id="editStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" stitm="lonlat" disabled>
+                                                        <label for="editStore-Location" class="">Location</label>
+                                                    </div>
+                                                    <div class="input-field col s3">
+                                                        <a class="waves-effect waves-light btn opacitySelectedColor" style="    padding:0 7px; font-size:0.75rem;" id="updateLoc">update</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row storeSettingsDivs">
+                                                <h6>Manager Settings</h6>
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <div class="btn opacitySelectedColor" id="opnMngPg">
+                                                            <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); setTimeout(getManager, 2000);" style=" color:white;width:100%;">Manage</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="permanentChng" style="margin: 30px 10px;">
+                                                <h6><span style="background:#EEEEEF;">These changes will be permanent</span></h6>
+                                            </div>
+                                            <div class="row storeSettingsDivs">
+                                                <h6>Transfer Store</h6>
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <input id="transfer-shop" type="text" class="validate" placeholder="username" stitm="shopTransfer">
+                                                        <label for="transfer-shop" class="">Transfer Shop</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row storeSettingsDivs">
+                                                <h6>Delete Store</h6>
+                                                <div class="row">
+                                                    <a class="waves-effect waves-light btn" style="background:red; display: block; margin: 15px 5px;" onclick='$("#deleteStoreModal").modal("open")'>Delete Store</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="entSettings">
+                            <div class="row storeEntSettings">
+                                <div id="entSettingsTab" class="col s12">
+                                    <div class="row">
+                                        <div class="row entStatus">
+                                            <h6>Status</h6>
+                                            <div class="row" style="margin-top: 20px">
+                                                <div class="col s8">
+                                                    <p style=" margin: 0px; float: right; margin-right: 10px;">Activate / Deactivate Tokens</p>
+                                                </div>
+                                                <div class="col s4">
+                                                    <!-- Disabled Switch -->
+                                                    <div class="switch">
+                                                        <label>
+                                            <input type="checkbox" id="tkSaleSet" entInpt="checkbox">
+                                            <span class="lever"></span>
+                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top: 20px">
+                                                <div class="col s8">
+                                                    <p style=" margin: 0px; float: right; margin-right: 10px;">Show / Hide Managers</p>
+                                                </div>
+                                                <div class="col s4">
+                                                    <!-- Disabled Switch -->
+                                                    <div class="switch">
+                                                        <label>
+                                            <input type="checkbox" id="showHideMngr" entInpt="checkbox"> 
+                                            <span class="lever"></span>
+                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row storeSettingsDivs">
-                                        <h6>Store Location</h6>
-                                        <div class="row" style="margin-bottom:0px;">
-                                            <div class="input-field col s9">
-                                                <input id="editStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" stitm="lonlat" disabled>
-                                                <label for="editStore-Location" class="">Location</label>
+                                        <div class="row entBanner">
+                                            <h6>Banner</h6>
+                                            <form action="#">
+                                                <div class="file-field input-field">
+                                                    <div class="btn opacitySelectedColor">
+                                                        <span>File</span>
+                                                        <input type="file" id="entBanner" class="serviceImage" entInpt="entBanner">
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text" entInpt="skipBannerInpt">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="row entForms">
+                                            <h6>About</h6>
+                                            <form class="col s12">
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <input id="entAboutHeader" entInpt="entAboutTitle" type="text" class="validate">
+                                                        <label for="email">About Header</label>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <form class="col s12">
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <input id="entAboutBody" entInpt="entAboutBody" type="text" class="validate">
+                                                        <label for="email">About Body</label>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="row entServicesSettings">
+                                            <h6>Section One</h6>
+                                            <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
+                                                <i id="addEntServiceOne">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100; width: 20px; float: left; margin-right: 10px;" xml:space="preserve">
+                                            <path style="fill:white;" d="M40,50c0,2.762-2.238,5-5,5H5c-2.762,0-5-2.238-5-5s2.238-5,5-5h30C37.762,45,40,47.238,40,50z    M35,65H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,65,35,65z M97,45H80V28c0-2.762-2.238-3-5-3   s-5,0.238-5,3v17H53.5c-2.762,0-3,2.238-3,5s0.238,5,3,5H70v17c0,2.762,2.238,3,5,3s5-0.238,5-3V55h17c2.762,0,3-2.238,3-5   S99.762,45,97,45z M35,25H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,25,35,25z"/>
+
+                                        </svg>
+                                    </span>Add New
+                                </i>
                                             </div>
-                                            <div class="input-field col s3">
-                                                <a class="waves-effect waves-light btn opacitySelectedColor" style="    padding:0 7px; font-size:0.75rem;" id="updateLoc">update</a>
+                                            <div class="entServicesContainer entServiceOne">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row storeSettingsDivs">
-                                        <h6>Manager Settings</h6>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <div class="btn opacitySelectedColor" id="opnMngPg">
-                                                    <a href="#" page="Managers" class="waves-effect waves-cyan nav" id="managersClickEvent" onclick="managersID(); setTimeout(getManager, 2000);" style=" color:white;width:100%;">Manage</a>
+                                        <div class="row entServicesSettings">
+                                            <h6>Section Two</h6>
+                                            <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
+                                                <i id="addEntServiceTwo">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100; width: 20px; float: left; margin-right: 10px;" xml:space="preserve">
+                                            <path style="fill:white;" d="M40,50c0,2.762-2.238,5-5,5H5c-2.762,0-5-2.238-5-5s2.238-5,5-5h30C37.762,45,40,47.238,40,50z    M35,65H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,65,35,65z M97,45H80V28c0-2.762-2.238-3-5-3   s-5,0.238-5,3v17H53.5c-2.762,0-3,2.238-3,5s0.238,5,3,5H70v17c0,2.762,2.238,3,5,3s5-0.238,5-3V55h17c2.762,0,3-2.238,3-5   S99.762,45,97,45z M35,25H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,25,35,25z"/>
+
+                                        </svg>
+                                    </span>Add New
+                                </i>
+                                            </div>
+                                            <div class="entServicesContainer entServiceTwo">
+                                            </div>
+                                        </div>
+                                        <div class="row entBanner" style="margin-bottom: 20px;">
+                                            <h6>Token Sale</h6>
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                    <div class="opacitySelectedColor btn" id="tokenSale" stitm="entBanner" style="background: #00B39A;margin-bottom: 10px;margin-left: 10px;">
+                                                        <a style="color: white;">Inspect</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="permanentChng" style="margin: 30px 10px;">
-                                        <h6><span style="background:#EEEEEF;">These changes will be permanent</span></h6>
-                                    </div>
-                                    <div class="row storeSettingsDivs">
-                                        <h6>Transfer Store</h6>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input id="transfer-shop" type="text" class="validate" placeholder="username" stitm="shopTransfer">
-                                                <label for="transfer-shop" class="">Transfer Shop</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row storeSettingsDivs">
-                                        <h6>Delete Store</h6>
-                                        <div class="row">
-                                            <a class="waves-effect waves-light btn" style="background:red; display: block; margin: 15px 5px;" onclick='$("#deleteStoreModal").modal("open")'>Delete Store</a>
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>

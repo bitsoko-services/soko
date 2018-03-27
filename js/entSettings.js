@@ -3,8 +3,8 @@ var srcData;
 //Open Enterprise Settings Page
 $(document).on("click", "#entSettings", function () {
     $('#content > .container > div').css('display', 'none');
-    $('#content > .container > .entSettings').css('display', 'block');
-    $(".activePage").html("Enterprise Settings")
+    $('#content > .container > .settingsPage').css('display', 'block');
+    $(".activePage").html("")
 });
 
 

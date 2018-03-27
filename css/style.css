@@ -4406,6 +4406,25 @@ ul.side-nav.leftside-navigation li:hover {
 
 
 /*******************************************
+               Store Ent Settings
+*********************************************/
+
+.settingsPage ul {
+    margin-top: -1px;
+    z-index: 1;
+}
+
+.settingsPage li a {
+    color: white !important;
+}
+
+.settingsPage li {
+    /* height: 30px !important; */
+    line-height: 30px !important;
+}
+
+
+/*******************************************
                Token Section
 *********************************************/
 
