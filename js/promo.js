@@ -5,8 +5,6 @@ function refreshPromotions() {
     }).then(function (e) {
         //Subscribers Id
         var promoSubsId = e.promotions;
-        $(".allPromoCount").text(promoSubsId.length);
-
 
         for (var i = 0; i < promoSubsId.length; i++) {
             var allPromo = promoSubsId[i].promoSubs;
