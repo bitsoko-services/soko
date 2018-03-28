@@ -138,8 +138,8 @@ function deliveryMbr() {
 
             var deliveryMemberLst = [];
         }
+        $("#membersLst").html("");
         for (var i = 0; i < deliveryMemberLst.length; i++) {
-            $("#membersLst").html("");
             for (var s in deliveryGuys) {
                 var name = deliveryGuys[s].name;
                 var id = deliveryGuys[s].id;
