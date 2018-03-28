@@ -85,58 +85,86 @@ $(document).on("click", "#saveEntServOne", function (imgId) {
     var getImageID = $(this).parent().parent().find(".entServiceImage")
     imgId = getImageID
     base64Ent(imgId)
-    if ($("#entServOneImg").val() == "") {
-        M.toast({
-            html: 'Error! Please add an image',
-            displayLength: 3000
-        })
-    } else if ($("#serviceOneHeader").val() == "") {
-        M.toast({
-            html: 'Error! Please add a title',
-            displayLength: 3000
-        })
-    } else if ($("#serviceOneBody").val() == "") {
-        M.toast({
-            html: 'Error! Please add a body',
-            displayLength: 3000
-        })
-    } else {
+    if ($(".entServicesCardOne").length == 0) {
+        var sectionOneCard = []
         var icon = srcData
         var title = $("#serviceOneHeader").val()
         var body = $("#serviceOneBody").val()
-        //Fetch Enterprise Info
-        $(document).ready(function () {
-            doFetch({
-                action: 'merchantServiceLoader',
-                id: localStorage.getItem("bits-user-name")
-            }).then(function (e) {
-                var stringifiedEntInfo = JSON.stringify(e.settings.entSettings)
-                var parsedEntInfo = JSON.parse(stringifiedEntInfo)
-                var serviceOne = JSON.parse(parsedEntInfo.entIconList)
 
-
-                serviceOne.push({
-                    icon,
-                    title,
-                    body
+        var serviceOneArray = {
+            icon,
+            title,
+            body
+        }
+        sectionOneCard.push(serviceOneArray)
+        doFetch({
+            action: 'entSettings',
+            id: localStorage.getItem('soko-owner-id'),
+            value: JSON.stringify(sectionOneCard),
+            prop: "entIconList"
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                M.toast({
+                    html: 'Added successfully',
+                    displayLength: 3000
                 })
-                doFetch({
-                    action: 'entSettings',
-                    id: localStorage.getItem('soko-owner-id'),
-                    value: JSON.stringify(serviceOne),
-                    prop: "entIconList"
-                }).then(function (e) {
-                    if (e.status == 'ok') {
-                        M.toast({
-                            html: 'Added successfully',
-                            displayLength: 3000
-                        })
 
-                    }
-                });
-
+            }
+        });
+    } else {
+        if ($("#entServOneImg").val() == "") {
+            M.toast({
+                html: 'Error! Please add an image',
+                displayLength: 3000
             })
-        })
+        } else if ($("#serviceOneHeader").val() == "") {
+            M.toast({
+                html: 'Error! Please add a title',
+                displayLength: 3000
+            })
+        } else if ($("#serviceOneBody").val() == "") {
+            M.toast({
+                html: 'Error! Please add a body',
+                displayLength: 3000
+            })
+        } else {
+            var icon = srcData
+            var title = $("#serviceOneHeader").val()
+            var body = $("#serviceOneBody").val()
+            //Fetch Enterprise Info
+            $(document).ready(function () {
+                doFetch({
+                    action: 'merchantServiceLoader',
+                    id: localStorage.getItem("bits-user-name")
+                }).then(function (e) {
+                    var stringifiedEntInfo = JSON.stringify(e.settings.entSettings)
+                    var parsedEntInfo = JSON.parse(stringifiedEntInfo)
+                    var serviceOne = JSON.parse(parsedEntInfo.entIconList)
+
+
+                    serviceOne.push({
+                        icon,
+                        title,
+                        body
+                    })
+                    doFetch({
+                        action: 'entSettings',
+                        id: localStorage.getItem('soko-owner-id'),
+                        value: JSON.stringify(serviceOne),
+                        prop: "entIconList"
+                    }).then(function (e) {
+                        if (e.status == 'ok') {
+                            M.toast({
+                                html: 'Added successfully',
+                                displayLength: 3000
+                            })
+
+                        }
+                    });
+
+                })
+            })
+        }
     }
 });
 
