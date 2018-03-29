@@ -148,7 +148,16 @@ function updateStores() {
             $('#firstStoreModal').modal('open');
         }
         //Load Ent Settings Info
-        var stringifiedEntInfo = JSON.stringify(e.settings.entSettings)
+        var stringifiedEntInfo = JSON.stringify(e.settings.entSettings);
+        console.log(JSON.parse(stringifiedEntInfo))
+        $("#entAboutBody").val(JSON.parse(stringifiedEntInfo).entAboutBody)
+        $("#entAboutHeader").val(JSON.parse(stringifiedEntInfo).entAboutTitle)
+        if (JSON.parse(stringifiedEntInfo).showManagers == 1) {
+            $("#showHideMngr").prop("checked", true)
+        }
+        if (JSON.parse(stringifiedEntInfo).showTokens == 1) {
+            $("#tkSaleSet").prop("checked", true)
+        }
         var parsedEntInfo = JSON.parse(stringifiedEntInfo);
         try {
             var serviceOne = JSON.parse(parsedEntInfo.entIconList)
