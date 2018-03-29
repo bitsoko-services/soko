@@ -85,86 +85,88 @@ $(document).on("click", "#saveEntServOne", function (imgId) {
     var getImageID = $(this).parent().parent().find(".entServiceImage")
     imgId = getImageID
     base64Ent(imgId)
-    if ($(".entServicesCardOne").length == 0) {
-        var sectionOneCard = []
-        var icon = srcData
-        var title = $("#serviceOneHeader").val()
-        var body = $("#serviceOneBody").val()
-
-        var serviceOneArray = {
-            icon,
-            title,
-            body
-        }
-        sectionOneCard.push(serviceOneArray)
-        doFetch({
-            action: 'entSettings',
-            id: localStorage.getItem('soko-owner-id'),
-            value: JSON.stringify(sectionOneCard),
-            prop: "entIconList"
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                M.toast({
-                    html: 'Added successfully',
-                    displayLength: 3000
-                })
-
-            }
-        });
+    if ($("#entServOneImg").val() == "") {
+        M.toast({
+            html: 'Error! Please add an image',
+            displayLength: 3000
+        })
+    } else if ($("#serviceOneHeader").val() == "") {
+        M.toast({
+            html: 'Error! Please add a title',
+            displayLength: 3000
+        })
+    } else if ($("#serviceOneBody").val() == "") {
+        M.toast({
+            html: 'Error! Please add a body',
+            displayLength: 3000
+        })
     } else {
-        if ($("#entServOneImg").val() == "") {
-            M.toast({
-                html: 'Error! Please add an image',
-                displayLength: 3000
-            })
-        } else if ($("#serviceOneHeader").val() == "") {
-            M.toast({
-                html: 'Error! Please add a title',
-                displayLength: 3000
-            })
-        } else if ($("#serviceOneBody").val() == "") {
-            M.toast({
-                html: 'Error! Please add a body',
-                displayLength: 3000
-            })
-        } else {
-            var icon = srcData
-            var title = $("#serviceOneHeader").val()
-            var body = $("#serviceOneBody").val()
-            //Fetch Enterprise Info
-            $(document).ready(function () {
+        setTimeout(function () {
+            if ($(".entServicesCardOne").length == 0) {
+                var sectionOneCard = []
+                var icon = srcData
+                var title = $("#serviceOneHeader").val()
+                var body = $("#serviceOneBody").val()
+
+                var serviceOneArray = {
+                    icon,
+                    title,
+                    body
+                }
+                sectionOneCard.push(serviceOneArray)
                 doFetch({
-                    action: 'merchantServiceLoader',
-                    id: localStorage.getItem("bits-user-name")
+                    action: 'entSettings',
+                    id: localStorage.getItem('soko-owner-id'),
+                    value: JSON.stringify(sectionOneCard),
+                    prop: "entIconList"
                 }).then(function (e) {
-                    var stringifiedEntInfo = JSON.stringify(e.settings.entSettings)
-                    var parsedEntInfo = JSON.parse(stringifiedEntInfo)
-                    var serviceOne = JSON.parse(parsedEntInfo.entIconList)
-
-
-                    serviceOne.push({
-                        icon,
-                        title,
-                        body
-                    })
+                    if (e.status == 'ok') {
+                        M.toast({
+                            html: 'Added successfully',
+                            displayLength: 3000
+                        })
+                        $("#addEntServiceOne").modal("close")
+                    }
+                });
+            } else {
+                var icon = srcData
+                var title = $("#serviceOneHeader").val()
+                var body = $("#serviceOneBody").val()
+                //Fetch Enterprise Info
+                $(document).ready(function () {
                     doFetch({
-                        action: 'entSettings',
-                        id: localStorage.getItem('soko-owner-id'),
-                        value: JSON.stringify(serviceOne),
-                        prop: "entIconList"
+                        action: 'merchantServiceLoader',
+                        id: localStorage.getItem("bits-user-name")
                     }).then(function (e) {
-                        if (e.status == 'ok') {
-                            M.toast({
-                                html: 'Added successfully',
-                                displayLength: 3000
-                            })
+                        var stringifiedEntInfo = JSON.stringify(e.settings.entSettings)
+                        var parsedEntInfo = JSON.parse(stringifiedEntInfo)
+                        var serviceOne = JSON.parse(parsedEntInfo.entIconList)
 
-                        }
-                    });
 
+                        serviceOne.push({
+                            icon,
+                            title,
+                            body
+                        })
+                        doFetch({
+                            action: 'entSettings',
+                            id: localStorage.getItem('soko-owner-id'),
+                            value: JSON.stringify(serviceOne),
+                            prop: "entIconList"
+                        }).then(function (e) {
+                            if (e.status == 'ok') {
+                                M.toast({
+                                    html: 'Added successfully',
+                                    displayLength: 3000
+                                })
+                                $("#addEntServiceOne").modal("close")
+                            }
+                        });
+
+                    })
                 })
-            })
-        }
+            }
+        }, 2000);
     }
 });
 
@@ -190,43 +192,75 @@ $(document).on("click", "#saveEntServTwo", function (imgId) {
             displayLength: 3000
         })
     } else {
-        var icon = srcData
-        var title = $("#serviceTwoHeader").val()
-        var body = $("#serviceTwoBody").val()
-        //Fetch Enterprise Info
-        $(document).ready(function () {
-            doFetch({
-                action: 'merchantServiceLoader',
-                id: localStorage.getItem("bits-user-name")
-            }).then(function (e) {
-                var stringifiedEntInfo = JSON.stringify(e.settings.entSettings)
-                var parsedEntInfo = JSON.parse(stringifiedEntInfo)
-                var serviceTwo = JSON.parse(parsedEntInfo.entImageList)
+        setTimeout(function () {
+            if ($(".entServicesCardTwo").length == 0) {
+                var sectionOneCard = []
+                var icon = srcData
+                var title = $("#serviceTwoHeader").val()
+                var body = $("#serviceTwoBody").val()
 
-
-                serviceTwo.push({
+                var serviceOneArray = {
                     icon,
                     title,
                     body
-                })
+                }
+                sectionOneCard.push(serviceOneArray)
                 doFetch({
                     action: 'entSettings',
                     id: localStorage.getItem('soko-owner-id'),
-                    value: JSON.stringify(serviceTwo),
+                    value: JSON.stringify(sectionOneCard),
                     prop: "entImageList"
                 }).then(function (e) {
                     if (e.status == 'ok') {
                         M.toast({
                             html: 'Added successfully',
-                            displayLength: 2000
+                            displayLength: 3000
                         })
+                        $("#addEntServiceTwo").modal("close")
                     }
                 });
+            } else {
+                var icon = srcData
+                var title = $("#serviceTwoHeader").val()
+                var body = $("#serviceTwoBody").val()
+                //Fetch Enterprise Info
+                $(document).ready(function () {
+                    doFetch({
+                        action: 'merchantServiceLoader',
+                        id: localStorage.getItem("bits-user-name")
+                    }).then(function (e) {
+                        var stringifiedEntInfo = JSON.stringify(e.settings.entSettings)
+                        var parsedEntInfo = JSON.parse(stringifiedEntInfo)
+                        var serviceOne = JSON.parse(parsedEntInfo.entIconList)
 
-            })
-        })
+
+                        serviceOne.push({
+                            icon,
+                            title,
+                            body
+                        })
+                        doFetch({
+                            action: 'entSettings',
+                            id: localStorage.getItem('soko-owner-id'),
+                            value: JSON.stringify(serviceOne),
+                            prop: "entImageList"
+                        }).then(function (e) {
+                            if (e.status == 'ok') {
+                                M.toast({
+                                    html: 'Added successfully',
+                                    displayLength: 3000
+                                })
+                                $("#addEntServiceTwo").modal("close")
+                            }
+                        });
+
+                    })
+                })
+            }
+        }, 2000);
     }
 });
+
 
 $(document).on("change", ".entSettings input", function (imgId) {
     var inputChanged = $(this);
@@ -344,7 +378,7 @@ $(document).on("click", ".saveServiceTwo", function () {
         action: 'entSettings',
         id: localStorage.getItem('soko-owner-id'),
         value: JSON.stringify(finalArray),
-        prop: "entIconList"
+        prop: "entImageList"
     }).then(function (e) {
         if (e.status == 'ok') {
             M.toast({
