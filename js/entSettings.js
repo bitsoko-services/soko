@@ -273,12 +273,12 @@ $(document).on("change", ".entSettings input", function (imgId) {
     } else if (entInput == "serviceImageNoN") {} else if (entInput == "serviceImage") {
         var currentInput = $(this);
         console.log(currentInput.val())
-        //        imgId = currentInput
-        //        base64Ent(imgId)
-        //        setTimeout(function () {
-        //            currentInput.parent().parent().parent().attr("getval", srcData)
-        //            console.log(srcData)
-        //        }, 2000);
+        imgId = currentInput
+        base64Ent(imgId)
+        setTimeout(function () {
+            currentInput.parent().parent().parent().attr("getval", srcData)
+            console.log(src Data)
+        }, 2000);
     } else if (entInput == "entBanner") {
         imgId = inputChanged
         base64Ent(imgId)
