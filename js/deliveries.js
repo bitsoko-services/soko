@@ -139,6 +139,7 @@ function deliveryMbr() {
             var deliveryMemberLst = [];
         }
         $("#membersLst").html("");
+        $("#ordMembersLst").html("");
         for (var i = 0; i < deliveryMemberLst.length; i++) {
             for (var s in deliveryGuys) {
                 var name = deliveryGuys[s].name;
