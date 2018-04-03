@@ -760,10 +760,12 @@ function storeOwner() {
     var bitsUserName = localStorage.getItem("bits-user-name");
     var sokoOwner = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).owner;
     if (bitsUserName != sokoOwner) {
-        $(".settingsIcon").hide();
+        $("#checkStoreOwner").css('display', 'block')
+        $("#storeSettings").css("display", "none");
+
     } else {
-        $(".settingsIcon").css("display", "block");
-        $("#settingsOpt").css("display", "block");
+        $("#storeSettings").css('display', 'block')
+        $("#checkStoreOwner").css('display', 'none')
     }
 }
 
