@@ -150,6 +150,14 @@ function updateStores() {
         //Load Ent Settings Info
         var stringifiedEntInfo = JSON.stringify(e.settings.entSettings);
         console.log(JSON.parse(stringifiedEntInfo))
+
+        //Check if shop is enterprised
+        var enterprised = stringifiedEntInfo.enterprised
+
+        if (enterprised != true) {
+            $('.entSettingsContainer').css('display', 'none')
+        }
+
         $("#entAboutBody").val(JSON.parse(stringifiedEntInfo).entAboutBody)
         $("#entAboutHeader").val(JSON.parse(stringifiedEntInfo).entAboutTitle)
         if (JSON.parse(stringifiedEntInfo).showManagers == 1) {
