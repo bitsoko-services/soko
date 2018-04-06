@@ -33,6 +33,7 @@ $("#calcTokenVal").click(function () {
                         classes: 'prodCatToast',
                         displayLength: 3000
                     })
+                    $("#buyStoreTokens").modal("close")
                 } else {
                     M.toast({
                         html: 'Error! Please try later',
