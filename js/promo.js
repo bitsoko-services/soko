@@ -31,7 +31,13 @@ function refreshPromotions() {
 
 function checkedProdsInPromo() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-promotions').onsuccess = function (event) {
-        var reqs = JSON.parse(event.target.result);
+        
+        try {
+           var reqs = JSON.parse(event.target.result);
+        } catch (err) {
+            var reqs = [];
+        };
+        
         for (var i = 0; i < reqs.length; ++i) {
             var tt = JSON.parse(reqs[i].promoItems);
 

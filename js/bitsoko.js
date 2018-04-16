@@ -157,6 +157,9 @@ function updateStores() {
         if (enterprised != true) {
             $('.entSettingsContainer').css('display', 'none')
         }
+        if (enterprised == true) {
+            $('.entApplication').css('display', 'none')
+        }
 
         $("#entAboutBody").val(JSON.parse(stringifiedEntInfo).entAboutBody)
         $("#entAboutHeader").val(JSON.parse(stringifiedEntInfo).entAboutTitle)

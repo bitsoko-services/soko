@@ -358,7 +358,6 @@ $(document).on("click", ".saveServiceOne", function () {
 $(document).on("click", ".saveServiceTwo", function () {
     //get card content
     var allCards = $(".entServicesCardTwo");
-    console.log(allCards)
     var servOneObj = []
 
     for (var i = 0; i < allCards.length; ++i) {
@@ -397,5 +396,95 @@ $(document).on("click", ".saveServiceTwo", function () {
 
 //Delete Service One
 $(document).on("click", ".deleteServiceOne", function () {
-    var servDelete = $(this).parent().parent().attr("count");
+    servDelete = $(this).parent().parent().remove();
+    M.toast({
+        html: 'Please wait...',
+        displayLength: 100000,
+        classes: "deleteServToast"
+    })
+    setTimeout(function () {
+        //get card content
+        var allCards = $(".entServicesCardOne");
+        var servOneObj = []
+
+        for (var i = 0; i < allCards.length; ++i) {
+            var icon = allCards[i].children[0].attributes[0].textContent
+            var title = allCards[i].children[1][0].value
+            var body = allCards[i].children[2][0].value
+            sectionOneServArray = {
+                icon,
+                title,
+                body
+            }
+            servOneObj.push(sectionOneServArray)
+        }
+
+        var finalArray = servOneObj
+        doFetch({
+            action: 'entSettings',
+            id: localStorage.getItem('soko-owner-id'),
+            value: JSON.stringify(finalArray),
+            prop: "entIconList"
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                M.toast({
+                    html: 'Removed successfully',
+                    displayLength: 3000
+                });
+                $(".deleteServToast").remove();
+            } else {
+                M.toast({
+                    html: 'Error! Try again later',
+                    displayLength: 3000
+                })
+            }
+        });
+    }, 1000);
+});
+
+$(document).on("click", ".deleteServiceTwo", function () {
+    $(this).parent().parent().remove();
+    M.toast({
+        html: 'Please wait...',
+        displayLength: 100000,
+        classes: "deleteServToast"
+    })
+    setTimeout(function () {
+        //get card content
+        var allCards = $(".entServicesCardTwo");
+        var servOneObj = []
+
+        for (var i = 0; i < allCards.length; ++i) {
+            var icon = allCards[i].children[0].attributes[0].textContent
+            var title = allCards[i].children[1][0].value
+            var body = allCards[i].children[2][0].value
+            sectionOneServArray = {
+                icon,
+                title,
+                body
+            }
+            servOneObj.push(sectionOneServArray)
+        }
+
+        var finalArray = servOneObj
+        doFetch({
+            action: 'entSettings',
+            id: localStorage.getItem('soko-owner-id'),
+            value: JSON.stringify(finalArray),
+            prop: "entImageList"
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                M.toast({
+                    html: 'Removed successfully',
+                    displayLength: 3000
+                });
+                $(".deleteServToast").remove();
+            } else {
+                M.toast({
+                    html: 'Error! Try again later',
+                    displayLength: 3000
+                })
+            }
+        });
+    }, 1000);
 });
