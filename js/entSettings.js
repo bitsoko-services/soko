@@ -396,7 +396,7 @@ $(document).on("click", ".saveServiceTwo", function () {
 
 //Delete Service One
 $(document).on("click", ".deleteServiceOne", function () {
-    servDelete = $(this).parent().parent().remove();
+    $(this).parent().parent().remove();
     M.toast({
         html: 'Please wait...',
         displayLength: 100000,
