@@ -90,7 +90,8 @@ function addStore() {
     id = e.id;
     orderUpdater();
     productsUpdater();
-    promoUpdater();
+	refreshPromotions();
+    //promoUpdater();
     beaconsUpdater();
     //refreshBills();
     doFetch({
@@ -129,8 +130,7 @@ function addStore() {
     refreshSalesOrders();
     refreshBeacons();
     refreshProducts();
-    refreshPromotions();
-    promoUpdater();
+    //promoUpdater();
 }
 
 function editStoreCallback() {
