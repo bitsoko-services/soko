@@ -53,6 +53,7 @@ var adress = "";
 get_orderItems = []
 
 function addOrderItems(orderid, orderItems, orderLoc) {
+    console.log(orderItems)
     //    console.log('[+]order items unique id: ', orderItems.from);
     get_orderItems.push(orderItems);
     var orderLocation = orderItems.location;
@@ -101,12 +102,11 @@ function addOrderItems(orderid, orderItems, orderLoc) {
         var orderItems = $.parseJSON(p.orderItems.items);
 
         //name: p.orderItems.name,
-
         //number: p.orderItems.phone
         var orderUser = {
             name: orderCrdName,
             icon: p.orderItems.icon,
-            number: '0707'
+            number: p.orderItems.phone
         };
         var orderid = p.orderid;
         var orderLoc = p.orderLoc;

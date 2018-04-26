@@ -213,7 +213,7 @@ function createInvoiceListener(orderid, invoiceDat, orderLoc) {
                             var formattedtxt = res[1].results[0].formatted_address;
                             formattedtxt = formattedtxt.split(',').join('\n');
 
-                            pdf.addImage(res[0], 'JPEG', 450, 240, 80, 80);
+                            pdf.addImage(res[0], 'JPEG', 500, 240, 80, 80);
                             pdf.text(formattedtxt, 330, 250);
                             pdf.text('Delivery to:', 35, 210);
                             pdf.text(userName, 130, 250);
