@@ -387,7 +387,7 @@ function updateStore(t) {
                 canvas.width = iwScaled;
                 canvas.height = ihScaled;
                 ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
-                val = canvas.toDataURL();
+                val = canvas.toDataURL("image/webp");
                 doFetch({
                     action: 'doEditStore',
                     id: localStorage.getItem('soko-active-store'),
