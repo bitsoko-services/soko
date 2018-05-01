@@ -1,4 +1,4 @@
-var imported = document.createElement('script');clear
+var imported = document.createElement('script');
 imported.src = 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest';
 document.head.appendChild(imported);
 
