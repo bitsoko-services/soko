@@ -53,7 +53,7 @@ var adress = "";
 get_orderItems = []
 
 function addOrderItems(orderid, orderItems, orderLoc) {
-    console.log(orderItems)
+//    console.log(orderItems)
     //    console.log('[+]order items unique id: ', orderItems.from);
     get_orderItems.push(orderItems);
     var orderLocation = orderItems.location;

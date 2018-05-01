@@ -59,12 +59,17 @@ function startScanning() {
 
 $(".barCodeOpn").click(function () {
     $('#barCodeReader').modal({
-        ready: function () {
+        onOpenStart: function () {
 
             startScanning();
 
         },
-        complete: function () {
+        onOpenEnd: function () {
+
+//            init();
+
+        },
+        onCloseEnd: function () {
             Quagga.stop()
         }
     }).modal('open');
