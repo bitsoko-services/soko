@@ -265,7 +265,7 @@ function updateProd(t) {
                 canvas.width = iwScaled;
                 canvas.height = ihScaled;
                 ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
-                val = canvas.toDataURL();
+                val = canvas.toDataURL("image/webp");
                 doFetch({
                     action: 'doProdUpdate',
                     id: prid,
@@ -506,7 +506,7 @@ for (var i = 0; i < shroot.length; ++i) {
                     canvas.width = iwScaled;
                     canvas.height = ihScaled;
                     ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
-                    newProdDat[val] = canvas.toDataURL();
+                    newProdDat[val] = canvas.toDataURL("image/webp");
                 };
                 img.src = URL.createObjectURL(file);
             }

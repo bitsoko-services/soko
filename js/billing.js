@@ -251,7 +251,7 @@ function getUserImg(url) {
             canvas.height = this.height;
             var ctx = canvas.getContext("2d");
             ctx.drawImage(this, 0, 0);
-            var dataURL = canvas.toDataURL("image/jpg");
+            var dataURL = canvas.toDataURL("image/webp");
             resolve(dataURL);
 
 
