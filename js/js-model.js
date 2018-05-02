@@ -124,14 +124,20 @@ let model;
 
 // Loads mobilenet and returns a model that returns the internal activation
 // we'll use as input to our classifier model.
-async function loadMobilenet() {
+function loadMobilenet() {
+  
+  return new Promise(resolve => {
+    
+  
   const mobilenet = await tf.loadModel(
       'https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
 
   // Return a model that outputs an internal activation.
   const layer = mobilenet.getLayer('conv_pw_13_relu');
   console.log(mobilenet.layers);
-  return tf.model({inputs: mobilenet.inputs, outputs: layer.output});
+  resolve(tf.model({inputs: mobilenet.inputs, outputs: layer.output}));
+    
+  });
 }
 
 // When the UI buttons are pressed, read a frame from the webcam and associate
