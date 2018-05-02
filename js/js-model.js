@@ -5,13 +5,14 @@
 
 var canvas = document.querySelector('.dcanvas');
 
-function getVideoFrames(){
   var video = document.querySelector('#barCodeReader > div > video');
+
+function getVideoFrames(){
   var ctx = canvas.getContext('2d');
 
   // Change the size here
-  canvas.width = parseInt(video.style.width);
-  canvas.height =  parseInt(video.style.height);
+  canvas.width = 640;
+  canvas.height =  480;
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
  
   return canvas;
