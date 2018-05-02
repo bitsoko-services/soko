@@ -5,9 +5,10 @@
 
 var canvas = document.querySelector('.dcanvas');
 
-  var video = document.querySelector('#barCodeReader > div > video');
-
+ 
 function getVideoFrames(){
+   var video = document.querySelector('#barCodeReader > div > video');
+
   var ctx = canvas.getContext('2d');
 
   // Change the size here
