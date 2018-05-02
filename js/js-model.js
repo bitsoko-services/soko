@@ -114,7 +114,7 @@ function getVideoFrames(){
 const NUM_CLASSES = 2;
 
 // A webcam class that generates Tensors from the images from the webcam.
-var webcam = new Webcam(getVideoFrames());
+webcam = new Webcam(getVideoFrames());
 
 // The dataset object where we will store activations.
 const controllerDataset = new ControllerDataset(NUM_CLASSES);
