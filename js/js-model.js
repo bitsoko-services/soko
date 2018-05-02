@@ -1,6 +1,6 @@
-var imported = document.createElement('script');clear
-imported.src = 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest';
-document.head.appendChild(imported);
+//var imported = document.createElement('script');
+//imported.src = 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest';
+//document.head.appendChild(imported);
 
 var canvas = document.createElement('canvas');
 
