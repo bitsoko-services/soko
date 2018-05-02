@@ -135,7 +135,7 @@ function loadMobilenet() {
     
     console.log(r,r.getLayer('conv_pw_13_relu'));
     
-     const mobilenet = r;
+     mobilenet = r;
 
   // Return a model that outputs an internal activation.
   const layer = mobilenet.getLayer('conv_pw_13_relu');
@@ -271,12 +271,22 @@ function inference(classId){
   
 
 async function init() {
-  mobilenet = await loadMobilenet();
+ // mobilenet = await loadMobilenet();
 
   // Warm up the model. This uploads weights to the GPU and compiles the WebGL
   // programs so the first time we collect data from the webcam it will be
   // quick.
-  tf.tidy(() => mobilenet.predict(webcam.capture()));
+ // tf.tidy(() => mobilenet.predict(webcam.capture()));
+ 
+ loadMobilenet().then(function(e){
+
+var f=e.predict(new Webcam(getVideoFrames()).capture());
+    const topK = mobilenet.getTopKClasses(f, 5);
+    for (const key in topK) {
+      resultElement.innerText += `${topK[key].toFixed(5)}: ${key}\n`;
+    };
+
+})
 }
 
 
