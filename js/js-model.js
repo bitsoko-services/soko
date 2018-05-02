@@ -121,7 +121,7 @@ webcam = new Webcam(getVideoFrames());
 // The dataset object where we will store activations.
 const controllerDataset = new ControllerDataset(NUM_CLASSES);
 
-let mobilenet;
+var mobilenet;
 let model;
 
 // Loads mobilenet and returns a model that returns the internal activation
