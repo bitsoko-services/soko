@@ -3,7 +3,7 @@
 //document.head.appendChild(imported);
 
 
-var canvas = document.createElement('canvas');
+var canvas = document.querySelector('canvas');
 
 function getVideoFrames(){
   var video = document.querySelector('video');
