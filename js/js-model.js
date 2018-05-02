@@ -128,15 +128,21 @@ function loadMobilenet() {
   
   return new Promise(resolve => {
     
-  
-  const mobilenet = tf.loadModel(
-      'https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
+  tf.loadModel(
+      'https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json').then(function(r){
+    
+    console.log(r,r.getLayer('conv_pw_13_relu'));
+    
+     const mobilenet = r;
 
   // Return a model that outputs an internal activation.
   const layer = mobilenet.getLayer('conv_pw_13_relu');
   console.log(mobilenet.layers);
   resolve(tf.model({inputs: mobilenet.inputs, outputs: layer.output}));
-    
+  
+  
+  })
+   
   });
 }
 
