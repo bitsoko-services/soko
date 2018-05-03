@@ -488,3 +488,25 @@ $(document).on("click", ".deleteServiceTwo", function () {
         });
     }, 1000);
 });
+
+//New Enterprise
+$(document).on("click", "#businessDomain", function () {
+    var domain = $("#businessDomainInput").val();
+    doFetch({
+        action: 'entIndustry',
+        id: localStorage.getItem('soko-owner-id'),
+        domain: domain
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            M.toast({
+                html: 'Enterprise created successfully',
+                displayLength: 3000
+            });
+        } else {
+            M.toast({
+                html: 'Error! Try again later',
+                displayLength: 3000
+            })
+        }
+    });
+});
