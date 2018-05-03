@@ -3,15 +3,17 @@
 //document.head.appendChild(imported);
 
 
-var canvas = document.createElement('canvas');
+var canvas = document.querySelector('.dcanvas');
 
+ 
 function getVideoFrames(){
-  var video = document.querySelector('video');
+   var video = document.querySelector('#barCodeReader > div > video');
+
   var ctx = canvas.getContext('2d');
 
   // Change the size here
-  canvas.width = parseInt(video.style.width);
-  canvas.height =  parseInt(video.style.height);
+  canvas.width = 640;
+  canvas.height =  480;
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
  
   return canvas;
@@ -114,24 +116,36 @@ function getVideoFrames(){
 const NUM_CLASSES = 2;
 
 // A webcam class that generates Tensors from the images from the webcam.
-var webcam = new Webcam(getVideoFrames());
+webcam = new Webcam(getVideoFrames());
 
 // The dataset object where we will store activations.
 const controllerDataset = new ControllerDataset(NUM_CLASSES);
 
-let mobilenet;
+var mobilenet;
 let model;
 
 // Loads mobilenet and returns a model that returns the internal activation
 // we'll use as input to our classifier model.
-async function loadMobilenet() {
-  const mobilenet = await tf.loadModel(
-      'https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
+function loadMobilenet() {
+  
+  return new Promise(resolve => {
+    
+  tf.loadModel(
+      'https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json').then(function(r){
+    
+    console.log(r,r.getLayer('conv_pw_13_relu'));
+    
+     mobilenet = r;
 
   // Return a model that outputs an internal activation.
   const layer = mobilenet.getLayer('conv_pw_13_relu');
   console.log(mobilenet.layers);
-  return tf.model({inputs: mobilenet.inputs, outputs: layer.output});
+  resolve(tf.model({inputs: mobilenet.inputs, outputs: layer.output}));
+  
+  
+  })
+   
+  });
 }
 
 // When the UI buttons are pressed, read a frame from the webcam and associate
@@ -257,12 +271,22 @@ function inference(classId){
   
 
 async function init() {
-  mobilenet = await loadMobilenet();
+ // mobilenet = await loadMobilenet();
 
   // Warm up the model. This uploads weights to the GPU and compiles the WebGL
   // programs so the first time we collect data from the webcam it will be
   // quick.
-  tf.tidy(() => mobilenet.predict(webcam.capture()));
+ // tf.tidy(() => mobilenet.predict(webcam.capture()));
+ 
+ loadMobilenet().then(function(e){
+
+var f=e.predict(new Webcam(getVideoFrames()).capture());
+    const topK = mobilenet.getTopKClasses(f, 5);
+    for (const key in topK) {
+      resultElement.innerText += `${topK[key].toFixed(5)}: ${key}\n`;
+    };
+
+})
 }
 
 
