@@ -268,7 +268,7 @@ $(document).on("change", ".entSettings input", function (imgId) {
     var entServiceImgId = $(this).attr("id")
     if (entInput == "checkbox") {
         console.log("checkbox")
-    } else if (entInput == "skipBannerInpt") {} else if (entInput == "skipInput") {
+    } else if (entInput == "skipBannerInpt") {}else if (entInput == "newEnt") {} else if (entInput == "skipInput") {
 
     } else if (entInput == "serviceImageNoN") {} else if (entInput == "serviceImage") {
         var currentInput = $(this);
