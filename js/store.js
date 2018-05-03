@@ -90,7 +90,7 @@ function addStore() {
     id = e.id;
     orderUpdater();
     productsUpdater();
-	refreshPromotions();
+    refreshPromotions();
     //promoUpdater();
     beaconsUpdater();
     //refreshBills();
@@ -426,6 +426,23 @@ function updateStore(t) {
     } else if (name == "buyStoreTokens") {
         //TO-DO
         //move the shop transfer function
+    } else if (name == "addProdCategory") {
+        doFetch({
+            action: 'addProdCategory',
+            id: localStorage.getItem('soko-active-store'),
+            prop: name,
+            val: val
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                //document.querySelector('#prodImg-holda-'+prid).src = val;
+                M.toast({
+                    html: 'Modified ' + name + '...',
+                    displayLength: 3000
+                })
+            } else {
+                console.log(e);
+            }
+        });
     } else {
         doFetch({
             action: 'doEditStore',
