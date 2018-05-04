@@ -702,6 +702,7 @@ function loadProdCategory() {
     if (checkProdCat == "") {
         console.log("Can not find product categories")
     } else {
+        $(".categoryLst").html("")
         var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).productCategory);
         for (var pc = 0, prodCat = prodCat; pc < prodCat.length; ++pc) {
             categoryList.push(prodCat[pc].name);
@@ -710,6 +711,7 @@ function loadProdCategory() {
         }
     }
 }
+loadProdCategory()
 
 
 $(document).on("click", "#addCategory", function () {

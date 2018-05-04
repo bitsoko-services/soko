@@ -871,35 +871,6 @@
     <!--- Loyalty Points End --->
 
 
-    <!--- Category Modal start --->
-    <div id="categoryModal" class="modal">
-        <div class="modal-content" style="padding:0px;">
-            <div class="row">
-                <div class="opacitySelectedColor" style="text-align:center;background:#7eb7c8;margin:0px;padding:10px;color:white;">
-                    <h5 style="margin:0px; font-size: 1.3rem;">CATEGORIES</h5>
-                </div>
-                <div class="col s12">
-                    <div class="row" style="margin-bottom:0px;">
-                        <div class="input-field col s12">
-                            <div class="row">
-                                <div class="col s9" style="padding:0px;">
-                                    <input type="text" id="categoryName" placeholder="Add a category">
-                                    <label for="check-prod-input"></label>
-                                </div>
-                                <div class="col s3" style="margin-top:7px; padding:0px;">
-                                    <a class="waves-effect waves-light btn" id="addCategory" style="font-size: 2rem; padding: 10px; line-height: 0.5; border-radius: 3px; float: right;">+</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row categoryLst">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <!--- Contact Us Modal start --->
     <div id="contactModal" class="modal" style="overflow: initial; margin-top: 30%; border-radius: 5px; z-index: 999; opacity: 1; transform: scaleX(1); top: 10%;">
         <div style="width:100px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
@@ -1828,11 +1799,6 @@
                                 <p style="margin-top:0px !important;text-align:center;">+</p>
                             </a>
                             <ul style="bottom:55px !important;">
-                                <li>
-                                    <a onclick='$("#categoryModal").modal("open")' class="btn-floating newProdBtn opacitySelectedColor" style="width:auto !important; padding: 0px 17px;background:#26A69A; margin-left:-23px;">
-                                        <p class="material-icons newProdBtnName" style="margin-top:0px !important;font-size:0.8rem;" onclick="loadProdCategory()">Categories</p>
-                                    </a>
-                                </li>
                                 <li>
                                     <a onclick='$("#spnsrdModal").modal("open")' class="btn-floating newProdBtn opacitySelectedColor" style="width:auto !important; padding: 0px 10px 0px 10px;background:#26A69A; margin-left:-15px;">
                                         <p class="material-icons newProdBtnName" style="margin-top:0px !important;font-size:0.8rem;">Sponsored</p>
