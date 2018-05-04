@@ -2144,15 +2144,6 @@
                                     </div>
 -->
                                             <div class="row storeSettingsDivs">
-                                                <h6>Daily Budget</h6>
-                                                <div class="row budget">
-                                                    <div class="input-field col s12">
-                                                        <input id="dailyBudget" type="text" class="validate" placeholder="Ksh" stitm="dailyBudget">
-                                                        <label for="dailyBudget" class="active">Daily Budget</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row storeSettingsDivs">
                                                 <h6>Store Location</h6>
                                                 <div class="row" style="margin-bottom:0px;">
                                                     <div class="input-field col s9">
@@ -2320,6 +2311,33 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row storeSettingsDivs" style="width: 90%;margin-left: 5% !important;margin-bottom: 20px;">
+                                            <h6>Daily Budget</h6>
+                                            <div class="row budget">
+                                                <div class="input-field col s12">
+                                                    <input id="dailyBudget" type="text" class="validate" placeholder="Ksh" stitm="dailyBudget">
+                                                    <label for="dailyBudget" class="active">Daily Budget</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row storeSettingsDivs">
+                                            <h6>Store Theme</h6>
+                                            <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px;">
+                                                <li>
+                                                    <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%;padding-bottom: 0px;border-bottom: none;">
+                                                        <div class="input-field col s12" style="padding: 0px;">
+                                                            <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none; margin-bottom: 0px;">
+                                                        </div>
+                                                    </div>
+                                                    <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; position: absolute; right:20px; margin-top:-55px;;" id="themeUpdate">ok</a>
+                                                    <div class="collapsible-body" style="padding:10px;">
+                                                        <span>
+                                                    <div id="themeCanvas"></div>
+                                                </span>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                     <div class="entApplication" style="text-align: center;">
