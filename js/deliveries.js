@@ -146,13 +146,14 @@ function deliveryMbr() {
                 if (deliveryMemberLst[i].id == id) {
 
                     $("#membersLst").append('<div id="' + id + '" class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
-                    $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s10"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s2" style="padding-top:5px;"><form action="#"> <label for="radio_' + id + '"><input class="with-gap" name="group1" type="radio" id="radio_' + id + '"/><span></span></label></form></div></div>');
-                    $("#radio_" + id).click(function () {
+                    $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s10"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s2" style="padding-top:5px;"><form action="#"> <label for="radio_' + id + '"><input class="with-gap" rid="' + id + '" name="group1" type="radio" id="radio_' + id + '"/><span></span></label></form></div></div>');
+                    $("#radio_" + id).click(function (e) {
+                        
                         var orderId = $("#deliverOrderModal").attr('gid');
                         doFetch({
                             action: 'orderDeliveryMembers',
                             orderId: orderId,
-                            id: id
+                            id: $(this).attr('rid')
                         }).then(function (e) {
                             if (e.status == 'ok') {
                                 M.toast({
