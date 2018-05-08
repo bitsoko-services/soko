@@ -81,7 +81,7 @@ function addOrderItems(orderid, orderItems, orderLoc) {
             var address = data.results[0].formatted_address.split(",")
         } catch (err) {
             console.log(err);
-            var address = data.results[0].formatted_address.split(",")
+            var address = []
         }
 
         bolden = '<span style="">' + address[0] + '</span>'

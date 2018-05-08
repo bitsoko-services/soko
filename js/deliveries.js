@@ -44,9 +44,7 @@ $('#deliveriesToggle').click(function (e) {
 $('document').ready(function () {
 
     $('#deliverOrderModal').modal({
-        ready: function (modal, trigger) {
-            deliveryMbr();
-        }
+        onOpenStart: deliveryMbr()
     });
     $(document).on('click', $('.deliveryField ul.autocomplete-content li'), function (e) {
         var value = $('#delivery-members').val();
