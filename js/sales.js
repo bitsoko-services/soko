@@ -53,7 +53,7 @@ var adress = "";
 get_orderItems = []
 
 function addOrderItems(orderid, orderItems, orderLoc) {
-//    console.log(orderItems)
+    //    console.log(orderItems)
     //    console.log('[+]order items unique id: ', orderItems.from);
     get_orderItems.push(orderItems);
     var orderLocation = orderItems.location;
@@ -98,8 +98,14 @@ function addOrderItems(orderid, orderItems, orderLoc) {
         $(location_tag).html(formatted_html);
     });
     getActvStoreProds(orderid, orderItems, orderLoc).then(function (p) {
-
         var orderItems = $.parseJSON(p.orderItems.items);
+        var saleDate = p.orderItems.date
+        var saleDateMonth = saleDate.slice(0, 7)
+        var saleDateDay = saleDate.slice(0, 10)
+        console.log(saleDateDay)
+
+        var getCurrentMonth = new Date().toISOString().substr(0, 19).slice(0, 7)
+        var getCurrentDay = new Date().toISOString().substr(0, 19).slice(0, 10)
 
         //name: p.orderItems.name,
         //number: p.orderItems.phone
@@ -141,6 +147,27 @@ function addOrderItems(orderid, orderItems, orderLoc) {
             };
         };
         $(".orders-" + orderid + "-cost").text(tCost);
+        console.log(tCost)
+
+        //Populate Month Income
+        var monthIncomeArray = []
+        if (getCurrentMonth == saleDateMonth) {
+            monthIncomeArray.push(tCost)
+            var sum = trialArray.reduce((a, b) => a + b, 0);
+            $("#monthlySalesVal").html(sum)
+        }else{
+            $("#monthlySalesVal").html(0)
+        }
+        
+        //Populate day Income
+        var dayIncomeArray = []
+        if (getCurrentDay == saleDateDay) {
+            dayIncomeArray.push(tCost)
+            var sum = trialArray.reduce((a, b) => a + b, 0);
+            $("#dailySalesVal").html(sum)
+        }else{
+            $("#dailySalesVal").html(0)
+        }
 
         createInvoiceListener(orderid, invoiceDat, orderLoc);
 
