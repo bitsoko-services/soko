@@ -102,7 +102,6 @@ function addOrderItems(orderid, orderItems, orderLoc) {
         var saleDate = p.orderItems.date
         var saleDateMonth = saleDate.slice(0, 7)
         var saleDateDay = saleDate.slice(0, 10)
-        console.log(saleDateDay)
 
         var getCurrentMonth = new Date().toISOString().substr(0, 19).slice(0, 7)
         var getCurrentDay = new Date().toISOString().substr(0, 19).slice(0, 10)
@@ -147,27 +146,39 @@ function addOrderItems(orderid, orderItems, orderLoc) {
             };
         };
         $(".orders-" + orderid + "-cost").text(tCost);
-        console.log(tCost)
 
         //Populate Month Income
         var monthIncomeArray = []
         if (getCurrentMonth == saleDateMonth) {
             monthIncomeArray.push(tCost)
-            var sum = trialArray.reduce((a, b) => a + b, 0);
+            var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
             $("#monthlySalesVal").html(sum)
-        }else{
+        } else {
             $("#monthlySalesVal").html(0)
         }
-        
+
         //Populate day Income
         var dayIncomeArray = []
         if (getCurrentDay == saleDateDay) {
             dayIncomeArray.push(tCost)
-            var sum = trialArray.reduce((a, b) => a + b, 0);
+            var sum = dayIncomeArray.reduce((a, b) => a + b, 0);
             $("#dailySalesVal").html(sum)
-        }else{
+        } else {
             $("#dailySalesVal").html(0)
         }
+
+        //Populate weekly Income
+//        var start = 05 / 01 / 2018
+//        end = 05 / 04 / 2018 ",
+//        currentDate = new Date(start),
+//            between = [];
+//
+//        while (currentDate <= end) {
+//            between.push(new Date(currentDate));
+//            currentDate.setDate(currentDate.getDate() + 1);
+//        }
+//
+//        console.log(between);
 
         createInvoiceListener(orderid, invoiceDat, orderLoc);
 
