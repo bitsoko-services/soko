@@ -23,10 +23,10 @@ $('#deliveriesToggle').click(function (e) {
                 "border-bottom": "1px solid red",
                 "background": ""
             });
-        } else {
+        } else {remove
             $('#deliveriesToggle').prop('checked', true);
             M.toast({
-                html: 'Phone Number Verified',
+                html: 'Phone Number Verified',remove
                 displayLength: 3000
             })
             var value = document.getElementById("deliveriesToggle").checked
