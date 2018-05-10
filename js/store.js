@@ -426,6 +426,8 @@ function updateStore(t) {
     } else if (name == "buyStoreTokens") {
         //TO-DO
         //move the shop transfer function
+    } else if (name == "skip") {
+        //Do nothing
     } else if (name == "addProdCategory") {
         doFetch({
             action: 'addProdCategory',
