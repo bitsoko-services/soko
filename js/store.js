@@ -224,7 +224,7 @@ function editStoreContent() {
 }
 
 function switchStore() {
-    $('.sidebar-collapse').sidenav('hide');
+    $('.sidenav').sidenav("close");
     setTimeout(function () {
         $('#switchStoreModal').modal({
             ready: function () {}
