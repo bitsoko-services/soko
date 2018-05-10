@@ -40,7 +40,6 @@ function profileLoaded(p) {
         }
     });
     loadTheme();
-    userNamesInput();
     walletFunctions(localStorage.getItem("bits-user-name")).then(function (e) {
 
         startGoogle()
@@ -208,6 +207,7 @@ function updateStores() {
     }).catch(function (err) {
         loadPOS();
     });
+    userNamesInput();
 }
 
 function reqMsg(data) {
