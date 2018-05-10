@@ -168,17 +168,71 @@ function addOrderItems(orderid, orderItems, orderLoc) {
         }
 
         //Populate weekly Income
-//        var start = 05 / 01 / 2018
-//        end = 05 / 04 / 2018 ",
-//        currentDate = new Date(start),
-//            between = [];
-//
-//        while (currentDate <= end) {
-//            between.push(new Date(currentDate));
-//            currentDate.setDate(currentDate.getDate() + 1);
-//        }
-//
-//        console.log(between);
+        String.prototype.replaceBetween = function (start, end, what) {
+            return this.substring(0, start) + what + this.substring(end);
+        };
+
+        var d = new Date();
+        var month = d.getUTCMonth() + 1; //months from 1-12
+        var day = d.getUTCDate();
+        var year = d.getUTCFullYear();
+        var formattedMonth = ("0" + month).slice(-2);
+        var formattedDay = ("0" + day).slice(-2);
+        var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        var currentDay = days[d.getDay()];
+        var currentDate = d.getDate();
+        var currentFullDate = year + "-" + formattedMonth + "-" + formattedDay
+
+        //        var monIcomeArray = [];
+        //        var tueIcomeArray = [];
+        //        var wedIcomeArray = [];
+        //        var thuIcomeArray = [];
+        //        var friIcomeArray = [];
+        //        var satIcomeArray = [];
+        //        var sunIcomeArray = [];
+        var weekIncomeArray = []
+        if (currentDay == "Mon") {
+            if (currentFullDate == saleDateDay) {
+                weekIncomeArray.push(tCost)
+                var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
+                $("#weeklySalesVal").html(sum)
+            } else {
+                $("#weeklySalesVal").html(0)
+            }
+
+        } else if (currentDay == "Thu") {
+            var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
+            var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
+            var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
+            if (currentFullDate == saleDateDay) {
+                weekIncomeArray.push(tCost)
+            }
+            if (wedDateVal == saleDateDay) {
+                weekIncomeArray.push(tCost)
+            }
+            if (tueDateVal == saleDateDay) {
+                weekIncomeArray.push(tCost)
+            }
+            if (monDateVal == saleDateDay) {
+                weekIncomeArray.push(tCost);
+            }
+            var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
+            $("#weeklySalesVal").html(sum)
+
+        } else {
+            $("#weeklySalesVal").html("invalid")
+        }
+        //        var start = 05 / 01 / 2018
+        //        end = 05 / 04 / 2018 ",
+        //        currentDate = new Date(start),
+        //            between = [];
+        //
+        //        while (currentDate <= end) {
+        //            between.push(new Date(currentDate));
+        //            currentDate.setDate(currentDate.getDate() + 1);
+        //        }
+        //
+        //        console.log(between);
 
         createInvoiceListener(orderid, invoiceDat, orderLoc);
 
