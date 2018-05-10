@@ -26,7 +26,7 @@ $('#deliveriesToggle').click(function (e) {
         } else {remove
             $('#deliveriesToggle').prop('checked', true);
             M.toast({
-                html: 'Phone Number Verified',remove
+                html: 'Phone Number Verified',
                 displayLength: 3000
             })
             var value = document.getElementById("deliveriesToggle").checked
