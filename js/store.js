@@ -199,7 +199,7 @@ function allTokenCoins() {
 }
 
 function editStore() {
-    $('.sidebar-collapse').sideNav('hide');
+    $('.sidenav').sidenav("close");;
     setTimeout(function () {
         $('#editStoreModal').modal({
             dismissible: false,
