@@ -973,6 +973,36 @@
     <!--- Contact Us Modal end --->
 
 
+    <!--- Withdraw Modal Start --->
+    <div id="withdrawModal" class="modal" style="overflow: initial; margin-top: 30%; border-radius: 5px; z-index: 999; opacity: 1; transform: scaleX(1); top: 10%;">
+        <div style="width:100px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
+            <svg id="Layer_1" style="enable-background:new 0 0 508 508;" version="1.1" viewBox="0 0 508 508" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px">
+                <circle style="fill:#38c6d9;" cx="254.644" cy="254.644" r="254.644"></circle>
+                <path style="fill:#F1F3F7;" d="M444.185,253.287H420.45c0-91.55-74.596-166.146-166.146-166.146S88.159,161.738,88.159,253.287  H64.424c0-104.434,85.107-189.542,189.542-189.542C359.078,63.746,444.185,148.853,444.185,253.287z"></path>
+                <g>
+                    <circle style="fill:#4F5565;" cx="254.644" cy="253.287" r="145.123"></circle>
+                    <circle style="fill:#4F5565;" cx="254.644" cy="253.287" r="145.123"></circle>
+                    <path style="fill:#4F5565;" d="M303.47,207.174c0,0,8.138,52.556,63.407,82.395v-31.534c0-62.05-50.183-112.233-112.233-112.233   l0,0c-62.05,0-112.233,50.183-112.233,112.233v36.62C277.022,277.022,303.47,207.174,303.47,207.174z"></path>
+                </g>
+                <path style="fill:#F6CEB0;" d="M303.47,207.174c0,0-26.448,69.849-161.399,87.82v38.315c0,62.05,50.183,112.233,112.233,112.233l0,0  c62.05,0,112.233-50.183,112.233-112.233v-43.74C311.608,259.73,303.47,207.174,303.47,207.174z"></path>
+                <path style="fill:#F1F3F7;" d="M76.63,230.23c-13.902,0-25.091,11.189-25.091,25.091v74.935c0,13.902,11.189,25.091,25.091,25.091  s25.091-11.189,25.091-25.091v-74.935C102.061,241.42,90.532,230.23,76.63,230.23z"></path>
+                <path style="fill:#6EB1E1;" d="M50.861,255.322c-20.683,0-37.298,16.615-37.298,37.298s16.615,37.298,37.298,37.298h0.678v-74.596  H50.861z"></path>
+                <path style="fill:#F1F3F7;" d="M432.657,355.348c13.902,0,25.091-11.189,25.091-25.091v-74.935  c0-13.902-11.189-25.091-25.091-25.091s-25.091,11.189-25.091,25.091v74.935C407.226,344.159,418.755,355.348,432.657,355.348z"></path>
+                <path style="fill:#6EB1E1;" d="M458.427,329.918c20.683,0,37.298-16.615,37.298-37.298s-16.615-37.298-37.298-37.298h-0.678v74.596  H458.427z"></path>
+            </svg>
+        </div>
+        <h5 style="text-align: center; padding: 5%; margin:0px;">Withdraw Funds</h5>
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="Enter amount" id="withdrawFundsInpt" type="number" class="validate">
+                <label class="active" for="withdrawFundsInpt">Amount</label>
+            </div>
+            <button class="btn">widthdraw</button>
+        </div>
+    </div>
+    <!--- Withdraw Modal end --->
+
+
     <!--- Remove Complete Orders Modal Start --->
     <div id="completeOrder" class="modal">
         <div class="modal-content" style="padding:0px;">
@@ -1484,7 +1514,7 @@
                                                     <p id="monthlySales" style="margin: 5px 0px 5px 0px;"><span style="color: #616060 !important; font-weight: bold;">This Month:</span> Ksh. <span id="monthlySalesVal"></span></p>
                                                 </div>
                                                 <div class="col s4" style="padding: 0px;">
-                                                    <button id="withdrawFunds" class="btn opacitySelectedColor" style="padding: 0px 7px;margin-top: 25px;">withdraw</button>
+                                                    <a id="withdrawFunds" href="#withdrawModal" class="btn opacitySelectedColor" style="padding: 0px 7px;margin-top: 25px;">withdraw</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1932,7 +1962,7 @@
                     </div>
                     <!--------- Token Sale PAGE End ----------->
                     <!--------- Settings PAGE Start --------->
-                    <div class="col s12 m4 l4 settingsPage" style="display:none;overflow-x: hidden;">
+                    <div class="col s12 m4 l4 settingsPage" style="display:none; overflow-x: hidden !important; height: 91vh !important; overflow-y: scroll !important;">
                         <div class="col s12">
                             <ul class="tabs selectedColor" style="margin-top:-1px;">
                                 <li class="tab col s6"><a class="active" href="#storeSettingsTab">Store Settings</a></li>
