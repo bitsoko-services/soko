@@ -118,7 +118,6 @@ function productsUpdater() {
                     val: prodVal
                 }).then(function (e) {
                     if (e.status == 'ok') {
-                        $(".prodCatToast").remove();
                         M.toast({
                             html: 'Product category changed successfully',
                             classes: 'prodCatToast',
@@ -348,7 +347,7 @@ function addProduct() {
     M.toast({
         html: 'Adding product. Please wait',
         classes: 'prodWaitToast',
-        displayLength: 10000
+        displayLength: 3000
     })
     doFetch({
         action: 'getProducts',
@@ -375,7 +374,6 @@ function addProduct() {
                 }).then(function (e) {
                     if (e.status == 'ok') {
                         refreshProducts();
-                        $('.prodWaitToast').remove();
                         M.toast({
                             html: 'Product added successfully',
                             displayLength: 3000
@@ -394,7 +392,6 @@ function addProduct() {
                     }).then(function (e) {
                         if (e.status == 'ok') {
                             refreshProducts();
-                            $('.prodWaitToast').remove();
                             M.toast({
                                 html: 'Product added successfully',
                                 displayLength: 3000
@@ -410,7 +407,6 @@ function addProduct() {
                         html: 'Ooops! Seems you have a similar product',
                         displayLength: 3000
                     })
-                    $('.prodWaitToast').remove();
                 }
             }
         }
@@ -646,7 +642,6 @@ function rmvProduct() {
                 id: id
             }).then(function (e) {
                 if (e.status == 'ok') {
-                    $('.prodWaitToast').remove();
                     M.toast({
                         html: 'Product Removed Successfully',
                         displayLength: 3000
