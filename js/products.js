@@ -693,12 +693,20 @@ var categoryList = [];
 
 function loadProdCategory() {
     $("#categoryModal").find(".categoryChip").remove();
-    var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
+    try {
+        var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
+    } catch (err) {
+        var checkProdCat = "Null"
+    }
     if (checkProdCat == "") {
         console.log("Can not find product categories")
     } else {
         $(".categoryLst").html("")
-        var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).productCategory);
+        try {
+            var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).productCategory)
+        } catch (err) {
+            var prodCat = "Null"
+        }
         for (var pc = 0, prodCat = prodCat; pc < prodCat.length; ++pc) {
             categoryList.push(prodCat[pc].name);
             $(".categoryLst").append('<div class="chip categoryChip">' +
