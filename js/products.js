@@ -1,8 +1,10 @@
+var getAllProducts;
 function refreshProducts() {
     doFetch({
         action: 'getProducts',
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
+        getAllProducts = e.products
         console.log(e);
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.products), 'soko-store-' + localStorage.getItem('soko-active-store') + '-products');
         productsUpdater();

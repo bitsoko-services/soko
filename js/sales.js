@@ -107,12 +107,7 @@ function addOrderItems(orderid, orderItems, orderLoc) {
     });
     getActvStoreProds(orderid, orderItems, orderLoc).then(function (p) {
         var orderItems = $.parseJSON(p.orderItems.items);
-        var saleDate = p.orderItems.date
-        var saleDateMonth = saleDate.slice(0, 7)
-        var saleDateDay = saleDate.slice(0, 10)
 
-        var getCurrentMonth = new Date().toISOString().substr(0, 19).slice(0, 7)
-        var getCurrentDay = new Date().toISOString().substr(0, 19).slice(0, 10)
 
         //name: p.orderItems.name,
         //number: p.orderItems.phone
@@ -154,177 +149,6 @@ function addOrderItems(orderid, orderItems, orderLoc) {
             };
         };
         $(".orders-" + orderid + "-cost").text(tCost);
-
-        //Populate Month Income
-        var monthIncomeArray = []
-        if (getCurrentMonth == saleDateMonth) {
-            monthIncomeArray.push(tCost)
-            var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
-            $("#monthlySalesVal").html(sum)
-        } else {
-            $("#monthlySalesVal").html(0)
-        }
-
-        //Populate day Income
-        var dayIncomeArray = []
-        if (getCurrentDay == saleDateDay) {
-            dayIncomeArray.push(tCost)
-            var sum = dayIncomeArray.reduce((a, b) => a + b, 0);
-            $("#dailySalesVal").html(sum)
-        } else {
-            $("#dailySalesVal").html(0)
-        }
-
-        //Populate weekly Income
-        String.prototype.replaceBetween = function (start, end, what) {
-            return this.substring(0, start) + what + this.substring(end);
-        };
-
-        var d = new Date();
-        var month = d.getUTCMonth() + 1; //months from 1-12
-        var day = d.getUTCDate();
-        var year = d.getUTCFullYear();
-        var formattedMonth = ("0" + month).slice(-2);
-        var formattedDay = ("0" + day).slice(-2);
-        var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        var currentDay = days[d.getDay()];
-        var currentDate = d.getDate();
-        var currentFullDate = year + "-" + formattedMonth + "-" + formattedDay
-
-        var weekIncomeArray = []
-        if (currentDay == "Mon") {
-            if (currentFullDate == saleDateDay) {
-                weekIncomeArray.push(tCost)
-                var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-                $("#weeklySalesVal").html(sum)
-            } else {
-                $("#weeklySalesVal").html(0)
-            }
-
-        } else if (currentDay == "Tue") {
-            var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
-            if (currentFullDate == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (monDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost);
-            }
-            var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-            $("#weeklySalesVal").html(sum)
-
-        } else if (currentDay == "Wed") {
-            var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
-            var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
-            if (currentFullDate == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (tueDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (monDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost);
-            }
-            var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-            $("#weeklySalesVal").html(sum)
-
-        } else if (currentDay == "Thu") {
-            var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
-            var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
-            var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
-            if (currentFullDate == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (wedDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (tueDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (monDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost);
-            }
-            var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-            $("#weeklySalesVal").html(sum)
-
-        } else if (currentDay == "Fri") {
-            var thuDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
-            var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
-            var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
-            var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 4)).slice(-2)
-            if (currentFullDate == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (thuDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (wedDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (tueDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (monDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost);
-            }
-            var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-            $("#weeklySalesVal").html(sum)
-        } else if (currentDay == "Sat") {
-            var friDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
-            var thuDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
-            var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
-            var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 4)).slice(-2)
-            var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 5)).slice(-2)
-            if (currentFullDate == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (friDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (thuDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (wedDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (tueDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (monDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost);
-            }
-            var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-            $("#weeklySalesVal").html(sum)
-        } else if (currentDay == "Sun") {
-            var satDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
-            var friDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
-            var thuDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
-            var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 4)).slice(-2)
-            var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 5)).slice(-2)
-            var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 6)).slice(-2)
-            if (currentFullDate == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (satDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (friDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (thuDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (wedDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (tueDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost)
-            }
-            if (monDateVal == saleDateDay) {
-                weekIncomeArray.push(tCost);
-            }
-            var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-            $("#weeklySalesVal").html(sum)
-        }
 
         createInvoiceListener(orderid, invoiceDat, orderLoc);
 
@@ -378,6 +202,211 @@ function noSalesUpdater() {
     $('ul.tabs').tabs();
 }
 
+function addToWithdraw(r) {
+    var totalPrice;
+    console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+    var orderProducts = JSON.parse(r.items)
+    
+    for (var i = 0; i < orderProducts.length; ++i) {
+        var getOrderProdId = orderProducts[i].pid
+        var getOrderProdCount = orderProducts[i].count
+        
+        for (var prodPrice in getAllProducts) {
+            var prdId = getAllProducts[prodPrice].id
+            var prdPrice = getAllProducts[prodPrice].price
+            
+            if(getOrderProdId == prdId){
+                totalPrice =prdPrice * getOrderProdCount
+            }
+        }
+    }
+    var saleDate = r.date
+    var saleDateMonth = saleDate.slice(0, 7)
+    var saleDateDay = saleDate.slice(0, 10)
+
+    var getCurrentMonth = new Date().toISOString().substr(0, 19).slice(0, 7)
+    var getCurrentDay = new Date().toISOString().substr(0, 19).slice(0, 10)
+
+    //Populate Month Income
+    var monthIncomeArray = []
+    if (getCurrentMonth == saleDateMonth) {
+        monthIncomeArray.push(totalPrice)
+        var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
+        $("#monthlySalesVal").html(sum)
+    } else {
+        $("#monthlySalesVal").html(0)
+    }
+
+    //Populate day Income
+    var dayIncomeArray = []
+    if (getCurrentDay == saleDateDay) {
+        dayIncomeArray.push(totalPrice)
+        var sum = dayIncomeArray.reduce((a, b) => a + b, 0);
+        $("#dailySalesVal").html(sum)
+    } else {
+        $("#dailySalesVal").html(0)
+    }
+
+    //Populate weekly Income
+    String.prototype.replaceBetween = function (start, end, what) {
+        return this.substring(0, start) + what + this.substring(end);
+    };
+
+    var d = new Date();
+    var month = d.getUTCMonth() + 1; //months from 1-12
+    var day = d.getUTCDate();
+    var year = d.getUTCFullYear();
+    var formattedMonth = ("0" + month).slice(-2);
+    var formattedDay = ("0" + day).slice(-2);
+    var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var currentDay = days[d.getDay()];
+    var currentDate = d.getDate();
+    var currentFullDate = year + "-" + formattedMonth + "-" + formattedDay
+
+    var weekIncomeArray = []
+    if (currentDay == "Mon") {
+        if (currentFullDate == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+            var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
+            $("#weeklySalesVal").html(sum)
+        } else {
+            $("#weeklySalesVal").html(0)
+        }
+
+    } else if (currentDay == "Tue") {
+        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
+        if (currentFullDate == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (monDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice);
+        }
+        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
+        $("#weeklySalesVal").html(sum)
+
+    } else if (currentDay == "Wed") {
+        var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
+        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
+        if (currentFullDate == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (tueDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (monDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice);
+        }
+        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
+        $("#weeklySalesVal").html(sum)
+
+    } else if (currentDay == "Thu") {
+        var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
+        var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
+        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
+        if (currentFullDate == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (wedDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (tueDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (monDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice);
+        }
+        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
+        $("#weeklySalesVal").html(sum)
+
+    } else if (currentDay == "Fri") {
+        var thuDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
+        var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
+        var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
+        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 4)).slice(-2)
+        if (currentFullDate == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (thuDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (wedDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (tueDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (monDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice);
+        }
+        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
+        $("#weeklySalesVal").html(sum)
+    } else if (currentDay == "Sat") {
+        var friDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
+        var thuDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
+        var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
+        var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 4)).slice(-2)
+        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 5)).slice(-2)
+        if (currentFullDate == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (friDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (thuDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (wedDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (tueDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (monDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice);
+        }
+        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
+        $("#weeklySalesVal").html(sum)
+    } else if (currentDay == "Sun") {
+        var satDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
+        var friDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
+        var thuDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
+        var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 4)).slice(-2)
+        var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 5)).slice(-2)
+        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 6)).slice(-2)
+        if (currentFullDate == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (satDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (friDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (thuDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (wedDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (tueDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice)
+        }
+        if (monDateVal == saleDateDay) {
+            weekIncomeArray.push(totalPrice);
+        }
+        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
+        $("#weeklySalesVal").html(sum)
+    }
+
+
+
+
+
+
+
+
+}
+
 function orderUpdater() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-orders').onsuccess = function (event) {
         var reqs = event.target.result;
@@ -425,6 +454,11 @@ function orderUpdater() {
             var deliveredBy = reqs[i].deliveredBy;
 
             if (reqs[i].state == "complete") {
+
+                //create a function to add
+                addToWithdraw(reqs[i])
+
+
                 deliveredHTML = '<div style="padding:10px;border-radius:4px;" id="order-card-' + i + '" class="card" cId="' + reqs[i].id + '"><div class="row" style="margin-bottom:0px;line-height:2rem;margin:5px 10px;background:transparent; padding-bottom:0px;"> <div class="col s7" style="color:#8f8f8f; font-size:0.7em;line-height:2;"></div><div class="col s5"> <div style="float:right;"><a id="do-bill-' + reqs[i].id + '" href="#" class="pdfHide"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 491.695 491.695" style="enable-background:new 0 0 491.695 491.695;width: 20; position: absolute; right: 55px;" xml:space="preserve"><g><path style="fill:#ffab40;" d="M436.714,0H149.471c-16.438,0-29.812,13.374-29.812,29.812v66.714c-54.49,15.594-94.489,65.857-94.489,125.288 c0,59.431,39.998,109.694,94.489,125.288v114.783c0,16.438,13.374,29.812,29.812,29.812h234.733c2.785,0,5.455-1.106,7.425-3.075 l71.821-71.822c1.969-1.969,3.075-4.64,3.075-7.425V29.812C466.525,13.374,453.152,0,436.714,0z M149.471,21h287.243 c4.858,0,8.811,3.953,8.811,8.812v31.689H140.659V29.812C140.659,24.953,144.612,21,149.471,21z M46.17,221.813 c0-60.263,49.027-109.29,109.29-109.29c60.263,0,109.29,49.027,109.29,109.29s-49.027,109.291-109.29,109.291 C95.197,331.104,46.17,282.076,46.17,221.813z M140.659,461.884V351.258c4.86,0.552,9.797,0.846,14.802,0.846 c39.135,0,74.292-17.347,98.195-44.752h64.336c5.799,0,10.5-4.701,10.5-10.5s-4.701-10.5-10.5-10.5h-49.381 c9.133-15.95,14.984-34.005,16.644-53.242h32.736c5.799,0,10.5-4.701,10.5-10.5c0-5.799-4.701-10.5-10.5-10.5h-32.603 c-1.42-19.194-7.02-37.242-15.886-53.241h48.488c5.799,0,10.5-4.701,10.5-10.5c0-5.799-4.701-10.5-10.5-10.5h-62.974 c-23.918-28.323-59.67-46.347-99.558-46.347c-5.005,0-9.942,0.294-14.802,0.846v-9.867h304.866v316.372h-42.009 c-16.439,0-29.811,13.374-29.811,29.811v42.011H149.471C144.612,470.695,140.659,466.743,140.659,461.884z M394.705,455.845v-27.16 c0-4.859,3.953-8.811,8.811-8.811h27.16L394.705,455.845z"></path><path style="fill:#ffab40;" d="M359.246,158.869h34.87c5.799,0,10.5-4.701,10.5-10.5c0-5.799-4.701-10.5-10.5-10.5h-34.87c-5.799,0-10.5,4.701-10.5,10.5 C348.746,154.168,353.447,158.869,359.246,158.869z"></path><path style="fill:#ffab40;" d="M359.246,233.11h34.87c5.799,0,10.5-4.701,10.5-10.5c0-5.799-4.701-10.5-10.5-10.5h-34.87c-5.799,0-10.5,4.701-10.5,10.5 C348.746,228.409,353.447,233.11,359.246,233.11z"></path><path style="fill:#ffab40;" d="M359.246,307.352h34.87c5.799,0,10.5-4.701,10.5-10.5s-4.701-10.5-10.5-10.5h-34.87c-5.799,0-10.5,4.701-10.5,10.5 S353.447,307.352,359.246,307.352z"></path><path style="fill:#ffab40;" d="M394.116,381.593c5.799,0,10.5-4.701,10.5-10.5s-4.701-10.5-10.5-10.5h-98.225c-5.799,0-10.5,4.701-10.5,10.5 s4.701,10.5,10.5,10.5H394.116z"></path><path style="fill:#ffab40;" d="M236.982,168.845l-12.81-12.81c-3.45-3.449-8.036-5.349-12.915-5.349s-9.465,1.9-12.915,5.349l-67.19,67.19l-18.573-18.573 c-3.449-3.448-8.036-5.348-12.914-5.348c-4.878,0-9.465,1.9-12.914,5.349l-12.813,12.812c-7.12,7.121-7.12,18.708,0.001,25.829 l44.297,44.296c3.45,3.451,8.037,5.351,12.916,5.351c0,0,0.001,0,0.001,0c4.878,0,9.465-1.9,12.913-5.349l92.917-92.917 C244.103,187.554,244.103,175.966,236.982,168.845z M131.151,270.807l-40.429-40.428l8.942-8.942l24.062,24.062 c4.101,4.101,10.749,4.101,14.85,0l72.681-72.681l8.942,8.942L131.151,270.807z"></path></g></svg></a> <a><svg class="completeCard" cId="' + reqs[i].id + '"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 408.483 408.483" style="enable-background:new 0 0 408.483 408.483;width: 20px;position: absolute;right: 20px;" xml:space="preserve"><g><g><path d="M87.748,388.784c0.461,11.01,9.521,19.699,20.539,19.699h191.911c11.018,0,20.078-8.689,20.539-19.699l13.705-289.316 H74.043L87.748,388.784z M247.655,171.329c0-4.61,3.738-8.349,8.35-8.349h13.355c4.609,0,8.35,3.738,8.35,8.349v165.293 c0,4.611-3.738,8.349-8.35,8.349h-13.355c-4.61,0-8.35-3.736-8.35-8.349V171.329z M189.216,171.329 c0-4.61,3.738-8.349,8.349-8.349h13.355c4.609,0,8.349,3.738,8.349,8.349v165.293c0,4.611-3.737,8.349-8.349,8.349h-13.355 c-4.61,0-8.349-3.736-8.349-8.349V171.329L189.216,171.329z M130.775,171.329c0-4.61,3.738-8.349,8.349-8.349h13.356 c4.61,0,8.349,3.738,8.349,8.349v165.293c0,4.611-3.738,8.349-8.349,8.349h-13.356c-4.61,0-8.349-3.736-8.349-8.349V171.329z" style=" fill: #ffab40; "></path><path d="M343.567,21.043h-88.535V4.305c0-2.377-1.927-4.305-4.305-4.305h-92.971c-2.377,0-4.304,1.928-4.304,4.305v16.737H64.916 c-7.125,0-12.9,5.776-12.9,12.901V74.47h304.451V33.944C356.467,26.819,350.692,21.043,343.567,21.043z" style=" fill: #ffab40;"></path></g></g></svg></a></div></div></div><div class="col s3" style="padding:0px;"><div class="card-image"><img style=" border-radius: 50%; height: 60px; width: 60px; display: block; margin-left: auto; margin-right: auto;" src="' + reqs[i].icon + '">' + '</div></div><div class="col s9" style="line-height:1.4rem;padding:5px; color:#8f8f8f;"><span id="orderCardName_' + reqs[i].id + '" style="color:black;font-weight:600;"></span> <br><span id="orderLocation_' + reqs[i].id + '"></span><br><span id="elapsed_time_' + reqs[i].id + '"></span></div></div>';
             } else {
                 // Not Delivered
