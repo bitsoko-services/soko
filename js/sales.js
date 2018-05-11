@@ -202,49 +202,58 @@ function noSalesUpdater() {
     $('ul.tabs').tabs();
 }
 
+var dayIncomeArray = [];
+var weekIncomeArray = [];
+var monthIncomeArray = []
+
 function addToWithdraw(r) {
     var totalPrice;
-    console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
     var orderProducts = JSON.parse(r.items)
-    
+
     for (var i = 0; i < orderProducts.length; ++i) {
         var getOrderProdId = orderProducts[i].pid
         var getOrderProdCount = orderProducts[i].count
-        
+
         for (var prodPrice in getAllProducts) {
             var prdId = getAllProducts[prodPrice].id
             var prdPrice = getAllProducts[prodPrice].price
-            
-            if(getOrderProdId == prdId){
-                totalPrice =prdPrice * getOrderProdCount
+
+            if (getOrderProdId == prdId) {
+                totalPrice = prdPrice * getOrderProdCount
             }
         }
+
     }
     var saleDate = r.date
     var saleDateMonth = saleDate.slice(0, 7)
     var saleDateDay = saleDate.slice(0, 10)
+    console.log(saleDateDay)
 
     var getCurrentMonth = new Date().toISOString().substr(0, 19).slice(0, 7)
     var getCurrentDay = new Date().toISOString().substr(0, 19).slice(0, 10)
 
-    //Populate Month Income
-    var monthIncomeArray = []
-    if (getCurrentMonth == saleDateMonth) {
-        monthIncomeArray.push(totalPrice)
-        var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
-        $("#monthlySalesVal").html(sum)
-    } else {
-        $("#monthlySalesVal").html(0)
-    }
-
     //Populate day Income
-    var dayIncomeArray = []
     if (getCurrentDay == saleDateDay) {
-        dayIncomeArray.push(totalPrice)
+        console.log("This is the price", totalPrice)
+        if (typeof (totalPrice) != 'undefined') {
+            dayIncomeArray.push(totalPrice)
+        }
+        console.log(dayIncomeArray)
         var sum = dayIncomeArray.reduce((a, b) => a + b, 0);
         $("#dailySalesVal").html(sum)
     } else {
         $("#dailySalesVal").html(0)
+    }
+    
+    //Populate Month Income
+    if (getCurrentMonth == saleDateMonth) {
+        if (typeof (totalPrice) != 'undefined') {
+            monthIncomeArray.push(totalPrice)
+        }
+        var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
+        $("#monthlySalesVal").html(sum)
+    } else {
+        $("#monthlySalesVal").html(0)
     }
 
     //Populate weekly Income
@@ -263,10 +272,11 @@ function addToWithdraw(r) {
     var currentDate = d.getDate();
     var currentFullDate = year + "-" + formattedMonth + "-" + formattedDay
 
-    var weekIncomeArray = []
     if (currentDay == "Mon") {
         if (currentFullDate == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
             var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
             $("#weeklySalesVal").html(sum)
         } else {
@@ -276,10 +286,14 @@ function addToWithdraw(r) {
     } else if (currentDay == "Tue") {
         var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
         if (currentFullDate == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (monDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice);
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            };
         }
         var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
         $("#weeklySalesVal").html(sum)
@@ -288,13 +302,19 @@ function addToWithdraw(r) {
         var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
         var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
         if (currentFullDate == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (tueDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (monDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice);
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            };
         }
         var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
         $("#weeklySalesVal").html(sum)
@@ -304,16 +324,24 @@ function addToWithdraw(r) {
         var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
         var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
         if (currentFullDate == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (wedDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (tueDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (monDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice);
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            };
         }
         var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
         $("#weeklySalesVal").html(sum)
@@ -324,19 +352,29 @@ function addToWithdraw(r) {
         var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
         var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 4)).slice(-2)
         if (currentFullDate == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (thuDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (wedDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (tueDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (monDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice);
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            };
         }
         var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
         $("#weeklySalesVal").html(sum)
@@ -347,22 +385,34 @@ function addToWithdraw(r) {
         var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 4)).slice(-2)
         var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 5)).slice(-2)
         if (currentFullDate == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (friDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (thuDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (wedDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (tueDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (monDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice);
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            };
         }
         var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
         $("#weeklySalesVal").html(sum)
@@ -374,37 +424,43 @@ function addToWithdraw(r) {
         var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 5)).slice(-2)
         var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 6)).slice(-2)
         if (currentFullDate == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (satDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (friDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (thuDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (wedDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (tueDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice)
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            }
         }
         if (monDateVal == saleDateDay) {
-            weekIncomeArray.push(totalPrice);
+            if (typeof (totalPrice) != 'undefined') {
+                weekIncomeArray.push(totalPrice)
+            };
         }
         var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
         $("#weeklySalesVal").html(sum)
     }
-
-
-
-
-
-
-
-
 }
 
 function orderUpdater() {
