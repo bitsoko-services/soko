@@ -3,9 +3,6 @@ $(document).on('touchstart click', '.clickPromo', function () {
 });
 
 function refreshSalesOrders() {
-    dayIncomeArray.length = 0
-    weekIncomeArray.length = 0
-    monthIncomeArray.length = 0
     doFetch({
         action: 'getOrders',
         id: localStorage.getItem('soko-active-store')
@@ -486,6 +483,9 @@ function orderUpdater() {
             //  var html = ' <li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem grey circle"></i><div class="row">' + '<p class="collections-title"><strong>Add Promotion</strong></p><p class="collections-content">you can add ' + (3 - reqs.length) + ' more promotions</p></div>' + '</li>';
             //  $(".orders-holda").append(html);
         }
+        dayIncomeArray.length = 0
+        weekIncomeArray.length = 0
+        monthIncomeArray.length = 0
         $(".sales-holda").html("");
         for (var i = 0; i < reqs.length; ++i) {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
@@ -510,7 +510,6 @@ function orderUpdater() {
             var deliveredBy = reqs[i].deliveredBy;
 
             if (reqs[i].state == "complete") {
-
                 //create a function to add
                 addToWithdraw(reqs[i])
 
