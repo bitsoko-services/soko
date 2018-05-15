@@ -142,7 +142,7 @@ function addOrderItems(orderid, orderItems, orderLoc) {
                         var sss = '';
                     }
 
-                    var html = '<div class="chip"><img src="' + p[i].imagePath + '" alt="">' + orderItems[ii].count + ' ' + p[i].name.split(" ")[0] + '' + sss + '</div>';
+                    var html = '<div class="chip"><img src="' + p[i].imagePath + '" alt="">' + orderItems[ii].count + ' ' + p[i].name + '' + sss + '</div>';
                     $(".orders-" + orderid + "-items").append($.parseHTML(html));
                     tCost = tCost + (p[i].price * parseInt(orderItems[ii].count));
                     break;
