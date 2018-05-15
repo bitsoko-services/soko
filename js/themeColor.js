@@ -1,14 +1,16 @@
 function createCanvas() {
     var clcanvas = document.createElement("canvas");
     var allcanvas = document.createElement("canvas");
-    allcanvas.id = "spectrum-all";
-    clcanvas.id = "spectrum-color";
+    $(allcanvas).attr("class","spectrum-all")
+    $(clcanvas).attr("class","spectrum-color")
     clcanvas.height = "200";
     allcanvas.height = "200";
     allcanvas.width = "20";
     /* var html = '<canvas height="200" id="spectrum-color" style="width:80%;height:200px;"> </canvas>' + '<canvas height="200" id="spectrum-all" width="20"> </canvas>' + '<br>' + '<div class="selected-color"></div>';*/
-    document.getElementById('themeCanvas').appendChild(clcanvas);
-    document.getElementById('themeCanvas').appendChild(allcanvas);
+//    document.getElementById('themeCanvas').appendChild(clcanvas);
+//    document.getElementById('themeCanvas').appendChild(allcanvas);
+    $(".themeCanvas").append(clcanvas)
+    $(".themeCanvas").append(allcanvas)
 }
 
 //Default Store Theme Color

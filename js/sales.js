@@ -3,6 +3,9 @@ $(document).on('touchstart click', '.clickPromo', function () {
 });
 
 function refreshSalesOrders() {
+    dayIncomeArray.length = 0
+    weekIncomeArray.length = 0
+    monthIncomeArray.length = 0
     doFetch({
         action: 'getOrders',
         id: localStorage.getItem('soko-active-store')
@@ -204,7 +207,7 @@ function noSalesUpdater() {
 
 var dayIncomeArray = [];
 var weekIncomeArray = [];
-var monthIncomeArray = []
+var monthIncomeArray = [];
 
 function addToWithdraw(r) {
     var totalPrice;
@@ -227,24 +230,21 @@ function addToWithdraw(r) {
     var saleDate = r.date
     var saleDateMonth = saleDate.slice(0, 7)
     var saleDateDay = saleDate.slice(0, 10)
-    console.log(saleDateDay)
 
     var getCurrentMonth = new Date().toISOString().substr(0, 19).slice(0, 7)
     var getCurrentDay = new Date().toISOString().substr(0, 19).slice(0, 10)
 
     //Populate day Income
     if (getCurrentDay == saleDateDay) {
-        console.log("This is the price", totalPrice)
         if (typeof (totalPrice) != 'undefined') {
             dayIncomeArray.push(totalPrice)
         }
-        console.log(dayIncomeArray)
         var sum = dayIncomeArray.reduce((a, b) => a + b, 0);
         $("#dailySalesVal").html(sum)
     } else {
         $("#dailySalesVal").html(0)
     }
-    
+
     //Populate Month Income
     if (getCurrentMonth == saleDateMonth) {
         if (typeof (totalPrice) != 'undefined') {

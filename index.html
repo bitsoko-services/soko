@@ -2051,10 +2051,10 @@
                                                                 <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none; margin-bottom: 0px;">
                                                             </div>
                                                         </div>
-                                                        <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; position: absolute; right:20px; margin-top:-55px;;" id="themeUpdate">ok</a>
+                                                        <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; right:20px; margin-top:-55px;float:right;" id="themeUpdate">ok</a>
                                                         <div class="collapsible-body" style="padding:10px;">
                                                             <span>
-                                                    <div id="themeCanvas"></div>
+                                                    <div class="themeCanvas"></div>
                                                 </span>
                                                         </div>
                                                     </li>
@@ -2366,7 +2366,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row storeSettingsDivs">
+                                        <div class="row storeSettingsDivs" style="width: 90%; margin-left: 20px !important;">
                                             <h6>Store Theme</h6>
                                             <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px;">
                                                 <li>
@@ -2375,10 +2375,10 @@
                                                             <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none; margin-bottom: 0px;">
                                                         </div>
                                                     </div>
-                                                    <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; position: absolute; right:20px; margin-top:-55px;;" id="themeUpdate">ok</a>
+                                                    <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; right:20px; margin-top:-55px;float:right;" id="themeUpdate">ok</a>
                                                     <div class="collapsible-body" style="padding:10px;">
                                                         <span>
-                                                    <div id="themeCanvas"></div>
+                                                    <div class="themeCanvas"></div>
                                                 </span>
                                                     </div>
                                                 </li>
@@ -2493,14 +2493,34 @@
         }
 
     </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBEpLoOInTvRSrkLpTHSu8EE3jiFD1Vk7E"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
+    <script src="https://bitsoko.co.ke/bitsAssets/js/pushManager/google-fcm.js"></script>
+    <script src="https://bitsoko.co.ke/bitsAssets/js/jspdf/jspdf.js"></script>
+    <script src="https://bitsoko.co.ke/bitsAssets/js/jspdf/jspdf.min.js"></script>
+    <script src="https://bitsoko.co.ke/bitsAssets/js/jspdf/jspdf.plugin.autotable.js"></script>
+    <script src="./js/js-model.js"></script>
+    <script src="js/rewards.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/beacon.js"></script>
+    <script src="js/billing.js"></script>
+    <script src="js/themeColor.js"></script>
+    <script src="js/customers.js"></script>
+    <script src="js/payments.js"></script>
+    <script src="js/contacts.js"></script>
+    <script src="js/deliveries.js"></script>
+    <script src="js/managers.js"></script>
+    <script src="js/color-thief.js"></script>
+    <script src="js/quagga.js"></script>
+    <script src="js/barcodeReader.js"></script>
     <script>
-        $("#editStoreModal").ready(function() {
             createCanvas();
 
             function ColorPicker() {
-                this.singleColorCanvas = $('#spectrum-color').get(0);
+                this.singleColorCanvas = $('.spectrum-color').get(0);
                 this.singleColorContext = this.singleColorCanvas.getContext('2d');
-                this.allColorCanvas = $('#spectrum-all').get(0);
+                this.allColorCanvas = $('.spectrum-all').get(0);
                 this.allColorContext = this.allColorCanvas.getContext('2d');
                 this.createMultiColorSpectrum();
                 this.createSingleColorSpectrum();
@@ -2576,31 +2596,8 @@
             }
             new ColorPicker();
             document.getElementById("colorChosen").defaultValue = "#0f5f76";
-        });
 
     </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBEpLoOInTvRSrkLpTHSu8EE3jiFD1Vk7E"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
-    <script src="https://bitsoko.co.ke/bitsAssets/js/pushManager/google-fcm.js"></script>
-    <script src="https://bitsoko.co.ke/bitsAssets/js/jspdf/jspdf.js"></script>
-    <script src="https://bitsoko.co.ke/bitsAssets/js/jspdf/jspdf.min.js"></script>
-    <script src="https://bitsoko.co.ke/bitsAssets/js/jspdf/jspdf.plugin.autotable.js"></script>
-    <script src="./js/js-model.js"></script>
-    <script src="js/rewards.js"></script>
-    <script src="js/store.js"></script>
-    <script src="js/beacon.js"></script>
-    <script src="js/billing.js"></script>
-    <script src="js/themeColor.js"></script>
-    <script src="js/customers.js"></script>
-    <script src="js/payments.js"></script>
-    <script src="js/contacts.js"></script>
-    <script src="js/deliveries.js"></script>
-    <script src="js/managers.js"></script>
-    <script src="js/color-thief.js"></script>
-    <script src="js/quagga.js"></script>
-    <script src="js/barcodeReader.js"></script>
     <script>
         var slide = document.getElementById('slide'),
             sliderDiv = document.getElementById("sliderAmount");

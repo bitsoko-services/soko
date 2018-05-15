@@ -2849,11 +2849,13 @@ tr.group:hover {
            THEME CHOOSER
 ****************************************/
 
-#spectrum-color {
+.spectrum-color {
     float: left;
+    width: 85%;
+    height:  200px;
 }
 
-#spectrum-all {
+.spectrum-all {
     margin-left: 15px;
 }
 
