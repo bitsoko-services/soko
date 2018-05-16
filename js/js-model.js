@@ -275,6 +275,7 @@ const accuracyLabelElement = document.getElementById('accuracy-label');
 }
 
  function plotAccuracies(accuracyValues) {
+  //| TO USE: UNCOMMENT SOME SCRIPTS in index.html (just below js-model.js import)
   // vegaEmbed(
   //     '#accuracyCanvas', {
   //       '$schema': 'https://vega.github.io/schema/vega-lite/v2.json',
