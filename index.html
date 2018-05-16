@@ -1254,16 +1254,107 @@
 
     <!-- BarCode Reader Modal Start -->
 
-    <div id="barCodeReader" class="modal" style="background-color: black; height: 60%;">
-        <div id="quagaLauncher"></div>
-        <div id="scanLst" style="position: absolute;">
+   <style type="text/css">
+        #quagaLauncher {
+          border-radius: 0px;
+          box-shadow: 0 0px 0px rgba(0,0,0,0.12), 0 0px 0px rgba(0,0,0,0.24);
+          margin: 0 auto;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          overflow: hidden;
+          width: 100%    !important;
+          height: auto   !important;
+      }
+       .canvas {
+           position: absolute;
+           top: 0;
+           left: 0;
+           z-index: 10;
+           background-color:rgba(255,255,255,0.0);
+           display: flex;
+         }
+         .rectangle {
+             border: 1px solid #FF0000;
+             position: absolute;
+             z-index: 100;
+         }
+         #lossCanvas > div, #accuracyCanvas > div {
+            display: none;
+         }
+         .canvases {
+            display: inline-block;
+            width: 50%;
+         }
+  </style>
+      <!-- newPromo Modal End -->
+      <!-- BarCode Reader Modal Start -->
+      <div id="barCodeReader" style="overflow: hidden;"  class="modal" style="background-color: black;overflow: hidden;">
+      
+         <video class=""  autoplay playsinline onplay="resize_canvas()" id="quagaLauncher"></video>
+         <div class="canvas" id="quagaLauncherCanvas"></div>
+         <div id="scanLst" style="position: absolute;">
+            Test...
+         </div>
+         <div id="quagaLauncherModalFooter" class="modal-footer" style="background-color: transparent;height: auto; z-index: 20; text-align: center;position: absolute; bottom: 0;">
+            <a class="waves-effect waves-light btn checkOutQuagga opacitySelectedColor" style="float: none;">close</a>
+            <a class="waves-effect waves-light btn trainModel opacitySelectedColor" style="float: none;">Model</a>
+            <a id="quaggachckout" class="waves-effect waves-light btn opacitySelectedColor" style="display: block; width: 90%; margin-left: auto; margin-right: auto; float: none; padding: 0;">complete transaction</a>
+         </div>
+      </div>
+      <!-- BarCode Reader Modal End -->
+      <!-- BarCode Reader Modal Start -->
+      <!-- Modal Structure -->
+      <div id="trainingClasses" class="modal bottom-sheet">
+        <div class="modal-content">
+          <form class="col s12">
+               <div class="row">
+                  <div class="input-field col s12">
+                    <select onchange="collectSamples()" id="trainingClass">
+                    </select>
+                      <label>Train Class </label>
+                  </div>
+                  <div class="input-field col s12">
+                     <input onchange="collectSamples()" id="trainingInstances" type="number" class="validate" prid="epochs" autocomplete="off" required>
+                     <label for="trainingInstances" class="">Epochs</label>
+                  </div>
+               </div>
+          </form>
+          <div class="row">
+            <div class="col s6">
+               <div class="label" id="loss-label"></div>
+               <!-- <div id="lossCanvas"></div> -->
+            </div>
+            <div class="col s6">
+               <div class="label" id="accuracy-label"></div>
+               <!-- <div id="accuracyCanvas"></div> -->
+            </div>
+          </div>
+          
         </div>
-        <div class="modal-footer" style="background-color: transparent;height: auto; text-align: center;position: absolute; bottom: 0;">
-            <a class="waves-effect waves-light btn checkOutQuagga" style="float: none;">close</a>
-            <a class="waves-effect waves-light btn" style="float: none;">print</a>
-            <a id="quaggachckout" class="waves-effect waves-light btn" style="display: block; width: 90%; margin-left: auto; margin-right: auto; float: none; padding: 0;">complete transaction</a>
+        <div class="modal-footer">
+           <a id="lauchTraining" href="#!" onclick="train()" class=" waves-effect btn waves-green">Train</a>
+          <a href="#!" class="modal-close waves-effect waves-light btn opacitySelectedColor">Done</a>
         </div>
-    </div>
+      </div>
+
+     <div id="dataCollectionBoxLabels" class="modal bottom-sheet">
+        <div class="modal-content">
+          <form class="col s12">
+               <div class="row">
+                  <div class="input-field col s12">
+                    <select onchange="" id="trainingBoxLabel">
+                    </select>
+                      <label>Box Label </label>
+                  </div>
+               </div>
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-light btn opacitySelectedColor">Done</a>
+        </div>
+      </div>
     <!-- BarCode Reader Modal End -->
 
     <!-- //////////////////////////////////////////////////////////////////////////// -->
