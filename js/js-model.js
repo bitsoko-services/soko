@@ -120,7 +120,7 @@ async function loadMobilenet() {
   // Return a model that outputs an internal activation.
   const layer = mobilenet.getLayer('conv_pw_13_relu');
   for(let i = 0;i<mobilenet.layers.length;i++){
-    console.log(mobilenet.layers[i].name,mobilenet.layers[i].output.shape);
+    //console.log(mobilenet.layers[i].name,mobilenet.layers[i].output.shape);
   }
   M.toast({
         html: 'Model loaded...',
@@ -365,7 +365,7 @@ function getThisShopProducts(s){
           if (reqs[i].imagePath != null) {
             loadProductImage(reqs[i].imagePath).then(e =>{
               webcam = new Webcam(e);
-              console.log(webcam.capture().data())
+//              console.log(webcam.capture().data())
             })
           }
           
