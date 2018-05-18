@@ -1,4 +1,10 @@
- 
+const CANVAS_WIDTH = 490
+const CANVAS_HEIGHT = 490 
+
+// const OUTPUT_SHAPE = [7,7,5+NUM_CLASSES+1]
+
+let ACTIVATION;
+
 function getVideoFrame(){
    var canvas = document.querySelector('.dcanvas');
    var video = document.querySelector('#barCodeReader > video');
@@ -6,8 +12,8 @@ function getVideoFrame(){
   var ctx = canvas.getContext('2d');
 
   // Change the size here
-  canvas.width = 640;
-  canvas.height =  480;
+  canvas.width = CANVAS_WIDTH;
+  canvas.height =  CANVAS_HEIGHT;
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
  
   return canvas;
@@ -65,7 +71,7 @@ function getVideoFrame(){
  * A dataset for webcam controls which allows the user to add example Tensors
  * for particular labels. This object will concat them into two large xs and ys.
  */
- class ControllerDataset {
+ class ModelDataset {
   
   /**
    * Adds an example to the controller dataset.
@@ -73,13 +79,13 @@ function getVideoFrame(){
    *     an activation, or any other type of Tensor.
    * @param {number} label The label of the example. Should be an umber.
    */
-  addExample(example, label, numClasses) {
+  addExample(example, y) {
     // One-hot encode the label.
-    const y = tf.tidy(() => tf.oneHot(tf.tensor1d([label]).toInt(), numClasses));
+    //y = tf.tidy(() => tf.oneHot(tf.tensor1d([label]).toInt(), numClasses)); //for object classification only
 
     if (this.xs == null) {
       // For the first example that gets added, keep example and y so that the
-      // ControllerDataset owns the memory of the inputs. This makes sure that
+      // modelDataset owns the memory of the inputs. This makes sure that
       // if addExample() is called in a tf.tidy(), these Tensors will not get
       // disposed.
       this.xs = tf.keep(example);
@@ -105,7 +111,7 @@ var NUM_CLASSES;
 var class_names = {}
 
 // The dataset object where we will store activations.
-let controllerDataset = new ControllerDataset();
+let modelDataset = new ModelDataset();
 
 
 var mobilenet;
@@ -120,11 +126,11 @@ async function loadMobilenet() {
   // Return a model that outputs an internal activation.
   const layer = mobilenet.getLayer('conv_pw_13_relu');
   for(let i = 0;i<mobilenet.layers.length;i++){
-    //console.log(mobilenet.layers[i].name,mobilenet.layers[i].output.shape);
+    console.log(mobilenet.layers[i].name,mobilenet.layers[i].output.shape);
   }
   M.toast({
         html: 'Model loaded...',
-        displayLength: 3000
+        displayLength: 1000
     })
   return tf.model({inputs: mobilenet.inputs, outputs: layer.output});
 }
@@ -132,13 +138,13 @@ async function loadMobilenet() {
 // When the UI buttons are pressed, read a frame from the webcam and associate
 // it with the class label given by the for example, bananas, oranges are
 // labels 0, 1 respectively.
-function setExampleHandler(label,numClasses) {
+function setExampleHandler(label) {
   console.log('Adding samples for ',label)
   tf.tidy(() => {
     webcam = new Webcam(getVideoFrame());
     const img = webcam.capture();
     console.log(img.data())
-    controllerDataset.addExample(mobilenet.predict(img), label,numClasses);
+    modelDataset.addExample(mobilenet.predict(img), label);
   });
 }
 
@@ -153,27 +159,28 @@ function sokoCustomModelInit(){
       // Flattens the input to a vector so we can use it in a dense layer. While
       // technically a layer, this only performs a reshape (and has no training
       // parameters).
-      tf.layers.flatten({inputShape: [7, 7, 256]}),
-      // Layer 1
-      tf.layers.dense({
-        units: 100,
+      tf.layers.conv2d({
+        inputShape: [7, 7, 256],
+        kernelSize: 1,
+        filters: 8,
+        strides: 1,
         activation: 'relu',
         kernelInitializer: 'varianceScaling',
         useBias: true
       }),
-      // Layer 2. The number of units of the last layer should correspond
-      // to the number of classes we want to predict.
-      tf.layers.dense({
-        units: NUM_CLASSES,
-        kernelInitializer: 'varianceScaling',
-        useBias: false,
-        activation: 'softmax'
+      tf.layers.batchNormalization({
+        axis: -1
+      }),
+      tf.layers.conv2d({
+        kernelSize: 1,
+        filters: 8,
+        strides: 1,
+        activation: 'relu',
+        useBias: false
       })
     ]
   });
 
-
-  
 
   // Creates the optimizers which drives training of the model.
   const optimizer = tf.train.adam(0.001);
@@ -190,7 +197,7 @@ function sokoCustomModelInit(){
 }
 
 async function train() {
-  if (controllerDataset.xs == null) {
+  if (modelDataset.xs == null) {
     throw new Error('Add some examples before training!');
   }
   const lossValues = [];
@@ -199,7 +206,7 @@ async function train() {
   // We parameterize batch size as a fraction of the entire dataset because the
   // number of examples that are collected depends on how many examples the user
   // collects. This allows us to have a flexible batch size.
-  const batchSize = Math.floor(controllerDataset.xs.shape[0] * 1);
+  const batchSize = Math.floor(modelDataset.xs.shape[0] * 1);
   if (!(batchSize > 0)) {
     throw new Error(`Batch size is 0 or NaN. Please choose a non-zero fraction.`);
   }
@@ -207,14 +214,15 @@ async function train() {
   // Train the model! Model.fit() will shuffle xs & ys so we don't have to.
 
 
-  for (let i = 0; i < 150; i++) {
-    const history = await model.fit(controllerDataset.xs, controllerDataset.ys, {batchSize: batchSize,epochs: 1});
+  for (let i = 0; i < 1000; i++) {
+    const history = await model.fit(modelDataset.xs, modelDataset.ys, {batchSize: batchSize,epochs: 1});
     const loss = history.history.loss[0];
     const accuracy = history.history.acc[0];
-    lossValues.push({'batch': i, 'loss': loss, 'set': 'train'});
-    plotLosses(lossValues)
-    accuracyValues.push({'batch': i, 'accuracy': accuracy, 'set': 'train'});
-    plotAccuracies(accuracyValues)
+    console.log(loss,accuracy)
+    // lossValues.push({'batch': i, 'loss': loss, 'set': 'train'});
+    // plotLosses(lossValues)
+    // accuracyValues.push({'batch': i, 'accuracy': accuracy, 'set': 'train'});
+    // plotAccuracies(accuracyValues)
 
     await tf.nextFrame();
 
@@ -239,15 +247,13 @@ async function predict() {
       // Make a prediction through our newly-trained model using the activation
       // from mobilenet as input.
       const predictions = model.predict(activation);
-
-      // Returns the index with the maximum probability. This number corresponds
-      // to the class the model thinks is the most probable given the input.
-      return predictions.as1D().argMax();
+      //returns boxxes and corresponding classes
+      return predictions;
     });
 
-    const classId = (await predictedClass.data())[0];
-
-    inference(classId);
+    const activations = (await predictedClass);
+    ACTIVATION = activations // global variable for testing in console
+    inference(activations.dataSync());
     await tf.nextFrame();
   }
   
@@ -271,7 +277,7 @@ const accuracyLabelElement = document.getElementById('accuracy-label');
   //     },
   //     {width: 360});
   lossLabelElement.innerText =
-      'last loss: ' + lossValues[lossValues.length - 1].loss.toFixed(2);
+      'Loss: ' + lossValues[lossValues.length - 1].loss.toFixed(2);
 }
 
  function plotAccuracies(accuracyValues) {
@@ -290,7 +296,7 @@ const accuracyLabelElement = document.getElementById('accuracy-label');
   //       }
   //     },
   //     {'width': 360});
-  accuracyLabelElement.innerText = 'last accuracy: ' +
+  accuracyLabelElement.innerText = 'Acc: ' +
       (accuracyValues[accuracyValues.length - 1].accuracy * 100).toFixed(2) +
       '%';
 }
@@ -299,8 +305,8 @@ const accuracyLabelElement = document.getElementById('accuracy-label');
 //custom inference function,
 // you feed it class id predicted by the model.
 
-function inference(classId){
-    console.log(class_names['prid-'+classId])
+function inference(activations){
+    console.log(splitUp(activations))
    
 }
   
@@ -313,17 +319,6 @@ async function warmUpModel() {
   // programs so the first time we collect data from the webcam it will be
   // quick.
   tf.tidy(() => mobilenet.predict(webcam.capture()));
-}
-
-
-function collectSamples(){
-  var label = document.querySelector('#trainingClass').value;
-  var instances = document.querySelector('#trainingInstances').value;
-  console.log(label,instances)
-
-  for (var i = instances; i >= 0; i--) {
-    setExampleHandler(label,NUM_CLASSES)
-  }
 }
 
 
@@ -363,9 +358,9 @@ function getThisShopProducts(s){
 
           class_names['prid-'+i]= reqs[i].name
           if (reqs[i].imagePath != null) {
-            loadProductImage(reqs[i].imagePath).then(e =>{
+              loadProductImage(reqs[i].imagePath).then(e =>{
               webcam = new Webcam(e);
-//              console.log(webcam.capture().data())
+              console.log(webcam.capture().data())
             })
           }
           
@@ -414,7 +409,7 @@ function restoreThisShopModelWeights(){
     if (modelWeights.length == 0) {
         M.toast({
           html: 'Pre-trained model not found...',
-          displayLength: 3000
+          displayLength: 1000
         })
     }else{
       for (var i = 0; i < modelWeights.length; i++) {
@@ -452,7 +447,6 @@ $(".trainModel").click(function () {
         onOpenStart: function () {
         },
         onOpenEnd: function () {
-           getThisShopProducts(true);
         },
         onCloseEnd: function () {
         }
@@ -484,6 +478,8 @@ initDraw(document.getElementById('quagaLauncherCanvas'));
 
 
 function initDraw(canvas) {
+    canvas.width = CANVAS_WIDTH;
+    canvas.height =  CANVAS_HEIGHT;
     function setMousePosition(e) {
         var ev = e || window.event; //Moz || IE
         if (ev.pageX) { //Moz
@@ -593,12 +589,105 @@ function bboxesYoloFormat(size, bboxes){
   return [x,y,w,h]
 }
 
+function getBboxMidpointsXY(bboxes) {
+  let midpoints = {
+    midpointX:null,
+    midpointY:null
+  }
+  midpoints.midpointX = (bboxes[1]-bboxes[0])/2
+  midpoints.midpointY = (bboxes[3]-bboxes[2])/2
+  return midpoints
+}
+
+function objectLocation(midpoints){
+  const cells = 7 //must be a number that divides the square(image) into equal grids
+  let b = []
+  for(let i=0;i<=cells;i++){b.push(i*(CANVAS_WIDTH/cells))}
+  var cell = {
+    x:null,
+    y:null
+  }
+  for(let i=0;i<b.length;i++){
+    if(i != b.length-1){
+      if(midpoints.midpointX >= b[i] && midpoints.midpointX <= b[i+1] ){
+        cell.x = i+1
+      }
+      if(midpoints.midpointY >= b[i] && midpoints.midpointY <= b[i+1] ){
+        cell.y = i+1
+      }
+    }
+  }
+  return cell
+}
+
+function theYs(iRows, iCols,cell,bboxes,label) {
+  var i;
+  var j;
+  var table = new Array(iRows);
+  let y = tf.tidy(() => tf.oneHot(tf.tensor1d([label]).toInt(), NUM_CLASSES+1)); 
+  let background_label = tf.tidy(() => tf.oneHot(tf.tensor1d([NUM_CLASSES]).toInt(), NUM_CLASSES+1));
+  y = Array.from(y.dataSync());
+  background_label = Array.from(background_label.dataSync());
+
+  var default_boxes =[]
+  for (var i = 0; i < bboxes.length; i++) {
+    default_boxes.push(Math.floor(Math.random() * 10) + 1 )
+  }
+  
+  for (i = 0; i < iRows; i++) {
+    table[i] = new Array(iCols);
+    for (j = 0; j < iCols; j++) {
+      var real_y = []
+      if (cell.x == i && cell.y == j) {
+        table[i][j] = real_y.concat([1]).concat(bboxes).concat(y)
+      }else{
+        table[i][j] = real_y.concat([0]).concat(default_boxes).concat(background_label)  
+      }
+    }
+  }
+  return (table);
+} 
+
+
 //on dev >> next
 function saveAnnotatedProductBoxes(bboxes){
+  var canvas = getVideoFrame()
+  var bb = bboxesYoloFormat([canvas.width,canvas.height],[bboxes.startX,bboxes.x,bboxes.startY,bboxes.y])
   var label = document.querySelector('#trainingBoxLabel').value;
   updateBboxLabel(label)
-  var canvas = getVideoFrame()
-  bboxes = bboxesYoloFormat([canvas.width,canvas.height],[bboxes.startX,bboxes.x,bboxes.startY,bboxes.y])
-  webcam = new Webcam(canvas);
-  console.log('sample data for Product Counting: ',label,JSON.stringify(bboxes),webcam.capture().shape)
+  let y = theYs(7,7,objectLocation(getBboxMidpointsXY([bboxes.startX,bboxes.x,bboxes.startY,bboxes.y])),bb,label)
+  y = tf.tensor(y,[7,7,5+NUM_CLASSES+1])
+  y.reshape([1,7,7,5+NUM_CLASSES+1]).print()
+  setExampleHandler(y.reshape([1,7,7,5+NUM_CLASSES+1]))
+}
+
+
+//processing [1,7,7,8] model output @[pr(object in cell),x,y,w,h,NUM_CLASSES+1] 
+//e.g an array of 8 elements where i have only two products in my shop
+
+//called from inference
+function splitUp(arr, n) {
+    var rest = arr.length % n, // how much to divide
+        restUsed = rest, // to keep track of the division over the elements
+        partLength = Math.floor(arr.length / n),
+        result = [];
+
+    for (var i = 0; i < arr.length; i += partLength) {
+        var end = partLength + i,
+            add = false;
+
+        if (rest !== 0 && restUsed) { // should add one element for the division
+            end++;
+            restUsed--; // we've used one division element now
+            add = true;
+        }
+
+        result.push(arr.slice(i, end)); // part of the array
+
+        if (add) {
+            i++; // also increment i in the case we added an extra element for division
+        }
+    }
+
+    return result;
 }
