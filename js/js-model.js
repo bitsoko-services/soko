@@ -3,7 +3,7 @@ const CANVAS_HEIGHT = 490
 
 // const OUTPUT_SHAPE = [7,7,5+NUM_CLASSES+1]
 
-let ACTIVATION;
+let ACTIVATION; //for console testing
 
 function getVideoFrame(){
    var canvas = document.querySelector('.dcanvas');
