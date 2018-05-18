@@ -1,6 +1,53 @@
 $(document).on('touchstart click', '#deliveryPage', function () {
     $(".activePage").html("Deliveries")
 });
+
+//Initiale noUiSlider
+var slider = document.getElementById('test-slider');
+noUiSlider.create(slider, {
+    start: [20, 80],
+    connect: true,
+    step: 1,
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});
+
+//Get noUiSlider Values
+slider.noUiSlider.on('change.one', function (e) {
+    var min = JSON.parse(e[0]).toFixed(0);
+    var max = JSON.parse(e[1]).toFixed(0);
+
+    doFetch({
+        action: 'deliveryRadius',
+        store: localStorage.getItem('soko-active-store'),
+        radius: {
+            min,
+            max
+        }
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            M.toast({
+                html: 'Delivery rate set successfully',
+                displayLength: 3000
+            })
+        } else {
+            M.toast({
+                html: 'Error!!! Please try again later',
+                displayLength: 3000
+            })
+        }
+    });
+});
+
+//Update distanceRangeOutputId
+slider.noUiSlider.on('slide.one', function (e) {
+    var min = JSON.parse(e[0]).toFixed(0) + " Km";
+    var max = JSON.parse(e[1]).toFixed(0) + " Km";
+    $("#distanceRangeOutputId").html(min + " - " + max)
+});
+
 //Enable Deliveries
 $('#deliveriesToggle').click(function (e) {
     e.preventDefault();
@@ -23,7 +70,8 @@ $('#deliveriesToggle').click(function (e) {
                 "border-bottom": "1px solid red",
                 "background": ""
             });
-        } else {remove
+        } else {
+            remove
             $('#deliveriesToggle').prop('checked', true);
             M.toast({
                 html: 'Phone Number Verified',
