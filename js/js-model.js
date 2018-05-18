@@ -306,7 +306,7 @@ const accuracyLabelElement = document.getElementById('accuracy-label');
 // you feed it class id predicted by the model.
 
 function inference(activations){
-    console.log(splitUp(activations))
+    console.log(splitUp(activations,49)) // should not be hardcoded its the (model.output.shape[1] * model.output.shape[2]),
    
 }
   
