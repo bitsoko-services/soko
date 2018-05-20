@@ -1,3 +1,6 @@
+function initDeilveryFunctions() {
+    
+ 
 $(document).on('touchstart click', '#deliveryPage', function () {
     $(".activePage").html("Deliveries")
 });
@@ -374,3 +377,8 @@ $(document).on("click", "#addOperatorNumb", function () {
         });
     }
 });
+     }
+
+  document.addEventListener("DOMContentLoaded", initDeilveryFunctions);
+
+
