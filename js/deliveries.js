@@ -297,6 +297,8 @@ $("#distanceSliderAmount").on("change", function () {
         }
     });
 });
+    
+    /*
 //Distace Slider
 var distanceSlide = document.getElementById('distaceSlide'),
     distanceSliderDiv = document.getElementById("distanceSliderAmount");
@@ -315,7 +317,7 @@ distanceSlide.onchange = function () {
         if (e.status == 'ok') {} else {}
     });
 }
-
+*/
 
 //New Operator
 $('#addNewOperator').on('click', function () {
