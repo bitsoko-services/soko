@@ -318,7 +318,7 @@ function updateMerch(s) {
     if (s.credit == "") {
         $('.loadStoreBal').html("0");
     } else {
-        $('.loadStoreBal').html(s.credit);
+        $('.loadStoreBal').html(s.credit * (baseX * allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate));
     }
 };
 
