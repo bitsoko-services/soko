@@ -1,3 +1,58 @@
+
+function deliveryMbr() {
+    doFetch({
+        action: 'getDeliveryMembers',
+        id: localStorage.getItem('soko-active-store')
+    }).then(function (e) {
+        try {
+            var deliveryMemberLst = JSON.parse(e.members)
+        } catch (err) {
+
+            var deliveryMemberLst = [];
+        }
+        $("#membersLst").html("");
+        $("#ordMembersLst").html("");
+        for (var i = 0; i < deliveryMemberLst.length; i++) {
+            for (var s in deliveryGuys) {
+                var name = deliveryGuys[s].name;
+                var id = deliveryGuys[s].id;
+                var icon = deliveryGuys[s].icon;
+                if (deliveryMemberLst[i].id == id) {
+
+                    $("#membersLst").append('<div id="' + id + '" class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
+                    $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s10"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s2" style="padding-top:5px;"><form action="#"> <label for="radio_' + id + '"><input class="with-gap" rid="' + id + '" name="group1" type="radio" id="radio_' + id + '"/><span></span></label></form></div></div>');
+                    $("#radio_" + id).click(function (e) {
+
+                        var orderId = $("#deliverOrderModal").attr('gid');
+                        doFetch({
+                            action: 'orderDeliveryMembers',
+                            orderId: orderId,
+                            id: $(this).attr('rid')
+                        }).then(function (e) {
+                            if (e.status == 'ok') {
+                                M.toast({
+                                    html: 'Delivery member selected successfully',
+                                    displayLength: 3000
+                                })
+                                $('#deliverOrderModal').modal('close');
+                            } else {}
+                        });
+                    })
+                }
+            }
+        }
+    })
+    try {
+        var rateInput = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRate;
+    } catch (err) {
+        var rateInput = 0
+    }
+    $('#delivery_Rate').val(rateInput);
+    $("#sliderAmount").val(rateInput);
+    $("#slide").val(rateInput);
+    $("#rangeOutputId").val(rateInput);
+}
+
 function initDeilveryFunctions() {
     
  
@@ -176,60 +231,6 @@ $('document').ready(function () {
 //        })
 //    }
 //}
-function deliveryMbr() {
-    doFetch({
-        action: 'getDeliveryMembers',
-        id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {
-        try {
-            var deliveryMemberLst = JSON.parse(e.members)
-        } catch (err) {
-
-            var deliveryMemberLst = [];
-        }
-        $("#membersLst").html("");
-        $("#ordMembersLst").html("");
-        for (var i = 0; i < deliveryMemberLst.length; i++) {
-            for (var s in deliveryGuys) {
-                var name = deliveryGuys[s].name;
-                var id = deliveryGuys[s].id;
-                var icon = deliveryGuys[s].icon;
-                if (deliveryMemberLst[i].id == id) {
-
-                    $("#membersLst").append('<div id="' + id + '" class="chip removeMember"> <img src="' + icon + '"> ' + name + ' </div>');
-                    $("#ordMembersLst").append('<div class="row" style="margin-bottom:0px;"><div class="col s10"><div class="chip selectMmbr ' + id + '" style="border-radius:5px;background:#FAFAFA;color:black;"> <img style="border-radius:5px;" src="' + icon + '"> ' + name + ' </div></div><div class="col s2" style="padding-top:5px;"><form action="#"> <label for="radio_' + id + '"><input class="with-gap" rid="' + id + '" name="group1" type="radio" id="radio_' + id + '"/><span></span></label></form></div></div>');
-                    $("#radio_" + id).click(function (e) {
-
-                        var orderId = $("#deliverOrderModal").attr('gid');
-                        doFetch({
-                            action: 'orderDeliveryMembers',
-                            orderId: orderId,
-                            id: $(this).attr('rid')
-                        }).then(function (e) {
-                            if (e.status == 'ok') {
-                                M.toast({
-                                    html: 'Delivery member selected successfully',
-                                    displayLength: 3000
-                                })
-                                $('#deliverOrderModal').modal('close');
-                            } else {}
-                        });
-                    })
-                }
-            }
-        }
-    })
-    try {
-        var rateInput = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRate;
-    } catch (err) {
-        var rateInput = 0
-    }
-    $('#delivery_Rate').val(rateInput);
-    $("#sliderAmount").val(rateInput);
-    $("#slide").val(rateInput);
-    $("#rangeOutputId").val(rateInput);
-}
-
 //Remove Delivery Member
 $(document).on('click', '.removeMember', function (e) {
     e.stopPropagation();
