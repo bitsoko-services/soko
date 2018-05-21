@@ -35,11 +35,11 @@ function profileLoaded(p) {
     }).then(function (e) {
         if (e.status == "ok") {
             localStorage.setItem('bitsoko-wallets-addr', e.adr)
+    loadTheme();
         } else {
             console.log('Error: unable to load merchant info');
         }
     });
-    loadTheme();
     walletFunctions(localStorage.getItem("bits-user-name")).then(function (e) {
 
         startGoogle()
@@ -90,6 +90,7 @@ function loadTheme() {
 
     storeOwner();
     editStoreContent();
+    loadWalletBal();
 }
 
 
