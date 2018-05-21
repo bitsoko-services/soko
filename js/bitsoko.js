@@ -316,9 +316,9 @@ function updateMerch(s) {
         //x[i].style.background = s.banner;
     }
     if (s.credit == "") {
-        $('#loadStoreBal').html("0");
+        $('.loadStoreBal').html("0");
     } else {
-        $('#loadStoreBal').html(s.credit);
+        $('.loadStoreBal').html(s.credit);
     }
 };
 
