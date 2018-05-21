@@ -35,7 +35,7 @@ function profileLoaded(p) {
     }).then(function (e) {
         if (e.status == "ok") {
             localStorage.setItem('bitsoko-wallets-addr', e.adr)
-    loadTheme();
+            loadTheme();
         } else {
             console.log('Error: unable to load merchant info');
         }
@@ -314,6 +314,11 @@ function updateMerch(s) {
     var i;
     for (i = 0, s = s; i < x.length; i++) {
         //x[i].style.background = s.banner;
+    }
+    if (s.credit == "") {
+        $('#loadStoreBal').html("0");
+    } else {
+        $('#loadStoreBal').html(s.credit);
     }
 };
 

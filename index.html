@@ -580,16 +580,28 @@
                 </g>    
             </svg>
         </div>
-        <div class="modal-content" style="padding:  0px 10px; text-align:  center;">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-        </div>
-        <div class="row" style="text-align: center;">
-            <div class="input-field col s12">
-                Buy tokens worth: <input stitm="buyStoreTokens" placeholder="Ksh" id="tokenVal" type="number" class="validate" style="width: 60px;margin-left:  20px;">
+        <h5>Wallet Status</h5>
+        <div class="modal-content" style="padding:  0px 10px; text-align:  center; height: 55vh; overflow: scroll;">
+            <p style="margin: 0px; text-align: left;">Store Balance: <span id="loadStoreBal"></span></p>
+            <p style="margin: 0px; text-align: left;">Account Balance: <span id="userWalletBal">Locked</span></p>
+
+            <div class="row" style="text-align: center; margin-bottom: 0px;">
+                <div class="input-field col s12">
+                    Buy tokens worth: <input stitm="buyStoreTokens" placeholder="Ksh" id="tokenVal" type="number" class="validate" style="width: 60px;margin-left:  20px;" disabled>
+                </div>
             </div>
-        </div>
-        <div style="padding-bottom: 25px;">
-            <a id="calcTokenVal" class="btn opacitySelectedColor" style="margin: 0px 25%; display: block; background: rgb(35, 31, 31); filter: brightness(1.3);">Buy</a>
+            <div style="padding-bottom: 10px;">
+                <a id="calcTokenVal" class="btn opacitySelectedColor" style="margin: 0px 25%; display: block; background: rgb(35, 31, 31); filter: brightness(1.3);">Buy</a>
+            </div>
+            <hr>
+            <div class="row" style="text-align: center;">
+                <p>Withdraw store funds</p>
+                <div class="input-field col s12">
+                    <input placeholder="Enter amount" id="withdrawFundsInpt" type="number" class="validate" disabled>
+                    <label class="active" for="withdrawFundsInpt">Amount</label>
+                </div>
+                <button class="btn">widthdraw</button>
+            </div>
         </div>
     </div>
     <!-- Enterprise Settings Service One Modal Structure -->
@@ -1328,63 +1340,63 @@
     </style>
     <!-- newPromo Modal End -->
     <!-- BarCode Reader Modal Start -->
-     <div id="barCodeReader" style="overflow: hidden;"  class="modal" style="background-color: black;overflow: hidden;">
-         <video class=""  autoplay playsinline onplay="resize_canvas()" id="quagaLauncher"></video>
-         <div class="canvas" id="quagaLauncherCanvas"></div>
-         <div id="scanLst" style="position: absolute;">
+    <div id="barCodeReader" style="overflow: hidden;" class="modal" style="background-color: black;overflow: hidden;">
+        <video class="" autoplay playsinline onplay="resize_canvas()" id="quagaLauncher"></video>
+        <div class="canvas" id="quagaLauncherCanvas"></div>
+        <div id="scanLst" style="position: absolute;">
             Test...
-         </div>
-         <div id="quagaLauncherModalFooter" class="modal-footer" style="background-color: transparent;height: auto; z-index: 20; text-align: center;position: absolute; bottom: 0;">
+        </div>
+        <div id="quagaLauncherModalFooter" class="modal-footer" style="background-color: transparent;height: auto; z-index: 20; text-align: center;position: absolute; bottom: 0;">
             <a class="waves-effect waves-light btn checkOutQuagga opacitySelectedColor" style="float: none;">close</a>
             <a class="waves-effect waves-light btn trainModel opacitySelectedColor" style="float: none;">Model</a>
             <a id="quaggachckout" class="waves-effect waves-light btn opacitySelectedColor" style="display: block; width: 90%; margin-left: auto; margin-right: auto; float: none; padding: 0;">complete transaction</a>
-         </div>
-      </div>
-      <!-- BarCode Reader Modal End -->
-      <!-- BarCode Reader Modal Start -->
-      <!-- Modal Structure -->
-      <div id="trainingClasses" class="modal bottom-sheet">
-         <div class="modal-content">
+        </div>
+    </div>
+    <!-- BarCode Reader Modal End -->
+    <!-- BarCode Reader Modal Start -->
+    <!-- Modal Structure -->
+    <div id="trainingClasses" class="modal bottom-sheet">
+        <div class="modal-content">
             <div class="row">
-               <div class="switch col s12">
-                  <label>
+                <div class="switch col s12">
+                    <label>
                   Off
                   <input type="checkbox">
                   <span class="lever"></span>
                   On
                   </label>
-               </div>
-               <div class="col s6">
-                  <div class="label" id="loss-label"></div>
-                  <!-- <div id="lossCanvas"></div> -->
-               </div>
-               <div class="col s6">
-                  <div class="label" id="accuracy-label"></div>
-                  <!-- <div id="accuracyCanvas"></div> -->
-               </div>
+                </div>
+                <div class="col s6">
+                    <div class="label" id="loss-label"></div>
+                    <!-- <div id="lossCanvas"></div> -->
+                </div>
+                <div class="col s6">
+                    <div class="label" id="accuracy-label"></div>
+                    <!-- <div id="accuracyCanvas"></div> -->
+                </div>
             </div>
-         </div>
-         <div class="modal-footer">
+        </div>
+        <div class="modal-footer">
             <a id="lauchTraining" href="#!" onclick="train()" class=" waves-effect btn waves-green">Train</a>
             <a href="#!" class="modal-close waves-effect waves-light btn opacitySelectedColor">Done</a>
-         </div>
-      </div>
-      <div id="dataCollectionBoxLabels" class="modal bottom-sheet">
-         <div class="modal-content">
+        </div>
+    </div>
+    <div id="dataCollectionBoxLabels" class="modal bottom-sheet">
+        <div class="modal-content">
             <form class="col s12">
-               <div class="row">
-                  <div class="input-field col s12">
-                     <select onchange="" id="trainingBoxLabel">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select onchange="" id="trainingBoxLabel">
                      </select>
-                     <label>Box Label </label>
-                  </div>
-               </div>
+                        <label>Box Label </label>
+                    </div>
+                </div>
             </form>
-         </div>
-         <div class="modal-footer">
+        </div>
+        <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-light btn opacitySelectedColor">Done</a>
-         </div>
-      </div>
+        </div>
+    </div>
     <!-- BarCode Reader Modal End -->
 
     <!-- //////////////////////////////////////////////////////////////////////////// -->
@@ -1406,7 +1418,7 @@
     <div style="width: 25px;height: 2px;background-color: white;margin: 4px 0;display:block;margin-left:auto;margin-right:auto;border-radius:5px;"></div>
 </div>
 -->
-                    <p class="left activePage" style="margin: 0px; margin-left: 55px; font-weight: bold;"><svg id="userWallet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 334.877 334.877" style="enable-background:new 0 0 334.877 334.877;margin: 3px;width: 26px;float: left;margin-top: 13px;margin-left: 15px;" xml:space="preserve"><path d="M333.196,155.999h-16.067V82.09c0-17.719-14.415-32.134-32.134-32.134h-21.761L240.965,9.917 C237.571,3.798,231.112,0,224.107,0c-3.265,0-6.504,0.842-9.364,2.429l-85.464,47.526H33.815 c-17.719,0-32.134,14.415-32.134,32.134v220.653c0,17.719,14.415,32.134,32.134,32.134h251.18 c17.719,0,32.134-14.415,32.134-32.134v-64.802h16.067V155.999z M284.995,62.809c9.897,0,17.982,7.519,19.068,17.14h-24.152 l-9.525-17.14H284.995z M220.996,13.663c3.014-1.69,7.07-0.508,8.734,2.494l35.476,63.786H101.798L220.996,13.663z M304.275,302.742c0,10.63-8.651,19.281-19.281,19.281H33.815c-10.63,0-19.281-8.651-19.281-19.281V82.09 c0-10.63,8.651-19.281,19.281-19.281h72.353L75.345,79.95H37.832c-3.554,0-6.427,2.879-6.427,6.427s2.873,6.427,6.427,6.427h14.396 h234.83h17.217v63.201h-46.999c-21.826,0-39.589,17.764-39.589,39.589v2.764c0,21.826,17.764,39.589,39.589,39.589h46.999V302.742z M320.342,225.087h-3.213h-59.853c-14.743,0-26.736-11.992-26.736-26.736v-2.764c0-14.743,11.992-26.736,26.736-26.736h59.853 h3.213V225.087z M276.961,197.497c0,7.841-6.35,14.19-14.19,14.19c-7.841,0-14.19-6.35-14.19-14.19s6.35-14.19,14.19-14.19 C270.612,183.306,276.961,189.662,276.961,197.497z" style="fill: white;"></path></svg><span id="userWalletBal" style=" padding: 10px 10px;"></span>
+                    <p class="left activePage" style="margin: 0px; margin-left: 55px; font-weight: bold;"><svg onclick='$("#buyStoreTokens").modal("open")' id="storeWallet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 334.877 334.877" style="enable-background:new 0 0 334.877 334.877;margin: 3px;width: 26px;float: left;margin-top: 13px;margin-left: 15px;" xml:space="preserve"><path d="M333.196,155.999h-16.067V82.09c0-17.719-14.415-32.134-32.134-32.134h-21.761L240.965,9.917 C237.571,3.798,231.112,0,224.107,0c-3.265,0-6.504,0.842-9.364,2.429l-85.464,47.526H33.815 c-17.719,0-32.134,14.415-32.134,32.134v220.653c0,17.719,14.415,32.134,32.134,32.134h251.18 c17.719,0,32.134-14.415,32.134-32.134v-64.802h16.067V155.999z M284.995,62.809c9.897,0,17.982,7.519,19.068,17.14h-24.152 l-9.525-17.14H284.995z M220.996,13.663c3.014-1.69,7.07-0.508,8.734,2.494l35.476,63.786H101.798L220.996,13.663z M304.275,302.742c0,10.63-8.651,19.281-19.281,19.281H33.815c-10.63,0-19.281-8.651-19.281-19.281V82.09 c0-10.63,8.651-19.281,19.281-19.281h72.353L75.345,79.95H37.832c-3.554,0-6.427,2.879-6.427,6.427s2.873,6.427,6.427,6.427h14.396 h234.83h17.217v63.201h-46.999c-21.826,0-39.589,17.764-39.589,39.589v2.764c0,21.826,17.764,39.589,39.589,39.589h46.999V302.742z M320.342,225.087h-3.213h-59.853c-14.743,0-26.736-11.992-26.736-26.736v-2.764c0-14.743,11.992-26.736,26.736-26.736h59.853 h3.213V225.087z M276.961,197.497c0,7.841-6.35,14.19-14.19,14.19c-7.841,0-14.19-6.35-14.19-14.19s6.35-14.19,14.19-14.19 C270.612,183.306,276.961,189.662,276.961,197.497z" style="fill: white;"></path></svg><span id="shopWalletBal" style=" padding: 10px 10px;"></span>
                         <!--                        <span style=" padding: 10px 10px;">00</span>-->
                     </p>
                     <a id="entSettings">
@@ -2621,7 +2633,7 @@
     <script src="https://bitsoko.co.ke/bitsAssets/js/jspdf/jspdf.min.js"></script>
     <script src="https://bitsoko.co.ke/bitsAssets/js/jspdf/jspdf.plugin.autotable.js"></script>
 
-<!--    <script src="./js/js-model.js"></script>-->
+    <!--    <script src="./js/js-model.js"></script>-->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vega@3"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script> -->
     <!-- Import vega-embed -->
