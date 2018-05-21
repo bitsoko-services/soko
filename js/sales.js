@@ -10,7 +10,6 @@ $(document).on('touchstart click', '#userWallet', function () {
 });
 
 function loadWalletBal() {
-    alert("called")
     if (sessionStorage.getItem('walletKey')) {
         fetchRates().then(function (e) {
             if (e.status == "ok") {
