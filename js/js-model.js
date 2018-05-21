@@ -125,9 +125,9 @@ async function loadMobilenet() {
 
   // Return a model that outputs an internal activation.
   const layer = mobilenet.getLayer('conv_pw_13_relu');
-  for(let i = 0;i<mobilenet.layers.length;i++){
-    console.log(mobilenet.layers[i].name,mobilenet.layers[i].output.shape);
-  }
+  // for(let i = 0;i<mobilenet.layers.length;i++){
+  //   console.log(mobilenet.layers[i].name,mobilenet.layers[i].output.shape);
+  // }
   M.toast({
         html: 'Model loaded...',
         displayLength: 1000
