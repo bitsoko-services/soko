@@ -90,7 +90,6 @@ function loadTheme() {
 
     storeOwner();
     editStoreContent();
-    loadWalletBal();
 }
 
 
@@ -209,6 +208,7 @@ function updateStores() {
         loadPOS();
     });
     userNamesInput();
+    loadWalletBal();
 }
 
 function reqMsg(data) {
