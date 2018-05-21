@@ -5,7 +5,7 @@ $(document).on('touchstart click', '#storeWallet', function () {});
 
 function loadWalletBal() {
     if (sessionStorage.getItem('walletKey')) {
-        $("#buyStoreTokens").removeAttr("disabled");
+        $("#buyStrTkns").removeAttr("disabled");
         $("#withdrawFundsInpt").removeAttr("disabled");
         $("#unlockUserWallet").css("display", "none");
         fetchRates().then(function (e) {
