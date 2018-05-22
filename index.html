@@ -580,7 +580,9 @@
                 </g>    
             </svg>
         </div>
-        <span id="unlockUserWallet" style="display: block; width: max-content; margin-left: auto; margin-right: auto; margin-bottom: 10px"><button class="btn" style="background: red;" onclick="loadGdrive()">unlock wallet</button></span>
+        <span id="unlockUserWallet" style="display: block; width: max-content; margin-left: auto; margin-right: auto; margin-bottom: 10px">
+            <p id="switchWallet" style="text-align: center;display: none;">Switch wallet</p>
+            <button class="btn" style="background: red;" onclick="loadGdrive()">unlock wallet</button></span>
         <div class="modal-content" style="padding:  0px 10px; text-align:  center; max-height: 55vh; overflow: scroll;">
             <p style="margin: 0px; text-align: left;">Store Balance: <span class="loadStoreBal"></span></p>
             <p style="margin: 0px; text-align: left;">Account Balance: <span id="userWalletBal">Locked</span></p>
