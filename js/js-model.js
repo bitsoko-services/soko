@@ -726,7 +726,7 @@ function clearBbox() {
   }
 }
 
-//@return {"pr_id":count}
+//@return {"pr_id_i":count,...,"pr_id_n":count}
 
 function countProductsByName(ct){
   //mmmmh....thinking about it!
