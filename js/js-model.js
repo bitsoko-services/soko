@@ -162,7 +162,7 @@ function sokoCustomModelInit(){
       tf.layers.conv2d({
         inputShape: [7, 7, 256],
         kernelSize: 1,
-        filters: 8,
+        filters: 5+NUM_CLASSES+1,
         strides: 1,
         activation: 'relu',
         kernelInitializer: 'varianceScaling',
@@ -173,7 +173,7 @@ function sokoCustomModelInit(){
       }),
       tf.layers.conv2d({
         kernelSize: 1,
-        filters: 8,
+        filters: 5+NUM_CLASSES+1,
         strides: 1,
         activation: 'relu',
         useBias: false
@@ -234,6 +234,8 @@ let Predicting = true;
 
 async function predict() {
   while (Predicting) {
+    toggleModalFooterOnRectDrawInit(true)
+    clearBbox()
     const predictedClass = tf.tidy(() => {
 
       // Capture the frame from the webcam.
@@ -252,9 +254,12 @@ async function predict() {
     });
 
     const activations = (await predictedClass);
-    ACTIVATION = activations // global variable for testing in console
     inference(activations.dataSync());
+    activations.dispose()
     await tf.nextFrame();
+  }
+  if (!Predicting) {
+    toggleModalFooterOnRectDrawInit(false)
   }
   
 }
@@ -707,46 +712,52 @@ function yoloFormatTobboxes(size, bboxes){
 }
 
 function processOutput(output){
+  let canvas = document.getElementById('quagaLauncherCanvas')
   col_rows =[]
   for(var i=0;i<7;i++){for (var j=0;j<7;j++){col_rows.push([i,j])}}
   for (var i = 0; i < output.length; i++) {
     var y_hat = output[i]
     if (y_hat[0] != 0) { //probability of objectness in  the first cell
       let confidence = tf.sigmoid(tf.tensor(y_hat.slice(0,1)))
-      let class_probs = tf.softmax(tf.tensor(y_hat.slice(5)))
+      let class_probs = tf.softmax(tf.tensor(y_hat.slice(5))).as1D().argMax()
+      let predictedClass = class_probs.dataSync()[0]
+      class_probs.dispose()
       let box_xy = tf.div(tf.add(tf.tensor(col_rows[i]),tf.sigmoid(tf.tensor(y_hat.slice(1,3)))),tf.tensor(7)) // 7 output shape
-      let box_wh = tf.div(tf.add(tf.tensor([0.57273, 0.677385]),tf.exp(tf.tensor(y_hat.slice(3,5)))),tf.tensor(7))
+      let box_wh = tf.div(tf.add(tf.tensor([0.0, 0.0]),tf.exp(tf.tensor(y_hat.slice(3,5)))),tf.tensor(7))
       let box_mins = tf.sub(box_xy, tf.div(box_wh, tf.tensor1d([2.0])));
       let box_maxes = tf.add(box_xy, tf.div(box_wh, tf.tensor1d([2.0])));
-      box_mins = tf.mul(box_mins, tf.tensor(490)) // 490 should be the size of original input and not hard-coded 
-      box_maxes = tf.mul(box_maxes,tf.tensor(490))
+      box_mins = tf.mul(box_mins, tf.tensor(parseInt(canvas.style.width,10))) // 490 should be the size of original input and not hard-coded 
+      box_maxes = tf.mul(box_maxes,tf.tensor(parseInt(canvas.style.width,10)))
       boxes = box_mins.concat(box_maxes)
       boxes = boxes.dataSync()
       let [top, left, bottom, right] = boxes;
-      // top = Math.max(0, top);
-      // left = Math.max(0, left);
-      // bottom = Math.min(490, bottom);
-      // right = Math.min(490, right);
-      drawRect(left.toFixed(0), top.toFixed(0), (right-left).toFixed(0), (bottom-top).toFixed(0));
-      clearRects()
+      top = Math.max(0, top);
+      left = Math.max(0, left);
+      bottom = Math.min(parseInt(canvas.style.height,10), bottom);
+      right = Math.min(parseInt(canvas.style.width,10), right);
+      console.log([parseInt(canvas.style.width,10),parseInt(canvas.style.height,10)],[top, left, bottom, right])
+      drawBbox(left.toFixed(0), top.toFixed(0), (right-left).toFixed(0), (bottom-top).toFixed(0),predictedClass);
     }
   }
 }
 
-function drawRect(x, y, w, h, color="red") {
+function drawBbox(x, y, w, h, l) {
   console.log(x, y, w, h)
   let canvas = document.getElementById('quagaLauncherCanvas')
   const element = document.createElement('fieldset');
+  label = document.createElement('legend')
+  label.style.color = "#fff"
+  label.innerHTML = l
+  element.appendChild(label)
   element.className = 'rectangle';
   element.style.top = y+ 'px';
   element.style.left = x+ 'px';
   element.style.width = w+ 'px';
   element.style.height = h+ 'px';
-
   canvas.appendChild(element);
 }
 
-function clearRects() {
+function clearBbox() {
   const rects = document.getElementsByClassName('rectangle');
   while(rects[0]) {
     rects[0].parentNode.removeChild(rects[0]);
