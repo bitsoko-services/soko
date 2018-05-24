@@ -306,7 +306,7 @@ const accuracyLabelElement = document.getElementById('accuracy-label');
 // you feed it class id predicted by the model.
 
 function inference(activations){
-    console.log(splitUp(activations,49)) // should not be hardcoded its the (model.output.shape[1] * model.output.shape[2]),
+    processOutput(splitUp(activations,49)) // should not be hardcoded its the (model.output.shape[1] * model.output.shape[2]),
    
 }
   
@@ -691,3 +691,66 @@ function splitUp(arr, n) {
 
     return result;
 }
+
+function yoloFormatTobboxes(size, bboxes){
+  var dw = 1./size[0]
+  var dh = 1./size[1]
+  var x = (bboxes[0] + bboxes[1])/2.0
+  var y = (bboxes[2] + bboxes[3])/2.0
+  var w = bboxes[1] - bboxes[0]
+  var h = bboxes[3] - bboxes[2]
+  x = x*dw
+  w = w*dw
+  y = y*dh
+  h = h*dh
+  return [x,y,w,h]
+}
+
+function processOutput(output){
+  col_rows =[]
+  for(var i=0;i<7;i++){for (var j=0;j<7;j++){col_rows.push([i,j])}}
+  for (var i = 0; i < output.length; i++) {
+    var y_hat = output[i]
+    if (y_hat[0] != 0) { //probability of objectness in  the first cell
+      let confidence = tf.sigmoid(tf.tensor(y_hat.slice(0,1)))
+      let class_probs = tf.softmax(tf.tensor(y_hat.slice(5)))
+      let box_xy = tf.div(tf.add(tf.tensor(col_rows[i]),tf.sigmoid(tf.tensor(y_hat.slice(1,3)))),tf.tensor(7)) // 7 output shape
+      let box_wh = tf.div(tf.add(tf.tensor([0.57273, 0.677385]),tf.exp(tf.tensor(y_hat.slice(3,5)))),tf.tensor(7))
+      let box_mins = tf.sub(box_xy, tf.div(box_wh, tf.tensor1d([2.0])));
+      let box_maxes = tf.add(box_xy, tf.div(box_wh, tf.tensor1d([2.0])));
+      box_mins = tf.mul(box_mins, tf.tensor(490)) // 490 should be the size of original input and not hard-coded 
+      box_maxes = tf.mul(box_maxes,tf.tensor(490))
+      boxes = box_mins.concat(box_maxes)
+      boxes = boxes.dataSync()
+      let [top, left, bottom, right] = boxes;
+      // top = Math.max(0, top);
+      // left = Math.max(0, left);
+      // bottom = Math.min(490, bottom);
+      // right = Math.min(490, right);
+      drawRect(left.toFixed(0), top.toFixed(0), (right-left).toFixed(0), (bottom-top).toFixed(0));
+      clearRects()
+    }
+  }
+}
+
+function drawRect(x, y, w, h, color="red") {
+  console.log(x, y, w, h)
+  let canvas = document.getElementById('quagaLauncherCanvas')
+  const element = document.createElement('fieldset');
+  element.className = 'rectangle';
+  element.style.top = y+ 'px';
+  element.style.left = x+ 'px';
+  element.style.width = w+ 'px';
+  element.style.height = h+ 'px';
+
+  canvas.appendChild(element);
+}
+
+function clearRects() {
+  const rects = document.getElementsByClassName('rectangle');
+  while(rects[0]) {
+    rects[0].parentNode.removeChild(rects[0]);
+  }
+}
+
+
