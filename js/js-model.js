@@ -731,4 +731,8 @@ function clearBbox() {
   }
 }
 
+function countProducts(predictions){
+  //mmmmh....thinking about it!
+}
+
 
