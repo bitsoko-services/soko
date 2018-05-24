@@ -139,11 +139,11 @@ async function loadMobilenet() {
 // it with the class label given by the for example, bananas, oranges are
 // labels 0, 1 respectively.
 function setExampleHandler(label) {
-  console.log('Adding samples for ',label)
+  // console.log('Adding samples for ',label)
   tf.tidy(() => {
     webcam = new Webcam(getVideoFrame());
     const img = webcam.capture();
-    console.log(img.data())
+    // console.log(img.data())
     modelDataset.addExample(mobilenet.predict(img), label);
   });
 }
@@ -220,7 +220,7 @@ async function train() {
     const history = await model.fit(modelDataset.xs, modelDataset.ys, {batchSize: batchSize,epochs: 1});
     const loss = history.history.loss[0];
     const accuracy = history.history.acc[0];
-    console.log(loss,accuracy)
+    console.log({'loss':loss,'acc':accuracy})
     // lossValues.push({'batch': i, 'loss': loss, 'set': 'train'});
     // plotLosses(lossValues)
     // accuracyValues.push({'batch': i, 'accuracy': accuracy, 'set': 'train'});
@@ -348,16 +348,15 @@ function getThisShopProducts(s){
             reqs = []
         };
 
-        console.log(reqs)
 
         NUM_CLASSES = (reqs.length > 1) ? reqs.length : 2
-        console.log(NUM_CLASSES)
+        console.log('Number of classes ',NUM_CLASSES)
 
         var trainingClassesSelectElement = (s == true) ? document.querySelector('#trainingClass') : document.querySelector('#trainingBoxLabel')
        
         var option;
         for (var i = 0; i < reqs.length; i++) {
-          console.log(reqs[i].name)
+          // console.log(reqs[i].name)
           option = document.createElement("option")
           option.text = reqs[i].name
           option.value = i
@@ -365,9 +364,10 @@ function getThisShopProducts(s){
 
           class_names['prid-'+i]= reqs[i].name
           if (reqs[i].imagePath != null) {
+            //do we need shop images uploaded by users? this is what these three lines does
               loadProductImage(reqs[i].imagePath).then(e =>{
               webcam = new Webcam(e);
-              console.log(webcam.capture().data())
+             // console.log(webcam.capture().data())
             })
           }
           
@@ -383,13 +383,17 @@ function getThisShopProducts(s){
 //+SAVE THIS SHOP MODEL+
 
 async function saveThisShopModel(){
-  const saveResults = await model.save('indexeddb://soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights');
-  console.log(saveResults)
+  try{
+    await model.save('indexeddb://soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights');
+  }catch(err){}
+  
 }
 
 async function restoreThisShopModel(){  
-  model = await tf.loadModel('indexeddb://soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights');
-  console.log(model)
+  try{
+    model = await tf.loadModel('indexeddb://soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights');
+  }catch(err){  }
+  
 }
 
 
@@ -472,7 +476,7 @@ function initDraw(canvas) {
             element = null;
             label = null;
             canvas.style.cursor = "default";
-            console.log("finsihed.");
+            console.log("finsihed drawing...");
 
             $("#dataCollectionBoxLabels").modal({
               onOpenStart: function(){
@@ -489,7 +493,7 @@ function initDraw(canvas) {
               }
             }).modal('open')
         } else {
-            console.log("begun.");
+            console.log("begun drawing...");
             toggleVideoStreamForDataCollection(true)
             toggleModalFooterOnRectDrawInit(true)
             mouse.startX = mouse.x;
@@ -661,11 +665,12 @@ function processOutput(output){
     var y_hat = output[i]
     if (y_hat[0] != 0) { //probability of objectness in  the first cell
       let confidence = tf.sigmoid(tf.tensor(y_hat.slice(0,1)))
+      confidence = confidence.dataSync()[0]
       let class_probs = tf.softmax(tf.tensor(y_hat.slice(5))).as1D().argMax()
       let predictedClass = class_probs.dataSync()[0]
       class_probs.dispose()
       let box_xy = tf.div(tf.add(tf.tensor(col_rows[i]),tf.sigmoid(tf.tensor(y_hat.slice(1,3)))),tf.tensor(7)) // 7 output shape
-      let box_wh = tf.div(tf.add(tf.tensor([0.0, 0.0]),tf.exp(tf.tensor(y_hat.slice(3,5)))),tf.tensor(7))
+      let box_wh = tf.div(tf.add(tf.tensor([0.0, 0.0]),tf.exp(tf.tensor(y_hat.slice(3,5)))),tf.tensor(7)) //[0.0, 0.0] is a place holder for anchor boxes for future update
       let box_mins = tf.sub(box_xy, tf.div(box_wh, tf.tensor1d([2.0])));
       let box_maxes = tf.add(box_xy, tf.div(box_wh, tf.tensor1d([2.0])));
       box_mins = tf.mul(box_mins, tf.tensor(parseInt(canvas.style.width,10))) // 490 should be the size of original input and not hard-coded 
@@ -679,8 +684,8 @@ function processOutput(output){
       left = (parseInt(canvas.style.width,10)) < left ? parseInt(canvas.style.width,10) : left
       bottom = Math.min(parseInt(canvas.style.height,10), bottom);
       right = Math.min(parseInt(canvas.style.width,10), right);
-      console.log([parseInt(canvas.style.width,10),parseInt(canvas.style.height,10)],[top, left, bottom, right])
-      drawBbox(left.toFixed(0), top.toFixed(0), (right-left).toFixed(0), (bottom-top).toFixed(0),predictedClass);
+      console.log((confidence*100).toFixed(2)+'%',[parseInt(canvas.style.width,10),parseInt(canvas.style.height,10)],[top, left, bottom, right])
+      drawBbox(left.toFixed(0), top.toFixed(0), (right-left).toFixed(0), (bottom-top).toFixed(0),predictedClass,(confidence*100).toFixed(2));
     }
   }
 }
@@ -694,13 +699,12 @@ function getRandomColor() {
   return color;
 }
 
-function drawBbox(x, y, w, h, l) {
-  console.log(x, y, w, h)
+function drawBbox(x, y, w, h, l,c) {
   let canvas = document.getElementById('quagaLauncherCanvas')
   const element = document.createElement('fieldset');
   label = document.createElement('legend')
   label.style.color = "#fff"
-  label.innerHTML = l
+  label.innerHTML = l//+'_'+c+'%' //uncomment for probabilities
   element.appendChild(label)
   element.className = 'rectangle';
   element.style.top = y+ 'px';
@@ -718,8 +722,8 @@ function clearBbox() {
   }
 }
 
-function countProducts(predictions){
+//@return {"pr_id":count}
+
+function countProductsByClass(predictions){
   //mmmmh....thinking about it!
 }
-
-
