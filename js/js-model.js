@@ -658,6 +658,8 @@ function splitUp(arr, n) {
 
 
 function processOutput(output){
+  //counters
+  var countTally = {}
   let canvas = document.getElementById('quagaLauncherCanvas')
   col_rows =[]
   for(var i=0;i<7;i++){for (var j=0;j<7;j++){col_rows.push([i,j])}}
@@ -686,8 +688,10 @@ function processOutput(output){
       right = Math.min(parseInt(canvas.style.width,10), right);
       console.log((confidence*100).toFixed(2)+'%',[parseInt(canvas.style.width,10),parseInt(canvas.style.height,10)],[top, left, bottom, right])
       drawBbox(left.toFixed(0), top.toFixed(0), (right-left).toFixed(0), (bottom-top).toFixed(0),predictedClass,(confidence*100).toFixed(2));
+      countTally['pr_id_'+predictedClass] = ('pr_id_'+predictedClass in countTally) ? countTally['pr_id_'+predictedClass]+1 : 0
     }
   }
+  countProductsByName(countTally)
 }
 
 function getRandomColor() {
@@ -724,6 +728,7 @@ function clearBbox() {
 
 //@return {"pr_id":count}
 
-function countProductsByClass(predictions){
+function countProductsByName(ct){
   //mmmmh....thinking about it!
+  console.log(ct)
 }
