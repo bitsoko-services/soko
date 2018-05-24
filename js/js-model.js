@@ -197,9 +197,11 @@ function sokoCustomModelInit(){
 }
 
 async function train() {
+
   if (modelDataset.xs == null) {
     throw new Error('Add some examples before training!');
   }
+  sokoCustomModelInit()
   const lossValues = [];
   const accuracyValues = [];
 
@@ -373,68 +375,21 @@ function getThisShopProducts(s){
         $('select').formSelect();
 
         sokoCustomModelInit()
-        restoreThisShopModelWeights()
+        restoreThisShopModel()
     }
 }
 
 
 //+SAVE THIS SHOP MODEL+
 
-function saveThisShopModelWeights(){
-  modelWeights = []
-
-  if (typeof(model) === 'undefined') {
-
-  }else{
-    for (var i = 0; i < model.layers.length; i++) {
-      if (model.layers[i]._trainableWeights.length != 0) {
-        var weightsBiasDict = []
-        var layerWeightsBias = model.layers[i].getWeights()
-        for (var j = 0; j < layerWeightsBias.length; j++) {
-          weightsBiasDict.push([
-            JSON.stringify(Array.from(layerWeightsBias[j].shape)),
-            JSON.stringify(Array.from(layerWeightsBias[j].flatten().dataSync()))
-          ])
-        }
-        modelWeights.push([i,weightsBiasDict])
-      }      
-    }
-  }
-  console.log(modelWeights)
-  getObjectStore('data', 'readwrite').put(JSON.stringify(modelWeights), 'soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights')
+async function saveThisShopModel(){
+  const saveResults = await model.save('indexeddb://soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights');
+  console.log(saveResults)
 }
 
-function restoreThisShopModelWeights(){  
-  getObjectStore('data', 'readwrite').get('soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights').onsuccess = function (event) {
-    var modelWeights =  []
-    try {
-      modelWeights = JSON.parse(event.target.result)
-    } catch (err) {  }
-      console.log(modelWeights)
-    if (modelWeights.length == 0) {
-        M.toast({
-          html: 'Pre-trained model not found...',
-          displayLength: 1000
-        })
-    }else{
-      for (var i = 0; i < modelWeights.length; i++) {
-        var d = modelWeights[i][1]
-        var index = modelWeights[i][0]
-        console.log(index,d)
-        for (var j = 0; j < d.length; j++) {
-          var shape = JSON.parse(d[j][0])
-          if (shape.length == 1) {
-            console.log('bias',tf.tensor2d(JSON.parse(d[j][1]),shape))
-            model.layers[index].weights[1] = tf.tensor2d(JSON.parse(d[j][1]),shape)
-          }else{
-            console.log('weights',tf.tensor2d(JSON.parse(d[j][1]),shape))
-            model.layers[index].weights[0] = tf.tensor2d(JSON.parse(d[j][1]),shape)
-          }
-        }
-
-      }
-    }    
-  }
+async function restoreThisShopModel(){  
+  model = await tf.loadModel('indexeddb://soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights');
+  console.log(model)
 }
 
 
@@ -732,13 +687,24 @@ function processOutput(output){
       boxes = boxes.dataSync()
       let [top, left, bottom, right] = boxes;
       top = Math.max(0, top);
+      top = (parseInt(canvas.style.height,10)) < top ? parseInt(canvas.style.height,10) : top
       left = Math.max(0, left);
+      left = (parseInt(canvas.style.width,10)) < left ? parseInt(canvas.style.width,10) : left
       bottom = Math.min(parseInt(canvas.style.height,10), bottom);
       right = Math.min(parseInt(canvas.style.width,10), right);
       console.log([parseInt(canvas.style.width,10),parseInt(canvas.style.height,10)],[top, left, bottom, right])
       drawBbox(left.toFixed(0), top.toFixed(0), (right-left).toFixed(0), (bottom-top).toFixed(0),predictedClass);
     }
   }
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 
 function drawBbox(x, y, w, h, l) {
@@ -754,6 +720,7 @@ function drawBbox(x, y, w, h, l) {
   element.style.left = x+ 'px';
   element.style.width = w+ 'px';
   element.style.height = h+ 'px';
+  element.style.borderColor = getRandomColor();
   canvas.appendChild(element);
 }
 
