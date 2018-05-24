@@ -652,19 +652,6 @@ function splitUp(arr, n) {
     return result;
 }
 
-function yoloFormatTobboxes(size, bboxes){
-  var dw = 1./size[0]
-  var dh = 1./size[1]
-  var x = (bboxes[0] + bboxes[1])/2.0
-  var y = (bboxes[2] + bboxes[3])/2.0
-  var w = bboxes[1] - bboxes[0]
-  var h = bboxes[3] - bboxes[2]
-  x = x*dw
-  w = w*dw
-  y = y*dh
-  h = h*dh
-  return [x,y,w,h]
-}
 
 function processOutput(output){
   let canvas = document.getElementById('quagaLauncherCanvas')
