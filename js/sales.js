@@ -16,6 +16,7 @@ function loadWalletBal() {
             }
         });
     } else {
+        $("#switchWallet").css("display", "block")
         $("#userWalletBal").html("Locked");
     }
 }

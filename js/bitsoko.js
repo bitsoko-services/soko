@@ -90,7 +90,6 @@ function loadTheme() {
 
     storeOwner();
     editStoreContent();
-    loadWalletBal();
 }
 
 
@@ -209,6 +208,7 @@ function updateStores() {
         loadPOS();
     });
     userNamesInput();
+    loadWalletBal();
 }
 
 function reqMsg(data) {
@@ -318,7 +318,11 @@ function updateMerch(s) {
     if (s.credit == "") {
         $('.loadStoreBal').html("0");
     } else {
-        $('.loadStoreBal').html(s.credit);
+        fetchRates().then(function (e) {
+            if (e.status == "ok") {
+                console.log((baseX * allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate))
+            }
+        });
     }
 };
 
