@@ -65,17 +65,17 @@ var slider = document.getElementById('test-slider');
 noUiSlider.create(slider, {
     start: [20, 80],
     connect: true,
-    step: 1,
+    step: 500,
     range: {
-        'min': 0,
-        'max': 100
-    }
+        'min': 500,
+        'max': 50000
+    },
 });
 
 //Get noUiSlider Values
 slider.noUiSlider.on('change.one', function (e) {
-    var min = JSON.parse(e[0]).toFixed(0);
-    var max = JSON.parse(e[1]).toFixed(0);
+    var min = JSON.parse(e[0]).toFixed(0) /1000;
+    var max = JSON.parse(e[1]).toFixed(0) /1000;
 
     doFetch({
         action: 'deliveryRadius',
@@ -101,8 +101,8 @@ slider.noUiSlider.on('change.one', function (e) {
 
 //Update distanceRangeOutputId
 slider.noUiSlider.on('slide.one', function (e) {
-    var min = JSON.parse(e[0]).toFixed(0) + " Km";
-    var max = JSON.parse(e[1]).toFixed(0) + " Km";
+    var min = JSON.parse(e[0]).toFixed(0) + " meters";
+    var max = JSON.parse(e[1]).toFixed(0) + " meters";
     $("#distanceRangeOutputId").html(min + " - " + max)
 });
 

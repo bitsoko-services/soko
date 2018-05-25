@@ -40,10 +40,8 @@ function profileLoaded(p) {
             console.log('Error: unable to load merchant info');
         }
     });
-    walletFunctions(localStorage.getItem("bits-user-name")).then(function (e) {
-
-        startGoogle()
-    })
+//    walletFunctions(localStorage.getItem("bits-user-name")).then(function (e) {
+//    })
 }
 
 function loadTheme() {

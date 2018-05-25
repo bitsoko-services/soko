@@ -68,6 +68,7 @@ function getActvStoreProds(orderid, orderItems, orderLoc) {
             try {
                 p.allProds = $.parseJSON(event.target.result);
             } catch (err) {
+                console.log(err)
                 p.allProds = null
             }
             resolve(p);
