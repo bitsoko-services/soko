@@ -139,11 +139,11 @@ async function loadMobilenet() {
 // it with the class label given by the for example, bananas, oranges are
 // labels 0, 1 respectively.
 function setExampleHandler(label) {
-  console.log('Adding samples for ',label)
+  // console.log('Adding samples for ',label)
   tf.tidy(() => {
     webcam = new Webcam(getVideoFrame());
     const img = webcam.capture();
-    console.log(img.data())
+    // console.log(img.data())
     modelDataset.addExample(mobilenet.predict(img), label);
   });
 }
@@ -162,7 +162,7 @@ function sokoCustomModelInit(){
       tf.layers.conv2d({
         inputShape: [7, 7, 256],
         kernelSize: 1,
-        filters: 8,
+        filters: 5+NUM_CLASSES+1,
         strides: 1,
         activation: 'relu',
         kernelInitializer: 'varianceScaling',
@@ -173,7 +173,7 @@ function sokoCustomModelInit(){
       }),
       tf.layers.conv2d({
         kernelSize: 1,
-        filters: 8,
+        filters: 5+NUM_CLASSES+1,
         strides: 1,
         activation: 'relu',
         useBias: false
@@ -197,9 +197,11 @@ function sokoCustomModelInit(){
 }
 
 async function train() {
+
   if (modelDataset.xs == null) {
     throw new Error('Add some examples before training!');
   }
+  sokoCustomModelInit()
   const lossValues = [];
   const accuracyValues = [];
 
@@ -218,7 +220,7 @@ async function train() {
     const history = await model.fit(modelDataset.xs, modelDataset.ys, {batchSize: batchSize,epochs: 1});
     const loss = history.history.loss[0];
     const accuracy = history.history.acc[0];
-    console.log(loss,accuracy)
+    console.log({'loss':loss,'acc':accuracy})
     // lossValues.push({'batch': i, 'loss': loss, 'set': 'train'});
     // plotLosses(lossValues)
     // accuracyValues.push({'batch': i, 'accuracy': accuracy, 'set': 'train'});
@@ -234,6 +236,8 @@ let Predicting = true;
 
 async function predict() {
   while (Predicting) {
+    toggleModalFooterOnRectDrawInit(true)
+    clearBbox()
     const predictedClass = tf.tidy(() => {
 
       // Capture the frame from the webcam.
@@ -252,9 +256,12 @@ async function predict() {
     });
 
     const activations = (await predictedClass);
-    ACTIVATION = activations // global variable for testing in console
     inference(activations.dataSync());
+    activations.dispose()
     await tf.nextFrame();
+  }
+  if (!Predicting) {
+    toggleModalFooterOnRectDrawInit(false)
   }
   
 }
@@ -306,7 +313,7 @@ const accuracyLabelElement = document.getElementById('accuracy-label');
 // you feed it class id predicted by the model.
 
 function inference(activations){
-    console.log(splitUp(activations,49)) // should not be hardcoded its the (model.output.shape[1] * model.output.shape[2]),
+    processOutput(splitUp(activations,49)) // should not be hardcoded its the (model.output.shape[1] * model.output.shape[2]),
    
 }
   
@@ -341,16 +348,15 @@ function getThisShopProducts(s){
             reqs = []
         };
 
-        console.log(reqs)
 
         NUM_CLASSES = (reqs.length > 1) ? reqs.length : 2
-        console.log(NUM_CLASSES)
+        console.log('Number of classes ',NUM_CLASSES)
 
         var trainingClassesSelectElement = (s == true) ? document.querySelector('#trainingClass') : document.querySelector('#trainingBoxLabel')
        
         var option;
         for (var i = 0; i < reqs.length; i++) {
-          console.log(reqs[i].name)
+          // console.log(reqs[i].name)
           option = document.createElement("option")
           option.text = reqs[i].name
           option.value = i
@@ -358,9 +364,10 @@ function getThisShopProducts(s){
 
           class_names['prid-'+i]= reqs[i].name
           if (reqs[i].imagePath != null) {
+            //do we need shop images uploaded by users? this is what these three lines does
               loadProductImage(reqs[i].imagePath).then(e =>{
               webcam = new Webcam(e);
-              console.log(webcam.capture().data())
+             // console.log(webcam.capture().data())
             })
           }
           
@@ -368,68 +375,25 @@ function getThisShopProducts(s){
         $('select').formSelect();
 
         sokoCustomModelInit()
-        restoreThisShopModelWeights()
+        restoreThisShopModel()
     }
 }
 
 
 //+SAVE THIS SHOP MODEL+
 
-function saveThisShopModelWeights(){
-  modelWeights = []
-
-  if (typeof(model) === 'undefined') {
-
-  }else{
-    for (var i = 0; i < model.layers.length; i++) {
-      if (model.layers[i]._trainableWeights.length != 0) {
-        var weightsBiasDict = []
-        var layerWeightsBias = model.layers[i].getWeights()
-        for (var j = 0; j < layerWeightsBias.length; j++) {
-          weightsBiasDict.push([
-            JSON.stringify(Array.from(layerWeightsBias[j].shape)),
-            JSON.stringify(Array.from(layerWeightsBias[j].flatten().dataSync()))
-          ])
-        }
-        modelWeights.push([i,weightsBiasDict])
-      }      
-    }
-  }
-  console.log(modelWeights)
-  getObjectStore('data', 'readwrite').put(JSON.stringify(modelWeights), 'soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights')
+async function saveThisShopModel(){
+  try{
+    await model.save('indexeddb://soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights');
+  }catch(err){}
+  
 }
 
-function restoreThisShopModelWeights(){  
-  getObjectStore('data', 'readwrite').get('soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights').onsuccess = function (event) {
-    var modelWeights =  []
-    try {
-      modelWeights = JSON.parse(event.target.result)
-    } catch (err) {  }
-      console.log(modelWeights)
-    if (modelWeights.length == 0) {
-        M.toast({
-          html: 'Pre-trained model not found...',
-          displayLength: 1000
-        })
-    }else{
-      for (var i = 0; i < modelWeights.length; i++) {
-        var d = modelWeights[i][1]
-        var index = modelWeights[i][0]
-        console.log(index,d)
-        for (var j = 0; j < d.length; j++) {
-          var shape = JSON.parse(d[j][0])
-          if (shape.length == 1) {
-            console.log('bias',tf.tensor2d(JSON.parse(d[j][1]),shape))
-            model.layers[index].weights[1] = tf.tensor2d(JSON.parse(d[j][1]),shape)
-          }else{
-            console.log('weights',tf.tensor2d(JSON.parse(d[j][1]),shape))
-            model.layers[index].weights[0] = tf.tensor2d(JSON.parse(d[j][1]),shape)
-          }
-        }
-
-      }
-    }    
-  }
+async function restoreThisShopModel(){  
+  try{
+    model = await tf.loadModel('indexeddb://soko-store-'+localStorage.getItem('soko-active-store')+'-model-weights');
+  }catch(err){  }
+  
 }
 
 
@@ -512,7 +476,7 @@ function initDraw(canvas) {
             element = null;
             label = null;
             canvas.style.cursor = "default";
-            console.log("finsihed.");
+            console.log("finsihed drawing...");
 
             $("#dataCollectionBoxLabels").modal({
               onOpenStart: function(){
@@ -529,7 +493,7 @@ function initDraw(canvas) {
               }
             }).modal('open')
         } else {
-            console.log("begun.");
+            console.log("begun drawing...");
             toggleVideoStreamForDataCollection(true)
             toggleModalFooterOnRectDrawInit(true)
             mouse.startX = mouse.x;
@@ -690,4 +654,81 @@ function splitUp(arr, n) {
     }
 
     return result;
+}
+
+
+function processOutput(output){
+  //counters
+  var countTally = {}
+  let canvas = document.getElementById('quagaLauncherCanvas')
+  col_rows =[]
+  for(var i=0;i<7;i++){for (var j=0;j<7;j++){col_rows.push([i,j])}}
+  for (var i = 0; i < output.length; i++) {
+    var y_hat = output[i]
+    if (y_hat[0] != 0) { //probability of objectness in  the first cell
+      let confidence = tf.sigmoid(tf.tensor(y_hat.slice(0,1)))
+      confidence = confidence.dataSync()[0]
+      let class_probs = tf.softmax(tf.tensor(y_hat.slice(5))).as1D().argMax()
+      let predictedClass = class_probs.dataSync()[0]
+      class_probs.dispose()
+      let box_xy = tf.div(tf.add(tf.tensor(col_rows[i]),tf.sigmoid(tf.tensor(y_hat.slice(1,3)))),tf.tensor(7)) // 7 output shape
+      let box_wh = tf.div(tf.add(tf.tensor([0.0, 0.0]),tf.exp(tf.tensor(y_hat.slice(3,5)))),tf.tensor(7)) //[0.0, 0.0] is a place holder for anchor boxes for future update
+      let box_mins = tf.sub(box_xy, tf.div(box_wh, tf.tensor1d([2.0])));
+      let box_maxes = tf.add(box_xy, tf.div(box_wh, tf.tensor1d([2.0])));
+      box_mins = tf.mul(box_mins, tf.tensor(parseInt(canvas.style.width,10))) // 490 should be the size of original input and not hard-coded 
+      box_maxes = tf.mul(box_maxes,tf.tensor(parseInt(canvas.style.width,10)))
+      boxes = box_mins.concat(box_maxes)
+      boxes = boxes.dataSync()
+      let [top, left, bottom, right] = boxes;
+      top = Math.max(0, top);
+      top = (parseInt(canvas.style.height,10)) < top ? parseInt(canvas.style.height,10) : top
+      left = Math.max(0, left);
+      left = (parseInt(canvas.style.width,10)) < left ? parseInt(canvas.style.width,10) : left
+      bottom = Math.min(parseInt(canvas.style.height,10), bottom);
+      right = Math.min(parseInt(canvas.style.width,10), right);
+      console.log((confidence*100).toFixed(2)+'%',[parseInt(canvas.style.width,10),parseInt(canvas.style.height,10)],[top, left, bottom, right])
+      drawBbox(left.toFixed(0), top.toFixed(0), (right-left).toFixed(0), (bottom-top).toFixed(0),predictedClass,(confidence*100).toFixed(2));
+      countTally['pr_id_'+predictedClass] = ('pr_id_'+predictedClass in countTally) ? countTally['pr_id_'+predictedClass]+1 : 0
+    }
+  }
+  countProductsByName(countTally)
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function drawBbox(x, y, w, h, l,c) {
+  let canvas = document.getElementById('quagaLauncherCanvas')
+  const element = document.createElement('fieldset');
+  label = document.createElement('legend')
+  label.style.color = "#fff"
+  label.innerHTML = l//+'_'+c+'%' //uncomment for probabilities
+  element.appendChild(label)
+  element.className = 'rectangle';
+  element.style.top = y+ 'px';
+  element.style.left = x+ 'px';
+  element.style.width = w+ 'px';
+  element.style.height = h+ 'px';
+  element.style.borderColor = getRandomColor();
+  canvas.appendChild(element);
+}
+
+function clearBbox() {
+  const rects = document.getElementsByClassName('rectangle');
+  while(rects[0]) {
+    rects[0].parentNode.removeChild(rects[0]);
+  }
+}
+
+//@return {"pr_id_i":count,...,"pr_id_n":count}
+
+function countProductsByName(ct){
+  //mmmmh....thinking about it!
+  console.log(ct)
 }
