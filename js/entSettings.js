@@ -498,20 +498,21 @@ $(document).on("click", "#businessDomainMonthly", function () {
         })
     } else {
         doFetch({
-            action: 'checkDomain',
+            action: 'checkEnterpriseDomain',
             domain: $("#businessDomainInput").val()
         }).then(function (e) {
             if (e.status == 'ok') {
                 if (sessionStorage.getItem('walletKey')) {
-                    if (((allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].balance / Math.pow(10, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].decimals)) + allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].totalEarned) * (allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX) > (parseFloat($("#totals")[0].innerHTML) + globalDel)) {
-                        var totCost = parseFloat(500) + globalDel;
+                    if ((allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].balance / Math.pow(10, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].decimals)) * (allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX * baseConv) > 500) {
+                        var totCost = parseFloat(500);
                         transferTokenValue('0x7D1Ce470c95DbF3DF8a3E87DCEC63c98E567d481', "0xb72627650f1149ea5e54834b2f468e5d430e67bf", totCost, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate).then(function (res) {
                             console.log(res);
                             doFetch({
                                 action: 'domainPay',
                                 id: localStorage.getItem('soko-owner-id'),
                                 domain: $("#businessDomainInput").val(),
-                                period: "monthly"
+                                period: "monthly",
+                                trHash: res
                             }).then(function (e) {
                                 if (e.status == 'ok') {
                                     M.toast({
@@ -526,6 +527,11 @@ $(document).on("click", "#businessDomainMonthly", function () {
                                 }
                             });
                         })
+                    } else {
+                        var toastHTML = '<span>You have insufficient funds</span><a href="https://bitsoko.io/tm/?cid=0xb72627650f1149ea5e54834b2f468e5d430e67bf" target="_blank"><button class="btn-flat toast-action">buy</button></a>';
+                        M.toast({
+                            html: toastHTML
+                        });
                     }
                 } else {
                     var toastHTML = '<span>Unlock wallet to register</span><button class="btn-flat toast-action" onclick="walletStatus()">unlock</button>';
@@ -551,13 +557,13 @@ $(document).on("click", "#businessDomainYealy", function () {
         })
     } else {
         doFetch({
-            action: 'checkDomain',
+            action: 'checkEnterpriseDomain',
             domain: $("#businessDomainInput").val()
         }).then(function (e) {
             if (e.status == 'ok') {
                 if (sessionStorage.getItem('walletKey')) {
-                    if (((allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].balance / Math.pow(10, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].decimals)) + allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].totalEarned) * (allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX) > (parseFloat($("#totals")[0].innerHTML) + globalDel)) {
-                        var totCost = parseFloat(500) + globalDel;
+                    if ((allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].balance / Math.pow(10, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].decimals)) * (allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX * baseConv) > 4000) {
+                        var totCost = parseFloat(4000);
                         transferTokenValue('0x7D1Ce470c95DbF3DF8a3E87DCEC63c98E567d481', "0xb72627650f1149ea5e54834b2f468e5d430e67bf", totCost, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate).then(function (res) {
                             console.log(res);
                             doFetch({
@@ -580,6 +586,11 @@ $(document).on("click", "#businessDomainYealy", function () {
                                 }
                             });
                         })
+                    } else {
+                        var toastHTML = '<span>You have insufficient funds</span><a href="https://bitsoko.io/tm/?cid=0xb72627650f1149ea5e54834b2f468e5d430e67bf" target="_blank"><button class="btn-flat toast-action">buy</button></a>';
+                        M.toast({
+                            html: toastHTML
+                        });
                     }
                 } else {
                     var toastHTML = '<span>Unlock wallet to register</span><button class="btn-flat toast-action" onclick="walletStatus()">unlock</button>';
