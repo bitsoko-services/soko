@@ -490,8 +490,6 @@ $(document).on("click", ".deleteServiceTwo", function () {
 });
 
 //New Enterprise
-var domain = $("#businessDomainInput").val();
-
 $(document).on("click", "#businessDomainMonthly", function () {
     if ($("#businessDomainInput").val() == "") {
         M.toast({
@@ -499,37 +497,49 @@ $(document).on("click", "#businessDomainMonthly", function () {
             displayLength: 3000
         })
     } else {
-        if (sessionStorage.getItem('walletKey')) {
-            if (((allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].balance / Math.pow(10, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].decimals)) + allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].totalEarned) * (allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX) > (parseFloat($("#totals")[0].innerHTML) + globalDel)) {
-                var totCost = parseFloat(500) + globalDel;
-                transferTokenValue('0x7D1Ce470c95DbF3DF8a3E87DCEC63c98E567d481', "0xb72627650f1149ea5e54834b2f468e5d430e67bf", totCost, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate).then(function (res) {
-                    console.log(res);
-                    doFetch({
-                        action: 'domainPay',
-                        id: localStorage.getItem('soko-owner-id'),
-                        domain: domain,
-                        period: "monthly"
-                    }).then(function (e) {
-                        if (e.status == 'ok') {
-                            M.toast({
-                                html: 'Enterprise created successfully',
-                                displayLength: 3000
+        doFetch({
+            action: 'checkDomain',
+            domain: $("#businessDomainInput").val()
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                if (sessionStorage.getItem('walletKey')) {
+                    if (((allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].balance / Math.pow(10, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].decimals)) + allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].totalEarned) * (allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX) > (parseFloat($("#totals")[0].innerHTML) + globalDel)) {
+                        var totCost = parseFloat(500) + globalDel;
+                        transferTokenValue('0x7D1Ce470c95DbF3DF8a3E87DCEC63c98E567d481', "0xb72627650f1149ea5e54834b2f468e5d430e67bf", totCost, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate).then(function (res) {
+                            console.log(res);
+                            doFetch({
+                                action: 'domainPay',
+                                id: localStorage.getItem('soko-owner-id'),
+                                domain: $("#businessDomainInput").val(),
+                                period: "monthly"
+                            }).then(function (e) {
+                                if (e.status == 'ok') {
+                                    M.toast({
+                                        html: 'Enterprise created successfully',
+                                        displayLength: 3000
+                                    });
+                                } else {
+                                    M.toast({
+                                        html: 'Error! Try again later',
+                                        displayLength: 3000
+                                    })
+                                }
                             });
-                        } else {
-                            M.toast({
-                                html: 'Error! Try again later',
-                                displayLength: 3000
-                            })
-                        }
+                        })
+                    }
+                } else {
+                    var toastHTML = '<span>Unlock wallet to register</span><button class="btn-flat toast-action" onclick="walletStatus()">unlock</button>';
+                    M.toast({
+                        html: toastHTML
                     });
+                }
+            } else {
+                M.toast({
+                    html: 'Domain not available',
+                    displayLength: 3000
                 })
             }
-        } else {
-            var toastHTML = '<span>Unlock wallet to register</span><button class="btn-flat toast-action" onclick="walletStatus()">unlock</button>';
-            M.toast({
-                html: toastHTML
-            });
-        }
+        });
     }
 });
 
@@ -540,38 +550,50 @@ $(document).on("click", "#businessDomainYealy", function () {
             displayLength: 3000
         })
     } else {
-        if (sessionStorage.getItem('walletKey')) {
-            if (((allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].balance / Math.pow(10, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].decimals)) + allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].totalEarned) * (allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX) > (parseFloat($("#totals")[0].innerHTML) + globalDel)) {
-                var totCost = parseFloat(500) + globalDel;
-                transferTokenValue('0x7D1Ce470c95DbF3DF8a3E87DCEC63c98E567d481', "0xb72627650f1149ea5e54834b2f468e5d430e67bf", totCost, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate).then(function (res) {
-                    console.log(res);
-                    doFetch({
-                        action: 'domainPay',
-                        id: localStorage.getItem('soko-owner-id'),
-                        domain: domain,
-                        period: "yearly",
-                        trHash: res
-                    }).then(function (e) {
-                        if (e.status == 'ok') {
-                            M.toast({
-                                html: 'Enterprise created successfully',
-                                displayLength: 3000
+        doFetch({
+            action: 'checkDomain',
+            domain: $("#businessDomainInput").val()
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                if (sessionStorage.getItem('walletKey')) {
+                    if (((allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].balance / Math.pow(10, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].decimals)) + allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].totalEarned) * (allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX) > (parseFloat($("#totals")[0].innerHTML) + globalDel)) {
+                        var totCost = parseFloat(500) + globalDel;
+                        transferTokenValue('0x7D1Ce470c95DbF3DF8a3E87DCEC63c98E567d481', "0xb72627650f1149ea5e54834b2f468e5d430e67bf", totCost, allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate).then(function (res) {
+                            console.log(res);
+                            doFetch({
+                                action: 'domainPay',
+                                id: localStorage.getItem('soko-owner-id'),
+                                domain: $("#businessDomainInput").val(),
+                                period: "yearly",
+                                trHash: res
+                            }).then(function (e) {
+                                if (e.status == 'ok') {
+                                    M.toast({
+                                        html: 'Enterprise created successfully',
+                                        displayLength: 3000
+                                    });
+                                } else {
+                                    M.toast({
+                                        html: 'Error! Try again later',
+                                        displayLength: 3000
+                                    })
+                                }
                             });
-                        } else {
-                            M.toast({
-                                html: 'Error! Try again later',
-                                displayLength: 3000
-                            })
-                        }
+                        })
+                    }
+                } else {
+                    var toastHTML = '<span>Unlock wallet to register</span><button class="btn-flat toast-action" onclick="walletStatus()">unlock</button>';
+                    M.toast({
+                        html: toastHTML
                     });
+                }
+            } else {
+                M.toast({
+                    html: 'Domain not available',
+                    displayLength: 3000
                 })
             }
-        } else {
-            var toastHTML = '<span>Unlock wallet to register</span><button class="btn-flat toast-action" onclick="walletStatus()">unlock</button>';
-            M.toast({
-                html: toastHTML
-            });
-        }
+        });
     }
 });
 
