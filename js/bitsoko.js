@@ -19,6 +19,8 @@ stimeline = function () {
 //  Object.observe(stimeline, timelineObserver);
 flag = false;
 
+var context = new AudioContext();
+
 // Play oscillators at certain frequency and for a certain time
 var playNote = function (frequency, startTime, duration) {
     var osc1 = context.createOscillator(),
