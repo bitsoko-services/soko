@@ -40,8 +40,8 @@ function profileLoaded(p) {
             console.log('Error: unable to load merchant info');
         }
     });
-//    walletFunctions(localStorage.getItem("bits-user-name")).then(function (e) {
-//    })
+    //    walletFunctions(localStorage.getItem("bits-user-name")).then(function (e) {
+    //    })
 }
 
 function loadTheme() {
@@ -723,6 +723,10 @@ $(".clickPromo").click(function () {
     });
 });
 
+//Select wallet
+$(document).on("click", ".selectedWallet", function (e) {
+    $(this).html('<div class="preloader-wrapper active" style="width: 20px; height: 20px; margin: 5px 15px;"> <div class="spinner-layer spinner-blue-only"> <div class="circle-clipper left"> <div class="circle"></div></div><div class="gap-patch"> <div class="circle"></div></div><div class="circle-clipper right"> <div class="circle"></div></div></div></div>')
+})
 
 //Sign out
 $(".signOut").click(function () {
