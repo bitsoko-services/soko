@@ -74,6 +74,10 @@ function profileLoaded(p) {
     })
     $("#signingIn").html("Signing In. Please Wait");
     updateStores();
+	
+	setTimeout(userNamesInput,18000);
+	setInterval(updateStores,120000);
+	/*
     doFetch({
         action: 'getMadr',
         id: p.bitsokoUserID
@@ -85,6 +89,7 @@ function profileLoaded(p) {
             console.log('Error: unable to load merchant info');
         }
     });
+	*/
     //    walletFunctions(localStorage.getItem("bits-user-name")).then(function (e) {
     //    })
 }
@@ -250,7 +255,6 @@ function updateStores() {
     }).catch(function (err) {
         loadPOS();
     });
-    userNamesInput();
     loadWalletBal();
 }
 
