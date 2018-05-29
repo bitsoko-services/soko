@@ -2675,7 +2675,7 @@
     <script async src="js/quagga.js"></script>
     <scrip asynct src="js/barcodeReader.js"></script>
     <script>
-        createCanvas();
+        
 
         function ColorPicker() {
             this.singleColorCanvas = $('.spectrum-color').get(0);
@@ -2754,9 +2754,6 @@
             $('.selectedColor').addClass('importantRule');
             $('.opacitySelectedColor').addClass('importantRule');
         }
-        new ColorPicker();
-        document.getElementById("colorChosen").defaultValue = "#0f5f76";
-
     </script>
     <script>
         var slide = document.getElementById('slide'),
@@ -2782,16 +2779,22 @@
     <script>
         //preloader
         // makes sure the whole site is loaded
-        jQuery(window).load(function() {
+	     document.addEventListener("DOMContentLoaded", function(event) {
+   
             // will first fade out the loading animation
             jQuery("#status").delay(6000).fadeOut();
             // will fade out the whole DIV that covers the website.
             jQuery("#preloader").delay(6000).fadeOut("slow");
             //Activate floating action
             $('.fixed-action-btn').floatingActionButton();
-            //Time picker Initialization
-            //            $('.timepicker').pickatime({ // default: 'now', // Set default time: 'now', '1:30AM', '16:30' // fromnow: 0, // set default time to * milliseconds from now (using with default = 'now') // twelvehour: true, // Use AM/PM or 24-hour format // donetext: 'OK', // text for done-button // cleartext: 'Clear', // text for clear-button // canceltext: 'Cancel', // Text for cancel-button // autoclose: false, // automatic close timepicker // ampmclickable: true, // make AM PM clickable // aftershow: function() {} //Function for after opening timepicker // });
-        })
+		     
+		     
+	createCanvas();
+        new ColorPicker();
+        document.getElementById("colorChosen").defaultValue = "#0f5f76";
+
+  });
+      
 
     </script>
     <script>
