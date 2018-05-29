@@ -281,7 +281,12 @@ function userNoPromp() {
 }
 
 function verifyNo() {
-    var checkPhoneNo = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).phone
+    try {
+        var checkPhoneNo = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).phone
+    } catch (err) {
+        console.log(err)
+        var checkPhoneNo = null
+    }
     if (checkPhoneNo == "") {
         userNoPromp()
     } else if (checkPhoneNo == null) {
