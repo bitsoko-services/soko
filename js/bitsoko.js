@@ -35,15 +35,13 @@ function profileLoaded(p) {
     }).then(function (e) {
         if (e.status == "ok") {
             localStorage.setItem('bitsoko-wallets-addr', e.adr)
+            loadTheme();
         } else {
             console.log('Error: unable to load merchant info');
         }
     });
-    loadTheme();
-    walletFunctions(localStorage.getItem("bits-user-name")).then(function (e) {
-
-        startGoogle()
-    })
+    //    walletFunctions(localStorage.getItem("bits-user-name")).then(function (e) {
+    //    })
 }
 
 function loadTheme() {
@@ -208,6 +206,7 @@ function updateStores() {
         loadPOS();
     });
     userNamesInput();
+    loadWalletBal();
 }
 
 function reqMsg(data) {
@@ -313,6 +312,15 @@ function updateMerch(s) {
     var i;
     for (i = 0, s = s; i < x.length; i++) {
         //x[i].style.background = s.banner;
+    }
+    if (s.credit == "") {
+        $('.loadStoreBal').html("0");
+    } else {
+        fetchRates().then(function (e) {
+            if (e.status == "ok") {
+                console.log((baseX * allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate))
+            }
+        });
     }
 };
 
@@ -715,6 +723,10 @@ $(".clickPromo").click(function () {
     });
 });
 
+//Select wallet
+$(document).on("click", ".selectedWallet", function (e) {
+    $(this).html('<div class="preloader-wrapper active" style="width: 20px; height: 20px; margin: 5px 15px;"> <div class="spinner-layer spinner-blue-only"> <div class="circle-clipper left"> <div class="circle"></div></div><div class="gap-patch"> <div class="circle"></div></div><div class="circle-clipper right"> <div class="circle"></div></div></div></div>')
+})
 
 //Sign out
 $(".signOut").click(function () {

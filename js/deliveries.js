@@ -1,130 +1,3 @@
-$(document).on('touchstart click', '#deliveryPage', function () {
-    $(".activePage").html("Deliveries")
-});
-//Enable Deliveries
-$('#deliveriesToggle').click(function (e) {
-    e.preventDefault();
-    $('#MobileModal').modal({
-        ready: function (modal, trigger) {
-            setTimeout(deliveryMbr, 1000);
-        }
-    }).modal('open');
-    $('#deliveriesToggle').sideNav('hide');
-
-    var isValid = true;
-    $('#submitPhoneNo').click(function () {
-        phoneNo_ = $('#inp-phone').val();
-        if (phoneNo_ == '' || phoneNo_ == null && e.status == "ok") {
-            M.toast({
-                html: 'Ooops! Please enter phone number',
-                displayLength: 3000
-            })
-            $('#phoneNumber').css({
-                "border-bottom": "1px solid red",
-                "background": ""
-            });
-        } else {remove
-            $('#deliveriesToggle').prop('checked', true);
-            M.toast({
-                html: 'Phone Number Verified',
-                displayLength: 3000
-            })
-            var value = document.getElementById("deliveriesToggle").checked
-            var phone_number = $('#inp-phone').val()
-            doFetch({
-                action: 'toggleDeliveries',
-                value: value,
-                id: localStorage.getItem('soko-active-store')
-            }).then(function (e) {});
-        }
-    });
-});
-
-//Delivery Members
-$('document').ready(function () {
-
-    $('#deliverOrderModal').modal({
-        onOpenStart: deliveryMbr()
-    });
-    $(document).on('click', $('.deliveryField ul.autocomplete-content li'), function (e) {
-        var value = $('#delivery-members').val();
-        if (value != '') {
-            var deliveryMembers = $('#delivery-members').val();
-            for (var i in deliveryGuys) {
-                var name = deliveryGuys[i].name;
-                var id = deliveryGuys[i].id;
-                if (deliveryMembers == name) {
-                    $("#confirmAddMember").modal("open");
-                    $("#operatorName").html(name);
-                    var thisOperator = id;
-                    $('#yesOperatorBtn').on('click', function (event) {
-                        event.preventDefault();
-                        doFetch({
-                            action: 'deliveryMembers',
-                            store: localStorage.getItem('soko-active-store'),
-                            do: 'add',
-                            data: thisOperator
-                        }).then(function (e) {
-                            if (e.status == 'ok') {
-                                deliveryMbr();
-                                $("#confirmAddMember").modal("close");
-                                $('#delivery-members').val("");
-                                $("#addOperatorsModal").modal("close");
-                                M.toast({
-                                    html: 'Operator added successfully.',
-                                    displayLength: 3000
-                                })
-                            } else {
-                                M.toast({
-                                    html: 'Error!!! Try again later',
-                                    displayLength: 3000
-                                })
-                            }
-                        });
-                    });
-                    $('#noOperatorBtn').on('click', function () {
-                        $("#confirmAddMember").modal("close");
-                    });
-                }
-            }
-        }
-    });
-});
-
-
-//Delivery Member List
-//function deliveryMemberLst() {
-//    var deliveryMembers = $('#delivery-members').val();
-//    for (var s in deliveryGuys) {
-//        var name = deliveryGuys[s].name;
-//        var id = deliveryGuys[s].icon;
-//        if ($('#delivery-members').val() != '') {
-//            $("#membersLst").append('<div class="chip removeMember"> <img src="' + id + '"> ' + name + ' </div>');
-//        } else {
-//            $("#membersLst").append('<div class="chip removeMember">You do not have delivery Members</div>');
-//        }
-//        $('.removeMember').click(function () {
-//            var removeMember = $(this)
-//            $('#removeMemberModal').modal('open');
-//            $('#yesMemberBtn').on('click', function () {
-//                $('#removeMemberModal').modal('close');
-//                doFetch({
-//                    action: 'deliveryMembers',
-//                    store: localStorage.getItem('soko-active-store'),
-//                    do: 'remove',
-//                    data: id
-//                }).then(function (e) {
-//                    if (e.status == 'ok') {
-//                        $(removeMember).remove();
-//                    } else {}
-//                });
-//            });
-//            $('#noMemberBtn').on('click', function () {
-//                $('#removeMemberModal').modal('close');
-//            });
-//        })
-//    }
-//}
 function deliveryMbr() {
     doFetch({
         action: 'getDeliveryMembers',
@@ -179,73 +52,265 @@ function deliveryMbr() {
     $("#rangeOutputId").val(rateInput);
 }
 
-//Remove Delivery Member
-$(document).on('click', '.removeMember', function (e) {
-    e.stopPropagation();
-    var removeMember = $(this).attr("id");
-    console.log(removeMember);
-    $('#removeMemberModal').modal('open');
-    $('#yesMemberBtn').on('click', function () {
+function initDeilveryFunctions() {
+
+
+    $(document).on('touchstart click', '#deliveryPage', function () {
+        $(".activePage").html("Deliveries")
+    });
+
+    //Initiale noUiSlider
+    var slider = document.getElementById('test-slider');
+    try {
+        var getMinDelDist = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRadius).min * 1000;
+        var getMaxDelDist = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRadius).max * 1000;
+    } catch (err) {
+        console.log(err)
+        var getMinDelDist = 5500
+        var getMaxDelDist = 50000
+    }
+    $("#showMinDist").val(getMinDelDist)
+    $("#showMaxDist").val(getMaxDelDist)
+    document.getElementById("showMinDist").innerHTML = getMinDelDist;
+    document.getElementById("showMaxDist").innerHTML = getMaxDelDist;
+    noUiSlider.create(slider, {
+        start: [getMinDelDist, getMaxDelDist],
+        connect: true,
+        step: 500,
+        range: {
+            'min': 500,
+            'max': 50000
+        },
+    });
+
+    //Get noUiSlider Values
+    slider.noUiSlider.on('change.one', function (e) {
+        var min = JSON.parse(e[0]).toFixed(0) / 1000;
+        var max = JSON.parse(e[1]).toFixed(0) / 1000;
+
         doFetch({
-            action: 'deliveryMembers',
+            action: 'deliveryRadius',
             store: localStorage.getItem('soko-active-store'),
-            do: 'remove',
-            data: removeMember
+            radius: {
+                min,
+                max
+            }
         }).then(function (e) {
             if (e.status == 'ok') {
-                $(removeMember).remove();
-                $('#removeMemberModal').modal('close');
-                deliveryMbr();
-                console.log($("#delivery-members").val(""));
-            } else {}
+                M.toast({
+                    html: 'Delivery rate set successfully',
+                    displayLength: 3000
+                })
+            } else {
+                M.toast({
+                    html: 'Error!!! Please try again later',
+                    displayLength: 3000
+                })
+            }
         });
     });
-    $('#noMemberBtn').on('click', function () {
-        $('#removeMemberModal').modal('close');
+
+    //Update distanceRangeOutputId
+    slider.noUiSlider.on('slide.one', function (e) {
+        var min = JSON.parse(e[0]).toFixed(0) + " meters";
+        var max = JSON.parse(e[1]).toFixed(0) + " meters";
+        $("#distanceRangeOutputId").html(min + " - " + max)
     });
-});
-//Delivery Rate
-$("#sliderAmount").on("change", function () {
-    deliveryRate = $("#sliderAmount").val();
-    doFetch({
-        action: 'deliveryRate',
-        store: localStorage.getItem('soko-active-store'),
-        rate: deliveryRate
-    }).then(function (e) {
-        if (e.status == 'ok') {
-            M.toast({
-                html: 'Delivery rate set successfully',
-                displayLength: 3000
-            })
-        } else {
-            M.toast({
-                html: 'Error!!! Please try again later',
-                displayLength: 3000
-            })
-        }
+
+    //Enable Deliveries
+    $('#deliveriesToggle').click(function (e) {
+        e.preventDefault();
+        $('#MobileModal').modal({
+            ready: function (modal, trigger) {
+                setTimeout(deliveryMbr, 1000);
+            }
+        }).modal('open');
+        $('#deliveriesToggle').sideNav('hide');
+
+        var isValid = true;
+        $('#submitPhoneNo').click(function () {
+            phoneNo_ = $('#inp-phone').val();
+            if (phoneNo_ == '' || phoneNo_ == null && e.status == "ok") {
+                M.toast({
+                    html: 'Ooops! Please enter phone number',
+                    displayLength: 3000
+                })
+                $('#phoneNumber').css({
+                    "border-bottom": "1px solid red",
+                    "background": ""
+                });
+            } else {
+                remove
+                $('#deliveriesToggle').prop('checked', true);
+                M.toast({
+                    html: 'Phone Number Verified',
+                    displayLength: 3000
+                })
+                var value = document.getElementById("deliveriesToggle").checked
+                var phone_number = $('#inp-phone').val()
+                doFetch({
+                    action: 'toggleDeliveries',
+                    value: value,
+                    id: localStorage.getItem('soko-active-store')
+                }).then(function (e) {});
+            }
+        });
     });
-});
-//Distace Set
-$("#distanceSliderAmount").on("change", function () {
-    deliveryDistance = $("#distanceSliderAmount").val();
-    doFetch({
-        action: 'deliveryRadius',
-        store: localStorage.getItem('soko-active-store'),
-        radius: deliveryDistance
-    }).then(function (e) {
-        if (e.status == 'ok') {
-            M.toast({
-                html: 'Delivery rate set successfully',
-                displayLength: 3000
-            })
-        } else {
-            M.toast({
-                html: 'Error!!! Please try again later',
-                displayLength: 3000
-            })
-        }
+
+    //Delivery Members
+    $('document').ready(function () {
+
+        $('#deliverOrderModal').modal({
+            onOpenStart: deliveryMbr()
+        });
+        $(document).on('click', $('.deliveryField ul.autocomplete-content li'), function (e) {
+            var value = $('#delivery-members').val();
+            if (value != '') {
+                var deliveryMembers = $('#delivery-members').val();
+                for (var i in deliveryGuys) {
+                    var name = deliveryGuys[i].name;
+                    var id = deliveryGuys[i].id;
+                    if (deliveryMembers == name) {
+                        $("#confirmAddMember").modal("open");
+                        $("#operatorName").html(name);
+                        var thisOperator = id;
+                        $('#yesOperatorBtn').on('click', function (event) {
+                            event.preventDefault();
+                            doFetch({
+                                action: 'deliveryMembers',
+                                store: localStorage.getItem('soko-active-store'),
+                                do: 'add',
+                                data: thisOperator
+                            }).then(function (e) {
+                                if (e.status == 'ok') {
+                                    deliveryMbr();
+                                    $("#confirmAddMember").modal("close");
+                                    $('#delivery-members').val("");
+                                    $("#addOperatorsModal").modal("close");
+                                    M.toast({
+                                        html: 'Operator added successfully.',
+                                        displayLength: 3000
+                                    })
+                                } else {
+                                    M.toast({
+                                        html: 'Error!!! Try again later',
+                                        displayLength: 3000
+                                    })
+                                }
+                            });
+                        });
+                        $('#noOperatorBtn').on('click', function () {
+                            $("#confirmAddMember").modal("close");
+                        });
+                    }
+                }
+            }
+        });
     });
-});
+
+
+    //Delivery Member List
+    //function deliveryMemberLst() {
+    //    var deliveryMembers = $('#delivery-members').val();
+    //    for (var s in deliveryGuys) {
+    //        var name = deliveryGuys[s].name;
+    //        var id = deliveryGuys[s].icon;
+    //        if ($('#delivery-members').val() != '') {
+    //            $("#membersLst").append('<div class="chip removeMember"> <img src="' + id + '"> ' + name + ' </div>');
+    //        } else {
+    //            $("#membersLst").append('<div class="chip removeMember">You do not have delivery Members</div>');
+    //        }
+    //        $('.removeMember').click(function () {
+    //            var removeMember = $(this)
+    //            $('#removeMemberModal').modal('open');
+    //            $('#yesMemberBtn').on('click', function () {
+    //                $('#removeMemberModal').modal('close');
+    //                doFetch({
+    //                    action: 'deliveryMembers',
+    //                    store: localStorage.getItem('soko-active-store'),
+    //                    do: 'remove',
+    //                    data: id
+    //                }).then(function (e) {
+    //                    if (e.status == 'ok') {
+    //                        $(removeMember).remove();
+    //                    } else {}
+    //                });
+    //            });
+    //            $('#noMemberBtn').on('click', function () {
+    //                $('#removeMemberModal').modal('close');
+    //            });
+    //        })
+    //    }
+    //}
+    //Remove Delivery Member
+    $(document).on('click', '.removeMember', function (e) {
+        e.stopPropagation();
+        var removeMember = $(this).attr("id");
+        console.log(removeMember);
+        $('#removeMemberModal').modal('open');
+        $('#yesMemberBtn').on('click', function () {
+            doFetch({
+                action: 'deliveryMembers',
+                store: localStorage.getItem('soko-active-store'),
+                do: 'remove',
+                data: removeMember
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    $(removeMember).remove();
+                    $('#removeMemberModal').modal('close');
+                    deliveryMbr();
+                    console.log($("#delivery-members").val(""));
+                } else {}
+            });
+        });
+        $('#noMemberBtn').on('click', function () {
+            $('#removeMemberModal').modal('close');
+        });
+    });
+    //Delivery Rate
+    $("#sliderAmount").on("change", function () {
+        deliveryRate = $("#sliderAmount").val();
+        doFetch({
+            action: 'deliveryRate',
+            store: localStorage.getItem('soko-active-store'),
+            rate: deliveryRate
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                M.toast({
+                    html: 'Delivery rate set successfully',
+                    displayLength: 3000
+                })
+            } else {
+                M.toast({
+                    html: 'Error!!! Please try again later',
+                    displayLength: 3000
+                })
+            }
+        });
+    });
+    //Distace Set
+    $("#distanceSliderAmount").on("change", function () {
+        deliveryDistance = $("#distanceSliderAmount").val();
+        doFetch({
+            action: 'deliveryRadius',
+            store: localStorage.getItem('soko-active-store'),
+            radius: deliveryDistance
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                M.toast({
+                    html: 'Delivery rate set successfully',
+                    displayLength: 3000
+                })
+            } else {
+                M.toast({
+                    html: 'Error!!! Please try again later',
+                    displayLength: 3000
+                })
+            }
+        });
+    });
+
+    /*
 //Distace Slider
 var distanceSlide = document.getElementById('distaceSlide'),
     distanceSliderDiv = document.getElementById("distanceSliderAmount");
@@ -264,65 +329,68 @@ distanceSlide.onchange = function () {
         if (e.status == 'ok') {} else {}
     });
 }
+*/
 
-
-//New Operator
-$('#addNewOperator').on('click', function () {
-    var inputVal = $("#delivery_operator_no").val();
-    var orderId = $("#deliverOrderModal").attr('gid');;
-    doFetch({
-        action: 'createNewOperator',
-        number: inputVal,
-        orderId: orderId
-    }).then(function (e) {
-        if (e.status == 'ok') {
-            M.toast({
-                html: 'Delivery member added successfully',
-                displayLength: 3000
-            })
-        } else {
-            M.toast({
-                html: 'Error! Please try again later',
-                displayLength: 3000
-            })
-        }
-    });
-});
-
-$(document).on("click", "#addOperatorNumb", function () {
-    operatorNumb = $('#OperatorNumb').val()
-    if (operatorNumb == "") {
-        M.toast({
-            html: 'Ooops! Please enter a phone number',
-            displayLength: 3000
-        })
-        $("#OperatorNumb").css("border-bottom", "solid 1px red")
-    } else if (operatorNumb.length < 10) {
-        M.toast({
-            html: 'Ooops! Input too short',
-            displayLength: 3000
-        })
-        $("#OperatorNumb").css("border-bottom", "solid 1px red")
-    } else {
-        M.toast({
-            html: 'Sending invite link. Please wait',
-            classes: 'operatorNumb',
-            displayLength: 3000
-        })
-        $("#OperatorNumb").css("border-bottom", "1px solid #9e9e9e")
+    //New Operator
+    $('#addNewOperator').on('click', function () {
+        var inputVal = $("#delivery_operator_no").val();
+        var orderId = $("#deliverOrderModal").attr('gid');;
         doFetch({
-            action: 'deliveryMembers',
-            number: operatorNumb
+            action: 'createNewOperator',
+            number: inputVal,
+            orderId: orderId
         }).then(function (e) {
             if (e.status == 'ok') {
                 M.toast({
-                    html: 'Invite link sent successfully',
+                    html: 'Delivery member added successfully',
                     displayLength: 3000
                 })
-                $('.operatorNumb').remove();
             } else {
-                console.log(e);
+                M.toast({
+                    html: 'Error! Please try again later',
+                    displayLength: 3000
+                })
             }
         });
-    }
-});
+    });
+
+    $(document).on("click", "#addOperatorNumb", function () {
+        operatorNumb = $('#OperatorNumb').val()
+        if (operatorNumb == "") {
+            M.toast({
+                html: 'Ooops! Please enter a phone number',
+                displayLength: 3000
+            })
+            $("#OperatorNumb").css("border-bottom", "solid 1px red")
+        } else if (operatorNumb.length < 10) {
+            M.toast({
+                html: 'Ooops! Input too short',
+                displayLength: 3000
+            })
+            $("#OperatorNumb").css("border-bottom", "solid 1px red")
+        } else {
+            M.toast({
+                html: 'Sending invite link. Please wait',
+                classes: 'operatorNumb',
+                displayLength: 3000
+            })
+            $("#OperatorNumb").css("border-bottom", "1px solid #9e9e9e")
+            doFetch({
+                action: 'deliveryMembers',
+                number: operatorNumb
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    M.toast({
+                        html: 'Invite link sent successfully',
+                        displayLength: 3000
+                    })
+                    $('.operatorNumb').remove();
+                } else {
+                    console.log(e);
+                }
+            });
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", initDeilveryFunctions);
