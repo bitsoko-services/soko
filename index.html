@@ -1500,7 +1500,7 @@
 
                     </div>
                 </li>
-                <li class="bold clickPromo" onclick="refreshSalesOrders();">
+                <li class="bold clickPromo" onclick=" orderUpdater();">
                     <a href="#" page="storefront" class="waves-effect waves-cyan nav">
                         <span class="allSalesCount badge new opacitySelectedColor" data-badge-caption="" style="font-size:1rem;line-height: 25px;"></span>
                         <i style="padding-top:3px;">
@@ -1510,7 +1510,7 @@
                             </i> Sales / Promotions
                     </a>
                 </li>
-                <li class="bold pageBoxShadow prodactsPage">
+                <li class="bold pageBoxShadow prodactsPage" onclick="productsUpdater();">
                     <a href="#" page="products" class="waves-effect waves-cyan nav">
                         <span class="allProdCount badge new opacitySelectedColor" data-badge-caption="" style="font-size:1rem;line-height: 25px;"></span>
                         <i style="padding-top:5px;">
@@ -1520,7 +1520,7 @@
                             </i>Products
                     </a>
                 </li>
-                <li class="bold pageBoxShadow">
+                <li class="bold pageBoxShadow" onclick="beaconsUpdater();">
                     <a href="#" id="beaconsPage" page="beacons" class="waves-effect waves-cyan nav" style="">
                         <i style="padding-top:5px;">
                                 <svg class="svg-icon" viewBox="0 0 20 20">
@@ -1647,10 +1647,10 @@
                                 <div class="col s12 navDskt" style="padding:0px;position:fixed;z-index:10; margin-top:-1px;">
                                     <ul class="selectedColor tabs tab-storefront-active z-depth-1 salePromo" style="width: 100%; background-color:#0F5F76;margin-top:-1px;height:43px !important; width:101% !important;">
                                         <li class="tab col s6">
-                                            <a class="white-text active" href="#sales" style="line-height: 25px;" onclick="refreshSalesOrders();">Sales</a>
+                                            <a class="white-text active" href="#sales" style="line-height: 25px;" onclick="orderUpdater();">Sales</a>
                                         </li>
                                         <li class="tab col s6">
-                                            <a id="promoTab" class="white-text" href="#promotions" style="line-height: 25px;" onclick="refreshProducts();">Promotions</a>
+                                            <a id="promoTab" class="white-text" href="#promotions" style="line-height: 25px;" onclick="promoUpdater();">Promotions</a>
                                         </li>
                                     </ul>
                                 </div>

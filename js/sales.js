@@ -29,6 +29,20 @@ function refreshSalesOrders() {
         console.log(e);
         if (e.status == 'ok') {
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + localStorage.getItem('soko-active-store') + '-orders');
+        var alOds=e.orders;
+            pendOds=false;
+            for(var ii in alOds){
+            if (alOds[ii].state=='pending'){
+            pendOds=true;
+            }
+                
+            }
+            
+            if(pendOds){
+           playPendingOrders() 
+            }
+          
+            
         } else {
 
             getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + localStorage.getItem('soko-active-store') + '-orders');

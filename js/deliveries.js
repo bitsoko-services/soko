@@ -66,8 +66,8 @@ function initDeilveryFunctions() {
         var getMaxDelDist = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRadius).max * 1000;
     } catch (err) {
         console.log(err)
-        var getMinDelDist = 5500
-        var getMaxDelDist = 50000
+        var getMinDelDist = 500
+        var getMaxDelDist = 10000
     }
     $("#showMinDist").val(getMinDelDist)
     $("#showMaxDist").val(getMaxDelDist)
@@ -79,7 +79,7 @@ function initDeilveryFunctions() {
         step: 500,
         range: {
             'min': 500,
-            'max': 50000
+            'max': 10000
         },
     });
 
@@ -112,8 +112,8 @@ function initDeilveryFunctions() {
 
     //Update distanceRangeOutputId
     slider.noUiSlider.on('slide.one', function (e) {
-        var min = JSON.parse(e[0]).toFixed(0) + " meters";
-        var max = JSON.parse(e[1]).toFixed(0) + " meters";
+        var min = JSON.parse(e[0])/1000 + " KM";
+        var max = JSON.parse(e[1])/1000 + " KM";
         $("#distanceRangeOutputId").html(min + " - " + max)
     });
 
