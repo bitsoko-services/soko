@@ -126,8 +126,8 @@ function updateThisPage(pg) {
             productsUpdater();
             break;
         case 'storefront':
-            refreshSalesOrders();
             promoUpdater();
+            orderUpdater();
             break;
         case 'beacons':
             beaconsUpdater();
