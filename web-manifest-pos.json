@@ -1,6 +1,6 @@
 {
-    "short_name": "Soko POS",
-    "name": "Point Of Sale",
+    "short_name": "Soko",
+    "name": "SOKO | Point Of Sale",
     "icons": [
         {
             "src": "../soko/images/sicon.png",
@@ -10,7 +10,7 @@
   ],
     "start_url": "/soko/#l=hs",
     "display": "fullscreen",
-    "orientation": "portrait",
+    "orientation": "landscape",
     "background_color": "#0f5f76",
     "theme_color": "#0f5f76",
     "gcm_sender_id": "103953800507",
