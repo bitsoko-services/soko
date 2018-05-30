@@ -26,30 +26,30 @@ var playNote = function (frequency, startTime, duration) {
     var osc1 = context.createOscillator(),
         osc2 = context.createOscillator(),
         volume = context.createGain();
- 
+
     // Set oscillator wave type
     osc1.type = 'triangle';
     osc2.type = 'triangle';
- 
-    volume.gain.value = 0.1;    
- 
+
+    volume.gain.value = 0.1;
+
     // Set up node routing
     osc1.connect(volume);
     osc2.connect(volume);
     volume.connect(context.destination);
- 
+
     // Detune oscillators for chorus effect
     osc1.frequency.value = frequency + 1;
     osc2.frequency.value = frequency - 2;
- 
+
     // Fade out
     volume.gain.setValueAtTime(0.1, startTime + duration - 0.05);
     volume.gain.linearRampToValueAtTime(0, startTime + duration);
- 
+
     // Start oscillators
     osc1.start(startTime);
     osc2.start(startTime);
- 
+
     // Stop oscillators
     osc1.stop(startTime + duration);
     osc2.stop(startTime + duration);
@@ -58,7 +58,7 @@ var playNote = function (frequency, startTime, duration) {
 var playPendingOrders = function () {
     // Play a 'B' now that lasts for 0.116 seconds
     playNote(493.883, context.currentTime, 0.116);
- 
+
     // Play an 'E' just as the previous note finishes, that lasts for 0.232 seconds
     playNote(659.255, context.currentTime + 0.116, 0.232);
 };
@@ -74,10 +74,10 @@ function profileLoaded(p) {
     })
     $("#signingIn").html("Signing In. Please Wait");
     updateStores();
-	
-	setTimeout(userNamesInput,18000);
-	setInterval(updateStores,120000);
-	/*
+
+    setTimeout(userNamesInput, 18000);
+    setInterval(updateStores, 120000);
+    /*
     doFetch({
         action: 'getMadr',
         id: p.bitsokoUserID
@@ -142,6 +142,12 @@ function loadTheme() {
 
 
 function updateStores() {
+    try {
+        addStore()
+    } catch (err) {
+
+        console.log(err)
+    }
     doFetch({
         action: 'merchantServiceLoader',
         id: localStorage.getItem('bits-user-name')
@@ -386,11 +392,12 @@ function Tobserver(changes) {
         //$('#store-desc').val(e.desc);
     });
 }
+/*
 bc.postMessage({
     cast: 'connect',
     user: 'serviceHandler'
 });
-/*
+
 function process(e,event) {
         var currStep=$(e).attr('id').split("-")[1];
 
@@ -720,33 +727,33 @@ function userNamesInput() {
     });
 }
 
-
+//to do
 //Input Initiallization
-var sponProds = {}
-
-function sponpProdNamesInput() {
-    var inputVal = $("#check-prod-input").val();
-    var fetchedData = doFetch({
-        action: 'getAllProducts',
-        data: inputVal,
-        filter: 'sponsored'
-    }).then(function (e) {
-        var dat = {}
-        sponProds = e.products;
-        for (var iii in e.products) {
-            var nm = e.products[iii].name + " - " + e.products[iii].price;
-            var icn = e.products[iii].icon;
-            //var id = e.users[iii].id;
-            dat[nm] = icn;
-
-        }
-        $("#check-prod-input").autocomplete({
-            data: dat
-        });
-
-    });
-}
-sponpProdNamesInput()
+//var sponProds = {}
+//
+//function sponpProdNamesInput() {
+//    var inputVal = $("#check-prod-input").val();
+//    var fetchedData = doFetch({
+//        action: 'getAllProducts',
+//        data: inputVal,
+//        filter: 'sponsored'
+//    }).then(function (e) {
+//        var dat = {}
+//        sponProds = e.products;
+//        for (var iii in e.products) {
+//            var nm = e.products[iii].name + " - " + e.products[iii].price;
+//            var icn = e.products[iii].icon;
+//            //var id = e.users[iii].id;
+//            dat[nm] = icn;
+//
+//        }
+//        $("#check-prod-input").autocomplete({
+//            data: dat
+//        });
+//
+//    });
+//}
+//sponpProdNamesInput()
 
 function persistentFunc() {
     if (navigator.storage && navigator.storage.persist)
@@ -761,24 +768,29 @@ persistentFunc();
 
 
 //Box Shadow On Specific Pages
-$(".pageBoxShadow").click(function () {
-    $('.navbar-fixed nav').css({
-        'box-shadow': '0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2)',
+function latefunctions() {
+    $(".pageBoxShadow").click(function () {
+        $('.navbar-fixed nav').css({
+            'box-shadow': '0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2)',
+        });
     });
-});
-$(".clickPromo").click(function () {
-    $('.navbar-fixed nav').css({
-        'box-shadow': 'none',
+    $(".clickPromo").click(function () {
+        $('.navbar-fixed nav').css({
+            'box-shadow': 'none',
+        });
     });
-});
 
-//Select wallet
-$(document).on("click", ".selectedWallet", function (e) {
-    $(this).html('<div class="preloader-wrapper active" style="width: 20px; height: 20px; margin: 5px 15px;"> <div class="spinner-layer spinner-blue-only"> <div class="circle-clipper left"> <div class="circle"></div></div><div class="gap-patch"> <div class="circle"></div></div><div class="circle-clipper right"> <div class="circle"></div></div></div></div>')
-})
+    //Select wallet
+    $(document).on("click", ".selectedWallet", function (e) {
+        $(this).html('<div class="preloader-wrapper active" style="width: 20px; height: 20px; margin: 5px 15px;"> <div class="spinner-layer spinner-blue-only"> <div class="circle-clipper left"> <div class="circle"></div></div><div class="gap-patch"> <div class="circle"></div></div><div class="circle-clipper right"> <div class="circle"></div></div></div></div>')
+    })
 
-//Sign out
-$(".signOut").click(function () {
-    localStorage.clear();
-    setTimeout(location.reload(), 2000)
-});
+    //Sign out
+    $(".signOut").click(function () {
+        localStorage.clear();
+        setTimeout(location.reload(), 2000)
+    });
+}
+setTimeout(function (e) {
+    latefunctions()
+}, 8000)
