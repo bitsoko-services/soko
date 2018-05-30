@@ -54,11 +54,14 @@ function loadPOS() {
                 $("#switchStoreContent").append(owned);
             }
 
-            if (getBitsOpt('s') == undefined) {
-                localStorage.setItem('soko-active-store', services[0].id);
+            if (localStorage.getItem('soko-active-store')) {
+                //use the already set store
 
-            } else {
+            } else if(getBitsOpt('s') != undefined) {
                 localStorage.setItem('soko-active-store', getBitsOpt('s'));
+
+            } else  {
+                localStorage.setItem('soko-active-store', services[0].id);
 
             }
             // initialisePush('soko-store-id-' + services[i].id);
