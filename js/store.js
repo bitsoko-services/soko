@@ -262,34 +262,33 @@ function userNoPromp() {
 
     M.toast({
         html: $justtest,
+        classes: "toast",
         displayLength: 10000
     })
-    //    var $toastContent = $('<span>Please verify phone number</span><button class="btn-flat toast-action" id="verifyPhn">verify</button>');
-    //    Materialize.toast($toastContent, null);
+
     $("#verifyPhn").click(function () {
         $(".toast").remove()
-        doFetch({
-            action: 'userVerified',
-            uid: JSON.parse(localStorage.getItem("bits-user-name"))
-        }).then(function (e) {
-            if (e.data != "true") {
-                $('.modal').modal();
-                $("#mobiVeri").modal("open");
-            }
-        })
+        $('#content > .container > div').css('display', 'none');
+        $('#content > .container > .settingsPage').css('display', 'block');
+        document.getElementById("editStore-Phone").classList.add("glow");
+        setTimeout(function (e) {
+            document.getElementById("editStore-Phone").classList.remove("glow");
+        }, 4000)
     });
 }
 
 function verifyNo() {
-    try {
-        var checkPhoneNo = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).phone
-    } catch (err) {
-        console.log(err)
-    }
-    if (checkPhoneNo == "") {
-        userNoPromp()
-    } else if (checkPhoneNo == null) {
-        userNoPromp()
+    if (localStorage.getItem("soko-owner-id") == localStorage.getItem("bits-user-name")) {
+        try {
+            var checkPhoneNo = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).phone
+        } catch (err) {
+            console.log(err)
+        }
+        if (checkPhoneNo == "") {
+            userNoPromp()
+        } else if (checkPhoneNo == null) {
+            userNoPromp()
+        }
     }
 }
 
