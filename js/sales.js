@@ -11,7 +11,7 @@ function loadWalletBal() {
         fetchRates().then(function (e) {
             if (e.status == "ok") {
                 setInterval(function () {
-                    $("#userWalletBal").html(numberify(((allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].balance / Math.pow(10, allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].decimals)) + allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].totalEarned) * (allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].rate * baseX), 2) +' '+baseCd)
+                    $("#userWalletBal").html(numberify(((allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].balance / Math.pow(10, allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].decimals)) + allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].totalEarned) * (allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].rate * baseX), 2) + ' ' + baseCd)
                 }, 20000);
             }
         });
@@ -29,20 +29,20 @@ function refreshSalesOrders() {
         console.log(e);
         if (e.status == 'ok') {
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + localStorage.getItem('soko-active-store') + '-orders');
-        var alOds=e.orders;
-            pendOds=false;
-            for(var ii in alOds){
-            if (alOds[ii].state=='pending'){
-            pendOds=true;
+            var alOds = e.orders;
+            pendOds = false;
+            for (var ii in alOds) {
+                if (alOds[ii].state == 'pending') {
+                    pendOds = true;
+                }
+
             }
-                
+
+            if (pendOds) {
+                playPendingOrders()
             }
-            
-            if(pendOds){
-           playPendingOrders() 
-            }
-          
-            
+
+
         } else {
 
             getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + localStorage.getItem('soko-active-store') + '-orders');
@@ -282,6 +282,7 @@ function addToWithdraw(r) {
             monthIncomeArray.push(totalPrice)
         }
         var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
+        alert(sum)
         $("#monthlySalesVal").html(sum)
     } else {
         $("#monthlySalesVal").html(0)
