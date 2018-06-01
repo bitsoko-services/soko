@@ -282,7 +282,6 @@ function addToWithdraw(r) {
             monthIncomeArray.push(totalPrice)
         }
         var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
-        alert(sum)
         $("#monthlySalesVal").html(sum)
     } else {
         $("#monthlySalesVal").html(0)
