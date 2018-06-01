@@ -172,7 +172,7 @@ function updateStores() {
                     if (inputVal == name) {
                         doFetch({
                             action: 'doEditStore',
-                            id: localStorage.getItem('soko-active-store'),
+                            id: localStorage.getItem('bits-user-name'),
                             prop: "category",
                             val: id
                         }).then(function (e) {
