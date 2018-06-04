@@ -12,7 +12,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR CUSTOM SCRIPT I
 /********************************
 Preloader
 ********************************/
-$(window).load(function () {
+function callCustomeScript(){
     $('.loading-container').fadeOut(1000, function () {
         $(this).remove();
         /*
@@ -64,7 +64,7 @@ angular.module('sokoApp', [])
     }
 ];
 
-*/
+
     bc.addEventListener('message', function (e) {
         console.log('broadcast: ', e.data.cast);
         switch (e.data.cast) {
@@ -76,6 +76,7 @@ angular.module('sokoApp', [])
             default:
         }
     });
+   */ 
     getObjectStore('data', 'readwrite').get('user-profile-' + localStorage.getItem("bits-user-name")).onsuccess = function (event) {
         try {
             profileLoaded(JSON.parse(event.target.result));
@@ -102,13 +103,13 @@ angular.module('sokoApp', [])
         }
         $(this).toggleClass('active');
     });
-});
 
 
 
-//if (getBitsOpt('page') != undefined) {
-//    switchTo(getBitsOpt('page'))
-//}
+
+if (getBitsOpt('page') != undefined) {
+   switchTo(getBitsOpt('page'))
+}
 
 
 function switchTo(co) {
@@ -158,4 +159,5 @@ function reqProfile() {
             reqProfile()
         }, 60000);
     });
+}
 }

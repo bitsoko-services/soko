@@ -45,7 +45,6 @@ function fetchRate() {
         }
     });
 }
-fetchRate()
 
 //Enable Loyalty
 $('.loyaltyCls').click(function () {

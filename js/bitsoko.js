@@ -172,7 +172,7 @@ function updateStores() {
                     if (inputVal == name) {
                         doFetch({
                             action: 'doEditStore',
-                            id: localStorage.getItem('soko-active-store'),
+                            id: localStorage.getItem('bits-user-name'),
                             prop: "category",
                             val: id
                         }).then(function (e) {
@@ -189,17 +189,19 @@ function updateStores() {
             localStorage.setItem('bitsoko-stores', 'true');
             loadPOS();
         } else if (e.msg == "no services") {
-            getObjectStore('data', 'readwrite').put(JSON.stringify([]), 'soko-stores');
-            $('#firstStoreModal').modal({
-                dismissible: false,
-                complete: function () {
-                    $('#newStoreModal').modal({
-                        dismissible: false,
-                        onOpenStart: loadCat()
-                    }).modal('open');
-                }
-            });
-            $('#firstStoreModal').modal('open');
+            if (getBitsOpt('page') == "settingsPage") {} else {
+                getObjectStore('data', 'readwrite').put(JSON.stringify([]), 'soko-stores');
+                $('#firstStoreModal').modal({
+                    dismissible: false,
+                    complete: function () {
+                        $('#newStoreModal').modal({
+                            dismissible: false,
+                            onOpenStart: loadCat()
+                        }).modal('open');
+                    }
+                });
+                $('#firstStoreModal').modal('open');
+            }
         }
         //Load Ent Settings Info
         var stringifiedEntInfo = JSON.stringify(e.settings.entSettings);
@@ -262,6 +264,11 @@ function updateStores() {
         loadPOS();
     });
     loadWalletBal();
+    
+    var hostName = window.location.hostname.includes('bitsoko')
+    if(hostName){
+        $("#tokenSale").css("display", "none");
+    }
 }
 
 function reqMsg(data) {

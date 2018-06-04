@@ -25,11 +25,205 @@ function addManagers() {
     });
 }
 
+function callProdActivations(){
+    //Products Form Validation
+$('#submitProdForm').click(function (e) {
+    name_ = $('#name').val();
+    description_ = $('#description').val();
+    image_ = $('#image').val();
+    amount_ = $('#amount').val();
+    prodCy_ = $('#prod-cy').val();
+    isValid = true;
+    if (name_ == '' || name_ == null) {
+        M.toast({
+            html: 'Ooops! Please enter product name',
+            displayLength: 3000
+        })
+        $('#name').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else if (description_ == '' || description_ == null) {
+        M.toast({
+            html: 'Ooops! Please enter product description',
+            displayLength: 3000
+        })
+        $('#description').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else if (amount_ == '' || amount_ == null) {
+        M.toast({
+            html: 'Ooops! Please enter amount',
+            displayLength: 3000
+        })
+        $('#amount').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else if (prodCy_ == '' || prodCy_ == null) {
+        M.toast({
+            html: 'Ooops! Please enter quantity',
+            displayLength: 3000
+        })
+        $('#prodCy').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
+    } else {
+        var shroot = document.querySelectorAll(".addProduct");
+        addProduct();
+        $("#name, #description, #image, #amount, #prodCy").css({
+            "border-bottom": "2px solid green",
+            "background": ""
+        });
+    }
+});
+    $(document).on("click", "#addCategory", function () {
+    var categoryName = $("#categoryName").val();
+    var indexOfCat = categoryList.indexOf(categoryName);
+    console.log(categoryList.length)
+    console.log(indexOfCat)
 
+    if (indexOfCat >= 0) {
+        M.toast({
+            html: 'Ooops! That category already exist',
+            displayLength: 3000
+        })
+        $("#categoryName").css("border-bottom", "solid 1px red");
+    } else if (categoryName == "") {
+        M.toast({
+            html: 'Ooops! Please enter a product',
+            displayLength: 3000
+        })
+        $("#categoryName").css("border-bottom", "solid 1px red");
+    } else if ($(".categoryChip").length >= 5) {
+        M.toast({
+            html: 'Ooops! You have reached the maximum number of categories',
+            displayLength: 3000
+        })
+        $("#categoryName").css("border-bottom", "solid 1px red");
+    } else {
+        addProdCat()
+    }
+});
+
+$(document).on('touchstart click', '.addFirstProdModal', function (event) {
+    $('#add-product').modal('open');
+    $('#firstProdModal').modal('close');
+});
+$(document).on('touchstart click', '.newProdBtn', function (event) {
+    //    $('#add-product').modal('open');
+    $('.fixed-action-btn').floatingActionButton("close");
+});
+$(document).on('touchstart click', '.newProdBtn', function (event) {
+    //    $('#newSponsoredProduct').modal('open');
+    $('.fixed-action-btn').floatingActionButton("close");
+});
+    //Remove Category
+$(document).on("click", ".categoryChip", function () {
+    var selectedCategory = $(this)
+    var categoryName = $(this)[0].outerText;
+    $("#catgryName").text(categoryName)
+    $("#removeCategoryModal").show();
+    $(document).on("click", "#rmvCatgryYesBtn", function () {
+        M.toast({
+            html: 'Removing category. Please wai',
+            classes: 'categoryName',
+            displayLength: 10000
+        })
+        doFetch({
+            action: 'manageCategories',
+            store: localStorage.getItem('soko-active-store'),
+            do: 'remove',
+            name: categoryName
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                $(selectedCategory).remove();
+                $('.categoryName').remove();
+                $("#removeCategoryModal").hide();
+                M.toast({
+                    html: 'Category removed successfully',
+                    displayLength: 3000
+                })
+            } else {
+                console.log(e);
+            }
+        });
+    })
+    $(document).on("click", "#rmvCatgryNoBtn", function () {
+        $("#removeCategoryModal").hide();
+    })
+})
 $('#dlvryPage').click(function () {
     $("#managersClickEvent").click();
 })
+$(".prodactsPage").one("click", function () {
+    populateProductCategories();
+});
+$(document).on('touchstart click', '.prodactsPage', function () {
+    $(".activePage").html("Products")
+});
 
+$(document).on('touchstart click', '#yesSponsoredBtn', function (event) {
+    var sponsoredID = $("#rmvSpnsrdProd").attr("sid");
+    $(this).unbind(event);
+    doFetch({
+        action: 'removeSponsoredProduct',
+        store: localStorage.getItem('soko-active-store'),
+        do: 'remove',
+        id: sponsoredID
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            $("#rmvSpnsrdProd").hide();
+            document.getElementById(id).remove();
+            document.getElementById("sprdprod_" + id).remove();
+            M.toast({
+                html: 'Sponsored product removed successfully',
+                displayLength: 3000
+            })
+        } else {}
+    });
+});
+$(document).on('touchstart click', '#noSponsoredBtn', function (event) {
+    $("#rmvSpnsrdProd").hide();
+});
+
+$('#spnsrdModal').on('click', $('ul.autocomplete-content li'), function () {
+    var value = $('.sponsoredPrd').val();
+    if (value != '') {
+        var sponsoredProduct = $('.sponsoredPrd').val();
+        for (var i in sponProds) {
+            var name = sponProds[i].name;
+            var id = sponProds[i].id;
+            var price = sponProds[i].price;
+            if (sponsoredProduct == name + " - " + price) {
+                M.toast({
+                    html: 'Adding sponsored produc',
+                    classes: 'spnsrdTst',
+                    displayLength: 10000
+                })
+                doFetch({
+                    action: 'addSponsoredProduct',
+                    store: localStorage.getItem('soko-active-store'),
+                    do: 'add',
+                    id: id
+                }).then(function (e) {
+                    if (e.status == 'ok') {
+                        $(".spnsrdTst").remove();
+                        $('#spnsrdModal').modal('close');
+                        M.toast({
+                            html: 'Sponsored product added successfully',
+                            displayLength: 3000
+                        })
+                    } else {}
+                });
+            }
+        }
+    }
+});
+
+}
 
 var prodUID;
 
@@ -172,70 +366,6 @@ function populateProductCategories() {
         initialProdCat()
     }, 1000);
 };
-$(".prodactsPage").one("click", function () {
-    populateProductCategories();
-});
-$(document).on('touchstart click', '.prodactsPage', function () {
-    $(".activePage").html("Products")
-});
-
-$(document).on('touchstart click', '#yesSponsoredBtn', function (event) {
-    var sponsoredID = $("#rmvSpnsrdProd").attr("sid");
-    $(this).unbind(event);
-    doFetch({
-        action: 'removeSponsoredProduct',
-        store: localStorage.getItem('soko-active-store'),
-        do: 'remove',
-        id: sponsoredID
-    }).then(function (e) {
-        if (e.status == 'ok') {
-            $("#rmvSpnsrdProd").hide();
-            document.getElementById(id).remove();
-            document.getElementById("sprdprod_" + id).remove();
-            M.toast({
-                html: 'Sponsored product removed successfully',
-                displayLength: 3000
-            })
-        } else {}
-    });
-});
-$(document).on('touchstart click', '#noSponsoredBtn', function (event) {
-    $("#rmvSpnsrdProd").hide();
-});
-
-$('#spnsrdModal').on('click', $('ul.autocomplete-content li'), function () {
-    var value = $('.sponsoredPrd').val();
-    if (value != '') {
-        var sponsoredProduct = $('.sponsoredPrd').val();
-        for (var i in sponProds) {
-            var name = sponProds[i].name;
-            var id = sponProds[i].id;
-            var price = sponProds[i].price;
-            if (sponsoredProduct == name + " - " + price) {
-                M.toast({
-                    html: 'Adding sponsored produc',
-                    classes: 'spnsrdTst',
-                    displayLength: 10000
-                })
-                doFetch({
-                    action: 'addSponsoredProduct',
-                    store: localStorage.getItem('soko-active-store'),
-                    do: 'add',
-                    id: id
-                }).then(function (e) {
-                    if (e.status == 'ok') {
-                        $(".spnsrdTst").remove();
-                        $('#spnsrdModal').modal('close');
-                        M.toast({
-                            html: 'Sponsored product added successfully',
-                            displayLength: 3000
-                        })
-                    } else {}
-                });
-            }
-        }
-    }
-});
 
 function updateProd(t) {
     //var prid = $(t.target).parent().parent().parent().parent().parent().attr('prid');
@@ -419,41 +549,7 @@ function addProduct() {
     })
 }
 
-//Remove Category
-$(document).on("click", ".categoryChip", function () {
-    var selectedCategory = $(this)
-    var categoryName = $(this)[0].outerText;
-    $("#catgryName").text(categoryName)
-    $("#removeCategoryModal").show();
-    $(document).on("click", "#rmvCatgryYesBtn", function () {
-        M.toast({
-            html: 'Removing category. Please wai',
-            classes: 'categoryName',
-            displayLength: 10000
-        })
-        doFetch({
-            action: 'manageCategories',
-            store: localStorage.getItem('soko-active-store'),
-            do: 'remove',
-            name: categoryName
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                $(selectedCategory).remove();
-                $('.categoryName').remove();
-                $("#removeCategoryModal").hide();
-                M.toast({
-                    html: 'Category removed successfully',
-                    displayLength: 3000
-                })
-            } else {
-                console.log(e);
-            }
-        });
-    })
-    $(document).on("click", "#rmvCatgryNoBtn", function () {
-        $("#removeCategoryModal").hide();
-    })
-})
+
 
 var shroot = document.querySelectorAll(".removeProduct");
 for (var i = 0; i < shroot.length; ++i) {
@@ -521,59 +617,7 @@ for (var i = 0; i < shroot.length; ++i) {
       complete: function() { $('#add-product').openModal({ dismissible: false }); } // Callback for Modal close
     });
 */
-//Products Form Validation
-$('#submitProdForm').click(function (e) {
-    name_ = $('#name').val();
-    description_ = $('#description').val();
-    image_ = $('#image').val();
-    amount_ = $('#amount').val();
-    prodCy_ = $('#prod-cy').val();
-    isValid = true;
-    if (name_ == '' || name_ == null) {
-        M.toast({
-            html: 'Ooops! Please enter product name',
-            displayLength: 3000
-        })
-        $('#name').css({
-            "border-bottom": "1px solid red",
-            "background": ""
-        });
-    } else if (description_ == '' || description_ == null) {
-        M.toast({
-            html: 'Ooops! Please enter product description',
-            displayLength: 3000
-        })
-        $('#description').css({
-            "border-bottom": "1px solid red",
-            "background": ""
-        });
-    } else if (amount_ == '' || amount_ == null) {
-        M.toast({
-            html: 'Ooops! Please enter amount',
-            displayLength: 3000
-        })
-        $('#amount').css({
-            "border-bottom": "1px solid red",
-            "background": ""
-        });
-    } else if (prodCy_ == '' || prodCy_ == null) {
-        M.toast({
-            html: 'Ooops! Please enter quantity',
-            displayLength: 3000
-        })
-        $('#prodCy').css({
-            "border-bottom": "1px solid red",
-            "background": ""
-        });
-    } else {
-        var shroot = document.querySelectorAll(".addProduct");
-        addProduct();
-        $("#name, #description, #image, #amount, #prodCy").css({
-            "border-bottom": "2px solid green",
-            "background": ""
-        });
-    }
-});
+
 
 
 function getProductsPromotions() {
@@ -716,37 +760,9 @@ function loadProdCategory() {
         }
     }
 }
-loadProdCategory()
 
 
-$(document).on("click", "#addCategory", function () {
-    var categoryName = $("#categoryName").val();
-    var indexOfCat = categoryList.indexOf(categoryName);
-    console.log(categoryList.length)
-    console.log(indexOfCat)
 
-    if (indexOfCat >= 0) {
-        M.toast({
-            html: 'Ooops! That category already exist',
-            displayLength: 3000
-        })
-        $("#categoryName").css("border-bottom", "solid 1px red");
-    } else if (categoryName == "") {
-        M.toast({
-            html: 'Ooops! Please enter a product',
-            displayLength: 3000
-        })
-        $("#categoryName").css("border-bottom", "solid 1px red");
-    } else if ($(".categoryChip").length >= 5) {
-        M.toast({
-            html: 'Ooops! You have reached the maximum number of categories',
-            displayLength: 3000
-        })
-        $("#categoryName").css("border-bottom", "solid 1px red");
-    } else {
-        addProdCat()
-    }
-});
 
 //Add product category
 function addProdCat() {
@@ -777,16 +793,3 @@ function addProdCat() {
         }
     });
 }
-
-$(document).on('touchstart click', '.addFirstProdModal', function (event) {
-    $('#add-product').modal('open');
-    $('#firstProdModal').modal('close');
-});
-$(document).on('touchstart click', '.newProdBtn', function (event) {
-    //    $('#add-product').modal('open');
-    $('.fixed-action-btn').floatingActionButton("close");
-});
-$(document).on('touchstart click', '.newProdBtn', function (event) {
-    //    $('#newSponsoredProduct').modal('open');
-    $('.fixed-action-btn').floatingActionButton("close");
-});

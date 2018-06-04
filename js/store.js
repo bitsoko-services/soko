@@ -9,6 +9,13 @@ $(document).on("click", "#openStoreSet", function () {
 
 function loadPOS() {
     screen.keepAwake = true;
+	
+            if (getBitsOpt('pan') == "ent") {
+                $('#content > .container > div').css('display', 'none');
+                $('#content > .container > .settingsPage').css('display', 'block');
+                $(".activePage").html("")
+
+            }
     var stCb = getObjectStore('data', 'readwrite').get('soko-stores');
     stCb.onsuccess = function (event) {
         try {
@@ -41,6 +48,7 @@ function loadPOS() {
             $("#addStoreLimit").hide();
         }
         $("#switchStoreContent").html('');
+	    
         for (var i = 0, services = services; i < services.length; ++i) {
             localStorage.setItem('soko-store-id-' + services[i].id, JSON.stringify(services[i]));
 
@@ -54,13 +62,13 @@ function loadPOS() {
                 $("#switchStoreContent").append(owned);
             }
 
-            if (localStorage.getItem('soko-active-store')) {
-                //use the already set store
-
-            } else if(getBitsOpt('s') != undefined) {
+            if (getBitsOpt('s') != undefined) {
                 localStorage.setItem('soko-active-store', getBitsOpt('s'));
 
-            } else  {
+            } else if (localStorage.getItem('soko-active-store')) {
+                //use the already set store
+
+            } else {
                 localStorage.setItem('soko-active-store', services[0].id);
 
             }
@@ -133,6 +141,7 @@ function addStore() {
     refreshSalesOrders();
     refreshBeacons();
     refreshProducts();
+    loadProdCategory();
     //promoUpdater();
 }
 

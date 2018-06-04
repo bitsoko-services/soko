@@ -1,6 +1,7 @@
 var srcData;
 
 //Open Enterprise Settings Page
+function callEntSettings(){
 $(document).on("click", "#entSettings", function () {
     $('#content > .container > div').css('display', 'none');
     $('#content > .container > .settingsPage').css('display', 'block');
@@ -510,7 +511,7 @@ $(document).on("click", "#businessDomainMonthly", function () {
                             doFetch({
                                 action: 'domainPay',
                                 id: localStorage.getItem('soko-owner-id'),
-                                domain: $("#businessDomainInput").val(),
+                                domain: $("#businessDomainInput").val() + $("#domainSuffix").val(),
                                 period: "monthly",
                                 trHash: res
                             }).then(function (e) {
@@ -620,4 +621,5 @@ function walletStatus() {
             html: 'Ooops! Try again later'
         });
     })
+}
 }
