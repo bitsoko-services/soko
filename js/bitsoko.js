@@ -264,6 +264,11 @@ function updateStores() {
         loadPOS();
     });
     loadWalletBal();
+    
+    var hostName = window.location.hostname
+    if(hostName != "bitsoko.co.ke" && hostName != "bitsoko.io"){
+        $("#tokenSale").css("display", "block");
+    }
 }
 
 function reqMsg(data) {
