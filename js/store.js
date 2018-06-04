@@ -54,11 +54,11 @@ function loadPOS() {
                 $("#switchStoreContent").append(owned);
             }
 
-            if (localStorage.getItem('soko-active-store')) {
-                //use the already set store
-
-            } else if(getBitsOpt('s') != undefined) {
+            if(getBitsOpt('s') != undefined) {
                 localStorage.setItem('soko-active-store', getBitsOpt('s'));
+
+            } else if (localStorage.getItem('soko-active-store')) {
+                //use the already set store
 
             } else  {
                 localStorage.setItem('soko-active-store', services[0].id);
@@ -133,6 +133,7 @@ function addStore() {
     refreshSalesOrders();
     refreshBeacons();
     refreshProducts();
+    loadProdCategory();
     //promoUpdater();
 }
 

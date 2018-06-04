@@ -276,221 +276,37 @@ function addToWithdraw(r) {
         $("#dailySalesVal").html(0)
     }
 
-    //Populate Month Income
-    if (getCurrentMonth == saleDateMonth) {
-        if (typeof (totalPrice) != 'undefined') {
-            monthIncomeArray.push(totalPrice)
-        }
-        var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
-        $("#monthlySalesVal").html(sum)
-    } else {
-        $("#monthlySalesVal").html(0)
-    }
-
-    //Populate weekly Income
-    String.prototype.replaceBetween = function (start, end, what) {
-        return this.substring(0, start) + what + this.substring(end);
-    };
-
     var d = new Date();
-    var month = d.getUTCMonth() + 1; //months from 1-12
-    var day = d.getUTCDate();
-    var year = d.getUTCFullYear();
-    var formattedMonth = ("0" + month).slice(-2);
-    var formattedDay = ("0" + day).slice(-2);
-    var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    var currentDay = days[d.getDay()];
-    var currentDate = d.getDate();
-    var currentFullDate = year + "-" + formattedMonth + "-" + formattedDay
-
-    if (currentDay == "Mon") {
+    var step;
+    
+    //Populate weekly Income
+    for (step = 0; step < 7; step++) {
+        var nextStep = step + 1
+        d.setDate(d.getDate() - 1)
+        var prevDate = d
+        var currentFullDate = prevDate.getUTCFullYear() + "-" + ("0" + (prevDate.getUTCMonth() + 1)).slice(-2) + "-" + ("0" + prevDate.getUTCDate()).slice(-2)
         if (currentFullDate == saleDateDay) {
             if (typeof (totalPrice) != 'undefined') {
                 weekIncomeArray.push(totalPrice)
             }
             var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
             $("#weeklySalesVal").html(sum)
-        } else {
-            $("#weeklySalesVal").html(0)
         }
-
-    } else if (currentDay == "Tue") {
-        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
+    }
+    
+    //Populate Monthly Income
+    for (step = 0; step < 30; step++) {
+        var nextStep = step + 1
+        d.setDate(d.getDate() - 1)
+        var prevDate = d
+        var currentFullDate = prevDate.getUTCFullYear() + "-" + ("0" + (prevDate.getUTCMonth() + 1)).slice(-2) + "-" + ("0" + prevDate.getUTCDate()).slice(-2)
         if (currentFullDate == saleDateDay) {
             if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
+                monthIncomeArray.push(totalPrice)
             }
+            var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
+            $("#monthlySalesVal").html(sum)
         }
-        if (monDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            };
-        }
-        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-        $("#weeklySalesVal").html(sum)
-
-    } else if (currentDay == "Wed") {
-        var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
-        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
-        if (currentFullDate == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (tueDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (monDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            };
-        }
-        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-        $("#weeklySalesVal").html(sum)
-
-    } else if (currentDay == "Thu") {
-        var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
-        var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
-        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
-        if (currentFullDate == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (wedDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (tueDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (monDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            };
-        }
-        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-        $("#weeklySalesVal").html(sum)
-
-    } else if (currentDay == "Fri") {
-        var thuDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
-        var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
-        var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
-        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 4)).slice(-2)
-        if (currentFullDate == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (thuDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (wedDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (tueDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (monDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            };
-        }
-        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-        $("#weeklySalesVal").html(sum)
-    } else if (currentDay == "Sat") {
-        var friDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
-        var thuDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
-        var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
-        var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 4)).slice(-2)
-        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 5)).slice(-2)
-        if (currentFullDate == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (friDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (thuDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (wedDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (tueDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (monDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            };
-        }
-        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-        $("#weeklySalesVal").html(sum)
-    } else if (currentDay == "Sun") {
-        var satDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 1)).slice(-2)
-        var friDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 2)).slice(-2)
-        var thuDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 3)).slice(-2)
-        var wedDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 4)).slice(-2)
-        var tueDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 5)).slice(-2)
-        var monDateVal = year + "-" + formattedMonth + "-" + ("0" + (formattedDay - 6)).slice(-2)
-        if (currentFullDate == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (satDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (friDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (thuDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (wedDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (tueDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            }
-        }
-        if (monDateVal == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
-            };
-        }
-        var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-        $("#weeklySalesVal").html(sum)
     }
 }
 

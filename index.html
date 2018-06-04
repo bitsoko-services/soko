@@ -28,7 +28,7 @@
     <link rel="manifest" href="web-manifest-pos.json">
     <script src="https://bitsoko.co.ke/bitsAssets/js/webcomponents.js" async defer></script>
     <!-- jQuery Library -->
-    <script type="text/javascript" src="./js/jquery-1.11.2.min.js" async></script>
+    <script type="text/javascript" src="https://bitsoko.co.ke/bitsAssets/js/jquery-2.1.1.min.js" ></script>
 
     <!-- CORE CSS-->
     <link href="https://bitsoko.co.ke/bitsAssets/css/materialize/materialize.min.css" rel="stylesheet" type="text/css">
@@ -57,7 +57,6 @@
 
     <script src="https://bitsoko.co.ke/bitsAssets/js/web3/web3.js" async></script>
 
-    <script async defer src="https://bitsoko.co.ke/bitsAssets/js/lightwallet/lightwallet.min.js"></script>
     <script src="https://bitsoko.co.ke/bitsAssets/js/hooked-web3-provider/build/hooked-web3-provider.js" async></script>
     <script async defer src="https://bitsoko.co.ke/bitsAssets/js/ethjs-provider-signer.js"></script>
     <script async defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
@@ -1660,9 +1659,9 @@
                                             <h5 style="margin:  0px; font-size: 1.1em; font-weight:  bold; border-bottom: solid #eae6e6 1px; padding:  7px;display:none;">Sales Info</h5>
                                             <div class="row" style="padding: 6px 8px 8px 8px">
                                                 <div class="col s8">
-                                                    <p id="dailySales" style="margin: 5px 0px 5px 0px;"><span style="color: #616060 !important; font-weight: bold;">Today:</span> Ksh. <span id="dailySalesVal"></span></p>
-                                                    <p id="weeklySales" style="margin: 5px 0px 5px 0px"><span style="color: #616060 !important; font-weight: bold;">This Week:</span> Ksh. <span id="weeklySalesVal"></span></p>
-                                                    <p id="monthlySales" style="margin: 5px 0px 5px 0px;"><span style="color: #616060 !important; font-weight: bold;">This Month:</span> Ksh. <span id="monthlySalesVal"></span></p>
+                                                    <p id="dailySales" style="margin: 5px 0px 5px 0px;"><span style="color: #616060 !important; font-weight: bold;">Today:</span> Ksh. <span id="dailySalesVal">0</span></p>
+                                                    <p id="weeklySales" style="margin: 5px 0px 5px 0px"><span style="color: #616060 !important; font-weight: bold;">This Week:</span> Ksh. <span id="weeklySalesVal">0</span></p>
+                                                    <p id="monthlySales" style="margin: 5px 0px 5px 0px;"><span style="color: #616060 !important; font-weight: bold;">This Month:</span> Ksh. <span id="monthlySalesVal">0</span></p>
                                                 </div>
                                                 <div class="col s4" style="padding: 0px;">
                                                     <a id="withdrawFunds" href="#withdrawModal" class="btn opacitySelectedColor" style="padding: 0px 7px;margin-top: 25px;display: none;">withdraw</a>
@@ -2803,6 +2802,11 @@
             createCanvas();
             new ColorPicker();
             document.getElementById("colorChosen").defaultValue = "#0f5f76";
+            callCustomeScript()
+            fetchRate()
+            callEntSettings()
+            callPromoActivations()
+            initDeilveryFunctions()
 
         });
 

@@ -1,6 +1,7 @@
 var srcData;
 
 //Open Enterprise Settings Page
+function callEntSettings(){
 $(document).on("click", "#entSettings", function () {
     $('#content > .container > div').css('display', 'none');
     $('#content > .container > .settingsPage').css('display', 'block');
@@ -620,4 +621,5 @@ function walletStatus() {
             html: 'Ooops! Try again later'
         });
     })
+}
 }

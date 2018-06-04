@@ -31,13 +31,13 @@ function refreshPromotions() {
 
 function checkedProdsInPromo() {
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-promotions').onsuccess = function (event) {
-        
+
         try {
-           var reqs = JSON.parse(event.target.result);
+            var reqs = JSON.parse(event.target.result);
         } catch (err) {
             var reqs = [];
         };
-        
+
         for (var i = 0; i < reqs.length; ++i) {
             var tt = JSON.parse(reqs[i].promoItems);
 
@@ -582,74 +582,119 @@ function doNewPromo() {
 }
 
 //Remove Promotion
-$(document).on('touchstart click', '.removePromo', function (event) {
-    parent_div = $(this).parent().parent().parent().parent().parent().parent().parent().remove();
-    id = $(this).parent().parent().attr("fid");
-    M.toast({
-        html: 'Removing promotion. Please wait',
-        classes: 'promoWaitToast',
-        displayLength: 10000
-    })
-    doFetch({
-        action: 'removePromotion',
-        id: id
-    }).then(function (e) {
-        if (e.status == 'ok') {
-            $('.promoWaitToast').remove();
+function callPromoActivations() {
+    $(document).on('touchstart click', '.removePromo', function (event) {
+        parent_div = $(this).parent().parent().parent().parent().parent().parent().parent().remove();
+        id = $(this).parent().parent().attr("fid");
+        M.toast({
+            html: 'Removing promotion. Please wait',
+            classes: 'promoWaitToast',
+            displayLength: 10000
+        })
+        doFetch({
+            action: 'removePromotion',
+            id: id
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                $('.promoWaitToast').remove();
+                M.toast({
+                    html: 'Promotion Removed Successfully',
+                    displayLength: 3000
+                })
+                refreshPromotions();
+                parent_div
+            } else {
+                console.log(e);
+            }
+        });
+    });
+
+
+
+
+    //Promotion Form Validation
+    $('.doAddNewPromo').click(function (e) {
+        promo_name = $('#newPromo-name').val();
+        promo_description = $('#newPromo-desc').val();
+        promo_image = $('#newPromo-image').val();
+        promo_discount = $('#newPromo-discount').val();
+        promo_minBuyer = $('#newPromo-offers').val();
+        isValid = true;
+        if (promo_name == '' || promo_name == null) {
             M.toast({
-                html: 'Promotion Removed Successfully',
+                html: 'Ooops! Please enter promotion name',
                 displayLength: 3000
             })
-            refreshPromotions();
-            parent_div
+        } else if (promo_description == '' || promo_description == null) {
+            M.toast({
+                html: 'Ooops! Please enter promotion description',
+                displayLength: 3000
+            })
+        } else if (promo_image == '' || promo_image == null) {
+            M.toast({
+                html: 'Ooops! Please select an image',
+                displayLength: 3000
+            })
+        } else if (promo_discount == '' || promo_discount == null) {
+            M.toast({
+                html: 'Ooops! Please enter discount',
+                displayLength: 3000
+            })
+        } else if (promo_minBuyer == '' || promo_minBuyer == null) {
+            M.toast({
+                html: 'Ooops! Please enter minimum buyers',
+                displayLength: 3000
+            })
         } else {
-            console.log(e);
+            doNewPromo();
         }
     });
-});
 
 
-
-
-//Promotion Form Validation
-$('.doAddNewPromo').click(function (e) {
-    promo_name = $('#newPromo-name').val();
-    promo_description = $('#newPromo-desc').val();
-    promo_image = $('#newPromo-image').val();
-    promo_discount = $('#newPromo-discount').val();
-    promo_minBuyer = $('#newPromo-offers').val();
-    isValid = true;
-    if (promo_name == '' || promo_name == null) {
-        M.toast({
-            html: 'Ooops! Please enter promotion name',
-            displayLength: 3000
+    //Check Store Balance
+    $(document).on("click", "#promoTab", function () {
+        doFetch({
+            action: "getPromotions",
+            id: localStorage.getItem("soko-active-store")
+        }).then(function (e) {
+            var promoLength = e.promotions.length
+            var promoStatus = e.promotions[0].promoStatus
+            if (promoLength != 0) {
+                if (promoStatus == "inactive") {
+                    M.toast({
+                        html: 'Promotions are inactive<span id="openStoreTokenModal" class="right" style="color: yellow; border: solid yellow 1px; padding: 0px 10px; border-radius: 3px;">activate</span>',
+                        displayLength: 3000,
+                        classes: "tokenToast"
+                    })
+                }
+            }
+            console.log(e.promotions.length)
         })
-    } else if (promo_description == '' || promo_description == null) {
-        M.toast({
-            html: 'Ooops! Please enter promotion description',
-            displayLength: 3000
-        })
-    } else if (promo_image == '' || promo_image == null) {
-        M.toast({
-            html: 'Ooops! Please select an image',
-            displayLength: 3000
-        })
-    } else if (promo_discount == '' || promo_discount == null) {
-        M.toast({
-            html: 'Ooops! Please enter discount',
-            displayLength: 3000
-        })
-    } else if (promo_minBuyer == '' || promo_minBuyer == null) {
-        M.toast({
-            html: 'Ooops! Please enter minimum buyers',
-            displayLength: 3000
-        })
-    } else {
-        doNewPromo();
-    }
-});
+        $(document).on('touchstart click', '#openStoreTokenModal', function () {
+            $("#buyStoreTokens").modal("open");
+        });
+    });
 
 
+    $(document).on('touchstart click', '.clickPromo', function () {
+        $(".activePage").html("")
+    });
+
+    //Hide Card Reveal on Promotion Page
+    //$(document).on('touchstart click', '.backBtnPromo', function (event) {
+    //    $(this).parent().parent().hide();
+    //});
+
+    //Prevent dropdown content on Promotion page closing on touchstart
+    $(document).on('touchstart click', '.multiple-select-dropdown', function (event) {
+        event.stopPropagation();
+    });
+
+    //var shroot = document.querySelectorAll(".doAddNewPromo");
+    //for (var i = 0; i < shroot.length; ++i) {
+    //    shroot[i].addEventListener("touchstart", doNewPromo, false);
+    //};
+}
 //Update promo
 function updateProm(t) {
     console.log($(t.target));
@@ -785,47 +830,3 @@ function updateProm(t) {
         });
     }
 }
-
-//Check Store Balance
-$(document).on("click", "#promoTab", function () {
-    doFetch({
-        action: "getPromotions",
-        id: localStorage.getItem("soko-active-store")
-    }).then(function (e) {
-        var promoLength = e.promotions.length
-        var promoStatus = e.promotions[0].promoStatus
-        if (promoLength != 0) {
-            if (promoStatus == "inactive") {
-                M.toast({
-                    html: 'Promotions are inactive<span id="openStoreTokenModal" class="right" style="color: yellow; border: solid yellow 1px; padding: 0px 10px; border-radius: 3px;">activate</span>',
-                    displayLength: 3000,
-                    classes: "tokenToast"
-                })
-            }
-        }
-        console.log(e.promotions.length)
-    })
-    $(document).on('touchstart click', '#openStoreTokenModal', function () {
-        $("#buyStoreTokens").modal("open");
-    });
-});
-
-
-$(document).on('touchstart click', '.clickPromo', function () {
-    $(".activePage").html("")
-});
-
-//Hide Card Reveal on Promotion Page
-//$(document).on('touchstart click', '.backBtnPromo', function (event) {
-//    $(this).parent().parent().hide();
-//});
-
-//Prevent dropdown content on Promotion page closing on touchstart
-$(document).on('touchstart click', '.multiple-select-dropdown', function (event) {
-    event.stopPropagation();
-});
-
-//var shroot = document.querySelectorAll(".doAddNewPromo");
-//for (var i = 0; i < shroot.length; ++i) {
-//    shroot[i].addEventListener("touchstart", doNewPromo, false);
-//};

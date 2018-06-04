@@ -392,5 +392,3 @@ distanceSlide.onchange = function () {
         }
     });
 }
-
-document.addEventListener("DOMContentLoaded", initDeilveryFunctions());
