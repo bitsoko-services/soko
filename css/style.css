@@ -25,7 +25,9 @@ body {
     font-family: 'Lato', sans-serif !important;
     font-weight: initial;
 }
-
+#domainSuffix input{
+    text-align: center;
+}
 @media screen and (max-height: 549px) {
     #sideNavFooter {
         position: initial !important;

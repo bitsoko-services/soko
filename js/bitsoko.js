@@ -189,17 +189,19 @@ function updateStores() {
             localStorage.setItem('bitsoko-stores', 'true');
             loadPOS();
         } else if (e.msg == "no services") {
-            getObjectStore('data', 'readwrite').put(JSON.stringify([]), 'soko-stores');
-            $('#firstStoreModal').modal({
-                dismissible: false,
-                complete: function () {
-                    $('#newStoreModal').modal({
-                        dismissible: false,
-                        onOpenStart: loadCat()
-                    }).modal('open');
-                }
-            });
-            $('#firstStoreModal').modal('open');
+            if (getBitsOpt('page') == "settingsPage") {} else {
+                getObjectStore('data', 'readwrite').put(JSON.stringify([]), 'soko-stores');
+                $('#firstStoreModal').modal({
+                    dismissible: false,
+                    complete: function () {
+                        $('#newStoreModal').modal({
+                            dismissible: false,
+                            onOpenStart: loadCat()
+                        }).modal('open');
+                    }
+                });
+                $('#firstStoreModal').modal('open');
+            }
         }
         //Load Ent Settings Info
         var stringifiedEntInfo = JSON.stringify(e.settings.entSettings);

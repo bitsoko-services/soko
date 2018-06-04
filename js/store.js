@@ -54,14 +54,20 @@ function loadPOS() {
                 $("#switchStoreContent").append(owned);
             }
 
-            if(getBitsOpt('s') != undefined) {
+            if (getBitsOpt('s') != undefined) {
                 localStorage.setItem('soko-active-store', getBitsOpt('s'));
 
             } else if (localStorage.getItem('soko-active-store')) {
                 //use the already set store
 
-            } else  {
+            } else {
                 localStorage.setItem('soko-active-store', services[0].id);
+
+            }
+            if (getBitsOpt('pan') == "ent") {
+                $('#content > .container > div').css('display', 'none');
+                $('#content > .container > .settingsPage').css('display', 'block');
+                $(".activePage").html("")
 
             }
             // initialisePush('soko-store-id-' + services[i].id);
