@@ -9,6 +9,13 @@ $(document).on("click", "#openStoreSet", function () {
 
 function loadPOS() {
     screen.keepAwake = true;
+	
+            if (getBitsOpt('pan') == "ent") {
+                $('#content > .container > div').css('display', 'none');
+                $('#content > .container > .settingsPage').css('display', 'block');
+                $(".activePage").html("")
+
+            }
     var stCb = getObjectStore('data', 'readwrite').get('soko-stores');
     stCb.onsuccess = function (event) {
         try {
@@ -41,6 +48,7 @@ function loadPOS() {
             $("#addStoreLimit").hide();
         }
         $("#switchStoreContent").html('');
+	    
         for (var i = 0, services = services; i < services.length; ++i) {
             localStorage.setItem('soko-store-id-' + services[i].id, JSON.stringify(services[i]));
 
@@ -62,12 +70,6 @@ function loadPOS() {
 
             } else {
                 localStorage.setItem('soko-active-store', services[0].id);
-
-            }
-            if (getBitsOpt('pan') == "ent") {
-                $('#content > .container > div').css('display', 'none');
-                $('#content > .container > .settingsPage').css('display', 'block');
-                $(".activePage").html("")
 
             }
             // initialisePush('soko-store-id-' + services[i].id);
