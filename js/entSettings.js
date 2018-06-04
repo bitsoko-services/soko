@@ -511,7 +511,7 @@ $(document).on("click", "#businessDomainMonthly", function () {
                             doFetch({
                                 action: 'domainPay',
                                 id: localStorage.getItem('soko-owner-id'),
-                                domain: $("#businessDomainInput").val(),
+                                domain: $("#businessDomainInput").val() + $("#domainSuffix").val(),
                                 period: "monthly",
                                 trHash: res
                             }).then(function (e) {
