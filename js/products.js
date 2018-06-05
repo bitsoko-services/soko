@@ -1,4 +1,5 @@
 var getAllProducts;
+
 function refreshProducts() {
     doFetch({
         action: 'getProducts',
@@ -25,203 +26,203 @@ function addManagers() {
     });
 }
 
-function callProdActivations(){
+function callProdActivations() {
     //Products Form Validation
-$('#submitProdForm').click(function (e) {
-    name_ = $('#name').val();
-    description_ = $('#description').val();
-    image_ = $('#image').val();
-    amount_ = $('#amount').val();
-    prodCy_ = $('#prod-cy').val();
-    isValid = true;
-    if (name_ == '' || name_ == null) {
-        M.toast({
-            html: 'Ooops! Please enter product name',
-            displayLength: 3000
-        })
-        $('#name').css({
-            "border-bottom": "1px solid red",
-            "background": ""
-        });
-    } else if (description_ == '' || description_ == null) {
-        M.toast({
-            html: 'Ooops! Please enter product description',
-            displayLength: 3000
-        })
-        $('#description').css({
-            "border-bottom": "1px solid red",
-            "background": ""
-        });
-    } else if (amount_ == '' || amount_ == null) {
-        M.toast({
-            html: 'Ooops! Please enter amount',
-            displayLength: 3000
-        })
-        $('#amount').css({
-            "border-bottom": "1px solid red",
-            "background": ""
-        });
-    } else if (prodCy_ == '' || prodCy_ == null) {
-        M.toast({
-            html: 'Ooops! Please enter quantity',
-            displayLength: 3000
-        })
-        $('#prodCy').css({
-            "border-bottom": "1px solid red",
-            "background": ""
-        });
-    } else {
-        var shroot = document.querySelectorAll(".addProduct");
-        addProduct();
-        $("#name, #description, #image, #amount, #prodCy").css({
-            "border-bottom": "2px solid green",
-            "background": ""
-        });
-    }
-});
-    $(document).on("click", "#addCategory", function () {
-    var categoryName = $("#categoryName").val();
-    var indexOfCat = categoryList.indexOf(categoryName);
-    console.log(categoryList.length)
-    console.log(indexOfCat)
-
-    if (indexOfCat >= 0) {
-        M.toast({
-            html: 'Ooops! That category already exist',
-            displayLength: 3000
-        })
-        $("#categoryName").css("border-bottom", "solid 1px red");
-    } else if (categoryName == "") {
-        M.toast({
-            html: 'Ooops! Please enter a product',
-            displayLength: 3000
-        })
-        $("#categoryName").css("border-bottom", "solid 1px red");
-    } else if ($(".categoryChip").length >= 5) {
-        M.toast({
-            html: 'Ooops! You have reached the maximum number of categories',
-            displayLength: 3000
-        })
-        $("#categoryName").css("border-bottom", "solid 1px red");
-    } else {
-        addProdCat()
-    }
-});
-
-$(document).on('touchstart click', '.addFirstProdModal', function (event) {
-    $('#add-product').modal('open');
-    $('#firstProdModal').modal('close');
-});
-$(document).on('touchstart click', '.newProdBtn', function (event) {
-    //    $('#add-product').modal('open');
-    $('.fixed-action-btn').floatingActionButton("close");
-});
-$(document).on('touchstart click', '.newProdBtn', function (event) {
-    //    $('#newSponsoredProduct').modal('open');
-    $('.fixed-action-btn').floatingActionButton("close");
-});
-    //Remove Category
-$(document).on("click", ".categoryChip", function () {
-    var selectedCategory = $(this)
-    var categoryName = $(this)[0].outerText;
-    $("#catgryName").text(categoryName)
-    $("#removeCategoryModal").show();
-    $(document).on("click", "#rmvCatgryYesBtn", function () {
-        M.toast({
-            html: 'Removing category. Please wai',
-            classes: 'categoryName',
-            displayLength: 10000
-        })
-        doFetch({
-            action: 'manageCategories',
-            store: localStorage.getItem('soko-active-store'),
-            do: 'remove',
-            name: categoryName
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                $(selectedCategory).remove();
-                $('.categoryName').remove();
-                $("#removeCategoryModal").hide();
-                M.toast({
-                    html: 'Category removed successfully',
-                    displayLength: 3000
-                })
-            } else {
-                console.log(e);
-            }
-        });
-    })
-    $(document).on("click", "#rmvCatgryNoBtn", function () {
-        $("#removeCategoryModal").hide();
-    })
-})
-$('#dlvryPage').click(function () {
-    $("#managersClickEvent").click();
-})
-$(".prodactsPage").one("click", function () {
-    populateProductCategories();
-});
-$(document).on('touchstart click', '.prodactsPage', function () {
-    $(".activePage").html("Products")
-});
-
-$(document).on('touchstart click', '#yesSponsoredBtn', function (event) {
-    var sponsoredID = $("#rmvSpnsrdProd").attr("sid");
-    $(this).unbind(event);
-    doFetch({
-        action: 'removeSponsoredProduct',
-        store: localStorage.getItem('soko-active-store'),
-        do: 'remove',
-        id: sponsoredID
-    }).then(function (e) {
-        if (e.status == 'ok') {
-            $("#rmvSpnsrdProd").hide();
-            document.getElementById(id).remove();
-            document.getElementById("sprdprod_" + id).remove();
+    $('#submitProdForm').click(function (e) {
+        name_ = $('#name').val();
+        description_ = $('#description').val();
+        image_ = $('#image').val();
+        amount_ = $('#amount').val();
+        prodCy_ = $('#prod-cy').val();
+        isValid = true;
+        if (name_ == '' || name_ == null) {
             M.toast({
-                html: 'Sponsored product removed successfully',
+                html: 'Ooops! Please enter product name',
                 displayLength: 3000
             })
-        } else {}
+            $('#name').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else if (description_ == '' || description_ == null) {
+            M.toast({
+                html: 'Ooops! Please enter product description',
+                displayLength: 3000
+            })
+            $('#description').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else if (amount_ == '' || amount_ == null) {
+            M.toast({
+                html: 'Ooops! Please enter amount',
+                displayLength: 3000
+            })
+            $('#amount').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else if (prodCy_ == '' || prodCy_ == null) {
+            M.toast({
+                html: 'Ooops! Please enter quantity',
+                displayLength: 3000
+            })
+            $('#prodCy').css({
+                "border-bottom": "1px solid red",
+                "background": ""
+            });
+        } else {
+            var shroot = document.querySelectorAll(".addProduct");
+            addProduct();
+            $("#name, #description, #image, #amount, #prodCy").css({
+                "border-bottom": "2px solid green",
+                "background": ""
+            });
+        }
     });
-});
-$(document).on('touchstart click', '#noSponsoredBtn', function (event) {
-    $("#rmvSpnsrdProd").hide();
-});
+    $(document).on("click", "#addCategory", function () {
+        var categoryName = $("#categoryName").val();
+        var indexOfCat = categoryList.indexOf(categoryName);
+        console.log(categoryList.length)
+        console.log(indexOfCat)
 
-$('#spnsrdModal').on('click', $('ul.autocomplete-content li'), function () {
-    var value = $('.sponsoredPrd').val();
-    if (value != '') {
-        var sponsoredProduct = $('.sponsoredPrd').val();
-        for (var i in sponProds) {
-            var name = sponProds[i].name;
-            var id = sponProds[i].id;
-            var price = sponProds[i].price;
-            if (sponsoredProduct == name + " - " + price) {
+        if (indexOfCat >= 0) {
+            M.toast({
+                html: 'Ooops! That category already exist',
+                displayLength: 3000
+            })
+            $("#categoryName").css("border-bottom", "solid 1px red");
+        } else if (categoryName == "") {
+            M.toast({
+                html: 'Ooops! Please enter a product',
+                displayLength: 3000
+            })
+            $("#categoryName").css("border-bottom", "solid 1px red");
+        } else if ($(".categoryChip").length >= 5) {
+            M.toast({
+                html: 'Ooops! You have reached the maximum number of categories',
+                displayLength: 3000
+            })
+            $("#categoryName").css("border-bottom", "solid 1px red");
+        } else {
+            addProdCat()
+        }
+    });
+
+    $(document).on('touchstart click', '.addFirstProdModal', function (event) {
+        $('#add-product').modal('open');
+        $('#firstProdModal').modal('close');
+    });
+    $(document).on('touchstart click', '.newProdBtn', function (event) {
+        //    $('#add-product').modal('open');
+        $('.fixed-action-btn').floatingActionButton("close");
+    });
+    $(document).on('touchstart click', '.newProdBtn', function (event) {
+        //    $('#newSponsoredProduct').modal('open');
+        $('.fixed-action-btn').floatingActionButton("close");
+    });
+    //Remove Category
+    $(document).on("click", ".categoryChip", function () {
+        var selectedCategory = $(this)
+        var categoryName = $(this)[0].outerText;
+        $("#catgryName").text(categoryName)
+        $("#removeCategoryModal").show();
+        $(document).on("click", "#rmvCatgryYesBtn", function () {
+            M.toast({
+                html: 'Removing category. Please wai',
+                classes: 'categoryName',
+                displayLength: 10000
+            })
+            doFetch({
+                action: 'manageCategories',
+                store: localStorage.getItem('soko-active-store'),
+                do: 'remove',
+                name: categoryName
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    $(selectedCategory).remove();
+                    $('.categoryName').remove();
+                    $("#removeCategoryModal").hide();
+                    M.toast({
+                        html: 'Category removed successfully',
+                        displayLength: 3000
+                    })
+                } else {
+                    console.log(e);
+                }
+            });
+        })
+        $(document).on("click", "#rmvCatgryNoBtn", function () {
+            $("#removeCategoryModal").hide();
+        })
+    })
+    $('#dlvryPage').click(function () {
+        $("#managersClickEvent").click();
+    })
+    $(".prodactsPage").one("click", function () {
+        populateProductCategories();
+    });
+    $(document).on('touchstart click', '.prodactsPage', function () {
+        $(".activePage").html("Products")
+    });
+
+    $(document).on('touchstart click', '#yesSponsoredBtn', function (event) {
+        var sponsoredID = $("#rmvSpnsrdProd").attr("sid");
+        $(this).unbind(event);
+        doFetch({
+            action: 'removeSponsoredProduct',
+            store: localStorage.getItem('soko-active-store'),
+            do: 'remove',
+            id: sponsoredID
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                $("#rmvSpnsrdProd").hide();
+                document.getElementById(id).remove();
+                document.getElementById("sprdprod_" + id).remove();
                 M.toast({
-                    html: 'Adding sponsored produc',
-                    classes: 'spnsrdTst',
-                    displayLength: 10000
+                    html: 'Sponsored product removed successfully',
+                    displayLength: 3000
                 })
-                doFetch({
-                    action: 'addSponsoredProduct',
-                    store: localStorage.getItem('soko-active-store'),
-                    do: 'add',
-                    id: id
-                }).then(function (e) {
-                    if (e.status == 'ok') {
-                        $(".spnsrdTst").remove();
-                        $('#spnsrdModal').modal('close');
-                        M.toast({
-                            html: 'Sponsored product added successfully',
-                            displayLength: 3000
-                        })
-                    } else {}
-                });
+            } else {}
+        });
+    });
+    $(document).on('touchstart click', '#noSponsoredBtn', function (event) {
+        $("#rmvSpnsrdProd").hide();
+    });
+
+    $('#spnsrdModal').on('click', $('ul.autocomplete-content li'), function () {
+        var value = $('.sponsoredPrd').val();
+        if (value != '') {
+            var sponsoredProduct = $('.sponsoredPrd').val();
+            for (var i in sponProds) {
+                var name = sponProds[i].name;
+                var id = sponProds[i].id;
+                var price = sponProds[i].price;
+                if (sponsoredProduct == name + " - " + price) {
+                    M.toast({
+                        html: 'Adding sponsored produc',
+                        classes: 'spnsrdTst',
+                        displayLength: 10000
+                    })
+                    doFetch({
+                        action: 'addSponsoredProduct',
+                        store: localStorage.getItem('soko-active-store'),
+                        do: 'add',
+                        id: id
+                    }).then(function (e) {
+                        if (e.status == 'ok') {
+                            $(".spnsrdTst").remove();
+                            $('#spnsrdModal').modal('close');
+                            M.toast({
+                                html: 'Sponsored product added successfully',
+                                displayLength: 3000
+                            })
+                        } else {}
+                    });
+                }
             }
         }
-    }
-});
+    });
 
 }
 
@@ -280,7 +281,7 @@ function productsUpdater() {
 
 
             } else if (reqs[i].sponsored == "") {
-                $(".products-collapsible").append('<li class="prdList" id="' + reqs[i].id + '" prid="' + reqs[i].id + '" style="margin: 0px 0px 10px 0p !important; background: rgb(255, 255, 255);">' + '<div class="prodImgDskt" id="prodImg-holda-' + reqs[i].id + '" style="background-size: cover;background-repeat: no-repeat;background-position: center;background-image:url(' + reqs[i].imagePath + ');width: 70px;height: 70px;float: left; margin: 10px"></div><div class="collapsible-header" style="padding: 5px 10px;line-height: 0;width: calc(100% - 90px);display:inline-block;border-bottom:none;"><p style="margin:0px;line-height:1.8rem;font-weight:bold;    white-space: nowrap; width: 85%; overflow: hidden; text-overflow: ellipsis;">' + reqs[i].name + ' <br><span style="font-weight:400;color:#7e7e7e;">' + reqs[i].description + '<br> Ksh. ' + reqs[i].price + '</span></p><div class="divider" style="background-color: #ffffff;"></div><span style="font-size:1em; font-weight:400; color:#616161;">' + '<i class="{{product.icon}}"></i><p style="margin:0px;display:none;">' + reqs[i].quantity + ' available</p><div class="divider" style="background-color: #ffffff;"></div></span></div><div class="collapsible-body" style="padding:0px;"><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);text-transform:uppercase;">sale information</div>' + '<div class="switch" style=" float: right;"> <label><p style="text-align:center;margin-top:0px;">Make Public</p><input fid="' + reqs[i].id + '" id="publicProdSwitch_' + reqs[i].id + '" type="checkbox" prid="publicProd"> <span class="lever"></span></label> </div>' + '<form class="col s12" style="padding: 20px 30px;"><div class="row"><div class="input-field col s12">' + '<input id="prodName-' + reqs[i].id + '" prnm="name" type="text" class="validate" prid="' + reqs[i].id + '" value="' + reqs[i].name + '"><label for="prodName-' + reqs[i].id + '" class="">Name</label></div></div>' + '<div class="row"><div class="input-field col s12"><input prnm="description" placeholder="" value="' + reqs[i].description + '" id="prodDesc-' + reqs[i].id + '" type="text" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="description" class="">Description</label></div></div><div class="row"> <div class="input-field col s12"> <select  class="changeCategory-' + reqs[i].id + '" catId="' + reqs[i].id + '"> <option value="" disabled selected>Choose a category</option> </select> <label>Category</label> </div></div><div class="row">' + '<div class="file-field input-field"><div class="btn opacitySelectedColor"><span>image</span><input id="prodImg-' + reqs[i].id + '" prid="' + reqs[i].id + '" prnm="image" type="file">' + '</div><div class="file-path-wrapper"><input class="file-path validate" type="text"></div></div>' + '<div class="input-field col s6"><input prnm="price" placeholder="" value="' + reqs[i].price + '" id="prodPrice-' + reqs[i].id + '" type="number" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="prodPrice-' + reqs[i].id + '" class="active">Price</label></div><div class="input-field col s6">' + '<div class="select-wrapper initialized"><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">measurement</option>' + '<option value="1">per Kilogram</option>' + '<option value="2">per Piece</option>' + '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized">' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option>' + '</select></div></div></div><div class="row"> <div class="input-field col s12" style="margin-top:0px;"> <input id="barcode-input" type="text" class="validate" prnm="barCode" prid="' + reqs[i].id + '" autocomplete="off" required=""> <label for="barcode-input" class="">Barcode ID</label> </div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"> <a prid="' + reqs[i].id + '" class="opacitySelectedColor removeProduct waves-effect waves-light btn" style="float:left;">remove product</a> </div>' + '</form></div></li><div class="divider" style="margin-top:2px;"></div>');
+                $(".products-collapsible").append('<li class="prdList" id="' + reqs[i].id + '" prid="' + reqs[i].id + '" style="margin: 0px 0px 10px 0p !important; background: rgb(255, 255, 255);">' + '<div class="prodImgDskt" id="prodImg-holda-' + reqs[i].id + '" style="background-size: cover;background-repeat: no-repeat;background-position: center;background-image:url(' + reqs[i].imagePath + ');width: 70px;height: 70px;float: left; margin: 10px"></div><div class="collapsible-header" style="padding: 5px 10px;line-height: 0;width: calc(100% - 90px);display:inline-block;border-bottom:none;"><p style="margin:0px;line-height:1.8rem;font-weight:bold;    white-space: nowrap; width: 85%; overflow: hidden; text-overflow: ellipsis;">' + reqs[i].name + ' <br><span style="font-weight:400;color:#7e7e7e;">' + reqs[i].description + '<br> Ksh. ' + reqs[i].price + '</span></p><div class="divider" style="background-color: #ffffff;"></div><span style="font-size:1em; font-weight:400; color:#616161;">' + '<i class="{{product.icon}}"></i><p style="margin:0px;display:none;">' + reqs[i].quantity + ' available</p><div class="divider" style="background-color: #ffffff;"></div></span></div><div class="collapsible-body" style="padding:0px;"><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);text-transform:uppercase;">sale information</div>' + '<div class="switch" style=" float: right;"> <label><p style="text-align:center;margin-top:0px;">Make Public</p><input fid="' + reqs[i].id + '" id="publicProdSwitch_' + reqs[i].id + '" type="checkbox" prid="publicProd"> <span class="lever"></span></label> </div>' + '<form class="col s12" style="padding: 20px 30px;"><div class="row"><div class="input-field col s12">' + '<input id="prodName-' + reqs[i].id + '" prnm="name" type="text" class="validate" prid="' + reqs[i].id + '" value="' + reqs[i].name + '"><label for="prodName-' + reqs[i].id + '" class="">Name</label></div></div>' + '<div class="row"><div class="input-field col s12"><input prnm="description" placeholder="" value="' + reqs[i].description + '" id="prodDesc-' + reqs[i].id + '" type="text" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="description" class="">Description</label></div></div><div class="row productCategoryChng"> <div class="input-field col s12"> <select  class="productCategory changeCategory-' + reqs[i].id + '" catId="' + reqs[i].id + '"> <option value="" disabled selected>Choose a category</option> </select> <label>Category</label> </div></div><div class="row">' + '<div class="file-field input-field"><div class="btn opacitySelectedColor"><span>image</span><input id="prodImg-' + reqs[i].id + '" prid="' + reqs[i].id + '" prnm="image" type="file">' + '</div><div class="file-path-wrapper"><input class="file-path validate" type="text"></div></div>' + '<div class="input-field col s6"><input prnm="price" placeholder="" value="' + reqs[i].price + '" id="prodPrice-' + reqs[i].id + '" type="number" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="prodPrice-' + reqs[i].id + '" class="active">Price</label></div><div class="input-field col s6">' + '<div class="select-wrapper initialized"><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">measurement</option>' + '<option value="1">per Kilogram</option>' + '<option value="2">per Piece</option>' + '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized">' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option>' + '</select></div></div></div><div class="row"> <div class="input-field col s12" style="margin-top:0px;"> <input id="barcode-input" type="text" class="validate" prnm="barCode" prid="' + reqs[i].id + '" autocomplete="off" required=""> <label for="barcode-input" class="">Barcode ID</label> </div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"> <a prid="' + reqs[i].id + '" class="opacitySelectedColor removeProduct waves-effect waves-light btn" style="float:left;">remove product</a> </div>' + '</form></div></li><div class="divider" style="margin-top:2px;"></div>');
                 if (reqs[i].imagePath == "") {
                     //                    $("#prodImg-holda-" + reqs[i].id).css("background-image", "url(../images/sicon.png)");
                     console.log("No Image")
@@ -303,30 +304,6 @@ function productsUpdater() {
             // var saleTime=moment(reqs[i].posted).fromNow();
             //var html = ''+saleAmount+'</h5><small class="noteC-time text-muted">'+saleTime+'</small></div></div></a>';
 
-
-            $(document).on('touchstart click', '.changeCategory-' + reqs[i].id + ' li', function (event) {
-                var prodVal = $(this).find("input").context.textContent;
-                var catId = $(this).parent().siblings("select").attr("catid");
-                doFetch({
-                    action: 'doProdUpdate',
-                    id: catId,
-                    prop: "productCategory",
-                    val: prodVal
-                }).then(function (e) {
-                    if (e.status == 'ok') {
-                        M.toast({
-                            html: 'Product category changed successfully',
-                            classes: 'prodCatToast',
-                            displayLength: 3000
-                        })
-                    } else {
-                        M.toast({
-                            html: 'Error! Please try later',
-                            displayLength: 3000
-                        })
-                    }
-                });
-            });
             //Default Product Image
             if (reqs[i].imagePath == null) {
                 $("#prodImg-holda-" + reqs[i].id).css("background-image", "url(../images/no-image-icon-15.png)");
@@ -373,7 +350,7 @@ function updateProd(t) {
     var name = $(t.target).attr('prnm');
     var val = $(t.target).val();
     var switchID = $(t.target).attr('id')
-    var value = document.getElementById(switchID).checked
+    //    var value = document.getElementById("switchID").checked
     if (name == 'image') {
         var files = t.target.files;
         var file = files[0];
@@ -453,6 +430,25 @@ function updateProd(t) {
         });
     }
 }
+$(document).on("click touchstart", ".productCategoryChng ul li", function () {
+    var clickCat = $(this)[0].childNodes[0].innerHTML
+    var catId = $(this).parent().siblings("select").attr("catid");
+    doFetch({
+        action: 'doProdUpdate',
+        id: catId,
+        prop: "productCategory",
+        val: clickCat
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            M.toast({
+                html: 'Modified ' + name + '..',
+                displayLength: 3000
+            })
+        } else {
+            console.log(e);
+        }
+    });
+});
 
 function initProdCallback() {
     var forEach = function (array, callback, scope) {
@@ -706,6 +702,7 @@ function rmvProduct() {
 //Product Category
 function prodCategory() {
     var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
+    $(".productCategory").html("")
     if (checkProdCat == "") {
         console.log("Prod category empty")
     } else {
