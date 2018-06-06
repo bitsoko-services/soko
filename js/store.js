@@ -451,7 +451,7 @@ function updateStore(t) {
         })
         doFetch({
             action: 'manageCategories',
-            id: localStorage.getItem('soko-active-store'),
+            store: localStorage.getItem('soko-active-store'),
             do: "add",
             val: val
         }).then(function (e) {
