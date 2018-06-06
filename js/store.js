@@ -453,7 +453,7 @@ function updateStore(t) {
             action: 'manageCategories',
             store: localStorage.getItem('soko-active-store'),
             do: "add",
-            val: val
+            name: val
         }).then(function (e) {
             if (e.status == 'ok') {
                 //document.querySelector('#prodImg-holda-'+prid).src = val;
