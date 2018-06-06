@@ -311,7 +311,7 @@ function productsUpdater() {
         }
 
         loadTheme();
-        prodCategory();
+//        prodCategory();
 
         rmvProduct();
 
@@ -338,7 +338,7 @@ function populateProductCategories() {
             }
         }
         $('select').formSelect();
-        $('.remove').remove();
+//        $('.remove').remove();
         initialProdCat()
     }, 1000);
 };
@@ -699,22 +699,22 @@ function rmvProduct() {
 }
 
 //Product Category
-function prodCategory() {
-    var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
-    $(".productCategory").html("")
-    if (checkProdCat == "") {
-        console.log("Prod category empty")
-    } else {
-        var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory);
-        for (var pc = 0; pc < prodCat.length; ++pc) {
-
-            $(".productCategory").append('<option value="' + prodCat[pc].name + '">' + prodCat[pc].name + '</option>');
-            $('select').formSelect();
-            $(".productCategory").siblings("option").remove()
-            $(".changeCategory").siblings("option").remove()
-        }
-    }
-}
+//function prodCategory() {
+//    var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
+//    if (checkProdCat == "") {
+//        console.log("Prod category empty")
+//    } else {
+//        var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory);
+//        $(".productCategory").html("")
+//        for (var pc = 0; pc < prodCat.length; ++pc) {
+//
+////            $(".productCategory").append('<option value="' + prodCat[pc].name + '">' + prodCat[pc].name + '</option>');
+//            $('select').formSelect();
+//            $(".productCategory").siblings("option").remove()
+//            $(".changeCategory").siblings("option").remove()
+//        }
+//    }
+//}
 
 //Current Product Category
 function initialProdCat() {

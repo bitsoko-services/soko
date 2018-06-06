@@ -450,9 +450,9 @@ function updateStore(t) {
             displayLength: 3000
         })
         doFetch({
-            action: 'addProdCategory',
+            action: 'manageCategories',
             id: localStorage.getItem('soko-active-store'),
-            prop: name,
+            do: "add",
             val: val
         }).then(function (e) {
             if (e.status == 'ok') {
