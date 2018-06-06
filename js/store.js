@@ -9,13 +9,13 @@ $(document).on("click", "#openStoreSet", function () {
 
 function loadPOS() {
     screen.keepAwake = true;
-	
-            if (getBitsOpt('pan') == "ent") {
-                $('#content > .container > div').css('display', 'none');
-                $('#content > .container > .settingsPage').css('display', 'block');
-                $(".activePage").html("")
 
-            }
+    if (getBitsOpt('pan') == "ent") {
+        $('#content > .container > div').css('display', 'none');
+        $('#content > .container > .settingsPage').css('display', 'block');
+        $(".activePage").html("")
+
+    }
     var stCb = getObjectStore('data', 'readwrite').get('soko-stores');
     stCb.onsuccess = function (event) {
         try {
@@ -48,7 +48,7 @@ function loadPOS() {
             $("#addStoreLimit").hide();
         }
         $("#switchStoreContent").html('');
-	    
+
         for (var i = 0, services = services; i < services.length; ++i) {
             localStorage.setItem('soko-store-id-' + services[i].id, JSON.stringify(services[i]));
 
@@ -444,6 +444,11 @@ function updateStore(t) {
     } else if (name == "skip") {
         //Do nothing
     } else if (name == "addProdCategory") {
+        M.toast({
+            html: 'Adding category. Please wait',
+            classes: 'categoryName',
+            displayLength: 3000
+        })
         doFetch({
             action: 'addProdCategory',
             id: localStorage.getItem('soko-active-store'),
