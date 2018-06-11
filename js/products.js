@@ -347,6 +347,26 @@ function populateProductCategories() {
             }
         }
         $('select').formSelect();
+
+        $(".productCategoryChng ul li").unbind().click("click touchstart", function () {
+            var clickCat = $(this)[0].childNodes[0].innerHTML
+            var catId = $(this).parent().siblings("select").attr("catid");
+            doFetch({
+                action: 'doProdUpdate',
+                id: catId,
+                prop: "productCategory",
+                val: clickCat
+            }).then(function (e) {
+                if (e.status == 'ok') {
+                    M.toast({
+                        html: 'Modified ' + name + '..',
+                        displayLength: 3000
+                    })
+                } else {
+                    console.log(e);
+                }
+            });
+        });
         //        $('.remove').remove();
         initialProdCat()
     }, 1000);
@@ -438,25 +458,6 @@ function updateProd(t) {
         });
     }
 }
-$(document).on("click touchstart", ".productCategoryChng ul li", function () {
-    var clickCat = $(this)[0].childNodes[0].innerHTML
-    var catId = $(this).parent().siblings("select").attr("catid");
-    doFetch({
-        action: 'doProdUpdate',
-        id: catId,
-        prop: "productCategory",
-        val: clickCat
-    }).then(function (e) {
-        if (e.status == 'ok') {
-            M.toast({
-                html: 'Modified ' + name + '..',
-                displayLength: 3000
-            })
-        } else {
-            console.log(e);
-        }
-    });
-});
 
 function initProdCallback() {
     var forEach = function (array, callback, scope) {
