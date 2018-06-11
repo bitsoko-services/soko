@@ -334,17 +334,21 @@ function productsUpdater() {
 //Populate Individual Product Category
 function populateProductCategories() {
     setTimeout(function () {
-        for (var i = 0; i < prodUID.length; ++i) {
-            //Product Categories
-            var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
-            if (checkProdCat == "") {
-                console.log("Can not find product categories")
-            } else {
-                var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).productCategory);
-                for (var pc = 0; pc < prodCat.length; ++pc) {
-                    $(".changeCategory-" + prodUID[i].id).append('<option class="remove">' + prodCat[pc].name + '</option>');
+        try {
+            for (var i = 0; i < prodUID.length; ++i) {
+                //Product Categories
+                var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
+                if (checkProdCat == "") {
+                    console.log("Can not find product categories")
+                } else {
+                    var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).productCategory);
+                    for (var pc = 0; pc < prodCat.length; ++pc) {
+                        $(".changeCategory-" + prodUID[i].id).append('<option class="remove">' + prodCat[pc].name + '</option>');
+                    }
                 }
             }
+        } catch (err) {
+            console.log(err)
         }
         $('select').formSelect();
 
