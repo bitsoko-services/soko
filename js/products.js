@@ -289,7 +289,7 @@ function productsUpdater() {
 
 
             } else if (reqs[i].sponsored == "") {
-                $(".products-collapsible").append('<li class="prdList" id="' + reqs[i].id + '" prid="' + reqs[i].id + '" style="margin: 0px 0px 10px 0p !important; background: rgb(255, 255, 255);">' + '<div class="prodImgDskt" id="prodImg-holda-' + reqs[i].id + '" style="background-size: cover;background-repeat: no-repeat;background-position: center;background-image:url(' + reqs[i].imagePath + ');width: 70px;height: 70px;float: left; margin: 10px"></div><div class="collapsible-header" style="padding: 5px 10px;line-height: 0;width: calc(100% - 90px);display:inline-block;border-bottom:none;"><p style="margin:0px;line-height:1.8rem;font-weight:bold;    white-space: nowrap; width: 85%; overflow: hidden; text-overflow: ellipsis;">' + reqs[i].name + ' <br><span style="font-weight:400;color:#7e7e7e;">' + reqs[i].description + '<br> Ksh. ' + reqs[i].price + '</span></p><div class="divider" style="background-color: #ffffff;"></div><span style="font-size:1em; font-weight:400; color:#616161;">' + '<i class="{{product.icon}}"></i><p style="margin:0px;display:none;">' + reqs[i].quantity + ' available</p><div class="divider" style="background-color: #ffffff;"></div></span></div><div class="collapsible-body" style="padding:0px;"><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);text-transform:uppercase;">sale information</div>' + '<div class="switch" style=" float: right;"> <label><p style="text-align:center;margin-top:0px;">Make Public</p><input fid="' + reqs[i].id + '" id="publicProdSwitch_' + reqs[i].id + '" type="checkbox" prid="publicProd"> <span class="lever"></span></label> </div>' + '<form class="col s12" style="padding: 20px 30px;"><div class="row"><div class="input-field col s12">' + '<input id="prodName-' + reqs[i].id + '" prnm="name" type="text" class="validate" prid="' + reqs[i].id + '" value="' + reqs[i].name + '"><label for="prodName-' + reqs[i].id + '" class="">Name</label></div></div>' + '<div class="row"><div class="input-field col s12"><input prnm="description" placeholder="" value="' + reqs[i].description + '" id="prodDesc-' + reqs[i].id + '" type="text" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="description" class="">Description</label></div></div><div class="row productCategoryChng"> <div class="input-field col s12"> <select  class="productCategory changeCategory-' + reqs[i].id + '" catId="' + reqs[i].id + '"> <option value="" disabled selected>Choose a category</option> </select> <label>Category</label> </div></div><div class="row">' + '<div class="file-field input-field"><div class="btn opacitySelectedColor"><span>image</span><input id="prodImg-' + reqs[i].id + '" prid="' + reqs[i].id + '" prnm="image" type="file">' + '</div><div class="file-path-wrapper"><input prnm="ignor" class="file-path validate" type="text"></div></div>' + '<div class="input-field col s6"><input prnm="price" placeholder="" value="' + reqs[i].price + '" id="prodPrice-' + reqs[i].id + '" type="number" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="prodPrice-' + reqs[i].id + '" class="active">Price</label></div><div class="input-field col s6">' + '<div class="select-wrapper initialized"><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">measurement</option>' + '<option value="1">per Kilogram</option>' + '<option value="2">per Piece</option>' + '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized">' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option>' + '</select></div></div></div><div class="row"> <div class="input-field col s12" style="margin-top:0px;"> <input id="barcode-input" type="text" class="validate" prnm="barCode" prid="' + reqs[i].id + '" autocomplete="off" required=""> <label for="barcode-input" class="">Barcode ID</label> </div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"> <a prid="' + reqs[i].id + '" class="opacitySelectedColor removeProduct waves-effect waves-light btn" style="float:left;">remove product</a> </div>' + '</form></div></li><div class="divider" style="margin-top:2px;"></div>');
+                $(".products-collapsible").append('<li class="prdList" id="' + reqs[i].id + '" prid="' + reqs[i].id + '" style="margin: 0px 0px 10px 0p !important; background: rgb(255, 255, 255);">' + '<div class="prodImgDskt" id="prodImg-holda-' + reqs[i].id + '" style="background-size: cover;background-repeat: no-repeat;background-position: center;background-image:url(' + reqs[i].imagePath + ');width: 70px;height: 70px;float: left; margin: 10px"></div><div class="collapsible-header" style="padding: 5px 10px;line-height: 0;width: calc(100% - 90px);display:inline-block;border-bottom:none;"><p style="margin:0px;line-height:1.8rem;font-weight:bold;    white-space: nowrap; width: 85%; overflow: hidden; text-overflow: ellipsis;">' + reqs[i].name + ' <br><span style="font-weight:400;color:#7e7e7e;">' + reqs[i].description + '<br> Ksh. ' + reqs[i].price + '</span></p><div class="divider" style="background-color: #ffffff;"></div><span style="font-size:1em; font-weight:400; color:#616161;">' + '<i class="{{product.icon}}"></i><p style="margin:0px;display:none;">' + reqs[i].quantity + ' available</p><div class="divider" style="background-color: #ffffff;"></div></span></div><div class="collapsible-body" style="padding:0px;"><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);text-transform:uppercase;">sale information</div>' + '<div class="switch" style=" float: right;"> <label><p style="text-align:center;margin-top:0px;">Make Public</p><input fid="' + reqs[i].id + '" id="publicProdSwitch_' + reqs[i].id + '" type="checkbox" prid="publicProd"> <span class="lever"></span></label> </div>' + '<form class="col s12" style="padding: 20px 30px;"><div class="row"><div class="input-field col s12">' + '<input id="prodName-' + reqs[i].id + '" prnm="name" type="text" class="validate" prid="' + reqs[i].id + '" value="' + reqs[i].name + '"><label for="prodName-' + reqs[i].id + '" class="">Name</label></div></div>' + '<div class="row"><div class="input-field col s12"><input prnm="description" placeholder="" value="' + reqs[i].description + '" id="prodDesc-' + reqs[i].id + '" type="text" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="description" class="">Description</label></div></div><div class="row productCategoryChng"> <div class="input-field col s12"> <select  class="productCategoryChng changeCategory-' + reqs[i].id + '" catId="' + reqs[i].id + '"> <option value="" disabled selected>Choose a category</option> </select> <label>Category</label> </div></div><div class="row">' + '<div class="file-field input-field"><div class="btn opacitySelectedColor"><span>image</span><input id="prodImg-' + reqs[i].id + '" prid="' + reqs[i].id + '" prnm="image" type="file">' + '</div><div class="file-path-wrapper"><input prnm="ignor" class="file-path validate" type="text"></div></div>' + '<div class="input-field col s6"><input prnm="price" placeholder="" value="' + reqs[i].price + '" id="prodPrice-' + reqs[i].id + '" type="number" class="validate" prid="' + reqs[i].id + '" min="0">' + '<label for="prodPrice-' + reqs[i].id + '" class="active">Price</label></div><div class="input-field col s6">' + '<div class="select-wrapper initialized"><select id="prodMetric-' + reqs[i].id + '" prnm="metric" class="initialized" >' + '<option value="" disabled="" selected="">measurement</option>' + '<option value="1">per Kilogram</option>' + '<option value="2">per Piece</option>' + '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized">' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option>' + '</select></div></div></div><div class="row"> <div class="input-field col s12" style="margin-top:0px;"> <input id="barcode-input" type="text" class="validate" prnm="barCode" prid="' + reqs[i].id + '" autocomplete="off" required=""> <label for="barcode-input" class="">Barcode ID</label> </div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"> <a prid="' + reqs[i].id + '" class="opacitySelectedColor removeProduct waves-effect waves-light btn" style="float:left;">remove product</a> </div>' + '</form></div></li><div class="divider" style="margin-top:2px;"></div>');
                 if (reqs[i].imagePath == "") {
                     //                    $("#prodImg-holda-" + reqs[i].id).css("background-image", "url(../images/sicon.png)");
                     console.log("No Image")
@@ -320,7 +320,7 @@ function productsUpdater() {
         }
 
         loadTheme();
-//        prodCategory();
+        //        prodCategory();
 
         rmvProduct();
 
@@ -347,7 +347,7 @@ function populateProductCategories() {
             }
         }
         $('select').formSelect();
-//        $('.remove').remove();
+        //        $('.remove').remove();
         initialProdCat()
     }, 1000);
 };
@@ -401,7 +401,7 @@ function updateProd(t) {
             };
             img.src = URL.createObjectURL(file);
         }
-    } else if (name == "ignor") {}else if (prid == "publicProd") {
+    } else if (name == "ignor") {} else if (prid == "publicProd") {
         doFetch({
             action: 'doProdUpdate',
             id: $(t.target).attr('fid'),
@@ -778,23 +778,36 @@ function addProdCat() {
         displayLength: 3000
     })
     $("#categoryName").css("border-bottom", "1px solid #9e9e9e");
-    doFetch({
-        action: 'manageCategories',
-        store: localStorage.getItem('soko-active-store'),
-        do: 'add',
-        name: categoryName
-    }).then(function (e) {
-        if (e.status == 'ok') {
-            $('#categoryName').val("");
-            $('.categoryName').remove();
-            M.toast({
-                html: 'Category added successfully',
-                displayLength: 3000
-            })
-            $(".categoryLst").append('<div class="chip categoryChip">' + categoryName + '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.971 47.971" style="enable-background:new 0 0 47.971 47.971; width: 10px; margin-left: 5px;" xml:space="preserve"> <g> <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88 c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242 C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879 s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"/> </g> </svg> </div>');
-            //            updateStores();
-        } else {
-            console.log(e);
-        }
-    });
+    try {
+        var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).productCategory)
+    } catch (err) {
+        var prodCat = "Null"
+    }
+    if (prodCat.length >= 5) {
+        M.toast({
+            html: 'Category limit reached!',
+            classes: 'categoryName',
+            displayLength: 3000
+        })
+    } else {
+        doFetch({
+            action: 'manageCategories',
+            store: localStorage.getItem('soko-active-store'),
+            do: 'add',
+            name: categoryName
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                $('#categoryName').val("");
+                $('.categoryName').remove();
+                M.toast({
+                    html: 'Category added successfully',
+                    displayLength: 3000
+                })
+                $(".categoryLst").append('<div class="chip categoryChip">' + categoryName + '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.971 47.971" style="enable-background:new 0 0 47.971 47.971; width: 10px; margin-left: 5px;" xml:space="preserve"> <g> <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88 c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242 C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879 s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"/> </g> </svg> </div>');
+                //            updateStores();
+            } else {
+                console.log(e);
+            }
+        });
+    }
 }
