@@ -785,7 +785,7 @@ function updateProm(t) {
                 canvas.width = iwScaled;
                 canvas.height = ihScaled;
                 ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
-                val = canvas.toDataURL("image/webp");
+                val = canvas.toDataURL("image/png");
                 doFetch({
                     action: 'doEditPromo',
                     id: $(t.target).parents('form[class^="col"]').attr('fid'),
