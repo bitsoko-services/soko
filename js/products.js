@@ -53,6 +53,15 @@ $('#submitProdForm').click(function (e) {
             "border-bottom": "1px solid red",
             "background": ""
         });
+    } else if (image_ == '' || image_ == null) {
+        M.toast({
+            html: 'Ooops! Please add image',
+            displayLength: 3000
+        })
+        $('#description').css({
+            "border-bottom": "1px solid red",
+            "background": ""
+        });
     } else if (amount_ == '' || amount_ == null) {
         M.toast({
             html: 'Ooops! Please enter amount',
@@ -511,7 +520,7 @@ function addProduct() {
                     }
                 });
             } else {
-                if (plAr.indexOf(newProdDat.name) == -1) {
+                if (plAr.indexOf(newProdDat.name.toLowerCase()) == -1) {
                     doFetch({
                         action: 'doNewProduct',
                         id: localStorage.getItem('soko-active-store'),
@@ -539,7 +548,7 @@ function addProduct() {
         }
 
         for (var i = 0, plAr = plAr; i < productList.length; ++i) {
-            plAr.push(productList[i].name)
+            plAr.push(productList[i].name.toLowerCase())
         }
     })
 }
