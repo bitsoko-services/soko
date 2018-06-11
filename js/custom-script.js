@@ -83,7 +83,8 @@ angular.module('sokoApp', [])
         } catch (err) {
             console.log('no user profile found : ', err);
             $('#login').modal({
-                onOpenEnd: startGoogle()
+                onOpenEnd: startGoogle(),
+                dismissible: false
             }).modal("open")
 
         }
