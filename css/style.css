@@ -26,7 +26,8 @@ body {
     font-weight: initial;
 }
 #domainSuffix input{
-    text-align: center;
+    /* text-align: center; */
+    margin-top: 6px;
 }
 @media screen and (max-height: 549px) {
     #sideNavFooter {
