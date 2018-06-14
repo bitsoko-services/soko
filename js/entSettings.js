@@ -1,3 +1,4 @@
+function callEntSettings(){
 var srcData;
 
 $(document).on("click", "#entSettings", function () {
@@ -64,20 +65,6 @@ $(document).on("click", "#addEntServiceTwo", function () {
         $('#addEntServiceTwo').modal("open");
     }
 });
-
-function base64Ent(imgId) {
-    var filesSelected = document.getElementById(imgId[0].id).files;
-    if (filesSelected.length > 0) {
-        var fileToLoad = filesSelected[0];
-        var fileReader = new FileReader();
-
-        fileReader.onload = function (fileLoadedEvent) {
-            srcData = fileLoadedEvent.target.result; // <--- data: base64
-
-        }
-        fileReader.readAsDataURL(fileToLoad);
-    }
-}
 
 //Add New Enterprise Service One
 $(document).on("click", "#saveEntServOne", function (imgId) {
@@ -606,6 +593,22 @@ $(document).on("click", "#businessDomainYealy", function () {
         });
     }
 });
+}
+
+
+function base64Ent(imgId) {
+    var filesSelected = document.getElementById(imgId[0].id).files;
+    if (filesSelected.length > 0) {
+        var fileToLoad = filesSelected[0];
+        var fileReader = new FileReader();
+
+        fileReader.onload = function (fileLoadedEvent) {
+            srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+        }
+        fileReader.readAsDataURL(fileToLoad);
+    }
+}
 
 function walletStatus() {
     walletFunctions(localStorage.getItem("bits-user-name")).then(function (e) {
