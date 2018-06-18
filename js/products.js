@@ -91,34 +91,6 @@ $('#submitProdForm').click(function (e) {
         });
     }
 });
-$(document).on("click", "#addCategory", function () {
-    var categoryName = $("#categoryName").val();
-    var indexOfCat = categoryList.indexOf(categoryName);
-    console.log(categoryList.length)
-    console.log(indexOfCat)
-
-    if (indexOfCat >= 0) {
-        M.toast({
-            html: 'Ooops! That category already exist',
-            displayLength: 3000
-        })
-        $("#categoryName").css("border-bottom", "solid 1px red");
-    } else if (categoryName == "") {
-        M.toast({
-            html: 'Ooops! Please enter a product',
-            displayLength: 3000
-        })
-        $("#categoryName").css("border-bottom", "solid 1px red");
-    } else if ($(".categoryChip").length >= 5) {
-        M.toast({
-            html: 'Ooops! You have reached the maximum number of categories',
-            displayLength: 3000
-        })
-        $("#categoryName").css("border-bottom", "solid 1px red");
-    } else {
-        addProdCat()
-    }
-});
 
 $(document).on('touchstart click', '.addFirstProdModal', function (event) {
     $('#add-product').modal('open');
@@ -768,51 +740,5 @@ function loadProdCategory() {
             $(".categoryLst").append('<div class="chip categoryChip">' +
                 prodCat[pc].name + '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.971 47.971" style="enable-background:new 0 0 47.971 47.971; width: 10px; margin-left: 5px;" xml:space="preserve"> <g> <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88 c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242 C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879 s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"></path> </g> </svg> </div>')
         }
-    }
-}
-
-
-
-
-//Add product category
-function addProdCat() {
-    var categoryName = $("#categoryName").val();
-    M.toast({
-        html: 'Adding category. Please wait',
-        classes: 'categoryName',
-        displayLength: 3000
-    })
-    $("#categoryName").css("border-bottom", "1px solid #9e9e9e");
-    try {
-        var prodCat = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store') + '')).productCategory)
-    } catch (err) {
-        var prodCat = "Null"
-    }
-    if (prodCat.length >= 5) {
-        M.toast({
-            html: 'Category limit reached!',
-            classes: 'categoryName',
-            displayLength: 3000
-        })
-    } else {
-        doFetch({
-            action: 'manageCategories',
-            store: localStorage.getItem('soko-active-store'),
-            do: 'add',
-            name: categoryName
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                $('#categoryName').val("");
-                $('.categoryName').remove();
-                M.toast({
-                    html: 'Category added successfully',
-                    displayLength: 3000
-                })
-                $(".categoryLst").append('<div class="chip categoryChip">' + categoryName + '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.971 47.971" style="enable-background:new 0 0 47.971 47.971; width: 10px; margin-left: 5px;" xml:space="preserve"> <g> <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88 c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242 C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879 s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"/> </g> </svg> </div>');
-                //            updateStores();
-            } else {
-                console.log(e);
-            }
-        });
     }
 }
