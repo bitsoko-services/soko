@@ -10,7 +10,9 @@ function refreshProducts() {
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.products), 'soko-store-' + localStorage.getItem('soko-active-store') + '-products');
         productsUpdater();
         promoCreator();
-        populateProductCategories();
+        if(e.status == "ok"){
+            populateProductCategories()
+        }
     }).catch(function (err) {
         productsUpdater();
         promoCreator();
