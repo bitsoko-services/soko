@@ -306,11 +306,18 @@ function productsUpdater() {
 
 //Populate Individual Product Category
 function populateProductCategories() {
+    var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
+    var parsedCheckProdCat = JSON.parse(checkProdCat)
+
+    $(".productCategory").html("")
+    for (var s = 0; s < parsedCheckProdCat.length; ++s) {
+        var ctgryLst = parsedCheckProdCat[s].name
+        $(".productCategory").append('<option selected="">' + ctgryLst + '</option>')
+    }
     setTimeout(function () {
         try {
             for (var i = 0; i < prodUID.length; ++i) {
                 //Product Categories
-                var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
                 if (checkProdCat == "") {
                     console.log("Can not find product categories")
                 } else {
