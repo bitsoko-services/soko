@@ -478,7 +478,7 @@ function updateStore(t) {
                 doFetch({
                     action: 'manageCategories',
                     store: localStorage.getItem('soko-active-store'),
-                    do: 'addd',
+                    do: 'add',
                     name: categoryName
                 }).then(function (e) {
                     if (e.status == 'ok') {
