@@ -766,32 +766,29 @@ $(".deleteStore").click(function () {
 
 //update location
 $("#updateLoc").click(function () {
-    myLoc();
-    setTimeout(function () {
-        var locationField = document.getElementById('editStore-Location').value
-        if (locationField == "location not found") {
-            console.log("error getting location");
-            M.toast({
-                html: 'Error getting location. Please try again!',
-                displayLength: 3000
-            })
-        } else {
-            doFetch({
-                action: 'doEditStore',
-                id: localStorage.getItem('soko-active-store'),
-                prop: "lonlat",
-                val: document.querySelector('#editStore-Location').value
-            }).then(function (e) {
-                if (e.status == 'ok') {
-                    M.toast({
-                        html: 'Location updated successfully',
-                        displayLength: 3000
-                    })
-                }
-            });
-
-        }
-    }, 3000);
+    getLoc().then(function (e) {
+        var storeLoc = e.coords.latitude + ',' + e.coords.longitude;
+        $("#editStore-Location").val(storeLoc)
+        doFetch({
+            action: 'doEditStore',
+            id: localStorage.getItem('soko-active-store'),
+            prop: "lonlat",
+            val: storeLoc
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                M.toast({
+                    html: 'Location updated successfully',
+                    displayLength: 3000
+                })
+            }
+        });
+    }).catch(function (err) {
+        console.log(err)
+        M.toast({
+            html: 'Error getting location. Please try again!',
+            displayLength: 3000
+        })
+    })
 });
 
 //update theme color
