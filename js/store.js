@@ -426,6 +426,54 @@ function updateStore(t) {
             };
             img.src = URL.createObjectURL(file);
         }
+    } else if (name == "mon-fri") {
+        var openHours = $("#mon-fri-openingHours").val()
+        var closingHours = $("#mon-fri-closingHours").val()
+        doFetch({
+            action: 'doEditStore',
+            id: localStorage.getItem('soko-active-store'),
+            prop: name,
+            val: openHours + " - " + closingHours
+        }).then(function (e) {
+            if (e.status == "ok") {
+                M.toast({
+                    html: 'Mon-Fri working hours modified',
+                    displayLength: 3000
+                })
+            }
+        });
+    } else if (name == "saturday") {
+        var openHours = $("#saturday-openingHours").val()
+        var closingHours = $("#saturday-closingHours").val()
+        doFetch({
+            action: 'doEditStore',
+            id: localStorage.getItem('soko-active-store'),
+            prop: name,
+            val: openHours + " - " + closingHours
+        }).then(function (e) {
+            if (e.status == "ok") {
+                M.toast({
+                    html: 'Saturday working hours modified',
+                    displayLength: 3000
+                })
+            }
+        });
+    } else if (name == "sunday") {
+        var openHours = $("#sunday-openingHours").val()
+        var closingHours = $("#sunday-closingHours").val()
+        doFetch({
+            action: 'doEditStore',
+            id: localStorage.getItem('soko-active-store'),
+            prop: name,
+            val: openHours + " - " + closingHours
+        }).then(function (e) {
+            if (e.status == "ok") {
+                M.toast({
+                    html: 'Sunday working hours modified',
+                    displayLength: 3000
+                })
+            }
+        });
     } else if (name == "notifyDays") {
         var dayData = JSON.stringify({
             mon: document.getElementsByClassName("notifyDays-mon")[0].checked,
@@ -848,72 +896,6 @@ function shareStore() {
             .catch((error) => console.log('Error sharing', error));
     }
 }
-
-
-//Save Working Hours
-$('.workingHrs input').change(function () {
-    var workingHrs = $(this).attr("id");
-    var workingHrsVal = $(this).val();
-
-    if (workingHrs == "mon-fri") {
-        doFetch({
-            action: 'WorkingHours',
-            id: localStorage.getItem('soko-active-store'),
-            prop: "weekDay",
-            val: workingHrsVal
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                M.toast({
-                    html: 'Working hours set successfully.',
-                    displayLength: 3000
-                })
-            } else {
-                M.toast({
-                    html: 'Error!!! Please try again later.',
-                    displayLength: 3000
-                })
-            }
-        });
-    } else if (workingHrs == "wkndSat") {
-        doFetch({
-            action: 'WorkingHours',
-            id: localStorage.getItem('soko-active-store'),
-            prop: "saturday",
-            val: workingHrsVal
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                M.toast({
-                    html: 'Working hours set successfully.',
-                    displayLength: 3000
-                })
-            } else {
-                M.toast({
-                    html: 'Error!!! Please try again later.',
-                    displayLength: 3000
-                })
-            }
-        });
-    } else {
-        doFetch({
-            action: 'WorkingHours',
-            id: localStorage.getItem('soko-active-store'),
-            prop: "sunday",
-            val: workingHrsVal
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                M.toast({
-                    html: 'Working hours set successfully.',
-                    displayLength: 3000
-                })
-            } else {
-                M.toast({
-                    html: 'Error!!! Please try again later.',
-                    displayLength: 3000
-                })
-            }
-        });
-    }
-});
 
 
 
