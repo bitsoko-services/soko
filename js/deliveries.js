@@ -69,8 +69,17 @@ function initDeilveryFunctions() {
         var getMinDelDist = 500
         var getMaxDelDist = 10000
     }
+
+    if (getMinDelDist == null || getMinDelDist == NaN) {
+        var getMinDelDist = 500
+    }
+    if (getMaxDelDist == null || getMaxDelDist == NaN) {
+        var getMaxDelDist = 10000
+    }
+
     $("#showMinDist").val(getMinDelDist)
     $("#showMaxDist").val(getMaxDelDist)
+
     document.getElementById("showMinDist").innerHTML = getMinDelDist;
     document.getElementById("showMaxDist").innerHTML = getMaxDelDist;
     noUiSlider.create(slider, {
@@ -112,8 +121,8 @@ function initDeilveryFunctions() {
 
     //Update distanceRangeOutputId
     slider.noUiSlider.on('slide.one', function (e) {
-        var min = JSON.parse(e[0])/1000 + " KM";
-        var max = JSON.parse(e[1])/1000 + " KM";
+        var min = JSON.parse(e[0]) / 1000 + " KM";
+        var max = JSON.parse(e[1]) / 1000 + " KM";
         $("#distanceRangeOutputId").html(min + " - " + max)
     });
 
