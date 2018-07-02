@@ -64,16 +64,16 @@ function initDeilveryFunctions() {
     try {
         var getMinDelDist = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRadius).min * 1000;
         var getMaxDelDist = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).deliveryRadius).max * 1000;
+
+        if (getMinDelDist == null || getMinDelDist == NaN) {
+            var getMinDelDist = 500
+        }
+        if (getMaxDelDist == null || getMaxDelDist == NaN) {
+            var getMaxDelDist = 10000
+        }
     } catch (err) {
         console.log(err)
         var getMinDelDist = 500
-        var getMaxDelDist = 10000
-    }
-
-    if (getMinDelDist == null || getMinDelDist == NaN) {
-        var getMinDelDist = 500
-    }
-    if (getMaxDelDist == null || getMaxDelDist == NaN) {
         var getMaxDelDist = 10000
     }
 
