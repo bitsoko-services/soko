@@ -731,6 +731,7 @@ function userNamesInput() {
         $("#delivery-members").autocomplete({
             data: dat
         });
+        deliveryMbr();
     });
 }
 
