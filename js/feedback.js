@@ -5,6 +5,21 @@ $(document).on("click", "#feedBack", function () {
     storeFeed();
     $('.sidenav').sidenav("close");
 });
-function storeFeed(){
-    
+
+function storeFeed() {
+    doFetch({
+        action: 'storeFeed',
+        store: localStorage.getItem('soko-active-store')
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            //Populate feedback
+        } else {
+            //Error populating feedback
+            M.toast({
+                html: 'Error! Try again later'
+            })
+        }
+    }).catch(function (err) {
+
+    });
 }
