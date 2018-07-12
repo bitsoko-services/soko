@@ -394,7 +394,6 @@ function orderUpdater() {
 
         setTimeout(function () {
             $('.collapsible').collapsible();
-            setTimeout(deliveryMbr, 3000);
         }, 100);
 
         //Cancel Order Btn
@@ -435,9 +434,7 @@ function orderUpdater() {
         });
         $('.radioDelivered').on('click', function () {
             $('#deliverOrderModal').modal({
-                ready: function (modal, trigger) {
-                    setTimeout(deliveryMbr, 1000);
-                }
+                ready: console.log("modal ready")
             }).modal('open');
         })
         //        $('.radioDelivered').on('click', function () {
