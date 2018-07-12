@@ -12,11 +12,7 @@ function deliveryMbr() {
         $("#membersLst").html("");
         $("#ordMembersLst").html("");
         for (var i = 0; i < deliveryMemberLst.length; i++) {
-            console.log("delivery status" + deliveryMemberLst[i].onLocation)
             if ((deliveryMemberLst[i].onLocation) == "true") {
-                console.log("true")
-                console.log(deliveryMemberLst[i])
-                console.log(deliveryMemberLst[i].id)
                 for (var s in deliveryGuys) {
                     var name = deliveryGuys[s].name;
                     var id = deliveryGuys[s].id;
