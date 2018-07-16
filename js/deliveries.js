@@ -18,22 +18,6 @@ function deliveryMbr() {
                 var icon = deliveryGuys[v].icon;
                 if (deliveryMemberLst[i].id == id) {
                     $("#membersLst").append('<div id="' + id + '" class="chip removeMember" style="height: auto !important; line-height: 1.3;"> <img src="' + icon + '"> ' + name + '<br><span style="font-size: 0.8em;">' + moment(deliveryMemberLst[i].onLocation, "YYYYMMDD").fromNow() + '</span> </div>');
-                    $("#radio_" + id).click(function (e) {
-                        var orderId = $("#deliverOrderModal").attr('gid');
-                        doFetch({
-                            action: 'orderDeliveryMembers',
-                            orderId: orderId,
-                            id: $(this).attr('rid')
-                        }).then(function (e) {
-                            if (e.status == 'ok') {
-                                M.toast({
-                                    html: 'Delivery member selected successfully',
-                                    displayLength: 3000
-                                })
-                                $('#deliverOrderModal').modal('close');
-                            } else {}
-                        });
-                    })
                 }
             }
             // Get time difference
@@ -406,3 +390,21 @@ distanceSlide.onchange = function () {
         }
     });
 }
+
+//Select Deliver Operator For Order
+$(document).on("click", ".with-gap", function (e) {
+    var orderId = $("#deliverOrderModal").attr('gid');
+    doFetch({
+        action: 'orderDeliveryMembers',
+        orderId: orderId,
+        id: $(this).attr('rid')
+    }).then(function (e) {
+        if (e.status == 'ok') {
+            M.toast({
+                html: 'Delivery member selected successfully',
+                displayLength: 3000
+            })
+            $('#deliverOrderModal').modal('close');
+        } else {}
+    });
+});

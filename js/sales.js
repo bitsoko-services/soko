@@ -433,9 +433,7 @@ function orderUpdater() {
             return false;
         });
         $('.radioDelivered').on('click', function () {
-            $('#deliverOrderModal').modal({
-                ready: console.log("modal ready")
-            }).modal('open');
+            $('#deliverOrderModal').modal({}).modal('open');
         })
         //        $('.radioDelivered').on('click', function () {
         //            var id = $(this).attr('id');
