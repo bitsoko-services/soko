@@ -36,7 +36,14 @@ function deliveryMbr() {
                     })
                 }
             }
-            if ((deliveryMemberLst[i].onLocation) == "true") {
+            // Get time difference
+            moment.fn.fromNow = function (a) {
+                var duration = moment().diff(this, 'hours');
+                return duration;
+            }
+            var timeDif = moment.unix(deliveryMemberLst[i].onLocation).fromNow();
+
+            if (timeDif < 3) {
                 for (var s in deliveryGuys) {
                     var name = deliveryGuys[s].name;
                     var id = deliveryGuys[s].id;
