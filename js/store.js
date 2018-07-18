@@ -511,7 +511,7 @@ function updateStore(t) {
             } catch (err) {
                 var prodCat = "Null"
             }
-            if (prodCat.length >= 5) {
+            if (prodCat.length >= 8) {
                 M.toast({
                     html: 'Category limit reached!',
                     classes: 'categoryName',
