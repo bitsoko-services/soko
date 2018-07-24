@@ -137,8 +137,8 @@
         <h5 style="text-align: center; padding: 5%; margin:0px;">Fullscreen Mode</h5>
         <div class="row" style="text-align: center;">
             <p>Use this application in fullscreen mode.</p>
-            <button class="btn opacitySelectedColor" onclick='localStorage.setItem("fullScreenPermission", "false"); $("#fullScreenPermission").modal("close")'>cancel</button>
-            <button class="btn opacitySelectedColor" onclick='localStorage.setItem("fullScreenPermission", "true"); $("#fullScreenPermission").modal("close")'>Ok</button>
+            <button class="btn opacitySelectedColor" onclick='localStorage.setItem("fullScreenPermission", "false"); $("#fullScreenPermission").modal("close"); fullScreenMode();'>cancel</button>
+            <button class="btn opacitySelectedColor" onclick='localStorage.setItem("fullScreenPermission", "true"); $("#fullScreenPermission").modal("close"); fullScreenMode()'>Ok</button>
         </div>
     </div>
 

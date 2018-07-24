@@ -11,6 +11,16 @@ function refreshProducts() {
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.products), 'soko-store-' + localStorage.getItem('soko-active-store') + '-products');
             productsUpdater();
             promoCreator();
+
+            if ($(".fullscreenToast").length >= 1) {
+                $(".fullscreenToast").remove();
+            }
+            var toastHTML = '<span>Enable fullscreen mode</span><button class="btn-flat toast-action" onclick="fullScreenMode();">ok</button>';
+            M.toast({
+                html: toastHTML,
+                displayLength: 5000,
+                classes: "fullscreenToast"
+            });
         }
     }).catch(function (err) {
         productsUpdater();

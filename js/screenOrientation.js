@@ -15,7 +15,7 @@ function toggleFullScreen() {
 //Prompt user to use app on fullscreen mode
 function fullScreenMode() {
     if (localStorage.getItem("fullScreenPermission") == null) {
-        $("#fullScreenPermission").modal("open")
+        $("#fullScreenPermission").modal("open");
     } else {
         if (localStorage.getItem("fullScreenPermission") == "true") {
             $("#fullscreenState").prop("checked", true)
@@ -23,7 +23,7 @@ function fullScreenMode() {
             toggleFullScreen();
             setTimeout(function () {
                 screen.orientation.lock('landscape')
-            }, 500)
+            }, 1000)
         } else {
             $("#fullscreenState").prop("checked", "false")
         }
@@ -32,6 +32,7 @@ function fullScreenMode() {
 document.getElementById("fullscreenState").addEventListener("change", function () {
     if ($("#fullscreenState")[0].checked == true) {
         localStorage.setItem("fullScreenPermission", "true");
+        fullScreenMode();
     } else {
         localStorage.setItem("fullScreenPermission", "false");
     }
