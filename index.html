@@ -116,7 +116,7 @@
             <div id="walletList" style="max-height: 255px; overflow: scroll; text-align: center;"></div>
         </div>
     </div>
-    
+
     <!-- Modal Structure -->
     <div id="fullScreenPermission" class="modal" style="overflow: initial; margin-top: 30%; border-radius: 5px; z-index: 1003; display: none; opacity: 0; top: 4%; transform: scaleX(0.8) scaleY(0.8);">
         <div style="width:100px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
@@ -136,12 +136,12 @@
         </div>
         <h5 style="text-align: center; padding: 5%; margin:0px;">Fullscreen Mode</h5>
         <div class="row" style="text-align: center;">
-           <p>Use this application in fullscreen mode.</p>
+            <p>Use this application in fullscreen mode.</p>
             <button class="btn opacitySelectedColor" onclick='localStorage.setItem("fullScreenPermission", "false"); $("#fullScreenPermission").modal("close")'>cancel</button>
             <button class="btn opacitySelectedColor" onclick='localStorage.setItem("fullScreenPermission", "true"); $("#fullScreenPermission").modal("close")'>Ok</button>
         </div>
     </div>
-    
+
     <!-- Modal Structure -->
     <div id="login" class="modal modal-fixed-footer" style="">
         <div style="height:100px;width:100px;border-radius:50%;background:#FAFAFA; display: block; margin-left:auto; margin-right: auto; margin-top:-50px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 428.974 428.975" style="enable-background:new 0 0 428.974 428.975;width: 100px;height: 100px;padding: 0px 15px 15px 15px;" xml:space="preserve"><g><path d="M414.101,373.866l-106.246-56.188l-4.907-15.332c-1.469-5.137-3.794-10.273-8.576-11.623 c-1.519-0.428-3.441-3.201-3.689-5.137l-2.836-29.813c-0.156-2.553,0.868-4.844,2.216-6.453 c8.14-9.754,12.577-21.051,14.454-33.967c0.944-6.494,4.323-12.483,6.059-18.879l6.812-35.649 c0.711-4.681,0.573-8.289-4.659-10.103c-1.443-0.503-2.699-2.894-2.699-6.479l0.069-67.264 c-1.111-16.28-9.731-28.869-21.957-37.631c-23.354-16.739-65.175-8.977-51.526-36.281c0.806-1.607,0.549-4.399-5.062-2.335 c-20.936,7.703-76.701,28.057-90.71,38.616c-12.538,9.449-20.844,21.351-21.957,37.631l0.069,67.264c0,2.96-1.255,5.976-2.7,6.479 c-5.233,1.813-5.37,5.422-4.659,10.103l6.814,35.649c1.732,6.396,5.113,12.386,6.058,18.879 c1.875,12.916,6.315,24.213,14.453,33.967c1.347,1.609,2.372,3.9,2.216,6.453l-2.836,29.813c-0.249,1.936-2.174,4.709-3.69,5.137 c-4.783,1.35-7.109,6.486-8.577,11.623l-4.909,15.332l-106.25,56.188c-2.742,1.449-4.457,4.297-4.457,7.397v39.343 c0,4.621,3.748,8.368,8.37,8.368h391.4c4.622,0,8.37-3.747,8.37-8.368v-39.343C418.557,378.163,416.842,375.315,414.101,373.866z" fill="#256D82"></path></g></svg></div>
@@ -2446,7 +2446,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--
+                                <div class="row storeSettingsDivs">
+                                    <h6>Fullscreen Settings</h6>
+                                    <div class="row" style="text-align: center;margin-bottom: 5px;">
+                                        <div class="col s6">
+                                            <span>Enable / Disable </span>
+                                        </div>
+                                        <div class="col s6"></div>
+
+                                        <span>
+                                                <div class="switch">
+                                                    <label>
+                                                        Off
+                                                        <input id="fullscreenState" type="checkbox" stitm="fullscreenState">
+                                                        <span class="lever"></span> On
+                                        </label>
+                                    </div>
+                                    </span>
+                                </div>
+                        </div>
+                        <!--
                                             <div class="row storeSettingsDivs">
                                                 <h6>Withdraw Money</h6>
                                                 <div class="row">
@@ -2458,114 +2477,114 @@
                                                 </div>
                                             </div>
 -->
-                                <div class="permanentChng" style="margin: 30px 10px;">
-                                    <h6><span style="background:#EEEEEF;">These changes will be permanent</span></h6>
+                        <div class="permanentChng" style="margin: 30px 10px;">
+                            <h6><span style="background:#EEEEEF;">These changes will be permanent</span></h6>
+                        </div>
+                        <div class="row storeSettingsDivs">
+                            <h6>Transfer Store</h6>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="transfer-shop" type="text" class="validate" placeholder="username" stitm="shopTransfer">
+                                    <label for="transfer-shop" class="">Transfer Shop</label>
                                 </div>
-                                <div class="row storeSettingsDivs">
-                                    <h6>Transfer Store</h6>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="transfer-shop" type="text" class="validate" placeholder="username" stitm="shopTransfer">
-                                            <label for="transfer-shop" class="">Transfer Shop</label>
-                                        </div>
+                            </div>
+                        </div>
+                        <div class="row storeSettingsDivs">
+                            <h6>Delete Store</h6>
+                            <div class="row">
+                                <a class="waves-effect waves-light btn" style="background:red; display: block; margin: 15px 5px;" onclick='$("#deleteStoreModal").modal("open")'>Delete Store</a>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="checkStoreOwner" style="display: none;">
+                    <div style=" width: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: 25px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 16 16"><path fill="#444444" d="M8 1c3.9 0 7 3.1 7 7s-3.1 7-7 7-7-3.1-7-7 3.1-7 7-7zM8 0c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8v0z"></path><path fill="#444444" d="M7 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11.3 12.3c-0.7-1.1-2-1.8-3.3-1.8s-2.6 0.7-3.3 1.8l-0.8-0.6c0.9-1.4 2.4-2.2 4.1-2.2s3.2 0.8 4.1 2.2l-0.8 0.6z"></path></svg></div>
+                    <p style=" text-align: center; color: #4e4b4b; font-weight: bold;">Ooops!!! You do not have access to store settings</p>
+                </div>
+            </div>
+        </div>
+        <div class="entSettings">
+            <div class="row storeEntSettings">
+                <div id="entSettingsTab" class="col s12">
+                    <div class="row entSettingsContainer">
+                        <div class="row entStatus">
+                            <h6>Status</h6>
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col s8">
+                                    <p style=" margin: 0px; float: right; margin-right: 10px;">Activate / Deactivate Tokens</p>
+                                </div>
+                                <div class="col s4">
+                                    <!-- Disabled Switch -->
+                                    <div class="switch">
+                                        <label>
+                                            <input type="checkbox" id="tkSaleSet" entInpt="checkbox">
+                                            <span class="lever"></span>
+                                        </label>
                                     </div>
                                 </div>
-                                <div class="row storeSettingsDivs">
-                                    <h6>Delete Store</h6>
-                                    <div class="row">
-                                        <a class="waves-effect waves-light btn" style="background:red; display: block; margin: 15px 5px;" onclick='$("#deleteStoreModal").modal("open")'>Delete Store</a>
+                            </div>
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col s8">
+                                    <p style=" margin: 0px; float: right; margin-right: 10px;">Show / Hide Managers</p>
+                                </div>
+                                <div class="col s4">
+                                    <!-- Disabled Switch -->
+                                    <div class="switch">
+                                        <label>
+                                            <input type="checkbox" id="showHideMngr" entInpt="checkbox"> 
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row entBanner">
+                            <h6>Banner</h6>
+                            <form action="#">
+                                <div class="file-field input-field">
+                                    <div class="btn opacitySelectedColor">
+                                        <span>File</span>
+                                        <input type="file" id="entBanner" class="serviceImage" entInpt="entBanner">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" entInpt="skipBannerInpt">
                                     </div>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div id="checkStoreOwner" style="display: none;">
-                        <div style=" width: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: 25px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 16 16"><path fill="#444444" d="M8 1c3.9 0 7 3.1 7 7s-3.1 7-7 7-7-3.1-7-7 3.1-7 7-7zM8 0c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8v0z"></path><path fill="#444444" d="M7 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11.3 12.3c-0.7-1.1-2-1.8-3.3-1.8s-2.6 0.7-3.3 1.8l-0.8-0.6c0.9-1.4 2.4-2.2 4.1-2.2s3.2 0.8 4.1 2.2l-0.8 0.6z"></path></svg></div>
-                        <p style=" text-align: center; color: #4e4b4b; font-weight: bold;">Ooops!!! You do not have access to store settings</p>
-                    </div>
-                </div>
-            </div>
-            <div class="entSettings">
-                <div class="row storeEntSettings">
-                    <div id="entSettingsTab" class="col s12">
-                        <div class="row entSettingsContainer">
-                            <div class="row entStatus">
-                                <h6>Status</h6>
-                                <div class="row" style="margin-top: 20px">
-                                    <div class="col s8">
-                                        <p style=" margin: 0px; float: right; margin-right: 10px;">Activate / Deactivate Tokens</p>
-                                    </div>
-                                    <div class="col s4">
-                                        <!-- Disabled Switch -->
-                                        <div class="switch">
-                                            <label>
-                                            <input type="checkbox" id="tkSaleSet" entInpt="checkbox">
-                                            <span class="lever"></span>
-                                        </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: 20px">
-                                    <div class="col s8">
-                                        <p style=" margin: 0px; float: right; margin-right: 10px;">Show / Hide Managers</p>
-                                    </div>
-                                    <div class="col s4">
-                                        <!-- Disabled Switch -->
-                                        <div class="switch">
-                                            <label>
-                                            <input type="checkbox" id="showHideMngr" entInpt="checkbox"> 
-                                            <span class="lever"></span>
-                                        </label>
-                                        </div>
-                                    </div>
+                        <div class="row storeSettingsDivs" style="width: 90%; margin-left: 5% !important;">
+                            <h6>Business Category</h6>
+                            <div class="row categoriesRow">
+                                <div class="input-field col s12">
+                                    <select class="categorySelect" id="categorySelect"></select>
+                                    <label>Select Category</label>
                                 </div>
                             </div>
-                            <div class="row entBanner">
-                                <h6>Banner</h6>
-                                <form action="#">
-                                    <div class="file-field input-field">
-                                        <div class="btn opacitySelectedColor">
-                                            <span>File</span>
-                                            <input type="file" id="entBanner" class="serviceImage" entInpt="entBanner">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate" type="text" entInpt="skipBannerInpt">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row storeSettingsDivs" style="width: 90%; margin-left: 5% !important;">
-                                <h6>Business Category</h6>
-                                <div class="row categoriesRow">
+                        </div>
+                        <div class="row entForms">
+                            <h6>About</h6>
+                            <form class="col s12">
+                                <div class="row">
                                     <div class="input-field col s12">
-                                        <select class="categorySelect" id="categorySelect"></select>
-                                        <label>Select Category</label>
+                                        <input id="entAboutHeader" entInpt="entAboutTitle" type="text" class="validate">
+                                        <label for="email">About Header</label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row entForms">
-                                <h6>About</h6>
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="entAboutHeader" entInpt="entAboutTitle" type="text" class="validate">
-                                            <label for="email">About Header</label>
-                                        </div>
+                            </form>
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="entAboutBody" entInpt="entAboutBody" type="text" class="validate">
+                                        <label for="email">About Body</label>
                                     </div>
-                                </form>
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="entAboutBody" entInpt="entAboutBody" type="text" class="validate">
-                                            <label for="email">About Body</label>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row entServicesSettings">
-                                <h6>Section One</h6>
-                                <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
-                                    <i id="addEntServiceOne">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row entServicesSettings">
+                            <h6>Section One</h6>
+                            <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
+                                <i id="addEntServiceOne">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100; width: 20px; float: left; margin-right: 10px;" xml:space="preserve">
                                             <path style="fill:white;" d="M40,50c0,2.762-2.238,5-5,5H5c-2.762,0-5-2.238-5-5s2.238-5,5-5h30C37.762,45,40,47.238,40,50z    M35,65H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,65,35,65z M97,45H80V28c0-2.762-2.238-3-5-3   s-5,0.238-5,3v17H53.5c-2.762,0-3,2.238-3,5s0.238,5,3,5H70v17c0,2.762,2.238,3,5,3s5-0.238,5-3V55h17c2.762,0,3-2.238,3-5   S99.762,45,97,45z M35,25H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,25,35,25z"/>
@@ -2573,14 +2592,14 @@
                                         </svg>
                                     </span>Add New
                                 </i>
-                                </div>
-                                <div class="entServicesContainer entServiceOne">
-                                </div>
                             </div>
-                            <div class="row entServicesSettings">
-                                <h6>Section Two</h6>
-                                <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
-                                    <i id="addEntServiceTwo">
+                            <div class="entServicesContainer entServiceOne">
+                            </div>
+                        </div>
+                        <div class="row entServicesSettings">
+                            <h6>Section Two</h6>
+                            <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
+                                <i id="addEntServiceTwo">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100; width: 20px; float: left; margin-right: 10px;" xml:space="preserve">
                                             <path style="fill:white;" d="M40,50c0,2.762-2.238,5-5,5H5c-2.762,0-5-2.238-5-5s2.238-5,5-5h30C37.762,45,40,47.238,40,50z    M35,65H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,65,35,65z M97,45H80V28c0-2.762-2.238-3-5-3   s-5,0.238-5,3v17H53.5c-2.762,0-3,2.238-3,5s0.238,5,3,5H70v17c0,2.762,2.238,3,5,3s5-0.238,5-3V55h17c2.762,0,3-2.238,3-5   S99.762,45,97,45z M35,25H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,25,35,25z"/>
@@ -2588,11 +2607,11 @@
                                         </svg>
                                     </span>Add New
                                 </i>
-                                </div>
-                                <div class="entServicesContainer entServiceTwo">
-                                </div>
                             </div>
-                            <!--
+                            <div class="entServicesContainer entServiceTwo">
+                            </div>
+                        </div>
+                        <!--
                             <div class="row entBanner" style="margin-bottom: 20px;">
                                 <h6>Token Sale</h6>
                                 <div class="row">
@@ -2604,105 +2623,105 @@
                                 </div>
                             </div>
 -->
-                            <div class="row storeSettingsDivs" style="width: 90%;margin-left: 5% !important;margin-bottom: 20px;">
-                                <h6>Daily Budget</h6>
-                                <div class="row budget">
-                                    <div class="input-field col s12">
-                                        <input id="dailyBudget" type="text" class="validate" placeholder="Ksh" stitm="dailyBudget">
-                                        <label for="dailyBudget" class="active">Daily Budget</label>
-                                    </div>
+                        <div class="row storeSettingsDivs" style="width: 90%;margin-left: 5% !important;margin-bottom: 20px;">
+                            <h6>Daily Budget</h6>
+                            <div class="row budget">
+                                <div class="input-field col s12">
+                                    <input id="dailyBudget" type="text" class="validate" placeholder="Ksh" stitm="dailyBudget">
+                                    <label for="dailyBudget" class="active">Daily Budget</label>
                                 </div>
-                            </div>
-                            <div class="row storeSettingsDivs" style="width: 90%; margin-left: 20px !important;">
-                                <h6>Store Theme</h6>
-                                <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px;">
-                                    <li>
-                                        <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%;padding-bottom: 0px;border-bottom: none;">
-                                            <div class="input-field col s12" style="padding: 0px;">
-                                                <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none; margin-bottom: 0px;">
-                                            </div>
-                                        </div>
-                                        <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; right:20px; margin-top:-55px;float:right;" id="themeUpdate">ok</a>
-                                        <div class="collapsible-body" style="padding:10px;">
-                                            <span>
-                                                    <div class="themeCanvas"></div>
-                                                </span>
-                                        </div>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
-                        <div class="entApplication" style="text-align: center;">
-                            <div style=" width: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: 25px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 16 16"><path fill="#444444" d="M8 1c3.9 0 7 3.1 7 7s-3.1 7-7 7-7-3.1-7-7 3.1-7 7-7zM8 0c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8v0z"></path><path fill="#444444" d="M7 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11.3 12.3c-0.7-1.1-2-1.8-3.3-1.8s-2.6 0.7-3.3 1.8l-0.8-0.6c0.9-1.4 2.4-2.2 4.1-2.2s3.2 0.8 4.1 2.2l-0.8 0.6z"></path></svg></div>
-                            <p style=" text-align: center; color: #4e4b4b; font-weight: bold;">You do not have an active domain for your business.<br> To get one enter your prefered domain below and complete payment</p>
-                            <div class="row" style="width: 90%;display: block; margin-left: auto; margin-right: auto; margin-bottom: 30px;">
-                                <div class="input-field col s12" style="">
-                                    <div class="row">
-                                        <div class="col s8" style="padding-left: 0px;text-align: left;">
-                                            <label for="businessDomain">Domain</label>
-                                            <input placeholder="example" id="businessDomainInput" type="text" class="validate" entInpt="newEnt">
+                        <div class="row storeSettingsDivs" style="width: 90%; margin-left: 20px !important;">
+                            <h6>Store Theme</h6>
+                            <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px;">
+                                <li>
+                                    <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%;padding-bottom: 0px;border-bottom: none;">
+                                        <div class="input-field col s12" style="padding: 0px;">
+                                            <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none; margin-bottom: 0px;">
                                         </div>
-                                        <div class="col s4">
-                                            <div class="input-field col s12" id="domainSuffix">
-                                                <select>                                             
+                                    </div>
+                                    <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; right:20px; margin-top:-55px;float:right;" id="themeUpdate">ok</a>
+                                    <div class="collapsible-body" style="padding:10px;">
+                                        <span>
+                                                    <div class="themeCanvas"></div>
+                                                </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="entApplication" style="text-align: center;">
+                        <div style=" width: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: 25px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 16 16"><path fill="#444444" d="M8 1c3.9 0 7 3.1 7 7s-3.1 7-7 7-7-3.1-7-7 3.1-7 7-7zM8 0c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8v0z"></path><path fill="#444444" d="M7 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11.3 12.3c-0.7-1.1-2-1.8-3.3-1.8s-2.6 0.7-3.3 1.8l-0.8-0.6c0.9-1.4 2.4-2.2 4.1-2.2s3.2 0.8 4.1 2.2l-0.8 0.6z"></path></svg></div>
+                        <p style=" text-align: center; color: #4e4b4b; font-weight: bold;">You do not have an active domain for your business.<br> To get one enter your prefered domain below and complete payment</p>
+                        <div class="row" style="width: 90%;display: block; margin-left: auto; margin-right: auto; margin-bottom: 30px;">
+                            <div class="input-field col s12" style="">
+                                <div class="row">
+                                    <div class="col s8" style="padding-left: 0px;text-align: left;">
+                                        <label for="businessDomain">Domain</label>
+                                        <input placeholder="example" id="businessDomainInput" type="text" class="validate" entInpt="newEnt">
+                                    </div>
+                                    <div class="col s4">
+                                        <div class="input-field col s12" id="domainSuffix">
+                                            <select>                                             
                                                     <option value="1">.co.ke</option>        
                                                 </select>
-                                                <label>Domain suffix</label>
-                                            </div>
-
+                                            <label>Domain suffix</label>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
-                            <div class="row"></div>
-                            <button class="btn opacitySelectedColor" style="padding: 0px 20px 0px 50px; position: relative;" id="businessDomainMonthly" disabled>
+                        </div>
+                        <div class="row"></div>
+                        <button class="btn opacitySelectedColor" style="padding: 0px 20px 0px 50px; position: relative;" id="businessDomainMonthly" disabled>
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 26 26" style="enable-background:new 0 0 26 26; position: absolute; left: 15px; top: 8px; width:20px;" xml:space="preserve">
                                                 <path d="M25.856,10.641C21.673,19.5,20.312,19.5,19.5,19.5h-8c-2.802,0-4.949-1.648-5.47-4.2   c-0.016-0.078-1.6-7.853-2.005-10.025C3.826,4.21,3.32,3.5,1.5,3.5C0.671,3.5,0,2.829,0,2s0.671-1.5,1.5-1.5   c3.02,0,4.964,1.5,5.474,4.224c0.401,2.149,1.98,9.898,1.996,9.977c0.319,1.566,1.722,1.8,2.53,1.8h7.605   c0.817-0.878,2.679-4.261,4.038-7.141c0.354-0.749,1.249-1.068,1.997-0.716C25.89,8.997,26.21,9.891,25.856,10.641z M10.5,20.5   C9.119,20.5,8,21.619,8,23s1.119,2.5,2.5,2.5S13,24.381,13,23S11.881,20.5,10.5,20.5z M19.5,20.5c-1.381,0-2.5,1.119-2.5,2.5   s1.119,2.5,2.5,2.5S22,24.381,22,23S20.881,20.5,19.5,20.5z M14.663,12.344c0.1,0.081,0.223,0.12,0.346,0.12   s0.244-0.039,0.346-0.12c0.1-0.079,2.828-2.74,4.316-4.954c0.115-0.172,0.126-0.392,0.028-0.574   c-0.095-0.181-0.285-0.295-0.49-0.295h-2.226c0,0-0.217-4.291-0.359-4.49c-0.206-0.294-1.057-0.494-1.616-0.494   c-0.561,0-1.427,0.2-1.634,0.494c-0.141,0.198-0.328,4.49-0.328,4.49h-2.255c-0.206,0-0.395,0.114-0.492,0.295   c-0.097,0.182-0.086,0.403,0.028,0.574C11.816,9.605,14.564,12.265,14.663,12.344z" fill="#FFFFFF"/>
                                             </svg>pay 500 monthly
                                         </button>
-                            <br>
-                            <br>
-                            <button class="btn opacitySelectedColor" style="padding: 0px 20px 0px 50px; position: relative;" id="businessDomainYealy" disabled>
+                        <br>
+                        <br>
+                        <button class="btn opacitySelectedColor" style="padding: 0px 20px 0px 50px; position: relative;" id="businessDomainYealy" disabled>
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 26 26" style="enable-background:new 0 0 26 26; position: absolute; left: 15px; top: 8px; width:20px;" xml:space="preserve">
                                                 <path d="M25.856,10.641C21.673,19.5,20.312,19.5,19.5,19.5h-8c-2.802,0-4.949-1.648-5.47-4.2   c-0.016-0.078-1.6-7.853-2.005-10.025C3.826,4.21,3.32,3.5,1.5,3.5C0.671,3.5,0,2.829,0,2s0.671-1.5,1.5-1.5   c3.02,0,4.964,1.5,5.474,4.224c0.401,2.149,1.98,9.898,1.996,9.977c0.319,1.566,1.722,1.8,2.53,1.8h7.605   c0.817-0.878,2.679-4.261,4.038-7.141c0.354-0.749,1.249-1.068,1.997-0.716C25.89,8.997,26.21,9.891,25.856,10.641z M10.5,20.5   C9.119,20.5,8,21.619,8,23s1.119,2.5,2.5,2.5S13,24.381,13,23S11.881,20.5,10.5,20.5z M19.5,20.5c-1.381,0-2.5,1.119-2.5,2.5   s1.119,2.5,2.5,2.5S22,24.381,22,23S20.881,20.5,19.5,20.5z M14.663,12.344c0.1,0.081,0.223,0.12,0.346,0.12   s0.244-0.039,0.346-0.12c0.1-0.079,2.828-2.74,4.316-4.954c0.115-0.172,0.126-0.392,0.028-0.574   c-0.095-0.181-0.285-0.295-0.49-0.295h-2.226c0,0-0.217-4.291-0.359-4.49c-0.206-0.294-1.057-0.494-1.616-0.494   c-0.561,0-1.427,0.2-1.634,0.494c-0.141,0.198-0.328,4.49-0.328,4.49h-2.255c-0.206,0-0.395,0.114-0.492,0.295   c-0.097,0.182-0.086,0.403,0.028,0.574C11.816,9.605,14.564,12.265,14.663,12.344z" fill="#FFFFFF"/>
                                             </svg>
                                             pay 4000 yearly
                                         </button>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--------- Settings PAGE End ----------->
+    </div>
+    <!--------- Settings PAGE End ----------->
 
 
-        <!--------- Settings PAGE Start --------->
-        <div class="col s12 m4 l4 feedback" style="display:none; overflow-x: hidden !important; height: 91vh !important; overflow-y: scroll !important;">
-            <ul style="margin: 5px; background: white; padding: 10px; border-radius: 3px;">
-                <li><span style="font-weight: bold">User:</span> John Doe</li>
-                <li><span style="font-weight: bold">Speed:</span> 4 / 7</li>
-                <li><span style="font-weight: bold">Quality:</span> 5 / 7</li>
-                <li><span style="font-weight: bold">Message:</span> I loved the app but not the products....</li>
-            </ul>
-            <ul style="margin: 5px; background: white; padding: 10px; border-radius: 3px;">
-                <li><span style="font-weight: bold">User:</span> John Doe</li>
-                <li><span style="font-weight: bold">Speed:</span> 4 / 7</li>
-                <li><span style="font-weight: bold">Quality:</span> 5 / 7</li>
-                <li><span style="font-weight: bold">Message:</span> I loved the app but not the products....</li>
-            </ul>
+    <!--------- Settings PAGE Start --------->
+    <div class="col s12 m4 l4 feedback" style="display:none; overflow-x: hidden !important; height: 91vh !important; overflow-y: scroll !important;">
+        <ul style="margin: 5px; background: white; padding: 10px; border-radius: 3px;">
+            <li><span style="font-weight: bold">User:</span> John Doe</li>
+            <li><span style="font-weight: bold">Speed:</span> 4 / 7</li>
+            <li><span style="font-weight: bold">Quality:</span> 5 / 7</li>
+            <li><span style="font-weight: bold">Message:</span> I loved the app but not the products....</li>
+        </ul>
+        <ul style="margin: 5px; background: white; padding: 10px; border-radius: 3px;">
+            <li><span style="font-weight: bold">User:</span> John Doe</li>
+            <li><span style="font-weight: bold">Speed:</span> 4 / 7</li>
+            <li><span style="font-weight: bold">Quality:</span> 5 / 7</li>
+            <li><span style="font-weight: bold">Message:</span> I loved the app but not the products....</li>
+        </ul>
 
-        </div>
+    </div>
 
-        <!--------- MANAGERS PAGE START ----------->
-        <div class="col s12 m4 l4 Managers" style="display:none; padding:10px;">
-            <div class="row" style="background: white; margin-left: auto; margin-right: auto; border-radius: 5px; padding: 10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);text-align:center;margin-top:40px;margin-bottom:20px;">
-                <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -17px;">Current Managers</a>
-                <div class="input-field col s12" style="text-align:left;">
-                    <div id="managersLst">
-                    </div>
+    <!--------- MANAGERS PAGE START ----------->
+    <div class="col s12 m4 l4 Managers" style="display:none; padding:10px;">
+        <div class="row" style="background: white; margin-left: auto; margin-right: auto; border-radius: 5px; padding: 10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);text-align:center;margin-top:40px;margin-bottom:20px;">
+            <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -17px;">Current Managers</a>
+            <div class="input-field col s12" style="text-align:left;">
+                <div id="managersLst">
                 </div>
             </div>
-            <!--
+        </div>
+        <!--
                     <div class="fixed-action-btn" style="z-index:0;">
                         <a class="btn-floating opacitySelectedColor" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em; background: rgb(32, 29, 29); filter: brightness(1.3);" href="#mngrSettings">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 231.233 231.233" style="enable-background:new 0 0 231.233 231.233;margin: 10px;" xml:space="preserve">
@@ -2711,13 +2730,13 @@
                         </a>
                     </div>
 -->
-            <div class="fixed-action-btn direction-top active" style="z-index:0;">
-                <a class="btn-floating opacitySelectedColor" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em; background: rgb(35, 31, 31); filter: brightness(1.3);" onclick="$('#addManagersModal').modal('open')" href="#addManagersModal">
-                    <p style="margin-top:0px !important;text-align:center;">+</p>
-                </a>
-            </div>
+        <div class="fixed-action-btn direction-top active" style="z-index:0;">
+            <a class="btn-floating opacitySelectedColor" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em; background: rgb(35, 31, 31); filter: brightness(1.3);" onclick="$('#addManagersModal').modal('open')" href="#addManagersModal">
+                <p style="margin-top:0px !important;text-align:center;">+</p>
+            </a>
         </div>
-        <!--------- MANAGERS PAGE END ----------->
+    </div>
+    <!--------- MANAGERS PAGE END ----------->
     </div>
     </section>
     </div>
@@ -2813,6 +2832,7 @@
     <script async src="js/color-thief.js"></script>
     <script async src="js/quagga.js"></script>
     <script async src="js/barcodeReader.js"></script>
+    <script async src="js/screenOrientation.js"></script>
     <script>
         function ColorPicker() {
             this.singleColorCanvas = $('.spectrum-color').get(0);

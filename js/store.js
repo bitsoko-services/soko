@@ -442,7 +442,7 @@ function updateStore(t) {
                 })
             }
         });
-    } else if (name == "saturday") {
+    } else if (name == "fullscreenState") {} else if (name == "saturday") {
         var openHours = $("#saturday-openingHours").val()
         var closingHours = $("#saturday-closingHours").val()
         doFetch({

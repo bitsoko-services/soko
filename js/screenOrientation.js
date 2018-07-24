@@ -18,10 +18,21 @@ function fullScreenMode() {
         $("#fullScreenPermission").modal("open")
     } else {
         if (localStorage.getItem("fullScreenPermission") == "true") {
+            $("#fullscreenState").prop("checked", true)
+
             toggleFullScreen();
             setTimeout(function () {
                 screen.orientation.lock('landscape')
             }, 500)
+        } else {
+            $("#fullscreenState").prop("checked", "false")
         }
     }
 }
+document.getElementById("fullscreenState").addEventListener("change", function () {
+    if ($("#fullscreenState")[0].checked == true) {
+        localStorage.setItem("fullScreenPermission", "true");
+    } else {
+        localStorage.setItem("fullScreenPermission", "false");
+    }
+})
