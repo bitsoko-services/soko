@@ -55,8 +55,8 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <link href="https://bitsoko.co.ke/bitsAssets/html/connect.html" rel="import">
 
-    <script src="https://bitsoko.co.ke/bitsAssets/js/web3/web3.js" async></script>
-    <script src="https://bitsoko.co.ke/bitsAssets/js/hooked-web3-provider/build/hooked-web3-provider.js" async></script>
+    <script defer async src="https://bitsoko.co.ke/bitsAssets/js/web3/web3.js"></script>
+    <script defer async src="https://bitsoko.co.ke/bitsAssets/js/hooked-web3-provider/build/hooked-web3-provider.js"></script>
     <script async defer src="https://bitsoko.co.ke/bitsAssets/js/ethjs-provider-signer.js"></script>
     <script async defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
 </head>
@@ -1535,7 +1535,7 @@
                             </i>Products
                     </a>
                 </li>
-                <li class="bold pageBoxShadow">
+                <li class="bold pageBoxShadow" style="display: none;">
                     <a href="#" id="beaconsPage" page="beacons" class="waves-effect waves-cyan nav" style="">
                         <i style="padding-top:5px;">
                                 <svg class="svg-icon" viewBox="0 0 20 20">
@@ -1718,7 +1718,7 @@
                                         </ul>
 
 
-                                        <div class="fixed-action-btn" style="z-index: 1;">
+                                        <div class="fixed-action-btn" style="z-index: 1;display: none;">
                                             <a class="btn-floating opacitySelectedColor barCodeOpn" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em; background: rgb(32, 29, 29); filter: brightness(1.3);" href="#barCodeReader">
                                                 <p style="margin-top:0px !important;text-align:center;padding: 9px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 480 480" style="enable-background:new 0 0 480 480;" xml:space="preserve">
 <g>
