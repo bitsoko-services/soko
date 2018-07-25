@@ -26,6 +26,10 @@ body {
     font-weight: initial;
 }
 
+nav {
+    background: #005E77 !important;
+}
+
 .switchStoreHeader {
     background: #7eb7c8;
     color: white;
