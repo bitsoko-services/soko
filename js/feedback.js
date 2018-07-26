@@ -8,7 +8,7 @@ $(document).on("click", "#feedBack", function () {
 
 function storeFeed() {
     doFetch({
-        action: 'storeFeed',
+        action: 'getStoreFeed',
         store: localStorage.getItem('soko-active-store')
     }).then(function (e) {
         if (e.status == 'ok') {
