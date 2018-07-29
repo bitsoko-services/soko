@@ -1672,7 +1672,7 @@
                         </a>
                     </li>
 -->
-                    <li id="feedBack" style="margin-left: 40px;">
+                    <li class="sidenav-close" id="feedBack" style="margin-left: 40px;">
                         <a href="#">
                             <i style="width:25px;padding-top:5px;margin-left:-40px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -2696,19 +2696,18 @@
 
 
     <!--------- Settings PAGE Start --------->
-    <div class="col s12 m4 l4 feedback" style="display:none; overflow-x: hidden !important; height: 91vh !important; overflow-y: scroll !important;padding-bottom: 20px;">
-        <ul style="margin: 5px; background: white; padding: 10px; border-radius: 3px;">
-            <li><span style="font-weight: bold">User:</span> John Doe</li>
-            <li><span style="font-weight: bold">Speed:</span> 4 / 7</li>
-            <li><span style="font-weight: bold">Quality:</span> 5 / 7</li>
-            <li><span style="font-weight: bold">Message:</span> I loved the app but not the products....</li>
-        </ul>
-        <ul style="margin: 5px; background: white; padding: 10px; border-radius: 3px;">
-            <li><span style="font-weight: bold">User:</span> John Doe</li>
-            <li><span style="font-weight: bold">Speed:</span> 4 / 7</li>
-            <li><span style="font-weight: bold">Quality:</span> 5 / 7</li>
-            <li><span style="font-weight: bold">Message:</span> I loved the app but not the products....</li>
-        </ul>
+    <div class="col s12 m4 l4 feedbackPage" style="display:none; overflow-x: hidden !important; height: 91vh !important; overflow-y: scroll !important;padding-bottom: 20px;">
+        <div class="sc-gauge">
+            <div class="sc-background">
+                <div class="sc-percentage opacitySelectedColor"></div>
+                <div class="sc-mask"></div>
+                <span class="sc-value"><span id="feedPercentageLevel">88</span>%</span>
+            </div>
+            <span class="sc-min">0</span>
+            <span class="sc-max">100</span>
+        </div>
+        <div class="feedback">
+        </div>
 
     </div>
 
@@ -2954,7 +2953,7 @@
             fetchRate()
             callPromoActivations()
             initDeilveryFunctions()
-//            storeFeed()
+            storeFeed()
             $("input").characterCounter();
             $('.timepicker').timepicker();
         });
