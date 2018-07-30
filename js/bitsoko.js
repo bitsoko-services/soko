@@ -76,7 +76,7 @@ function profileLoaded(p) {
     updateStores();
 
     setTimeout(userNamesInput, 18000);
-    setInterval(updateStores, 120000);
+//    setInterval(updateStores, 120000);
     /*
     doFetch({
         action: 'getMadr',
