@@ -146,6 +146,7 @@ function addStore() {
     refreshBeacons();
     refreshProducts();
     loadProdCategory();
+    storeFeed();
     //promoUpdater();
 }
 
@@ -267,7 +268,7 @@ function doSwitchStore() {
             storeOwner();
             loadTheme();
             verifyNo();
-            addManagers()
+            addManagers();
         }
     }).modal('close');
 }
