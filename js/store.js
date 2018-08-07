@@ -146,6 +146,7 @@ function addStore() {
     refreshBeacons();
     refreshProducts();
     loadProdCategory();
+    storeFeed();
     //promoUpdater();
 }
 
@@ -267,7 +268,7 @@ function doSwitchStore() {
             storeOwner();
             loadTheme();
             verifyNo();
-            addManagers()
+            addManagers();
         }
     }).modal('close');
 }
@@ -426,6 +427,54 @@ function updateStore(t) {
             };
             img.src = URL.createObjectURL(file);
         }
+    } else if (name == "mon-fri") {
+        var openHours = $("#mon-fri-openingHours").val()
+        var closingHours = $("#mon-fri-closingHours").val()
+        doFetch({
+            action: 'doEditStore',
+            id: localStorage.getItem('soko-active-store'),
+            prop: name,
+            val: openHours + " - " + closingHours
+        }).then(function (e) {
+            if (e.status == "ok") {
+                M.toast({
+                    html: 'Mon-Fri working hours modified',
+                    displayLength: 3000
+                })
+            }
+        });
+    } else if (name == "fullscreenState") {} else if (name == "saturday") {
+        var openHours = $("#saturday-openingHours").val()
+        var closingHours = $("#saturday-closingHours").val()
+        doFetch({
+            action: 'doEditStore',
+            id: localStorage.getItem('soko-active-store'),
+            prop: name,
+            val: openHours + " - " + closingHours
+        }).then(function (e) {
+            if (e.status == "ok") {
+                M.toast({
+                    html: 'Saturday working hours modified',
+                    displayLength: 3000
+                })
+            }
+        });
+    } else if (name == "sunday") {
+        var openHours = $("#sunday-openingHours").val()
+        var closingHours = $("#sunday-closingHours").val()
+        doFetch({
+            action: 'doEditStore',
+            id: localStorage.getItem('soko-active-store'),
+            prop: name,
+            val: openHours + " - " + closingHours
+        }).then(function (e) {
+            if (e.status == "ok") {
+                M.toast({
+                    html: 'Sunday working hours modified',
+                    displayLength: 3000
+                })
+            }
+        });
     } else if (name == "notifyDays") {
         var dayData = JSON.stringify({
             mon: document.getElementsByClassName("notifyDays-mon")[0].checked,
@@ -463,7 +512,7 @@ function updateStore(t) {
             } catch (err) {
                 var prodCat = "Null"
             }
-            if (prodCat.length >= 5) {
+            if (prodCat.length >= 8) {
                 M.toast({
                     html: 'Category limit reached!',
                     classes: 'categoryName',
@@ -478,7 +527,7 @@ function updateStore(t) {
                 doFetch({
                     action: 'manageCategories',
                     store: localStorage.getItem('soko-active-store'),
-                    do: 'addd',
+                    do: 'add',
                     name: categoryName
                 }).then(function (e) {
                     if (e.status == 'ok') {
@@ -766,32 +815,29 @@ $(".deleteStore").click(function () {
 
 //update location
 $("#updateLoc").click(function () {
-    myLoc();
-    setTimeout(function () {
-        var locationField = document.getElementById('editStore-Location').value
-        if (locationField == "location not found") {
-            console.log("error getting location");
-            M.toast({
-                html: 'Error getting location. Please try again!',
-                displayLength: 3000
-            })
-        } else {
-            doFetch({
-                action: 'doEditStore',
-                id: localStorage.getItem('soko-active-store'),
-                prop: "lonlat",
-                val: document.querySelector('#editStore-Location').value
-            }).then(function (e) {
-                if (e.status == 'ok') {
-                    M.toast({
-                        html: 'Location updated successfully',
-                        displayLength: 3000
-                    })
-                }
-            });
-
-        }
-    }, 3000);
+    getLoc().then(function (e) {
+        var storeLoc = e.coords.latitude + ',' + e.coords.longitude;
+        $("#editStore-Location").val(storeLoc)
+        doFetch({
+            action: 'doEditStore',
+            id: localStorage.getItem('soko-active-store'),
+            prop: "lonlat",
+            val: storeLoc
+        }).then(function (e) {
+            if (e.status == 'ok') {
+                M.toast({
+                    html: 'Location updated successfully',
+                    displayLength: 3000
+                })
+            }
+        });
+    }).catch(function (err) {
+        console.log(err)
+        M.toast({
+            html: 'Error getting location. Please try again!',
+            displayLength: 3000
+        })
+    })
 });
 
 //update theme color
@@ -851,72 +897,6 @@ function shareStore() {
             .catch((error) => console.log('Error sharing', error));
     }
 }
-
-
-//Save Working Hours
-$('.workingHrs input').change(function () {
-    var workingHrs = $(this).attr("id");
-    var workingHrsVal = $(this).val();
-
-    if (workingHrs == "mon-fri") {
-        doFetch({
-            action: 'WorkingHours',
-            id: localStorage.getItem('soko-active-store'),
-            prop: "weekDay",
-            val: workingHrsVal
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                M.toast({
-                    html: 'Working hours set successfully.',
-                    displayLength: 3000
-                })
-            } else {
-                M.toast({
-                    html: 'Error!!! Please try again later.',
-                    displayLength: 3000
-                })
-            }
-        });
-    } else if (workingHrs == "wkndSat") {
-        doFetch({
-            action: 'WorkingHours',
-            id: localStorage.getItem('soko-active-store'),
-            prop: "saturday",
-            val: workingHrsVal
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                M.toast({
-                    html: 'Working hours set successfully.',
-                    displayLength: 3000
-                })
-            } else {
-                M.toast({
-                    html: 'Error!!! Please try again later.',
-                    displayLength: 3000
-                })
-            }
-        });
-    } else {
-        doFetch({
-            action: 'WorkingHours',
-            id: localStorage.getItem('soko-active-store'),
-            prop: "sunday",
-            val: workingHrsVal
-        }).then(function (e) {
-            if (e.status == 'ok') {
-                M.toast({
-                    html: 'Working hours set successfully.',
-                    displayLength: 3000
-                })
-            } else {
-                M.toast({
-                    html: 'Error!!! Please try again later.',
-                    displayLength: 3000
-                })
-            }
-        });
-    }
-});
 
 
 

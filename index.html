@@ -55,9 +55,8 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <link href="https://bitsoko.co.ke/bitsAssets/html/connect.html" rel="import">
 
-    <script src="https://bitsoko.co.ke/bitsAssets/js/web3/web3.js" async></script>
-    <script async defer src="https://bitsoko.co.ke/bitsAssets/js/lightwallet/lightwallet.min.js"></script>
-    <script src="https://bitsoko.co.ke/bitsAssets/js/hooked-web3-provider/build/hooked-web3-provider.js" async></script>
+    <script defer async src="https://bitsoko.co.ke/bitsAssets/js/web3/web3.js"></script>
+    <script defer async src="https://bitsoko.co.ke/bitsAssets/js/hooked-web3-provider/build/hooked-web3-provider.js"></script>
     <script async defer src="https://bitsoko.co.ke/bitsAssets/js/ethjs-provider-signer.js"></script>
     <script async defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
 </head>
@@ -117,6 +116,32 @@
             <div id="walletList" style="max-height: 255px; overflow: scroll; text-align: center;"></div>
         </div>
     </div>
+
+    <!-- Modal Structure -->
+    <div id="fullScreenPermission" class="modal" style="overflow: initial; margin-top: 30%; border-radius: 5px; z-index: 1003; display: none; opacity: 0; top: 4%; transform: scaleX(0.8) scaleY(0.8);">
+        <div style="width:100px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 496 496" style="enable-background:new 0 0 496 496;" xml:space="preserve">
+                <path style="fill:#B761C6;" d="M496,320.8c0,96.8-78.4,175.2-175.2,175.2H175.2C78.4,496,0,417.6,0,320.8V175.2  C0,78.4,78.4,0,175.2,0h145.6C417.6,0,496,78.4,496,175.2V320.8z"/>
+                <path style="fill:#AA53BC;" d="M0,175.2C0,78.4,78.4,0,175.2,0h145.6C417.6,0,496,78.4,496,175.2v145.6  c0,96.8-78.4,175.2-175.2,175.2"/>
+                <path style="fill:#9C44B2;" d="M320.8,0C417.6,0,496,78.4,496,175.2v145.6c0,96.8-78.4,175.2-175.2,175.2"/>
+                <path style="fill:#9C44B2;" d="M188.8,189.6L188.8,189.6h17.6c6.4,0,12-5.6,12-12s-4.8-12-12-12H160c-3.2,0-6.4,1.6-8,3.2   c-2.4,2.4-3.2,4.8-3.2,8v46.4c0,6.4,5.6,12,12,12s12-5.6,12-12v-18.4c0,0,0,0,0,0.8l40,40c2.4,2.4,5.6,3.2,8,3.2s5.6-0.8,8-3.2   c4.8-4.8,4.8-12,0-16.8L188.8,189.6z M172,190.4v-0.8h0.8C172.8,189.6,172.8,189.6,172,190.4L172,190.4z"/>
+                <path style="fill:#9C44B2;" d="M335.2,295.2c-6.4,0-12,5.6-12,12v18.4c0,0,0,0,0-0.8l-40-40c-4.8-4.8-12-4.8-16.8,0s-4.8,12,0,16.8   l40,40c0,0,0,0,0.8,0h-18.4c-6.4,0-12,5.6-12,12s4.8,12,12,12h46.4c3.2,0,6.4-1.6,8-3.2c2.4-2.4,3.2-4.8,3.2-8V308   C347.2,300,342.4,295.2,335.2,295.2z M323.2,341.6C323.2,341.6,323.2,340.8,323.2,341.6c0.8-0.8,0.8-0.8,0.8-0.8v0.8H323.2z"/>
+                <path style="fill:#9C44B2;" d="M212.8,284.8l-40,40c0,0,0,0,0,0.8v-18.4c0-6.4-4.8-12-12-12c-6.4,0-12,5.6-12,12v46.4   c0,3.2,1.6,6.4,3.2,8c2.4,2.4,4.8,3.2,8,3.2h46.4c6.4,0,12-5.6,12-12s-5.6-12-12-12H188c0,0,0,0,0.8,0l40-40c4.8-4.8,4.8-12,0-16.8   C224.8,280,216.8,280,212.8,284.8z M172,341.6v-0.8C172,340.8,172,340.8,172,341.6c0.8,0,0.8,0,0.8,0H172z"/>
+                <path style="fill:#9C44B2;" d="M275.2,249.6c3.2,0,5.6-0.8,8-3.2l40-40c0,0,0,0,0-0.8V224c0,6.4,4.8,12,12,12c6.4,0,12-5.6,12-12   v-46.4c0-3.2-1.6-6.4-3.2-8c-2.4-2.4-4.8-3.2-8-3.2h-46.4c-6.4,0-12,5.6-12,12s5.6,12,12,12H308c0,0,0,0-0.8,0l-40,40   c-4.8,4.8-4.8,12,0,16.8C269.6,248.8,272,249.6,275.2,249.6z M324,189.6v0.8C324,190.4,324,190.4,324,189.6c-0.8,0-0.8,0-0.8,0H324   z"/>
+                <path style="fill:#FFFFFF;" d="M188.8,172.8C188.8,172,188.8,172,188.8,172.8h17.6c6.4,0,12-5.6,12-12s-4.8-12-12-12H160   c-3.2,0-6.4,1.6-8,3.2c-2.4,2.4-3.2,4.8-3.2,8v46.4c0,6.4,5.6,12,12,12s12-5.6,12-12V188c0,0,0,0,0,0.8l40,40   c2.4,2.4,5.6,3.2,8,3.2s5.6-0.8,8-3.2c4.8-4.8,4.8-12,0-16.8L188.8,172.8z M172,172.8V172h0.8C172.8,172,172.8,172,172,172.8   L172,172.8z"/>
+                <path style="fill:#FFFFFF;" d="M335.2,277.6c-6.4,0-12,5.6-12,12V308c0,0,0,0,0-0.8l-40-40c-4.8-4.8-12-4.8-16.8,0s-4.8,12,0,16.8   l40,40c0,0,0,0,0.8,0h-18.4c-6.4,0-12,5.6-12,12s4.8,12,12,12h46.4c3.2,0,6.4-1.6,8-3.2c2.4-2.4,3.2-4.8,3.2-8v-46.4   C347.2,282.4,342.4,277.6,335.2,277.6z M323.2,324L323.2,324c0.8-0.8,0.8-0.8,0.8-0.8v0.8H323.2z"/>
+                <path style="fill:#FFFFFF;" d="M212.8,267.2l-40,40c0,0,0,0,0,0.8v-18.4c0-6.4-4.8-12-12-12c-6.4,0-12,5.6-12,12V336   c0,3.2,1.6,6.4,3.2,8c2.4,2.4,4.8,3.2,8,3.2h46.4c6.4,0,12-5.6,12-12s-5.6-12-12-12H188c0,0,0,0,0.8,0l40-40c4.8-4.8,4.8-12,0-16.8   C224.8,262.4,216.8,262.4,212.8,267.2z M172,324v-0.8C172,323.2,172,323.2,172,324c0.8,0,0.8,0,0.8,0H172z"/>
+                <path style="fill:#FFFFFF;" d="M275.2,232.8c3.2,0,5.6-0.8,8-3.2l40-40c0,0,0,0,0-0.8v18.4c0,6.4,4.8,12,12,12c6.4,0,12-5.6,12-12   v-46.4c0-3.2-1.6-6.4-3.2-8c-2.4-2.4-4.8-3.2-8-3.2h-46.4c-6.4,0-12,5.6-12,12s5.6,12,12,12H308c0,0,0,0-0.8,0l-40,40   c-4.8,4.8-4.8,12,0,16.8C269.6,231.2,272,232.8,275.2,232.8z M324,172v0.8C324,172.8,324,172.8,324,172c-0.8,0-0.8,0-0.8,0H324z"/>
+            </svg>
+        </div>
+        <h5 style="text-align: center; padding: 5%; margin:0px;">Fullscreen Mode</h5>
+        <div class="row" style="text-align: center;">
+            <p>Use this application in fullscreen mode.</p>
+            <button class="btn opacitySelectedColor" onclick='localStorage.setItem("fullScreenPermission", "false"); $("#fullScreenPermission").modal("close"); fullScreenMode();'>cancel</button>
+            <button class="btn opacitySelectedColor" onclick='localStorage.setItem("fullScreenPermission", "true"); $("#fullScreenPermission").modal("close"); fullScreenMode()'>Ok</button>
+        </div>
+    </div>
+
     <!-- Modal Structure -->
     <div id="login" class="modal modal-fixed-footer" style="">
         <div style="height:100px;width:100px;border-radius:50%;background:#FAFAFA; display: block; margin-left:auto; margin-right: auto; margin-top:-50px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 428.974 428.975" style="enable-background:new 0 0 428.974 428.975;width: 100px;height: 100px;padding: 0px 15px 15px 15px;" xml:space="preserve"><g><path d="M414.101,373.866l-106.246-56.188l-4.907-15.332c-1.469-5.137-3.794-10.273-8.576-11.623 c-1.519-0.428-3.441-3.201-3.689-5.137l-2.836-29.813c-0.156-2.553,0.868-4.844,2.216-6.453 c8.14-9.754,12.577-21.051,14.454-33.967c0.944-6.494,4.323-12.483,6.059-18.879l6.812-35.649 c0.711-4.681,0.573-8.289-4.659-10.103c-1.443-0.503-2.699-2.894-2.699-6.479l0.069-67.264 c-1.111-16.28-9.731-28.869-21.957-37.631c-23.354-16.739-65.175-8.977-51.526-36.281c0.806-1.607,0.549-4.399-5.062-2.335 c-20.936,7.703-76.701,28.057-90.71,38.616c-12.538,9.449-20.844,21.351-21.957,37.631l0.069,67.264c0,2.96-1.255,5.976-2.7,6.479 c-5.233,1.813-5.37,5.422-4.659,10.103l6.814,35.649c1.732,6.396,5.113,12.386,6.058,18.879 c1.875,12.916,6.315,24.213,14.453,33.967c1.347,1.609,2.372,3.9,2.216,6.453l-2.836,29.813c-0.249,1.936-2.174,4.709-3.69,5.137 c-4.783,1.35-7.109,6.486-8.577,11.623l-4.909,15.332l-106.25,56.188c-2.742,1.449-4.457,4.297-4.457,7.397v39.343 c0,4.621,3.748,8.368,8.37,8.368h391.4c4.622,0,8.37-3.747,8.37-8.368v-39.343C418.557,378.163,416.842,375.315,414.101,373.866z" fill="#256D82"></path></g></svg></div>
@@ -147,7 +172,7 @@
                         <label for="description" class="">Description</label>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row addNewPrdCat">
                     <div class="input-field col s12">
                         <select class="productCategory">
                             <option value="" disabled selected>Choose a category</option>
@@ -211,13 +236,31 @@
     <!-- addProduct Modal end //////////////////////////////////////////////////////////////////////////// -->
     <!-- switchStore Modal Start -->
     <div id="switchStoreModal" class="modal bottom-sheet">
-        <div class="modal-content" style="padding:0px;">
-            <div class="opacitySelectedColor swtchStrDskt" style="text-align:center;background:#7eb7c8;margin:0px;padding:10px;color:white;position:fixed;width:100%;z-index:1;pointer-events: none;">
-                <h5 style="margin:0px;">SWITCH STORE</h5>
-                <p style="margin:0px;">STORES: <span id="storeNo"></span></p>
+        <!--
+        <div class="opacitySelectedColor swtchStrDskt" style="background:#7eb7c8;margin:0px;padding:10px;color:white;position:fixed;width:100%;z-index:1000;pointer-events: none;">
+            <div class="row" style="margin: 0px;">
+                <div class="col s7">
+                    <h5 style="margin:0px;">SWITCH STORE</h5>
+                    <p style="margin:0px;">STORES: <span id="storeNo"></span></p>
+                </div>
+                <div class="col s5">
+                    <a class="btn bits right" style="padding: 0px 10px; background: green; font-size: 2.3em; border-radius: 50%; height: 40px; width: 40px; line-height: 40px;" onclick='$("#switchStoreModal").modal("close"); $("#newStoreModal").modal("open")'>+</a>
+                </div>
             </div>
-            <div style="padding:24px 10px;" class="swtchStrDskt">
-                <ul style="margin-top:40px;" id="switchStoreContent" class="collection"></ul>
+        </div>
+-->
+        <div class="modal-content" style="padding:0px;">
+            <div class="row selectedColor switchStoreHeader" style="margin: 0px;">
+                <div class="col s7">
+                    <h5 style="margin:0px;">SWITCH STORE</h5>
+                    <p style="margin:0px;">STORES: <span id="storeNo"></span></p>
+                </div>
+                <div class="col s5">
+                    <a class="btn bits right" style="padding: 0px 10px; background: green; font-size: 2.3em; border-radius: 50%; height: 40px; width: 40px; line-height: 40px;" onclick='$("#switchStoreModal").modal("close"); $("#newStoreModal").modal("open")'>+</a>
+                </div>
+            </div>
+            <div style="padding:0px 10px;" class="swtchStrDskt">
+                <ul id="switchStoreContent" class="collection" style="text-align:center;"></ul>
             </div>
         </div>
     </div>
@@ -1436,18 +1479,18 @@
                     <p class="left activePage" style="margin: 0px; margin-left: 55px; font-weight: bold;"><svg onclick='$("#buyStoreTokens").modal("open")' id="storeWallet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 334.877 334.877" style="enable-background:new 0 0 334.877 334.877;margin: 3px;width: 26px;float: left;margin-top: 13px;margin-left: 15px;" xml:space="preserve"><path d="M333.196,155.999h-16.067V82.09c0-17.719-14.415-32.134-32.134-32.134h-21.761L240.965,9.917 C237.571,3.798,231.112,0,224.107,0c-3.265,0-6.504,0.842-9.364,2.429l-85.464,47.526H33.815 c-17.719,0-32.134,14.415-32.134,32.134v220.653c0,17.719,14.415,32.134,32.134,32.134h251.18 c17.719,0,32.134-14.415,32.134-32.134v-64.802h16.067V155.999z M284.995,62.809c9.897,0,17.982,7.519,19.068,17.14h-24.152 l-9.525-17.14H284.995z M220.996,13.663c3.014-1.69,7.07-0.508,8.734,2.494l35.476,63.786H101.798L220.996,13.663z M304.275,302.742c0,10.63-8.651,19.281-19.281,19.281H33.815c-10.63,0-19.281-8.651-19.281-19.281V82.09 c0-10.63,8.651-19.281,19.281-19.281h72.353L75.345,79.95H37.832c-3.554,0-6.427,2.879-6.427,6.427s2.873,6.427,6.427,6.427h14.396 h234.83h17.217v63.201h-46.999c-21.826,0-39.589,17.764-39.589,39.589v2.764c0,21.826,17.764,39.589,39.589,39.589h46.999V302.742z M320.342,225.087h-3.213h-59.853c-14.743,0-26.736-11.992-26.736-26.736v-2.764c0-14.743,11.992-26.736,26.736-26.736h59.853 h3.213V225.087z M276.961,197.497c0,7.841-6.35,14.19-14.19,14.19c-7.841,0-14.19-6.35-14.19-14.19s6.35-14.19,14.19-14.19 C270.612,183.306,276.961,189.662,276.961,197.497z" style="fill: white;"></path></svg><span class="loadStoreBal" style=" padding: 10px 10px;"></span>
                         <!--                        <span style=" padding: 10px 10px;">00</span>-->
                     </p>
-                    <a id="entSettings" style="float: right; padding: 6px; height: 50px;">
+                    <a id="entSettings" style="float: right; padding: 6px; height: 50px; padding-right: 10px;">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 231.233 231.233" style="enable-background:new 0 0 231.233 231.233;width: 25px;" xml:space="preserve">
                                 <path d="M230.505,102.78c-0.365-3.25-4.156-5.695-7.434-5.695c-10.594,0-19.996-6.218-23.939-15.842  c-4.025-9.855-1.428-21.346,6.465-28.587c2.486-2.273,2.789-6.079,0.705-8.721c-5.424-6.886-11.586-13.107-18.316-18.498  c-2.633-2.112-6.502-1.818-8.787,0.711c-6.891,7.632-19.27,10.468-28.836,6.477c-9.951-4.187-16.232-14.274-15.615-25.101  c0.203-3.403-2.285-6.36-5.676-6.755c-8.637-1-17.35-1.029-26.012-0.068c-3.348,0.37-5.834,3.257-5.723,6.617  c0.375,10.721-5.977,20.63-15.832,24.667c-9.451,3.861-21.744,1.046-28.621-6.519c-2.273-2.492-6.074-2.798-8.725-0.731  c-6.928,5.437-13.229,11.662-18.703,18.492c-2.133,2.655-1.818,6.503,0.689,8.784c8.049,7.289,10.644,18.879,6.465,28.849  c-3.99,9.505-13.859,15.628-25.156,15.628c-3.666-0.118-6.275,2.345-6.68,5.679c-1.016,8.683-1.027,17.535-0.049,26.289  c0.365,3.264,4.268,5.688,7.582,5.688c10.07-0.256,19.732,5.974,23.791,15.841c4.039,9.855,1.439,21.341-6.467,28.592  c-2.473,2.273-2.789,6.07-0.701,8.709c5.369,6.843,11.537,13.068,18.287,18.505c2.65,2.134,6.504,1.835,8.801-0.697  c6.918-7.65,19.295-10.481,28.822-6.482c9.98,4.176,16.258,14.262,15.645,25.092c-0.201,3.403,2.293,6.369,5.672,6.755  c4.42,0.517,8.863,0.773,13.32,0.773c4.23,0,8.461-0.231,12.692-0.702c3.352-0.37,5.834-3.26,5.721-6.621  c-0.387-10.716,5.979-20.626,15.822-24.655c9.514-3.886,21.752-1.042,28.633,6.512c2.285,2.487,6.063,2.789,8.725,0.73  c6.916-5.423,13.205-11.645,18.703-18.493c2.135-2.65,1.832-6.503-0.689-8.788c-8.047-7.284-10.656-18.879-6.477-28.839  c3.928-9.377,13.43-15.673,23.65-15.673l1.43,0.038c3.318,0.269,6.367-2.286,6.768-5.671  C231.476,120.379,231.487,111.537,230.505,102.78z M115.616,182.27c-36.813,0-66.654-29.841-66.654-66.653  s29.842-66.653,66.654-66.653s66.654,29.841,66.654,66.653c0,12.495-3.445,24.182-9.428,34.176l-29.186-29.187  c2.113-4.982,3.229-10.383,3.228-15.957c0-10.915-4.251-21.176-11.97-28.893c-7.717-7.717-17.978-11.967-28.891-11.967  c-3.642,0-7.267,0.484-10.774,1.439c-1.536,0.419-2.792,1.685-3.201,3.224c-0.418,1.574,0.053,3.187,1.283,4.418  c0,0,14.409,14.52,19.23,19.34c0.505,0.505,0.504,1.71,0.433,2.144l-0.045,0.317c-0.486,5.3-1.423,11.662-2.196,14.107  c-0.104,0.103-0.202,0.19-0.308,0.296c-0.111,0.111-0.213,0.218-0.32,0.328c-2.477,0.795-8.937,1.743-14.321,2.225l0.001-0.029  l-0.242,0.061c-0.043,0.005-0.123,0.011-0.229,0.011c-0.582,0-1.438-0.163-2.216-0.94c-5.018-5.018-18.862-18.763-18.862-18.763  c-1.242-1.238-2.516-1.498-3.365-1.498c-1.979,0-3.751,1.43-4.309,3.481c-3.811,14.103,0.229,29.273,10.546,39.591  c7.719,7.718,17.981,11.968,28.896,11.968c5.574,0,10.975-1.115,15.956-3.228l29.503,29.503  C141.125,178.412,128.825,182.27,115.616,182.27z" style="fill: white;"></path>
                             </svg>
                     </a>
-                    <a onclick="$('#contactModal').modal('open');" target="_blank" style=" width: 30px; float:  right; padding: 4px; margin-right:  5px; margin-left:  5px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 31.357 31.357" style="enable-background:new 0 0 31.357 31.357;" xml:space="preserve">
-	                       <path d="M15.255,0c5.424,0,10.764,2.498,10.764,8.473c0,5.51-6.314,7.629-7.67,9.62c-1.018,1.481-0.678,3.562-3.475,3.562   c-1.822,0-2.712-1.482-2.712-2.838c0-5.046,7.414-6.188,7.414-10.343c0-2.287-1.522-3.643-4.066-3.643   c-5.424,0-3.306,5.592-7.414,5.592c-1.483,0-2.756-0.89-2.756-2.584C5.339,3.683,10.084,0,15.255,0z M15.044,24.406   c1.904,0,3.475,1.566,3.475,3.476c0,1.91-1.568,3.476-3.475,3.476c-1.907,0-3.476-1.564-3.476-3.476   C11.568,25.973,13.137,24.406,15.044,24.406z" style="fill: white;"></path>
+                    <a onclick='$("#switchStoreModal").modal("open");' target="_blank" style=" width: 30px; float:  right; padding: 4px; margin-left:  5px; margin-right: 10px">
+                        <svg viewBox="0 0 20 20" class="svg-icon" style="padding-top: 9px; width: 28px;">
+                            <path fill="white" d="M6.634,13.591H2.146c-0.247,0-0.449,0.201-0.449,0.448v2.692c0,0.247,0.202,0.449,0.449,0.449h4.488c0.247,0,0.449-0.202,0.449-0.449v-2.692C7.083,13.792,6.881,13.591,6.634,13.591 M6.185,16.283h-3.59v-1.795h3.59V16.283zM6.634,8.205H2.146c-0.247,0-0.449,0.202-0.449,0.449v2.692c0,0.247,0.202,0.449,0.449,0.449h4.488c0.247,0,0.449-0.202,0.449-0.449V8.653C7.083,8.407,6.881,8.205,6.634,8.205 M6.185,10.897h-3.59V9.103h3.59V10.897z M6.634,2.819H2.146c-0.247,0-0.449,0.202-0.449,0.449V5.96c0,0.247,0.202,0.449,0.449,0.449h4.488c0.247,0,0.449-0.202,0.449-0.449V3.268C7.083,3.021,6.881,2.819,6.634,2.819 M6.185,5.512h-3.59V3.717h3.59V5.512z M15.933,5.683c-0.175-0.168-0.361-0.33-0.555-0.479l1.677-1.613c0.297-0.281,0.088-0.772-0.31-0.772H9.336c-0.249,0-0.448,0.202-0.448,0.449v7.107c0,0.395,0.471,0.598,0.758,0.326l1.797-1.728c0.054,0.045,0.107,0.094,0.161,0.146c0.802,0.767,1.243,1.786,1.243,2.867c0,1.071-0.435,2.078-1.227,2.837c-0.7,0.671-1.354,1.086-2.345,1.169c-0.482,0.041-0.577,0.733-0.092,0.875c0.687,0.209,1.12,0.314,1.839,0.314c0.932,0,1.838-0.173,2.673-0.505c0.835-0.33,1.603-0.819,2.262-1.449c1.322-1.266,2.346-2.953,2.346-4.751C18.303,8.665,17.272,6.964,15.933,5.683 M15.336,14.578c-1.124,1.077-2.619,1.681-4.217,1.705c0.408-0.221,0.788-0.491,1.122-0.812c0.97-0.929,1.504-2.168,1.504-3.485c0-1.328-0.539-2.578-1.521-3.516c-0.178-0.17-0.357-0.321-0.548-0.456c-0.125-0.089-0.379-0.146-0.569,0.041L9.769,9.327v-5.61h5.861l-1.264,1.216c-0.099,0.094-0.148,0.229-0.137,0.366c0.014,0.134,0.088,0.258,0.202,0.332c0.313,0.204,0.61,0.44,0.882,0.7c1.158,1.111,2.092,2.581,2.092,4.145C17.405,12.026,16.48,13.482,15.336,14.578"></path>        
                         </svg>
                     </a>
-                    <a onclick="shareStore()">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 473.932 473.932" style="enable-background:new 0 0 473.932 473.932;width: 20px;float: right;margin: 18px;margin-right: 5px;" xml:space="preserve">
+                    <a onclick="shareStore()" style="padding-right: 10px; float: right; padding-top: 4px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 473.932 473.932" style="enable-background:new 0 0 473.932 473.932;width: 21px;" xml:space="preserve">
                         <g>
                             <g>
                                 <path style="fill: white;" d="M385.513,301.214c-27.438,0-51.64,13.072-67.452,33.09l-146.66-75.002    c1.92-7.161,3.3-14.56,3.3-22.347c0-8.477-1.639-16.458-3.926-24.224l146.013-74.656c15.725,20.924,40.553,34.6,68.746,34.6    c47.758,0,86.391-38.633,86.391-86.348C471.926,38.655,433.292,0,385.535,0c-47.65,0-86.326,38.655-86.326,86.326    c0,7.809,1.381,15.229,3.322,22.412L155.892,183.74c-15.833-20.039-40.079-33.154-67.56-33.154    c-47.715,0-86.326,38.676-86.326,86.369s38.612,86.348,86.326,86.348c28.236,0,53.043-13.719,68.832-34.664l145.948,74.656    c-2.287,7.744-3.947,15.79-3.947,24.289c0,47.693,38.676,86.348,86.326,86.348c47.758,0,86.391-38.655,86.391-86.348    C471.904,339.848,433.271,301.214,385.513,301.214z"></path>
@@ -1518,7 +1561,7 @@
                             </i>Products
                     </a>
                 </li>
-                <li class="bold pageBoxShadow">
+                <li class="bold pageBoxShadow" style="display: none;">
                     <a href="#" id="beaconsPage" page="beacons" class="waves-effect waves-cyan nav" style="">
                         <i style="padding-top:5px;">
                                 <svg class="svg-icon" viewBox="0 0 20 20">
@@ -1527,7 +1570,7 @@
                             </i>Devices
                     </a>
                 </li>
-                <li class="bold pageBoxShadow" onclick="setTimeout(deliveryMbr, 1000);">
+                <li class="bold pageBoxShadow" onclick="">
                     <a href="#" id="deliveryPage" page="deliveries" class="waves-effect waves-cyan nav" style="">
                         <i style="padding-top:5px;">
                                 <svg class="deliveriesIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;width: 44px;float: left;margin-top: 5px;height: 40px;margin-left: -5px;" xml:space="preserve">
@@ -1609,6 +1652,7 @@
                     <li class="li-hover" style="margin-bottom: 5px;">
                         <div class="divider"></div>
                     </li>
+                    <!--
                     <li onclick="$('#switchStoreModal').modal('open');">
                         <a href="#" class="switchStore">
                             <i>
@@ -1625,6 +1669,18 @@
                                     <path d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10"></path>
                                 </svg>
                             </i>Add New Store
+                        </a>
+                    </li>
+-->
+                    <li class="sidenav-close" id="feedBack" style="margin-left: 40px;">
+                        <a href="#">
+                            <i style="width:25px;padding-top:5px;margin-left:-40px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                    <path d="M117.333,149.333H352c5.896,0,10.667-4.771,10.667-10.667c0-5.896-4.771-10.667-10.667-10.667H117.333     c-5.896,0-10.667,4.771-10.667,10.667C106.667,144.563,111.438,149.333,117.333,149.333z"/>
+                                    <path d="M245.333,256h-128c-5.896,0-10.667,4.771-10.667,10.667c0,5.896,4.771,10.667,10.667,10.667h128     c5.896,0,10.667-4.771,10.667-10.667C256,260.771,251.229,256,245.333,256z"/>
+                                    <path d="M471.167,64c-0.618,0-1.217,0.155-1.833,0.184V64c0-23.531-19.146-42.667-42.667-42.667h-384     C19.146,21.333,0,40.469,0,64v416c0,4.313,2.604,8.208,6.583,9.854c1.313,0.552,2.708,0.813,4.083,0.813     c2.771,0,5.5-1.083,7.542-3.125L121.75,384h304.917c23.521,0,42.667-19.135,42.667-42.667V164.411l30.708-30.703c0,0,0,0,0-0.01     c7.604-7.604,11.958-18.125,11.958-28.865C512,82.313,493.688,64,471.167,64z M448,341.333c0,11.76-9.563,21.333-21.333,21.333     H117.333c-2.833,0-5.542,1.125-7.542,3.125L21.333,454.25V64c0-11.76,9.563-21.333,21.333-21.333h384     C438.438,42.667,448,52.24,448,64v7.286c-2.025,1.392-3.962,2.923-5.708,4.672L326.232,192H117.333     c-5.896,0-10.667,4.771-10.667,10.667c0,5.896,4.771,10.667,10.667,10.667h191.785l-10.243,51.24     c-0.708,3.5,0.396,7.115,2.917,9.635c2.021,2.021,4.75,3.125,7.542,3.125c0.688,0,1.396-0.073,2.083-0.208l53.313-10.667     c2.083-0.417,3.979-1.427,5.458-2.917L448,185.742V341.333z M357.396,246.177l-34.458,6.896l6.896-34.5l96.828-96.828     l27.587,27.587L357.396,246.177z M484.958,118.625l-15.625,15.625l-27.589-27.589l15.63-15.63     c3.625-3.615,8.646-5.698,13.792-5.698c10.75,0,19.5,8.75,19.5,19.5C490.667,109.958,488.583,114.99,484.958,118.625z"/>
+                                </svg>
+                            </i>Feedback
                         </a>
                     </li>
                     <li class="bold" style="margin-top:6px;">
@@ -1688,7 +1744,7 @@
                                         </ul>
 
 
-                                        <div class="fixed-action-btn" style="z-index: 1;">
+                                        <div class="fixed-action-btn" style="z-index: 1;display: none;">
                                             <a class="btn-floating opacitySelectedColor barCodeOpn" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em; background: rgb(32, 29, 29); filter: brightness(1.3);" href="#barCodeReader">
                                                 <p style="margin-top:0px !important;text-align:center;padding: 9px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 480 480" style="enable-background:new 0 0 480 480;" xml:space="preserve">
 <g>
@@ -2288,51 +2344,71 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="row storeSettingsDivs">
+                                <div class="row storeSettingsDivs" style="padding: 0px;">
                                     <h6>Working Hours</h6>
-                                    <div class="row workingHrs" style="padding-top: 45px;">
-                                        <div class="col s4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
-                                                <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
-                                            </svg>
-                                        </div>
-                                        <div class="col s3" style="padding:0px;">
-                                            <div class="col s12" style="padding:0px;">
-                                                <p style="margin:0px;">Mon - Fri</p>
+                                    <div class="row workingHrs">
+                                        <div>
+                                            <span style="font-weight: bold; font-size: 1em;display: block; width: 100%; text-align: center; margin-bottom: 10px;">Mon - Fri</span>
+                                            <div class="row">
+                                                <div class="col s6">
+                                                    <div class="row">
+                                                        <div class="col s4">Open from:</div>
+                                                        <div class="col s8">
+                                                            <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="mon-fri-openingHours" style="border-radius: 3px;" value="0:00 AM" stitm="mon-fri">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col s6">
+                                                    <div class="row">
+                                                        <div class="col s4">Until:</div>
+                                                        <div class="col s8">
+                                                            <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="mon-fri-closingHours" style="border-radius: 3px;" value="0:00 AM" stitm="mon-fri">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col s3">
-                                            <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="mon-fri" style="border-radius: 3px;" value="edit">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
-                                                <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
-                                            </svg>
-                                        </div>
-                                        <div class="col s3" style="padding:0px;">
-                                            <div class="col s12" style="padding:0px;">
-                                                <p style="margin:0px;">Sat</p>
+                                        <div style="background: #d8d8d8;">
+                                            <span style="font-weight: bold; font-size: 1em;display: block; width: 100%; text-align: center; margin-bottom: 10px;">Sat</span>
+                                            <div class="row">
+                                                <div class="col s6">
+                                                    <div class="row">
+                                                        <div class="col s4">Open from:</div>
+                                                        <div class="col s8">
+                                                            <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="saturday-openingHours" style="border-radius: 3px;" value="0:00 AM" stitm="saturday">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col s6">
+                                                    <div class="row">
+                                                        <div class="col s4">Until:</div>
+                                                        <div class="col s8">
+                                                            <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="saturday-closingHours" style="border-radius: 3px;" value="0:00 AM" stitm="saturday">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col s3">
-                                            <input type="text" class="timepicker btn opacitySelectedColor" id="wkndSat" style="border-radius: 3px;" value="edit">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 41.301 41.301" style="enable-background:new 0 0 41.301 41.301;width: 35px; float: right; margin-right: 30px;" xml:space="preserve">
-                                                <path style="fill:#1E201D;" d="M20.642,0c5.698,0,10.857,2.317,14.602,6.047c3.73,3.746,6.047,8.905,6.047,14.603  c0,5.698-2.317,10.857-6.047,14.603c-3.746,3.73-8.904,6.047-14.602,6.047S9.786,38.983,6.056,35.253  C2.31,31.507,0.008,26.349,0.008,20.65c0-5.698,2.301-10.857,6.047-14.603C9.786,2.317,14.944,0,20.642,0L20.642,0z M31.166,19.523  c0.619,0,1.111,0.508,1.111,1.127c0,0.619-0.492,1.127-1.111,1.127H20.674h-0.032c-0.413,0-0.778-0.238-0.968-0.571l-0.016-0.016  l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0l-0.016-0.016l0,0v-0.032l0,0  l-0.016-0.032l0,0v-0.016l0,0l-0.016-0.032l0,0v-0.032l0,0v-0.016v-0.016l-0.016-0.016l0,0v-0.032l0,0v-0.032l0,0V20.73l0,0v-0.016  l0,0v-0.032l0,0V20.65l0,0V7.206c0-0.619,0.492-1.111,1.111-1.111c0.619,0,1.127,0.492,1.127,1.111v12.317H31.166z M33.657,7.635  c-3.333-3.333-7.936-5.381-13.015-5.381S10.96,4.301,7.627,7.635C4.31,10.968,2.246,15.571,2.246,20.65  c0,5.079,2.063,9.682,5.381,13.016c3.333,3.333,7.936,5.381,13.015,5.381s9.682-2.048,13.015-5.381  c3.333-3.333,5.397-7.936,5.397-13.016C39.054,15.571,36.991,10.968,33.657,7.635L33.657,7.635z"/>
-                                            </svg>
-                                        </div>
-                                        <div class="col s3" style="padding:0px;">
-                                            <div class="col s12" style="padding:0px;">
-                                                <p style="margin:0px;">Sun</p>
+                                        <div>
+                                            <span style="font-weight: bold; font-size: 1em;display: block; width: 100%; text-align: center; margin-bottom: 10px;">Sun</span>
+                                            <div class="row">
+                                                <div class="col s6">
+                                                    <div class="row">
+                                                        <div class="col s4">Open from:</div>
+                                                        <div class="col s8">
+                                                            <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="sunday-openingHours" style="border-radius: 3px;" value="0:00 AM" stitm="sunday">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col s6">
+                                                    <div class="row">
+                                                        <div class="col s4">Until:</div>
+                                                        <div class="col s8">
+                                                            <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="sunday-closingHours" style="border-radius: 3px;" value="0:00 AM" stitm="sunday">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col s3">
-                                            <input type="text" class="timepicker btn opacitySelectedColor" id="wkndSun" style="border-radius: 3px;" value="edit">
                                         </div>
                                     </div>
                                 </div>
@@ -2370,7 +2446,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--
+                                <div class="row storeSettingsDivs">
+                                    <h6>Fullscreen Settings</h6>
+                                    <div class="row" style="text-align: center;margin-bottom: 5px;">
+                                        <div class="col s6">
+                                            <span>Enable / Disable </span>
+                                        </div>
+                                        <div class="col s6"></div>
+
+                                        <span>
+                                                <div class="switch">
+                                                    <label>
+                                                        Off
+                                                        <input id="fullscreenState" type="checkbox" stitm="fullscreenState">
+                                                        <span class="lever"></span> On
+                                        </label>
+                                    </div>
+                                    </span>
+                                </div>
+                        </div>
+                        <!--
                                             <div class="row storeSettingsDivs">
                                                 <h6>Withdraw Money</h6>
                                                 <div class="row">
@@ -2382,114 +2477,114 @@
                                                 </div>
                                             </div>
 -->
-                                <div class="permanentChng" style="margin: 30px 10px;">
-                                    <h6><span style="background:#EEEEEF;">These changes will be permanent</span></h6>
+                        <div class="permanentChng" style="margin: 30px 10px;">
+                            <h6><span style="background:#EEEEEF;">These changes will be permanent</span></h6>
+                        </div>
+                        <div class="row storeSettingsDivs">
+                            <h6>Transfer Store</h6>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="transfer-shop" type="text" class="validate" placeholder="username" stitm="shopTransfer">
+                                    <label for="transfer-shop" class="">Transfer Shop</label>
                                 </div>
-                                <div class="row storeSettingsDivs">
-                                    <h6>Transfer Store</h6>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="transfer-shop" type="text" class="validate" placeholder="username" stitm="shopTransfer">
-                                            <label for="transfer-shop" class="">Transfer Shop</label>
-                                        </div>
+                            </div>
+                        </div>
+                        <div class="row storeSettingsDivs">
+                            <h6>Delete Store</h6>
+                            <div class="row">
+                                <a class="waves-effect waves-light btn" style="background:red; display: block; margin: 15px 5px;" onclick='$("#deleteStoreModal").modal("open")'>Delete Store</a>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="checkStoreOwner" style="display: none;">
+                    <div style=" width: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: 25px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 16 16"><path fill="#444444" d="M8 1c3.9 0 7 3.1 7 7s-3.1 7-7 7-7-3.1-7-7 3.1-7 7-7zM8 0c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8v0z"></path><path fill="#444444" d="M7 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11.3 12.3c-0.7-1.1-2-1.8-3.3-1.8s-2.6 0.7-3.3 1.8l-0.8-0.6c0.9-1.4 2.4-2.2 4.1-2.2s3.2 0.8 4.1 2.2l-0.8 0.6z"></path></svg></div>
+                    <p style=" text-align: center; color: #4e4b4b; font-weight: bold;">Ooops!!! You do not have access to store settings</p>
+                </div>
+            </div>
+        </div>
+        <div class="entSettings">
+            <div class="row storeEntSettings">
+                <div id="entSettingsTab" class="col s12">
+                    <div class="row entSettingsContainer">
+                        <div class="row entStatus">
+                            <h6>Status</h6>
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col s8">
+                                    <p style=" margin: 0px; float: right; margin-right: 10px;">Activate / Deactivate Tokens</p>
+                                </div>
+                                <div class="col s4">
+                                    <!-- Disabled Switch -->
+                                    <div class="switch">
+                                        <label>
+                                            <input type="checkbox" id="tkSaleSet" entInpt="checkbox">
+                                            <span class="lever"></span>
+                                        </label>
                                     </div>
                                 </div>
-                                <div class="row storeSettingsDivs">
-                                    <h6>Delete Store</h6>
-                                    <div class="row">
-                                        <a class="waves-effect waves-light btn" style="background:red; display: block; margin: 15px 5px;" onclick='$("#deleteStoreModal").modal("open")'>Delete Store</a>
+                            </div>
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col s8">
+                                    <p style=" margin: 0px; float: right; margin-right: 10px;">Show / Hide Managers</p>
+                                </div>
+                                <div class="col s4">
+                                    <!-- Disabled Switch -->
+                                    <div class="switch">
+                                        <label>
+                                            <input type="checkbox" id="showHideMngr" entInpt="checkbox"> 
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row entBanner">
+                            <h6>Banner</h6>
+                            <form action="#">
+                                <div class="file-field input-field">
+                                    <div class="btn opacitySelectedColor">
+                                        <span>File</span>
+                                        <input type="file" id="entBanner" class="serviceImage" entInpt="entBanner">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" entInpt="skipBannerInpt">
                                     </div>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div id="checkStoreOwner" style="display: none;">
-                        <div style=" width: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: 25px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 16 16"><path fill="#444444" d="M8 1c3.9 0 7 3.1 7 7s-3.1 7-7 7-7-3.1-7-7 3.1-7 7-7zM8 0c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8v0z"></path><path fill="#444444" d="M7 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11.3 12.3c-0.7-1.1-2-1.8-3.3-1.8s-2.6 0.7-3.3 1.8l-0.8-0.6c0.9-1.4 2.4-2.2 4.1-2.2s3.2 0.8 4.1 2.2l-0.8 0.6z"></path></svg></div>
-                        <p style=" text-align: center; color: #4e4b4b; font-weight: bold;">Ooops!!! You do not have access to store settings</p>
-                    </div>
-                </div>
-            </div>
-            <div class="entSettings">
-                <div class="row storeEntSettings">
-                    <div id="entSettingsTab" class="col s12">
-                        <div class="row entSettingsContainer">
-                            <div class="row entStatus">
-                                <h6>Status</h6>
-                                <div class="row" style="margin-top: 20px">
-                                    <div class="col s8">
-                                        <p style=" margin: 0px; float: right; margin-right: 10px;">Activate / Deactivate Tokens</p>
-                                    </div>
-                                    <div class="col s4">
-                                        <!-- Disabled Switch -->
-                                        <div class="switch">
-                                            <label>
-                                            <input type="checkbox" id="tkSaleSet" entInpt="checkbox">
-                                            <span class="lever"></span>
-                                        </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: 20px">
-                                    <div class="col s8">
-                                        <p style=" margin: 0px; float: right; margin-right: 10px;">Show / Hide Managers</p>
-                                    </div>
-                                    <div class="col s4">
-                                        <!-- Disabled Switch -->
-                                        <div class="switch">
-                                            <label>
-                                            <input type="checkbox" id="showHideMngr" entInpt="checkbox"> 
-                                            <span class="lever"></span>
-                                        </label>
-                                        </div>
-                                    </div>
+                        <div class="row storeSettingsDivs" style="width: 90%; margin-left: 5% !important;">
+                            <h6>Business Category</h6>
+                            <div class="row categoriesRow">
+                                <div class="input-field col s12">
+                                    <select class="categorySelect" id="categorySelect"></select>
+                                    <label>Select Category</label>
                                 </div>
                             </div>
-                            <div class="row entBanner">
-                                <h6>Banner</h6>
-                                <form action="#">
-                                    <div class="file-field input-field">
-                                        <div class="btn opacitySelectedColor">
-                                            <span>File</span>
-                                            <input type="file" id="entBanner" class="serviceImage" entInpt="entBanner">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate" type="text" entInpt="skipBannerInpt">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row storeSettingsDivs" style="width: 90%; margin-left: 5% !important;">
-                                <h6>Business Category</h6>
-                                <div class="row categoriesRow">
+                        </div>
+                        <div class="row entForms">
+                            <h6>About</h6>
+                            <form class="col s12">
+                                <div class="row">
                                     <div class="input-field col s12">
-                                        <select class="categorySelect" id="categorySelect"></select>
-                                        <label>Select Category</label>
+                                        <input id="entAboutHeader" entInpt="entAboutTitle" type="text" class="validate">
+                                        <label for="email">About Header</label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row entForms">
-                                <h6>About</h6>
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="entAboutHeader" entInpt="entAboutTitle" type="text" class="validate">
-                                            <label for="email">About Header</label>
-                                        </div>
+                            </form>
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="entAboutBody" entInpt="entAboutBody" type="text" class="validate">
+                                        <label for="email">About Body</label>
                                     </div>
-                                </form>
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="entAboutBody" entInpt="entAboutBody" type="text" class="validate">
-                                            <label for="email">About Body</label>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row entServicesSettings">
-                                <h6>Section One</h6>
-                                <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
-                                    <i id="addEntServiceOne">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row entServicesSettings">
+                            <h6>Section One</h6>
+                            <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
+                                <i id="addEntServiceOne">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100; width: 20px; float: left; margin-right: 10px;" xml:space="preserve">
                                             <path style="fill:white;" d="M40,50c0,2.762-2.238,5-5,5H5c-2.762,0-5-2.238-5-5s2.238-5,5-5h30C37.762,45,40,47.238,40,50z    M35,65H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,65,35,65z M97,45H80V28c0-2.762-2.238-3-5-3   s-5,0.238-5,3v17H53.5c-2.762,0-3,2.238-3,5s0.238,5,3,5H70v17c0,2.762,2.238,3,5,3s5-0.238,5-3V55h17c2.762,0,3-2.238,3-5   S99.762,45,97,45z M35,25H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,25,35,25z"/>
@@ -2497,14 +2592,14 @@
                                         </svg>
                                     </span>Add New
                                 </i>
-                                </div>
-                                <div class="entServicesContainer entServiceOne">
-                                </div>
                             </div>
-                            <div class="row entServicesSettings">
-                                <h6>Section Two</h6>
-                                <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
-                                    <i id="addEntServiceTwo">
+                            <div class="entServicesContainer entServiceOne">
+                            </div>
+                        </div>
+                        <div class="row entServicesSettings">
+                            <h6>Section Two</h6>
+                            <div class="opacitySelectedColor" style="position: absolute; right: 7px; top: 5px; color: white; padding: 4px 10px; border-radius: 3px;">
+                                <i id="addEntServiceTwo">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100; width: 20px; float: left; margin-right: 10px;" xml:space="preserve">
                                             <path style="fill:white;" d="M40,50c0,2.762-2.238,5-5,5H5c-2.762,0-5-2.238-5-5s2.238-5,5-5h30C37.762,45,40,47.238,40,50z    M35,65H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,65,35,65z M97,45H80V28c0-2.762-2.238-3-5-3   s-5,0.238-5,3v17H53.5c-2.762,0-3,2.238-3,5s0.238,5,3,5H70v17c0,2.762,2.238,3,5,3s5-0.238,5-3V55h17c2.762,0,3-2.238,3-5   S99.762,45,97,45z M35,25H5c-2.762,0-5,2.238-5,5s2.238,5,5,5h30c2.762,0,5-2.238,5-5S37.762,25,35,25z"/>
@@ -2512,11 +2607,11 @@
                                         </svg>
                                     </span>Add New
                                 </i>
-                                </div>
-                                <div class="entServicesContainer entServiceTwo">
-                                </div>
                             </div>
-                            <!--
+                            <div class="entServicesContainer entServiceTwo">
+                            </div>
+                        </div>
+                        <!--
                             <div class="row entBanner" style="margin-bottom: 20px;">
                                 <h6>Token Sale</h6>
                                 <div class="row">
@@ -2528,87 +2623,105 @@
                                 </div>
                             </div>
 -->
-                            <div class="row storeSettingsDivs" style="width: 90%;margin-left: 5% !important;margin-bottom: 20px;">
-                                <h6>Daily Budget</h6>
-                                <div class="row budget">
-                                    <div class="input-field col s12">
-                                        <input id="dailyBudget" type="text" class="validate" placeholder="Ksh" stitm="dailyBudget">
-                                        <label for="dailyBudget" class="active">Daily Budget</label>
-                                    </div>
+                        <div class="row storeSettingsDivs" style="width: 90%;margin-left: 5% !important;margin-bottom: 20px;">
+                            <h6>Daily Budget</h6>
+                            <div class="row budget">
+                                <div class="input-field col s12">
+                                    <input id="dailyBudget" type="text" class="validate" placeholder="Ksh" stitm="dailyBudget">
+                                    <label for="dailyBudget" class="active">Daily Budget</label>
                                 </div>
-                            </div>
-                            <div class="row storeSettingsDivs" style="width: 90%; margin-left: 20px !important;">
-                                <h6>Store Theme</h6>
-                                <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px;">
-                                    <li>
-                                        <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%;padding-bottom: 0px;border-bottom: none;">
-                                            <div class="input-field col s12" style="padding: 0px;">
-                                                <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none; margin-bottom: 0px;">
-                                            </div>
-                                        </div>
-                                        <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; right:20px; margin-top:-55px;float:right;" id="themeUpdate">ok</a>
-                                        <div class="collapsible-body" style="padding:10px;">
-                                            <span>
-                                                    <div class="themeCanvas"></div>
-                                                </span>
-                                        </div>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
-                        <div class="entApplication" style="text-align: center;">
-                            <div style=" width: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: 25px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 16 16"><path fill="#444444" d="M8 1c3.9 0 7 3.1 7 7s-3.1 7-7 7-7-3.1-7-7 3.1-7 7-7zM8 0c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8v0z"></path><path fill="#444444" d="M7 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11.3 12.3c-0.7-1.1-2-1.8-3.3-1.8s-2.6 0.7-3.3 1.8l-0.8-0.6c0.9-1.4 2.4-2.2 4.1-2.2s3.2 0.8 4.1 2.2l-0.8 0.6z"></path></svg></div>
-                            <p style=" text-align: center; color: #4e4b4b; font-weight: bold;">You do not have an active domain for your business.<br> To get one enter your prefered domain below and complete payment</p>
-                            <div class="row" style="width: 90%;display: block; margin-left: auto; margin-right: auto; margin-bottom: 30px;">
-                                <div class="input-field col s12" style="">
-                                    <div class="row">
-                                        <div class="col s8" style="padding-left: 0px;text-align: left;">
-                                            <label for="businessDomain">Domain</label>
-                                            <input placeholder="example" id="businessDomainInput" type="text" class="validate" entInpt="newEnt">
+                        <div class="row storeSettingsDivs" style="width: 90%; margin-left: 20px !important;">
+                            <h6>Store Theme</h6>
+                            <ul class="collapsible" data-collapsible="accordion" style="box-shadow:none;border:none;margin-top:-10px;">
+                                <li>
+                                    <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%;padding-bottom: 0px;border-bottom: none;">
+                                        <div class="input-field col s12" style="padding: 0px;">
+                                            <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none; margin-bottom: 0px;">
                                         </div>
-                                        <div class="col s4">
-                                            <div class="input-field col s12" id="domainSuffix">
-                                                <select>                                             
+                                    </div>
+                                    <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; right:20px; margin-top:-55px;float:right;" id="themeUpdate">ok</a>
+                                    <div class="collapsible-body" style="padding:10px;">
+                                        <span>
+                                                    <div class="themeCanvas"></div>
+                                                </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="entApplication" style="text-align: center;">
+                        <div style=" width: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: 25px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 16 16"><path fill="#444444" d="M8 1c3.9 0 7 3.1 7 7s-3.1 7-7 7-7-3.1-7-7 3.1-7 7-7zM8 0c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8v0z"></path><path fill="#444444" d="M7 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11.3 12.3c-0.7-1.1-2-1.8-3.3-1.8s-2.6 0.7-3.3 1.8l-0.8-0.6c0.9-1.4 2.4-2.2 4.1-2.2s3.2 0.8 4.1 2.2l-0.8 0.6z"></path></svg></div>
+                        <p style=" text-align: center; color: #4e4b4b; font-weight: bold;">You do not have an active domain for your business.<br> To get one enter your prefered domain below and complete payment</p>
+                        <div class="row" style="width: 90%;display: block; margin-left: auto; margin-right: auto; margin-bottom: 30px;">
+                            <div class="input-field col s12" style="">
+                                <div class="row">
+                                    <div class="col s8" style="padding-left: 0px;text-align: left;">
+                                        <label for="businessDomain">Domain</label>
+                                        <input placeholder="example" id="businessDomainInput" type="text" class="validate" entInpt="newEnt">
+                                    </div>
+                                    <div class="col s4">
+                                        <div class="input-field col s12" id="domainSuffix">
+                                            <select>                                             
                                                     <option value="1">.co.ke</option>        
                                                 </select>
-                                                 <label>Domain suffix</label> 
-                                            </div>
-
+                                            <label>Domain suffix</label>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
-                            <div class="row"></div>
-                            <button class="btn opacitySelectedColor" style="padding: 0px 20px 0px 50px; position: relative;" id="businessDomainMonthly">
+                        </div>
+                        <div class="row"></div>
+                        <button class="btn opacitySelectedColor" style="padding: 0px 20px 0px 50px; position: relative;" id="businessDomainMonthly" disabled>
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 26 26" style="enable-background:new 0 0 26 26; position: absolute; left: 15px; top: 8px; width:20px;" xml:space="preserve">
                                                 <path d="M25.856,10.641C21.673,19.5,20.312,19.5,19.5,19.5h-8c-2.802,0-4.949-1.648-5.47-4.2   c-0.016-0.078-1.6-7.853-2.005-10.025C3.826,4.21,3.32,3.5,1.5,3.5C0.671,3.5,0,2.829,0,2s0.671-1.5,1.5-1.5   c3.02,0,4.964,1.5,5.474,4.224c0.401,2.149,1.98,9.898,1.996,9.977c0.319,1.566,1.722,1.8,2.53,1.8h7.605   c0.817-0.878,2.679-4.261,4.038-7.141c0.354-0.749,1.249-1.068,1.997-0.716C25.89,8.997,26.21,9.891,25.856,10.641z M10.5,20.5   C9.119,20.5,8,21.619,8,23s1.119,2.5,2.5,2.5S13,24.381,13,23S11.881,20.5,10.5,20.5z M19.5,20.5c-1.381,0-2.5,1.119-2.5,2.5   s1.119,2.5,2.5,2.5S22,24.381,22,23S20.881,20.5,19.5,20.5z M14.663,12.344c0.1,0.081,0.223,0.12,0.346,0.12   s0.244-0.039,0.346-0.12c0.1-0.079,2.828-2.74,4.316-4.954c0.115-0.172,0.126-0.392,0.028-0.574   c-0.095-0.181-0.285-0.295-0.49-0.295h-2.226c0,0-0.217-4.291-0.359-4.49c-0.206-0.294-1.057-0.494-1.616-0.494   c-0.561,0-1.427,0.2-1.634,0.494c-0.141,0.198-0.328,4.49-0.328,4.49h-2.255c-0.206,0-0.395,0.114-0.492,0.295   c-0.097,0.182-0.086,0.403,0.028,0.574C11.816,9.605,14.564,12.265,14.663,12.344z" fill="#FFFFFF"/>
                                             </svg>pay 500 monthly
                                         </button>
-                            <br>
-                            <br>
-                            <button class="btn opacitySelectedColor" style="padding: 0px 20px 0px 50px; position: relative;" id="businessDomainYealy">
+                        <br>
+                        <br>
+                        <button class="btn opacitySelectedColor" style="padding: 0px 20px 0px 50px; position: relative;" id="businessDomainYealy" disabled>
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 26 26" style="enable-background:new 0 0 26 26; position: absolute; left: 15px; top: 8px; width:20px;" xml:space="preserve">
                                                 <path d="M25.856,10.641C21.673,19.5,20.312,19.5,19.5,19.5h-8c-2.802,0-4.949-1.648-5.47-4.2   c-0.016-0.078-1.6-7.853-2.005-10.025C3.826,4.21,3.32,3.5,1.5,3.5C0.671,3.5,0,2.829,0,2s0.671-1.5,1.5-1.5   c3.02,0,4.964,1.5,5.474,4.224c0.401,2.149,1.98,9.898,1.996,9.977c0.319,1.566,1.722,1.8,2.53,1.8h7.605   c0.817-0.878,2.679-4.261,4.038-7.141c0.354-0.749,1.249-1.068,1.997-0.716C25.89,8.997,26.21,9.891,25.856,10.641z M10.5,20.5   C9.119,20.5,8,21.619,8,23s1.119,2.5,2.5,2.5S13,24.381,13,23S11.881,20.5,10.5,20.5z M19.5,20.5c-1.381,0-2.5,1.119-2.5,2.5   s1.119,2.5,2.5,2.5S22,24.381,22,23S20.881,20.5,19.5,20.5z M14.663,12.344c0.1,0.081,0.223,0.12,0.346,0.12   s0.244-0.039,0.346-0.12c0.1-0.079,2.828-2.74,4.316-4.954c0.115-0.172,0.126-0.392,0.028-0.574   c-0.095-0.181-0.285-0.295-0.49-0.295h-2.226c0,0-0.217-4.291-0.359-4.49c-0.206-0.294-1.057-0.494-1.616-0.494   c-0.561,0-1.427,0.2-1.634,0.494c-0.141,0.198-0.328,4.49-0.328,4.49h-2.255c-0.206,0-0.395,0.114-0.492,0.295   c-0.097,0.182-0.086,0.403,0.028,0.574C11.816,9.605,14.564,12.265,14.663,12.344z" fill="#FFFFFF"/>
                                             </svg>
                                             pay 4000 yearly
                                         </button>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--------- Settings PAGE End ----------->
+    </div>
+    <!--------- Settings PAGE End ----------->
 
-        <!--------- MANAGERS PAGE START ----------->
-        <div class="col s12 m4 l4 Managers" style="display:none; padding:10px;">
-            <div class="row" style="background: white; margin-left: auto; margin-right: auto; border-radius: 5px; padding: 10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);text-align:center;margin-top:40px;margin-bottom:20px;">
-                <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -17px;">Current Managers</a>
-                <div class="input-field col s12" style="text-align:left;">
-                    <div id="managersLst">
-                    </div>
+
+    <!--------- Settings PAGE Start --------->
+    <div class="col s12 m4 l4 feedbackPage" style="display:none; overflow-x: hidden !important; height: 91vh !important; overflow-y: scroll !important;padding-bottom: 20px;">
+        <div class="sc-gauge">
+            <div class="sc-background">
+                <div class="sc-percentage opacitySelectedColor"></div>
+                <div class="sc-mask"></div>
+                <span class="sc-value"><span id="feedPercentageLevel">88</span>%</span>
+            </div>
+            <span class="sc-min">0</span>
+            <span class="sc-max">100</span>
+        </div>
+        <div class="feedback">
+        </div>
+        <div id="feedbackContentPage" style="display: none;">
+        </div>
+    </div>
+
+    <!--------- MANAGERS PAGE START ----------->
+    <div class="col s12 m4 l4 Managers" style="display:none; padding:10px;">
+        <div class="row" style="background: white; margin-left: auto; margin-right: auto; border-radius: 5px; padding: 10px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);text-align:center;margin-top:40px;margin-bottom:20px;">
+            <a style="background: #7EB7C8; padding: 7px 15px; font-size: 1em; color: white; font-weight: bold; text-transform: capitalize; border-radius: 5px; border: solid white 7px; position: relative; left: 0px; right: 0px; top: -17px;">Current Managers</a>
+            <div class="input-field col s12" style="text-align:left;">
+                <div id="managersLst">
                 </div>
             </div>
-            <!--
+        </div>
+        <!--
                     <div class="fixed-action-btn" style="z-index:0;">
                         <a class="btn-floating opacitySelectedColor" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em; background: rgb(32, 29, 29); filter: brightness(1.3);" href="#mngrSettings">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 231.233 231.233" style="enable-background:new 0 0 231.233 231.233;margin: 10px;" xml:space="preserve">
@@ -2617,13 +2730,13 @@
                         </a>
                     </div>
 -->
-            <div class="fixed-action-btn direction-top active" style="z-index:0;">
-                <a class="btn-floating opacitySelectedColor" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em; background: rgb(35, 31, 31); filter: brightness(1.3);" onclick="$('#addManagersModal').modal('open')" href="#addManagersModal">
-                    <p style="margin-top:0px !important;text-align:center;">+</p>
-                </a>
-            </div>
+        <div class="fixed-action-btn direction-top active" style="z-index:0;">
+            <a class="btn-floating opacitySelectedColor" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em; background: rgb(35, 31, 31); filter: brightness(1.3);" onclick="$('#addManagersModal').modal('open')" href="#addManagersModal">
+                <p style="margin-top:0px !important;text-align:center;">+</p>
+            </a>
         </div>
-        <!--------- MANAGERS PAGE END ----------->
+    </div>
+    <!--------- MANAGERS PAGE END ----------->
     </div>
     </section>
     </div>
@@ -2675,6 +2788,7 @@
     <script async src="js/promo.js"></script>
     <script async src="js/products.js"></script>
     <script async src="js/sales.js"></script>
+    <script async src="js/feedback.js"></script>
 
     <script>
         function signOut() {
@@ -2718,6 +2832,7 @@
     <script async src="js/color-thief.js"></script>
     <script async src="js/quagga.js"></script>
     <script async src="js/barcodeReader.js"></script>
+    <script async src="js/screenOrientation.js"></script>
     <script>
         function ColorPicker() {
             this.singleColorCanvas = $('.spectrum-color').get(0);
@@ -2840,6 +2955,7 @@
             callPromoActivations()
             initDeilveryFunctions()
             $("input").characterCounter();
+            $('.timepicker').timepicker();
         });
 
     </script>

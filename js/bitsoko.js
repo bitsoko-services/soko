@@ -76,7 +76,7 @@ function profileLoaded(p) {
     updateStores();
 
     setTimeout(userNamesInput, 18000);
-    setInterval(updateStores, 120000);
+    //    setInterval(updateStores, 120000);
     /*
     doFetch({
         action: 'getMadr',
@@ -264,9 +264,9 @@ function updateStores() {
         loadPOS();
     });
     loadWalletBal();
-    
+
     var hostName = window.location.hostname.includes('bitsoko')
-    if(hostName){
+    if (hostName) {
         $("#tokenSale").css("display", "none");
     }
 }
@@ -713,6 +713,12 @@ function userNamesInput() {
         action: 'getAllUsers',
         data: inputVal
     }).then(function (e) {
+        if (e.status == "ok") {
+            storeFeed();
+        }
+        else{
+            
+        }
         var dat = {}
         deliveryGuys = e.users;
         for (var iii in e.users) {
@@ -731,6 +737,7 @@ function userNamesInput() {
         $("#delivery-members").autocomplete({
             data: dat
         });
+        deliveryMbr();
     });
 }
 

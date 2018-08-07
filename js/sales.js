@@ -394,7 +394,6 @@ function orderUpdater() {
 
         setTimeout(function () {
             $('.collapsible').collapsible();
-            setTimeout(deliveryMbr, 3000);
         }, 100);
 
         //Cancel Order Btn
@@ -434,11 +433,7 @@ function orderUpdater() {
             return false;
         });
         $('.radioDelivered').on('click', function () {
-            $('#deliverOrderModal').modal({
-                ready: function (modal, trigger) {
-                    setTimeout(deliveryMbr, 1000);
-                }
-            }).modal('open');
+            $('#deliverOrderModal').modal({}).modal('open');
         })
         //        $('.radioDelivered').on('click', function () {
         //            var id = $(this).attr('id');

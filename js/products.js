@@ -5,13 +5,22 @@ function refreshProducts() {
         action: 'getProducts',
         id: localStorage.getItem('soko-active-store')
     }).then(function (e) {
-        getAllProducts = e.products
-        console.log(e);
-        getObjectStore('data', 'readwrite').put(JSON.stringify(e.products), 'soko-store-' + localStorage.getItem('soko-active-store') + '-products');
-        productsUpdater();
-        promoCreator();
         if (e.status == "ok") {
-            populateProductCategories()
+            getAllProducts = e.products
+            console.log(e);
+            getObjectStore('data', 'readwrite').put(JSON.stringify(e.products), 'soko-store-' + localStorage.getItem('soko-active-store') + '-products');
+            productsUpdater();
+            promoCreator();
+
+//            if ($(".fullscreenToast").length >= 1) {
+//                $(".fullscreenToast").remove();
+//            }
+//            var toastHTML = '<span>Enable fullscreen mode</span><button class="btn-flat toast-action" onclick="fullScreenMode();">ok</button>';
+//            M.toast({
+//                html: toastHTML,
+//                displayLength: 5000,
+//                classes: "fullscreenToast"
+//            });
         }
     }).catch(function (err) {
         productsUpdater();
@@ -142,9 +151,6 @@ $(document).on("click", ".categoryChip", function () {
 $('#dlvryPage').click(function () {
     $("#managersClickEvent").click();
 })
-$(".prodactsPage").one("click", function () {
-    populateProductCategories();
-});
 $(document).on('touchstart click', '.prodactsPage', function () {
     $(".activePage").html("Products")
 });
@@ -301,16 +307,24 @@ function productsUpdater() {
         $('select').formSelect();
         M.updateTextFields();
         initProdCallback();
+        populateProductCategories();
     }
 }
 
 //Populate Individual Product Category
 function populateProductCategories() {
+    var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
+    var parsedCheckProdCat = JSON.parse(checkProdCat)
+
+    $(".productCategory").html("")
+    for (var s = 0; s < parsedCheckProdCat.length; ++s) {
+        var ctgryLst = parsedCheckProdCat[s].name
+        $(".productCategory").append('<option selected="">' + ctgryLst + '</option>')
+    }
     setTimeout(function () {
         try {
             for (var i = 0; i < prodUID.length; ++i) {
                 //Product Categories
-                var checkProdCat = JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).productCategory
                 if (checkProdCat == "") {
                     console.log("Can not find product categories")
                 } else {
@@ -589,7 +603,7 @@ for (var i = 0; i < shroot.length; ++i) {
         } else {
             newProdDat[val] = $(value).val();
         }
-        var newProdCat = $(".productCategory input").val();
+        var newProdCat = $(".addNewPrdCat input").val()
         newProdDat.productCategory = newProdCat;
     }, false);
 };
