@@ -40,6 +40,14 @@ nav {
     padding: 10px;
 }
 
+#switchStoreContent>li.collection-item.avatar {
+    max-width: 350px;
+    display: inline-block;
+    margin: 10px;
+    width: 45%;
+    min-width: 300px;
+}
+
 nav {
     background-color: #0F5F75 !important;
 }
