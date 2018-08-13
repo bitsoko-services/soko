@@ -365,24 +365,28 @@ function reqSend(data) {
 
 function updateMerch(s) {
     //localStorage.setItem('soko-active-store',services[0].id);
-    $('.store-name').html(s.name);
-    $('.store-desc').html(s.description);
-    //$('.store-img').attr('src', s.icon);
-    //document.getElementByClass('user-details')
-    $("ul.side-nav.leftside-navigation li.user-details").css("background", "url(" + s.bannerPath + ") no-repeat center center").css("background-size", "cover");;
-    var x = document.getElementsByClassName('user-details');
-    var i;
-    for (i = 0, s = s; i < x.length; i++) {
-        //x[i].style.background = s.banner;
-    }
-    if (s.credit == "") {
-        $('.loadStoreBal').html("0");
-    } else {
-        fetchRates().then(function (e) {
-            if (e.status == "ok") {
-                console.log((baseX * allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate))
-            }
-        });
+    try {
+        $('.store-name').html(s.name);
+        $('.store-desc').html(s.description);
+        //$('.store-img').attr('src', s.icon);
+        //document.getElementByClass('user-details')
+        $("ul.side-nav.leftside-navigation li.user-details").css("background", "url(" + s.bannerPath + ") no-repeat center center").css("background-size", "cover");;
+        var x = document.getElementsByClassName('user-details');
+        var i;
+        for (i = 0, s = s; i < x.length; i++) {
+            //x[i].style.background = s.banner;
+        }
+        if (s.credit == "") {
+            $('.loadStoreBal').html("0");
+        } else {
+            fetchRates().then(function (e) {
+                if (e.status == "ok") {
+                    console.log((baseX * allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate))
+                }
+            });
+        }
+    } catch (err) {
+        console.log(err)
     }
 };
 
@@ -715,9 +719,8 @@ function userNamesInput() {
     }).then(function (e) {
         if (e.status == "ok") {
             storeFeed();
-        }
-        else{
-            
+        } else {
+
         }
         var dat = {}
         deliveryGuys = e.users;
