@@ -256,11 +256,12 @@ function doSwitchStore() {
     var html = ' <li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem grey circle"></i><div class="row">' + '<p class="collections-title"><strong>changing store</strong></p><p class="collections-content">...</p></div>' + '</li>';
     $('.chStoreUpdate').append(html);
     $('#switchStoreModal').modal({
-        complete: function () {
+        onCloseEnd: function () {
             M.toast({
                 html: 'changing store..',
                 displayLength: 2000
-            })
+            });
+            alert("working")
             beaconsUpdater();
             promoUpdater();
             billingUpdater();
@@ -271,6 +272,9 @@ function doSwitchStore() {
             addManagers();
         }
     }).modal('close');
+    setTimeout(function () {
+        deliveryMbr();
+    }, 3000)
 }
 
 //Verify Phone Number

@@ -269,6 +269,7 @@ function updateStores() {
     if (hostName) {
         $("#tokenSale").css("display", "none");
     }
+    deliveryMbr();
 }
 
 function reqMsg(data) {
@@ -740,7 +741,6 @@ function userNamesInput() {
         $("#delivery-members").autocomplete({
             data: dat
         });
-        deliveryMbr();
     });
 }
 
