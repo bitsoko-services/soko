@@ -159,53 +159,6 @@ function initDeilveryFunctions() {
         });
     });
 
-    //Delivery Members
-    $('document').ready(function () {
-        $(document).on('click', $('.deliveryField ul.autocomplete-content li'), function (e) {
-            var value = $('#delivery-members').val();
-            if (value != '') {
-                var deliveryMembers = $('#delivery-members').val();
-                for (var i in deliveryGuys) {
-                    var name = deliveryGuys[i].name;
-                    var id = deliveryGuys[i].id;
-                    if (deliveryMembers == name) {
-                        $("#confirmAddMember").modal("open");
-                        $("#operatorName").html(name);
-                        var thisOperator = id;
-                        $('#yesOperatorBtn').on('click', function (event) {
-                            event.preventDefault();
-                            doFetch({
-                                action: 'deliveryMembers',
-                                store: localStorage.getItem('soko-active-store'),
-                                do: 'add',
-                                data: thisOperator
-                            }).then(function (e) {
-                                if (e.status == 'ok') {
-                                    deliveryMbr();
-                                    $("#confirmAddMember").modal("close");
-                                    $('#delivery-members').val("");
-                                    $("#addOperatorsModal").modal("close");
-                                    M.toast({
-                                        html: 'Operator added successfully.',
-                                        displayLength: 3000
-                                    })
-                                } else {
-                                    M.toast({
-                                        html: 'Error!!! Try again later',
-                                        displayLength: 3000
-                                    })
-                                }
-                            });
-                        });
-                        $('#noOperatorBtn').on('click', function () {
-                            $("#confirmAddMember").modal("close");
-                        });
-                    }
-                }
-            }
-        });
-    });
-
 
     //Delivery Member List
     //function deliveryMemberLst() {
@@ -260,9 +213,6 @@ function initDeilveryFunctions() {
                     console.log($("#delivery-members").val(""));
                 } else {}
             });
-        });
-        $('#noMemberBtn').on('click', function () {
-            $('#removeMemberModal').modal('close');
         });
     });
     //Delivery Rate
@@ -389,6 +339,50 @@ distanceSlide.onchange = function () {
             });
         }
     });
+}
+
+function manageOperators() {
+    var value = $('#delivery-members').val();
+    if (value != '') {
+        $("#confirmAddMember").modal("open");
+        var deliveryMembers = $('#delivery-members').val();
+        for (var i in deliveryGuys) {
+            var name = deliveryGuys[i].name;
+            var id = deliveryGuys[i].id;
+            if (deliveryMembers == name) {
+                $("#operatorName").html(name);
+                var thisOperator = id;
+                $('#yesOperatorBtn').unbind().on('click', function (event) {
+                    event.preventDefault();
+                    doFetch({
+                        action: 'deliveryMembers',
+                        store: localStorage.getItem('soko-active-store'),
+                        do: 'add',
+                        data: thisOperator
+                    }).then(function (e) {
+                        if (e.status == 'ok') {
+                            deliveryMbr();
+                            $("#confirmAddMember").modal("close");
+                            $('#delivery-members').val("");
+                            $("#addOperatorsModal").modal("close");
+                            M.toast({
+                                html: 'Operator added successfully.',
+                                displayLength: 3000
+                            })
+                        } else {
+                            M.toast({
+                                html: 'Error!!! Try again later',
+                                displayLength: 3000
+                            })
+                        }
+                    });
+                });
+                $('#noOperatorBtn').on('click', function () {
+                    $("#confirmAddMember").modal("close");
+                });
+            }
+        }
+    }
 }
 
 //Select Deliver Operator For Order
