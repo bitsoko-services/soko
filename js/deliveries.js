@@ -86,7 +86,7 @@ function initDeilveryFunctions() {
         step: 500,
         range: {
             'min': 500,
-            'max': 10000
+            'max': 15000
         },
     });
 
