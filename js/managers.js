@@ -1,4 +1,4 @@
-$('.addNewManager').on('click', $('ul.autocomplete-content li'), function () {
+function managerManagers() {
     var value = $('#sokoMangers').val();
     if (value != '') {
         var managerSlct = $('#storeManagers').val();
@@ -28,7 +28,7 @@ $('.addNewManager').on('click', $('ul.autocomplete-content li'), function () {
             }
         }
     }
-});
+};
 
 //Open Managers Page
 $(document).on("click", "#opnMngPg", function () {
