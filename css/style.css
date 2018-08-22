@@ -30,6 +30,10 @@ nav {
     background: #005E77 !important;
 }
 
+#packagingModal .character-counter {
+    display: none !important;
+}
+
 .switchStoreHeader {
     background: #7eb7c8;
     color: white;
