@@ -720,6 +720,7 @@ function userNamesInput() {
     }).then(function (e) {
         if (e.status == "ok") {
             storeFeed();
+            deliveryMbr();
         } else {
 
         }
