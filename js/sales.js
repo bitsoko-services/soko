@@ -278,7 +278,7 @@ function addToWithdraw(r) {
 
     var d = new Date();
     var step;
-    
+
     //Populate weekly Income
     for (step = 0; step < 7; step++) {
         var nextStep = step + 1
@@ -293,7 +293,7 @@ function addToWithdraw(r) {
             $("#weeklySalesVal").html(sum)
         }
     }
-    
+
     //Populate Monthly Income
     for (step = 0; step < 30; step++) {
         var nextStep = step + 1
@@ -337,6 +337,7 @@ function orderUpdater() {
         weekIncomeArray.length = 0
         monthIncomeArray.length = 0
         $(".sales-holda").html("");
+        var totalPrice = []
         for (var i = 0; i < reqs.length; ++i) {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
@@ -360,6 +361,20 @@ function orderUpdater() {
             var deliveredBy = reqs[i].deliveredBy;
 
             if (reqs[i].state == "complete") {
+                //Calculate total price for completed orders
+//                var allItems = JSON.parse(reqs[i].items)
+//                for (item in allItems) {
+//                    for (prd in globalProductList) {
+//                        if (globalProductList[prd].id == allItems[item].pid) {
+//                            console.log("Inside")
+//                            console.log(globalProductList[prd].price * allItems[item].count)
+//                            totalPrice.push(globalProductList[prd].price * allItems[item].count)
+//                        }
+//                    }
+//                    console.log(allItems[item].pid, allItems[item].count)
+//
+//                }
+//                console.log(JSON.parse(reqs[i].items))
                 //create a function to add
                 addToWithdraw(reqs[i])
 

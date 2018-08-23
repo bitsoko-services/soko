@@ -11,6 +11,18 @@ $(document).on("click touchstart keypress", "#categoryName", function (event) {
     if (k == 32) return false;
 })
 
+//Convert 12 hour to 24
+function convertTo24Hour(time) {
+    var hours = parseInt(time.substr(0, 2));
+    if (time.indexOf('AM') != -1 && hours == 12) {
+        time = time.replace('12', '0');
+    }
+    if (time.indexOf('PM') != -1 && hours < 12) {
+        time = time.replace(hours, (hours + 12));
+    }
+    return time.replace(/AM|PM/, '').replace(":", "").replace(" ", "");
+}
+
 function loadPOS() {
     screen.keepAwake = true;
 
@@ -430,8 +442,15 @@ function updateStore(t) {
             img.src = URL.createObjectURL(file);
         }
     } else if (name == "mon-fri") {
-        var openHours = $("#mon-fri-openingHours").val()
-        var closingHours = $("#mon-fri-closingHours").val()
+        var openHours = convertTo24Hour($("#mon-fri-openingHours").val())
+        var closingHours = convertTo24Hour($("#mon-fri-closingHours").val())
+        if (openHours.length >= 5) {
+            openHours = openHours.substring(1)
+        }
+        if (closingHours.length >= 5) {
+            closingHours = closingHours.substring(1)
+        }
+
         doFetch({
             action: 'doEditStore',
             id: localStorage.getItem('soko-active-store'),
