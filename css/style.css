@@ -26,6 +26,12 @@ body {
     font-weight: initial;
 }
 
+
+.modal {
+    width: 80%!important;
+    margin-top: 0px!important;
+}
+
 nav {
     background: #005E77 !important;
 }
