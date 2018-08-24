@@ -30,8 +30,10 @@ function refreshSalesOrders() {
         if (e.status == 'ok') {
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + localStorage.getItem('soko-active-store') + '-orders');
             var alOds = e.orders;
+
             pendOds = false;
             for (var ii in alOds) {
+                var storeBal = alOds[ii].proPrice
                 if (alOds[ii].state == 'pending') {
                     pendOds = true;
                 }
