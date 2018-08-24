@@ -31,3 +31,11 @@ function packagingData() {
         })
     });
 }
+$(document).on("keyup", ".packInput input", function (e) {
+    var smallPack = $("#smallPaperbag").val() * 10
+    var mediumPack = $("#mediumPaperbag").val() * 20
+    var largePack = $("#largePaperbag").val() * 40
+    var totalCost = smallPack + mediumPack + largePack
+    console.log(totalCost)
+    $("#packPrice").html(totalCost)
+})
