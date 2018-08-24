@@ -11,25 +11,31 @@ function packagingData() {
     packagingData["smallPaperBag"] = $("#smallPaperbag").val();
     packagingData["mediumPaperbag"] = $("#mediumPaperbag").val();
     packagingData["largePaperbag"] = $("#largePaperbag").val();
-    doFetch({
-        action: 'requestPack',
-        id: localStorage.getItem('soko-active-store'),
-        items: packagingData
-    }).then(function (e) {
-        if (e.status == "ok") {
-            M.toast({
-                html: "Request sent successfully"
-            })
-        } else {
+    if ($('#packPrice').html() <= shopBalance) {
+        doFetch({
+            action: 'requestPack',
+            id: localStorage.getItem('soko-active-store'),
+            items: packagingData
+        }).then(function (e) {
+            if (e.status == "ok") {
+                M.toast({
+                    html: "Request sent successfully"
+                })
+            } else {
+                M.toast({
+                    html: "Error! Try again later"
+                })
+            }
+        }).catch(function (err) {
             M.toast({
                 html: "Error! Try again later"
             })
-        }
-    }).catch(function (err) {
+        });
+    } else {
         M.toast({
-            html: "Error! Try again later"
+            html: "Error! Not enough money"
         })
-    });
+    }
 }
 $(document).on("keyup", ".packInput input", function (e) {
     var smallPack = $("#smallPaperbag").val() * 10
