@@ -823,7 +823,7 @@ function getInsufficientFundsOrderbook() {
         action: 'getInsufficientFundsOrderbook',
         contract: "0xb72627650f1149ea5e54834b2f468e5d430e67bf",
         rate: allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX,
-        total: amount,
+        total: "200",
         countryCode: baseCd
     }).then(function (e) {
         if (e.status == "ok") {
