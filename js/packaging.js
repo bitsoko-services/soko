@@ -45,3 +45,18 @@ $(document).on("keyup", ".packInput input", function (e) {
     console.log(totalCost)
     $("#packPrice").html(totalCost)
 })
+$(document).on("click touchstart", ".packPlus", function () {
+    var input = $(this).siblings("input");
+    if ($(this).siblings(".packMinus").hasClass("disabled") == true) {
+        $(this).siblings(".packMinus").removeClass("disabled");
+    }
+    $(this).siblings("input").val(parseInt(input.val())+ 1);
+})
+$(document).on("click touchstart", ".packMinus", function () {
+    var input = $(this).siblings("input")
+    if (input.val() <= 2) {
+        $(this).addClass("disabled");
+    } else {
+        $(this).siblings("input").val(parseInt(input.val() - 1));
+    }
+})

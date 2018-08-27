@@ -25,7 +25,9 @@ body {
     font-family: 'Lato', sans-serif !important;
     font-weight: initial;
 }
-
+.disabled{
+    background: grey !important;
+}
 
 .modal {
     width: 80%!important;

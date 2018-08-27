@@ -584,7 +584,7 @@
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="dlvryPage" style="width: 100%; background: #26A69A; color: white; font-weight: bold; padding: 10px; height: 100%; margin: 0; text-align:center;">add</a>
         </div>
     </div>
-    <div id="packagingModal" class="modal modal-fixed-footer" style="overflow: initial; margin-top:30%; height:340px; border-radius:5px;">
+    <div id="packagingModal" class="modal modal-fixed-footer" style="overflow: initial; margin-top:30%; height:340px; border-radius:5px;width: 92% !important;">
         <div style="width:100px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                 <polygon style="fill:#FD982C;" points="446.149,420.109 446.149,178.826 255.989,112.915 65.829,178.826 65.829,420.109   255.989,480.421 "/>
@@ -605,9 +605,26 @@
             <div class="col s4">large<br>Ksh. 40</div>
         </div>
         <div class="row packInput" style="text-align: center;">
-            <p>- Small Paperbag : <span style="padding-left: 25px;"><input value="0" style="width: 70px; text-align: center; height: 1.5rem;" type="number" id="smallPaperbag" /></span></p>
-            <p>- Medium Paperbag : <span style="padding-left: 25px;"><input value="0" style="width: 70px; text-align: center; height: 1.5rem;" type="number" id="mediumPaperbag" /></span></p>
-            <p>- Large Paperbag : <span style="padding-left: 25px;"><input value="0" style="width: 70px; text-align: center; height: 1.5rem;" type="number" id="largePaperbag" /></span></p>
+            <form action="#" style="width: fit-content; display: block; margin-left: auto; margin-right: auto;">
+                <p>
+                    <label style="display: block;">
+                        <input type="checkbox" />
+                        <span style="color: black; display: block;">Small Paperbag : <span style="padding-left: 25px;float: right;"><button  class="opacitySelectedColor packMinus" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;">-</button><input value="1" style="width: 30px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="smallPaperbag" /><button class="opacitySelectedColor packPlus" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;">+</button></span></span>
+                    </label>
+                </p>
+                <p>
+                    <label style="display: block;">
+                        <input type="checkbox" />
+                        <span style="color: black; display: block;">Medium Paperbag : <span style="padding-left: 25px;float: right;"><button  class="opacitySelectedColor packMinus" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;">-</button><input value="1" style="width: 30px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="mediumPaperbag" /><button class="opacitySelectedColor packPlus" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;">+</button></span></span>
+                    </label>
+                </p>
+                <p>
+                    <label style="display: block;">
+                        <input type="checkbox" />
+                        <span style="color: black; display: block;">Large Paperbag : <span style="padding-left: 25px;float: right;"><button  class="opacitySelectedColor packMinus" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;">-</button><input value="1" style="width: 30px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="largePaperbag" /><button class="opacitySelectedColor packPlus" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;">+</button></span></span>
+                    </label>
+                </p>
+            </form>
         </div>
         <div class="modal-footer">
             <a class="opacitySelectedColor" href="#!" onclick="packagingData()" style="width: 100%; display: block; bottom: 0px; position: absolute; text-align: center; padding: 15px; color: white; font-weight: bold; text-transform: uppercase;left: 0px;">pay Ksh. <span id="packPrice">0</span></a>
