@@ -663,7 +663,7 @@
     </div>
 
     <!-- Buy Store Tokens Modal Structure -->
-    <div id="buyStoreTokens" class="modal" style="overflow: initial; margin-top: 20%; padding-left: 12px;">
+    <div id="buyStoreTokens" class="modal" style="overflow: initial; margin-top: 20%;">
         <div style="background: white; border-radius: 50%; display: block; margin-left: auto; margin-right: auto; margin-top: -40px; box-shadow: 0px 9px 23px -5px rgba(0,0,0,0.75); width: 100px; padding: 12px; margin-bottom: 15px;">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 394.99 394.99" style="enable-background:new 0 0 394.99 394.99;" xml:space="preserve">
                 <path style="fill:#FFFFFF;" d="M202.359,6.206L202.359,6.206c-60.574,0-110.028,49.455-110.028,110.028l0,0  c0,60.574,49.455,110.028,110.028,110.028l0,0c60.574,0,110.028-49.455,110.028-110.028l0,0  C312.452,55.661,262.997,6.206,202.359,6.206z"/>
@@ -681,12 +681,37 @@
                 </g>    
             </svg>
         </div>
+<!--
         <span id="unlockUserWallet" style="display: block; width: max-content; margin-left: auto; margin-right: auto; margin-bottom: 10px">
             <p id="switchWallet" style="text-align: center;display: none;">Switch wallet</p>
             <button class="btn" style="background: red;" onclick="loadGdrive()">unlock wallet</button></span>
-        <div class="modal-content" style="padding:  0px 10px; text-align:  center; max-height: 55vh; overflow: scroll;">
+-->
+        <div class="modal-content" style="padding:  0px 10px; text-align:  center; max-height: 55%; overflow: scroll;overflow-x: hidden;">
+<!--
             <p style="margin: 0px; text-align: left;">Store Balance: <span class="loadStoreBal"></span></p>
             <p style="margin: 0px; text-align: left;">Account Balance: <span id="userWalletBal">Locked</span></p>
+-->
+            <ul class="tabs" style="height: fit-content;">
+                <li class="tab col s3"><a class="active" href="#deposit">deposit</a></li>
+                <li class="tab col s3"><a href="#withdraw">withdraw</a></li>
+            </ul>
+            <div id="deposit" class="col s12">
+                <!--                <h4 style="text-align: center;font-size: 1.2em; font-weight: bold;">DEPOSIT</h4>-->
+                <p style="text-align: center; margin: 10px 10px 20px 10px;">Send <span id="creditTopup">250 kes</span> to <span id="creditTopupNo">+254721882694</span> and confirm the transaction code below to complete order</p>
+                <div style="margin: 25px;" class="input-field">
+                    <input id="mobileNo" placeholder="Enter transaction code here" type="text" class="validate">
+                    <label for="trnscode" class="active">Mobile No.</label>
+                </div>
+                <div style="margin: 25px;" class="input-field">
+                    <input id="trnscode" placeholder="Enter transaction code here" type="text" class="validate">
+                    <label for="trnscode" class="active">Transaction Code</label>
+                </div>
+                <p id="insufficientOrderStatus" style="text-align: center;">Transaction code confirmed successfully</p>
+                <button style="display: block; margin-right: auto; margin-bottom: 23px; float: left; margin-left: 7%; background-color: rgb(49, 38, 38);" onclick="" class="btn bits">cancel</button>
+                <button id="insufficientOrder" onclick="insufficientOrder()" style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 23px; background-color: rgb(49, 38, 38);" class="btn bits">confirm</button>
+            </div>
+            <div id="withdraw" class="col s12">Test 2</div>
+<!--
             <ul class="collapsible">
                 <li>
                     <div class="collapsible-header"><i></i>Deposit</div>
@@ -712,6 +737,7 @@
                     </div>
                 </li>
             </ul>
+-->
         </div>
     </div>
     <!-- Enterprise Settings Service One Modal Structure -->

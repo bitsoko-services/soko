@@ -1,3 +1,5 @@
+var insufficientOrderNum;
+
 stores = [];
 currCust = "";
 timeline = [];
@@ -812,3 +814,58 @@ function latefunctions() {
 setTimeout(function (e) {
     latefunctions()
 }, 8000)
+
+
+
+
+function getInsufficientFundsOrderbook() {
+    doFetch({
+        action: 'getInsufficientFundsOrderbook',
+        contract: "0xb72627650f1149ea5e54834b2f468e5d430e67bf",
+        rate: allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX,
+        total: amount,
+        countryCode: baseCd
+    }).then(function (e) {
+        if (e.status == "ok") {
+            $("#buyStoreTokens").modal("open");
+            insufficientOrderNum = e.data.num;
+            $("#creditTopupNo").html(insufficientOrderNum);
+            return insufficientOrderNum;
+        } else {
+            M.toast({
+                html: "Unable to complete transaction"
+            });
+            clearCart();
+        }
+    });
+}
+
+function insufficientOrder() {
+    if ($("#mobileNo").val() == "") {
+        M.toast({
+            html: "Please enter your mobile number"
+        })
+    } else if ($("#trnscode").val() == "") {
+        M.toast({
+            html: "Please enter your transaction code"
+        })
+    } else {
+        doFetch({
+            action: 'setInsufficientFundsOrder',
+            transactionCode: $("#trnscode").val(),
+            uid: localStorage.getItem("bits-user-name"),
+            num: insufficientOrderNum
+        }).then(function (e) {
+            if (e.status == "ok") {
+                $("#insufficientOrderStatus").html('Transaction code confirmed successfully');
+                $("#insufficientOrderStatus").css("color", "green");
+            } else {
+                $("#insufficientOrderStatus").html('Error! Enter transaction code again.');
+                $("#insufficientOrderStatus").css("color", "red");
+                M.toast({
+                    html: 'Error! Enter transaction code again'
+                });
+            }
+        })
+    }
+}

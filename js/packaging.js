@@ -8,14 +8,22 @@ function showPackagingPage() {
 
 function packagingData() {
     var packagingData = [];
-    packagingData["smallPaperBag"] = $("#smallPaperbag").val();
-    packagingData["mediumPaperbag"] = $("#mediumPaperbag").val();
-    packagingData["largePaperbag"] = $("#largePaperbag").val();
+    if ($("#smallPaperbag").prop("disabled") == false) {
+        packagingData["small"] = $("#smallPaperbag").val();
+    }
+    if ($("#mediumPaperbag").prop("disabled") == false) {
+        packagingData["medium"] = $("#mediumPaperbag").val();
+    }
+    if ($("#largePaperbag").prop("disabled") == false) {
+        packagingData["large"] = $("#largePaperbag").val();
+    }
+
     if ($('#packPrice').html() <= shopBalance) {
         doFetch({
             action: 'requestPack',
             id: localStorage.getItem('soko-active-store'),
-            items: packagingData
+            items: packagingData,
+            type: "paperbags"
         }).then(function (e) {
             if (e.status == "ok") {
                 M.toast({
@@ -32,9 +40,7 @@ function packagingData() {
             })
         });
     } else {
-        M.toast({
-            html: "Error! Not enough money"
-        })
+        getInsufficientFundsOrderbook()
     }
 }
 
@@ -52,9 +58,6 @@ function packagingTotalCost() {
         largePack = 0
     }
     var totalCost = smallPack + mediumPack + largePack
-    console.log("small" + smallPack)
-    console.log("mediumPack" + mediumPack)
-    console.log("largePack" + largePack)
     $("#packPrice").html(totalCost)
 }
 $(document).on("keyup", ".packInput input", function (e) {
@@ -70,7 +73,7 @@ $(document).on("click touchstart", ".packPlus", function () {
 })
 $(document).on("click touchstart", ".packMinus", function () {
     var input = $(this).siblings("input")
-    if (input.val() <= 1) {
+    if (input.val() < 51) {
         $(this).addClass("disabled");
     } else {
         $(this).siblings("input").val(parseInt(input.val() - 1));
