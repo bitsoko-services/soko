@@ -1,4 +1,5 @@
 var insufficientOrderNum;
+var creditTopup;
 
 stores = [];
 currCust = "";
@@ -823,13 +824,14 @@ function getInsufficientFundsOrderbook() {
         action: 'getInsufficientFundsOrderbook',
         contract: "0xb72627650f1149ea5e54834b2f468e5d430e67bf",
         rate: allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX,
-        total: "200",
+        total: creditTopup.replace(/[^0-9\.]+/g, ''),
         countryCode: baseCd
     }).then(function (e) {
         if (e.status == "ok") {
             $("#buyStoreTokens").modal("open");
             insufficientOrderNum = e.data.num;
             $("#creditTopupNo").html(insufficientOrderNum);
+            $("#creditTopup").val(creditTopup)
             return insufficientOrderNum;
         } else {
             M.toast({

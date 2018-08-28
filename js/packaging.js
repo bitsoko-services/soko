@@ -40,7 +40,8 @@ function packagingData() {
             })
         });
     } else {
-        getInsufficientFundsOrderbook()
+        creditTopup = $("#packPrice").html();
+        getInsufficientFundsOrderbook();
     }
 }
 
@@ -58,7 +59,7 @@ function packagingTotalCost() {
         largePack = 0
     }
     var totalCost = smallPack + mediumPack + largePack
-    $("#packPrice").html(totalCost)
+    $("#packPrice").html(totalCost + " " + baseCd)
 }
 $(document).on("keyup", ".packInput input", function (e) {
     packagingTotalCost()
