@@ -66,7 +66,9 @@ $(document).on("keyup", ".packInput input", function (e) {
 $(document).on("click touchstart", ".packPlus", function () {
     var input = $(this).siblings("input");
     if ($(this).siblings(".packMinus").hasClass("disabled") == true) {
-        $(this).siblings(".packMinus").removeClass("disabled");
+        if (input.val() > 49) {
+            $(this).siblings(".packMinus").removeClass("disabled");
+        }
     }
     $(this).siblings("input").val(parseInt(input.val()) + 1);
     packagingTotalCost()
@@ -91,4 +93,5 @@ $(document).on("click touchstart", ".packCheckbox", function () {
         $(this).siblings(".packCounter").find("input").attr("disabled", true);
         $(this).siblings(".packCounter").find("button").addClass("disabled");
     }
+    packagingTotalCost();
 })
