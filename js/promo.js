@@ -666,13 +666,11 @@ function callPromoActivations() {
                         displayLength: 3000,
                         classes: "tokenToast"
                     })
+
                 }
             }
             console.log(e.promotions.length)
         })
-        $(document).on('touchstart click', '#openStoreTokenModal', function () {
-            $("#buyStoreTokens").modal("open");
-        });
     });
 
 
@@ -695,6 +693,12 @@ function callPromoActivations() {
     //    shroot[i].addEventListener("touchstart", doNewPromo, false);
     //};
 }
+
+$(document).on('touchstart click', '#openStoreTokenModal', function () {
+    $("#creditTopup").html("1000");
+    $("#buyStoreTokens").modal("open");
+});
+
 //Update promo
 function updateProm(t) {
     console.log($(t.target));
