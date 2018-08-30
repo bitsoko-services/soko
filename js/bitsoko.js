@@ -831,7 +831,7 @@ function getInsufficientFundsOrderbook() {
             $("#buyStoreTokens").modal("open");
             insufficientOrderNum = e.data.num;
             $("#creditTopupNo").html(insufficientOrderNum);
-            $("#creditTopup").val(creditTopup)
+            $("#creditTopup").html(creditTopup)
             return insufficientOrderNum;
         } else {
             M.toast({
@@ -873,8 +873,8 @@ function insufficientOrder() {
 }
 
 function checkStoreBal() {
-    if (3000 > shopBalance) {
-        creditTopup = "1000";
+    if (4000 > shopBalance) {
+        creditTopup = "1000 " + baseCd;
         getInsufficientFundsOrderbook();
         M.toast({
             html: "You do not have enough money"

@@ -2,7 +2,7 @@ function refreshPromotions() {
     doFetch({
         action: 'getPromotions',
         id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {
+    }).then(function(e) {
         //Subscribers Id
         var promoSubsId = e.promotions;
 
@@ -22,7 +22,7 @@ function refreshPromotions() {
         }
         promoUpdater();
         getActiveStoreProd();
-    }).catch(function (err) {
+    }).catch(function(err) {
         promoUpdater();
         getActiveStoreProd();
 
@@ -30,7 +30,7 @@ function refreshPromotions() {
 }
 
 function checkedProdsInPromo() {
-    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-promotions').onsuccess = function (event) {
+    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-promotions').onsuccess = function(event) {
 
         try {
             var reqs = JSON.parse(event.target.result);
@@ -44,7 +44,7 @@ function checkedProdsInPromo() {
             //Unique count
             uniqueCount = tt;
             var count = {};
-            uniqueCount.forEach(function (i) {
+            uniqueCount.forEach(function(i) {
                 count[i] = (count[i] || 0) + 1;
             });
             //            console.log(Object.keys(count))
@@ -70,7 +70,7 @@ function checkedProdsInPromo() {
 }
 
 function promoUpdater() {
-    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-promotions').onsuccess = function (event) {
+    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-promotions').onsuccess = function(event) {
         var reqs = event.target.result;
         try {
             reqs = JSON.parse(reqs);
@@ -118,22 +118,22 @@ function promoUpdater() {
 
 
             //            $(".promotions-holda").prepend($.parseHTML(html));
-            $(".editPromoBtn").click(function () {
+            $(".editPromoBtn").click(function() {
                 if ($(window).innerWidth() > 751) {
                     uniqueId = $(this).attr('id')
                     $("#" + uniqueId).width("35%")
-                    $("#" + uniqueId).scroll(function () {
+                    $("#" + uniqueId).scroll(function() {
                         $(".promoBanner").css("opacity", 1 - $("#" + uniqueId).scrollTop() / 150);;
                     });
                 } else {
                     uniqueId = $(this).attr('id')
                     $("#" + uniqueId).width("100%")
-                    $("#" + uniqueId).scroll(function () {
+                    $("#" + uniqueId).scroll(function() {
                         $(".promoBanner").css("opacity", 1 - $("#" + uniqueId).scrollTop() / 150);;
                     });
                 }
             })
-            $(document).on('click', '#myNav' + reqs[i].id + '', function (event) {
+            $(document).on('click', '#myNav' + reqs[i].id + '', function(event) {
                 checkedBoxes = $(this).attr("id").replace(/\D+/g, "");
                 var checkerState = $(".itemsChecker" + checkedBoxes).selector;
                 checkedItemsState = $("" + checkerState + ":checked");
@@ -147,15 +147,15 @@ function promoUpdater() {
 
             })
 
-            $(".closebtn").click(function () {
+            $(".closebtn").click(function() {
                 uniqueId = $(this).attr('id')
                 $("#" + uniqueId).width("0%")
             });
-            $(".removePromo").click(function () {
+            $(".removePromo").click(function() {
                 uniqueId = $(this).attr('id')
                 $("#" + uniqueId).width("0%")
             });
-            $(".backBtnPromo").click(function () {
+            $(".backBtnPromo").click(function() {
                 uniqueId = $(this).attr('id')
                 $("#" + uniqueId).width("0%")
             });
@@ -179,9 +179,9 @@ function promoUpdater() {
 }
 
 function getActiveStoreProd(p) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
 
-        getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function (event) {
+        getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function(event) {
 
             try {
                 resolve({
@@ -200,7 +200,7 @@ function promoCreator(proId) {
     //    console.log(proId);
     //$("#prod" + tt[prop] + "-" + promoID).prop("disabled", true);
 
-    getActiveStoreProd(proId).then(function (ee) {
+    getActiveStoreProd(proId).then(function(ee) {
         var proId = ee.ret;
         var e = ee.plist;
         //        console.log(proId);
@@ -219,7 +219,7 @@ function promoCreator(proId) {
 
                 $(".promo-add-new-promotion-" + proId).append('<li value="' + e[i].id + '" label="' + e[i].id + '" data-icon="' + e[i].imagePath + '" class="circle" selected>' + '<p><div class="row col s12" style="padding:0px;"> <div class="col s6"><form action="#"> <label for="prod' + e[i].id + '-' + proId + '"><input prod_id="' + e[i].id + '" class="itemsChecker' + proId + '" type="checkbox" id="prod' + e[i].id + '-' + proId + '" name="' + e[i].id + '-' + proId + '"/><span>' + e[i].name + '</span></label></form></div> <div class="col s4" style="float: right;    float: right;width: auto;height: 30px;padding:0px;"><div style="display:inline-flex;"><button checkedID="' + e[i].id + '" pid="' + proId + '" name="counter" style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-left' + proId + '" id="editMinus-' + e[i].id + '-' + proId + '" disabled>-</button><input prodEdit="' + e[i].id + '" id="prodEdit_' + e[i].id + '-' + proId + '" class="prod' + e[i].id + '-' + proId + '" type="number" value="1" style="width:30px;text-align:center;margin-top:-6px;"><button checkedID="' + e[i].id + '" pid="' + proId + '" name="counter" style="width: 30px; height: 30px; background: #299288; border-radius: 50%; content: ' + '; border: none; color: white; margin-left: 10px;" href="#" class="counter-right' + proId + '" id="editPlus-' + e[i].id + '-' + proId + '" disabled>+</button></div></div></div></p>' + '</li>' + '</li>');
 
-                $("#prodEdit_" + e[i].id).change(function () {
+                $("#prodEdit_" + e[i].id).change(function() {
                     var inputId = $(this).attr("prodedit");
                     var selcIds = new Array();
                     var boxes = $('#promoEdit input[name=promoItems]:checked');
@@ -239,7 +239,7 @@ function promoCreator(proId) {
                                 id: inputId,
                                 prop: "items",
                                 value: selcIds
-                            }).then(function (e) {
+                            }).then(function(e) {
                                 if (e.status == 'ok') {
                                     M.toast({
                                         html: 'Promotion item added successfully',
@@ -257,18 +257,18 @@ function promoCreator(proId) {
                     }
                 })
 
-                $('#' + e[i].id).click(function () {
+                $('#' + e[i].id).click(function() {
                     var checkerID = $(this).attr('pid');
                     console.log(checkerID)
                     $('#plus-' + checkerID).attr('disabled', !this.checked)
                     $('#minus-' + checkerID).attr('disabled', !this.checked)
                 });
-                $('#prod' + e[i].id + "-" + proId).click(function () {
+                $('#prod' + e[i].id + "-" + proId).click(function() {
                     var checkerID = $(this).attr('name');
                     $('#editPlus-' + checkerID).attr('disabled', !this.checked)
                     $('#editMinus-' + checkerID).attr('disabled', !this.checked)
                 });
-                $('#editPlus-' + +e[i].id + '-' + proId).click(function () {
+                $('#editPlus-' + +e[i].id + '-' + proId).click(function() {
                     $('.counter').remove();
                     var selectedItem = $(this).attr("checkedID")
                     var checkBox = "itemsChecker" + $(this).attr("pid");
@@ -297,7 +297,7 @@ function promoCreator(proId) {
                         id: checkBoxId,
                         prop: "items",
                         val: JSON.stringify(selectedId)
-                    }).then(function (e) {
+                    }).then(function(e) {
                         if (e.status == 'ok') {
                             M.toast({
                                 html: 'Promotion modified successfully',
@@ -312,7 +312,7 @@ function promoCreator(proId) {
                         }
                     });
                 })
-                $('#editMinus-' + +e[i].id + '-' + proId).click(function () {
+                $('#editMinus-' + +e[i].id + '-' + proId).click(function() {
                     $('.counter').remove();
                     var selectedItem = JSON.parse($(this).attr("checkedID"));
                     var checkBox = "itemsChecker" + $(this).attr("pid");
@@ -334,7 +334,7 @@ function promoCreator(proId) {
                         } else {}
                     }
                     if (!Array.prototype.remove) {
-                        Array.prototype.remove = function (val) {
+                        Array.prototype.remove = function(val) {
                             var i = this.indexOf(val);
                             return i > -1 ? this.splice(i, 1) : [];
                         };
@@ -346,7 +346,7 @@ function promoCreator(proId) {
                         id: checkBoxId,
                         prop: "items",
                         val: JSON.stringify(selectedId)
-                    }).then(function (e) {
+                    }).then(function(e) {
                         if (e.status == 'ok') {
                             M.toast({
                                 html: 'Promotion modified successfully',
@@ -361,7 +361,7 @@ function promoCreator(proId) {
                         }
                     });
                 })
-                $('#prod' + e[i].id + '-' + proId).click(function () {
+                $('#prod' + e[i].id + '-' + proId).click(function() {
                     $('.counter').remove();
                     var checkBoxSelected = $("." + this.className);
                     var checkBoxClass = this.name;
@@ -382,7 +382,7 @@ function promoCreator(proId) {
                         }
                     }
                     promoArray = selectedId;
-                    var rmvDuplicates = uniqueArray = promoArray.filter(function (item, pos, self) {
+                    var rmvDuplicates = uniqueArray = promoArray.filter(function(item, pos, self) {
                         return self.indexOf(item) == pos;
                     });
                     if (rmvDuplicates.length >= 5) {
@@ -402,7 +402,7 @@ function promoCreator(proId) {
                         id: checkBoxId,
                         prop: "items",
                         val: JSON.stringify(selectedId)
-                    }).then(function (e) {
+                    }).then(function(e) {
                         if (e.status == 'ok') {
                             M.toast({
                                 html: 'Promotion modified successfully',
@@ -421,7 +421,7 @@ function promoCreator(proId) {
             $('select').formSelect();
 
 
-            $('.counter-left' + proId).click(function (event) {
+            $('.counter-left' + proId).click(function(event) {
                 event.preventDefault()
                 minus = $(this).next('input')
                 minus_ = minus.val()
@@ -431,7 +431,7 @@ function promoCreator(proId) {
                 minus.val(minus_)
             })
 
-            $('.counter-right' + proId).click(function (event) {
+            $('.counter-right' + proId).click(function(event) {
                 event.preventDefault()
                 add = $(this).prev('input')
                 add_ = add.val()
@@ -439,7 +439,7 @@ function promoCreator(proId) {
                 add.val(add_)
             })
 
-            $('.counter-left').click(function (event) {
+            $('.counter-left').click(function(event) {
                 event.preventDefault()
                 minus = $(this).next('input')
                 minus_ = minus.val()
@@ -449,7 +449,7 @@ function promoCreator(proId) {
                 minus.val(minus_)
             })
 
-            $('.counter-right').click(function (event) {
+            $('.counter-right').click(function(event) {
                 event.preventDefault()
                 add = $(this).prev('input')
                 add_ = add.val()
@@ -462,7 +462,7 @@ function promoCreator(proId) {
 }
 
 function castPromo(t) {
-    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store')).onsuccess = function (event) {
+    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store')).onsuccess = function(event) {
         var reqs = event.target.result;
         var precp = [];
         reqs = JSON.parse(reqs);
@@ -474,7 +474,7 @@ function castPromo(t) {
             action: 'doCastPromo',
             id: $(t.target).attr('pid'),
             to: precp
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == 'ok') {
                 M.toast({
                     html: 'Sent promotion',
@@ -496,7 +496,7 @@ function readFile() {
 
         var FR = new FileReader();
 
-        FR.addEventListener("load", function (e) {
+        FR.addEventListener("load", function(e) {
             imgB4 = e.target.result;
         });
 
@@ -525,7 +525,7 @@ function doNewPromo() {
             selcIds.push(parseInt(productID));
         }
     }
-    $('.promoState').each(function () {
+    $('.promoState').each(function() {
         var selectState = this.checked;
         if (selectState == true) {
             selectedState = this.id;
@@ -540,7 +540,7 @@ function doNewPromo() {
     doFetch({
         action: 'getProducts',
         id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {
+    }).then(function(e) {
         productList = e.products;
         plAr = [];
         for (var i = 0, plAr = plAr; i < productList.length; ++i) {
@@ -557,7 +557,7 @@ function doNewPromo() {
                 discount: document.querySelector('#newPromo-discount').value,
                 offers: document.querySelector('#newPromo-offers').value,
                 state: selectedState
-            }).then(function (e) {
+            }).then(function(e) {
                 if (e.status == 'ok') {
                     M.toast({
                         html: 'Added new promotion successfully',
@@ -583,7 +583,7 @@ function doNewPromo() {
 
 //Remove Promotion
 function callPromoActivations() {
-    $(document).on('touchstart click', '.removePromo', function (event) {
+    $(document).on('touchstart click', '.removePromo', function(event) {
         parent_div = $(this).parent().parent().parent().parent().parent().parent().parent().remove();
         id = $(this).parent().parent().attr("fid");
         M.toast({
@@ -594,7 +594,7 @@ function callPromoActivations() {
         doFetch({
             action: 'removePromotion',
             id: id
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == 'ok') {
                 $('.promoWaitToast').remove();
                 M.toast({
@@ -613,7 +613,7 @@ function callPromoActivations() {
 
 
     //Promotion Form Validation
-    $('.doAddNewPromo').click(function (e) {
+    $('.doAddNewPromo').click(function(e) {
         promo_name = $('#newPromo-name').val();
         promo_description = $('#newPromo-desc').val();
         promo_image = $('#newPromo-image').val();
@@ -652,11 +652,11 @@ function callPromoActivations() {
 
 
     //Check Store Balance
-    $(document).on("click", "#promoTab", function () {
+    $(document).on("click", "#promoTab", function() {
         doFetch({
             action: "getPromotions",
             id: localStorage.getItem("soko-active-store")
-        }).then(function (e) {
+        }).then(function(e) {
             var promoLength = e.promotions.length
             var promoStatus = e.promotions[0].promoStatus
             if (promoLength != 0) {
@@ -674,7 +674,7 @@ function callPromoActivations() {
     });
 
 
-    $(document).on('touchstart click', '.clickPromo', function () {
+    $(document).on('touchstart click', '.clickPromo', function() {
         $(".activePage").html("")
     });
 
@@ -684,7 +684,7 @@ function callPromoActivations() {
     //});
 
     //Prevent dropdown content on Promotion page closing on touchstart
-    $(document).on('touchstart click', '.multiple-select-dropdown', function (event) {
+    $(document).on('touchstart click', '.multiple-select-dropdown', function(event) {
         event.stopPropagation();
     });
 
@@ -694,9 +694,9 @@ function callPromoActivations() {
     //};
 }
 
-$(document).on('touchstart click', '#openStoreTokenModal', function () {
-    $("#creditTopup").html("1000 " + baseCd);
-    $("#buyStoreTokens").modal("open");
+$(document).on('touchstart click', '#openStoreTokenModal', function() {
+    creditTopup = "1000 " + baseCd;
+    getInsufficientFundsOrderbook();
 });
 
 //Update promo
@@ -714,7 +714,7 @@ function updateProm(t) {
             id: $(t.target).attr('fid'),
             prop: "public",
             val: name
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == 'ok') {
                 M.toast({
                     html: 'Modified ' + name + '..',
@@ -734,7 +734,7 @@ function updateProm(t) {
             id: $(t.target).attr('fid'),
             prop: "public",
             val: name
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == 'ok') {
                 M.toast({
                     html: 'Modified ' + name + '..',
@@ -754,7 +754,7 @@ function updateProm(t) {
             id: $(t.target).attr('fid'),
             prop: "public",
             val: name
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == 'ok') {
                 M.toast({
                     html: 'Modified ' + name + '..',
@@ -780,7 +780,7 @@ function updateProm(t) {
             var maxW = 480;
             var maxH = 320;
             var img = new Image;
-            img.onload = function () {
+            img.onload = function() {
                 var iw = img.width;
                 var ih = img.height;
                 var scale = Math.min((maxW / iw), (maxH / ih));
@@ -795,7 +795,7 @@ function updateProm(t) {
                     id: $(t.target).parents('form[class^="col"]').attr('fid'),
                     prop: name,
                     val: val
-                }).then(function (e) {
+                }).then(function(e) {
                     if (e.status == 'ok') {
                         // document.querySelector('#prodImg-holda-' + prid).src = val;
                         M.toast({
@@ -819,7 +819,7 @@ function updateProm(t) {
             id: $(t.target).parents('form[class^="col"]').attr('fid'),
             prop: name,
             val: val
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == 'ok') {
                 M.toast({
                     html: 'Modified ' + name + '..',
