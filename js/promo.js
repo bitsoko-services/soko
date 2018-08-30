@@ -695,7 +695,7 @@ function callPromoActivations() {
 }
 
 $(document).on('touchstart click', '#openStoreTokenModal', function () {
-    $("#creditTopup").html("1000");
+    $("#creditTopup").html("1000 " + baseCd);
     $("#buyStoreTokens").modal("open");
 });
 
