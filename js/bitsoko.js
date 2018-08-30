@@ -5,8 +5,8 @@ stores = [];
 currCust = "";
 timeline = [];
 transactions = [];
-stimeline = function () {
-    var stl = timeline.sort(function (a, b) {
+stimeline = function() {
+    var stl = timeline.sort(function(a, b) {
         console.log(a.time, b.time);
         if (a.time > b.time) {
             return 1;
@@ -25,7 +25,7 @@ flag = false;
 var context = new AudioContext();
 
 // Play oscillators at certain frequency and for a certain time
-var playNote = function (frequency, startTime, duration) {
+var playNote = function(frequency, startTime, duration) {
     var osc1 = context.createOscillator(),
         osc2 = context.createOscillator(),
         volume = context.createGain();
@@ -58,7 +58,7 @@ var playNote = function (frequency, startTime, duration) {
     osc2.stop(startTime + duration);
 };
 
-var playPendingOrders = function () {
+var playPendingOrders = function() {
     // Play a 'B' now that lasts for 0.116 seconds
     playNote(493.883, context.currentTime, 0.116);
 
@@ -154,7 +154,7 @@ function updateStores() {
     doFetch({
         action: 'merchantServiceLoader',
         id: localStorage.getItem('bits-user-name')
-    }).then(function (e) {
+    }).then(function(e) {
         if (e.status == "ok") {
             $('#login').modal('close');
 
@@ -166,7 +166,7 @@ function updateStores() {
                 console.log(xxx[i].name);
                 $(".categorySelect").append('<option value="' + xxx[i].id + '">' + xxx[i].name + '</option>');
             }
-            $('.categoriesRow select').on('change', function () {
+            $('.categoriesRow select').on('change', function() {
                 var inputVal = $(".categoriesRow input").val()
                 console.log(inputVal)
                 for (var i in xxx) {
@@ -178,7 +178,7 @@ function updateStores() {
                             id: localStorage.getItem('bits-user-name'),
                             prop: "category",
                             val: id
-                        }).then(function (e) {
+                        }).then(function(e) {
                             if (e.status == 'ok') {
                                 M.toast({
                                     html: 'Store category selected successfully',
@@ -196,7 +196,7 @@ function updateStores() {
                 getObjectStore('data', 'readwrite').put(JSON.stringify([]), 'soko-stores');
                 $('#firstStoreModal').modal({
                     dismissible: false,
-                    complete: function () {
+                    complete: function() {
                         $('#newStoreModal').modal({
                             dismissible: false,
                             onOpenStart: loadCat()
@@ -263,7 +263,7 @@ function updateStores() {
         if (serviceTwo.length == 0) {
             $(".entServiceTwo").html('nothing found :-(');
         }
-    }).catch(function (err) {
+    }).catch(function(err) {
         loadPOS();
     });
     loadWalletBal();
@@ -276,7 +276,7 @@ function updateStores() {
 }
 
 function reqMsg(data) {
-    getObjectStore('data', 'readwrite').get("bitsoko-merchant-customers").onsuccess = function (event) {
+    getObjectStore('data', 'readwrite').get("bitsoko-merchant-customers").onsuccess = function(event) {
         cid = data;
         var allCust = $.parseJSON(event.target.result);
         for (var i = 0, cid = cid; i < allCust.length; ++i) {
@@ -293,7 +293,7 @@ function reqMsg(data) {
                     animation: "slide-from-top",
                     inputPlaceholder: "message",
                     imageUrl: allCust[i].img.replace('50', '150')
-                }, function (inputValue) {
+                }, function(inputValue) {
                     if (inputValue === false) return false;
                     if (inputValue === "") {
                         swal.showInputError("You need to write something!");
@@ -304,7 +304,7 @@ function reqMsg(data) {
                         to: 'user-' + allCust[i].uid,
                         from: 'service-' + localStorage.getItem('bitsoko-merchant-id'),
                         msg: inputValue
-                    }).then(function (e) {
+                    }).then(function(e) {
                         swal({
                             title: "Message Sent",
                             text: inputValue,
@@ -322,7 +322,7 @@ function reqMsg(data) {
 }
 
 function reqSend(data) {
-    getObjectStore('data', 'readwrite').get("bitsoko-merchant-customers").onsuccess = function (event) {
+    getObjectStore('data', 'readwrite').get("bitsoko-merchant-customers").onsuccess = function(event) {
         cid = data;
         var allCust = $.parseJSON(event.target.result);
         for (var i = 0, cid = cid; i < allCust.length; ++i) {
@@ -339,7 +339,7 @@ function reqSend(data) {
                     animation: "slide-from-top",
                     inputPlaceholder: "amount",
                     imageUrl: allCust[i].img.replace('50', '150')
-                }, function (inputValue) {
+                }, function(inputValue) {
                     if (inputValue === false) return false;
                     if (inputValue === "" || isNaN(inputValue)) {
                         swal.showInputError("You need to enter an amount!");
@@ -350,7 +350,7 @@ function reqSend(data) {
                         to: 'user-' + allCust[i].uid,
                         from: 'service-' + localStorage.getItem('bitsoko-merchant-id'),
                         amount: inputValue
-                    }).then(function (e) {
+                    }).then(function(e) {
                         swal({
                             title: "Request Sent",
                             text: inputValue,
@@ -383,7 +383,7 @@ function updateMerch(s) {
         if (s.credit == "") {
             $('.loadStoreBal').html("0");
         } else {
-            fetchRates().then(function (e) {
+            fetchRates().then(function(e) {
                 if (e.status == "ok") {
                     console.log((baseX * allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate))
                 }
@@ -396,7 +396,7 @@ function updateMerch(s) {
 
 
 function Tobserver(changes) {
-    changes.forEach(function (change, i) {
+    changes.forEach(function(change, i) {
         console.log('what property changed? ' + change.name);
         console.log('how did it change? ' + change.type);
         console.log('whats the current value? ' + change.object[change.name]);
@@ -697,7 +697,7 @@ function openVideo() {
 
 
 
-document.addEventListener('visibilitychange', function (event) {
+document.addEventListener('visibilitychange', function(event) {
     if (!document.hidden) {
         // The page is visible.
         checkNotes();
@@ -710,17 +710,17 @@ document.addEventListener('visibilitychange', function (event) {
 
 //Input Initiallization
 var deliveryGuys = {}
-[{
+    [{
         id: 66,
         active: 'true'
-}]
+    }]
 
 function userNamesInput() {
     var inputVal = $("#transfer-shop,#delivery-members,#storeManagers").val();
     var fetchedData = doFetch({
         action: 'getAllUsers',
         data: inputVal
-    }).then(function (e) {
+    }).then(function(e) {
         if (e.status == "ok") {
             storeFeed();
             deliveryMbr();
@@ -790,29 +790,29 @@ persistentFunc();
 
 //Box Shadow On Specific Pages
 function latefunctions() {
-    $(".pageBoxShadow").click(function () {
+    $(".pageBoxShadow").click(function() {
         $('.navbar-fixed nav').css({
             'box-shadow': '0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2)',
         });
     });
-    $(".clickPromo").click(function () {
+    $(".clickPromo").click(function() {
         $('.navbar-fixed nav').css({
             'box-shadow': 'none',
         });
     });
 
     //Select wallet
-    $(document).on("click", ".selectedWallet", function (e) {
+    $(document).on("click", ".selectedWallet", function(e) {
         $(this).html('<div class="preloader-wrapper active" style="width: 20px; height: 20px; margin: 5px 15px;"> <div class="spinner-layer spinner-blue-only"> <div class="circle-clipper left"> <div class="circle"></div></div><div class="gap-patch"> <div class="circle"></div></div><div class="circle-clipper right"> <div class="circle"></div></div></div></div>')
     })
 
     //Sign out
-    $(".signOut").click(function () {
+    $(".signOut").click(function() {
         localStorage.clear();
         setTimeout(location.reload(), 2000)
     });
 }
-setTimeout(function (e) {
+setTimeout(function(e) {
     latefunctions()
 }, 8000)
 
@@ -826,7 +826,7 @@ function getInsufficientFundsOrderbook() {
         rate: allTokens["0xb72627650f1149ea5e54834b2f468e5d430e67bf"].rate * baseX,
         total: creditTopup.replace(/[^0-9\.]+/g, ''),
         countryCode: baseCd
-    }).then(function (e) {
+    }).then(function(e) {
         if (e.status == "ok") {
             $("#buyStoreTokens").modal("open");
             insufficientOrderNum = e.data.num;
@@ -857,7 +857,7 @@ function insufficientOrder() {
             transactionCode: $("#trnscode").val(),
             uid: localStorage.getItem("bits-user-name"),
             num: insufficientOrderNum
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == "ok") {
                 $("#insufficientOrderStatus").html('Transaction code confirmed successfully');
                 $("#insufficientOrderStatus").css("color", "green");
@@ -869,5 +869,17 @@ function insufficientOrder() {
                 });
             }
         })
+    }
+}
+
+function checkStoreBal() {
+    if (3000 > shopBalance) {
+        creditTopup = "1000";
+        getInsufficientFundsOrderbook();
+        M.toast({
+            html: "You do not have enough money"
+        });
+    } else {
+
     }
 }

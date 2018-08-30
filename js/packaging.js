@@ -18,7 +18,7 @@ function packagingData() {
         packagingData["large"] = $("#largePaperbag").val();
     }
 
-    if ($('#packPrice').html() <= shopBalance) {
+    if ($('#packPrice').html().replace(/[^0-9\.]+/g, '') <= shopBalance) {
         doFetch({
             action: 'requestPack',
             id: localStorage.getItem('soko-active-store'),
