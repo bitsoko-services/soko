@@ -162,7 +162,7 @@
             <form id="formValidate" class="col s12">
                 <div class="row">
                     <div class="input-field col s12" style="margin-top:40px;">
-                        <input id="name" type="text" class="validate" prid="name" autocomplete="off" maxlength="25" data-length="25" required>
+                        <input id="name" type="text" class="validate characterCounter" prid="name" autocomplete="off" maxlength="25" data-length="25" required>
                         <label for="name" class="">Name</label>
                     </div>
                 </div>
@@ -1935,7 +1935,8 @@
                                     </span>
                                 </div>
                                 <div class="row" style="margin-bottom:20px;">
-                                    <div class="col s9" style="pointer-events: none;">Rate per Kilometer</div>
+                                    <p style="text-align:center; margin:0px; color:green; margin-bottom:15px">Recommended rate: 40 kes</p>
+                                    <div class="col s9" style="pointer-events: none;;">Rate per Kilometer</div>
                                     <div class="col s3" style="margin-top:-10px;">
                                         <input id="sliderAmount" value="0" type="number" style="margin-top:-10px;text-align:center;" />
                                     </div>
@@ -2315,7 +2316,7 @@
                                             <div class="row">
                                                 <div class="col s12" style="padding:0px;">
                                                     <label for="categoryName" class="active">Add Category</label>
-                                                    <input type="text" id="categoryName" placeholder="Add a category" maxlength="15" data-length="15" stitm="addProdCategory">
+                                                    <input class="characterCounter" type="text" id="categoryName" placeholder="Add a category" maxlength="15" data-length="15" stitm="addProdCategory">
                                                 </div>
                                                 <div class="col s3" style="margin-top:7px; padding:0px;">
                                                     <!--                                                                <a class="waves-effect waves-light btn" id="addCategory" style="font-size: 2rem; padding: 10px; line-height: 0.5; border-radius: 3px; float: right;">+</a>-->
@@ -3032,7 +3033,7 @@
             fetchRate()
             callPromoActivations()
             initDeilveryFunctions()
-            $("input").characterCounter();
+            $(".characterCounter").characterCounter();
             $('.timepicker').timepicker();
             $('.tabs').tabs();
         });
