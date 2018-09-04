@@ -41,6 +41,9 @@ nav {
 #packagingModal .character-counter {
     display: none !important;
 }
+.settingsPage ul{
+    z-index: 1000 !important;
+}
 
 .switchStoreHeader {
     background: #7eb7c8;
@@ -754,7 +757,7 @@ input.header-search-input:focus {
 
 
 /*----------------------------------------
-    Sidebar Main Menu 
+    Sidebar Main Menu
 ------------------------------------------*/
 
 nav.top-nav {
