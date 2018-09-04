@@ -185,6 +185,13 @@
                         <span class="btn btn-success fileinput-button opacitySelectedColor">
                             <span>Add image</span>
                         <input id="image" type="file" prid="image" value="Image" required>
+
+
+
+
+
+
+
                         </span>
                     </div>
                 </div>
@@ -260,7 +267,20 @@
                 </div>
             </div>
             <div style="padding:0px 10px;" class="swtchStrDskt">
-                <ul id="switchStoreContent" class="collection" style="text-align:center;"></ul>
+                <div class="row switchStoreDiv">
+                    <div class="col s12">
+                        <ul class="tabs" style="height: 50px;">
+                            <li class="tab col s3"><a style="color:black;" href="#myStores">My Stores</a></li>
+                            <li class="tab col s3"><a style="color:black;" class="active" href="#managedStores">Managed Stores</a></li>
+                        </ul>
+                    </div>
+                    <div id="myStores" class="col s12">
+                        <ul id="myStoreContent" class="collection" style="text-align:center;"></ul>
+                    </div>
+                    <div id="managedStores" class="col s12">
+                        <ul id="managedStoreContent" class="collection" style="text-align:center;"></ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -730,9 +750,23 @@
                         <div class="btn">
                             <span>File</span>
                             <input type="file" id="entServOneImg" class="entServiceImage">
+
+
+
+
+
+
+
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
+
+
+
+
+
+
+
                         </div>
                     </div>
                 </form>
@@ -784,9 +818,23 @@
                         <div class="btn">
                             <span>File</span>
                             <input type="file" id="entServTwoImg" class="entServiceImage">
+
+
+
+
+
+
+
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
+
+
+
+
+
+
+
                         </div>
                     </div>
                 </form>
@@ -1235,9 +1283,23 @@
                             <div class="btn opacitySelectedColor">
                                 <span>Image</span>
                                 <input type="file" id="newPromo-image">
+
+
+
+
+
+
+
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text" placeholder="Upload an image" id="newPromo-image" stitm="customImage">
+
+
+
+
+
+
+
                             </div>
                         </div>
                     </div>
@@ -1335,6 +1397,13 @@
                     <div class="row" style="margin-bottom:0px;">
                         <div class="input-field col s9">
                             <input id="newStore-Location" type="text" class="validate js-loc-button-notification-input" value="location not found" stitm="lonlat" disabled>
+
+
+
+
+
+
+
                         </div>
                         <div class="input-field col s3">
                             <a class="waves-effect waves-light btn opacitySelectedColor" style="padding: 0px 7px; font-size: 0.75rem; background: rgb(42, 46, 44); filter: brightness(1.3);" id="storeLoc">update</a>
@@ -1437,7 +1506,6 @@
             display: inline-block;
             width: 50%;
         }
-
     </style>
     <!-- newPromo Modal End -->
     <!-- BarCode Reader Modal Start -->
@@ -1488,6 +1556,13 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <select onchange="" id="trainingBoxLabel">
+
+
+
+
+
+
+
                      </select>
                         <label>Box Label </label>
                     </div>
@@ -1546,6 +1621,13 @@
                     <div class="header-search-wrapper hide-on-med-and-down " style="display:none;background-color:#7eb7c8!important;">
                         <i class="mdi-action-search"></i>
                         <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="search" />
+
+
+
+
+
+
+
                     </div>
                 </div>
             </nav>
@@ -1939,9 +2021,23 @@
                                     <div class="col s9" style="pointer-events: none;;">Rate per Kilometer</div>
                                     <div class="col s3" style="margin-top:-10px;">
                                         <input id="sliderAmount" value="0" type="number" style="margin-top:-10px;text-align:center;" />
+
+
+
+
+
+
+
                                     </div>
                                 </div>
                                 <input id="slide" type="range" min="1" max="200" step="1" value="0" oninput="rangeOutputId.value = slide.value">
+
+
+
+
+
+
+
                             </div>
                         </div>
                         <div class="row">
@@ -2220,6 +2316,13 @@
                     <div class="row">
                         <div class="col s3">
                             <img src="images/no-image-icon-15.png" style="width: 100%;">
+
+
+
+
+
+
+
                         </div>
                         <div class="col s9">
                             <p style="font-weight: bold;">John Doe</p>
@@ -2232,6 +2335,13 @@
                     <div class="row">
                         <div class="col s3">
                             <img src="images/no-image-icon-15.png" style="width: 100%;">
+
+
+
+
+
+
+
                         </div>
                         <div class="col s9">
                             <p style="font-weight: bold;">John Doe</p>
@@ -2244,6 +2354,13 @@
                     <div class="row">
                         <div class="col s3">
                             <img src="images/no-image-icon-15.png" style="width: 100%;">
+
+
+
+
+
+
+
                         </div>
                         <div class="col s9">
                             <p style="font-weight: bold;">John Doe</p>
@@ -2292,9 +2409,23 @@
                                         <div class="opacitySelectedColor btn">
                                             <span>banner</span>
                                             <input id="editStore-image" stitm="banner" type="file">
+
+
+
+
+
+
+
                                         </div>
                                         <div class="file-path-wrapper">
                                             <input class="file-path validate" type="text" stitm="skip">
+
+
+
+
+
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -2317,6 +2448,13 @@
                                                 <div class="col s12" style="padding:0px;">
                                                     <label for="categoryName" class="active">Add Category</label>
                                                     <input class="characterCounter" type="text" id="categoryName" placeholder="Add a category" maxlength="15" data-length="15" stitm="addProdCategory">
+
+
+
+
+
+
+
                                                 </div>
                                                 <div class="col s3" style="margin-top:7px; padding:0px;">
                                                     <!--                                                                <a class="waves-effect waves-light btn" id="addCategory" style="font-size: 2rem; padding: 10px; line-height: 0.5; border-radius: 3px; float: right;">+</a>-->
@@ -2343,6 +2481,13 @@
                                             <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%;padding-bottom: 0px;border-bottom: none;">
                                                 <div class="input-field col s12" style="padding: 0px;">
                                                     <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none; margin-bottom: 0px;">
+
+
+
+
+
+
+
                                                 </div>
                                             </div>
                                             <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; right:20px; margin-top:-55px;float:right;" id="themeUpdate">ok</a>
@@ -2433,6 +2578,13 @@
                                                         <div class="col s4">Open from:</div>
                                                         <div class="col s8">
                                                             <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="mon-fri-openingHours" style="border-radius: 3px;" value="12:00 AM" stitm="mon-fri">
+
+
+
+
+
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2441,6 +2593,13 @@
                                                         <div class="col s4">Until:</div>
                                                         <div class="col s8">
                                                             <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="mon-fri-closingHours" style="border-radius: 3px;" value="12:00 PM" stitm="mon-fri">
+
+
+
+
+
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2454,6 +2613,13 @@
                                                         <div class="col s4">Open from:</div>
                                                         <div class="col s8">
                                                             <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="saturday-openingHours" style="border-radius: 3px;" value="12:00 AM" stitm="saturday">
+
+
+
+
+
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2462,6 +2628,13 @@
                                                         <div class="col s4">Until:</div>
                                                         <div class="col s8">
                                                             <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="saturday-closingHours" style="border-radius: 3px;" value="12:00 PM" stitm="saturday">
+
+
+
+
+
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2475,6 +2648,13 @@
                                                         <div class="col s4">Open from:</div>
                                                         <div class="col s8">
                                                             <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="sunday-openingHours" style="border-radius: 3px;" value="12:00 AM" stitm="sunday">
+
+
+
+
+
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2483,6 +2663,13 @@
                                                         <div class="col s4">Until:</div>
                                                         <div class="col s8">
                                                             <input type="text" class="timepicker timePicked btn opacitySelectedColor" id="sunday-closingHours" style="border-radius: 3px;" value="12:00 PM" stitm="sunday">
+
+
+
+
+
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2624,9 +2811,23 @@
                                     <div class="btn opacitySelectedColor">
                                         <span>File</span>
                                         <input type="file" id="entBanner" class="serviceImage" entInpt="entBanner">
+
+
+
+
+
+
+
                                     </div>
                                     <div class="file-path-wrapper">
                                         <input class="file-path validate" type="text" entInpt="skipBannerInpt">
+
+
+
+
+
+
+
                                     </div>
                                 </div>
                             </form>
@@ -2717,6 +2918,13 @@
                                     <div class="collapsible-header inputBackgroundColor" style="background-color:transparent;border-radius:5px; width:60%;padding-bottom: 0px;border-bottom: none;">
                                         <div class="input-field col s12" style="padding: 0px;">
                                             <input id="colorChosen" class="colors" placeholder="Select Theme Color" value="" stitm="theme" style="border-radius:5px; border-bottom:none; margin-bottom: 0px;">
+
+
+
+
+
+
+
                                         </div>
                                     </div>
                                     <a class="waves-effect waves-light btn opacitySelectedColor" style=" padding-top: 2px; padding-bottom: 38px; right:20px; margin-top:-55px;float:right;" id="themeUpdate">ok</a>
@@ -2738,6 +2946,13 @@
                                     <div class="col s8" style="padding-left: 0px;text-align: left;">
                                         <label for="businessDomain">Domain</label>
                                         <input placeholder="example" id="businessDomainInput" type="text" class="validate" entInpt="newEnt">
+
+
+
+
+
+
+
                                     </div>
                                     <div class="col s4">
                                         <div class="input-field col s12" id="domainSuffix">
@@ -2882,7 +3097,6 @@
                 gapi.auth2.init();
             });
         }
-
     </script>
 
     <script async src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBEpLoOInTvRSrkLpTHSu8EE3jiFD1Vk7E"></script>
@@ -2990,7 +3204,6 @@
             $('.selectedColor').addClass('importantRule');
             $('.opacitySelectedColor').addClass('importantRule');
         }
-
     </script>
     <script>
         var slide = document.getElementById('slide'),
@@ -3010,7 +3223,6 @@
                 if (e.status == 'ok') {} else {}
             });
         }
-
     </script>
 
     <script>
@@ -3037,7 +3249,6 @@
             $('.timepicker').timepicker();
             $('.tabs').tabs();
         });
-
     </script>
     <script>
         //If Quota Exceeded Clear Index DB and refresh the page
@@ -3075,7 +3286,6 @@
                 modal.style.display = "none";
             }
         }
-
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-73123651-1"></script>
@@ -3088,7 +3298,6 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-73123651-1');
-
     </script>
 
 </body>
