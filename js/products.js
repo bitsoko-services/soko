@@ -65,15 +65,6 @@ $('#submitProdForm').click(function (e) {
             "border-bottom": "1px solid red",
             "background": ""
         });
-    } else if (image_ == '' || image_ == null) {
-        M.toast({
-            html: 'Ooops! Please add image',
-            displayLength: 3000
-        })
-        $('#description').css({
-            "border-bottom": "1px solid red",
-            "background": ""
-        });
     } else if (amount_ == '' || amount_ == null) {
         M.toast({
             html: 'Ooops! Please enter amount',
@@ -296,7 +287,7 @@ function productsUpdater() {
 
             //Default Product Image
             if (reqs[i].imagePath == null) {
-                $("#prodImg-holda-" + reqs[i].id).css("background-image", "url(../images/no-image-icon-15.png)");
+                $("#prodImg-holda-" + reqs[i].id).css("background-image", "url(https://bitsoko.co.ke/soko/images/no-image-icon-15.png)");
                 console.log("No Image")
             }
         }
