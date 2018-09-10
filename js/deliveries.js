@@ -25,9 +25,10 @@ function deliveryMbr() {
                 var duration = moment().diff(this, 'hours');
                 return duration;
             }
-            var timeDif = moment.unix(deliveryMemberLst[i].onLocation).fromNow();
+//            var timeDif = moment.unix(deliveryMemberLst[i].onLocation).fromNow();
+            var activeOperator = deliveryMemberLst[i].onLocation
 
-            if (timeDif < 3) {
+            if (activeOperator != "false") {
                 for (var s in deliveryGuys) {
                     var name = deliveryGuys[s].name;
                     var id = deliveryGuys[s].id;

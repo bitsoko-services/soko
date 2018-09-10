@@ -1,16 +1,23 @@
-$(document).on('touchstart click', '.clickPromo', function () {
+var shopBalance;
+
+function walletBal() {
+    setTimeout(function() {
+        $('.activePage').html('<svg onclick="$(&quot;#buyStoreTokens&quot;).modal(&quot;open&quot;)" id="storeWallet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 334.877 334.877" style="enable-background:new 0 0 334.877 334.877;margin: 3px;width: 26px;float: left;margin-top: 13px;margin-left: 15px;" xml:space="preserve"><path d="M333.196,155.999h-16.067V82.09c0-17.719-14.415-32.134-32.134-32.134h-21.761L240.965,9.917 C237.571,3.798,231.112,0,224.107,0c-3.265,0-6.504,0.842-9.364,2.429l-85.464,47.526H33.815 c-17.719,0-32.134,14.415-32.134,32.134v220.653c0,17.719,14.415,32.134,32.134,32.134h251.18 c17.719,0,32.134-14.415,32.134-32.134v-64.802h16.067V155.999z M284.995,62.809c9.897,0,17.982,7.519,19.068,17.14h-24.152 l-9.525-17.14H284.995z M220.996,13.663c3.014-1.69,7.07-0.508,8.734,2.494l35.476,63.786H101.798L220.996,13.663z M304.275,302.742c0,10.63-8.651,19.281-19.281,19.281H33.815c-10.63,0-19.281-8.651-19.281-19.281V82.09 c0-10.63,8.651-19.281,19.281-19.281h72.353L75.345,79.95H37.832c-3.554,0-6.427,2.879-6.427,6.427s2.873,6.427,6.427,6.427h14.396 h234.83h17.217v63.201h-46.999c-21.826,0-39.589,17.764-39.589,39.589v2.764c0,21.826,17.764,39.589,39.589,39.589h46.999V302.742z M320.342,225.087h-3.213h-59.853c-14.743,0-26.736-11.992-26.736-26.736v-2.764c0-14.743,11.992-26.736,26.736-26.736h59.853 h3.213V225.087z M276.961,197.497c0,7.841-6.35,14.19-14.19,14.19c-7.841,0-14.19-6.35-14.19-14.19s6.35-14.19,14.19-14.19 C270.612,183.306,276.961,189.662,276.961,197.497z" style="fill: white;"></path></svg><span class="loadStoreBal" style=" padding: 10px 10px;">' + shopBalance + ' ' + baseCd + '</span>')
+    }, 1000)
+}
+$(document).on('touchstart click', '.clickPromo', function() {
     $(".activePage").html('<svg class="balance-coins" id="userWallet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 334.877 334.877" style="enable-background:new 0 0 334.877 334.877;margin: 3px;width: 26px;float: left;margin-top: 13px;margin-left: 15px;" xml:space="preserve"><path d="M333.196,155.999h-16.067V82.09c0-17.719-14.415-32.134-32.134-32.134h-21.761L240.965,9.917 C237.571,3.798,231.112,0,224.107,0c-3.265,0-6.504,0.842-9.364,2.429l-85.464,47.526H33.815 c-17.719,0-32.134,14.415-32.134,32.134v220.653c0,17.719,14.415,32.134,32.134,32.134h251.18 c17.719,0,32.134-14.415,32.134-32.134v-64.802h16.067V155.999z M284.995,62.809c9.897,0,17.982,7.519,19.068,17.14h-24.152 l-9.525-17.14H284.995z M220.996,13.663c3.014-1.69,7.07-0.508,8.734,2.494l35.476,63.786H101.798L220.996,13.663z M304.275,302.742c0,10.63-8.651,19.281-19.281,19.281H33.815c-10.63,0-19.281-8.651-19.281-19.281V82.09 c0-10.63,8.651-19.281,19.281-19.281h72.353L75.345,79.95H37.832c-3.554,0-6.427,2.879-6.427,6.427s2.873,6.427,6.427,6.427h14.396 h234.83h17.217v63.201h-46.999c-21.826,0-39.589,17.764-39.589,39.589v2.764c0,21.826,17.764,39.589,39.589,39.589h46.999V302.742z M320.342,225.087h-3.213h-59.853c-14.743,0-26.736-11.992-26.736-26.736v-2.764c0-14.743,11.992-26.736,26.736-26.736h59.853 h3.213V225.087z M276.961,197.497c0,7.841-6.35,14.19-14.19,14.19c-7.841,0-14.19-6.35-14.19-14.19s6.35-14.19,14.19-14.19 C270.612,183.306,276.961,189.662,276.961,197.497z" style="fill: white;"></path></svg><span id="userWalletBal" style=" padding: 10px 10px;"></span>')
 });
-$(document).on('touchstart click', '#storeWallet', function () {});
+$(document).on('touchstart click', '#storeWallet', function() {});
 
 function loadWalletBal() {
     if (sessionStorage.getItem('walletKey')) {
         $("#buyStrTkns").removeAttr("disabled");
         $("#withdrawFundsInpt").removeAttr("disabled");
         $("#unlockUserWallet").css("display", "none");
-        fetchRates().then(function (e) {
+        fetchRates().then(function(e) {
             if (e.status == "ok") {
-                setInterval(function () {
+                setInterval(function() {
                     $("#userWalletBal").html(numberify(((allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].balance / Math.pow(10, allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].decimals)) + allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].totalEarned) * (allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].rate * baseX), 2) + ' ' + baseCd)
                 }, 20000);
             }
@@ -25,18 +32,30 @@ function refreshSalesOrders() {
     doFetch({
         action: 'getOrders',
         id: localStorage.getItem('soko-active-store')
-    }).then(function (e) {
+    }).then(function(e) {
         console.log(e);
         if (e.status == 'ok') {
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.orders), 'soko-store-' + localStorage.getItem('soko-active-store') + '-orders');
             var alOds = e.orders;
+
             pendOds = false;
+            var storeTotalBal = []
             for (var ii in alOds) {
+                var storeBal = alOds[ii].proPrice
+                storeTotalBal.push(storeBal)
                 if (alOds[ii].state == 'pending') {
                     pendOds = true;
                 }
 
             }
+            var nums = storeTotalBal,
+                num = 0;
+
+            for (var i = 0; i < nums.length; i++) {
+                num += +nums[i];
+            }
+            shopBalance = num
+            $(".loadStoreBal").html(num + " " + baseCd)
 
             if (pendOds) {
                 playPendingOrders()
@@ -48,7 +67,7 @@ function refreshSalesOrders() {
             getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + localStorage.getItem('soko-active-store') + '-orders');
         }
         orderUpdater();
-    }).catch(function (err) {
+    }).catch(function(err) {
         orderUpdater();
     });
     /*
@@ -71,9 +90,9 @@ function refreshSalesOrders() {
 
 function getActvStoreProds(orderid, orderItems, orderLoc) {
 
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
 
-        getObjectStore('data', 'readwrite').get("soko-store-" + localStorage.getItem('soko-active-store') + "-products").onsuccess = function (event) {
+        getObjectStore('data', 'readwrite').get("soko-store-" + localStorage.getItem('soko-active-store') + "-products").onsuccess = function(event) {
 
             var p = {};
             p.orderid = orderid;
@@ -117,7 +136,7 @@ function addOrderItems(orderid, orderItems, orderLoc) {
 
     var latlng = orderLocation;
     var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
-    $.getJSON(url, function (data) {
+    $.getJSON(url, function(data) {
         formatted = []
         try {
             var address = data.results[0].formatted_address.split(",")
@@ -128,7 +147,7 @@ function addOrderItems(orderid, orderItems, orderLoc) {
 
         bolden = '<span style="">' + address[0] + '</span>'
         formatted.push(bolden)
-        $.each(address, function (index, value) {
+        $.each(address, function(index, value) {
             if (index !== 0) {
                 formatted.push(value)
             }
@@ -139,7 +158,7 @@ function addOrderItems(orderid, orderItems, orderLoc) {
         $(name_tag).text(orderCrdName);
         $(location_tag).html(formatted_html);
     });
-    getActvStoreProds(orderid, orderItems, orderLoc).then(function (p) {
+    getActvStoreProds(orderid, orderItems, orderLoc).then(function(p) {
         var orderItems = $.parseJSON(p.orderItems.items);
 
 
@@ -191,8 +210,8 @@ function addOrderItems(orderid, orderItems, orderLoc) {
 
 function salesUpdater() {
     var gsl = getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-transactions');
-    gsl.onsuccess = function (event) {
-        localConverter().then(function (loCon) {
+    gsl.onsuccess = function(event) {
+        localConverter().then(function(loCon) {
             var reqs = event.target.result;
             try {
                 reqs = JSON.parse(reqs);
@@ -224,7 +243,7 @@ function salesUpdater() {
             $(".noteC-count").css('display', 'block').html(nC);
         });
     }
-    gsl.onerror = function (event) {
+    gsl.onerror = function(event) {
         noSalesUpdater();
     }
 }
@@ -267,7 +286,7 @@ function addToWithdraw(r) {
 
     //Populate day Income
     if (getCurrentDay == saleDateDay) {
-        if (typeof (totalPrice) != 'undefined') {
+        if (typeof(totalPrice) != 'undefined') {
             dayIncomeArray.push(totalPrice)
         }
         var sum = dayIncomeArray.reduce((a, b) => a + b, 0);
@@ -278,7 +297,7 @@ function addToWithdraw(r) {
 
     var d = new Date();
     var step;
-    
+
     //Populate weekly Income
     for (step = 0; step < 7; step++) {
         var nextStep = step + 1
@@ -286,14 +305,14 @@ function addToWithdraw(r) {
         var prevDate = d
         var currentFullDate = prevDate.getUTCFullYear() + "-" + ("0" + (prevDate.getUTCMonth() + 1)).slice(-2) + "-" + ("0" + prevDate.getUTCDate()).slice(-2)
         if (currentFullDate == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
+            if (typeof(totalPrice) != 'undefined') {
                 weekIncomeArray.push(totalPrice)
             }
             var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
             $("#weeklySalesVal").html(sum)
         }
     }
-    
+
     //Populate Monthly Income
     for (step = 0; step < 30; step++) {
         var nextStep = step + 1
@@ -301,7 +320,7 @@ function addToWithdraw(r) {
         var prevDate = d
         var currentFullDate = prevDate.getUTCFullYear() + "-" + ("0" + (prevDate.getUTCMonth() + 1)).slice(-2) + "-" + ("0" + prevDate.getUTCDate()).slice(-2)
         if (currentFullDate == saleDateDay) {
-            if (typeof (totalPrice) != 'undefined') {
+            if (typeof(totalPrice) != 'undefined') {
                 monthIncomeArray.push(totalPrice)
             }
             var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
@@ -311,7 +330,7 @@ function addToWithdraw(r) {
 }
 
 function orderUpdater() {
-    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-orders').onsuccess = function (event) {
+    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-orders').onsuccess = function(event) {
         var reqs = event.target.result;
         try {
             reqs = JSON.parse(reqs);
@@ -337,6 +356,7 @@ function orderUpdater() {
         weekIncomeArray.length = 0
         monthIncomeArray.length = 0
         $(".sales-holda").html("");
+        var totalPrice = []
         for (var i = 0; i < reqs.length; ++i) {
             //  var saleAmount=Math.ceil(parseFloat(reqs[i].amount)/100000000 *loCon.xrate*loCon.rate)+'/= '+loCon.symbol;
             // var saleTime=moment(reqs[i].posted).fromNow();
@@ -360,6 +380,20 @@ function orderUpdater() {
             var deliveredBy = reqs[i].deliveredBy;
 
             if (reqs[i].state == "complete") {
+                //Calculate total price for completed orders
+                //                var allItems = JSON.parse(reqs[i].items)
+                //                for (item in allItems) {
+                //                    for (prd in globalProductList) {
+                //                        if (globalProductList[prd].id == allItems[item].pid) {
+                //                            console.log("Inside")
+                //                            console.log(globalProductList[prd].price * allItems[item].count)
+                //                            totalPrice.push(globalProductList[prd].price * allItems[item].count)
+                //                        }
+                //                    }
+                //                    console.log(allItems[item].pid, allItems[item].count)
+                //
+                //                }
+                //                console.log(JSON.parse(reqs[i].items))
                 //create a function to add
                 addToWithdraw(reqs[i])
 
@@ -392,25 +426,25 @@ function orderUpdater() {
             }
         }
 
-        setTimeout(function () {
+        setTimeout(function() {
             $('.collapsible').collapsible();
         }, 100);
 
         //Cancel Order Btn
-        $('.radioCancel').unbind('click').click(function () {
+        $('.radioCancel').unbind('click').click(function() {
             var id = $(this).attr('id');
             var split = id.split('_');
             var complete_id = split[1];
             $('#cancelOrderModal').modal('open');
 
-            $('#yesBtn').unbind('click').click(function () {
+            $('#yesBtn').unbind('click').click(function() {
                 console.log("clicked")
                 $('#cancelOrderModal').modal('close');
                 doFetch({
                     action: 'orderStatus',
                     id: complete_id,
                     state: 'Cancelled'
-                }).then(function (e) {
+                }).then(function(e) {
                     if (e.status == 'ok') {
                         $(complete_id).parent().parent().parent().parent().parent().parent().remove();
                         M.toast({
@@ -426,13 +460,13 @@ function orderUpdater() {
                     refreshSalesOrders();
                 });
             });
-            $('#noBtn').unbind('click').click(function () {
+            $('#noBtn').unbind('click').click(function() {
                 console.log("clicked")
                 $('#cancelOrderModal').modal('close');
             });
             return false;
         });
-        $('.radioDelivered').on('click', function () {
+        $('.radioDelivered').on('click', function() {
             $('#deliverOrderModal').modal({}).modal('open');
         })
         //        $('.radioDelivered').on('click', function () {
@@ -450,7 +484,7 @@ function orderUpdater() {
         //            });
         //
         //        });
-        $('.radioComplete').on('click', function () {
+        $('.radioComplete').on('click', function() {
             var id = $(this).attr('for');
             var split = id.split('_')[1];
 
@@ -458,7 +492,7 @@ function orderUpdater() {
                 action: 'orderStatus',
                 id: split,
                 state: 'Complete'
-            }).then(function (e) {
+            }).then(function(e) {
                 if (e.status == 'ok') {} else {}
                 refreshSalesOrders();
             });
@@ -476,8 +510,8 @@ function orderUpdater() {
 
 
 //Delivery Operators
-$('document').ready(function () {
-    $('body').unbind('click', $('#deliverOrderModal ul.autocomplete-content li'), function () {
+$('document').ready(function() {
+    $('body').unbind('click', $('#deliverOrderModal ul.autocomplete-content li'), function() {
         var value = $('#delivery-members').val();
         if (value != '') {
             var deliveryMembers = $('#delivery-members').val();
@@ -501,7 +535,7 @@ $('document').ready(function () {
 });
 
 function orderCrdId() {
-    $(".radioDelivered").click(function () {
+    $(".radioDelivered").click(function() {
         var orderCrdId = $(this).attr("id").replace(/^\D+/g, '');
         $("#deliverOrderModal").attr('gid', orderCrdId);
     });
@@ -544,7 +578,7 @@ function getDateHours(date_from_server) {
 
 
 //Delete Complete Orders
-$(document).on('click', '.completeCard', function (event) {
+$(document).on('click', '.completeCard', function(event) {
     var cardId = $(this).attr("cId");
     var thisCard = $(this).parent().parent().parent().parent().parent();
     $("#slctSettings").css("display", "block");
@@ -557,20 +591,20 @@ $(document).on('click', '.completeCard', function (event) {
     }
 })
 
-$("#deleteOrder").click(function () {
+$("#deleteOrder").click(function() {
     $('#completeOrder').modal({
-        complete: function () {
+        complete: function() {
             $(".slctdCompOrd").removeClass("slctdCompOrd");
             $(".salePromo").css("display", "block");
             $("#slctSettings").css("display", "none");
         }
     }).modal("open");
 
-    var slctArray = $('.slctdCompOrd').map(function () {
+    var slctArray = $('.slctdCompOrd').map(function() {
         return this.attributes[3].nodeValue;
     }).get();
 
-    $(document).on('click', '#yesComptOrder', function (event) {
+    $(document).on('click', '#yesComptOrder', function(event) {
         M.toast({
             html: 'Deleting selected orders',
             classes: 'orderDelete',
@@ -580,7 +614,7 @@ $("#deleteOrder").click(function () {
             action: 'deleteOrders',
             store: localStorage.getItem("soko-active-store"),
             order: slctArray
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == 'ok') {
                 thisCard.remove();
                 $("#completeOrder").modal("close");
@@ -588,7 +622,7 @@ $("#deleteOrder").click(function () {
                 $(".cmplOrders").find(".slctdCompOrd").animate({
                     'margin-top': '-10%',
                     'opacity': '-1'
-                }, 1000, function () {
+                }, 1000, function() {
                     $(this).remove();
                 });
                 M.toast({
@@ -599,7 +633,7 @@ $("#deleteOrder").click(function () {
         });
 
     })
-    $(document).on('click', '#noComptOrder', function (event) {
+    $(document).on('click', '#noComptOrder', function(event) {
         $("#completeOrder").modal("close");
     })
 });
