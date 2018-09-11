@@ -4,34 +4,28 @@
   Author: GeeksLabs
   Author URL: http://www.themeforest.net/user/geekslabs
 ================================================================================*/
-
-
 /*-----------------------------------------
 
 ------------------------------------------*/
-
-
 /*=================================================================================
     General
 ====================================================================================*/
-
-
 /*----------------------------------------
   General Layout Style
 ------------------------------------------*/
-
 body {
     background-color: #efefef;
     font-family: 'Lato', sans-serif !important;
     font-weight: initial;
 }
-.disabled{
+
+.disabled {
     background: grey !important;
 }
 
 .modal {
-    height: 80%!important;
-    margin-top: 0px!important;
+    height: 80% !important;
+    margin-top: 0px !important;
 }
 
 nav {
@@ -41,7 +35,8 @@ nav {
 #packagingModal .character-counter {
     display: none !important;
 }
-.settingsPage ul{
+
+.settingsPage ul {
     z-index: 1000 !important;
 }
 
@@ -53,6 +48,14 @@ nav {
     margin-top: -10px;
     margin-top: 0px !important;
     padding: 10px;
+}
+
+#completeShopSetup {
+    overflow: initial !important;
+}
+
+#completeShopSetup li{
+    list-style: circle !important;
 }
 
 #switchStoreContent>li.collection-item.avatar {
@@ -122,7 +125,7 @@ nav {
 }
 
 #store-dropdown li a i {
-    height: auto!important;
+    height: auto !important;
 }
 
 #main {
@@ -207,6 +210,7 @@ select {
     #main {
         padding-left: 0;
     }
+
     footer {
         padding-left: 0;
     }
@@ -220,11 +224,9 @@ select {
     z-index: 9999;
 }
 
-
 /***************************************
                  CHOOSE WALLET MODAL
  ***************************************/
-
 .modal3 {
     display: none;
     /* Hidden by default */
@@ -248,9 +250,7 @@ select {
     /* Black w/ opacity */
 }
 
-
 /* Modal Content */
-
 .modal-content3 {
     position: relative;
     background-color: #fefefe;
@@ -265,14 +265,13 @@ select {
     animation-duration: 0.4s
 }
 
-
 /* Add Animation */
-
 @-webkit-keyframes animatetop {
     from {
         top: -300px;
         opacity: 0
     }
+
     to {
         top: 0;
         opacity: 1
@@ -284,17 +283,16 @@ select {
         top: -300px;
         opacity: 0
     }
+
     to {
         top: 0;
         opacity: 1
     }
 }
 
-
 /*---------------------------------
     Typography
 -----------------------------------*/
-
 .small {
     font-size: 1.0rem;
     margin: 0;
@@ -381,11 +379,9 @@ li.home:before {
     margin: 0 !important;
 }
 
-
 /*----------------------------------------
     Pre-loader
 ------------------------------------------*/
-
 #loader-wrapper {
     position: fixed;
     top: 0;
@@ -474,6 +470,7 @@ li.home:before {
         -ms-transform: rotate(0deg);
         transform: rotate(0deg);
     }
+
     100% {
         -webkit-transform: rotate(360deg);
         -ms-transform: rotate(360deg);
@@ -487,6 +484,7 @@ li.home:before {
         -ms-transform: rotate(0deg);
         transform: rotate(0deg);
     }
+
     100% {
         -webkit-transform: rotate(360deg);
         -ms-transform: rotate(360deg);
@@ -529,23 +527,17 @@ li.home:before {
     background-color: rgba(255, 64, 129, 0.22);
 }
 
-
 /* JavaScript Turned Off */
-
 .no-js #loader-wrapper {
     display: none;
 }
 
-
 /*=================================================================================
     Header
 ====================================================================================*/
-
-
 /*----------------------------------------
     Page Header
 ------------------------------------------*/
-
 h1.logo-wrapper {
     margin: 0;
 }
@@ -575,17 +567,17 @@ header .brand-logo img {
     nav .nav-wrapper {
         text-align: center;
     }
+
     nav .nav-wrapper a.page-title {
         font-size: 36px;
     }
+
     ul.side-nav.leftside-navigation {
         top: 0px !important;
     }
 }
 
-
 /*Search box*/
-
 .header-search-wrapper {
     margin: 10px auto 0 240px;
     width: calc(100% - 600px);
@@ -750,16 +742,12 @@ input.header-search-input:focus {
     padding: 0;
 }
 
-
 /*=================================================================================
     Sidebar
 ====================================================================================*/
-
-
 /*----------------------------------------
     Sidebar Main Menu
 ------------------------------------------*/
-
 nav.top-nav {
     height: 55px;
     -webkit-box-shadow: none;
@@ -926,11 +914,9 @@ ul.side-nav .collapsible-header {
     overflow: hidden;
 }
 
-
 /*----------------------------------------
     Right Chat Slideout
 ------------------------------------------*/
-
 #right-search .input-field {
     margin-top: 0;
 }
@@ -994,16 +980,12 @@ ul.side-nav .collapsible-header {
     padding: 5px 15px 0 0;
 }
 
-
 /* =================================================================================
     Content
 ================================================================================= */
-
-
 /*----------------------------------------
     Breadcrumb
 ------------------------------------------*/
-
 #breadcrumbs-wrapper {
     background: #f3f3f3;
 }
@@ -1050,11 +1032,9 @@ h5.breadcrumbs-header {
     font-family: "Material-Design-Icons";
 }
 
-
 /*----------------------------------------
     Tables
 ------------------------------------------*/
-
 .jsgrid-edit-row input[type="checkbox"],
 .jsgrid-insert-row input[type="checkbox"],
 .jsgrid-filter-row input[type="checkbox"],
@@ -1101,11 +1081,9 @@ h5.breadcrumbs-header {
     overflow: scroll !important;
 }
 
-
 /*----------------------------------------
     Cards
 ------------------------------------------*/
-
 .card {
     overflow: hidden;
 }
@@ -1146,9 +1124,7 @@ h5.breadcrumbs-header {
     padding: 10px 14px;
 }
 
-
 /* alert card */
-
 #card-alert i {
     font-size: 20px;
     position: relative;
@@ -1189,9 +1165,7 @@ h5.breadcrumbs-header {
     margin: 0;
 }
 
-
 /* work card */
-
 #work-collections .collection-header {
     font-size: 1.14rem;
     font-weight: 500;
@@ -1216,9 +1190,7 @@ h5.breadcrumbs-header {
     padding-top: 22px;
 }
 
-
 /* flight card */
-
 #flight-card .flight-card-title {
     margin: 0;
     font-weight: 300;
@@ -1268,9 +1240,7 @@ h5.breadcrumbs-header {
     padding: 20px;
 }
 
-
 /* task card */
-
 #task-card label {
     display: block;
     color: rgba(0, 0, 0, 0.87);
@@ -1326,9 +1296,7 @@ h5.breadcrumbs-header {
     font-size: 28px;
 }
 
-
 /* profile card */
-
 #profile-card .card-image {
     height: 150px;
 }
@@ -1361,11 +1329,9 @@ h5.breadcrumbs-header {
     height: 25vh;
 }
 
-
 /*----------------------------------------
     Charts
 ------------------------------------------*/
-
 #chart-dashboard {
     padding-top: 12px;
 }
@@ -1387,9 +1353,7 @@ h5.breadcrumbs-header {
     font-weight: 300;
 }
 
-
 /* Revenue Chart */
-
 .chart-revenue {
     float: right;
     text-align: center;
@@ -1419,9 +1383,7 @@ h5.breadcrumbs-header {
     text-align: right;
 }
 
-
 /* doughnut chart */
-
 .doughnut-chart-status {
     position: relative;
     top: -75px;
@@ -1462,9 +1424,7 @@ a.button-collapse.top-nav {
     z-index: 2;
 }
 
-
 /* trending bar chart */
-
 .trending-bar-chart-wrapper {
     width: 100%;
 }
@@ -1476,9 +1436,7 @@ a.button-collapse.top-nav {
     margin-right: 10px !important;
 }
 
-
 /* Flot Chart*/
-
 .flotchart-placeholder {
     width: 100%;
     height: 300px;
@@ -1503,17 +1461,13 @@ th {
     padding: 5px;
 }
 
-
 /* xCharts */
-
 .xchart-placeholder {
     width: 90%;
     height: 300px;
 }
 
-
 /*Sparkline*/
-
 .jqstooltip {
     border: none !important;
     box-sizing: content-box;
@@ -1538,9 +1492,7 @@ th {
     stroke: #54e2f4;
 }
 
-
 /*  Widget */
-
 .socialbox .logo {
     color: #fff;
     font-size: 28px;
@@ -1569,16 +1521,15 @@ th {
     .doughnut-chart-status {
         display: none;
     }
+
     #card-stats .card-stats-compare {
         font-size: 0.8rem;
     }
 }
 
-
 /*----------------------------------------
     Calender
 ------------------------------------------*/
-
 #full-calendar {
     padding-top: 30px;
 }
@@ -1627,11 +1578,9 @@ th {
     color: #ff4081 !important;
 }
 
-
 /*----------------------------------------
     Color Palette css for css-color.html page
 ------------------------------------------*/
-
 .dynamic-color .red,
 .dynamic-color .pink,
 .dynamic-color .purple,
@@ -1681,11 +1630,9 @@ tr.group:hover {
     }
 }
 
-
 /*----------------------------------------
     Grid - Flat Site Mockup
 ------------------------------------------*/
-
 #site-layout-example-left {
     background-color: #90a4ae;
     height: 300px;
@@ -1748,11 +1695,9 @@ tr.group:hover {
     line-height: 57px;
 }
 
-
 /*----------------------------------------
     Chrome Browser Grid Example
 ------------------------------------------*/
-
 .browser-window {
     text-align: left;
     width: 100%;
@@ -1834,11 +1779,9 @@ tr.group:hover {
     margin-bottom: 0;
 }
 
-
 /*----------------------------------------
     Shadow effect
 ------------------------------------------*/
-
 .shadow-demo {
     background-color: #26a69a;
     width: 100px;
@@ -1854,9 +1797,7 @@ tr.group:hover {
     padding: 0px !important;
 }
 
-
 /* Sidebar nav open close icons*/
-
 .collapsible-header:after {
     font-family: "Material-Design-Icons";
     /*    content: "\e7c3";*/
@@ -1875,11 +1816,9 @@ tr.group:hover {
     font-size: 0.8rem;
 }
 
-
 /*----------------------------------------
     icon page
 ------------------------------------------*/
-
 .icon-demo {
     line-height: 50px;
 }
@@ -1908,11 +1847,9 @@ tr.group:hover {
     margin: 0;
 }
 
-
 /*----------------------------------------
     Error Page
 ------------------------------------------*/
-
 .text-long-shadow {
     text-shadow: #1d7d74 1px 1px, #1d7d74 2px 2px, #1d7d74 3px 3px, #1d7d74 4px 4px, #1d7d74 5px 5px, #1d7d74 6px 6px, #1d7d74 7px 7px, #1d7d74 8px 8px, #1d7d74 9px 9px, #1d7d74 10px 10px, #1d7d74 11px 11px, #1d7d74 12px 12px, #1d7d74 13px 13px, #1d7d74 14px 14px, #1d7d74 15px 15px, #1d7d74 16px 16px, #1d7d74 17px 17px, #1d7d74 18px 18px, #1d7d74 19px 19px, #1d7d74 20px 20px, #1d7d74 21px 21px, #208b81 22px 22px, #208b81 23px 23px, #208b81 24px 24px, #208b81 25px 25px, #208b81 26px 26px, #208b81 27px 27px, #208b81 28px 28px, #208b81 29px 29px, #208b81 30px 30px, #26a69a 31px 31px, #26a69a 32px 32px, #26a69a 33px 33px, #26a69a 34px 34px, #26a69a 35px 35px, #26a69a 36px 36px, #26a69a 37px 37px;
     background-color: #26a69a;
@@ -1923,11 +1860,9 @@ tr.group:hover {
     padding: 20px 0 !important;
 }
 
-
 /*----------------------------------------
     Login Page
 ------------------------------------------*/
-
 .login-form {
     width: 280px;
 }
@@ -2006,11 +1941,9 @@ tr.group:hover {
     background: #256D82;
 }
 
-
 /*----------------------------------------
     Email Page
 ------------------------------------------*/
-
 #mail-app hr {
     display: block;
     height: 1px;
@@ -2233,14 +2166,10 @@ tr.group:hover {
     padding: 24px;
 }
 
-
 /*----------------------------------------
     Blog
 ------------------------------------------*/
-
-
 /* ----- Blog Card -----*/
-
 .blog-card .card .card-content .card-title,
 .blog-card .card .card-reveal .card-title {
     font-size: 1.2rem;
@@ -2266,9 +2195,7 @@ tr.group:hover {
     padding-left: 5px;
 }
 
-
 /* -----Blogs Masonery Page----- */
-
 .blog .card .card-content .card-title,
 .blog .card .card-reveal .card-title {
     font-size: 1.2rem;
@@ -2307,28 +2234,32 @@ tr.group:hover {
     padding-bottom: 10px;
 }
 
-
 /*  blog page media queries */
-
 @media screen and (max-width: 2200px) {
     .blog-sizer {
         width: 20%;
     }
+
     .blog {
         width: 20%;
     }
+
     .doughnut-chart-status {
         top: -100px;
     }
+
     .product-sizer {
         width: 20%;
     }
+
     .product {
         width: 20%;
     }
+
     .gallary-sizer {
         width: 20%;
     }
+
     .gallary-item img {
         width: 20%;
     }
@@ -2338,18 +2269,23 @@ tr.group:hover {
     .blog-sizer {
         width: 30%;
     }
+
     .blog {
         width: 30%;
     }
+
     .product-sizer {
         width: 30%;
     }
+
     .product {
         width: 30%;
     }
+
     .gallary-sizer {
         width: 30%;
     }
+
     .gallary-item img {
         width: 30%;
     }
@@ -2359,21 +2295,27 @@ tr.group:hover {
     .blog-sizer {
         width: 33.33%;
     }
+
     .doughnut-chart-status {
         top: -75px;
     }
+
     .blog {
         width: 33.33%;
     }
+
     .product-sizer {
         width: 25%;
     }
+
     .product {
         width: 25%;
     }
+
     .gallary-sizer {
         width: 25%;
     }
+
     .gallary-item img {
         width: 25%;
     }
@@ -2383,24 +2325,31 @@ tr.group:hover {
     .blog-sizer {
         width: 33.33%;
     }
+
     .doughnut-chart-status {
         top: -75px;
     }
+
     .doughnut-chart-status {
         top: -100px;
     }
+
     .blog {
         width: 33.33%;
     }
+
     .product-sizer {
         width: 33.33%;
     }
+
     .product {
         width: 33.33%;
     }
+
     .gallary-sizer {
         width: 33.33%;
     }
+
     .gallary-item img {
         width: 33.33%;
     }
@@ -2410,18 +2359,23 @@ tr.group:hover {
     .blog-sizer {
         width: 50%;
     }
+
     .blog {
         width: 50%;
     }
+
     .product-sizer {
         width: 50%;
     }
+
     .product {
         width: 50%;
     }
+
     .gallary-sizer {
         width: 50%;
     }
+
     .gallary-item img {
         width: 50%;
     }
@@ -2431,18 +2385,23 @@ tr.group:hover {
     .blog-sizer {
         width: 50%;
     }
+
     .blog {
         width: 50%;
     }
+
     .product-sizer {
         width: 50%;
     }
+
     .product {
         width: 50%;
     }
+
     .gallary-sizer {
         width: 50%;
     }
+
     .gallary-item img {
         width: 50%;
     }
@@ -2452,26 +2411,29 @@ tr.group:hover {
     .blog-sizer {
         width: 100%;
     }
+
     .blog {
         width: 100%;
     }
+
     .product-sizer {
         width: 100%;
     }
+
     .product {
         width: 100%;
     }
+
     .gallary-sizer {
         width: 100%;
     }
+
     .gallary-item img {
         width: 100%;
     }
 }
 
-
 /* -----Blogs Page Full width 2----- */
-
 #blog-post-full .card-title {
     text-shadow: 1px 1px 4px #000;
     font-weight: 300;
@@ -2494,11 +2456,9 @@ tr.group:hover {
     text-shadow: none;
 }
 
-
 /*----------------------------------------
     Invoice Page
 ------------------------------------------*/
-
 .invoice-table {
     padding-top: 40px;
 }
@@ -2511,14 +2471,10 @@ tr.group:hover {
     font-size: 2rem;
 }
 
-
 /*----------------------------------------
     Products
 ------------------------------------------*/
-
-
 /* ---- Product Card ----- */
-
 .product-card .card .card-content .card-title,
 .product-card .card .card-reveal .card-title {
     font-size: 1.1rem;
@@ -2556,9 +2512,7 @@ tr.group:hover {
     padding-left: 5px;
 }
 
-
 /********* START OF SELECT IMAGE BUTTON **********/
-
 .selectedImage .btn {
     display: inline-block;
     padding: 6px 12px;
@@ -2596,12 +2550,8 @@ tr.group:hover {
     cursor: pointer;
 }
 
-
 /******** END OF SELECT IMAGE BUTTON ********/
-
-
 /* -----Products Masonery ----- */
-
 .product .card .card-content .card-title,
 .product .card .card-reveal .card-title {
     font-size: 1.1rem;
@@ -2652,11 +2602,9 @@ tr.group:hover {
     margin-bottom: 6px;
 }
 
-
 /*----------------------------------------
     Gallary  Page
 ------------------------------------------*/
-
 .gallary-sizer {
     width: 20%;
 }
@@ -2669,11 +2617,9 @@ tr.group:hover {
     z-index: 9999;
 }
 
-
 /*----------------------------------------
     Contact Page (Map-card)
 ------------------------------------------*/
-
 .map-card .card .card-content .card-title,
 .map-card .card .card-reveal .card-title {
     font-size: 1.2rem;
@@ -2681,9 +2627,7 @@ tr.group:hover {
     font-weight: 400;
 }
 
-
 /* ---- Map card ----*/
-
 .map-card #map-canvas {
     width: 100%;
     height: 250px;
@@ -2693,19 +2637,15 @@ tr.group:hover {
     top: -38px;
 }
 
-
 /* ---- Map Contact Page ----*/
-
 #map-canvas {
     width: 100%;
     height: 250px;
 }
 
-
 /*----------------------------------------
     Pricing Plan  Page
 ------------------------------------------*/
-
 .plans-container .collection {
     border: none;
 }
@@ -2780,11 +2720,9 @@ tr.group:hover {
     padding: 0;
 }
 
-
 /*----------------------------------------
     Profile Page
 ------------------------------------------*/
-
 #profile-page-header .card-image {
     height: 250px;
 }
@@ -2807,9 +2745,7 @@ tr.group:hover {
     margin-bottom: 0;
 }
 
-
 /*profile-page-wall*/
-
 #profile-page-wall .profile-image-post {
     width: 60px;
     margin: 30px 10px;
@@ -2856,11 +2792,9 @@ tr.group:hover {
     padding: 16px;
 }
 
-
 /*----------------------------------------
     Billing Page Table
 ------------------------------------------*/
-
 .rwd-table tr {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -2932,6 +2866,7 @@ tr.group:hover {
 }
 
 @media (min-width: 480px) {
+
     .rwd-table th,
     .rwd-table td {
         padding: 1em !important;
@@ -2947,11 +2882,9 @@ tr.group:hover {
     /*    z-index: 999 !important;*/
 }
 
-
 /*----------------------------------------
     footer charts
 ------------------------------------------*/
-
 .page-footer .container {
     padding: 0 15px;
 }
@@ -2964,11 +2897,9 @@ tr.group:hover {
     padding-top: 20px;
 }
 
-
 /***************************************
            THEME CHOOSER
 ****************************************/
-
 .spectrum-color {
     float: left;
     width: 85%;
@@ -2988,11 +2919,9 @@ tr.group:hover {
     background: #f00;
 }
 
-
 /******************************************
                   month slider
 ******************************************/
-
 #tabs-swipe-demo {
     border-radius: 5px;
 }
@@ -3016,10 +2945,8 @@ tr.group:hover {
     margin: 0px;
 }
 
-
 /*******************************************
 ********************************************/
-
 .calender {}
 
 .header {
@@ -3106,11 +3033,9 @@ tr.group:hover {
     background: red
 }
 
-
 /**********************************************
                  PLUS MINUS ICONS
 ************************************************/
-
 .notificationSetting li {
     display: inline-block;
     width: 20px;
@@ -3139,24 +3064,24 @@ tr.group:hover {
     .orders-holda .card-image {
         max-width: 100% !important;
     }
+
     .card-action .pdfHide i {
         border: solid #ffab40 1px !important;
         padding: 5px 5px 5px 5px !important;
         border-radius: 5px !important;
         font-size: 0.8em !important;
     }
+
     .card-action .pdfHide {
         margin-right: 10px !important;
     }
 }
-
 
 /**********************************************
 ***********************************************
                   DESKTOP VERSION
 ***********************************************
 **********************************************/
-
 .revealOnLoad {
     display: block !important;
     transform: translateY(-100%) !important;
@@ -3199,137 +3124,172 @@ tr.group:hover {
     ul.side-nav.leftside-navigation li {
         margin-top: 10px;
     }
+
     .navDskt {
         margin-left: -10px !important;
     }
+
     .navbar-fixed {
         height: 43px !important;
         z-index: 10 !important;
         display: block !important;
     }
+
     svg {
         z-index: 99999
     }
+
     #slide-out {
         margin-left: 27% !important;
         width: 26vw !important;
     }
+
     .user-details {
         margin-top: -10px !important;
     }
+
     #content {
         width: 74vw !important;
         float: right !important;
     }
+
     .deliveries {
         margin: 10% 20% !important;
     }
+
     #rewardsPoints {
         margin: 0 20% !important;
     }
+
     .products {
         margin-left: -20px !important;
     }
+
     .rewardsHeader {
         padding-top: 20px;
         text-align: left;
         padding-left: 30%;
     }
+
     #contactModal {
         margin-top: 10% !important;
         width: 30% !important;
         height: 45% !important;
         margin-left: 50% !important;
     }
+
     #add-product {
         width: 35% !important;
     }
+
     #add-product::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         border-radius: 10px;
         background-color: #F5F5F5;
     }
+
     #add-product::-webkit-scrollbar {
         width: 5px;
         background-color: #F5F5F5;
     }
+
     .swtchStrDskt {
         z-index: 1 !important;
     }
+
     #spnsrdModal {
         margin-top: 10% !important;
     }
+
     #complimentaryModal {
         width: 35% !important;
         margin-left: 45% !important;
         margin-top: 10% !important;
         top: -20% !important;
     }
+
     #add-product h5 {
         text-align: left !important;
         padding-left: 8% !important;
     }
+
     #removeManagerModal {
         width: 35%;
         margin-left: 40%;
         margin-top: 6%;
     }
+
     .tabs {
         height: 43px !important;
     }
+
     .navbar-fixed {
         display: none;
     }
+
     .promoSettings {
         margin-top: -2.7%;
     }
+
     ul.side-nav.leftside-navigation {
         top: 0px;
     }
+
     .side-nav {
         left: 0;
         -webkit-transform: none !important;
         transform: none !important;
         position: fixed;
     }
+
     .container {
         width: 90%;
         margin-left: 7.5%;
     }
+
     .promotions-holda {
         padding: 20px;
     }
+
     .card {
         overflow: hidden;
         width: 46%;
         float: left;
         margin: 2%;
     }
+
     .products-collapsible li {
         width: 44%;
         height: 65vh;
         overflow-y: auto;
         float: left;
     }
+
     .products-collapsible .collapsible-body {
         display: block !important;
     }
+
     .loadCard {
         height: 323px;
     }
+
     .payButton {
         top: 20% !important;
     }
+
     .settingsIcon {
         padding-top: 6px !important;
         padding-left: 30px !important;
     }
+
     .paymentIcon {
         margin-left: 30px !important;
     }
+
     .contactIcon {
         padding-left: 30px !important;
     }
+
     /*
     .editStore {
         display: none !important;
@@ -3338,114 +3298,144 @@ tr.group:hover {
     .deliveriesIcon {
         /*        margin-left: 30px !important;*/
     }
+
     .switch {
         margin-top: 5px !important;
     }
+
     #editStoreModal {
         margin-left: 38% !important;
         width: 45%;
     }
+
     #editStoreModal .modal-content::-webkit-scrollbar-thumb {
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3) !important;
         background-color: rgba(76, 150, 143, 0.67);
     }
+
     #MobileModal {
         width: 80% !important;
         margin-left: auto;
     }
+
     #loyaltyModal {
         left: 25% !important;
     }
+
     .editStoreInfo form {
         width: 50%;
         padding-left: 8%;
     }
+
     .products nav {
         display: block !important;
     }
+
     .billing nav {
         display: block !important;
     }
+
     .storeInfo {
         display: block !important;
     }
+
     #add-product {
         left: 25% !important;
     }
+
     #beaconsPage {
         display: none;
     }
+
     #billingPage {
         margin-top: 6px;
     }
+
     .newStore {
         margin-left: 43px;
     }
+
     #collection_dskt .collection-item {
         display: block !important;
     }
+
     #login {
         margin-top: 5% !important;
         margin-left: 33% !important;
     }
+
     #firstProdModal {
         margin-left: 33% !important;
     }
+
     .newStore {
         margin-left: 0px !important;
     }
+
     .card-reveal::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         border-radius: 10px;
         background-color: #F5F5F5;
     }
+
     .card-reveal::-webkit-scrollbar {
         width: 5px;
         background-color: #F5F5F5;
     }
+
     .card-reveal::-webkit-scrollbar-thumb {
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
         background-color: rgba(76, 150, 143, 0.67);
     }
+
     .products-collapsible li {
         border-radius: 5px;
     }
+
     .products-collapsible li::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         border-radius: 10px;
         background-color: #F5F5F5;
     }
+
     .products-collapsible li::-webkit-scrollbar {
         width: 5px;
         background-color: #F5F5F5;
     }
+
     .products-collapsible li::-webkit-scrollbar-thumb {
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
         background-color: rgba(76, 150, 143, 0.67);
     }
+
     #slide-out::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         border-radius: 10px;
         background-color: #F5F5F5;
     }
+
     #slide-out::-webkit-scrollbar {
         width: 5px;
         background-color: #F5F5F5;
     }
+
     #slide-out::-webkit-scrollbar-thumb {
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
         background-color: rgba(204, 204, 204, 0.67);
     }
+
     .card {
         /* height: 50vh !important; */
     }
+
     .prdList {
         margin: 2%;
     }
+
     .prodImgDskt {
         float: none !important;
         width: 100% !important;
@@ -3454,143 +3444,173 @@ tr.group:hover {
         background-color: #BAE0FC;
         margin: 0px !important;
     }
+
     .products .collapsible {
         border-top: none !important;
     }
+
     .products .collapsible .divider {
         display: none;
     }
+
     .products-collapsible .collapsible-header {
         padding-left: 60px;
     }
+
     #MobileModal {
         width: 78vw !important;
         padding: 30px;
     }
+
     #loyaltyModal {
         text-align: center;
         width: 40%;
     }
+
     #switchStoreModal {
         margin-left: 23% !important;
     }
+
     .swtchStrDskt {
         width: 78vw !important;
         z-index: 2 !important;
     }
+
     .tabs {
         height: 45px !important;
     }
+
     .tabs li a {
         line-height: 45px !important;
     }
+
     #MobileModal {
         width: 43% !important;
         margin-right: 20%;
         padding: 0px;
     }
+
     #rewardsIcon {
         margin-left: 15px;
     }
+
     .side-nav {
         width: 25% !important;
     }
+
     #loyaltyPoints {
         width: 40%;
         margin-left: 43%;
     }
+
     #loyaltyPoints h5 {
         font-size: 1.5rem;
     }
+
     #newPromoModal {
         width: 50%;
         margin-left: 35%;
     }
+
     #spnsrdModal {
         width: 40%;
         margin-left: 41%;
         margin-top: 10% !important;
         top: -20% !important;
     }
+
     #mobiVeri {
         width: 75%;
         margin-left: auto;
     }
+
     #completeOrder {
         top: 35% !important;
         width: 35%;
         margin-left: 45%;
     }
+
     #newStoreModal {
-        width: 40%!important;
-        margin-left: 40%!important;
+        width: 40% !important;
+        margin-left: 40% !important;
     }
+
     #cancelOrderModal {
-        width: 40%!important;
-        margin-left: 40%!important;
+        width: 40% !important;
+        margin-left: 40% !important;
     }
+
     #confirmMemberModal {
-        width: 40%!important;
-        margin-left: 40%!important;
+        width: 40% !important;
+        margin-left: 40% !important;
     }
+
     #removeMemberModal {
-        width: 40%!important;
-        margin-left: 40%!important;
+        width: 40% !important;
+        margin-left: 40% !important;
     }
+
     #confirmAddMember {
-        width: 40%!important;
-        margin-left: 40%!important;
+        width: 40% !important;
+        margin-left: 40% !important;
     }
+
     #firstProdModal {
-        width: 40%!important;
-        margin-left: 40%!important;
+        width: 40% !important;
+        margin-left: 40% !important;
         margin-top: 10% !important;
     }
+
     #dlvryHelpModal {
-        width: 40%!important;
-        margin-left: 40%!important;
-        margin-top: 10%!important;
+        width: 40% !important;
+        margin-left: 40% !important;
+        margin-top: 10% !important;
     }
+
     #categoryModal {
         width: 40% !important;
-        margin-left: 40%!important;
-        margin-top: 10%!important;
+        margin-left: 40% !important;
+        margin-top: 10% !important;
     }
+
     #wkDayModal {
         padding-top: 10% !important;
         padding-left: 35% !important;
         padding-right: 20% !important;
     }
+
     #satModal {
         padding-top: 10% !important;
         padding-left: 35% !important;
         padding-right: 20% !important;
     }
+
     #sunModal {
         padding-top: 10% !important;
         padding-left: 35% !important;
         padding-right: 20% !important;
     }
+
     #rmvSpnsrdProd {
         padding-left: 40% !important;
         padding-right: 20% !important;
     }
+
     #firstStoreModal {
         width: 40% !important;
         text-align: center !important;
         height: 50% !important;
     }
+
     .navDskt {
         width: 75% !important;
         margin-left: -10px;
     }
 }
 
-
 /**********************************************
                   order range slider
 **********************************************/
-
 .timeline {
     list-style-type: none;
     display: flex;
@@ -3690,11 +3710,9 @@ tr.group:hover {
     border-top: 2px solid #32ce32 !important;
 }
 
-
 /********************************************
             Radio Group
 ********************************************/
-
 .radio-group input[type=radio] {
     position: absolute;
     visibility: hidden;
@@ -3748,11 +3766,9 @@ tr.group:hover {
     margin: 0px !important;
 }
 
-
 /********************************************
             LOAYLTY POINTS
 ********************************************/
-
 #loyaltyPoints a {
     display: block !important;
     margin-bottom: 15px !important;
@@ -3768,11 +3784,9 @@ tr.group:hover {
     max-height: 65% !important;
 }
 
-
 /********************************************
             Promotion
 ********************************************/
-
 .counter-right,
 .counter-left {
     transition: 0.5s;
@@ -3790,11 +3804,9 @@ tr.group:hover {
     background: #6c7271 !important;
 }
 
-
 /********************************************
             Reward Points
 ********************************************/
-
 #buy100 {
     background: #26a69a;
     display: flex;
@@ -3918,11 +3930,9 @@ tr.group:hover {
     top: 30% !important;
 }
 
-
 /********************************************
             Products Page
 ********************************************/
-
 .prodImgDskt {
     border-radius: 4px !important;
 }
@@ -3939,9 +3949,7 @@ tr.group:hover {
     font-size: 1rem !important;
 }
 
-
 /******* permanent changes ********/
-
 .permanentChng h6 {
     text-align: center;
     border-bottom: 1px solid red;
@@ -3974,11 +3982,9 @@ tr.group:hover {
     padding: 0 5px;
 }
 
-
 /***************************************
              Promotion Car
 ****************************************/
-
 .overlay {
     height: 100%;
     width: 0;
@@ -4012,6 +4018,7 @@ tr.group:hover {
     .overlay a {
         font-size: 20px
     }
+
     .overlay .closebtn {
         font-size: 40px;
         top: 15px;
@@ -4023,11 +4030,9 @@ tr.group:hover {
     width: 33%;
 }
 
-
 /*******************************************
             SPONSORED PRODUCT
 *********************************************/
-
 .modal2 {
     display: none;
     /* Hidden by default */
@@ -4072,6 +4077,7 @@ tr.group:hover {
         top: -300px;
         opacity: 0
     }
+
     to {
         top: 0;
         opacity: 1
@@ -4083,6 +4089,7 @@ tr.group:hover {
         top: -300px;
         opacity: 0
     }
+
     to {
         top: 0;
         opacity: 1
@@ -4106,11 +4113,9 @@ tr.group:hover {
     font-weight: bold;
 }
 
-
 /*******************************************
                  RANGE SLIDER
 *********************************************/
-
 input[type=range]::-webkit-slider-thumb {
     background-color: #7EB7C8;
     height: 30px;
@@ -4156,11 +4161,9 @@ ul.side-nav.leftside-navigation li:hover {
     height: 30px;
 }
 
-
 /*******************************************
                  RWEWARDS
 *********************************************/
-
 .rewardCard {
     background: white;
     border-radius: 5px;
@@ -4195,11 +4198,9 @@ ul.side-nav.leftside-navigation li:hover {
     padding-right: 10px;
 }
 
-
 /*******************************************
                  PRE LOADER
 *********************************************/
-
 .loader {
     -webkit-filter: url("#goo");
     filter: url("#goo");
@@ -4259,6 +4260,7 @@ ul.side-nav.leftside-navigation li:hover {
         -webkit-transform: translateX(-200px);
         transform: translateX(-200px);
     }
+
     100% {
         -webkit-transform: translateX(100px);
         transform: translateX(100px);
@@ -4270,6 +4272,7 @@ ul.side-nav.leftside-navigation li:hover {
         -webkit-transform: translateX(-120px);
         transform: translateX(-120px);
     }
+
     100% {
         -webkit-transform: translateX(100px);
         transform: translateX(100px);
@@ -4281,10 +4284,12 @@ ul.side-nav.leftside-navigation li:hover {
         -webkit-transform: scale(1);
         transform: scale(1);
     }
+
     50% {
         -webkit-transform: scale(1.25);
         transform: scale(1.25);
     }
+
     90% {
         -webkit-transform: scale(1);
         transform: scale(1);
@@ -4296,10 +4301,12 @@ ul.side-nav.leftside-navigation li:hover {
         -webkit-transform: scale(1);
         transform: scale(1);
     }
+
     50% {
         -webkit-transform: scale(1.25);
         transform: scale(1.25);
     }
+
     90% {
         -webkit-transform: scale(1);
         transform: scale(1);
@@ -4361,11 +4368,9 @@ ul.side-nav.leftside-navigation li:hover {
     }
 }
 
-
 /*******************************************
                QUOGGA
 *********************************************/
-
 #quagaLauncher video {
     /* width: 100%; */
     /* height: 100%; */
@@ -4379,11 +4384,9 @@ ul.side-nav.leftside-navigation li:hover {
     /*display: none;*/
 }
 
-
 /*******************************************
                Enterprise Settings
 *********************************************/
-
 .entForms {
     background: white;
     margin: 0px 5%;
@@ -4527,11 +4530,9 @@ ul.side-nav.leftside-navigation li:hover {
     border-bottom: solid 1px #f7f6f6;
 }
 
-
 /*******************************************
                Store Ent Settings
 *********************************************/
-
 .settingsPage ul {
     margin-top: -1px;
     z-index: 1;
@@ -4546,11 +4547,9 @@ ul.side-nav.leftside-navigation li:hover {
     line-height: 30px !important;
 }
 
-
 /*******************************************
                GLOWING DIV
 *********************************************/
-
 .glow {
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -4572,10 +4571,12 @@ ul.side-nav.leftside-navigation li:hover {
         background-color: #B20000;
         -webkit-box-shadow: 0 0 3px #B20000;
     }
+
     50% {
         background-color: #FF0000;
         -webkit-box-shadow: 0 0 40px #FF0000;
     }
+
     100% {
         background-color: #B20000;
         -webkit-box-shadow: 0 0 3px #B20000;
@@ -4587,10 +4588,12 @@ ul.side-nav.leftside-navigation li:hover {
         background-color: #B20000;
         -moz-box-shadow: 0 0 3px #B20000;
     }
+
     50% {
         background-color: #FF0000;
         -moz-box-shadow: 0 0 40px #FF0000;
     }
+
     100% {
         background-color: #B20000;
         -moz-box-shadow: 0 0 3px #B20000;
@@ -4602,10 +4605,12 @@ ul.side-nav.leftside-navigation li:hover {
         background-color: #B20000;
         box-shadow: 0 0 3px #B20000;
     }
+
     50% {
         background-color: #FF0000;
         box-shadow: 0 0 40px #FF0000;
     }
+
     100% {
         background-color: #B20000;
         box-shadow: 0 0 3px #B20000;
@@ -4617,21 +4622,21 @@ ul.side-nav.leftside-navigation li:hover {
         background-color: #B20000;
         box-shadow: 0 0 3px #B20000;
     }
+
     50% {
         background-color: #FF0000;
         box-shadow: 0 0 40px #FF0000;
     }
+
     100% {
         background-color: #B20000;
         box-shadow: 0 0 3px #B20000;
     }
 }
 
-
 /*******************************************
                Gauge Chart
 *********************************************/
-
 .sc-gauge {
     width: 200px;
     height: 200px;
@@ -4692,11 +4697,9 @@ ul.side-nav.leftside-navigation li:hover {
     font-weight: 700;
 }
 
-
 /*******************************************
                Token Section
 *********************************************/
-
 .tokenOwnerCard {
     background: white;
     margin: 5px 7px;

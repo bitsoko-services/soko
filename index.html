@@ -1105,6 +1105,27 @@
     <!--- Loyalty Points End --->
 
 
+    <!--- COMPLETE SHOP SETUP MODAL --->
+    <div id="completeShopSetup" class="modal" style="height: auto !important;">
+        <div style="background-color: white; width: 60px; display: block; margin-left: auto; margin-right: auto; margin-top: -35px; background: white;border-radius: 50%; padding: 10px; -webkit-box-shadow: 0 15px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12), 0 11px 15px -7px rgba(0,0,0,.2); box-shadow: 0 15px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12), 0 11px 15px -7px rgba(0,0,0,.2);">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 451.74 451.74" style="enable-background:new 0 0 451.74 451.74;" xml:space="preserve">
+                 <path style="fill:#E24C4B;" d="M446.324,367.381L262.857,41.692c-15.644-28.444-58.311-28.444-73.956,0L5.435,367.381  c-15.644,28.444,4.267,64,36.978,64h365.511C442.057,429.959,461.968,395.825,446.324,367.381z"/>
+                 <path style="fill:#FFFFFF;" d="M225.879,63.025l183.467,325.689H42.413L225.879,63.025L225.879,63.025z"/>
+     	          <path style="fill:#3F4448;" d="M196.013,212.359l11.378,75.378c1.422,8.533,8.533,15.644,18.489,15.644l0,0   c8.533,0,17.067-7.111,18.489-15.644l11.378-75.378c2.844-18.489-11.378-34.133-29.867-34.133l0,0   C207.39,178.225,194.59,193.87,196.013,212.359z"/>
+     	          <circle style="fill:#3F4448;" cx="225.879" cy="336.092" r="17.067"/>
+             </svg>
+        </div>
+          <div class="modal-content" style="padding-top: 2px;">
+              <h6 style="text-align: center; font-size: 1.3em; font-weight: bold;">Shop Inactive</h6>
+              <ul id="shopIncompleteLst">
+              </ul>
+          </div>
+          <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">close</a>
+          </div>
+      </div>
+
+
     <!--- Contact Us Modal start --->
     <div id="contactModal" class="modal" style="overflow: initial; margin-top: 30%; border-radius: 5px; z-index: 999; opacity: 1; transform: scaleX(1); top: 10%;">
         <div style="width:100px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
@@ -1688,8 +1709,8 @@
                         </g>
                         </svg>
                     </a>
-                    <a style="float: right; padding: 14px 15px; line-height: 1">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 486.463 486.463" style="enable-background:new 0 0 486.463 486.463;width: 25px;/* float: right; */" xml:space="preserve">
+                    <a style="float: right; padding: 14px 15px; line-height: 1; display: none;" id="incompleteShopIcon" onclick="$('#completeShopSetup').modal('open')">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 486.463 486.463" style="enable-background:new 0 0 486.463 486.463;width: 25px;/* float: right; */" xml:space="preserve" onclick="$('#completeShopSetup').modal('open')">
                     		<path d="M243.225,333.382c-13.6,0-25,11.4-25,25s11.4,25,25,25c13.1,0,25-11.4,24.4-24.4    C268.225,344.682,256.925,333.382,243.225,333.382z" fill="#D80027"></path>
                     		<path d="M474.625,421.982c15.7-27.1,15.8-59.4,0.2-86.4l-156.6-271.2c-15.5-27.3-43.5-43.5-74.9-43.5s-59.4,16.3-74.9,43.4    l-156.8,271.5c-15.6,27.3-15.5,59.8,0.3,86.9c15.6,26.8,43.5,42.9,74.7,42.9h312.8    C430.725,465.582,458.825,449.282,474.625,421.982z M440.625,402.382c-8.7,15-24.1,23.9-41.3,23.9h-312.8    c-17,0-32.3-8.7-40.8-23.4c-8.6-14.9-8.7-32.7-0.1-47.7l156.8-271.4c8.5-14.9,23.7-23.7,40.9-23.7c17.1,0,32.4,8.9,40.9,23.8    l156.7,271.4C449.325,369.882,449.225,387.482,440.625,402.382z" fill="#D80027"></path>
                     		<path d="M237.025,157.882c-11.9,3.4-19.3,14.2-19.3,27.3c0.6,7.9,1.1,15.9,1.7,23.8c1.7,30.1,3.4,59.6,5.1,89.7    c0.6,10.2,8.5,17.6,18.7,17.6c10.2,0,18.2-7.9,18.7-18.2c0-6.2,0-11.9,0.6-18.2c1.1-19.3,2.3-38.6,3.4-57.9    c0.6-12.5,1.7-25,2.3-37.5c0-4.5-0.6-8.5-2.3-12.5C260.825,160.782,248.925,155.082,237.025,157.882z" fill="#D80027"></path>

@@ -1,12 +1,12 @@
 //Open Store Settings
-$(document).on("click", "#openStoreSet", function () {
+$(document).on("click", "#openStoreSet", function() {
     $('.sidenav').sidenav('close');
     $('#content > .container > div').css('display', 'none');
     $('#content > .container > .editStorePage').css('display', 'block');
     $(".activePage").html("Store Settings")
 });
 
-$(document).on("click touchstart keypress", "#categoryName", function (event) {
+$(document).on("click touchstart keypress", "#categoryName", function(event) {
     var k = event ? event.which : window.event.keyCode;
     if (k == 32) return false;
 })
@@ -33,7 +33,7 @@ function loadPOS() {
 
     }
     var stCb = getObjectStore('data', 'readwrite').get('soko-stores');
-    stCb.onsuccess = function (event) {
+    stCb.onsuccess = function(event) {
         try {
             var svcs = event.target.result;
             var services = JSON.parse(svcs);
@@ -50,7 +50,7 @@ function loadPOS() {
         if (services.length == 0) {
             $('#firstStoreModal').modal({
                 dismissible: false,
-                complete: function () {
+                complete: function() {
                     $('#newStoreModal').modal({
                         dismissible: false,
                         onOpenEnd: getLoc(),
@@ -96,7 +96,7 @@ function loadPOS() {
         };
         addStore();
     }
-    stCb.onerror = function (event) {
+    stCb.onerror = function(event) {
         $('#newStoreModal').modal({
             dismissible: false,
             onOpenEnd: getLoc(),
@@ -124,18 +124,18 @@ function addStore() {
     doFetch({
         action: 'getServiceTrans',
         id: id
-    }).then(function (e) {
+    }).then(function(e) {
         if (e.status == "ok") {
             //document.querySelector('.soko-tran-count').style.display = 'block';
             //          document.querySelector('.soko-tran-count').innerHTML = e.transactions.length;
-            localConverter().then(function (loCon) {
+            localConverter().then(function(loCon) {
                 var volFig = 0;
                 for (var i = 0, volFig = volFig; i < e.transactions.length; i++) {
                     volFig = parseInt(e.transactions[i].amount) + volFig;
                 };
                 var infiat = Math.ceil(parseFloat(volFig) / 100000000 * loCon.xrate * loCon.rate);
                 $('.vol-count').html(infiat + '/= ' + loCon.symbol);
-            }).catch(function (err) {
+            }).catch(function(err) {
                 console.log(err);
             });
             getObjectStore('data', 'readwrite').put(JSON.stringify(e.transactions), 'bitsoko-merchant-transactions-' + id);
@@ -144,13 +144,13 @@ function addStore() {
             noSalesUpdater();
         }
         //       addTransaction(e.transactions);
-    }).catch(function (err) {
+    }).catch(function(err) {
         salesUpdater();
     }); //addCustomer(e.customers);
     doFetch({
         action: 'getServiceReqs',
         id: id
-    }).then(function (e) {
+    }).then(function(e) {
         getObjectStore('data', 'readwrite').put(JSON.stringify(e.reqs), 'bitsoko-merchant-requests-' + id);
     });
 
@@ -163,33 +163,33 @@ function addStore() {
 }
 
 function editStoreCallback() {
-    var forEach = function (array, callback, scope) {
+    var forEach = function(array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
             callback.call(scope, i, array[i]); // passes back stuff we need
         }
     };
     var myNodeList = document.querySelectorAll('#storeSettings input,#editStoreModal textarea');
-    forEach(myNodeList, function (index, value) {
+    forEach(myNodeList, function(index, value) {
         value.addEventListener("change", updateStore);
     });
 }
 
 
 function editPromoCallback() {
-    var forEach = function (array, callback, scope) {
+    var forEach = function(array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
             callback.call(scope, i, array[i]); // passes back stuff we need
         }
     };
     var myNodeList = document.querySelectorAll('.p-card input,.p-card textarea');
-    forEach(myNodeList, function (index, value) {
+    forEach(myNodeList, function(index, value) {
         value.addEventListener("change", updateProm);
     });
 }
 
 function newStore() {
     $('.sidebar-collapse').sidenav('close');
-    setTimeout(function () {
+    setTimeout(function() {
         $('#newStoreModal').modal({
             dismissible: false,
             onOpenEnd: getLoc(),
@@ -209,8 +209,8 @@ function allTokenCoins() {
         //        $("#tokenSelect").append('<option value="2">' + tokens[v] + '</option>');
         $("#tokenSelect").append('<option value="" data-icon="https://bitsoko.co.ke/bitsAssets/images/currencies/' + tokens[v] + '.png" class="left circle">' + tokens[v] + '</option>');
     }
-    setTimeout(function () {
-        $(".tokenSelect").find("li").click(function () {
+    setTimeout(function() {
+        $(".tokenSelect").find("li").click(function() {
             var inputVal = $(".tokenSelect input").val();
             selectedToken = Object.keys(tokens).find(key => tokens[key] === inputVal);
 
@@ -219,7 +219,7 @@ function allTokenCoins() {
                 id: localStorage.getItem('soko-active-store'),
                 prop: "token",
                 val: selectedToken
-            }).then(function (e) {
+            }).then(function(e) {
                 if (e.status == 'ok') {} else {}
             });
         });
@@ -229,10 +229,10 @@ function allTokenCoins() {
 
 function editStore() {
     $('.sidenav').sidenav("close");;
-    setTimeout(function () {
+    setTimeout(function() {
         $('#editStoreModal').modal({
             dismissible: false,
-            ready: function () {
+            ready: function() {
                 editStoreContent();
                 allTokenCoins()
             }
@@ -250,13 +250,22 @@ function editStoreContent() {
     document.querySelector('#editStore-Phone').value = xx.phone;
     document.querySelector('#colorChosen').value = xx.theme;
     M.updateTextFields();
+
+    if (xx.lonlat == '' || xx.lonlat == undefined || xx.lonlat == null) {
+        $('#incompleteShopIcon').css('display', 'block')
+        $('#shopIncompleteLst').append("<li>Add store location</li>")
+    }
+    if (xx.phone == '' || xx.phone == undefined || xx.phone == null) {
+        $('#incompleteShopIcon').css('display', 'block')
+        $('#shopIncompleteLst').append("<li>Add store phone number</li>")
+    }
 }
 
 function switchStore() {
     $('.sidenav').sidenav("close");
-    setTimeout(function () {
+    setTimeout(function() {
         $('#switchStoreModal').modal({
-            ready: function () {}
+            ready: function() {}
         }).modal('open');
     }, 200);
 }
@@ -267,7 +276,7 @@ function doSwitchStore() {
     $('.chStoreUpdate').html('');
     var html = ' <li class="collection-item avatar" style="opacity: 0.6;"><i class="mdi-action-redeem grey circle"></i><div class="row">' + '<p class="collections-title"><strong>changing store</strong></p><p class="collections-content">...</p></div>' + '</li>';
     $('.chStoreUpdate').append(html);
-    var loadStoreFunc = function () {
+    var loadStoreFunc = function() {
         M.toast({
             html: 'changing store..',
             displayLength: 2000
@@ -297,12 +306,12 @@ function userNoPromp() {
         displayLength: 10000
     })
 
-    $("#verifyPhn").click(function () {
+    $("#verifyPhn").click(function() {
         $(".toast").remove()
         $('#content > .container > div').css('display', 'none');
         $('#content > .container > .settingsPage').css('display', 'block');
         document.getElementById("editStore-Phone").classList.add("glow");
-        setTimeout(function (e) {
+        setTimeout(function(e) {
             document.getElementById("editStore-Phone").classList.remove("glow");
         }, 4000)
     });
@@ -324,9 +333,9 @@ function verifyNo() {
 }
 
 //Get Store Location
-$("#storeLoc").click(function () {
+$("#storeLoc").click(function() {
     myLoc();
-    setTimeout(function () {
+    setTimeout(function() {
         var locationField = document.getElementById('newStore-Location').value
         if (locationField == "location not found") {
             console.log("error getting location");
@@ -340,7 +349,7 @@ $("#storeLoc").click(function () {
                 id: localStorage.getItem('soko-active-store'),
                 prop: "lonlat",
                 val: locationField
-            }).then(function (e) {
+            }).then(function(e) {
                 if (e.status == 'ok') {
                     M.toast({
                         html: 'Location updated successfully',
@@ -373,13 +382,13 @@ function doNewStore() {
         desc: document.querySelector('#newStore-description').value,
         category: document.querySelector('.newStoreCatgry input').value,
         loc: document.querySelector('#newStore-Location').value
-    }).then(function (e) {
+    }).then(function(e) {
         if (e.status == 'ok') {
-            getObjectStore('data', 'readwrite').get('user-profile-' + localStorage.getItem("bits-user-name")).onsuccess = function (event) {
+            getObjectStore('data', 'readwrite').get('user-profile-' + localStorage.getItem("bits-user-name")).onsuccess = function(event) {
                 try {
                     profileLoaded(JSON.parse(event.target.result));
                     $('#newStoreModal').modal({
-                        onCloseEnd: function () {
+                        onCloseEnd: function() {
                             M.toast({
                                 html: 'Added new store..',
                                 displayLength: 3000
@@ -412,7 +421,7 @@ function updateStore(t) {
             var maxW = 480;
             var maxH = 320;
             var img = new Image;
-            img.onload = function () {
+            img.onload = function() {
                 var iw = img.width;
                 var ih = img.height;
                 var scale = Math.min((maxW / iw), (maxH / ih));
@@ -427,7 +436,7 @@ function updateStore(t) {
                     id: localStorage.getItem('soko-active-store'),
                     prop: name,
                     val: val
-                }).then(function (e) {
+                }).then(function(e) {
                     if (e.status == 'ok') {
                         //document.querySelector('#prodImg-holda-'+prid).src = val;
                         M.toast({
@@ -456,7 +465,7 @@ function updateStore(t) {
             id: localStorage.getItem('soko-active-store'),
             prop: name,
             val: openHours + " - " + closingHours
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == "ok") {
                 M.toast({
                     html: 'Mon-Fri working hours modified',
@@ -472,7 +481,7 @@ function updateStore(t) {
             id: localStorage.getItem('soko-active-store'),
             prop: name,
             val: openHours + " - " + closingHours
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == "ok") {
                 M.toast({
                     html: 'Saturday working hours modified',
@@ -488,7 +497,7 @@ function updateStore(t) {
             id: localStorage.getItem('soko-active-store'),
             prop: name,
             val: openHours + " - " + closingHours
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == "ok") {
                 M.toast({
                     html: 'Sunday working hours modified',
@@ -511,7 +520,7 @@ function updateStore(t) {
             id: localStorage.getItem('soko-active-store'),
             prop: name,
             val: dayData
-        }).then(function (e) {});
+        }).then(function(e) {});
     } else if (name == "buyStoreTokens") {
         //TO-DO
         //move the shop transfer function
@@ -550,7 +559,7 @@ function updateStore(t) {
                     store: localStorage.getItem('soko-active-store'),
                     do: 'add',
                     name: categoryName
-                }).then(function (e) {
+                }).then(function(e) {
                     if (e.status == 'ok') {
                         $('#categoryName').val("");
                         M.toast({
@@ -571,7 +580,7 @@ function updateStore(t) {
             id: localStorage.getItem('soko-active-store'),
             prop: name,
             val: val
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == 'ok') {
                 M.toast({
                     html: 'modified ' + name + '..',
@@ -595,11 +604,11 @@ function dominantColor() {
     }
     if (activeStoreTheme == null) {
         var _URL = window.URL || window.webkitURL;
-        $("#editStore-image").change(function (e) {
+        $("#editStore-image").change(function(e) {
             var image, file;
             if ((file = this.files[0])) {
                 image = new Image();
-                image.onload = function () {
+                image.onload = function() {
                     var sourceImage = image;
                     var colorThief = new ColorThief();
                     var color = colorThief.getColor(sourceImage);
@@ -619,7 +628,7 @@ function dominantColor() {
                         id: localStorage.getItem('soko-active-store'),
                         prop: "theme",
                         val: hex
-                    }).then(function (e) {
+                    }).then(function(e) {
                         if (e.status == 'ok') {} else {
                             console.log(e);
                         }
@@ -633,9 +642,9 @@ function dominantColor() {
 dominantColor()
 
 //Edit Store On Window Size
-$(document).ready(function () {
+$(document).ready(function() {
     if ($(window).width() > 992) {
-        $('.editStore').click(function () {
+        $('.editStore').click(function() {
             $("#editStoreModal").modal('open');
         })
     }
@@ -693,7 +702,7 @@ stCb.onsuccess = function (event) {
 
 //Shop Transfer
 var transferShopVal = ""
-$(document).on('click', $('ul.autocomplete-content li'), function (e) {
+$(document).on('click', $('ul.autocomplete-content li'), function(e) {
     var value = $('#transfer-shop').val();
     if (value != '') {
         var selectedId = value;
@@ -709,26 +718,26 @@ $(document).on('click', $('ul.autocomplete-content li'), function (e) {
         }
     }
 });
-$('#transferYesBtn').on('click', function (event) {
+$('#transferYesBtn').on('click', function(event) {
     $('#transfer-shop').val("");
     $("#transferShopModal").hide();
     doFetch({
         action: 'transferStore',
         store: localStorage.getItem('soko-active-store'),
         data: transferShopVal
-    }).then(function (e) {
+    }).then(function(e) {
         if (e.status == 'ok') {
             location.reload();
         } else {}
     });
 });
-$('#transferNoBtn').on('click', function (event) {
+$('#transferNoBtn').on('click', function(event) {
     $('#transfer-shop').val("");
     $("#transferShopModal").hide();
 });
 
 //Notification Days If Checked
-$(".editStore").click(function () {
+$(".editStore").click(function() {
     function notifyCheckbox() {
         try {
             var ifChecked = JSON.parse(JSON.parse(localStorage.getItem('soko-store-id-' + localStorage.getItem('soko-active-store'))).notifyDays);
@@ -812,12 +821,12 @@ $(".editStore").click(function () {
 });
 
 //Delete Store
-$(".deleteStore").click(function () {
+$(".deleteStore").click(function() {
     storeId = localStorage.getItem('soko-active-store');
     doFetch({
         action: 'deleteStore',
         store: storeId
-    }).then(function (e) {
+    }).then(function(e) {
         if (e.status == 'ok') {
             $('#editStoreModal').modal('close');
             M.toast({
@@ -835,8 +844,8 @@ $(".deleteStore").click(function () {
 })
 
 //update location
-$("#updateLoc").click(function () {
-    getLoc().then(function (e) {
+$("#updateLoc").click(function() {
+    getLoc().then(function(e) {
         var storeLoc = e.coords.latitude + ',' + e.coords.longitude;
         $("#editStore-Location").val(storeLoc)
         doFetch({
@@ -844,7 +853,7 @@ $("#updateLoc").click(function () {
             id: localStorage.getItem('soko-active-store'),
             prop: "lonlat",
             val: storeLoc
-        }).then(function (e) {
+        }).then(function(e) {
             if (e.status == 'ok') {
                 M.toast({
                     html: 'Location updated successfully',
@@ -852,7 +861,7 @@ $("#updateLoc").click(function () {
                 })
             }
         });
-    }).catch(function (err) {
+    }).catch(function(err) {
         console.log(err)
         M.toast({
             html: 'Error getting location. Please try again!',
@@ -862,13 +871,13 @@ $("#updateLoc").click(function () {
 });
 
 //update theme color
-$("#themeUpdate").click(function () {
+$("#themeUpdate").click(function() {
     doFetch({
         action: 'doEditStore',
         id: localStorage.getItem('soko-active-store'),
         prop: "theme",
         val: document.querySelector('#colorChosen').value
-    }).then(function (e) {
+    }).then(function(e) {
         if (e.status == 'ok') {
             M.toast({
                 html: 'Theme color changed successfully',
@@ -879,7 +888,7 @@ $("#themeUpdate").click(function () {
 });
 
 //Open New Store Modal
-$(document).on("click", "#addStoreLimit", function () {
+$(document).on("click", "#addStoreLimit", function() {
     $('#newStoreModal').modal({
         dismissible: false,
         onOpenEnd: getLoc(),
@@ -887,7 +896,7 @@ $(document).on("click", "#addStoreLimit", function () {
     }).modal('open');
 });
 //Close New Store Modal
-$(document).on("click", "#closeNewStoreModal", function () {
+$(document).on("click", "#closeNewStoreModal", function() {
     $("#newStoreModal").modal("close")
 });
 
