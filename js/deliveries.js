@@ -34,9 +34,9 @@ function deliveryMbr() {
                 return duration;
             }
             //            var timeDif = moment.unix(deliveryMemberLst[i].onLocation).fromNow();
-            var activeOperator = deliveryMemberLst[i].onLocation
+            var activeOperator = deliveryMemberLst[i].active
 
-            if (activeOperator != "false") {
+            if (activeOperator == "true") {
                 for (var s in deliveryGuys) {
                     var name = deliveryGuys[s].name;
                     var id = deliveryGuys[s].id;
