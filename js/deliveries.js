@@ -11,7 +11,7 @@ function deliveryMbr() {
         }
         $("#membersLst").html("");
         $("#ordMembersLst").html("");
-        if (deliveryMemberLst.length == 0 ) {
+        if (deliveryMemberLst.length == 0) {
             $('#incompleteShopIcon').css('display', 'block');
             if ($('.addOperatorShopError').length >= 1) {
                 //Do nothing
@@ -20,12 +20,19 @@ function deliveryMbr() {
             }
         }
         for (var i = 0; i < deliveryMemberLst.length; i++) {
+            if(deliveryMemberLst[i].onLocatio != false){
+                var a = moment(new Date(moment().unix() * 1000));
+                var b = moment(new Date(deliveryMemberLst[i].onLocation * 1000));
+                timeDiff = a.diff(b, 'hours') + ' hours '
+            }else{
+                timeDiff = ''
+            }
             for (var v in deliveryGuys) {
                 var name = deliveryGuys[v].name;
                 var id = deliveryGuys[v].id;
                 var icon = deliveryGuys[v].icon;
                 if (deliveryMemberLst[i].id == id) {
-                    $("#membersLst").append('<div id="' + id + '" class="chip removeMember" style="height: auto !important; line-height: 1.3;"> <img src="' + icon + '"> ' + name + '<br><span style="font-size: 0.8em;">' + moment(deliveryMemberLst[i].onLocation, "YYYYMMDD").fromNow() + '</span> </div>');
+                    $("#membersLst").append('<div id="' + id + '" class="chip removeMember" style="height: auto !important; line-height: 1.3;"> <img src="' + icon + '"> ' + name + '<br><span style="font-size: 0.8em;">' + timeDiff + ' ago</span> </div>');
                 }
             }
             // Get time difference

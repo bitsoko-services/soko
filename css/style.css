@@ -37,7 +37,7 @@ nav {
 }
 
 .settingsPage ul {
-    z-index: 1000 !important;
+    /* z-index: 1000 !important; */
 }
 
 .switchStoreHeader {
@@ -54,7 +54,7 @@ nav {
     overflow: initial !important;
 }
 
-#completeShopSetup li{
+#completeShopSetup li {
     list-style: circle !important;
 }
 
@@ -4027,7 +4027,8 @@ tr.group:hover {
 }
 
 .radioPad {
-    width: 33%;
+    width: 25%;
+    float: left;
 }
 
 /*******************************************
