@@ -261,7 +261,8 @@ var monthIncomeArray = [];
 
 function addToWithdraw(r) {
     var totalPrice;
-    var orderProducts = JSON.parse(r.items)
+    var orderProducts = JSON.parse(r.items);
+    var deliverySum = 0;
 
     for (var i = 0; i < orderProducts.length; ++i) {
         var getOrderProdId = orderProducts[i].pid
@@ -280,7 +281,6 @@ function addToWithdraw(r) {
     var saleDate = r.date
     var saleDateMonth = saleDate.slice(0, 7)
     var saleDateDay = saleDate.slice(0, 10)
-
     var getCurrentMonth = new Date().toISOString().substr(0, 19).slice(0, 7)
     var getCurrentDay = new Date().toISOString().substr(0, 19).slice(0, 10)
 
@@ -295,18 +295,19 @@ function addToWithdraw(r) {
         $("#dailySalesVal").html(0)
     }
 
-    var d = new Date();
+    var weekDate = new Date();
+    var monthDate = new Date();
     var step;
 
     //Populate weekly Income
     for (step = 0; step < 7; step++) {
         var nextStep = step + 1
-        d.setDate(d.getDate() - 1)
-        var prevDate = d
+        weekDate.setDate(weekDate.getDate() - 1);
+        var prevDate = weekDate
         var currentFullDate = prevDate.getUTCFullYear() + "-" + ("0" + (prevDate.getUTCMonth() + 1)).slice(-2) + "-" + ("0" + prevDate.getUTCDate()).slice(-2)
         if (currentFullDate == saleDateDay) {
             if (typeof(totalPrice) != 'undefined') {
-                weekIncomeArray.push(totalPrice)
+                weekIncomeArray.push(totalPrice);
             }
             var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
             $("#weeklySalesVal").html(sum)
@@ -314,22 +315,25 @@ function addToWithdraw(r) {
     }
 
     //Populate Monthly Income
-    for (step = 0; step < 30; step++) {
-        var nextStep = step + 1
-        d.setDate(d.getDate() - 1)
-        var prevDate = d
-        var currentFullDate = prevDate.getUTCFullYear() + "-" + ("0" + (prevDate.getUTCMonth() + 1)).slice(-2) + "-" + ("0" + prevDate.getUTCDate()).slice(-2)
+    for (stepMonth = 0; stepMonth < 30; stepMonth++) {
+        var nextStep = stepMonth + 1
+        monthDate.setDate(monthDate.getDate() - 1)
+        var prevDate = monthDate
+        var currentFullDate = prevDate.getUTCFullYear() + "-" + ("0" + (prevDate.getUTCMonth() + 1)).slice(-2) + "-" + ("0" + prevDate.getUTCDate()).slice(-2);
         if (currentFullDate == saleDateDay) {
             if (typeof(totalPrice) != 'undefined') {
-                monthIncomeArray.push(totalPrice)
+                monthIncomeArray.push(totalPrice);
+                monthlyDelPrice += parseInt(r.delPrice);
             }
             var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
-            $("#monthlySalesVal").html(sum)
+            $("#monthlySalesVal").html(sum);
+            $("#monthlyDelPrice").html(monthlyDelPrice);
         }
     }
 }
 
 function orderUpdater() {
+    monthlyDelPrice = 0;
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-orders').onsuccess = function(event) {
         var reqs = event.target.result;
         try {
