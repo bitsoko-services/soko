@@ -40,8 +40,31 @@ function packagingData() {
             })
         });
     } else {
-        creditTopup = $("#packPrice").html();
-        getInsufficientFundsOrderbook();
+        //creditTopup = $("#packPrice").html();
+        getInsufficientFundsOrderbook($("#packPrice").html()).then(function(r){
+
+            doFetch({
+            action: 'requestPack',
+            id: localStorage.getItem('soko-active-store'),
+            items: packagingData,
+            type: "paperbags"
+        }).then(function (e) {
+            if (e.status == "ok") {
+                M.toast({
+                    html: "Request sent successfully"
+                })
+            } else {
+                M.toast({
+                    html: "Error! Try again later"
+                })
+            }
+        }).catch(function (err) {
+            M.toast({
+                html: "Error! Try again later"
+            })
+        });
+
+        });
     }
 }
 
