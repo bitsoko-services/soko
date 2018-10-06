@@ -6,23 +6,28 @@ function showPackagingPage() {
     }, 300)
 }
 
-function packagingData() {
-    var packagingData = [];
+function packagingDataArray() {
+     var packagingDataArray = [];
     if ($("#smallPaperbag").prop("disabled") == false) {
-        packagingData["small"] = $("#smallPaperbag").val();
+        packagingDataArray["small"] = $("#smallPaperbag").val();
     }
     if ($("#mediumPaperbag").prop("disabled") == false) {
-        packagingData["medium"] = $("#mediumPaperbag").val();
+        packagingDataArray["medium"] = $("#mediumPaperbag").val();
     }
     if ($("#largePaperbag").prop("disabled") == false) {
-        packagingData["large"] = $("#largePaperbag").val();
+        packagingDataArray["large"] = $("#largePaperbag").val();
     }
+    return packagingDataArray;
+}
+
+function packagingData() {
+   
 
     if ($('#packPrice').html().replace(/[^0-9\.]+/g, '') <= shopBalance) {
         doFetch({
             action: 'requestPack',
             id: localStorage.getItem('soko-active-store'),
-            items: packagingData,
+            items: packagingDataArray(),
             type: "paperbags"
         }).then(function (e) {
             if (e.status == "ok") {
@@ -46,7 +51,7 @@ function packagingData() {
             doFetch({
             action: 'requestPack',
             id: localStorage.getItem('soko-active-store'),
-            items: packagingData,
+            items: packagingDataArray(),
             type: "paperbags"
         }).then(function (e) {
             if (e.status == "ok") {
