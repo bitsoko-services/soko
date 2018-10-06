@@ -817,7 +817,7 @@ setTimeout(function(e) {
 
 
 
-
+/*
 function getInsufficientFundsOrderbook() {
     doFetch({
         action: 'getInsufficientFundsOrderbook',
@@ -840,7 +840,7 @@ function getInsufficientFundsOrderbook() {
         }
     });
 }
-
+*/
 function insufficientOrder() {
     if ($("#mobileNo").val() == "") {
         M.toast({
@@ -860,6 +860,7 @@ function insufficientOrder() {
             if (e.status == "ok") {
                 $("#insufficientOrderStatus").html('Transaction code confirmed successfully');
                 $("#insufficientOrderStatus").css("color", "green");
+		    $("#buyStoreTokens").modal("close");
             } else {
                 $("#insufficientOrderStatus").html('Error! Enter transaction code again.');
                 $("#insufficientOrderStatus").css("color", "red");
