@@ -747,33 +747,36 @@ function userNamesInput() {
     });
 }
 
-//to do
+//START to do MOVE TO inventoryManager.js
 //Input Initiallization
-//var sponProds = {}
+var sponProds = {}
 //
-//function sponpProdNamesInput() {
-//    var inputVal = $("#check-prod-input").val();
-//    var fetchedData = doFetch({
-//        action: 'getAllProducts',
-//        data: inputVal,
-//        filter: 'sponsored'
-//    }).then(function (e) {
-//        var dat = {}
-//        sponProds = e.products;
-//        for (var iii in e.products) {
-//            var nm = e.products[iii].name + " - " + e.products[iii].price;
-//            var icn = e.products[iii].icon;
-//            //var id = e.users[iii].id;
-//            dat[nm] = icn;
-//
-//        }
-//        $("#check-prod-input").autocomplete({
-//            data: dat
-//        });
-//
-//    });
-//}
-//sponpProdNamesInput()
+function sponpProdNamesInput() {
+    var inputVal = $("#check-prod-input").val();
+    var fetchedData = doFetch({
+        action: 'getAllProducts',
+        data: inputVal,
+        filter: 'sponsored'
+    }).then(function (e) {
+        var dat = {}
+        sponProds = e.products;
+        for (var iii in e.products) {
+            var nm = e.products[iii].name + " - " + e.products[iii].price;
+            var icn = e.products[iii].icon;
+            //var id = e.users[iii].id;
+            dat[nm] = icn;
+
+        }
+        $("#check-prod-input").autocomplete({
+            data: dat
+        });
+
+    });
+}
+sponpProdNamesInput();
+
+
+//END to do MOVE TO inventoryManager.js
 
 function persistentFunc() {
     if (navigator.storage && navigator.storage.persist)
