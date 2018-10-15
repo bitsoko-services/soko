@@ -647,26 +647,60 @@
             <form action="#" style="width: fit-content; display: block; margin-left: auto; margin-right: auto;">
                 <p>
                     <label style="display: block;">
-                        <input class="packCheckbox" id="smallPackCheckbox" type="checkbox" />
-                        <span class="packCounter" style="color: black; display: block;">Small Paperbag : <span style="padding-left: 25px;float: right;"><button  class="opacitySelectedColor packMinus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">-</button><input disabled="disabled" value="50" style="width: 30px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="smallPaperbag" /><button class="opacitySelectedColor packPlus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">+</button></span></span>
+                        <input class="packCheckbox" id="smallPackCheckbox" packagingType="paperBag" type="checkbox" />
+                        <span class="packCounter" style="color: black; display: block;">Small Paperbag : <span style="padding-left: 25px;float: right;"><button href="#"  class="opacitySelectedColor packMinus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">-</button><input disabled="disabled" value="50" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="smallPaperbag" /><button href="#" class="opacitySelectedColor packPlus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">+</button></span></span>
                     </label>
                 </p>
                 <p>
                     <label style="display: block;">
-                        <input class="packCheckbox" id="mediumPackCheckbox" type="checkbox" />
-                        <span class="packCounter" style="color: black; display: block;">Medium Paperbag : <span style="padding-left: 25px;float: right;"><button class="opacitySelectedColor packMinus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">-</button><input disabled="disabled" value="50" style="width: 30px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="mediumPaperbag" /><button class="opacitySelectedColor packPlus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">+</button></span></span>
+                        <input class="packCheckbox" id="mediumPackCheckbox" packagingType="paperBag" type="checkbox" />
+                        <span class="packCounter" style="color: black; display: block;">Medium Paperbag : <span style="padding-left: 25px;float: right;"><button href="#" class="opacitySelectedColor packMinus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">-</button><input disabled="disabled" value="50" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="mediumPaperbag" /><button href="#" class="opacitySelectedColor packPlus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">+</button></span></span>
                     </label>
                 </p>
                 <p>
                     <label style="display: block;">
-                        <input class="packCheckbox" id="largePackCheckbox" type="checkbox" />
-                        <span class="packCounter" style="color: black; display: block;">Large Paperbag : <span style="padding-left: 25px;float: right;"><button  class="opacitySelectedColor packMinus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">-</button><input disabled="disabled" value="50" style="width: 30px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="largePaperbag" /><button class="opacitySelectedColor packPlus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">+</button></span></span>
+                        <input class="packCheckbox" id="largePackCheckbox" packagingType="paperBag" type="checkbox" />
+                        <span class="packCounter" style="color: black; display: block;">Large Paperbag : <span style="padding-left: 25px;float: right;"><button href="#"  class="opacitySelectedColor packMinus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">-</button><input disabled="disabled" value="50" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="largePaperbag" /><button href="#" class="opacitySelectedColor packPlus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">+</button></span></span>
                     </label>
                 </p>
             </form>
         </div>
         <div class="modal-footer">
-            <a class="opacitySelectedColor" href="#!" onclick="packagingData()" style="width: 100%; display: block; bottom: 0px; position: absolute; text-align: center; padding: 15px; color: white; font-weight: bold; text-transform: uppercase;left: 0px;">pay <span id="packPrice">0</span></a>
+            <a class="opacitySelectedColor packagingCheckout" packagingType="paperBag" href="#!" style="width: 100%; display: block; bottom: 0px; position: absolute; text-align: center; padding: 15px; color: white; font-weight: bold; text-transform: uppercase;left: 0px;">pay <span class="packPrice">0</span></a>
+        </div>
+    </div>
+
+    <!--------------- Wrapping Bag Modal ------------->
+    <div id="wrappingBagModal" class="modal modal-fixed-footer" style="overflow: initial; margin-top:30%; height:300px; border-radius:5px;width: 92% !important;">
+        <div style="width:100px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                <polygon style="fill:#FD982C;" points="446.149,420.109 446.149,178.826 255.989,112.915 65.829,178.826 65.829,420.109   255.989,480.421 "/>
+                <polygon style="fill:#FA502E;" points="446.149,420.109 446.149,178.826 255.989,112.915 255.989,480.421 "/>
+                <polygon style="fill:#FFF2B4;" points="446.149,178.826 255.989,112.915 65.829,178.826 255.989,245.736 "/>
+                <polygon style="fill:#FFDF8E;" points="446.149,178.826 255.989,112.915 255.989,245.736 "/>
+                <polygon style="fill:#FABE3D;" points="65.829,178.826 0,256.722 193.739,327.127 255.989,245.736  "/>
+                <polygon style="fill:#FABE3D;" points="446.149,178.826 512,256.722 318.261,327.127 255.989,245.736  "/>
+                <polygon style="fill:#FD982C;" points="446.149,178.826 512,256.722 318.261,327.127 255.989,245.736 "/>
+                <polygon style="fill:#FDDA50;" points="65.829,178.826 0,101.985 193.739,31.579 255.989,112.915 "/>
+                <polygon style="fill:#FABE3D;" points="446.149,178.826 512,101.985 318.261,31.579 255.989,112.915 "/>
+            </svg>
+        </div>
+        <h5 style="text-align: center; padding: 0px 5%; margin: 0px;">Packaging</h5>
+        <div class="row" style="text-align:  center; background: #ecebeb; margin-top: 10px;">
+            <div class="col s12" style="text-align: center;">Wrapping Bag<br>Ksh. 5</div>
+        </div>
+        <div class="row packInput" style="text-align: center;">
+            <form action="#" style="width: fit-content; display: block; margin-left: auto; margin-right: auto;">
+                <p>
+                    <label style="display: block;">
+                        <input class="packCheckbox" id="wrappingBagCheckbox" packagingType="wrappingBag" type="checkbox" />
+                        <span class="packCounter" style="color: black; display: block;">Wrapping Bag : <span style="padding-left: 25px;float: right;"><button href="#"  class="opacitySelectedColor packMinus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">-</button><input disabled="disabled" value="50" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="wrappingrBag" /><button href="#" class="opacitySelectedColor packPlus disabled" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px;" disabled="disabled">+</button></span></span>
+                    </label>
+                </p>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a class="opacitySelectedColor packagingCheckout" packagingType="wrappingBag" href="#!" style="width: 100%; display: block; bottom: 0px; position: absolute; text-align: center; padding: 15px; color: white; font-weight: bold; text-transform: uppercase;left: 0px;">pay <span class="packPrice">0</span></a>
         </div>
     </div>
 
@@ -1809,7 +1843,7 @@
         <div class="navbar-fixed">
             <nav class="selectedColor navbar-color" style="box-shadow:none;">
                 <div class="nav-wrapper">
-                    <a href="#" data-target="slide-out" class="sidenav-trigger opacitySelectedColor" style="position: absolute; left: 10px; top: 7px; padding: 8px; border-radius: 50%; width: 40px; height: 40px;">
+                    <a href="#" data-target="slide-out" class="sidenav-trigger opacitySelectedColor" style="position: absolute; left: 10px; top: 7px; padding: 8px; border-radius: 50%; width: 40px; height: 40px; margin: 0px;">
                         <div style="width: 25px;height: 2px;background-color: white;margin: 4px 0;display:block;margin-left:auto;margin-right:auto;border-radius:5px;"></div>
                         <div style="width: 25px;height: 2px;background-color: white;margin: 4px 0;display:block;margin-left:auto;margin-right:auto;border-radius:5px;"></div>
                         <div style="width: 25px;height: 2px;background-color: white;margin: 4px 0;display:block;margin-left:auto;margin-right:auto;border-radius:5px;"></div>
@@ -2379,6 +2413,11 @@
                     <li>
                         <a disabled onclick="$(&quot;#spnsrdModal&quot;).modal(&quot;open&quot;)" class="btn-floating newProdBtn opacitySelectedColor" style="padding: 0px 10px; background: rgb(49, 38, 38); margin-left: -3px; width: auto !important; filter: brightness(1.3); opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
                             <p class="material-icons newProdBtnName" style="margin-top:0px !important;font-size:0.8rem;">Plates</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick='$("#wrappingBagModal").modal("open")' class="btn-floating newProdBtn opacitySelectedColor" style="padding: 0px 10px; font-size: 0.8rem; background: rgb(49, 38, 38); width: auto !important; filter: brightness(1.3); opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);left: -13px">
+                            <p class="material-icons newProdBtnName" style="margin-top:0px !important;">Wrapping Bag</p>
                         </a>
                     </li>
                     <li>
