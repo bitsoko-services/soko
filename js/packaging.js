@@ -9,6 +9,7 @@ function showPackagingPage() {
 function packagingDataArray() {
     promise1 = new Promise(function(resolve, reject) {
         var packagingDataArray = {};
+        var wrappingBagDataArray = {};
         if (packagingType == "paperBag") {
             if ($("#smallPaperbag").prop("disabled") == false) {
                 packagingDataArray["small"] = $("#smallPaperbag").val();
@@ -27,11 +28,31 @@ function packagingDataArray() {
             }
             resolve(packagingDataArray);
         } else {
-            resolve($('#wrappingrBag').val());
+            if ($("#wrappingBagTiny").prop("checked") == true) {
+                wrappingBagDataArray["tiny-1"] = $("#wrappingTiny-1").val()
+            }else{
+                wrappingBagDataArray["tiny-1"] = "0"
+            }
+            if ($("#wrappingBagSmall").prop("checked") == true) {
+                wrappingBagDataArray["small-3"] = $("#wrappingSmall-3").val()
+            }else{
+                wrappingBagDataArray["small-3"] = "0"
+            }
+            if ($("#wrappingBagMedium").prop("checked") == true) {
+                wrappingBagDataArray["meduim-5"] = $("#wrappingMeduim-5").val()
+            }else{
+                wrappingBagDataArray["meduim-5"] = "0"
+            }
+            if ($("#wrappingBagLarge").prop("checked") == true) {
+                wrappingBagDataArray["large-8"] = $("#wrappingLarge-8").val()
+            }else{
+                wrappingBagDataArray["large-8"] = "0"
+            }
+            resolve(wrappingBagDataArray);
         }
     });
 }
-$(document).on("click touchstart",".packagingCheckout", function(){
+$(document).on("click touchstart", ".packagingCheckout", function() {
     activePackaging = $(this).attr('packagingType');
     packagingDataArray()
     packagingData()
@@ -47,7 +68,7 @@ function packagingData() {
                 id: localStorage.getItem('soko-active-store'),
                 items: value,
                 type: packagingType,
-                trHash:""
+                trHash: ""
             }).then(function(e) {
                 if (e.status == "ok") {
                     M.toast({
@@ -98,7 +119,10 @@ function packagingTotalCost() {
     var smallPack = $("#smallPaperbag").val() * 10
     var mediumPack = $("#mediumPaperbag").val() * 20
     var largePack = $("#largePaperbag").val() * 40
-    var wrappingrBag = $("#wrappingrBag").val() * 5
+    var tinyWrappingBag = $("#wrappingTiny-1").val() * 5
+    var smallWrappingBag = $("#wrappingSmall-3").val() * 10
+    var meduiumWrappingBag = $("#wrappingMeduim-5").val() * 15
+    var largeWrappingBag = $("#wrappingLarge-8").val() * 20
 
     if (packagingType == 'paperBag') {
         if ($("#smallPaperbag").prop("disabled") == true) {
@@ -113,7 +137,19 @@ function packagingTotalCost() {
         var totalCost = smallPack + mediumPack + largePack
         $(".packPrice").html(totalCost + " " + baseCd)
     } else {
-        var totalCost = wrappingrBag
+        if ($("#wrappingBagTiny").prop("checked") == false) {
+            tinyWrappingBag = 0
+        }
+        if ($("#wrappingBagSmall").prop("checked") == false) {
+            smallWrappingBag = 0
+        }
+        if ($("#wrappingBagMedium").prop("checked") == false) {
+            meduiumWrappingBag = 0
+        }
+        if ($("#wrappingBagLarge").prop("checked") == false) {
+            largeWrappingBag = 0
+        }
+        var totalCost = tinyWrappingBag + smallWrappingBag + meduiumWrappingBag + largeWrappingBag
         $(".packPrice").html(totalCost + " " + baseCd)
     }
 
