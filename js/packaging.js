@@ -46,7 +46,8 @@ function packagingData() {
                 action: 'requestPack',
                 id: localStorage.getItem('soko-active-store'),
                 items: value,
-                type: packagingType
+                type: packagingType,
+                trHash:""
             }).then(function(e) {
                 if (e.status == "ok") {
                     M.toast({
