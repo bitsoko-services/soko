@@ -30,22 +30,22 @@ function packagingDataArray() {
         } else {
             if ($("#wrappingBagTiny").prop("checked") == true) {
                 wrappingBagDataArray["tiny-1"] = $("#wrappingTiny-1").val()
-            }else{
+            } else {
                 wrappingBagDataArray["tiny-1"] = "0"
             }
             if ($("#wrappingBagSmall").prop("checked") == true) {
                 wrappingBagDataArray["small-3"] = $("#wrappingSmall-3").val()
-            }else{
+            } else {
                 wrappingBagDataArray["small-3"] = "0"
             }
             if ($("#wrappingBagMedium").prop("checked") == true) {
                 wrappingBagDataArray["meduim-5"] = $("#wrappingMeduim-5").val()
-            }else{
+            } else {
                 wrappingBagDataArray["meduim-5"] = "0"
             }
             if ($("#wrappingBagLarge").prop("checked") == true) {
                 wrappingBagDataArray["large-8"] = $("#wrappingLarge-8").val()
-            }else{
+            } else {
                 wrappingBagDataArray["large-8"] = "0"
             }
             resolve(wrappingBagDataArray);
@@ -68,7 +68,8 @@ function packagingData() {
                 id: localStorage.getItem('soko-active-store'),
                 items: value,
                 type: packagingType,
-                trHash: ""
+                trHash: "",
+                totalPrice: '200'
             }).then(function(e) {
                 if (e.status == "ok") {
                     M.toast({
@@ -190,3 +191,49 @@ $(document).on("click touchstart", ".packCheckbox", function() {
     }
     packagingTotalCost();
 })
+
+// Get Packaging Orders
+function fetchPackagingOrders() {
+    doFetch({
+        action: 'getPackaging',
+        id: localStorage.getItem('soko-active-store'),
+        trHash: ""
+    }).then(function(e) {
+        if (e.data.length == 0) {} else {
+            $('.packagingContainer').html('');
+            var orderData = e.data;
+            var allItems = 0
+            for (order in orderData) {
+                if (orderData[order].type == "paperBag") {
+                    orderData[order].type = "Paper Bag"
+                } else {
+                    orderData[order].type = "Wrapping Bag"
+                }
+                var items = JSON.parse(orderData[order].items.replace('"{', '{').replace('}"', '}'));
+                var itemsSize = Object.keys(items)
+                var testArray = new Array();
+                for (sizes in items) {
+                    // $('.packagingSizes').append(items[sizes])
+                    testArray.push(items[sizes])
+                }
+                packagingArrayItems(testArray, itemsSize)
+
+                function packagingArrayItems(itm, size) {
+                    var nums = itm
+                    var sum = 0;
+
+                    for (var i = 0; i < nums.length; i++) {
+
+                        sum += parseInt(nums[i]);
+
+                    }
+
+                    console.log();
+                    $('.packagingContainer').append('<div class="row" style="width: 100%; display: block; margin-left: auto; margin-right: auto;"><div class="col s12 m6"> <div class="card"> <span class="card-title" style="border-bottom: solid #cecbcb 1px; display: block; padding: 5px 10px; font-size: 1em; font-weight: bold;">' + orderData[order].type + '</span> <div class="card-content" style="padding: 10px;"><div class="packagingSizes"></div> <p style="font-weight: bold; color: #545252;">Status: <span style="font-weight: normal;">' + orderData[order].status + '</span></p><p style="font-weight: bold; color: #545252;">No. of Items: <span style="font-weight: normal;">' + sum + '</span></p><p style="font-weight: bold; color: #545252;">Total Price: <span style="font-weight: normal;">0 kes</span></p></div></div></div></div>');
+                }
+
+            }
+        }
+
+    })
+}

@@ -16,18 +16,18 @@ function callCustomeScript(){
     $('.loading-container').fadeOut(1000, function () {
         $(this).remove();
         /*
-    
+
 angular.module('sokoApp', [])
   .controller('sokoListController', function() {
     var sokoList = this;
     sokoList.todos = [
       {title:'title', content:'content'}];
- 
+
     sokoList.addTodo = function() {
       sokoList.todos.push({text:sokoList.todoText, done:false});
       sokoList.todoText = '';
     };
- 
+
     sokoList.remaining = function() {
       var count = 0;
       angular.forEach(sokoList.todos, function(todo) {
@@ -35,7 +35,7 @@ angular.module('sokoApp', [])
       });
       return count;
     };
- 
+
     sokoList.archive = function() {
       var oldTodos = sokoList.todos;
       sokoList.todos = [];
@@ -43,8 +43,8 @@ angular.module('sokoApp', [])
         if (!todo.done) sokoList.todos.push(todo);
       });
     };
-  }); 
-    
+  });
+
 */
     });
     /*
@@ -76,7 +76,7 @@ angular.module('sokoApp', [])
             default:
         }
     });
-   */ 
+   */
     getObjectStore('data', 'readwrite').get('user-profile-' + localStorage.getItem("bits-user-name")).onsuccess = function (event) {
         try {
             profileLoaded(JSON.parse(event.target.result));
@@ -117,6 +117,7 @@ function switchTo(co) {
     $('#content > .container > div').css('display', 'none');
     $('.sidenav').sidenav('close');
     $('body').attr('page', co);
+    console.log(co)
     $('#content > .container > .' + co).css('display', 'block');
     updateThisPage(co);
 }
