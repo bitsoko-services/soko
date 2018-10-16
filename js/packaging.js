@@ -120,10 +120,10 @@ function packagingTotalCost() {
     var smallPack = $("#smallPaperbag").val() * 10
     var mediumPack = $("#mediumPaperbag").val() * 20
     var largePack = $("#largePaperbag").val() * 40
-    var tinyWrappingBag = $("#wrappingTiny-1").val() * 5
-    var smallWrappingBag = $("#wrappingSmall-3").val() * 10
-    var meduiumWrappingBag = $("#wrappingMeduim-5").val() * 15
-    var largeWrappingBag = $("#wrappingLarge-8").val() * 20
+    var tinyWrappingBag = $("#wrappingTiny-1").val() * 1
+    var smallWrappingBag = $("#wrappingSmall-3").val() * 3
+    var meduiumWrappingBag = $("#wrappingMeduim-5").val() * 5
+    var largeWrappingBag = $("#wrappingLarge-8").val() * 8
 
     if (packagingType == 'paperBag') {
         if ($("#smallPaperbag").prop("disabled") == true) {
