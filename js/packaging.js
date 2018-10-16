@@ -174,20 +174,20 @@ $(document).on("click touchstart", ".packMinus", function() {
         $(this).addClass("disabled");
     } else {
         $(this).siblings("input").val(parseInt(input.val() - 1));
-        packagingTotalCost()
+        packagingTotalCost();
     }
 });
 $(document).on("click touchstart", ".packCheckbox", function() {
     var checked = $(this).prop("checked");
     packagingType = $(this).attr('packagingType');
     if (checked == true) {
-        $(this).siblings(".packCounter").find("button").attr("disabled", false);
+        $(this).siblings(".packCounter").find("a").attr("disabled", false);
         $(this).siblings(".packCounter").find("input").attr("disabled", false);
-        $(this).siblings(".packCounter").find("button").removeClass("disabled");
+        $(this).siblings(".packCounter").find("a").removeClass("disabled");
     } else {
-        $(this).siblings(".packCounter").find("button").attr("disabled", true);
+        $(this).siblings(".packCounter").find("a").attr("disabled", true);
         $(this).siblings(".packCounter").find("input").attr("disabled", true);
-        $(this).siblings(".packCounter").find("button").addClass("disabled");
+        $(this).siblings(".packCounter").find("a").addClass("disabled");
     }
     packagingTotalCost();
 })
