@@ -165,7 +165,14 @@ $(document).on("click touchstart", ".packPlus", function() {
             $(this).siblings(".packMinus").removeClass("disabled");
         }
     }
-    $(this).siblings("input").val(parseInt(input.val()) + 1);
+    var tNum=parseInt($('.packPlus').siblings("input").attr('step'));
+    if(isNaN(tNum)){
+       var tEnum=1;
+       }else{
+      var tEnum=tNum; 
+       }
+    
+    $(this).siblings("input").val(parseInt(input.val()) + tEnum);
     packagingTotalCost()
 })
 $(document).on("click touchstart", ".packMinus", function() {
@@ -173,7 +180,15 @@ $(document).on("click touchstart", ".packMinus", function() {
     if (input.val() < 51) {
         $(this).addClass("disabled");
     } else {
-        $(this).siblings("input").val(parseInt(input.val() - 1));
+        
+    var tNum=parseInt($('.packMinus').siblings("input").attr('step'));
+    if(isNaN(tNum)){
+       var tEnum=1;
+       }else{
+      var tEnum=tNum; 
+       }
+    
+        $(this).siblings("input").val(parseInt(input.val() - tEnum));
         packagingTotalCost();
     }
 });
