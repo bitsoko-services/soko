@@ -12,22 +12,22 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR CUSTOM SCRIPT I
 /********************************
 Preloader
 ********************************/
-function callCustomeScript(){
-    $('.loading-container').fadeOut(1000, function () {
+function callCustomeScript() {
+    $('.loading-container').fadeOut(1000, function() {
         $(this).remove();
         /*
-    
+
 angular.module('sokoApp', [])
   .controller('sokoListController', function() {
     var sokoList = this;
     sokoList.todos = [
       {title:'title', content:'content'}];
- 
+
     sokoList.addTodo = function() {
       sokoList.todos.push({text:sokoList.todoText, done:false});
       sokoList.todoText = '';
     };
- 
+
     sokoList.remaining = function() {
       var count = 0;
       angular.forEach(sokoList.todos, function(todo) {
@@ -35,7 +35,7 @@ angular.module('sokoApp', [])
       });
       return count;
     };
- 
+
     sokoList.archive = function() {
       var oldTodos = sokoList.todos;
       sokoList.todos = [];
@@ -43,8 +43,8 @@ angular.module('sokoApp', [])
         if (!todo.done) sokoList.todos.push(todo);
       });
     };
-  }); 
-    
+  });
+
 */
     });
     /*
@@ -76,8 +76,8 @@ angular.module('sokoApp', [])
             default:
         }
     });
-   */ 
-    getObjectStore('data', 'readwrite').get('user-profile-' + localStorage.getItem("bits-user-name")).onsuccess = function (event) {
+   */
+    getObjectStore('data', 'readwrite').get('user-profile-' + localStorage.getItem("bits-user-name")).onsuccess = function(event) {
         try {
             profileLoaded(JSON.parse(event.target.result));
         } catch (err) {
@@ -97,7 +97,7 @@ angular.module('sokoApp', [])
     });
     $('.sidenav').sidenav();
     $('.modal').modal();
-    $(document).on('click', '#slide-out > li > a', function () {
+    $(document).on('click', '#slide-out > li > a', function() {
         if ($(this).hasClass("nav")) {
             var clickedOn = $(this).attr('page');
             switchTo(clickedOn);
@@ -108,57 +108,65 @@ angular.module('sokoApp', [])
 
 
 
-if (getBitsOpt('page') != undefined) {
-   switchTo(getBitsOpt('page'))
-}
-
-
-function switchTo(co) {
-    $('#content > .container > div').css('display', 'none');
-    $('.sidenav').sidenav('close');
-    $('body').attr('page', co);
-    $('#content > .container > .' + co).css('display', 'block');
-    updateThisPage(co);
-}
-
-function updateThisPage(pg) {
-
-    switch (pg) {
-        case 'products':
-            productsUpdater();
-            break;
-        case 'storefront':
-            promoUpdater();
-            orderUpdater();
-            break;
-        case 'beacons':
-            beaconsUpdater();
-            break;
-        case 'billing':
-            refreshBills();
-            break;
-        default:
+    if (getBitsWinOpt('page') != undefined) {
+        switchTo(getBitsWinOpt('page'))
+        if (getBitsWinOpt('page') == 'packaging') {
+            showPackagingPage();
+            fetchPackagingOrders();
+            if(getBitsWinOpt('sel')=="wraps"){
+                $('#wrappingBagModal').modal('open')
+            }
+        }
     }
 
-}
 
-function reqProfile() {
-    var reqProf = "b:m:p-" + randomString(20)
-    doFetch({
-        action: 'reqProfile',
-        user: reqProf
-    }).then(function (e) {
-        if (e.status == 'ok') {
-            showAddr(reqProf);
-            setTimeout(function () {
-                fetchRates().then(function (e) {
-                    //updateBal('true');
-                });
+    function switchTo(co) {
+        $('#content > .container > div').css('display', 'none');
+        $('.sidenav').sidenav('close');
+        $('body').attr('page', co);
+        console.log(co)
+        $('#content > .container > .' + co).css('display', 'block');
+        updateThisPage(co);
+    }
+
+    function updateThisPage(pg) {
+
+        switch (pg) {
+            case 'products':
+                productsUpdater();
+                break;
+            case 'storefront':
+                promoUpdater();
+                orderUpdater();
+                break;
+            case 'beacons':
+                beaconsUpdater();
+                break;
+            case 'billing':
+                refreshBills();
+                break;
+            default:
+        }
+
+    }
+
+    function reqProfile() {
+        var reqProf = "b:m:p-" + randomString(20)
+        doFetch({
+            action: 'reqProfile',
+            user: reqProf
+        }).then(function(e) {
+            if (e.status == 'ok') {
+                showAddr(reqProf);
+                setTimeout(function() {
+                    fetchRates().then(function(e) {
+                        //updateBal('true');
+                    });
+                }, 60000);
+            } else {}
+            setTimeout(function() {
+                reqProfile()
             }, 60000);
-        } else {}
-        setTimeout(function () {
-            reqProfile()
-        }, 60000);
-    });
-}
+        });
+    }
 }

@@ -19,8 +19,13 @@ body {
     font-weight: initial;
 }
 
-.disabled {
-    background: grey !important;
+.btn-flat.disabled, .btn-flat:disabled, .btn-flat[disabled], .btn-floating.disabled, .btn-floating:disabled, .btn-floating[disabled], .btn-large.disabled, .btn-large:disabled, .btn-large[disabled], .btn-small.disabled, .btn-small:disabled, .btn-small[disabled], .btn.disabled, .btn:disabled, .btn[disabled], .disabled.btn-large, .disabled.btn-small {
+    pointer-events: none;
+    background-color: grey !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: white !important;
+    cursor: default;
 }
 
 .modal {

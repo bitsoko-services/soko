@@ -747,33 +747,36 @@ function userNamesInput() {
     });
 }
 
-//to do
+//START to do MOVE TO inventoryManager.js
 //Input Initiallization
-//var sponProds = {}
+var sponProds = {}
 //
-//function sponpProdNamesInput() {
-//    var inputVal = $("#check-prod-input").val();
-//    var fetchedData = doFetch({
-//        action: 'getAllProducts',
-//        data: inputVal,
-//        filter: 'sponsored'
-//    }).then(function (e) {
-//        var dat = {}
-//        sponProds = e.products;
-//        for (var iii in e.products) {
-//            var nm = e.products[iii].name + " - " + e.products[iii].price;
-//            var icn = e.products[iii].icon;
-//            //var id = e.users[iii].id;
-//            dat[nm] = icn;
-//
-//        }
-//        $("#check-prod-input").autocomplete({
-//            data: dat
-//        });
-//
-//    });
-//}
-//sponpProdNamesInput()
+function sponpProdNamesInput() {
+    var inputVal = $("#check-prod-input").val();
+    var fetchedData = doFetch({
+        action: 'getAllProducts',
+        data: inputVal,
+        filter: 'sponsored'
+    }).then(function (e) {
+        var dat = {}
+        sponProds = e.products;
+        for (var iii in e.products) {
+            var nm = e.products[iii].name + " - " + e.products[iii].price;
+            var icn = e.products[iii].icon;
+            //var id = e.users[iii].id;
+            dat[nm] = icn;
+
+        }
+        $("#check-prod-input").autocomplete({
+            data: dat
+        });
+
+    });
+}
+sponpProdNamesInput();
+
+
+//END to do MOVE TO inventoryManager.js
 
 function persistentFunc() {
     if (navigator.storage && navigator.storage.persist)
@@ -817,7 +820,7 @@ setTimeout(function(e) {
 
 
 
-
+/*
 function getInsufficientFundsOrderbook() {
     doFetch({
         action: 'getInsufficientFundsOrderbook',
@@ -840,7 +843,7 @@ function getInsufficientFundsOrderbook() {
         }
     });
 }
-
+*/
 function insufficientOrder() {
     if ($("#mobileNo").val() == "") {
         M.toast({
@@ -855,11 +858,12 @@ function insufficientOrder() {
             action: 'setInsufficientFundsOrder',
             transactionCode: $("#trnscode").val(),
             uid: localStorage.getItem("bits-user-name"),
-            num: insufficientOrderNum
+            num: $("#mobileNo").val()
         }).then(function(e) {
             if (e.status == "ok") {
                 $("#insufficientOrderStatus").html('Transaction code confirmed successfully');
                 $("#insufficientOrderStatus").css("color", "green");
+		    $("#buyStoreTokens").modal("close");
             } else {
                 $("#insufficientOrderStatus").html('Error! Enter transaction code again.');
                 $("#insufficientOrderStatus").css("color", "red");
