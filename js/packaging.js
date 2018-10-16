@@ -161,7 +161,7 @@ $(document).on("keyup", ".packInput input", function(e) {
 $(document).on("click touchstart", ".packPlus", function() {
     var input = $(this).siblings("input");
     if ($(this).siblings(".packMinus").hasClass("disabled") == true) {
-        if (input.val() > 49) {
+        if (input.val() > 99) {
             $(this).siblings(".packMinus").removeClass("disabled");
         }
     }
@@ -177,7 +177,7 @@ $(document).on("click touchstart", ".packPlus", function() {
 })
 $(document).on("click touchstart", ".packMinus", function() {
     var input = $(this).siblings("input");
-    if (input.val() < 51) {
+    if (input.val() < 101) {
         $(this).addClass("disabled");
     } else {
         
