@@ -161,19 +161,34 @@ $(document).on("keyup", ".packInput input", function(e) {
 $(document).on("click touchstart", ".packPlus", function() {
     var input = $(this).siblings("input");
     if ($(this).siblings(".packMinus").hasClass("disabled") == true) {
-        if (input.val() > 49) {
+        if (input.val() > 99) {
             $(this).siblings(".packMinus").removeClass("disabled");
         }
     }
-    $(this).siblings("input").val(parseInt(input.val()) + 1);
+    var tNum=parseInt($('.packPlus').siblings("input").attr('step'));
+    if(isNaN(tNum)){
+       var tEnum=1;
+       }else{
+      var tEnum=tNum; 
+       }
+    
+    $(this).siblings("input").val(parseInt(input.val()) + tEnum);
     packagingTotalCost()
 })
 $(document).on("click touchstart", ".packMinus", function() {
     var input = $(this).siblings("input");
-    if (input.val() < 51) {
+    if (input.val() < 101) {
         $(this).addClass("disabled");
     } else {
-        $(this).siblings("input").val(parseInt(input.val() - 1));
+        
+    var tNum=parseInt($('.packMinus').siblings("input").attr('step'));
+    if(isNaN(tNum)){
+       var tEnum=1;
+       }else{
+      var tEnum=tNum; 
+       }
+    
+        $(this).siblings("input").val(parseInt(input.val() - tEnum));
         packagingTotalCost();
     }
 });

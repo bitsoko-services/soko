@@ -597,15 +597,17 @@
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="dlvryPage" style="width: 100%; background: #26A69A; color: white; font-weight: bold; padding: 10px; height: 100%; margin: 0; text-align:center;">add</a>
         </div>
     </div>
-    <div id="packagingModal" class="modal modal-fixed-footer" style="overflow: initial; margin-top:30%; height:340px; border-radius:5px;width: 92% !important;">
-        <div style="width:100px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
-            <img src="./images/paperBag.jpeg" style="width: 105px; border-radius: 50%; -webkit-box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2); box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);">
+    <div id="packagingModal" class="modal modal-fixed-footer" style="overflow: initial; margin-top:30%; border-radius:5px;width: 92% !important;height: fit-content;max-height: fit-content;">
+        <div style="width:150px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
+            <img src="./images/bags-icon.webp" style="width: 150px;">
         </div>
-        <h5 style="text-align: center; padding: 0px 5%; margin: 0px;">Paperbags</h5>
+        <h5 style="text-align: center; padding: 0px 5%; margin: 0px;">Carry bags</h5>
+	    <p style="text-align: center; padding: 0px 5%; margin: 0px;">Environmentally friendly, non-woven reusable and disposable carrying bags</p></br>
+        
         <div class="row" style="text-align:  center; background: #ecebeb; margin-top: 10px;">
-            <div class="col s4">small<br>Ksh. 10</div>
-            <div class="col s4">medium<br>Ksh. 20</div>
-            <div class="col s4">large<br>Ksh. 40</div>
+            <div class="col s4">small<br>Kes. 10</div>
+            <div class="col s4">medium<br>Kes. 20</div>
+            <div class="col s4">large<br>Kes. 40</div>
         </div>
         <div class="row packInput" style="text-align: center;">
             <form action="#" style="width: fit-content; display: block; margin-left: auto; margin-right: auto;">
@@ -615,7 +617,7 @@
                         <span class="packCounter" style="color: black; display: block;">Small Paperbag :
                             <span style="padding-left: 25px;float: right;">
                                 <a href="#"  class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
-                                <input disabled="disabled" value="50" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="smallPaperbag" />
+                                <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="smallPaperbag" />
                                 <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
                             </span>
                         </span>
@@ -627,7 +629,7 @@
                         <span class="packCounter" style="color: black; display: block;">Medium Paperbag :
                             <span style="padding-left: 25px;float: right;">
                                 <a href="#" class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
-                                <input disabled="disabled" value="50" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="mediumPaperbag" />
+                                <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="mediumPaperbag" />
                                 <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
                             </span>
                         </span>
@@ -639,7 +641,7 @@
                         <span class="packCounter" style="color: black; display: block;">Large Paperbag :
                             <span style="padding-left: 25px;float: right;">
                                 <a href="#"  class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
-                                <input disabled="disabled" value="50" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="largePaperbag" />
+                                <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="largePaperbag" />
                                 <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
                             </span>
                         </span>
@@ -647,30 +649,31 @@
                 </p>
             </form>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" style="bottom: -40px !important;">
             <a class="opacitySelectedColor packagingCheckout" packagingType="paperBag" href="#!" style="width: 100%; display: block; bottom: 0px; position: absolute; text-align: center; padding: 15px; color: white; font-weight: bold; text-transform: uppercase;left: 0px;">pay <span class="packPrice">0</span></a>
         </div>
     </div>
 
     <!--------------- Wrapping Bag Modal ------------->
-    <div id="wrappingBagModal" class="modal modal-fixed-footer" style="overflow: initial; margin-top:30%; border-radius:5px;width: 92% !important; height: fit-content !important;">
-        <div style="width:100px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
-            <img src="./images/wrappingBag.jpeg" style="width: 105px; border-radius: 50%; -webkit-box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2); box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);">
+    <div id="wrappingBagModal" class="modal modal-fixed-footer" style="overflow: initial; margin-top:30%; border-radius:5px;width: 92% !important;height: fit-content;max-height: fit-content;">
+        <div style="width:150px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
+            <img src="./images/wraps-icon.webp" style="width: 150px;">
         </div>
         <h5 style="text-align: center; padding: 0px 5%; margin: 0px;">Wrapping Bags</h5>
+        <p style="text-align: center; padding: 0px 5%; margin: 0px;">Disposable, sealable, grease-proof wrapping, perfect for soups, sauces, fries, burgers and more</p></br>
         <div class="row" style="text-align:  center; background: #ecebeb; margin-top: 10px;">
             <div class="row" style="margin: 0px; padding: 5px 0px;">
                 <div class="col s3" style="padding:0px;">
-                    <div class="col s12" style="text-align: center; font-size: 1em;">Tiny<br>Ksh. 1</div>
+                    <div class="col s12" style="text-align: center; font-size: 1em;">Tiny<br>5 x 10<br>Kes. 1</div>
                 </div>
                 <div class="col s3" style="padding:0px;">
-                    <div class="col s12" style="text-align: center; font-size: 1em;">Small<br>Ksh. 3</div>
+                    <div class="col s12" style="text-align: center; font-size: 1em;">Small<br>10 x 20<br>Kes. 3</div>
                 </div>
                 <div class="col s3" style="padding:0px;">
-                    <div class="col s12" style="text-align: center; font-size: 1em;">Medium<br>Ksh. 5</div>
+                    <div class="col s12" style="text-align: center; font-size: 1em;">Medium<br>15 x 30<br>Kes. 5</div>
                 </div>
                 <div class="col s3" style="padding:0px;">
-                    <div class="col s12" style="text-align: center; font-size: 1em;">Large<br>Ksh. 8</div>
+                    <div class="col s12" style="text-align: center; font-size: 1em;">Large<br>20 x 45<br>Kes. 8</div>
                 </div>
             </div>
         </div>
@@ -682,7 +685,7 @@
                         <span class="packCounter" style="color: black; display: block; text-align: left;">Tiny :
                             <span style="padding-left: 25px;float: right;">
                                 <a href="#"  class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
-                                <input disabled="disabled" value="50" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="wrappingTiny-1" />
+                                <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="wrappingTiny-1" />
                                 <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
                             </span>
                         </span>
@@ -694,7 +697,7 @@
                         <span class="packCounter" style="color: black; display: block; text-align: left;">Small :
                             <span style="padding-left: 25px;float: right;">
                                 <a href="#"  class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
-                                <input disabled="disabled" value="50" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="wrappingSmall-3" />
+                                <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="wrappingSmall-3" />
                                 <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
                             </span>
                         </span>
@@ -706,7 +709,7 @@
                         <span class="packCounter" style="color: black; display: block; text-align: left;">Medium :
                             <span style="padding-left: 25px;float: right;">
                                 <a href="#"  class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
-                                <input disabled="disabled" value="50" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="wrappingMeduim-5" />
+                                <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="wrappingMeduim-5" />
                                 <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
                             </span>
                         </span>
@@ -718,7 +721,7 @@
                         <span class="packCounter" style="color: black; display: block; text-align: left;">Large:
                             <span style="padding-left: 25px;float: right;">
                                 <a href="#"  class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
-                                <input disabled="disabled" value="50" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="wrappingLarge-8" />
+                                <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="wrappingLarge-8" />
                                 <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
                             </span>
                         </span>
