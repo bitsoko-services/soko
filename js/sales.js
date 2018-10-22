@@ -55,6 +55,9 @@ function refreshSalesOrders() {
                 num += +nums[i];
             }
             shopBalance = num
+            if(baseCd == undefined){
+                baseCd = 'kes'
+            }
             $(".loadStoreBal").html(num + " " + baseCd)
 
             if (pendOds) {
