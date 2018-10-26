@@ -290,10 +290,12 @@ function addToWithdraw(r) {
     //Populate day Income
     if (getCurrentDay == saleDateDay) {
         if (typeof(totalPrice) != 'undefined') {
-            dayIncomeArray.push(totalPrice)
+            dayIncomeArray.push(totalPrice);
+            dailyDelPrice += parseInt(r.delPrice);
         }
         var sum = dayIncomeArray.reduce((a, b) => a + b, 0);
-        $("#dailySalesVal").html(sum)
+        $("#dailySalesVal").html(sum);
+        $("#dailyDelPrice").html(dailyDelPrice);
     } else {
         $("#dailySalesVal").html(0)
     }
@@ -311,9 +313,11 @@ function addToWithdraw(r) {
         if (currentFullDate == saleDateDay) {
             if (typeof(totalPrice) != 'undefined') {
                 weekIncomeArray.push(totalPrice);
+                weeklyDelPrice += parseInt(r.delPrice);
             }
             var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-            $("#weeklySalesVal").html(sum)
+            $("#weeklySalesVal").html(sum);
+            $("#weeklyDelPrice").html(weeklyDelPrice);
         }
     }
 
@@ -336,6 +340,8 @@ function addToWithdraw(r) {
 }
 
 function orderUpdater() {
+    dailyDelPrice = 0;
+    weeklyDelPrice = 0;
     monthlyDelPrice = 0;
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-orders').onsuccess = function(event) {
         var reqs = event.target.result;
