@@ -53,9 +53,28 @@ function packagingDataArray() {
     });
 }
 $(document).on("click touchstart", ".packagingCheckout", function() {
+    $('.saving').css('display', 'block');
     activePackaging = $(this).attr('packagingType');
-    packagingDataArray()
-    packagingData()
+    getLoc().then(function showPosition(e) {
+        getDistanceFromLatLonInKm(e.coords.latitude, e.coords.longitude, -1.284723, 36.8178113).then(function(distance) {
+            var distance = distance
+            var itemPrice = $('.packPrice').html().replace(/[^0-9\.]+/g, '')
+            delPrice = distance * 30
+            var totalPrice = parseInt(delPrice) + parseInt(itemPrice)
+            if (baseCd == undefined) {
+                baseCd = 'kes'
+            }
+            $('#itemPrice').html(itemPrice + " " + baseCd)
+            $('#deliveryPrice').html(numberify(delPrice, "0") + " " + baseCd)
+            $('#totalDelItemPrice').html(totalPrice + " " + baseCd)
+            document.getElementById('confirmPackagingDelPrice').style.display = "block"
+            $('.saving').css('display', 'none');
+            $(".purchaseOrder").unbind().click(function() {
+                packagingDataArray();
+                packagingData();
+            });
+        })
+    })
 })
 
 function packagingData() {
@@ -69,7 +88,7 @@ function packagingData() {
                 items: value,
                 type: packagingType,
                 trHash: "",
-                totalPrice: '200'
+                deliveryPrice: numberify(delPrice)
             }).then(function(e) {
                 if (e.status == "ok") {
                     M.toast({
@@ -87,7 +106,8 @@ function packagingData() {
             });
         } else {
             //creditTopup = $(".packPrice").html();
-            getInsufficientFundsOrderbook($(".packPrice").html()).then(function(r) {
+            var totalInsufficient = numberify(parseInt($('.packPrice').html().replace(/[^0-9\.]+/g, '')) + delPrice)
+            getInsufficientFundsOrderbook(totalInsufficient).then(function(r) {
 
                 doFetch({
                     action: 'requestPack',
@@ -165,13 +185,13 @@ $(document).on("click touchstart", ".packPlus", function() {
             $(this).siblings(".packMinus").removeClass("disabled");
         }
     }
-    var tNum=parseInt($('.packPlus').siblings("input").attr('step'));
-    if(isNaN(tNum)){
-       var tEnum=1;
-       }else{
-      var tEnum=tNum; 
-       }
-    
+    var tNum = parseInt($('.packPlus').siblings("input").attr('step'));
+    if (isNaN(tNum)) {
+        var tEnum = 1;
+    } else {
+        var tEnum = tNum;
+    }
+
     $(this).siblings("input").val(parseInt(input.val()) + tEnum);
     packagingTotalCost()
 })
@@ -180,14 +200,14 @@ $(document).on("click touchstart", ".packMinus", function() {
     if (input.val() < 101) {
         $(this).addClass("disabled");
     } else {
-        
-    var tNum=parseInt($('.packMinus').siblings("input").attr('step'));
-    if(isNaN(tNum)){
-       var tEnum=1;
-       }else{
-      var tEnum=tNum; 
-       }
-    
+
+        var tNum = parseInt($('.packMinus').siblings("input").attr('step'));
+        if (isNaN(tNum)) {
+            var tEnum = 1;
+        } else {
+            var tEnum = tNum;
+        }
+
         $(this).siblings("input").val(parseInt(input.val() - tEnum));
         packagingTotalCost();
     }
