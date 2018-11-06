@@ -769,7 +769,7 @@ function sponpProdNamesInput() {
         }
 	    
     inventoryInput = M.Autocomplete.init(document.querySelectorAll('#check-prod-input'), {});
-    inventoryInput.updateData(dat);
+    inventoryInput[0].updateData(dat);
 
     });
 }
