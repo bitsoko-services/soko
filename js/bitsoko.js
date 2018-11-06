@@ -767,9 +767,9 @@ function sponpProdNamesInput() {
             dat[nm] = icn;
 
         }
-        $("#check-prod-input").autocomplete({
-            data: dat
-        });
+	    
+    inventoryInput = M.Autocomplete.init(document.querySelectorAll('#check-prod-input'), {});
+    inventoryInput.updateData(dat);
 
     });
 }
