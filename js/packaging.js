@@ -52,30 +52,26 @@ function packagingDataArray() {
         }
     });
 }
-$(document).on("click touchstart", ".packagingCheckout", function() {
-    $('.saving').css('display', 'block');
+
+function wrappingBagModal() {
+    // $('.saving').css('display', 'block');
     activePackaging = $(this).attr('packagingType');
     getLoc().then(function showPosition(e) {
         getDistanceFromLatLonInKm(e.coords.latitude, e.coords.longitude, -1.284723, 36.8178113).then(function(distance) {
+            $('#wrappingBagModal').modal('open');
             var distance = distance
-            var itemPrice = $('.packPrice').html().replace(/[^0-9\.]+/g, '')
             delPrice = distance * 30
-            var totalPrice = parseInt(delPrice) + parseInt(itemPrice)
+            $('.delPrice').html(numberify(delPrice))
             if (baseCd == undefined) {
                 baseCd = 'kes'
             }
-            $('#itemPrice').html(itemPrice + " " + baseCd)
-            $('#deliveryPrice').html(numberify(delPrice, "0") + " " + baseCd)
-            $('#totalDelItemPrice').html(totalPrice + " " + baseCd)
-            document.getElementById('confirmPackagingDelPrice').style.display = "block"
-            $('.saving').css('display', 'none');
-            $(".purchaseOrder").unbind().click(function() {
+            $(".packagingCheckout").unbind().click(function() {
                 packagingDataArray();
                 packagingData();
             });
         })
     })
-})
+}
 
 function packagingData() {
     if (packagingType == "paperBag") {} else {}
@@ -106,7 +102,7 @@ function packagingData() {
             });
         } else {
             //creditTopup = $(".packPrice").html();
-            var totalInsufficient = numberify(parseInt($('.packPrice').html().replace(/[^0-9\.]+/g, '')) + delPrice)
+            var totalInsufficient = numberify(parseInt($('.packPrice').html().replace(/[^0-9\.]+/g, '')) + numberify(delPrice))
             getInsufficientFundsOrderbook(totalInsufficient).then(function(r) {
 
                 doFetch({
@@ -156,7 +152,8 @@ function packagingTotalCost() {
             largePack = 0
         }
         var totalCost = smallPack + mediumPack + largePack
-        $(".packPrice").html(totalCost + " " + baseCd)
+        $(".packPrice").html(parseInt(totalCost) + parseInt(numberify(delPrice)) + " " + baseCd);
+        $(".packPriceVal").html(totalCost + " " + baseCd);
     } else {
         if ($("#wrappingBagTiny").prop("checked") == false) {
             tinyWrappingBag = 0
@@ -171,7 +168,8 @@ function packagingTotalCost() {
             largeWrappingBag = 0
         }
         var totalCost = tinyWrappingBag + smallWrappingBag + meduiumWrappingBag + largeWrappingBag
-        $(".packPrice").html(totalCost + " " + baseCd)
+        $(".packPrice").html(parseInt(totalCost) + parseInt(numberify(delPrice)) + " " + baseCd);
+        $(".packPriceVal").html(totalCost + " " + baseCd);
     }
 
 }
