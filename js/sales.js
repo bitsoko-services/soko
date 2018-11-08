@@ -17,9 +17,9 @@ function loadWalletBal() {
         $("#unlockUserWallet").css("display", "none");
         fetchRates().then(function(e) {
             if (e.status == "ok") {
-                setInterval(function() {
+                //setInterval(function() {
                     $("#userWalletBal").html(numberify(((allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].balance / Math.pow(10, allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].decimals)) + allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].totalEarned) * (allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].rate * baseX), 2) + ' ' + baseCd)
-                }, 20000);
+               // }, 20000);
             }
         });
     } else {
@@ -42,9 +42,11 @@ function refreshSalesOrders() {
             var storeTotalBal = []
             for (var ii in alOds) {
                 var storeBal = alOds[ii].proPrice
-                storeTotalBal.push(storeBal)
+                
                 if (alOds[ii].state == 'pending') {
                     pendOds = true;
+                }else if(alOds[ii].state == 'completed'){
+                storeTotalBal.push(storeBal);
                 }
 
             }
@@ -70,6 +72,7 @@ function refreshSalesOrders() {
             getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + localStorage.getItem('soko-active-store') + '-orders');
         }
         orderUpdater();
+        
     }).catch(function(err) {
         orderUpdater();
     });
@@ -89,6 +92,10 @@ function refreshSalesOrders() {
     */
 }
 
+
+ setInterval(function() {
+     refreshSalesOrders();
+                }, 20000);
 
 
 function getActvStoreProds(orderid, orderItems, orderLoc) {
