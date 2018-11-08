@@ -53,12 +53,13 @@ function packagingDataArray() {
     });
 }
 
-function wrappingBagModal() {
+function wrappingBagModal(activePackaging) {
     // $('.saving').css('display', 'block');
-    activePackaging = $(this).attr('packagingType');
+    console.log(activePackaging)
+    activePackaging = activePackaging;
     getLoc().then(function showPosition(e) {
         getDistanceFromLatLonInKm(e.coords.latitude, e.coords.longitude, -1.284723, 36.8178113).then(function(distance) {
-            $('#wrappingBagModal').modal('open');
+            $('#' + activePackaging + '').modal('open');
             var distance = distance
             delPrice = distance * 30
             $('.delPrice').html(numberify(delPrice))
