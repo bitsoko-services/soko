@@ -288,11 +288,11 @@ function addToWithdraw(r) {
         }
 
     }
-    var saleDate = r.date
-    var saleDateMonth = saleDate.slice(0, 7)
-    var saleDateDay = saleDate.slice(0, 10)
-    var getCurrentMonth = new Date().toISOString().substr(0, 19).slice(0, 7)
-    var getCurrentDay = new Date().toISOString().substr(0, 19).slice(0, 10)s
+    var saleDate = r.date;
+    var saleDateMonth = saleDate.slice(0, 7);
+    var saleDateDay = saleDate.slice(0, 10);
+    var getCurrentMonth = new Date().toISOString().substr(0, 19).slice(0, 7);
+    var getCurrentDay = new Date().toISOString().substr(0, 19).slice(0, 10);
 
     //Populate day Income
     if (getCurrentDay == saleDateDay) {
