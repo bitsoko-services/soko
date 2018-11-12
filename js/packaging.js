@@ -103,7 +103,7 @@ function packagingData() {
             });
         } else {
             //creditTopup = $(".packPrice").html();
-            var totalInsufficient = numberify(parseInt($('.packPrice').html().replace(/[^0-9\.]+/g, '')) + numberify(delPrice))
+            var totalInsufficient = JSON.stringify(parseInt(numberify($('.packPrice').html().replace(/[^0-9\.]+/g, ''))) + parseInt(numberify(delPrice)))
             getInsufficientFundsOrderbook(totalInsufficient).then(function(r) {
 
                 doFetch({
