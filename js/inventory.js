@@ -2,12 +2,9 @@ function openInventoryPage() {
     $('#content > .container > div').css('display', 'none');
     setTimeout(function(e) {
         $('#content > .container > .inventoryPage').css('display', 'block');
-        $(".activePage").html("Feedback")
+        $(".activePage").html("Inventory")
     }, 300);
-    
-    
-sponpProdNamesInput();
-    
+    sponpProdNamesInput();
 }
 
 
@@ -20,7 +17,7 @@ function sponpProdNamesInput() {
         action: 'getAllProducts',
         data: inputVal,
         filter: 'sponsored'
-    }).then(function (e) {
+    }).then(function(e) {
         var dat = {}
         sponProds = e.products;
         for (var iii in e.products) {
@@ -30,11 +27,9 @@ function sponpProdNamesInput() {
             dat[nm] = icn;
 
         }
-	    
-    inventoryInput = M.Autocomplete.init(document.querySelectorAll('#check-prod-input'), {});
-    inventoryInput[0].updateData(dat);
+
+        inventoryInput = M.Autocomplete.init(document.querySelectorAll('#check-prod-input'), {});
+        inventoryInput[0].updateData(dat);
 
     });
 }
-
-
