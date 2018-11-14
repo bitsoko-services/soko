@@ -17,9 +17,9 @@ function loadWalletBal() {
         $("#unlockUserWallet").css("display", "none");
         fetchRates().then(function(e) {
             if (e.status == "ok") {
-                setInterval(function() {
-                    $("#userWalletBal").html(numberify(((allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].balance / Math.pow(10, allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].decimals)) + allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].totalEarned) * (allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].rate * baseX), 2) + ' ' + baseCd)
-                }, 20000);
+                //setInterval(function() {
+                $("#userWalletBal").html(numberify(((allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].balance / Math.pow(10, allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].decimals)) + allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].totalEarned) * (allTokens['0xb72627650f1149ea5e54834b2f468e5d430e67bf'].rate * baseX), 2) + ' ' + baseCd)
+                // }, 20000);
             }
         });
     } else {
@@ -42,9 +42,11 @@ function refreshSalesOrders() {
             var storeTotalBal = []
             for (var ii in alOds) {
                 var storeBal = alOds[ii].proPrice
-                storeTotalBal.push(storeBal)
+
                 if (alOds[ii].state == 'pending') {
                     pendOds = true;
+                } else if (alOds[ii].state == 'completed') {
+                    storeTotalBal.push(storeBal);
                 }
 
             }
@@ -55,6 +57,9 @@ function refreshSalesOrders() {
                 num += +nums[i];
             }
             shopBalance = num
+            if (baseCd == undefined) {
+                baseCd = 'kes'
+            }
             $(".loadStoreBal").html(num + " " + baseCd)
 
             if (pendOds) {
@@ -67,6 +72,7 @@ function refreshSalesOrders() {
             getObjectStore('data', 'readwrite').put('[]', 'soko-store-' + localStorage.getItem('soko-active-store') + '-orders');
         }
         orderUpdater();
+
     }).catch(function(err) {
         orderUpdater();
     });
@@ -86,6 +92,10 @@ function refreshSalesOrders() {
     */
 }
 
+
+setInterval(function() {
+    refreshSalesOrders();
+}, 20000);
 
 
 function getActvStoreProds(orderid, orderItems, orderLoc) {
@@ -278,19 +288,24 @@ function addToWithdraw(r) {
         }
 
     }
-    var saleDate = r.date
-    var saleDateMonth = saleDate.slice(0, 7)
-    var saleDateDay = saleDate.slice(0, 10)
-    var getCurrentMonth = new Date().toISOString().substr(0, 19).slice(0, 7)
-    var getCurrentDay = new Date().toISOString().substr(0, 19).slice(0, 10)
+    var saleDate = r.date;
+    var saleDateMonth = saleDate.slice(0, 7);
+    var saleDateDay = saleDate.slice(0, 10);
+    var getCurrentMonth = new Date().toISOString().substr(0, 19).slice(0, 7);
+    var getCurrentDay = new Date().toISOString().substr(0, 19).slice(0, 10);
 
     //Populate day Income
     if (getCurrentDay == saleDateDay) {
         if (typeof(totalPrice) != 'undefined') {
-            dayIncomeArray.push(totalPrice)
+            dayIncomeArray.push(totalPrice);
+            dailyDelPrice += parseInt(r.delPrice);
         }
         var sum = dayIncomeArray.reduce((a, b) => a + b, 0);
-        $("#dailySalesVal").html(sum)
+        if (baseCd == undefined) {
+            baseCd = 'kes'
+        }
+        $("#dailySalesVal").html(sum + ' ' + baseCd);
+        $("#dailyDelPrice").html(dailyDelPrice + ' ' + baseCd);
     } else {
         $("#dailySalesVal").html(0)
     }
@@ -308,9 +323,14 @@ function addToWithdraw(r) {
         if (currentFullDate == saleDateDay) {
             if (typeof(totalPrice) != 'undefined') {
                 weekIncomeArray.push(totalPrice);
+                weeklyDelPrice += parseInt(r.delPrice);
+            }
+            if (baseCd == undefined) {
+                baseCd = 'kes'
             }
             var sum = weekIncomeArray.reduce((a, b) => a + b, 0);
-            $("#weeklySalesVal").html(sum)
+            $("#weeklySalesVal").html(sum + ' ' + baseCd);
+            $("#weeklyDelPrice").html(weeklyDelPrice + ' ' + baseCd);
         }
     }
 
@@ -326,13 +346,18 @@ function addToWithdraw(r) {
                 monthlyDelPrice += parseInt(r.delPrice);
             }
             var sum = monthIncomeArray.reduce((a, b) => a + b, 0);
-            $("#monthlySalesVal").html(sum);
-            $("#monthlyDelPrice").html(monthlyDelPrice);
+            if (baseCd == undefined) {
+                baseCd = 'kes'
+            }
+            $("#monthlySalesVal").html(sum + ' ' + baseCd);
+            $("#monthlyDelPrice").html(monthlyDelPrice + ' ' + baseCd);
         }
     }
 }
 
 function orderUpdater() {
+    dailyDelPrice = 0;
+    weeklyDelPrice = 0;
     monthlyDelPrice = 0;
     getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-orders').onsuccess = function(event) {
         var reqs = event.target.result;

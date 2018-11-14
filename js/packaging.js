@@ -52,11 +52,27 @@ function packagingDataArray() {
         }
     });
 }
-$(document).on("click touchstart", ".packagingCheckout", function() {
-    activePackaging = $(this).attr('packagingType');
-    packagingDataArray()
-    packagingData()
-})
+
+function wrappingBagModal(activePackaging) {
+    // $('.saving').css('display', 'block');
+    console.log(activePackaging)
+    activePackaging = activePackaging;
+    getLoc().then(function showPosition(e) {
+        getDistanceFromLatLonInKm(e.coords.latitude, e.coords.longitude, -1.284723, 36.8178113).then(function(distance) {
+            $('#' + activePackaging + '').modal('open');
+            var distance = distance
+            delPrice = distance * 30
+            $('.delPrice').html(numberify(delPrice))
+            if (baseCd == undefined) {
+                baseCd = 'kes'
+            }
+            $(".packagingCheckout").unbind().click(function() {
+                packagingDataArray();
+                packagingData();
+            });
+        })
+    })
+}
 
 function packagingData() {
     if (packagingType == "paperBag") {} else {}
@@ -69,7 +85,7 @@ function packagingData() {
                 items: value,
                 type: packagingType,
                 trHash: "",
-                totalPrice: '200'
+                deliveryPrice: numberify(delPrice)
             }).then(function(e) {
                 if (e.status == "ok") {
                     M.toast({
@@ -87,7 +103,8 @@ function packagingData() {
             });
         } else {
             //creditTopup = $(".packPrice").html();
-            getInsufficientFundsOrderbook($(".packPrice").html()).then(function(r) {
+            var totalInsufficient = JSON.stringify(parseInt(numberify($('.packPrice').html().replace(/[^0-9\.]+/g, ''))) + parseInt(numberify(delPrice)))
+            getInsufficientFundsOrderbook(totalInsufficient).then(function(r) {
 
                 doFetch({
                     action: 'requestPack',
@@ -136,7 +153,8 @@ function packagingTotalCost() {
             largePack = 0
         }
         var totalCost = smallPack + mediumPack + largePack
-        $(".packPrice").html(totalCost + " " + baseCd)
+        $(".packPrice").html(parseInt(totalCost) + parseInt(numberify(delPrice)) + " " + baseCd);
+        $(".packPriceVal").html(totalCost + " " + baseCd);
     } else {
         if ($("#wrappingBagTiny").prop("checked") == false) {
             tinyWrappingBag = 0
@@ -151,7 +169,8 @@ function packagingTotalCost() {
             largeWrappingBag = 0
         }
         var totalCost = tinyWrappingBag + smallWrappingBag + meduiumWrappingBag + largeWrappingBag
-        $(".packPrice").html(totalCost + " " + baseCd)
+        $(".packPrice").html(parseInt(totalCost) + parseInt(numberify(delPrice)) + " " + baseCd);
+        $(".packPriceVal").html(totalCost + " " + baseCd);
     }
 
 }
@@ -165,13 +184,13 @@ $(document).on("click touchstart", ".packPlus", function() {
             $(this).siblings(".packMinus").removeClass("disabled");
         }
     }
-    var tNum=parseInt($('.packPlus').siblings("input").attr('step'));
-    if(isNaN(tNum)){
-       var tEnum=1;
-       }else{
-      var tEnum=tNum; 
-       }
-    
+    var tNum = parseInt($('.packPlus').siblings("input").attr('step'));
+    if (isNaN(tNum)) {
+        var tEnum = 1;
+    } else {
+        var tEnum = tNum;
+    }
+
     $(this).siblings("input").val(parseInt(input.val()) + tEnum);
     packagingTotalCost()
 })
@@ -180,14 +199,14 @@ $(document).on("click touchstart", ".packMinus", function() {
     if (input.val() < 101) {
         $(this).addClass("disabled");
     } else {
-        
-    var tNum=parseInt($('.packMinus').siblings("input").attr('step'));
-    if(isNaN(tNum)){
-       var tEnum=1;
-       }else{
-      var tEnum=tNum; 
-       }
-    
+
+        var tNum = parseInt($('.packMinus').siblings("input").attr('step'));
+        if (isNaN(tNum)) {
+            var tEnum = 1;
+        } else {
+            var tEnum = tNum;
+        }
+
         $(this).siblings("input").val(parseInt(input.val() - tEnum));
         packagingTotalCost();
     }
