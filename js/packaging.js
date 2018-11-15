@@ -61,7 +61,7 @@ function wrappingBagModal(activePackaging) {
         getDistanceFromLatLonInKm(e.coords.latitude, e.coords.longitude, -1.284723, 36.8178113).then(function(distance) {
             $('#' + activePackaging + '').modal('open');
             var distance = distance
-            delPrice = distance * 30
+            delPrice = distance * 10
             $('.delPrice').html(numberify(delPrice))
             if (baseCd == undefined) {
                 baseCd = 'kes'
