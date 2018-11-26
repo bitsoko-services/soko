@@ -173,8 +173,6 @@ $(document).on('touchstart click', '#noSponsoredBtn', function (event) {
 
 $('#spnsrdModal').on('click', $('.autocomplete-items div'), function () {
     var value = $('#check-prod-input').val();
-    console.log('============')
-    console.log(value)
     if (value != '') {
         var sponsoredProduct = value;
         for (var i in sponProds) {
