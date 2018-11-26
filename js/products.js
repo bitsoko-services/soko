@@ -171,17 +171,19 @@ $(document).on('touchstart click', '#noSponsoredBtn', function (event) {
     $("#rmvSpnsrdProd").hide();
 });
 
-$('#spnsrdModal').on('click', $('ul.autocomplete-content li'), function () {
-    var value = $('.sponsoredPrd').val();
+$('#spnsrdModal').on('click', $('.autocomplete-items div'), function () {
+    var value = $('#check-prod-input').val();
+    console.log('============')
+    console.log(value)
     if (value != '') {
-        var sponsoredProduct = $('.sponsoredPrd').val();
+        var sponsoredProduct = value;
         for (var i in sponProds) {
             var name = sponProds[i].name;
             var id = sponProds[i].id;
             var price = sponProds[i].price;
-            if (sponsoredProduct == name + " - " + price) {
+            if (sponsoredProduct == name) {
                 M.toast({
-                    html: 'Adding sponsored produc',
+                    html: 'Adding sponsored product',
                     classes: 'spnsrdTst',
                     displayLength: 10000
                 })
