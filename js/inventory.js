@@ -18,8 +18,6 @@ function sponpProdNamesInput() {
         data: inputVal,
         filter: 'sponsored'
     }).then(function(e) {
-        console.log('=======================')
-        console.log(e)
         var dat = {}
         var itemDat = new Array();
         sponProds = e.products;
