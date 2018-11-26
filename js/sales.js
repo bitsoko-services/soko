@@ -41,11 +41,11 @@ function refreshSalesOrders() {
             pendOds = false;
             var storeTotalBal = []
             for (var ii in alOds) {
-                var storeBal = alOds[ii].proPrice
+                var storeBal = alOds[ii].proPrice;
 
                 if (alOds[ii].state == 'pending') {
                     pendOds = true;
-                } else if (alOds[ii].state == 'completed') {
+                } else if (alOds[ii].state == 'complete') {
                     storeTotalBal.push(storeBal);
                 }
 

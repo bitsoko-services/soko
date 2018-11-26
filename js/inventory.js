@@ -33,3 +33,31 @@ function sponpProdNamesInput() {
 
     });
 }
+
+//Process Inventory Order
+function inventoryOrder(prid) {
+    var quantity = document.getElementById("prodRestNo-" + prid).value;
+    var prodPrice = document.getElementById("prodPrice-" + prid).value;
+    var totalCost = quantity * prodPrice;
+    if (totalCost > shopBalance) {
+        getInsufficientFundsOrderbook(JSON.stringify(totalCost));
+    } else {
+        doFetch({
+            action: 'inventoryOrder',
+            shop: localStorage.getItem('soko-active-store'),
+            item: prid,
+            quantity: quantity,
+            price: prodPrice,
+        }).then(function(e) {
+            if (e.status == 'ok') {
+                M.toast({
+                    html: 'Order request sent successfully'
+                })
+            } else {
+                M.toast({
+                    html: 'Error!!! Try again later'
+                })
+            }
+        })
+    }
+}
