@@ -48,6 +48,11 @@ function packagingDataArray() {
             } else {
                 wrappingBagDataArray["large-8"] = "0"
             }
+            if ($("#wrappingBagLarge").prop("checked") == true) {
+                wrappingBagDataArray["large-9"] = $("#wrappingLarge-9").val()
+            } else {
+                wrappingBagDataArray["large-9"] = "0"
+            }
             resolve(wrappingBagDataArray);
         }
     });
@@ -61,7 +66,7 @@ function wrappingBagModal(activePackaging) {
         getDistanceFromLatLonInKm(e.coords.latitude, e.coords.longitude, -1.284723, 36.8178113).then(function(distance) {
             $('#' + activePackaging + '').modal('open');
             var distance = distance
-            delPrice = distance * 30
+            delPrice = distance * 10
             $('.delPrice').html(numberify(delPrice))
             if (baseCd == undefined) {
                 baseCd = 'kes'
@@ -140,7 +145,8 @@ function packagingTotalCost() {
     var tinyWrappingBag = $("#wrappingTiny-1").val() * 1
     var smallWrappingBag = $("#wrappingSmall-3").val() * 3
     var meduiumWrappingBag = $("#wrappingMeduim-5").val() * 5
-    var largeWrappingBag = $("#wrappingLarge-8").val() * 8
+    var largeWrappingBag = $("#wrappingLarge-8").val() * 7
+    var exLargeWrappingBag = $("#wrappingLarge-8").val() * 9
 
     if (packagingType == 'paperBag') {
         if ($("#smallPaperbag").prop("disabled") == true) {
@@ -168,7 +174,10 @@ function packagingTotalCost() {
         if ($("#wrappingBagLarge").prop("checked") == false) {
             largeWrappingBag = 0
         }
-        var totalCost = tinyWrappingBag + smallWrappingBag + meduiumWrappingBag + largeWrappingBag
+        if ($("#wrappingBagExtLarge").prop("checked") == false) {
+            exLargeWrappingBag = 0
+        }
+        var totalCost = tinyWrappingBag + smallWrappingBag + meduiumWrappingBag + largeWrappingBag + exLargeWrappingBag
         $(".packPrice").html(parseInt(totalCost) + parseInt(numberify(delPrice)) + " " + baseCd);
         $(".packPriceVal").html(totalCost + " " + baseCd);
     }

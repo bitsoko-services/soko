@@ -290,6 +290,7 @@ function doSwitchStore() {
         verifyNo();
         addManagers();
         deliveryMbr();
+        $('.sprndProd').html('')
     }
     $('#switchStoreModal').modal({
         onCloseEnd: loadStoreFunc()

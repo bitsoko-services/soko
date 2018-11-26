@@ -325,11 +325,8 @@
             </svg>
         </div>
         <h5 style="text-align: center; padding: 5%; margin:0px;">Add Operators</h5>
-        <div class="row" style="margin-bottom: 0px;">
-            <div class="input-field col s12 deliveryField" style="margin-top:30px;">
-                <input id="delivery-members" type="text" class="validate" placeholder="username">
-                <ul class="autocomplete-content dropdown-content"></ul>
-            </div>
+        <div class="autocomplete" style="width: 90%; display: block; margin: 20px auto;">
+            <input id="delivery-members" type="text" name="myCountry" placeholder="Enter name">
         </div>
         <div class="row" style="text-align: center;">
             <button class="btn" onclick="manageOperators();">add</button>
@@ -380,9 +377,8 @@
         </div>
         <h5 style="text-align: center; padding: 5%; margin:0px;">Add Managers</h5>
         <div class="row" style="margin-bottom: 0px;">
-            <div class="input-field col s12 addNewManager" style="margin-top:30px;">
-                <input id="storeManagers" type="text" class="validate" placeholder="username">
-                <ul class="autocomplete-content dropdown-content"></ul>
+            <div class="autocomplete" style="width: 90%; display: block; margin: 20px auto;">
+                <input id="storeManagers" type="text" name="myCountry" placeholder="Enter name">
             </div>
         </div>
         <div class="row" style="text-align: center;">
@@ -712,22 +708,25 @@
         <p style="text-align: center; padding: 0px 5%; margin: 0px;">Disposable, sealable, grease-proof wrapping, perfect for soups, sauces, fries, burgers and more</p></br>
         <div class="row" style="text-align:  center; background: #ecebeb; margin-top: 10px;">
             <div class="row" style="margin: 0px; padding: 5px 0px;">
-                <div class="col s3" style="padding:0px;">
+                <div style="padding:0px; width: 20%; float: left; font-size: 0.7em;">
                     <div class="col s12" style="text-align: center; font-size: 1em;">Tiny<br>5 x 10<br>Kes. 1</div>
                 </div>
-                <div class="col s3" style="padding:0px;">
+                <div style="padding:0px; width: 20%; float: left; font-size: 0.7em;">
                     <div class="col s12" style="text-align: center; font-size: 1em;">Small<br>10 x 20<br>Kes. 3</div>
                 </div>
-                <div class="col s3" style="padding:0px;">
+                <div style="padding:0px; width: 20%; float: left; font-size: 0.7em;">
                     <div class="col s12" style="text-align: center; font-size: 1em;">Medium<br>15 x 30<br>Kes. 5</div>
                 </div>
-                <div class="col s3" style="padding:0px;">
-                    <div class="col s12" style="text-align: center; font-size: 1em;">Large<br>20 x 45<br>Kes. 8</div>
+                <div style="padding:0px; width: 20%; float: left; font-size: 0.7em;">
+                    <div class="col s12" style="text-align: center; font-size: 1em;">Large<br>20 x 45<br>Kes. 7</div>
+                </div>
+                <div style="padding:0px; width: 20%; float: left; font-size: 0.7em;">
+                    <div class="col s12" style="text-align: center; font-size: 1em;">Extra Large<br>20 x 45<br>Kes. 9</div>
                 </div>
             </div>
         </div>
         <div class="row packInput" style="text-align: center;">
-            <form action="#" style="width: fit-content; display: block; margin-left: auto; margin-right: auto;">
+            <form action="#" style="width: fit-content; display: block; margin-left: auto; margin-right: auto; width: 90%;">
                 <p>
                     <label style="display: block;">
                         <input class="packCheckbox" id="wrappingBagTiny" packagingType="wrappingBag" type="checkbox" />
@@ -771,6 +770,18 @@
                             <span style="padding-left: 25px;float: right;">
                                 <a href="#"  class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
                                 <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="wrappingLarge-8" />
+                                <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
+                            </span>
+                        </span>
+                    </label>
+                </p>
+                <p>
+                    <label style="display: block;">
+                        <input class="packCheckbox" id="wrappingBagExtLarge" packagingType="wrappingBag" type="checkbox" />
+                        <span class="packCounter" style="color: black; display: block; text-align: left;">Extra Large:
+                            <span style="padding-left: 25px;float: right;">
+                                <a href="#"  class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
+                                <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="wrappingLarge-9" />
                                 <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
                             </span>
                         </span>
@@ -1431,13 +1442,12 @@
                         	<path style="fill:#231F20;" d="M224,344h64c13.255,0,24-10.745,24-24s-10.745-24-24-24h-64c-13.255,0-24,10.745-24,24   S210.745,344,224,344z M224,312h64c4.418,0,8,3.582,8,8s-3.582,8-8,8h-64c-4.418,0-8-3.582-8-8S219.582,312,224,312z"></path>
                         </svg>
                     </div>
-                    <h5 style="margin:0px;font-size: 1.3rem;padding-top: 10px;">SPONSORED PRODUCTS</h5>
+                    <h5 style="margin:0px;font-size: 1.3rem;padding-top: 10px;">Add Items To Your Inventory</h5>
                 </div>
                 <div class="col s12">
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input type="text" id="check-prod-input" class="autocomplete sponsoredPrd" placeholder="Add Sponsored Products">
-                            <label for="check-prod-input"></label>
+                        <div class="autocomplete" style="width: 90%; display: block; margin: 20px auto;">
+                            <input id="check-prod-input" type="text" name="myCountry" placeholder="Add Sponsored Products" class="sponsoredPrd">
                         </div>
                     </div>
                     <div class="row sprndProd"></div>
@@ -2856,9 +2866,8 @@
                         <div class="row storeSettingsDivs">
                             <h6>Transfer Store</h6>
                             <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="transfer-shop" type="text" class="validate" placeholder="username" stitm="shopTransfer">
-                                    <label for="transfer-shop" class="">Transfer Shop</label>
+                                <div class="autocomplete" style="width: 90%; display: block; margin: 20px auto;">
+                                    <input id="transfer-shop" type="text" name="myCountry" placeholder="Enter name">
                                 </div>
                             </div>
                         </div>

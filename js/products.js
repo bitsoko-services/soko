@@ -171,17 +171,17 @@ $(document).on('touchstart click', '#noSponsoredBtn', function (event) {
     $("#rmvSpnsrdProd").hide();
 });
 
-$('#spnsrdModal').on('click', $('ul.autocomplete-content li'), function () {
-    var value = $('.sponsoredPrd').val();
+$('#spnsrdModal').on('click', $('.autocomplete-items div'), function () {
+    var value = $('#check-prod-input').val();
     if (value != '') {
-        var sponsoredProduct = $('.sponsoredPrd').val();
+        var sponsoredProduct = value;
         for (var i in sponProds) {
             var name = sponProds[i].name;
             var id = sponProds[i].id;
             var price = sponProds[i].price;
-            if (sponsoredProduct == name + " - " + price) {
+            if (sponsoredProduct == name) {
                 M.toast({
-                    html: 'Adding sponsored produc',
+                    html: 'Adding sponsored product',
                     classes: 'spnsrdTst',
                     displayLength: 10000
                 })
@@ -257,7 +257,7 @@ function productsUpdater() {
                                                   '<option value="4">per Week</option>' +
                                                   '<option value="5">per Month</option>' +
                                                   '<option value="6">per Litre</option>' +
-                                                  '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized">' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option><option value="litre">per Litre</option>' + '</select></div></div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"> </div>' + '</form></div></li><div class="divider" style="margin-top:2px;"></div>');
+                                                  '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized">' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option><option value="litre">per Litre</option>' + '</select></div></div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"><div class="btn opacitySelectedColor processInventoryOrder" style="display: block; margin: 0px auto;" onclick="inventoryOrder(' + reqs[i].id + ')">purchase order</div> </div>' + '</form></div></li>');
 
                 if (reqs[i].sponsored == "true") {
                     var sprndhtml = "";
