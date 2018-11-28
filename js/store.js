@@ -251,13 +251,19 @@ function editStoreContent() {
     document.querySelector('#colorChosen').value = xx.theme;
     M.updateTextFields();
 
+    $('#shopIncompleteLst').html('')
+
     if (xx.lonlat == '' || xx.lonlat == undefined || xx.lonlat == null) {
-        $('#incompleteShopIcon').css('display', 'block')
+        $('#incompleteShopIcon').css('display', 'block');
+        $('.shareStoreBtn').css('display', 'none');
+        $('.walletBalDiv').css('display', 'none');
         $('#shopIncompleteLst').append("<li>Add store location</li>")
     }
     if (xx.phone == '' || xx.phone == undefined || xx.phone == null) {
-        $('#incompleteShopIcon').css('display', 'block')
-        $('#shopIncompleteLst').append("<li>Add store phone number</li>")
+        $('#incompleteShopIcon').css('display', 'block');
+        $('.shareStoreBtn').css('display', 'none');
+        $('.walletBalDiv').css('display', 'none');
+        $('#shopIncompleteLst').append("<li>Add store phone number</li>");
     }
 }
 
