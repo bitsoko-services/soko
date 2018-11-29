@@ -108,7 +108,7 @@ function packagingData() {
             });
         } else {
             //creditTopup = $(".packPrice").html();
-            var totalInsufficient = JSON.stringify(parseInt(numberify($('.packPrice').html().replace(/[^0-9\.]+/g, ''))) + parseInt(numberify(delPrice)))
+            var totalInsufficient = $('.packPrice').html().replace(/[^0-9\.]+/g, '')
             getInsufficientFundsOrderbook(totalInsufficient).then(function(r) {
 
                 doFetch({
@@ -146,7 +146,7 @@ function packagingTotalCost() {
     var smallWrappingBag = $("#wrappingSmall-3").val() * 3
     var meduiumWrappingBag = $("#wrappingMeduim-5").val() * 5
     var largeWrappingBag = $("#wrappingLarge-8").val() * 7
-    var exLargeWrappingBag = $("#wrappingLarge-8").val() * 9
+    var exLargeWrappingBag = $("#wrappingLarge-9").val() * 9
 
     if (packagingType == 'paperBag') {
         if ($("#smallPaperbag").prop("disabled") == true) {
