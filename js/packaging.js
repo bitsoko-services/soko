@@ -10,6 +10,7 @@ function packagingDataArray() {
     promise1 = new Promise(function(resolve, reject) {
         var packagingDataArray = {};
         var wrappingBagDataArray = {};
+        var nonSealableDataArray = {};
         if (packagingType == "paperBag") {
             if ($("#smallPaperbag").prop("disabled") == false) {
                 packagingDataArray["small"] = $("#smallPaperbag").val();
@@ -27,6 +28,23 @@ function packagingDataArray() {
                 packagingDataArray["large"] = "0"
             }
             resolve(packagingDataArray);
+        } else if (packagingType == 'nonSealable') {
+            if ($("#nonSealableSmall").prop("disabled") == false) {
+                nonSealableDataArray["small"] = $("#nonSealableSmall-3").val();
+            } else {
+                nonSealableDataArray["small"] = "0"
+            }
+            if ($("#nonSealableMedium").prop("disabled") == false) {
+                nonSealableDataArray["medium"] = $("#nonSealableMeduim-5").val();
+            } else {
+                nonSealableDataArray["medium"] = "0"
+            }
+            if ($("#nonSealableLarge").prop("disabled") == false) {
+                nonSealableDataArray["large"] = $("#nonSealableLarge-8").val();
+            } else {
+                nonSealableDataArray["large"] = "0"
+            }
+            resolve(nonSealableDataArray);
         } else {
             if ($("#wrappingBagTiny").prop("checked") == true) {
                 wrappingBagDataArray["tiny-1"] = $("#wrappingTiny-1").val()
@@ -147,6 +165,9 @@ function packagingTotalCost() {
     var meduiumWrappingBag = $("#wrappingMeduim-5").val() * 5
     var largeWrappingBag = $("#wrappingLarge-8").val() * 7
     var exLargeWrappingBag = $("#wrappingLarge-9").val() * 9
+    var smallNonSealable = $("#nonSealableSmall-3").val() * 1
+    var mediumNonSealable = $("#nonSealableMeduim-5").val() * 3
+    var largeNonSealable = $("#nonSealableLarge-8").val() * 5
 
     if (packagingType == 'paperBag') {
         if ($("#smallPaperbag").prop("disabled") == true) {
@@ -159,6 +180,22 @@ function packagingTotalCost() {
             largePack = 0
         }
         var totalCost = smallPack + mediumPack + largePack
+        $(".packPrice").html(parseInt(totalCost) + parseInt(numberify(delPrice)) + " " + baseCd);
+        $(".packPriceVal").html(totalCost + " " + baseCd);
+    } else if (packagingType == 'nonSealable') {
+        if ($("#nonSealableSmall-3").prop("disabled") == true) {
+            smallNonSealable = 0
+        }
+        if ($("#nonSealableMeduim-5").prop("disabled") == true) {
+            mediumNonSealable = 0
+        }
+        if ($("#nonSealableLarge-8").prop("disabled") == true) {
+            largeNonSealable = 0
+        }
+        console.log("small " + smallNonSealable)
+        console.log("Medium " + mediumNonSealable)
+        console.log("large " + largeNonSealable)
+        var totalCost = smallNonSealable + mediumNonSealable + largeNonSealable
         $(".packPrice").html(parseInt(totalCost) + parseInt(numberify(delPrice)) + " " + baseCd);
         $(".packPriceVal").html(totalCost + " " + baseCd);
     } else {

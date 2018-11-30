@@ -699,6 +699,75 @@
         </div>
     </div>
 
+    <!--------------- Non Sealable Bag Modal ------------->
+    <div id="nonSealableModal" class="modal modal-fixed-footer" style="overflow: initial; margin-top:30%; border-radius:5px;width: 92% !important;height: fit-content;max-height: fit-content;">
+        <div style="width:150px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
+            <img src="./images/wraps-icon.webp" style="width: 150px;">
+        </div>
+        <h5 style="text-align: center; padding: 0px 5%; margin: 0px;">Wrapping Bags</h5>
+        <p style="text-align: center; padding: 0px 5%; margin: 0px;">Disposable, non-sealable, grease-proof wrapping.</p></br>
+        <div class="row" style="text-align:  center; background: #ecebeb; margin-top: 10px;">
+            <div class="row" style="margin: 0px; padding: 5px 0px;">
+                <div style="padding:0px; width: 33%; float: left; font-size: 0.9em;">
+                    <div class="col s12" style="text-align: center; font-size: 1em;">Small<br>10 x 20<br>Kes. 1</div>
+                </div>
+                <div style="padding:0px; width: 33%; float: left; font-size: 0.9em;">
+                    <div class="col s12" style="text-align: center; font-size: 1em;">Medium<br>15 x 30<br>Kes. 3</div>
+                </div>
+                <div style="padding:0px; width: 33%; float: left; font-size: 0.9em;">
+                    <div class="col s12" style="text-align: center; font-size: 1em;">Large<br>20 x 45<br>Kes. 5</div>
+                </div>
+            </div>
+        </div>
+        <div class="row packInput" style="text-align: center;">
+            <form action="#" style="width: fit-content; display: block; margin-left: auto; margin-right: auto; width: 90%;">
+                <p>
+                    <label style="display: block;">
+                        <input class="packCheckbox" id="nonSealableSmall" packagingType="nonSealable" type="checkbox" />
+                        <span class="packCounter" style="color: black; display: block; text-align: left;">Small :
+                            <span style="padding-left: 25px;float: right;">
+                                <a href="#"  class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
+                                <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="nonSealableSmall-3" />
+                                <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
+                            </span>
+                        </span>
+                    </label>
+                </p>
+                <p>
+                    <label style="display: block;">
+                        <input class="packCheckbox" id="nonSealableMedium" packagingType="nonSealable" type="checkbox" />
+                        <span class="packCounter" style="color: black; display: block; text-align: left;">Medium :
+                            <span style="padding-left: 25px;float: right;">
+                                <a href="#"  class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
+                                <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="nonSealableMeduim-5" />
+                                <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
+                            </span>
+                        </span>
+                    </label>
+                </p>
+                <p>
+                    <label style="display: block;">
+                        <input class="packCheckbox" id="nonSealableLarge" packagingType="nonSealable" type="checkbox" />
+                        <span class="packCounter" style="color: black; display: block; text-align: left;">Large:
+                            <span style="padding-left: 25px;float: right;">
+                                <a href="#"  class="opacitySelectedColor packMinus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">-</a>
+                                <input disabled="disabled" step="50" value="100" style="width: 50px; text-align: center; height: 1.5rem; padding-left: 10px;" type="number" id="nonSealableLarge-8" />
+                                <a href="#" class="opacitySelectedColor packPlus disabled btn" style="color: white; border: none; border-radius: 50%; height: 25px; width: 25px; line-height: 20px;  padding: 2px 9px;" disabled="disabled">+</a>
+                            </span>
+                        </span>
+                    </label>
+                </p>
+            </form>
+            <div style="display: block; width: 100%; background: #000000eb; color: white; padding: 10px;">Delivery: <span class="delPrice">0 kes</span> | Packaging: <span class="packPriceVal">0 kes</span></div>
+        </div>
+        <div class="modal-footer" style="bottom: -40px !important;">
+            <a class="opacitySelectedColor packagingCheckout" packagingType="wrappingBag" href="#!" style="width: 100%; display: block; bottom: 0px; position: absolute; text-align: center; padding: 15px; color: white; font-weight: bold; text-transform: uppercase;left: 0px;">pay
+                <span class="packPrice">0</span>
+                <span class="saving" style="font-size: 3em; line-height: 0px; display: none; height: 10px;"><span>.</span><span>.</span><span>.</span></span>
+            </a>
+        </div>
+    </div>
+
     <!--------------- Wrapping Bag Modal ------------->
     <div id="wrappingBagModal" class="modal modal-fixed-footer" style="overflow: initial; margin-top:30%; border-radius:5px;width: 92% !important;height: fit-content;max-height: fit-content;">
         <div style="width:150px;display:block;margin-left:auto;margin-right:auto;margin-top:-50px;">
@@ -2368,6 +2437,10 @@
                         </li>
                         <li>
                             <a onclick="wrappingBagModal('packagingModal')" style="padding: 0px 10px; font-size: 0.8rem; background: rgb(15, 95, 118); filter: brightness(1.3); opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px); left: -13px; width: auto !important;" class="btn-floating newProdBtn opacitySelectedColor"><p style="margin-top:0px !important;" class="material-icons newProdBtnName">Paperbag</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a onclick="wrappingBagModal('nonSealableModal')" style="padding: 0px 6px; font-size: 0.8rem; left: -25px; width: 100px !important;" class="btn-floating newProdBtn opacitySelectedColor"><p style="margin-top:0px !important;" class="material-icons newProdBtnName">Non Sealable</p>
                             </a>
                         </li>
                     </ul>
