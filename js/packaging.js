@@ -29,17 +29,17 @@ function packagingDataArray() {
             }
             resolve(packagingDataArray);
         } else if (packagingType == 'nonSealable') {
-            if ($("#nonSealableSmall").prop("disabled") == false) {
+            if ($("#nonSealableSmall-3").prop("disabled") == false) {
                 nonSealableDataArray["small"] = $("#nonSealableSmall-3").val();
             } else {
                 nonSealableDataArray["small"] = "0"
             }
-            if ($("#nonSealableMedium").prop("disabled") == false) {
+            if ($("#nonSealableMeduim-5").prop("disabled") == false) {
                 nonSealableDataArray["medium"] = $("#nonSealableMeduim-5").val();
             } else {
                 nonSealableDataArray["medium"] = "0"
             }
-            if ($("#nonSealableLarge").prop("disabled") == false) {
+            if ($("#nonSealableLarge-8").prop("disabled") == false) {
                 nonSealableDataArray["large"] = $("#nonSealableLarge-8").val();
             } else {
                 nonSealableDataArray["large"] = "0"
@@ -192,9 +192,6 @@ function packagingTotalCost() {
         if ($("#nonSealableLarge-8").prop("disabled") == true) {
             largeNonSealable = 0
         }
-        console.log("small " + smallNonSealable)
-        console.log("Medium " + mediumNonSealable)
-        console.log("large " + largeNonSealable)
         var totalCost = smallNonSealable + mediumNonSealable + largeNonSealable
         $(".packPrice").html(parseInt(totalCost) + parseInt(numberify(delPrice)) + " " + baseCd);
         $(".packPriceVal").html(totalCost + " " + baseCd);
@@ -282,36 +279,41 @@ function fetchPackagingOrders() {
         if (e.data.length == 0) {} else {
             $('.packagingContainer').html('');
             var orderData = e.data;
+            console.log(orderData.length)
             var allItems = 0
-            for (order in orderData) {
-                if (orderData[order].type == "paperBag") {
-                    orderData[order].type = "Paper Bag"
-                } else {
-                    orderData[order].type = "Wrapping Bag"
-                }
-                var items = JSON.parse(orderData[order].items.replace('"{', '{').replace('}"', '}'));
-                var itemsSize = Object.keys(items)
-                var testArray = new Array();
-                for (sizes in items) {
-                    // $('.packagingSizes').append(items[sizes])
-                    testArray.push(items[sizes])
-                }
-                packagingArrayItems(testArray, itemsSize)
+            if (orderData.length < 1) {
+                $('.packagingContainer').html('<div id="checkStoreOwner" style="display: block;"> <div style=" width: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: 25px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 16 16"><path fill="#444444" d="M8 1c3.9 0 7 3.1 7 7s-3.1 7-7 7-7-3.1-7-7 3.1-7 7-7zM8 0c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8v0z"></path><path fill="#444444" d="M7 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11 6c0 0.552-0.448 1-1 1s-1-0.448-1-1c0-0.552 0.448-1 1-1s1 0.448 1 1z"></path><path fill="#444444" d="M11.3 12.3c-0.7-1.1-2-1.8-3.3-1.8s-2.6 0.7-3.3 1.8l-0.8-0.6c0.9-1.4 2.4-2.2 4.1-2.2s3.2 0.8 4.1 2.2l-0.8 0.6z"></path></svg></div><p style=" text-align: center; color: #4e4b4b; font-weight: bold;">Ooops!!! You do not have access to store settings</p></div>')
+            } else {
+                for (order in orderData) {
+                    if (orderData[order].type == "paperBag") {
+                        orderData[order].type = "Paper Bag"
+                    } else {
+                        orderData[order].type = "Wrapping Bag"
+                    }
+                    var items = JSON.parse(orderData[order].items.replace('"{', '{').replace('}"', '}'));
+                    var itemsSize = Object.keys(items)
+                    var testArray = new Array();
+                    for (sizes in items) {
+                        // $('.packagingSizes').append(items[sizes])
+                        testArray.push(items[sizes])
+                    }
+                    packagingArrayItems(testArray, itemsSize)
 
-                function packagingArrayItems(itm, size) {
-                    var nums = itm
-                    var sum = 0;
+                    function packagingArrayItems(itm, size) {
+                        var nums = itm
+                        var sum = 0;
 
-                    for (var i = 0; i < nums.length; i++) {
+                        for (var i = 0; i < nums.length; i++) {
 
-                        sum += parseInt(nums[i]);
+                            sum += parseInt(nums[i]);
 
+                        }
+
+                        console.log();
+                        $('.packagingContainer').append('<div class="row" style="width: 100%; display: block; margin-left: auto; margin-right: auto;"><div class="col s12 m6"> <div class="card"> <span class="card-title" style="border-bottom: solid #cecbcb 1px; display: block; padding: 5px 10px; font-size: 1em; font-weight: bold;">' + orderData[order].type + '</span> <div class="card-content" style="padding: 10px;"><div class="packagingSizes"></div> <p style="font-weight: bold; color: #545252;">Status: <span style="font-weight: normal;">' + orderData[order].status + '</span></p><p style="font-weight: bold; color: #545252;">No. of Items: <span style="font-weight: normal;">' + sum + '</span></p><p style="font-weight: bold; color: #545252;">Total Price: <span style="font-weight: normal;">0 kes</span></p></div></div></div></div>');
                     }
 
-                    console.log();
-                    $('.packagingContainer').append('<div class="row" style="width: 100%; display: block; margin-left: auto; margin-right: auto;"><div class="col s12 m6"> <div class="card"> <span class="card-title" style="border-bottom: solid #cecbcb 1px; display: block; padding: 5px 10px; font-size: 1em; font-weight: bold;">' + orderData[order].type + '</span> <div class="card-content" style="padding: 10px;"><div class="packagingSizes"></div> <p style="font-weight: bold; color: #545252;">Status: <span style="font-weight: normal;">' + orderData[order].status + '</span></p><p style="font-weight: bold; color: #545252;">No. of Items: <span style="font-weight: normal;">' + sum + '</span></p><p style="font-weight: bold; color: #545252;">Total Price: <span style="font-weight: normal;">0 kes</span></p></div></div></div></div>');
                 }
-
             }
         }
 
