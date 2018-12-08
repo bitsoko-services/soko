@@ -171,41 +171,6 @@ $(document).on('touchstart click', '#noSponsoredBtn', function(event) {
     $("#rmvSpnsrdProd").hide();
 });
 
-$('#spnsrdModal').on('click', $('.autocomplete-items div'), function() {
-    var value = $('#check-prod-input').val();
-    if (value != '') {
-        var sponsoredProduct = value;
-        for (var i in sponProds) {
-            var name = sponProds[i].name;
-            var id = sponProds[i].id;
-            var price = sponProds[i].price;
-            if (sponsoredProduct == name) {
-                M.toast({
-                    html: 'Adding sponsored product',
-                    classes: 'spnsrdTst',
-                    displayLength: 10000
-                })
-                doFetch({
-                    action: 'addSponsoredProduct',
-                    store: localStorage.getItem('soko-active-store'),
-                    do: 'add',
-                    id: id
-                }).then(function(e) {
-                    if (e.status == 'ok') {
-                        $(".spnsrdTst").remove();
-                        $('#spnsrdModal').modal('close');
-                        M.toast({
-                            html: 'Sponsored product added successfully',
-                            displayLength: 3000
-                        })
-                    } else {}
-                });
-            }
-        }
-    }
-});
-
-
 var prodUID;
 
 function productsUpdater() {

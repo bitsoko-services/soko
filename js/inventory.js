@@ -15,22 +15,19 @@ function sponpProdNamesInput() {
     var inputVal = $("#check-prod-input").val();
     var fetchedData = doFetch({
         action: 'getAllProducts',
-        data: inputVal,
+        data: '',
         filter: 'sponsored'
     }).then(function(e) {
         var dat = {}
         var itemDat = new Array();
         sponProds = e.products;
-        for (var iii in e.products) {
-            var nm = e.products[iii].name + " - " + e.products[iii].price;
-            var icn = e.products[iii].icon;
-            var itemName = e.products[iii].name
-            //var id = e.users[iii].id;
-            dat[nm] = icn;
-            itemDat.push(itemName)
-
+        $('.inventoryItemsToAdd').html('');
+        for (var iii in sponProds) {
+            var itemName = sponProds[iii].name;
+            var itemPrice = sponProds[iii].price;
+            var itemId = sponProds[iii].id;
+            $('.inventoryItemsToAdd').append('<form action="#"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span>' + itemName + '</span> </label> </p></form>');
         }
-        autocomplete(document.getElementById("check-prod-input"), itemDat);
 
     });
 }
@@ -62,3 +59,57 @@ function inventoryOrder(prid) {
         })
     }
 }
+
+
+
+$(document).on('click touchstart', '.inventoryItems', function(e) {
+    var getId = $(this).attr('pid');
+    var isChecked = $('#inventoryItem' + getId).prop('checked');
+    console.log(getId)
+    console.log(isChecked)
+    if(isChecked == true){
+        M.toast({
+            html: 'Adding item to inventory',
+            classes: 'spnsrdTst',
+            displayLength: 10000
+        })
+        doFetch({
+            action: 'addSponsoredProduct',
+            store: localStorage.getItem('soko-active-store'),
+            do: 'add',
+            id: getId
+        }).then(function(e) {
+            if (e.status == 'ok') {
+                $(".spnsrdTst").remove();
+                $('#spnsrdModal').modal('close');
+                M.toast({
+                    html: 'Item added to inventory successfully',
+                    displayLength: 3000
+                })
+            } else {}
+        });
+    }else{
+        M.toast({
+            html: 'Removing item from inventory',
+            classes: 'spnsrdTst',
+            displayLength: 10000
+        })
+        doFetch({
+            action: 'addSponsoredProduct',
+            store: localStorage.getItem('soko-active-store'),
+            do: 'remove',
+            id: getId
+        }).then(function(e) {
+            if (e.status == 'ok') {
+                $(".spnsrdTst").remove();
+                $('#spnsrdModal').modal('close');
+                M.toast({
+                    html: 'Item removed successfully',
+                    displayLength: 3000
+                })
+            } else {}
+        });
+    }
+
+
+})
