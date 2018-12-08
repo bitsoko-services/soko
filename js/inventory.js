@@ -26,7 +26,10 @@ function sponpProdNamesInput() {
             var itemName = sponProds[iii].name;
             var itemPrice = sponProds[iii].price;
             var itemId = sponProds[iii].id;
-            $('.inventoryItemsToAdd').append('<form action="#"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span>' + itemName + '</span> </label> </p></form>');
+            $('.inventoryItemsToAdd').append('<form action="#" style="float: left; padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span>' + itemName + '</span> </label> </p></form>');
+            if(invetoryItemsInStore.includes(itemId) == true){
+                $('#inventoryItem' + itemId + '').attr('checked', true);
+            }
         }
 
     });
@@ -65,8 +68,6 @@ function inventoryOrder(prid) {
 $(document).on('click touchstart', '.inventoryItems', function(e) {
     var getId = $(this).attr('pid');
     var isChecked = $('#inventoryItem' + getId).prop('checked');
-    console.log(getId)
-    console.log(isChecked)
     if(isChecked == true){
         M.toast({
             html: 'Adding item to inventory',
@@ -89,27 +90,31 @@ $(document).on('click touchstart', '.inventoryItems', function(e) {
             } else {}
         });
     }else{
-        M.toast({
-            html: 'Removing item from inventory',
-            classes: 'spnsrdTst',
-            displayLength: 10000
-        })
-        doFetch({
-            action: 'addSponsoredProduct',
-            store: localStorage.getItem('soko-active-store'),
-            do: 'remove',
-            id: getId
-        }).then(function(e) {
-            if (e.status == 'ok') {
-                $(".spnsrdTst").remove();
-                $('#spnsrdModal').modal('close');
-                M.toast({
-                    html: 'Item removed successfully',
-                    displayLength: 3000
-                })
-            } else {}
+        $("#rmvSpnsrdProd").attr("sid", getId)
+        $("#rmvSpnsrdProd").css('display','block');
+        $(document).on('touchstart click', '#yesSponsoredBtn', function(event) {
+            var sponsoredID = $("#rmvSpnsrdProd").attr("sid");
+            $(this).unbind(event);
+            doFetch({
+                action: 'removeSponsoredProduct',
+                store: localStorage.getItem('soko-active-store'),
+                do: 'remove',
+                id: sponsoredID
+            }).then(function(e) {
+                if (e.status == 'ok') {
+                    $("#rmvSpnsrdProd").hide();
+                    document.getElementById(id).remove();
+                    document.getElementById("sprdprod_" + id).remove();
+                    M.toast({
+                        html: 'Inventory item removed successfully',
+                        displayLength: 3000
+                    })
+                } else {}
+            });
         });
     }
-
-
 })
+
+$(document).on('touchstart click', '#noSponsoredBtn', function(event) {
+    $("#rmvSpnsrdProd").hide();
+});
