@@ -201,21 +201,6 @@ function productsUpdater() {
                     '<option value="5">per Month</option>' +
                     '<option value="6">per Litre</option>' +
                     '</select></div></div></div><div style="width: 100%;text-align: center;margin: 20px 0px 0px;color: rgba(0,0,0,0.4);">availability</div>' + '<div class="row"><div class="input-field col s6">' + '<input placeholder="" prnm="rstQuantity" id="prodRestNo-' + reqs[i].id + '" type="number" value="' + reqs[i].rstQuantity + '" class="validate" min="0" prid="' + reqs[i].id + '" max="1000" onkeyup="calculateInventoryPrice(' + reqs[i].id + ')">' + '<label for="prodRestNo-' + reqs[i].id + '" class="active"> Quantity</label></div>' + '<div class="input-field col s6"><div class="select-wrapper initialized">' + '<select id="prodRestDur-' + reqs[i].id + '" prnm="rstDuration" class="initialized">' + '<option value="" disabled="" selected="' + reqs[i].rstDuration + '">duration</option>' + '<option value="day">per Day</option>' + '<option value="week">per Week</option>' + '<option value="month">per Month</option><option value="litre">per Litre</option>' + '</select></div></div></div>' + '<div class="row" style="text-align: right;margin: 20px 0px;"><div class="btn opacitySelectedColor processInventoryOrder" style="display: block; margin: 0px auto;" onclick="inventoryOrder(' + reqs[i].id + ')">pay <span id="inventoryProdPrice-' + reqs[i].id + '"> ' + totalPrice + ' </span></div> </div>' + '</form></div></li>');
-
-                if (reqs[i].sponsored == "true") {
-                    var sprndhtml = "";
-                    var sprndhtml = '<div class="chip myBtn" id="sprdprod_' + reqs[i].id + '"  prid="' + reqs[i].id + '" ><img src="' + reqs[i].imagePath.replace('.png', '-35.webp') + '">' + reqs[i].name + ' <i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 64 64" enable-background="new 0 0 64 64" style="width: 14px; margin: 0px 0px 0px 7px; height: 10px;"> <g> <path fill="#1D1D1B" d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59 c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59 c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0 L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/> </g></svg></i></div>';
-                }
-
-                $(".sprndProd").empty().append($.parseHTML(sprndhtml));
-                var modal = document.getElementById('rmvSpnsrdProd');
-                var btn = document.getElementById("sprdprod_" + reqs[i].id);
-                var id = reqs[i].id
-                btn.onclick = function() {
-                    modal.style.display = "block";
-                }
-
-
             } else {
                 if (reqs[i].imagePath != "" && reqs[i].imagePath != null) {
                     $(".products-collapsible").append('<li class="prdList" id="' + reqs[i].id + '" prid="' + reqs[i].id + '" style="margin: 0px 0px 10px 0p !important; background: rgb(255, 255, 255);">' +
