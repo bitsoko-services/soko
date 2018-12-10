@@ -41,9 +41,9 @@ function sponpProdNamesInput() {
 
     });
     var remainingTime = 7 - moment().format("d");
-    if(remainingTime == 1){
+    if (remainingTime == 1) {
         document.getElementById('invetoryEndDate').innerHTML = remainingTime + " day";
-    }else{
+    } else {
         document.getElementById('invetoryEndDate').innerHTML = remainingTime + " days";
     }
 }
@@ -105,6 +105,7 @@ $(document).on('click touchstart', '.inventoryItems', function(e) {
     } else {
         $("#rmvSpnsrdProd").attr("sid", getId)
         $("#rmvSpnsrdProd").css('display', 'block');
+        $('#inventoryItem' + getId).prop('checked', true);
         $(document).on('touchstart click', '#yesSponsoredBtn', function(event) {
             var sponsoredID = $("#rmvSpnsrdProd").attr("sid");
             $(this).unbind(event);
@@ -116,8 +117,7 @@ $(document).on('click touchstart', '.inventoryItems', function(e) {
             }).then(function(e) {
                 if (e.status == 'ok') {
                     $("#rmvSpnsrdProd").hide();
-                    document.getElementById(id).remove();
-                    document.getElementById("sprdprod_" + id).remove();
+                    $('#inventoryItem15').prop('checked', false);
                     M.toast({
                         html: 'Inventory item removed successfully',
                         displayLength: 3000

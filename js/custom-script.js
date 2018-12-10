@@ -120,7 +120,9 @@ angular.module('sokoApp', [])
         }
         if (getBitsWinOpt('page') == 'inventory') {
             openInventoryPage();
-            $('#spnsrdModal').modal('open');
+            if(getBitsWinOpt('sel')=="add"){
+                $('#spnsrdModal').modal('open');
+            }
         }
     }
 
