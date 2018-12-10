@@ -26,19 +26,26 @@ function sponpProdNamesInput() {
             var itemName = sponProds[iii].name;
             var itemPrice = sponProds[iii].price;
             var itemId = sponProds[iii].id;
-            if(itemName.toLowerCase() == "eggs"){
-                    $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="/images/inventory/eggs.jpeg" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + '  @ 270 per tray</span> </label> </p></form>');
+            if (itemName.toLowerCase() == "eggs") {
+                $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="/images/inventory/eggs.jpeg" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + '  @ 270 per tray</span> </label> </p></form>');
             }
-            if(itemName.toLowerCase() == "potatoes"){
-                    $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="/images/inventory/potatoes.jpg" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + ' @ 37 per kg</span> </label> </p></form>');
+            if (itemName.toLowerCase() == "potatoes") {
+                $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="/images/inventory/potatoes.jpg" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + ' @ 37 per kg</span> </label> </p></form>');
             }
 
-            if(invetoryItemsInStore.includes(itemId) == true){
+            if (invetoryItemsInStore.includes(itemId) == true) {
                 $('#inventoryItem' + itemId + '').attr('checked', true);
             }
         }
 
     });
+
+    function daysRemaining() {
+        var eventdate = moment("2018-12-14");
+        var todaysdate = moment();
+        return eventdate.diff(todaysdate, 'days');
+    }
+    document.getElementById('invetoryEndDate').innerHTML = daysRemaining();
 }
 
 //Process Inventory Order
@@ -74,7 +81,7 @@ function inventoryOrder(prid) {
 $(document).on('click touchstart', '.inventoryItems', function(e) {
     var getId = $(this).attr('pid');
     var isChecked = $('#inventoryItem' + getId).prop('checked');
-    if(isChecked == true){
+    if (isChecked == true) {
         M.toast({
             html: 'Adding item to inventory',
             classes: 'spnsrdTst',
@@ -95,9 +102,9 @@ $(document).on('click touchstart', '.inventoryItems', function(e) {
                 })
             } else {}
         });
-    }else{
+    } else {
         $("#rmvSpnsrdProd").attr("sid", getId)
-        $("#rmvSpnsrdProd").css('display','block');
+        $("#rmvSpnsrdProd").css('display', 'block');
         $(document).on('touchstart click', '#yesSponsoredBtn', function(event) {
             var sponsoredID = $("#rmvSpnsrdProd").attr("sid");
             $(this).unbind(event);
