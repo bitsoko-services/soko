@@ -26,7 +26,13 @@ function sponpProdNamesInput() {
             var itemName = sponProds[iii].name;
             var itemPrice = sponProds[iii].price;
             var itemId = sponProds[iii].id;
-            $('.inventoryItemsToAdd').append('<form action="#" style="float: left; padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span>' + itemName + '</span> </label> </p></form>');
+            if(itemName.toLowerCase() == "eggs"){
+                    $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="/images/inventory/eggs.jpeg" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + '  @ 270 per tray</span> </label> </p></form>');
+            }
+            if(itemName.toLowerCase() == "potatoes"){
+                    $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="/images/inventory/potatoes.jpg" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + ' @ 37 per kg</span> </label> </p></form>');
+            }
+
             if(invetoryItemsInStore.includes(itemId) == true){
                 $('#inventoryItem' + itemId + '').attr('checked', true);
             }
