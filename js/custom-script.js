@@ -118,6 +118,10 @@ angular.module('sokoApp', [])
                 $('#wrappingBagModal').modal('open')
             }
         }
+        if (getBitsWinOpt('page') == 'inventory') {
+            openInventoryPage();
+            $('#spnsrdModal').modal('open');
+        }
     }
 
 
