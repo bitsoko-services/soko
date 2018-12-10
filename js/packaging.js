@@ -10,6 +10,7 @@ function packagingDataArray() {
     promise1 = new Promise(function(resolve, reject) {
         var packagingDataArray = {};
         var wrappingBagDataArray = {};
+        var nonSealableDataArray = {};
         if (packagingType == "paperBag") {
             if ($("#smallPaperbag").prop("disabled") == false) {
                 packagingDataArray["small"] = $("#smallPaperbag").val();
@@ -27,6 +28,23 @@ function packagingDataArray() {
                 packagingDataArray["large"] = "0"
             }
             resolve(packagingDataArray);
+        } else if (packagingType == 'nonSealable') {
+            if ($("#nonSealableSmall-3").prop("disabled") == false) {
+                nonSealableDataArray["small"] = $("#nonSealableSmall-3").val();
+            } else {
+                nonSealableDataArray["small"] = "0"
+            }
+            if ($("#nonSealableMeduim-5").prop("disabled") == false) {
+                nonSealableDataArray["medium"] = $("#nonSealableMeduim-5").val();
+            } else {
+                nonSealableDataArray["medium"] = "0"
+            }
+            if ($("#nonSealableLarge-8").prop("disabled") == false) {
+                nonSealableDataArray["large"] = $("#nonSealableLarge-8").val();
+            } else {
+                nonSealableDataArray["large"] = "0"
+            }
+            resolve(nonSealableDataArray);
         } else {
             if ($("#wrappingBagTiny").prop("checked") == true) {
                 wrappingBagDataArray["tiny-1"] = $("#wrappingTiny-1").val()
@@ -108,7 +126,7 @@ function packagingData() {
             });
         } else {
             //creditTopup = $(".packPrice").html();
-            var totalInsufficient = JSON.stringify(parseInt(numberify($('.packPrice').html().replace(/[^0-9\.]+/g, ''))) + parseInt(numberify(delPrice)))
+            var totalInsufficient = $('.packPrice').html().replace(/[^0-9\.]+/g, '')
             getInsufficientFundsOrderbook(totalInsufficient).then(function(r) {
 
                 doFetch({
@@ -146,7 +164,10 @@ function packagingTotalCost() {
     var smallWrappingBag = $("#wrappingSmall-3").val() * 3
     var meduiumWrappingBag = $("#wrappingMeduim-5").val() * 5
     var largeWrappingBag = $("#wrappingLarge-8").val() * 7
-    var exLargeWrappingBag = $("#wrappingLarge-8").val() * 9
+    var exLargeWrappingBag = $("#wrappingLarge-9").val() * 9
+    var smallNonSealable = $("#nonSealableSmall-3").val() * 1
+    var mediumNonSealable = $("#nonSealableMeduim-5").val() * 3
+    var largeNonSealable = $("#nonSealableLarge-8").val() * 5
 
     if (packagingType == 'paperBag') {
         if ($("#smallPaperbag").prop("disabled") == true) {
@@ -159,6 +180,19 @@ function packagingTotalCost() {
             largePack = 0
         }
         var totalCost = smallPack + mediumPack + largePack
+        $(".packPrice").html(parseInt(totalCost) + parseInt(numberify(delPrice)) + " " + baseCd);
+        $(".packPriceVal").html(totalCost + " " + baseCd);
+    } else if (packagingType == 'nonSealable') {
+        if ($("#nonSealableSmall-3").prop("disabled") == true) {
+            smallNonSealable = 0
+        }
+        if ($("#nonSealableMeduim-5").prop("disabled") == true) {
+            mediumNonSealable = 0
+        }
+        if ($("#nonSealableLarge-8").prop("disabled") == true) {
+            largeNonSealable = 0
+        }
+        var totalCost = smallNonSealable + mediumNonSealable + largeNonSealable
         $(".packPrice").html(parseInt(totalCost) + parseInt(numberify(delPrice)) + " " + baseCd);
         $(".packPriceVal").html(totalCost + " " + baseCd);
     } else {
@@ -245,6 +279,7 @@ function fetchPackagingOrders() {
         if (e.data.length == 0) {} else {
             $('.packagingContainer').html('');
             var orderData = e.data;
+            console.log(orderData.length)
             var allItems = 0
             for (order in orderData) {
                 if (orderData[order].type == "paperBag") {
@@ -260,7 +295,6 @@ function fetchPackagingOrders() {
                     testArray.push(items[sizes])
                 }
                 packagingArrayItems(testArray, itemsSize)
-
                 function packagingArrayItems(itm, size) {
                     var nums = itm
                     var sum = 0;
@@ -270,8 +304,6 @@ function fetchPackagingOrders() {
                         sum += parseInt(nums[i]);
 
                     }
-
-                    console.log();
                     $('.packagingContainer').append('<div class="row" style="width: 100%; display: block; margin-left: auto; margin-right: auto;"><div class="col s12 m6"> <div class="card"> <span class="card-title" style="border-bottom: solid #cecbcb 1px; display: block; padding: 5px 10px; font-size: 1em; font-weight: bold;">' + orderData[order].type + '</span> <div class="card-content" style="padding: 10px;"><div class="packagingSizes"></div> <p style="font-weight: bold; color: #545252;">Status: <span style="font-weight: normal;">' + orderData[order].status + '</span></p><p style="font-weight: bold; color: #545252;">No. of Items: <span style="font-weight: normal;">' + sum + '</span></p><p style="font-weight: bold; color: #545252;">Total Price: <span style="font-weight: normal;">0 kes</span></p></div></div></div></div>');
                 }
 

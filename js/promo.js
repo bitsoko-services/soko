@@ -11,7 +11,7 @@ function refreshPromotions() {
             var allPromo = promoSubsId[i].promoSubs;
 
             for (var s = 0; s < allPromo.length; s++) {
-                console.log('[++++++++++++++]' + promoSubsId[i].id + allPromo[s].id)
+                // console.log('[++++++++++++++]' + promoSubsId[i].id + allPromo[s].id)
             }
         }
         if (e.status == 'ok') {
@@ -270,17 +270,20 @@ function promoCreator(proId) {
             // $(".promo-add-new-promotion-" + proId).html('');
 
             for (var i = 0, proId = proId; i < e.length; ++i) {
-
-                var itemsInPromo = JSON.parse(promoSubsId[i].promoItems)
-                $('.promoItems-' + promoSubsId[i].id).html('')
-                for (items in itemsInPromo) {
-                    for (var ii = 0; ii < getAllProducts.length; ii++) {
-                        var prdId = getAllProducts[ii].id
-                        var prodName = getAllProducts[ii].name
-                        if (prdId == itemsInPromo[items]) {
-                            $('.promoItems-' + promoSubsId[i].id).append('<li style="display: inline-block;"><div class="chip">' + prodName + '</div></li>')
+                try {
+                    var itemsInPromo = JSON.parse(promoSubsId[i].promoItems)
+                    $('.promoItems-' + promoSubsId[i].id).html('')
+                    for (items in itemsInPromo) {
+                        for (var ii = 0; ii < getAllProducts.length; ii++) {
+                            var prdId = getAllProducts[ii].id
+                            var prodName = getAllProducts[ii].name
+                            if (prdId == itemsInPromo[items]) {
+                                $('.promoItems-' + promoSubsId[i].id).append('<li style="display: inline-block;"><div class="chip">' + prodName + '</div></li>')
+                            }
                         }
                     }
+                } catch (err) {
+                    console.log(err)
                 }
 
                 $("#prodEdit_" + e[i].id).change(function() {

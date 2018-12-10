@@ -13,6 +13,8 @@ function deliveryMbr() {
         $("#ordMembersLst").html("");
         if (deliveryMemberLst.length == 0) {
             $('#incompleteShopIcon').css('display', 'block');
+            $('.shareStoreBtn').css('display', 'none');
+            $('.walletBalDiv').css('display', 'none');
             if ($('.addOperatorShopError').length >= 1) {
                 //Do nothing
             } else {
@@ -75,7 +77,9 @@ function deliveryMbr() {
     $("#rangeOutputId").val(rateInput);
 
     if (rateInput == 0 || rateInput == undefined || rateInput == '') {
-        $('#incompleteShopIcon').css('display', 'block')
+        $('#incompleteShopIcon').css('display', 'block');
+        $('.shareStoreBtn').css('display', 'none');
+        $('.walletBalDiv').css('display', 'none');
         $('#shopIncompleteLst').append("<li>Set shop's delivery rate</li>")
     }
 }

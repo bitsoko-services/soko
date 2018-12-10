@@ -112,9 +112,16 @@ angular.module('sokoApp', [])
         switchTo(getBitsWinOpt('page'))
         if (getBitsWinOpt('page') == 'packaging') {
             showPackagingPage();
+            wrappingBagModal('wrappingBagModal')
             fetchPackagingOrders();
             if(getBitsWinOpt('sel')=="wraps"){
                 $('#wrappingBagModal').modal('open')
+            }
+        }
+        if (getBitsWinOpt('page') == 'inventory') {
+            openInventoryPage();
+            if(getBitsWinOpt('sel')=="add"){
+                $('#spnsrdModal').modal('open');
             }
         }
     }

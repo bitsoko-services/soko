@@ -15,24 +15,37 @@ function sponpProdNamesInput() {
     var inputVal = $("#check-prod-input").val();
     var fetchedData = doFetch({
         action: 'getAllProducts',
-        data: inputVal,
+        data: '',
         filter: 'sponsored'
     }).then(function(e) {
         var dat = {}
         var itemDat = new Array();
         sponProds = e.products;
-        for (var iii in e.products) {
-            var nm = e.products[iii].name + " - " + e.products[iii].price;
-            var icn = e.products[iii].icon;
-            var itemName = e.products[iii].name
-            //var id = e.users[iii].id;
-            dat[nm] = icn;
-            itemDat.push(itemName)
+        $('.inventoryItemsToAdd').html('');
+        for (var iii in sponProds) {
+            var itemName = sponProds[iii].name;
+            var itemPrice = sponProds[iii].price;
+            var itemId = sponProds[iii].id;
+            var itemIcon = sponProds[iii].icon;
+            if (itemName.toLowerCase() == "eggs") {
+                $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="' + itemIcon + '" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + '  @ ' + itemPrice + ' per tray</span> </label> </p></form>');
+            }
+            if (itemName.toLowerCase() == "potatoes") {
+                $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="' + itemIcon + '" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + ' @ ' + itemPrice + ' per kg</span> </label> </p></form>');
+            }
 
+            if (invetoryItemsInStore.includes(itemId) == true) {
+                $('#inventoryItem' + itemId + '').attr('checked', true);
+            }
         }
-        autocomplete(document.getElementById("check-prod-input"), itemDat);
 
     });
+    var remainingTime = 7 - moment().format("d");
+    if (remainingTime == 1) {
+        document.getElementById('invetoryEndDate').innerHTML = remainingTime + " day";
+    } else {
+        document.getElementById('invetoryEndDate').innerHTML = remainingTime + " days";
+    }
 }
 
 //Process Inventory Order
@@ -62,3 +75,59 @@ function inventoryOrder(prid) {
         })
     }
 }
+
+
+
+$(document).on('click touchstart', '.inventoryItems', function(e) {
+    var getId = $(this).attr('pid');
+    var isChecked = $('#inventoryItem' + getId).prop('checked');
+    if (isChecked == true) {
+        M.toast({
+            html: 'Adding item to inventory',
+            classes: 'spnsrdTst',
+            displayLength: 10000
+        })
+        doFetch({
+            action: 'addSponsoredProduct',
+            store: localStorage.getItem('soko-active-store'),
+            do: 'add',
+            id: getId
+        }).then(function(e) {
+            if (e.status == 'ok') {
+                $(".spnsrdTst").remove();
+                $('#spnsrdModal').modal('close');
+                M.toast({
+                    html: 'Item added to inventory successfully',
+                    displayLength: 3000
+                })
+            } else {}
+        });
+    } else {
+        $("#rmvSpnsrdProd").attr("sid", getId)
+        $("#rmvSpnsrdProd").css('display', 'block');
+        $('#inventoryItem' + getId).prop('checked', true);
+        $(document).on('touchstart click', '#yesSponsoredBtn', function(event) {
+            var sponsoredID = $("#rmvSpnsrdProd").attr("sid");
+            $(this).unbind(event);
+            doFetch({
+                action: 'removeSponsoredProduct',
+                store: localStorage.getItem('soko-active-store'),
+                do: 'remove',
+                id: sponsoredID
+            }).then(function(e) {
+                if (e.status == 'ok') {
+                    $("#rmvSpnsrdProd").hide();
+                    $('#inventoryItem15').prop('checked', false);
+                    M.toast({
+                        html: 'Inventory item removed successfully',
+                        displayLength: 3000
+                    })
+                } else {}
+            });
+        });
+    }
+})
+
+$(document).on('touchstart click', '#noSponsoredBtn', function(event) {
+    $("#rmvSpnsrdProd").hide();
+});
