@@ -43,7 +43,8 @@ function sponpProdNamesInput() {
             var itemPrice = sponProds[iii].price;
             var itemId = sponProds[iii].id;
             var itemIcon = sponProds[iii].icon;
-            $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="' + itemIcon + '" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + '  @ ' + itemPrice + '</span> </label> </p></form>');
+            var itemMetric = sponProds[iii].metric;
+            $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="' + itemIcon + '" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + '  @ ' + itemPrice + ' ' + itemMetric + '</span> </label> </p></form>');
 
 
             if (invetoryItemsInStore.includes(itemId) == true) {
