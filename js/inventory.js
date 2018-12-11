@@ -1,3 +1,5 @@
+var inventoryItemsActive = false
+
 function openInventoryPage() {
     $('#content > .container > div').css('display', 'none');
     setTimeout(function(e) {
@@ -5,6 +7,20 @@ function openInventoryPage() {
         $(".activePage").html("Inventory")
     }, 300);
     sponpProdNamesInput();
+}
+
+function isInventoryActive() {
+    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function(event) {
+        var reqs = JSON.parse(event.target.result);
+        for (var i = 0; i < reqs.length; ++i) {
+            if (reqs[i].sponsored == "true") {
+                inventoryItemsActive = true
+            }
+        }
+        if (inventoryItemsActive != true) {
+            document.getElementById('inventoryAddBtn').classList.add('pulse')
+        }
+    }
 }
 
 
