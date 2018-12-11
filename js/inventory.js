@@ -27,12 +27,8 @@ function sponpProdNamesInput() {
             var itemPrice = sponProds[iii].price;
             var itemId = sponProds[iii].id;
             var itemIcon = sponProds[iii].icon;
-            if (itemName.toLowerCase() == "eggs") {
-                $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="' + itemIcon + '" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + '  @ ' + itemPrice + ' per tray</span> </label> </p></form>');
-            }
-            if (itemName.toLowerCase() == "potatoes") {
-                $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="' + itemIcon + '" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + ' @ ' + itemPrice + ' per kg</span> </label> </p></form>');
-            }
+            $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="' + itemIcon + '" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + '  @ ' + itemPrice + '</span> </label> </p></form>');
+
 
             if (invetoryItemsInStore.includes(itemId) == true) {
                 $('#inventoryItem' + itemId + '').attr('checked', true);
