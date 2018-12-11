@@ -1,3 +1,5 @@
+var inventoryItemsActive = false
+
 function openInventoryPage() {
     $('#content > .container > div').css('display', 'none');
     setTimeout(function(e) {
@@ -5,6 +7,20 @@ function openInventoryPage() {
         $(".activePage").html("Inventory")
     }, 300);
     sponpProdNamesInput();
+}
+
+function isInventoryActive() {
+    getObjectStore('data', 'readwrite').get('soko-store-' + localStorage.getItem('soko-active-store') + '-products').onsuccess = function(event) {
+        var reqs = JSON.parse(event.target.result);
+        for (var i = 0; i < reqs.length; ++i) {
+            if (reqs[i].sponsored == "true") {
+                inventoryItemsActive = true
+            }
+        }
+        if (inventoryItemsActive != true) {
+            document.getElementById('inventoryAddBtn').classList.add('pulse')
+        }
+    }
 }
 
 
@@ -27,12 +43,9 @@ function sponpProdNamesInput() {
             var itemPrice = sponProds[iii].price;
             var itemId = sponProds[iii].id;
             var itemIcon = sponProds[iii].icon;
-            if (itemName.toLowerCase() == "eggs") {
-                $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="' + itemIcon + '" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + '  @ ' + itemPrice + ' per tray</span> </label> </p></form>');
-            }
-            if (itemName.toLowerCase() == "potatoes") {
-                $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="' + itemIcon + '" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + ' @ ' + itemPrice + ' per kg</span> </label> </p></form>');
-            }
+            var itemMetric = sponProds[iii].metric;
+            $('.inventoryItemsToAdd').append('<form action="#" style="padding-right: 20px;"> <p> <label> <input class="inventoryItems" type="checkbox" pid="' + itemId + '" id="inventoryItem' + itemId + '"/> <span><img src="' + itemIcon + '" style=" width: 25px; height: 25px; object-fit: cover; border-radius: 50%; float: left; margin-right: 10px;">' + itemName + '  @ ' + itemPrice + ' ' + itemMetric + '</span> </label> </p></form>');
+
 
             if (invetoryItemsInStore.includes(itemId) == true) {
                 $('#inventoryItem' + itemId + '').attr('checked', true);

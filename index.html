@@ -250,7 +250,7 @@
         </div>
 -->
         <div class="modal-content" style="padding:0px;">
-            <div class="row selectedColor switchStoreHeader" style="margin: 0px;">
+            <div class="row selectedColor switchStoreHeader">
                 <div class="col s7">
                     <h5 style="margin:0px;">SWITCH STORE</h5>
                     <p style="margin:0px;">STORES: <span id="storeNo"></span></p>
@@ -259,19 +259,19 @@
                     <a class="btn bits right" style="padding: 0px 10px; background: green; font-size: 2.3em; border-radius: 50%; height: 40px; width: 40px; line-height: 40px;" onclick='$("#switchStoreModal").modal("close"); $("#newStoreModal").modal("open")'>+</a>
                 </div>
             </div>
-            <div style="padding:0px 10px;" class="swtchStrDskt">
+            <div style="" class="swtchStrDskt">
                 <div class="row switchStoreDiv">
                     <div class="col s12">
-                        <ul class="tabs" style="height: 50px;">
-                            <li class="tab col s3"><a style="color:black;" href="#myStores">My Stores</a></li>
-                            <li class="tab col s3"><a style="color:black;" class="active" href="#managedStores">Managed Stores</a></li>
+                        <ul class="tabs selectedColor swtchTabs">
+                            <li class="tab col s3"><a style="color:white;" href="#myStores">My Stores</a></li>
+                            <li class="tab col s3"><a style="color:white;" class="active" href="#managedStores">Managed Stores</a></li>
                         </ul>
                     </div>
                     <div id="myStores" class="col s12">
-                        <ul id="myStoreContent" class="collection" style="text-align:center;"></ul>
+                        <ul id="myStoreContent" class="collection" style="text-align:center; margin-top: 145px;"></ul>
                     </div>
                     <div id="managedStores" class="col s12">
-                        <ul id="managedStoreContent" class="collection" style="text-align:center;"></ul>
+                        <ul id="managedStoreContent" class="collection" style="text-align:center; margin-top: 145px;"></ul>
                     </div>
                 </div>
             </div>
@@ -3242,7 +3242,7 @@
         </div>
         <ul class="sponsoredPrd-collapsible collapsible collapsible-accordion chStoreUpdate" data-collapsible="accordion" style="background:white; margin: 10px;"> </ul>
         <div class="fixed-action-btn direction-top active">
-            <a onclick="$('#spnsrdModal').modal('open')" class="btn-floating opacitySelectedColor" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em;">
+            <a id="inventoryAddBtn" onclick="$('#spnsrdModal').modal('open'); document.getElementById('inventoryAddBtn').classList.remove('pulse')" class="btn-floating opacitySelectedColor" style="width: 55px; height: 55px; border-radius: 50%; line-height: 55px; font-size: 2em;">
                 <p style="margin-top:0px !important;text-align:center;">+</p>
             </a>
         </div>
