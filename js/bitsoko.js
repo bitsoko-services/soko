@@ -72,10 +72,6 @@ function profileLoaded(p) {
     $('.profile-image').attr('src', p.image);
     //p.ownerid=1;
     localStorage.setItem('soko-owner-id', p.bitsokoUserID);
-    M.toast({
-        html: 'Signing in...',
-        displayLength: 3000
-    })
     $("#signingIn").html("Signing In. Please Wait");
     updateStores();
 
