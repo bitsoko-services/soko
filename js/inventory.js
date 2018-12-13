@@ -101,7 +101,7 @@ $(document).on('click touchstart', '.inventoryItems', function(e) {
             displayLength: 10000
         })
         doFetch({
-            action: 'addSponsoredProduct',
+            action: 'sponsoredProduct',
             store: localStorage.getItem('soko-active-store'),
             do: 'add',
             id: getId
@@ -123,7 +123,7 @@ $(document).on('click touchstart', '.inventoryItems', function(e) {
             var sponsoredID = $("#rmvSpnsrdProd").attr("sid");
             $(this).unbind(event);
             doFetch({
-                action: 'removeSponsoredProduct',
+                action: 'sponsoredProduct',
                 store: localStorage.getItem('soko-active-store'),
                 do: 'remove',
                 id: sponsoredID
