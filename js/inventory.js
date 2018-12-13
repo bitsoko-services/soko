@@ -108,7 +108,6 @@ $(document).on('click touchstart', '.inventoryItems', function(e) {
         }).then(function(e) {
             if (e.status == 'ok') {
                 $(".spnsrdTst").remove();
-                $('#spnsrdModal').modal('close');
                 M.toast({
                     html: 'Item added to inventory successfully',
                     displayLength: 3000
