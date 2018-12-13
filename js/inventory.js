@@ -101,7 +101,7 @@ $(document).on('click touchstart', '.inventoryItems', function(e) {
             displayLength: 10000
         })
         doFetch({
-            action: 'addSponsoredProduct',
+            action: 'sponsoredProduct',
             store: localStorage.getItem('soko-active-store'),
             do: 'add',
             id: getId
